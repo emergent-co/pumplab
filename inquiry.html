@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>견적 문의 — Cellab</title>
+<link rel="canonical" href="https://cellab.kr/inquiry.html">
+<meta name="description" content="Cellab 정량펌프·소모품 견적 문의. 부품 사양·응용 분야를 입력하면 셀렙이 직접 답변합니다.">
+<meta name="google-site-verification" content="Rmsvu2bCzPOi66nb9epKw-gbrb07Hyem6hM5uNu71ss" />
+<meta name="naver-site-verification" content="388fb33540d49f5adf6912da9cc3f089163002b6" />
+
+<!-- Google tag (gtag.js) — GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CN3E3PVQVD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CN3E3PVQVD');
+</script>
+
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0a2540;--teal:#1a6e56;--text:#1a2332;--muted:#5a6779;--border:#e3e8ef;--bg:#f7f9fc;
+  }
+  html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--text);background:var(--bg);line-height:1.55}
+  a{color:var(--teal);text-decoration:none}
+  .container{max-width:680px;margin:0 auto;padding:32px 20px}
+
+  /* 헤더 */
+  .head{padding:18px 0;border-bottom:1px solid var(--border);margin-bottom:32px}
+  .head a{font-size:21px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+  .head a span{color:var(--teal)}
+  .head .sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+  /* 폼 */
+  h1{font-size:26px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:8px}
+  .lead{font-size:14px;color:var(--muted);margin-bottom:28px}
+  .form{background:#fff;border:1px solid var(--border);border-radius:10px;padding:28px}
+  .row{margin-bottom:16px}
+  .row label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px}
+  .row .req{color:#b94545;margin-left:3px}
+  .row input[type=text],
+  .row input[type=email],
+  .row input[type=number],
+  .row select,
+  .row textarea{
+    width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font:inherit;color:var(--text);background:#fff;outline:none;
+  }
+  .row input:focus,.row select:focus,.row textarea:focus{border-color:var(--teal)}
+  .row textarea{min-height:96px;resize:vertical}
+  .row .hint{font-size:11.5px;color:var(--muted);margin-top:4px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .check-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text);margin-bottom:8px}
+  .check-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--teal)}
+  .submit{width:100%;padding:13px;background:var(--teal);color:#fff;border:none;border-radius:6px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;margin-top:8px;transition:background .15s}
+  .submit:hover{background:#155b48}
+
+  /* 푸터 */
+  .foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);text-align:center}
+  .foot a{margin:0 6px}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="head">
+    <a href="/index.html"><span>Cellab</span> 셀렙</a>
+    <div class="sub">정량펌프·소모품 한국 공식 총판</div>
+  </div>
+
+  <h1>견적 문의</h1>
+  <p class="lead">부품 사양과 응용 분야를 입력해 주세요. 셀렙이 직접 답변드립니다.</p>
+
+  <form class="form" id="inquiryForm" action="https://formspree.io/f/mqendaqe" method="POST">
+
+    <div class="row">
+      <label>문의 부품 <span class="req">*</span></label>
+      <input type="text" name="item" id="fItem" required placeholder="예: BT101 페리스탈틱 펌프">
+      <div class="hint">URL에서 자동 입력될 수 있습니다.</div>
+    </div>
+
+    <div class="grid">
+      <div class="row">
+        <label>분류</label>
+        <select name="category" id="fCategory">
+          <option value="">선택</option>
+          <option value="정량펌프">정량펌프</option>
+          <option value="펌프헤드">펌프헤드</option>
+          <option value="튜브">튜브</option>
+          <option value="피팅">피팅·커넥터</option>
+          <option value="시린지">시린지</option>
+          <option value="기타">기타·소모품</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>수량</label>
+        <input type="number" name="qty" id="fQty" min="1" value="1">
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="row">
+        <label>회사·연구실명 <span class="req">*</span></label>
+        <input type="text" name="org" required>
+      </div>
+      <div class="row">
+        <label>담당자명 <span class="req">*</span></label>
+        <input type="text" name="name" required>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="row">
+        <label>이메일 <span class="req">*</span></label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="row">
+        <label>연락처</label>
+        <input type="text" name="phone" placeholder="선택">
+      </div>
+    </div>
+
+    <div class="row">
+      <label>응용 분야</label>
+      <select name="application">
+        <option value="">선택</option>
+        <option value="세포배양">세포배양</option>
+        <option value="HPLC·분석">HPLC·분석</option>
+        <option value="마이크로플루이딕">마이크로플루이딕</option>
+        <option value="카테터·의료기기">카테터·의료기기</option>
+        <option value="바이오리액터·발효">바이오리액터·발효</option>
+        <option value="오가노이드·관류">오가노이드·관류</option>
+        <option value="기타">기타</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>추가 문의 사항</label>
+      <textarea name="message" placeholder="셋업 조건·납기 희망일·기타 요청 등"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="check-row">
+        <input type="checkbox" name="want_catalog" id="cb1" value="yes">
+        <label for="cb1" style="margin:0;font-weight:500">셀렙 카탈로그 PDF 함께 받기</label>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" name="want_recommend" id="cb2" value="yes">
+        <label for="cb2" style="margin:0;font-weight:500">응용 분야에 맞는 다른 부품 추천도 받기</label>
+      </div>
+    </div>
+
+    <button type="submit" class="submit">견적 문의 보내기</button>
+  </form>
+
+  <div class="foot">
+    <a href="/index.html">홈</a> · <a href="/pump.html">정량펌프</a> · <a href="/tubing.html">튜브</a> · <a href="/syringe.html">시린지</a>
+  </div>
+</div>
+
+<script>
+  // URL parameter (?item=...&category=...&qty=...) 자동 채움
+  (function(){
+    const p = new URLSearchParams(location.search);
+    const item = p.get('item');
+    const cat = p.get('category');
+    const qty = p.get('qty');
+    if (item) document.getElementById('fItem').value = item;
+    if (cat) {
+      const sel = document.getElementById('fCategory');
+      // 영문 또는 한국어 매핑
+      const map = {
+        pump:'정량펌프', pumphead:'펌프헤드', tubing:'튜브',
+        fitting:'피팅', syringe:'시린지', other:'기타',
+        '정량펌프':'정량펌프','펌프헤드':'펌프헤드','튜브':'튜브','피팅':'피팅','시린지':'시린지','기타':'기타'
+      };
+      const v = map[cat.toLowerCase()] || map[cat] || '';
+      if (v) sel.value = v;
+    }
+    if (qty) document.getElementById('fQty').value = qty;
+  })();
+
+  // 폼 제출 GA4 이벤트
+  document.getElementById('inquiryForm').addEventListener('submit', function(){
+    if (typeof gtag === 'function') {
+      gtag('event', 'inquiry_submit', {
+        item: document.getElementById('fItem').value,
+        category: document.getElementById('fCategory').value
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
