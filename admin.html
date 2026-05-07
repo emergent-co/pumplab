@@ -7,8 +7,8 @@
 <meta name="robots" content="noindex,nofollow">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:#1a2332;background:#f5f7fa;line-height:1.5;padding:24px}
-  .container{max-width:1700px;margin:0 auto}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:#1a2332;background:#f5f7fa;line-height:1.5;padding:8px 6px}
+  .container{max-width:100%;margin:0}
   h1{font-size:22px;font-weight:700;color:#0a2540;margin-bottom:6px;letter-spacing:-.02em}
   .sub{font-size:13px;color:#5a6779;margin-bottom:18px}
   .panel{background:#fff;border:1px solid #e3e8ef;border-radius:8px;padding:16px;margin-bottom:14px}
@@ -37,21 +37,21 @@
   .cat-tag.other{background:#e8edf2;color:#4a5468}
 
   /* 시트 */
-  .sheet-wrap{overflow-x:auto;border:1px solid #e3e8ef;border-radius:8px;background:#fff;margin-top:8px;max-height:70vh;overflow-y:auto}
-  table.sheet{border-collapse:collapse;width:100%;min-width:1700px;font-size:12.5px}
+  .sheet-wrap{overflow-x:auto;border:1px solid #e3e8ef;border-radius:8px;background:#fff;margin-top:8px;max-height:78vh;overflow-y:auto}
+  table.sheet{border-collapse:collapse;width:100%;min-width:1500px;font-size:12px}
   table.sheet th,table.sheet td{border:1px solid #e3e8ef;padding:6px 8px;text-align:left;vertical-align:middle}
   table.sheet th{background:#f5f7fa;color:#5a6779;font-weight:700;font-size:11.5px;letter-spacing:.02em;position:sticky;top:0;z-index:1;white-space:nowrap}
   table.sheet th.spec-h{background:#e6f1fb}
   table.sheet td input,table.sheet td select{width:100%;border:none;background:transparent;font:inherit;color:inherit;outline:none;padding:2px 0}
   table.sheet td input:focus,table.sheet td select:focus{background:#eef5fb}
-  table.sheet td.col-cat{width:90px}
-  table.sheet td.col-id{width:100px;font-family:'SF Mono','Roboto Mono',monospace;font-size:11.5px}
-  table.sheet td.col-code{width:90px;font-family:'SF Mono','Roboto Mono',monospace;font-size:11.5px}
-  table.sheet td.col-spec{width:130px;background:#f4f8fc}
-  table.sheet td.col-price{width:110px;text-align:right;font-family:'SF Mono','Roboto Mono',monospace}
-  table.sheet td.col-page{width:55px;text-align:center}
-  table.sheet td.col-kw{width:110px}
-  table.sheet td.col-action{width:50px;text-align:center;background:#fafafa}
+  table.sheet td.col-cat{width:78px}
+  table.sheet td.col-id{width:88px;font-family:'SF Mono','Roboto Mono',monospace;font-size:11px}
+  table.sheet td.col-code{width:78px;font-family:'SF Mono','Roboto Mono',monospace;font-size:11px}
+  table.sheet td.col-spec{width:115px;background:#f4f8fc}
+  table.sheet td.col-price{width:80px;text-align:right;font-family:'SF Mono','Roboto Mono',monospace}
+  table.sheet td.col-page{width:48px;text-align:center}
+  table.sheet td.col-kw{width:90px}
+  table.sheet td.col-action{width:42px;text-align:center;background:#fafafa}
   table.sheet td.col-action button{padding:3px 6px;font-size:11px;color:#b94545;background:transparent;border:1px solid transparent;cursor:pointer;border-radius:3px;font-family:inherit}
   table.sheet td.col-action button:hover{border-color:#b94545;background:#fcecec}
   table.sheet tr.row-new td{background:#f5f9f7}
@@ -78,6 +78,21 @@
 
   <h1>Cellab 관리자 — 통합 카탈로그 대시보드</h1>
   <div class="sub">전 카테고리 제품을 한 시트에서 편집. 카테고리별로 스펙 라벨이 다릅니다 (펌프=시리즈/유량/헤드/제어, 튜브=재질/내경/외경/길이, 시린지=용량/재질/타입/용도, 펌프헤드=시리즈/채널/유량/호환튜브, 피팅=종류/사이즈/재질/용도).</div>
+
+  <!-- GitHub 인증 (cellab.kr 자동 저장+빌드용) -->
+  <div class="panel" style="border-color:#1a6e56">
+    <div class="panel-title" style="color:#1a6e56">GitHub 자동 저장 (cellab.kr 전용)</div>
+    <div class="btn-row" style="margin-bottom:8px">
+      <input type="password" id="ghToken" placeholder="GitHub Personal Access Token (한 번만 입력 — 브라우저에 저장)" style="flex:1;min-width:300px;padding:7px 12px;border:1px solid #d2dae5;border-radius:6px;font-family:'SF Mono','Roboto Mono',monospace;font-size:12px">
+      <button class="btn primary" onclick="saveToken()">토큰 저장</button>
+      <button class="btn" onclick="clearToken()">토큰 삭제</button>
+      <span id="tokenStatus" style="font-size:12px;color:#5a6779"></span>
+    </div>
+    <div class="help">
+      <strong>1회 셋업:</strong> <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" style="color:#1a6e56">GitHub PAT 발급</a> → Repository access: <code>emergent-co/cellab만</code> · Permissions: <code>Contents (Read &amp; Write)</code>
+      <br><strong>저장 위치:</strong> 사장님 브라우저 localStorage. 다른 사람·서버 접근 불가. 토큰 만료 시 다시 발급해서 갱신.
+    </div>
+  </div>
 
   <!-- 작업 흐름 -->
   <div class="panel">
@@ -106,7 +121,7 @@
         <input type="file" id="xlsxIn" accept=".xlsx,.xls" style="position:absolute;inset:0;opacity:0;cursor:pointer" onchange="importXlsx(event)">
       </label>
       <button class="btn" onclick="exportXlsx()">엑셀 다운로드 (.xlsx)</button>
-      <button class="btn primary" onclick="saveAndBuild()" style="background:#0a2540;border-color:#0a2540">저장 + 빌드 (즉시 반영)</button>
+      <button class="btn primary" onclick="saveAndBuildGithub()" style="background:#1a6e56;border-color:#1a6e56">GitHub에 저장 + 빌드 (cellab.kr 자동 반영)</button>
       <button class="btn" onclick="exportJson()">JSON 다운로드 (수동)</button>
       <button class="btn" onclick="addRow()">+ 행 추가</button>
       <button class="btn danger" onclick="clearAll()">전체 삭제</button>
@@ -204,9 +219,9 @@ function rowHtml(d){
     <td class="col-kw"><input type="text" value="${escapeAttr(d.kw1)}"></td>
     <td class="col-kw"><input type="text" value="${escapeAttr(d.kw2)}"></td>
     <td class="col-kw"><input type="text" value="${escapeAttr(d.kw3)}"></td>
-    <td><input type="text" value="${escapeAttr(d.image_url)}" placeholder="https://..." style="width:200px"></td>
-    <td><input type="text" value="${escapeAttr(d.buy_allforlab_url)}" placeholder="https://www.allforlab.com/pdt/..." style="width:240px"></td>
-    <td><input type="text" value="${escapeAttr(d.buy_navimro_url)}" placeholder="https://www.navimro.com/..." style="width:240px"></td>
+    <td><input type="text" value="${escapeAttr(d.image_url)}" placeholder="https://..." style="width:140px"></td>
+    <td><input type="text" value="${escapeAttr(d.buy_allforlab_url)}" placeholder="https://www.allforlab.com/pdt/..." style="width:170px"></td>
+    <td><input type="text" value="${escapeAttr(d.buy_navimro_url)}" placeholder="https://www.navimro.com/..." style="width:170px"></td>
     <td class="col-action"><button onclick="this.closest('tr').remove();applyFilters()">삭제</button></td>
   </tr>`;
 }
@@ -318,6 +333,101 @@ function exportJson(){
   downloadFile(JSON.stringify(json, null, 2), 'products.json', 'application/json;charset=utf-8');
   setStatus(`products.json (${json.products.length}개 제품) 다운로드. _build/products.json에 덮어쓰고 build.bat 실행하세요.`, 'ok');
 }
+
+// ===== GitHub API 통합 — cellab.kr에서 직접 commit + GitHub Actions 자동 빌드 =====
+const GH_OWNER = 'emergent-co';
+const GH_REPO  = 'cellab';
+const GH_PATH  = '_build/products.json';
+const TOKEN_KEY = 'cellab_github_token';
+
+function getToken() {
+  return localStorage.getItem(TOKEN_KEY) || '';
+}
+
+function saveToken() {
+  const t = document.getElementById('ghToken').value.trim();
+  if (!t) { setStatus('토큰을 입력해주세요', 'err'); return; }
+  if (!t.startsWith('github_pat_') && !t.startsWith('ghp_')) {
+    if (!confirm('일반적인 GitHub 토큰 형식이 아닙니다. 그래도 저장하시겠습니까?')) return;
+  }
+  localStorage.setItem(TOKEN_KEY, t);
+  document.getElementById('ghToken').value = '';
+  document.getElementById('tokenStatus').textContent = '저장됨 (...' + t.slice(-6) + ')';
+  setStatus('GitHub 토큰 저장 완료. 이제 "GitHub에 저장 + 빌드" 버튼 사용 가능', 'ok');
+}
+
+function clearToken() {
+  localStorage.removeItem(TOKEN_KEY);
+  document.getElementById('tokenStatus').textContent = '';
+  setStatus('토큰 삭제됨', 'info');
+}
+
+function refreshTokenStatus() {
+  const t = getToken();
+  const el = document.getElementById('tokenStatus');
+  if (el) el.textContent = t ? '저장됨 (...' + t.slice(-6) + ')' : '미저장';
+}
+
+// UTF-8 안전 base64 encode
+function utf8Btoa(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+async function saveAndBuildGithub() {
+  const token = getToken();
+  if (!token) {
+    setStatus('GitHub 토큰을 먼저 입력해주세요 (위 패널)', 'err');
+    return;
+  }
+  setStatus('GitHub에 저장 중...', 'info');
+
+  try {
+    // 1) 현재 파일 sha 조회
+    const apiUrl = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_PATH}`;
+    const getRes = await fetch(apiUrl, {
+      headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' }
+    });
+    if (!getRes.ok) {
+      const err = await getRes.text();
+      throw new Error(`파일 조회 실패 (HTTP ${getRes.status}): ${err.substring(0, 200)}`);
+    }
+    const meta = await getRes.json();
+
+    // 2) 새 content 생성
+    const json = rowsToProductsJson(readSheet());
+    const content = JSON.stringify(json, null, 2);
+    const contentB64 = utf8Btoa(content);
+
+    // 3) PUT으로 commit
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        Authorization: 'Bearer ' + token,
+        Accept: 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: `Update products.json (admin) ${new Date().toISOString().slice(0,16).replace('T',' ')}`,
+        content: contentB64,
+        sha: meta.sha
+      })
+    });
+
+    if (!putRes.ok) {
+      const err = await putRes.text();
+      throw new Error(`저장 실패 (HTTP ${putRes.status}): ${err.substring(0, 300)}`);
+    }
+    const result = await putRes.json();
+    const commitUrl = result.commit && result.commit.html_url;
+    setStatus(`저장 완료. GitHub Actions가 자동 빌드 중 (1~3분 후 cellab.kr 반영). ${commitUrl ? '커밋: ' + commitUrl : ''}`, 'ok');
+  } catch (e) {
+    setStatus('실패: ' + e.message, 'err');
+  }
+}
+
+// 페이지 로드 시 토큰 상태 표시
+window.addEventListener('DOMContentLoaded', refreshTokenStatus);
+
 
 async function saveAndBuild(){
   const rows = readSheet();
