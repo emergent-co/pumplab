@@ -9,9 +9,9 @@
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:#1a2332;background:#f5f7fa;line-height:1.5;padding:16px 15vw}
   .container{max-width:100%;margin:0}
-  h1{font-size:22px;font-weight:700;color:#0a2540;margin-bottom:6px;letter-spacing:-.02em}
+  h1{font-size:18px;font-weight:700;color:#0a2540;margin-bottom:8px;letter-spacing:-.02em}
   .sub{font-size:13px;color:#5a6779;margin-bottom:18px}
-  .panel{background:#fff;border:1px solid #e3e8ef;border-radius:8px;padding:16px;margin-bottom:14px}
+  .panel{background:#fff;border:1px solid #e3e8ef;border-radius:8px;padding:10px 12px;margin-bottom:8px}
   .panel-title{font-size:13px;font-weight:700;color:#0a2540;margin-bottom:8px}
   .btn{padding:8px 14px;border-radius:6px;border:1px solid #d2dae5;background:#fff;color:#2a2a2a;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;text-decoration:none;display:inline-block}
   .btn:hover{border-color:#1a6e56;color:#1a6e56;background:#f5f9f7}
@@ -80,11 +80,9 @@
 <div class="container">
 
   <h1>Cellab 관리자 — 통합 카탈로그 대시보드</h1>
-  <div class="sub">전 카테고리 제품을 한 시트에서 편집. 카테고리별로 스펙 라벨이 다릅니다 (펌프=시리즈/유량/헤드/제어, 튜브=재질/내경/외경/길이, 시린지=용량/재질/타입/용도, 펌프헤드=시리즈/채널/유량/호환튜브, 피팅=종류/사이즈/재질/용도).</div>
-
   <!-- GitHub 인증 (cellab.kr 자동 저장+빌드용) -->
   <div class="panel" style="border-color:#1a6e56">
-    <div class="panel-title" style="color:#1a6e56">GitHub 자동 저장 (cellab.kr 전용)</div>
+    
     <div class="btn-row" style="margin-bottom:8px">
       <input type="password" id="ghToken" placeholder="GitHub Personal Access Token (한 번만 입력 — 브라우저에 저장)" style="flex:1;min-width:300px;padding:7px 12px;border:1px solid #d2dae5;border-radius:6px;font-family:'SF Mono','Roboto Mono',monospace;font-size:12px">
       <button class="btn primary" onclick="saveToken()">토큰 저장</button>
@@ -92,31 +90,13 @@
       <span id="tokenStatus" style="font-size:12px;color:#5a6779"></span>
     </div>
     <div class="help">
-      <strong>1회 셋업:</strong> <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" style="color:#1a6e56">GitHub PAT 발급</a> → Repository access: <code>emergent-co/cellab만</code> · Permissions: <code>Contents (Read &amp; Write)</code>
-      <br><strong>저장 위치:</strong> 사장님 브라우저 localStorage. 다른 사람·서버 접근 불가. 토큰 만료 시 다시 발급해서 갱신.
-    </div>
-  </div>
-
-  <!-- 작업 흐름 -->
-  <div class="panel">
-    <div class="panel-title">작업 흐름</div>
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-text"><strong>현재 데이터 불러오기</strong>로 <code>_build/products.json</code> 로드 또는 <strong>엑셀 가져오기</strong>로 .xlsx 업로드.</div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-text">시트에서 <strong>카테고리 드롭다운</strong>으로 한 종류씩 보면서 편집. 행 추가 시 카테고리 먼저 선택하면 컬럼 의미가 명확. 가격은 숫자만 (콤마/원 없이).</div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-text"><strong>JSON 다운로드</strong> → 받은 <code>products.json</code>을 <code>_build/products.json</code>에 덮어쓰기 → <code>build.bat</code> 실행 → 6개 카테고리 페이지 자동 갱신.</div>
+      <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" style="color:#1a6e56">PAT 발급</a> → emergent-co/cellab · Contents (Read & Write). 브라우저 localStorage 저장.
     </div>
   </div>
 
   <!-- 데이터 입출력 -->
   <div class="panel">
-    <div class="panel-title">데이터 입출력</div>
+    
     <div class="btn-row">
       <button class="btn primary" onclick="loadFromJson()">현재 데이터 불러오기 (products.json)</button>
       <label class="btn" style="position:relative;overflow:hidden;cursor:pointer">
@@ -129,7 +109,6 @@
       <button class="btn" onclick="addRow()">+ 행 추가</button>
       <button class="btn danger" onclick="clearAll()">전체 삭제</button>
     </div>
-    <div class="help">엑셀 첫 행은 헤더. 컬럼명: 카테고리 / id / 모델명 / 코드 / 스펙1 / 스펙2 / 스펙3 / 스펙4 / 가격 / 카탈로그P / 키워드1·2·3</div>
     <div id="status" class="status"></div>
   </div>
 
