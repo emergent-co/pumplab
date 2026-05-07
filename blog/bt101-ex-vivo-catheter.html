@@ -94,6 +94,16 @@
   .site-foot a{margin:0 6px;color:var(--muted)}
   .site-foot a:hover{color:var(--teal)}
 
+
+  /* 견적 문의 모달 */
+  .iq-overlay{position:fixed;inset:0;background:rgba(10,37,64,.55);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+  .iq-overlay.open{display:flex}
+  .iq-box{background:#fff;border-radius:12px;width:100%;max-width:760px;height:90vh;max-height:780px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden}
+  .iq-close{position:absolute;top:10px;right:14px;width:34px;height:34px;border:none;background:rgba(0,0,0,.06);border-radius:50%;font-size:20px;color:var(--text);cursor:pointer;z-index:2;display:grid;place-items:center;transition:background .15s}
+  .iq-close:hover{background:rgba(0,0,0,.12)}
+  .iq-frame{width:100%;height:100%;border:none;background:#fff}
+  body.iq-locked{overflow:hidden}
+
   @media(max-width:600px){
     h1{font-size:24px}
     h2{font-size:19px}
@@ -264,10 +274,46 @@
   <div class="cta">
     <div class="ct-title">필요한 부품만 골라 견적</div>
     <div class="ct-desc">위 셋업의 부품 중 필요한 것을 선택해 한 번에 견적 받으실 수 있습니다.</div>
-    <a class="btn" href="/inquiry.html?setup=bt101_ex_vivo_catheter">견적 문의 →</a>
+    <button class="btn" type="button" onclick="openInquiry('bt101_ex_vivo_catheter')" style="border:none;cursor:pointer;font-family:inherit">견적 문의 →</button>
   </div>
 
 </article>
+
+
+<!-- 견적 문의 모달 -->
+<div class="iq-overlay" id="iqOverlay" onclick="if(event.target===this)closeInquiry()">
+  <div class="iq-box">
+    <button class="iq-close" type="button" onclick="closeInquiry()" aria-label="닫기">×</button>
+    <iframe class="iq-frame" id="iqFrame" src="" title="견적 문의"></iframe>
+  </div>
+</div>
+
+<script>
+function openInquiry(setupId){
+  const url = '/inquiry.html?setup=' + encodeURIComponent(setupId) + '&modal=1';
+  document.getElementById('iqFrame').src = url;
+  document.getElementById('iqOverlay').classList.add('open');
+  document.body.classList.add('iq-locked');
+  if (typeof gtag === 'function') {
+    gtag('event', 'inquiry_open', { setup_id: setupId });
+  }
+}
+function closeInquiry(){
+  document.getElementById('iqOverlay').classList.remove('open');
+  document.body.classList.remove('iq-locked');
+  setTimeout(() => { document.getElementById('iqFrame').src = ''; }, 200);
+}
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('iqOverlay').classList.contains('open')) {
+    closeInquiry();
+  }
+});
+window.addEventListener('message', e => {
+  if (e.data && e.data.type === 'inquiry_submitted') {
+    setTimeout(closeInquiry, 1800);
+  }
+});
+</script>
 
 <footer class="site-foot">
   <div>

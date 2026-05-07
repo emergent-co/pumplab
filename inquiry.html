@@ -86,9 +86,24 @@
 
   .foot{margin-top:32px;padding-top:14px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);text-align:center}
   .foot a{margin:0 6px}
+
+  /* Modal 모드 — iframe 안에서 사용 시 헤더·푸터 숨김 */
+  body.modal-mode .head,
+  body.modal-mode .foot{display:none}
+  body.modal-mode{background:#fff}
+  body.modal-mode .container{padding:14px 16px}
+
+  /* Thank you 화면 */
+  .thank-you{display:none;text-align:center;padding:40px 20px}
+  .thank-you.show{display:block}
+  .thank-you .ty-icon{font-size:36px;color:var(--teal);margin-bottom:14px}
+  .thank-you h2{font-size:22px;color:var(--navy);font-weight:800;margin-bottom:8px}
+  .thank-you p{font-size:13.5px;color:var(--muted)}
+
 </style>
 </head>
 <body>
+<script>if(new URLSearchParams(location.search).get('modal')==='1'){document.documentElement.classList.add('modal-mode');document.body&&document.body.classList.add('modal-mode');setTimeout(()=>{document.body.classList.add('modal-mode')},0);}</script>
 
 <div class="container">
   <div class="head">
@@ -179,6 +194,12 @@
     </div>
 
   </form>
+
+  <div class="thank-you" id="thankYou">
+    <div class="ty-icon">✓</div>
+    <h2>견적 문의가 전송됐습니다</h2>
+    <p>곧 답변드리겠습니다.</p>
+  </div>
 
   <div class="foot">
     <a href="/index.html">홈</a> · <a href="/pump.html">정량펌프</a> · <a href="/tubing.html">튜브</a> · <a href="/syringe.html">시린지</a>
@@ -289,12 +310,47 @@ function goStep1() {
   window.scrollTo(0,0);
 }
 
-document.getElementById('inquiryForm').addEventListener('submit', function(){
+document.getElementById('inquiryForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type=submit]');
+  const origText = submitBtn.textContent;
+  submitBtn.disabled = true;
+  submitBtn.textContent = '전송 중...';
+
+  // GA4 이벤트
   if (typeof gtag === 'function') {
     gtag('event', 'inquiry_submit', {
       setup_id: setupId,
       items: document.getElementById('itemsSelected').value
     });
+  }
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      headers: {'Accept': 'application/json'},
+      body: new FormData(form)
+    });
+    if (res.ok) {
+      // 성공 — Thank you 표시
+      document.getElementById('step1Section').style.display = 'none';
+      document.getElementById('step2Section').style.display = 'none';
+      document.querySelector('.progress').style.display = 'none';
+      document.getElementById('thankYou').classList.add('show');
+      // 부모(iframe 모달)에 알림
+      if (window.parent !== window) {
+        try { window.parent.postMessage({type:'inquiry_submitted'}, '*'); } catch(_){}
+      }
+    } else {
+      alert('전송 실패. 다시 시도해 주세요.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = origText;
+    }
+  } catch(err) {
+    alert('오류: ' + err.message);
+    submitBtn.disabled = false;
+    submitBtn.textContent = origText;
   }
 });
 
