@@ -3,8 +3,8 @@
   "posts": [
     {
       "slug": "bt101-ex-vivo-catheter",
-      "title": "혈전 60%↓ · 항균 97%↑ · 28일 안정 — 카테터 코팅을 검증한 BT101 ex vivo 셋업",
-      "summary": "Nat. Commun. 2024가 그 수치를 뽑아낸 회로는 BT101 + YZ15 + 실리콘 ID 3mm + 폐쇄 회로 조합. 코팅이 아니라 회로 설계 3가지가 결과를 만들었습니다.",
+      "title": "ex vivo 카테터 시험 데이터가 매번 흔들린다면 — 회로 설계가 답일 수 있습니다",
+      "summary": "같은 코팅인데 ex vivo 결과가 재현 안 되거나 누적 데이터를 못 뽑고 계시다면, 회로 설계가 원인입니다. Nat. Commun. 2024가 28일 안정 데이터를 뽑아낸 BT101 셋업의 3가지 디테일을 본인 실험에 바로 적용해볼 수 있습니다.",
       "date": "2026-05-07",
       "tags": ["BT101", "카테터", "ex vivo", "항혈전", "항균", "Nature Communications"],
       "setup_id": "bt101_ex_vivo_catheter",

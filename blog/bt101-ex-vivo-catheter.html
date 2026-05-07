@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>정맥 카테터 코팅 ex vivo 시험 — BT101 페리스탈틱 셋업 분석 | Cellab</title>
 <link rel="canonical" href="https://cellab.kr/blog/bt101-ex-vivo-catheter.html">
-<meta name="description" content="혈전 60% 감소·항균 97%+·코팅 28일 안정. Nature Communications 2024가 카테터 코팅 결과를 뽑아낸 ex vivo 회로는 BT101 + YZ15 + 실리콘 ID 3mm + 폐쇄 회로 조합. 셋업 디테일과 동일 응용 부품 매트릭스 정리.">
+<meta name="description" content="ex vivo 카테터 시험 데이터가 흔들리는 진짜 이유는 코팅이 아니라 회로 설계입니다. Nat. Commun. 2024가 균막·혈전 데이터를 28일 안정적으로 누적한 BT101 페리스탈틱 셋업의 3가지 디테일을 정리했습니다. 본인 실험에 바로 적용 가능한 부품 매트릭스 포함.">
 <meta name="keywords" content="BT101, Lead Fluid, 페리스탈틱 펌프, ex vivo 카테터, 동맥정맥 션트, 항혈전 코팅, 항균 코팅, Nature Communications, 의료기기 시험">
 <meta name="google-site-verification" content="Rmsvu2bCzPOi66nb9epKw-gbrb07Hyem6hM5uNu71ss" />
 <meta name="naver-site-verification" content="388fb33540d49f5adf6912da9cc3f089163002b6" />
@@ -13,7 +13,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="정맥 카테터 코팅 ex vivo 시험 — BT101 페리스탈틱 셋업 분석">
-<meta property="og:description" content="혈전 60%↓·항균 97%↑·28일 안정. Nat. Commun. 2024 카테터 코팅을 검증한 BT101 ex vivo 셋업.">
+<meta property="og:description" content="ex vivo 데이터가 매번 다른가요? 코팅이 아니라 회로 설계가 원인일 수 있습니다. BT101 셋업 3가지 디테일.">
 <meta property="og:url" content="https://cellab.kr/blog/bt101-ex-vivo-catheter.html">
 
 <!-- Article Schema -->
@@ -70,10 +70,18 @@
   .breadcrumb{font-size:12px;color:var(--muted);margin-bottom:16px}
   .breadcrumb a{color:var(--muted)}
 
+  /* 본문 상단 대표 이미지 */
+  .article-hero-img{margin:0 0 28px;background:linear-gradient(135deg,#eaf1f9 0%,#f5f9f7 100%);border:1px solid var(--border);border-radius:12px;overflow:hidden;aspect-ratio:16/9}
+  .article-hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+
   /* 사이드바 카드 */
   .aside-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 18px 16px;margin-bottom:14px}
   .aside-title{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:10px;letter-spacing:.02em;text-transform:uppercase}
   .aside-pre{background:#f0f4f9;border:1px solid var(--border);border-radius:6px;padding:10px 12px;font-family:'SF Mono','Roboto Mono',monospace;font-size:10.5px;color:var(--text);overflow-x:auto;line-height:1.55;margin:0;white-space:pre}
+
+  /* 사이드바 대표 이미지 카드 — 흐름 구성 자리 */
+  .aside-img-card{padding:0;overflow:hidden;aspect-ratio:16/10;background:linear-gradient(135deg,#eaf1f9 0%,#f5f9f7 100%)}
+  .aside-img-card img{width:100%;height:100%;object-fit:cover;display:block}
   .aside-table{border-collapse:collapse;width:100%;font-size:11.5px;background:#fff;border:none}
   .aside-table th{background:#f5f7fa;color:var(--navy);font-weight:700;padding:6px 8px;text-align:left;border-bottom:1px solid var(--border);font-size:10.5px;letter-spacing:.02em}
   .aside-table td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top}
@@ -188,7 +196,11 @@
     <a href="/index.html">홈</a> &nbsp;›&nbsp; <a href="/reviews.html">펌프셋업 리뷰</a> &nbsp;›&nbsp; BT101 ex vivo 카테터
   </div>
 
-  <h1>혈전 60% ↓ · 항균 97%↑ · 28일 안정 — 카테터 코팅을 검증한 BT101 ex vivo 셋업</h1>
+  <div class="article-hero-img">
+    <img src="/blog/img/bt101-ex-vivo-catheter.svg" alt="BT101 ex vivo catheter closed-loop setup">
+  </div>
+
+  <h1>ex vivo 카테터 시험에서 데이터가 매번 흔들린다면 — 회로 설계가 답일 수 있습니다</h1>
 
   <div class="meta">
     <span>2026-05-07</span>
@@ -200,12 +212,12 @@
   </div>
 
   <div class="lead">
-    <strong>혈전 부착 60% 감소. 박테리아 차단 97%+. 코팅 28일 안정.</strong> Liu et al.(Nat. Commun. 2024)이 이 데이터를 뽑아낸 ex vivo 회로는, 복잡한 장비가 아니라 <strong>BT101 + YZ15 + 실리콘 ID 3mm + 폐쇄 회로</strong> 조합이었습니다. "어떤 카테터 코팅인가"보다 "어떻게 그걸 정맥 환경에서 시험했는가"가 더 인상적인 논문입니다.
+    같은 카테터 코팅인데 ex vivo 결과가 재현 안 되거나, 28일 누적 데이터를 못 뽑고 계시다면 — 코팅이 아니라 <strong>회로 설계</strong>의 문제일 가능성이 높습니다. Nat. Commun. 2024 저자들이 균막·혈전 데이터를 흔들림 없이 28일 누적한 비결은, <strong>BT101 + YZ15 + 실리콘 ID 3mm + 폐쇄 회로</strong>의 3가지 셋업 디테일이었습니다. 이 디테일을 알면 본인의 ex vivo 시험에 그대로 적용할 수 있습니다.
   </div>
 
-  <h2>1. 이 셋업이 그 결과를 만든 3가지 디테일</h2>
+  <h2>1. 이 셋업이 ex vivo 데이터를 살리는 3가지 디테일</h2>
 
-  <p>같은 카테터 코팅을 시린지나 모터 펌프로 시험했다면 위 수치는 나오기 어려웠습니다. 저자들이 결과를 뽑은 비결은 코팅 자체가 아니라 <strong>코팅을 측정하는 회로</strong>에 있었습니다. 다음 3가지가 결정적이었습니다.</p>
+  <p>균막·혈전·코팅 박리 시험에서 데이터가 흔들리는 원인은 거의 회로 쪽에 있습니다. 펌프가 오염원이 되거나, 회로 밖으로 균·단백질이 빠지면서 누적 효과가 측정 안 되거나, 유체 조성 자체가 시간에 따라 변하거나. 본 논문 저자들이 이 3가지를 어떻게 회피했는지 보면, 자기 실험 셋업에서 무엇을 바꿔야 할지 바로 보입니다.</p>
 
   <h3>1) 펌프 내부가 유체와 안 닿게 한 것</h3>
 
@@ -304,22 +316,9 @@
 </main>
 
 <aside class="article-aside">
-  <!-- 흐름 구성 -->
-  <div class="aside-card">
-    <div class="aside-title">흐름 구성</div>
-<pre class="aside-pre">[Saline reservoir]
-       |
-       v
-[BT101 페리스탈틱 펌프]
-       | 38.4 mL/min
-       v
-[실리콘 ID 3mm 튜브]
-       |
-       v
-[카테터 5cm] ──┐
-               |
-   (closed loop)
-</pre>
+  <!-- 대표 이미지 (사이드바) -->
+  <div class="aside-card aside-img-card">
+    <img src="/blog/img/bt101-ex-vivo-catheter.svg" alt="BT101 ex vivo catheter closed-loop setup">
   </div>
 
   <!-- 셋업에 필요한 부품 -->
