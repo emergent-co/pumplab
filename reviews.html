@@ -35,13 +35,18 @@
 
   /* 헤더 */
   .site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
-  .site-header-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px}
-  .site-logo{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+  .site-header-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:16px}
+  .site-logo{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em;flex:1}
   .site-logo span{color:var(--teal)}
   .site-logo:hover{text-decoration:none}
-  .site-nav{display:flex;gap:18px;font-size:13.5px;font-weight:600;color:var(--muted);margin-left:auto}
+  .site-nav{flex:1;display:flex;justify-content:center;gap:22px;font-size:13.5px;font-weight:600;color:var(--muted)}
+  .site-nav a{color:var(--muted)}
   .site-nav a:hover{color:var(--teal);text-decoration:none}
   .site-nav .active{color:var(--teal)}
+  .site-actions{flex:1;display:flex;justify-content:flex-end}
+  .site-login{padding:7px 14px;background:#f5f9f7;color:var(--navy);font-size:12.5px;font-weight:700;border-radius:6px;border:1px solid var(--border);text-decoration:none;transition:all .15s}
+  .site-login:hover{background:var(--teal);color:#fff;border-color:var(--teal);text-decoration:none}
+  @media(max-width:760px){.site-nav{flex:none;gap:14px;font-size:12.5px}.site-logo{flex:none}.site-actions{flex:none;margin-left:auto}.site-header-inner{flex-wrap:wrap}}
 
   /* 페이지 헤드 */
   .page-head{background:#fff;border-bottom:1px solid var(--border);padding:36px 24px 26px}
@@ -72,12 +77,18 @@
   /* 카드 그리드 */
   .grid-wrap{max-width:1200px;margin:0 auto;padding:8px 24px 56px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-  .card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px;transition:all .15s;display:flex;flex-direction:column;text-decoration:none;color:inherit}
+  .card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all .15s;display:flex;flex-direction:column;text-decoration:none;color:inherit}
   .card:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 8px 20px rgba(10,37,64,.06);text-decoration:none}
+  .card .card-img{aspect-ratio:16/9;background:linear-gradient(135deg,#eaf1f9 0%,#f5f9f7 100%);overflow:hidden;display:block;border-bottom:1px solid var(--border)}
+  .card .card-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .card .card-img.placeholder{display:grid;place-items:center;color:#a9b8cc;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+  .card .card-body{padding:18px 20px;display:flex;flex-direction:column;flex:1}
   .card .card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
   .card .card-tags .tag{font-size:10.5px;color:var(--teal);background:#f5f9f7;padding:2px 7px;border-radius:8px;font-weight:600}
-  .card h3{font-size:16.5px;font-weight:800;color:var(--navy);line-height:1.4;margin-bottom:8px;letter-spacing:-.01em}
-  .card .summary{font-size:13.5px;color:var(--muted);line-height:1.6;flex:1;margin-bottom:12px}
+  .card .card-tags .tag.journal{background:#fff4e6;color:#a05a00;border:1px solid #ffd9a8}
+  .card .card-tags .tag.cite{background:#eef1f5;color:var(--navy)}
+  .card h3{font-size:16px;font-weight:800;color:var(--navy);line-height:1.4;margin-bottom:8px;letter-spacing:-.01em}
+  .card .summary{font-size:13px;color:var(--muted);line-height:1.6;flex:1;margin-bottom:12px}
   .card .meta{font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:10px;margin-top:auto}
   .card .meta .application{color:var(--teal);font-weight:600}
 
@@ -107,6 +118,9 @@
       <a href="/recommend.html">펌프 추천</a>
       <a href="/Leadfluid-2025-Catalog.pdf" target="_blank" rel="noopener">제품 카탈로그</a>
     </nav>
+    <div class="site-actions">
+      <a class="site-login" href="/login.html">로그인</a>
+    </div>
   </div>
 </header>
 
@@ -212,17 +226,25 @@ function renderPosts() {
   }
 
   const html = filtered.map(p => {
-    const tagsHtml = (p.tags || []).slice(0, 3).map(t =>
+    const tagsHtml = (p.tags || []).slice(0, 2).map(t =>
       `<span class="tag">${escapeHtml(t)}</span>`
     ).join('');
+    const journalChip = p.journal ? `<span class="tag journal">${escapeHtml(p.journal)}</span>` : '';
+    const citeChip    = (p.citations != null) ? `<span class="tag cite">cite ${escapeHtml(p.citations)}</span>` : '';
+    const imgHtml = p.image
+      ? `<div class="card-img"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}" loading="lazy"></div>`
+      : `<div class="card-img placeholder">Setup Diagram</div>`;
     return `
       <a class="card" href="${escapeHtml(p.url)}">
-        <div class="card-tags">${tagsHtml}</div>
-        <h3>${escapeHtml(p.title)}</h3>
-        <div class="summary">${escapeHtml(p.summary)}</div>
-        <div class="meta">
-          <span>${escapeHtml(p.date)}</span>
-          <span class="application">${escapeHtml(p.application || '')}</span>
+        ${imgHtml}
+        <div class="card-body">
+          <div class="card-tags">${journalChip}${citeChip}${tagsHtml}</div>
+          <h3>${escapeHtml(p.title)}</h3>
+          <div class="summary">${escapeHtml(p.summary)}</div>
+          <div class="meta">
+            <span>${escapeHtml(p.date)}</span>
+            <span class="application">${escapeHtml(p.application || '')}</span>
+          </div>
         </div>
       </a>
     `;

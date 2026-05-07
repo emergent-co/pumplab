@@ -37,14 +37,24 @@ a:hover{text-decoration:underline}
 
 /* ===== 헤더·푸터 ===== */
 .site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
-.site-header-inner{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px}
-.site-logo{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em;text-decoration:none}
+.site-header-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:16px}
+.site-logo{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em;text-decoration:none;flex:1}
 .site-logo span{color:var(--teal)}
 .site-logo:hover{text-decoration:none}
-.site-nav{display:flex;gap:18px;font-size:13.5px;font-weight:600;color:var(--muted);margin-left:auto}
+.site-nav{flex:1;display:flex;justify-content:center;gap:22px;font-size:13.5px;font-weight:600;color:var(--muted)}
 .site-nav a{color:var(--muted);text-decoration:none}
 .site-nav a:hover{color:var(--teal);text-decoration:none}
 .site-nav .active{color:var(--teal)}
+.site-actions{flex:1;display:flex;justify-content:flex-end}
+.site-login{padding:7px 14px;background:#f5f9f7;color:var(--navy);font-size:12.5px;font-weight:700;border-radius:6px;border:1px solid var(--border);text-decoration:none;transition:all .15s}
+.site-login:hover{background:var(--teal);color:#fff;border-color:var(--teal);text-decoration:none}
+@media(max-width:760px){.site-nav{flex:none;gap:14px;font-size:12.5px}.site-logo{flex:none}.site-actions{flex:none;margin-left:auto}.site-header-inner{flex-wrap:wrap}}
+
+/* Hero 페이드인 애니메이션 */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.fade-in-1{animation:fadeInUp .55s ease-out .1s both}
+.fade-in-2{animation:fadeInUp .55s ease-out .35s both}
+.fade-in-3{animation:fadeInUp .55s ease-out .6s both}
 .site-foot{background:#fff;border-top:1px solid var(--border);padding:24px;font-size:12px;color:var(--muted);text-align:center}
 .site-foot a{margin:0 6px;color:var(--muted);text-decoration:none}
 .site-foot a:hover{color:var(--teal)}
@@ -63,10 +73,14 @@ a:hover{text-decoration:underline}
 .wz-head h2{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:6px}
 .wz-head p{font-size:14px;color:var(--muted)}
 
-.wz-form{background:#fff;border:1px solid var(--border);border-radius:12px;padding:6px}
-.wz-q{padding:18px 22px;border-bottom:1px solid var(--border)}
-.wz-q:last-of-type{border-bottom:none}
-.wz-q legend{display:block;font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:12px;padding:0}
+.wz-form{background:#fff;border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden}
+.wz-progress{padding:16px 22px;border-bottom:1px solid var(--border);background:#fafbfd;display:flex;align-items:center;gap:12px}
+.wz-progress-bar{flex:1;height:6px;background:#eef1f5;border-radius:3px;overflow:hidden}
+.wz-progress-fill{height:100%;background:var(--teal);width:33.3%;transition:width .35s ease}
+.wz-progress-text{font-size:11.5px;color:var(--muted);font-weight:700;letter-spacing:.3px;min-width:60px;text-align:right}
+.wz-q{padding:24px 22px;display:none}
+.wz-q.active{display:block;animation:fadeInUp .35s ease-out both}
+.wz-q legend{display:block;font-size:14.5px;font-weight:700;color:var(--navy);margin-bottom:14px;padding:0;line-height:1.5}
 .wz-q legend .num{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-size:11.5px;font-weight:800;text-align:center;line-height:22px;margin-right:8px}
 .wz-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .wz-options label{display:flex;align-items:center;gap:9px;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;transition:all .15s;color:var(--text)}
@@ -74,7 +88,7 @@ a:hover{text-decoration:underline}
 .wz-options input{accent-color:var(--teal);flex-shrink:0}
 .wz-options label:has(input:checked){border-color:var(--teal);background:var(--soft);font-weight:600;color:var(--navy)}
 
-.wz-actions{padding:16px 22px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.wz-actions{padding:14px 22px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--border);background:#fafbfd}
 .wz-btn{padding:11px 22px;background:var(--teal);color:#fff;border:none;border-radius:6px;font:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:background .15s}
 .wz-btn:hover{background:#155b48}
 .wz-btn.alt{background:#fff;color:var(--muted);border:1px solid var(--border)}
@@ -119,6 +133,23 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
 .faq-body p{font-size:14px;color:var(--text);margin-bottom:12px;line-height:1.7}
 .faq-body p:last-child{margin-bottom:0}
 .faq-body strong{color:var(--navy);font-weight:700}
+
+/* B-구조: 핵심 답변 + 더 보기 토글 */
+.faq-key{padding:16px 0 10px}
+.faq-key .key-line{font-size:14.5px;color:var(--text);line-height:1.75;margin-bottom:12px}
+.faq-key .key-line b{color:var(--navy);font-weight:700}
+.faq-key .key-points{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.faq-key .key-pt{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#f0f4f9;border:1px solid var(--border);border-radius:14px;font-size:12px;color:var(--navy);font-weight:600}
+.faq-key .key-pt::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.faq-more-btn{padding:9px 16px;background:transparent;border:1px solid var(--teal);color:var(--teal);font-size:12.5px;font-weight:700;border-radius:6px;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.faq-more-btn:hover{background:var(--teal);color:#fff}
+.faq-more-btn .arr{transition:transform .2s}
+.faq-more-btn[aria-expanded="true"] .arr{transform:rotate(180deg)}
+
+.faq-more{padding-top:14px;margin-top:6px;border-top:1px dashed var(--border);animation:fadeUp .3s ease-out both}
+.faq-more[hidden]{display:none}
+.faq-more h4.sub-h{font-size:13px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin:14px 0 10px}
+.faq-more h4.sub-h:first-child{margin-top:0}
 
 /* 4-기준 numbered */
 .num-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -185,6 +216,15 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
 .cta-btn{display:inline-block;padding:12px 26px;background:#fff;color:var(--navy);font-size:13.5px;font-weight:800;border-radius:6px;text-decoration:none;transition:transform .15s}
 .cta-btn:hover{transform:translateY(-1px);text-decoration:none}
 
+/* 견적 문의 모달 */
+.iq-overlay{position:fixed;inset:0;background:rgba(10,37,64,.55);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.iq-overlay.open{display:flex}
+.iq-box{background:#fff;border-radius:12px;width:100%;max-width:760px;height:90vh;max-height:780px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden}
+.iq-close{position:absolute;top:10px;right:14px;width:34px;height:34px;border:none;background:rgba(0,0,0,.06);border-radius:50%;font-size:20px;color:var(--text);cursor:pointer;z-index:2;display:grid;place-items:center;transition:background .15s}
+.iq-close:hover{background:rgba(0,0,0,.12)}
+.iq-frame{width:100%;height:100%;border:none;background:#fff}
+body.iq-locked{overflow:hidden}
+
 /* 반응형 */
 @media(max-width:760px){
   .hero h1{font-size:24px}
@@ -211,14 +251,17 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
       <a href="/recommend.html" class="active">펌프 추천</a>
       <a href="/Leadfluid-2025-Catalog.pdf" target="_blank" rel="noopener">제품 카탈로그</a>
     </nav>
+    <div class="site-actions">
+      <a class="site-login" href="/login.html">로그인</a>
+    </div>
   </div>
 </header>
 
 <!-- ===== Hero ===== -->
 <section class="hero">
   <div class="container">
-    <h1>정량펌프, 어떤 걸 골라야 하나요?</h1>
-    <p class="lead">셀렙이 현장에서 가장 자주 받는 질문 3개에 답하시면 적합한 <b>제품군</b>을 먼저 좁혀드립니다. 그 아래는 자주 헷갈리는 부분만 펼쳐서 확인할 수 있는 가이드입니다.</p>
+    <h1 class="fade-in-1">정량펌프, 어떤 걸 골라야 하나요?</h1>
+    <p class="lead fade-in-2">셀렙이 현장에서 가장 자주 받는 질문 3개에 답하시면 적합한 <b>제품군</b>을 먼저 좁혀드립니다. 그 아래는 자주 헷갈리는 부분만 펼쳐서 확인할 수 있는 가이드입니다.</p>
   </div>
 </section>
 
@@ -232,7 +275,12 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
     </div>
 
     <form class="wz-form" id="wzForm">
-      <fieldset class="wz-q">
+      <div class="wz-progress">
+        <div class="wz-progress-bar"><div class="wz-progress-fill" id="wzProgressFill"></div></div>
+        <div class="wz-progress-text" id="wzProgressText">1 / 3</div>
+      </div>
+
+      <fieldset class="wz-q active" data-step="1">
         <legend><span class="num">1</span>어떤 작업이 필요하신가요?</legend>
         <div class="wz-options">
           <label><input type="radio" name="work" value="continuous"> 연속으로 흘려보내기</label>
@@ -243,7 +291,7 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
         </div>
       </fieldset>
 
-      <fieldset class="wz-q">
+      <fieldset class="wz-q" data-step="2">
         <legend><span class="num">2</span>다루는 액체에 가까운 건?</legend>
         <div class="wz-options">
           <label><input type="radio" name="fluid" value="aqueous"> 수용액·배지·일반 시약</label>
@@ -253,7 +301,7 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
         </div>
       </fieldset>
 
-      <fieldset class="wz-q">
+      <fieldset class="wz-q" data-step="3">
         <legend><span class="num">3</span>사용 빈도는 어느 정도인가요?</legend>
         <div class="wz-options">
           <label><input type="radio" name="freq" value="occasional"> 실험할 때만 가끔</label>
@@ -264,9 +312,10 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
       </fieldset>
 
       <div class="wz-actions">
-        <button type="button" class="wz-btn" id="wzRun">추천 받기 →</button>
-        <button type="button" class="wz-btn alt" id="wzReset">처음부터</button>
-        <span class="wz-hint">3개 모두 선택 후 클릭</span>
+        <button type="button" class="wz-btn alt" id="wzPrev" style="display:none">← 이전</button>
+        <button type="button" class="wz-btn" id="wzRun" style="display:none">추천 받기 →</button>
+        <button type="button" class="wz-btn alt" id="wzReset" style="display:none">처음부터</button>
+        <span class="wz-hint" id="wzHint">옵션을 선택하면 다음 질문으로 자동 이동합니다</span>
       </div>
     </form>
 
@@ -278,8 +327,8 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
 <section class="guide">
   <div class="container">
     <div class="guide-head">
-      <div class="label">SELECTION GUIDE</div>
-      <h2>자주 헷갈리는 부분, 펼쳐서 확인하세요</h2>
+      <div class="label">FAQ</div>
+      <h2>자주묻는질문</h2>
       <p>전체를 한 번에 읽지 않고, 본인 상황에 맞는 항목만 펼쳐 보시면 됩니다.</p>
     </div>
 
@@ -293,34 +342,46 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
           <span class="faq-q-icon">+</span>
         </summary>
         <div class="faq-body">
-          <p>본체 모델명만 보고 결정하기는 어렵습니다. 셀렙에 문의 주실 때 아래 4가지가 정리돼 있으면 제품군과 구성품을 빠르게 좁힐 수 있습니다.</p>
-          <div class="num-grid">
-            <div class="num-card">
-              <div class="num-circle">1</div>
-              <div>
-                <h4>사용 목적</h4>
-                <p>연속 이송인지, 반복 분주인지, μL 단위 미량 주입인지부터 구분합니다. 대용량 공급·장비 내장·방폭 환경처럼 특수 조건이 있다면 처음부터 별도 라인으로 분리해 보는 게 좋습니다.</p>
-              </div>
+          <div class="faq-key">
+            <p class="key-line"><b>4가지면 충분합니다.</b> 모델명을 모르셔도 이 4가지가 정리되어 있으면 셀렙이 제품군과 구성을 빠르게 좁혀드립니다.</p>
+            <div class="key-points">
+              <span class="key-pt">사용 목적</span>
+              <span class="key-pt">유량 범위</span>
+              <span class="key-pt">액체 특성</span>
+              <span class="key-pt">제어·환경</span>
             </div>
-            <div class="num-card">
-              <div class="num-circle">2</div>
-              <div>
-                <h4>유량 범위</h4>
-                <p>최소·최대 유량을 mL/min 또는 L/min으로 함께 잡아두면 본체·헤드·튜브 조합을 결정하기 쉽습니다. 한쪽만 정해두면 헤드 호환에서 막히는 경우가 많습니다.</p>
+            <button class="faq-more-btn" type="button" aria-expanded="false" data-target="more-criteria">자세히 보기 <span class="arr">↓</span></button>
+          </div>
+          <div class="faq-more" id="more-criteria" hidden>
+            <h4 class="sub-h">각 항목 상세</h4>
+            <div class="num-grid">
+              <div class="num-card">
+                <div class="num-circle">1</div>
+                <div>
+                  <h4>사용 목적</h4>
+                  <p>연속 이송 / 반복 분주 / μL 단위 미량 주입을 먼저 구분합니다. 대용량·장비 내장·방폭은 처음부터 별도 라인으로 분리합니다.</p>
+                </div>
               </div>
-            </div>
-            <div class="num-card">
-              <div class="num-circle">3</div>
-              <div>
-                <h4>액체 특성</h4>
-                <p>점도·부식성·휘발성·인화성·침전물·멸균 필요 여부를 확인합니다. 액체가 튜브와 직접 닿는 페리스탈틱 방식에서는 튜브 재질 호환성이 모델 선택보다 먼저 검토되어야 합니다.</p>
+              <div class="num-card">
+                <div class="num-circle">2</div>
+                <div>
+                  <h4>유량 범위</h4>
+                  <p>최소·최대를 함께 잡아두면 본체·헤드·튜브 조합이 빠르게 좁혀집니다. 한쪽만 정해두면 헤드 호환에서 막히는 경우가 많습니다.</p>
+                </div>
               </div>
-            </div>
-            <div class="num-card">
-              <div class="num-circle">4</div>
-              <div>
-                <h4>제어 방식·설치 환경</h4>
-                <p>수동 다이얼이면 충분한지, 외부 신호·PLC 연동이 필요한지, 또는 장비 내부에 들어가야 하는지에 따라 본체급이 달라집니다. 방폭 구역은 별도 인증된 라인으로 검토합니다.</p>
+              <div class="num-card">
+                <div class="num-circle">3</div>
+                <div>
+                  <h4>액체 특성</h4>
+                  <p>점도·부식성·휘발성·인화성·침전물·멸균 여부를 확인합니다. 페리스탈틱은 액체-튜브 직접 접촉이라 재질 호환성이 모델 선택보다 우선합니다.</p>
+                </div>
+              </div>
+              <div class="num-card">
+                <div class="num-circle">4</div>
+                <div>
+                  <h4>제어 방식·설치 환경</h4>
+                  <p>수동 다이얼이면 충분한지, 외부 신호·PLC 연동이 필요한지, 장비 내부에 들어가야 하는지에 따라 본체급이 달라집니다. 방폭 구역은 별도 인증 라인.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -335,9 +396,25 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
           <span class="faq-q-icon">+</span>
         </summary>
         <div class="faq-body">
-          <p>크게 페리스탈틱 계열(롤러로 튜브를 압착) · 시린지 · 기어 · 분주 자동화로 나뉩니다. 같은 페리스탈틱이라도 RPM 기준이냐 유량 기준이냐, 1채널이냐 다중채널이냐에 따라 운전 감이 꽤 달라집니다.</p>
+          <div class="faq-key">
+            <p class="key-line">크게 <b>페리스탈틱·시린지·기어</b>로 나뉘고, 그 안에서 RPM 기준 / 유량 기준 / 분주 / 다중채널로 더 갈립니다. 작업 방식이 결정되면 라인이 거의 자동으로 좁혀집니다.</p>
+            <div class="key-points">
+              <span class="key-pt">스피드</span>
+              <span class="key-pt">유량조절</span>
+              <span class="key-pt">디스펜스</span>
+              <span class="key-pt">다중채널</span>
+              <span class="key-pt">시린지</span>
+              <span class="key-pt">기어</span>
+              <span class="key-pt">OEM</span>
+              <span class="key-pt">대용량</span>
+              <span class="key-pt">방폭</span>
+            </div>
+            <button class="faq-more-btn" type="button" aria-expanded="false" data-target="more-types">10개 라인 비교 보기 <span class="arr">↓</span></button>
+          </div>
 
-          <div class="cat-grid">
+          <div class="faq-more" id="more-types" hidden>
+            <h4 class="sub-h">라인업 비교</h4>
+            <div class="cat-grid">
             <div class="cat-card">
               <span class="cat-tag">기본 이송</span>
               <h4>스피드 정량펌프</h4>
@@ -408,6 +485,7 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
               <p>인화·휘발성 액체 또는 방폭 구역에서 사용하는 인증 라인. 액체 성질뿐 아니라 설치 구역·방폭 등급을 함께 확인합니다.</p>
               <p class="fit"><b>이런 경우</b>알코올·용매 취급 화학·석유화학 / 방폭 구역 설치 / 위험물 이송</p>
             </div>
+            </div>
           </div>
         </div>
       </details>
@@ -420,27 +498,38 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
           <span class="faq-q-icon">+</span>
         </summary>
         <div class="faq-body">
-          <p>본체 하나만 사면 끝이 아닙니다. 같은 본체라도 어떤 헤드·튜브를 끼우느냐에 따라 가능 유량과 적합한 액체가 달라집니다. 셀렙에서 구성을 안내드릴 때도 보통 다음 4가지를 묶어서 제안드립니다.</p>
-          <div class="basic-grid">
-            <div class="basic-card">
-              <div class="basic-en">Driver</div>
-              <h4>드라이버 (본체)</h4>
-              <p>회전 속도·운전 조건을 제어합니다. 디지털 표시·분주 모드·외부 제어 입력 가능 여부가 본체급을 가르는 포인트.</p>
+          <div class="faq-key">
+            <p class="key-line"><b>본체 + 헤드 + 튜브</b> 3종이 필수, 액세서리는 선택. 같은 본체라도 헤드·튜브 조합에 따라 가능 유량과 적합 액체가 달라지므로 항상 묶어서 보셔야 합니다.</p>
+            <div class="key-points">
+              <span class="key-pt">Driver</span>
+              <span class="key-pt">Pump Head</span>
+              <span class="key-pt">Tubing</span>
+              <span class="key-pt">Accessory</span>
             </div>
-            <div class="basic-card">
-              <div class="basic-en">Pump Head</div>
-              <h4>펌프 헤드</h4>
-              <p>실제로 튜브가 장착되어 동작하는 부품. 호환 튜브 규격·채널 수·유량 범위가 헤드에서 결정됩니다.</p>
-            </div>
-            <div class="basic-card">
-              <div class="basic-en">Tubing</div>
-              <h4>튜브</h4>
-              <p>액체와 직접 닿는 소모품. 화학 호환성·점도·멸균 가능 여부에 맞춰 재질을 고릅니다. 가장 자주 교체되는 부품.</p>
-            </div>
-            <div class="basic-card">
-              <div class="basic-en">Accessory</div>
-              <h4>액세서리</h4>
-              <p>커넥터·풋스위치·외부 제어 케이블 등. 운전 환경에 따라 필요 여부가 갈리는 보조 구성품입니다.</p>
+            <button class="faq-more-btn" type="button" aria-expanded="false" data-target="more-structure">각 구성 자세히 <span class="arr">↓</span></button>
+          </div>
+          <div class="faq-more" id="more-structure" hidden>
+            <div class="basic-grid">
+              <div class="basic-card">
+                <div class="basic-en">Driver</div>
+                <h4>드라이버 (본체)</h4>
+                <p>회전 속도·운전 조건을 제어. 디지털 표시·분주 모드·외부 제어 입력 가능 여부가 본체급을 가르는 포인트.</p>
+              </div>
+              <div class="basic-card">
+                <div class="basic-en">Pump Head</div>
+                <h4>펌프 헤드</h4>
+                <p>실제 튜브가 장착되어 동작하는 부품. 호환 튜브 규격·채널 수·유량 범위가 헤드에서 결정됩니다.</p>
+              </div>
+              <div class="basic-card">
+                <div class="basic-en">Tubing</div>
+                <h4>튜브</h4>
+                <p>액체와 직접 닿는 소모품. 화학 호환성·점도·멸균 가능 여부에 맞춰 재질 선택. 가장 자주 교체되는 부품.</p>
+              </div>
+              <div class="basic-card">
+                <div class="basic-en">Accessory</div>
+                <h4>액세서리</h4>
+                <p>커넥터·풋스위치·외부 제어 케이블 등. 운전 환경에 따라 필요 여부가 갈리는 보조 구성품.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -454,23 +543,33 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
           <span class="faq-q-icon">+</span>
         </summary>
         <div class="faq-body">
-          <p>다중채널 펌프 문의에서 가장 자주 헷갈리는 부분입니다. 같은 본체라도 어떤 헤드를 다는지에 따라 사용 가능한 채널 수와 튜브 규격이 바뀝니다.</p>
-          <div class="split-2">
-            <div class="split-card">
-              <div class="split-en">Head</div>
-              <h4>헤드</h4>
-              <p>튜브를 잡고 롤러로 압착해 이송하는 부품. 헤드 종류에 따라 들어가는 튜브 사이즈, 동시 채널 수, 유량 한계가 달라집니다.</p>
+          <div class="faq-key">
+            <p class="key-line"><b>헤드는 부품, 채널은 라인 수입니다.</b> 같은 본체+헤드라도 채널이 늘면 보통 모터 한 대가 여러 채널을 함께 돌리는 구조라, 채널별 다른 유량은 별도 제어 가능 모델이 따로 있습니다.</p>
+            <div class="key-points">
+              <span class="key-pt">Head = 부품</span>
+              <span class="key-pt">Channel = 라인 수</span>
+              <span class="key-pt">독립 제어는 별도 확인</span>
             </div>
-            <div class="split-card">
-              <div class="split-en">Channel</div>
-              <h4>채널</h4>
-              <p>동시에 굴러가는 튜브 라인의 수. 1채널은 한 줄, 2채널은 두 줄, 다중채널은 여러 줄을 같은 회전 조건에서 함께 운전합니다.</p>
-            </div>
+            <button class="faq-more-btn" type="button" aria-expanded="false" data-target="more-channel">자세히 보기 <span class="arr">↓</span></button>
           </div>
-          <div class="callout">
-            <h5>채널별 독립 유량 제어가 가능한지 별도로 확인하세요</h5>
-            <p>대부분의 다중채널 모델은 모터 하나가 여러 채널을 같이 돌리는 구조입니다. 채널마다 속도를 따로 설정하기보다 같은 회전에서 여러 라인을 동시에 운전한다고 보시는 게 정확합니다.</p>
-            <p>채널마다 다른 유량이 필요하면 <strong>채널별 독립 제어 모델</strong>인지 사양에서 확인이 필요합니다. 같은 RPM이어도 튜브 규격·장착 상태·점도에 따라 채널 간 실제 유량 편차는 항상 약간 발생합니다.</p>
+          <div class="faq-more" id="more-channel" hidden>
+            <div class="split-2">
+              <div class="split-card">
+                <div class="split-en">Head</div>
+                <h4>헤드</h4>
+                <p>튜브를 잡고 롤러로 압착해 이송하는 부품. 헤드 종류에 따라 들어가는 튜브 사이즈·동시 채널 수·유량 한계가 달라집니다.</p>
+              </div>
+              <div class="split-card">
+                <div class="split-en">Channel</div>
+                <h4>채널</h4>
+                <p>동시에 굴러가는 튜브 라인의 수. 1·2·다중 채널 모두 가능하지만, 운전 조건은 보통 한 묶음으로 적용됩니다.</p>
+              </div>
+            </div>
+            <div class="callout">
+              <h5>채널별 독립 제어가 가능한지 사양에서 확인</h5>
+              <p>일반 다중채널은 모터 하나가 모든 채널을 함께 돌립니다. 같은 RPM이어도 튜브 규격·장착 상태·점도에 따라 채널 간 실제 유량 편차는 약간 발생합니다.</p>
+              <p>채널마다 다른 유량이 필요하면 <strong>채널별 독립 제어 모델</strong>인지 별도 확인이 필요합니다.</p>
+            </div>
           </div>
         </div>
       </details>
@@ -483,8 +582,18 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
           <span class="faq-q-icon">+</span>
         </summary>
         <div class="faq-body">
-          <p>튜브는 가격이 작아 보여도 실제 유량과 안정성에 가장 직접적으로 영향을 주는 부품입니다. 셀렙에 견적 문의 주실 때 튜브 사양이 빠져 있는 경우가 많아, 자주 헷갈리는 포인트만 정리했습니다.</p>
-          <div class="tube-grid">
+          <div class="faq-key">
+            <p class="key-line"><b>#13 같은 튜브 번호는 직경 숫자가 아니라 사이즈 코드</b>입니다. 유량표는 보통 물 기준이고, 점성 액체에서는 같은 RPM·튜브여도 토출량이 줄어듭니다. 정량 분주가 필요하면 실제 액체로 캘리브레이션하셔야 합니다.</p>
+            <div class="key-points">
+              <span class="key-pt">사이즈 코드</span>
+              <span class="key-pt">ID·OD·벽 두께</span>
+              <span class="key-pt">물 기준 유량</span>
+              <span class="key-pt">캘리브레이션</span>
+            </div>
+            <button class="faq-more-btn" type="button" aria-expanded="false" data-target="more-tubing">4가지 핵심 정리 보기 <span class="arr">↓</span></button>
+          </div>
+          <div class="faq-more" id="more-tubing" hidden>
+            <div class="tube-grid">
             <div class="tube-card">
               <div class="tube-en">Tube Size</div>
               <h4>튜브 번호 = 직경 숫자가 아닙니다</h4>
@@ -514,9 +623,10 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
               <p>정확한 분주가 필요한 작업이면 사양표만 믿지 말고 실제 액체·튜브 조합으로 한 번 캘리브레이션해두는 걸 권장합니다.</p>
             </div>
           </div>
-          <div class="callout">
-            <h5>실제 셋업이 궁금하시면</h5>
-            <p>특정 응용에 어떤 튜브·유량을 쓰는지 논문 기반으로 정리한 <a href="/reviews.html">펌프셋업 리뷰</a>에서 케이스를 확인하실 수 있습니다.</p>
+            <div class="callout">
+              <h5>실제 셋업이 궁금하시면</h5>
+              <p>특정 응용에 어떤 튜브·유량을 쓰는지 논문 기반으로 정리한 <a href="/reviews.html">펌프셋업 리뷰</a>에서 케이스를 확인하실 수 있습니다.</p>
+            </div>
           </div>
         </div>
       </details>
@@ -529,14 +639,27 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
           <span class="faq-q-icon">+</span>
         </summary>
         <div class="faq-body">
-          <p>액체를 일정하게 보내거나 나누어야 하는 거의 모든 산업에서 쓰입니다. 같은 분야 안에서도 액체와 유량 조건에 따라 적합한 제품군이 달라집니다.</p>
-          <div class="app-grid">
-            <div class="app-card"><h4>바이오·생명공학</h4><p>배지·시약·완충액 이송, 발효·세포배양 공정 일정 공급.</p></div>
-            <div class="app-card"><h4>의료·분석</h4><p>시료 주입, 약액 공급, 분석 장비 연동 등 정밀 제어 라인.</p></div>
-            <div class="app-card"><h4>화학·화장품</h4><p>시약·용매 혼합, 소량 충진, 점성 원료 이송.</p></div>
-            <div class="app-card"><h4>식품·농업</h4><p>액상 원료, 첨가물·향료, 양액·비료 자동 공급.</p></div>
-            <div class="app-card"><h4>폐수처리·세제</h4><p>약품 주입, 처리액 이송, 계면활성제 공급.</p></div>
-            <div class="app-card"><h4>섬유·석유화학</h4><p>첨가제·처리액·공정 액체 연속 공급 라인.</p></div>
+          <div class="faq-key">
+            <p class="key-line"><b>바이오·의료·화학·식품·환경·석유화학 거의 모든 산업</b>에서 사용됩니다. 같은 분야 안에서도 액체 종류·유량 조건에 따라 적합한 라인이 갈리니, 분야별 핵심 용도로 라인을 좁히세요.</p>
+            <div class="key-points">
+              <span class="key-pt">바이오</span>
+              <span class="key-pt">의료·분석</span>
+              <span class="key-pt">화학·화장품</span>
+              <span class="key-pt">식품·농업</span>
+              <span class="key-pt">환경·세제</span>
+              <span class="key-pt">석유화학</span>
+            </div>
+            <button class="faq-more-btn" type="button" aria-expanded="false" data-target="more-applications">분야별 용도 보기 <span class="arr">↓</span></button>
+          </div>
+          <div class="faq-more" id="more-applications" hidden>
+            <div class="app-grid">
+              <div class="app-card"><h4>바이오·생명공학</h4><p>배지·시약·완충액 이송, 발효·세포배양 공정 일정 공급.</p></div>
+              <div class="app-card"><h4>의료·분석</h4><p>시료 주입, 약액 공급, 분석 장비 연동 등 정밀 제어 라인.</p></div>
+              <div class="app-card"><h4>화학·화장품</h4><p>시약·용매 혼합, 소량 충진, 점성 원료 이송.</p></div>
+              <div class="app-card"><h4>식품·농업</h4><p>액상 원료, 첨가물·향료, 양액·비료 자동 공급.</p></div>
+              <div class="app-card"><h4>폐수처리·세제</h4><p>약품 주입, 처리액 이송, 계면활성제 공급.</p></div>
+              <div class="app-card"><h4>섬유·석유화학</h4><p>첨가제·처리액·공정 액체 연속 공급 라인.</p></div>
+            </div>
           </div>
         </div>
       </details>
@@ -549,22 +672,33 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
           <span class="faq-q-icon">+</span>
         </summary>
         <div class="faq-body">
-          <p>모델명을 모르셔도 괜찮습니다. 아래 항목 중 알고 계신 것만 알려주셔도 제품군과 구성을 훨씬 빠르게 좁혀드릴 수 있습니다.</p>
-          <div class="check-list">
-            <ul>
-              <li><span><b>액체 종류 —</b> 물·배지·시약·용매·점성액·부식성·인화성 등</span></li>
-              <li><span><b>유량 범위 —</b> 예: 10 mL/min, 500 mL/min, 2 L/min</span></li>
-              <li><span><b>사용 방식 —</b> 연속 이송 / 반복 분주 / 미량 주입 / 대용량</span></li>
-              <li><span><b>분주 조건 —</b> 1회 분주량, 반복 횟수, 분주 간격</span></li>
-              <li><span><b>사용 시간 —</b> 단시간 사용 / 장시간 연속 운전</span></li>
-              <li><span><b>채널 수 —</b> 1·2·다중 + 채널별 독립 제어 필요 여부</span></li>
-              <li><span><b>제어 방식 —</b> 수동 / 외부 신호 / PLC·장비 연동</span></li>
-              <li><span><b>설치 환경 —</b> 실험실 / 생산라인 / 장비 내장 / 방폭 구역</span></li>
-              <li><span><b>압력 조건 —</b> 자연압·배관 저항·토출/흡입 높이</span></li>
-              <li><span><b>튜브 조건 —</b> 번호·내경·외경·재질·멸균·교체 주기</span></li>
-              <li><span><b>정확도 요구 —</b> 단순 이송 / 정량 분주 보정 필요</span></li>
-              <li><span><b>필요한 구성 —</b> 본체·헤드·튜브·액세서리·예비 소모품</span></li>
-            </ul>
+          <div class="faq-key">
+            <p class="key-line"><b>액체 종류 · 유량 범위 · 사용 방식 · 채널 수</b> 4가지가 가장 핵심입니다. 분주 조건·제어 방식·설치 환경까지 알려주시면 모델명 없어도 구성을 한 번에 안내드립니다.</p>
+            <div class="key-points">
+              <span class="key-pt">액체</span>
+              <span class="key-pt">유량</span>
+              <span class="key-pt">사용 방식</span>
+              <span class="key-pt">채널 수</span>
+            </div>
+            <button class="faq-more-btn" type="button" aria-expanded="false" data-target="more-checklist">전체 체크리스트 12개 보기 <span class="arr">↓</span></button>
+          </div>
+          <div class="faq-more" id="more-checklist" hidden>
+            <div class="check-list">
+              <ul>
+                <li><span><b>액체 종류 —</b> 물·배지·시약·용매·점성액·부식성·인화성 등</span></li>
+                <li><span><b>유량 범위 —</b> 예: 10 mL/min, 500 mL/min, 2 L/min</span></li>
+                <li><span><b>사용 방식 —</b> 연속 이송 / 반복 분주 / 미량 주입 / 대용량</span></li>
+                <li><span><b>분주 조건 —</b> 1회 분주량, 반복 횟수, 분주 간격</span></li>
+                <li><span><b>사용 시간 —</b> 단시간 사용 / 장시간 연속 운전</span></li>
+                <li><span><b>채널 수 —</b> 1·2·다중 + 채널별 독립 제어 필요 여부</span></li>
+                <li><span><b>제어 방식 —</b> 수동 / 외부 신호 / PLC·장비 연동</span></li>
+                <li><span><b>설치 환경 —</b> 실험실 / 생산라인 / 장비 내장 / 방폭 구역</span></li>
+                <li><span><b>압력 조건 —</b> 자연압·배관 저항·토출/흡입 높이</span></li>
+                <li><span><b>튜브 조건 —</b> 번호·내경·외경·재질·멸균·교체 주기</span></li>
+                <li><span><b>정확도 요구 —</b> 단순 이송 / 정량 분주 보정 필요</span></li>
+                <li><span><b>필요한 구성 —</b> 본체·헤드·튜브·액세서리·예비 소모품</span></li>
+              </ul>
+            </div>
           </div>
         </div>
       </details>
@@ -575,10 +709,18 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
     <div class="contact-cta">
       <h3>위 조건이 정리되셨다면 바로 문의 주세요</h3>
       <p>해당 정보가 있으면 셋업에 맞는 제품군·구성품을 더 빠르게 안내드립니다.</p>
-      <a class="cta-btn" href="/index.html#contact">문의하기 →</a>
+      <button class="cta-btn" type="button" onclick="openInquiry('general')" style="border:none;cursor:pointer;font-family:inherit">문의하기 →</button>
     </div>
   </div>
 </section>
+
+<!-- 견적 문의 모달 -->
+<div class="iq-overlay" id="iqOverlay" onclick="if(event.target===this)closeInquiry()">
+  <div class="iq-box">
+    <button class="iq-close" type="button" onclick="closeInquiry()" aria-label="닫기">×</button>
+    <iframe class="iq-frame" id="iqFrame" src="" title="견적 문의"></iframe>
+  </div>
+</div>
 
 <footer class="site-foot">
   <div>
@@ -591,13 +733,51 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
 </footer>
 
 <script>
-// ===== 30초 위저드 추천 로직 =====
+// ===== 견적 문의 모달 =====
+function openInquiry(setupId){
+  const url = '/inquiry.html?setup=' + encodeURIComponent(setupId||'general') + '&modal=1';
+  document.getElementById('iqFrame').src = url;
+  document.getElementById('iqOverlay').classList.add('open');
+  document.body.classList.add('iq-locked');
+  if (typeof gtag === 'function') gtag('event','inquiry_open',{setup_id: setupId||'general', from:'recommend'});
+}
+function closeInquiry(){
+  document.getElementById('iqOverlay').classList.remove('open');
+  document.body.classList.remove('iq-locked');
+  setTimeout(()=>{document.getElementById('iqFrame').src='';},200);
+}
+window.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && document.getElementById('iqOverlay').classList.contains('open')) closeInquiry();
+});
+window.addEventListener('message', e=>{
+  if(e.data && e.data.type==='inquiry_submitted') setTimeout(closeInquiry, 1800);
+});
+
+// ===== 30초 위저드 추천 로직 (step-by-step) =====
 (function(){
   const FAQ_ID = {
     cat:'#faq-types',
     criteria:'#faq-criteria',
     tubing:'#faq-tubing'
   };
+  const TOTAL = 3;
+  let currentStep = 1;
+
+  function showStep(n){
+    document.querySelectorAll('.wz-q').forEach(q=>{
+      q.classList.toggle('active', parseInt(q.dataset.step)===n);
+    });
+    currentStep = n;
+    document.getElementById('wzProgressFill').style.width = (n/TOTAL*100)+'%';
+    document.getElementById('wzProgressText').textContent = `${n} / ${TOTAL}`;
+    document.getElementById('wzPrev').style.display  = n>1 ? '' : 'none';
+    document.getElementById('wzReset').style.display = n>1 ? '' : 'none';
+    document.getElementById('wzRun').style.display   = n===TOTAL && getVal('freq') ? '' : 'none';
+    document.getElementById('wzHint').textContent = n===TOTAL
+      ? '마지막 질문입니다. 답변 후 추천 받기를 누르세요'
+      : '옵션을 선택하면 다음 질문으로 자동 이동합니다';
+    document.getElementById('wzResult').classList.remove('show');
+  }
 
   function recommend(work, fluid, freq){
     // 우선순위: 작업 특수성 > 액체 특수성 > 빈도
@@ -626,11 +806,31 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
   const $res   = document.getElementById('wzResult');
   const $run   = document.getElementById('wzRun');
   const $reset = document.getElementById('wzReset');
+  const $prev  = document.getElementById('wzPrev');
 
   function getVal(name){
     const el = $form.querySelector(`input[name="${name}"]:checked`);
     return el ? el.value : null;
   }
+
+  // 옵션 선택 시 자동 다음 단계
+  $form.addEventListener('change', e => {
+    if (e.target.matches('input[type=radio]')){
+      const stepEl = e.target.closest('.wz-q');
+      const step   = parseInt(stepEl.dataset.step);
+      if (step < TOTAL){
+        setTimeout(()=> showStep(step + 1), 220);
+      } else {
+        // 마지막 단계 — 추천 받기 버튼 노출
+        $run.style.display = '';
+        document.getElementById('wzHint').textContent = '추천 받기 버튼을 눌러주세요';
+      }
+    }
+  });
+
+  $prev.addEventListener('click', ()=>{
+    if (currentStep > 1) showStep(currentStep - 1);
+  });
 
   $run.addEventListener('click', () => {
     const work = getVal('work'), fluid = getVal('fluid'), freq = getVal('freq');
@@ -646,7 +846,7 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
       <div class="res-cat">${r.cat}</div>
       <div class="res-why">${r.why}</div>
       <div class="res-actions">
-        <a class="res-primary" href="/index.html#contact">이 조건으로 문의하기 →</a>
+        <button type="button" class="res-primary" onclick="openInquiry('wizard:${work}_${fluid}_${freq}')" style="border:none;cursor:pointer;font-family:inherit">이 조건으로 문의하기 →</button>
         <a class="res-sec" href="${FAQ_ID.cat}" data-open="faq-types">제품군 비교 보기</a>
       </div>
     `;
@@ -656,13 +856,17 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
       gtag('event','wizard_recommend',{work, fluid, freq, recommended: r.cat});
     }
 
-    // 추천 결과 클릭 시 해당 FAQ 자동 펼침
+    // 추천 결과 FAQ 자동 펼침 + inner 자세히 보기까지
     const secLink = $res.querySelector('[data-open]');
     if (secLink){
       secLink.addEventListener('click', e => {
         const id = secLink.dataset.open;
         const el = document.getElementById(id);
         if (el && !el.open) el.open = true;
+        const innerBtn = el && el.querySelector('.faq-more-btn');
+        if (innerBtn && innerBtn.getAttribute('aria-expanded') !== 'true'){
+          setTimeout(()=> innerBtn.click(), 250);
+        }
       });
     }
   });
@@ -671,8 +875,31 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
     $form.reset();
     $res.classList.remove('show');
     $res.innerHTML = '';
+    showStep(1);
   });
+
+  // 초기화
+  showStep(1);
 })();
+
+// ===== FAQ "자세히 보기" 토글 =====
+document.querySelectorAll('.faq-more-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = document.getElementById(btn.dataset.target);
+    if (!target) return;
+    const isOpen = !target.hidden;
+    if (isOpen){
+      target.hidden = true;
+      btn.setAttribute('aria-expanded','false');
+      btn.querySelector('.arr').textContent = '↓';
+      btn.firstChild.nodeValue = btn.firstChild.nodeValue.replace('접기','자세히').replace('숨기기','자세히');
+    } else {
+      target.hidden = false;
+      btn.setAttribute('aria-expanded','true');
+      btn.querySelector('.arr').textContent = '↑';
+    }
+  });
+});
 </script>
 
 </body>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>정맥 카테터 코팅 ex vivo 시험 — BT101 페리스탈틱 셋업 분석 | Cellab</title>
 <link rel="canonical" href="https://cellab.kr/blog/bt101-ex-vivo-catheter.html">
-<meta name="description" content="Nature Communications 2024 카테터 혈전·항균 코팅 연구의 ex vivo 동맥정맥 션트 셋업 분석. BT101 페리스탈틱 펌프·실리콘 튜브·폐쇄 회로 디테일과 동일 응용 부품 매트릭스.">
+<meta name="description" content="혈전 60% 감소·항균 97%+·코팅 28일 안정. Nature Communications 2024가 카테터 코팅 결과를 뽑아낸 ex vivo 회로는 BT101 + YZ15 + 실리콘 ID 3mm + 폐쇄 회로 조합. 셋업 디테일과 동일 응용 부품 매트릭스 정리.">
 <meta name="keywords" content="BT101, Lead Fluid, 페리스탈틱 펌프, ex vivo 카테터, 동맥정맥 션트, 항혈전 코팅, 항균 코팅, Nature Communications, 의료기기 시험">
 <meta name="google-site-verification" content="Rmsvu2bCzPOi66nb9epKw-gbrb07Hyem6hM5uNu71ss" />
 <meta name="naver-site-verification" content="388fb33540d49f5adf6912da9cc3f089163002b6" />
@@ -13,7 +13,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="정맥 카테터 코팅 ex vivo 시험 — BT101 페리스탈틱 셋업 분석">
-<meta property="og:description" content="Nature Communications 2024 셋업 분석. 펌프·튜브·유체 디테일과 동일 응용 부품 매트릭스.">
+<meta property="og:description" content="혈전 60%↓·항균 97%↑·28일 안정. Nat. Commun. 2024 카테터 코팅을 검증한 BT101 ex vivo 셋업.">
 <meta property="og:url" content="https://cellab.kr/blog/bt101-ex-vivo-catheter.html">
 
 <!-- Article Schema -->
@@ -49,12 +49,17 @@
 
   /* 헤더 */
   .site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
-  .site-header-inner{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:24px}
-  .site-logo{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+  .site-header-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:16px}
+  .site-logo{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em;flex:1}
   .site-logo span{color:var(--teal)}
-  .site-nav{display:flex;gap:18px;font-size:13.5px;font-weight:600;color:var(--muted);margin-left:auto}
+  .site-nav{flex:1;display:flex;justify-content:center;gap:22px;font-size:13.5px;font-weight:600;color:var(--muted)}
+  .site-nav a{color:var(--muted)}
   .site-nav a:hover{color:var(--teal);text-decoration:none}
   .site-nav .active{color:var(--teal)}
+  .site-actions{flex:1;display:flex;justify-content:flex-end}
+  .site-login{padding:7px 14px;background:#f5f9f7;color:var(--navy);font-size:12.5px;font-weight:700;border-radius:6px;border:1px solid var(--border);text-decoration:none;transition:all .15s}
+  .site-login:hover{background:var(--teal);color:#fff;border-color:var(--teal);text-decoration:none}
+  @media(max-width:760px){.site-nav{flex:none;gap:14px;font-size:12.5px}.site-logo{flex:none}.site-actions{flex:none;margin-left:auto}.site-header-inner{flex-wrap:wrap}}
 
   /* 글 본문 — 2-col grid (main + sticky sidebar) */
   .article-wrap{max-width:1200px;margin:0 auto;padding:32px 24px 60px}
@@ -82,13 +87,19 @@
   .related-section{max-width:1200px;margin:50px auto 0;padding:0 24px}
   .related-section h2{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:18px;letter-spacing:-.01em}
   .related-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-  .related-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:all .15s}
+  .related-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:all .15s}
   .related-card:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 8px 20px rgba(10,37,64,.06);text-decoration:none}
-  .related-card .rc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
-  .related-card .rc-tag{font-size:10.5px;color:var(--teal);background:#f5f9f7;padding:2px 7px;border-radius:8px;font-weight:600}
-  .related-card h3{font-size:15px;font-weight:800;color:var(--navy);line-height:1.4;margin:0 0 8px;letter-spacing:-.005em}
-  .related-card .rc-summary{font-size:12.5px;color:var(--muted);line-height:1.55;flex:1;margin-bottom:10px}
-  .related-card .rc-meta{font-size:11.5px;color:var(--muted);border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between}
+  .related-card .rc-img{aspect-ratio:16/9;background:linear-gradient(135deg,#eaf1f9 0%,#f5f9f7 100%);overflow:hidden;border-bottom:1px solid var(--border)}
+  .related-card .rc-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .related-card .rc-img.placeholder{display:grid;place-items:center;color:#a9b8cc;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+  .related-card .rc-body{padding:14px 16px;display:flex;flex-direction:column;flex:1}
+  .related-card .rc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+  .related-card .rc-tag{font-size:10px;color:var(--teal);background:#f5f9f7;padding:2px 7px;border-radius:8px;font-weight:600}
+  .related-card .rc-tag.journal{background:#fff4e6;color:#a05a00;border:1px solid #ffd9a8}
+  .related-card .rc-tag.cite{background:#eef1f5;color:var(--navy)}
+  .related-card h3{font-size:14px;font-weight:800;color:var(--navy);line-height:1.4;margin:0 0 6px;letter-spacing:-.005em}
+  .related-card .rc-summary{font-size:12px;color:var(--muted);line-height:1.55;flex:1;margin-bottom:8px}
+  .related-card .rc-meta{font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:7px;display:flex;justify-content:space-between}
   .related-card .rc-meta .rc-app{color:var(--teal);font-weight:600}
   .related-empty{background:#fff;border:1px dashed var(--border);border-radius:10px;padding:18px;text-align:center;color:var(--muted);font-size:12.5px}
 
@@ -162,6 +173,9 @@
       <a href="/recommend.html">펌프 추천</a>
       <a href="/Leadfluid-2025-Catalog.pdf" target="_blank" rel="noopener">제품 카탈로그</a>
     </nav>
+    <div class="site-actions">
+      <a class="site-login" href="/login.html">로그인</a>
+    </div>
   </div>
 </header>
 
@@ -174,7 +188,7 @@
     <a href="/index.html">홈</a> &nbsp;›&nbsp; <a href="/reviews.html">펌프셋업 리뷰</a> &nbsp;›&nbsp; BT101 ex vivo 카테터
   </div>
 
-  <h1>정맥 카테터 코팅 ex vivo 시험 — Nature Communications 2024의 BT101 페리스탈틱 셋업이 흥미로운 이유</h1>
+  <h1>혈전 60% ↓ · 항균 97%↑ · 28일 안정 — 카테터 코팅을 검증한 BT101 ex vivo 셋업</h1>
 
   <div class="meta">
     <span>2026-05-07</span>
@@ -186,12 +200,12 @@
   </div>
 
   <div class="lead">
-    Liu et al. (Nat. Commun. 2024). 정맥 카테터 혈전 60% 감소·항균 효율 97%+를 ex vivo로 검증한 셋업의 디테일을 정리합니다.
+    <strong>혈전 부착 60% 감소. 박테리아 차단 97%+. 코팅 28일 안정.</strong> Liu et al.(Nat. Commun. 2024)이 이 데이터를 뽑아낸 ex vivo 회로는, 복잡한 장비가 아니라 <strong>BT101 + YZ15 + 실리콘 ID 3mm + 폐쇄 회로</strong> 조합이었습니다. "어떤 카테터 코팅인가"보다 "어떻게 그걸 정맥 환경에서 시험했는가"가 더 인상적인 논문입니다.
   </div>
 
-  <h2>1. 이 논문 셋업이 흥미로운 점</h2>
+  <h2>1. 이 셋업이 그 결과를 만든 3가지 디테일</h2>
 
-  <p>이 논문, 결과보다 셋업이 더 인상적입니다. 저자들이 코팅 자체보다 <strong>그 코팅을 어떻게 정맥 환경에서 시험할 것인가</strong>에 더 많이 고민했다는 느낌이 보입니다. 이런 ex vivo 동맥정맥 션트 폐쇄 회로는 처음 보는 구성이었는데, 다음 3가지 디테일이 정말 잘 설계됐습니다.</p>
+  <p>같은 카테터 코팅을 시린지나 모터 펌프로 시험했다면 위 수치는 나오기 어려웠습니다. 저자들이 결과를 뽑은 비결은 코팅 자체가 아니라 <strong>코팅을 측정하는 회로</strong>에 있었습니다. 다음 3가지가 결정적이었습니다.</p>
 
   <h3>1) 펌프 내부가 유체와 안 닿게 한 것</h3>
 
@@ -409,11 +423,19 @@ window.addEventListener('message', e => {
 
     grid.innerHTML = related.map(p => {
       const tags = (p.tags||[]).slice(0,2).map(t=>`<span class="rc-tag">${esc(t)}</span>`).join('');
+      const journal = p.journal ? `<span class="rc-tag journal">${esc(p.journal)}</span>` : '';
+      const cite    = (p.citations != null) ? `<span class="rc-tag cite">cite ${esc(p.citations)}</span>` : '';
+      const img = p.image
+        ? `<div class="rc-img"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy"></div>`
+        : `<div class="rc-img placeholder">Setup Diagram</div>`;
       return `<a class="related-card" href="${esc(p.url)}">
-        <div class="rc-tags">${tags}</div>
-        <h3>${esc(p.title)}</h3>
-        <div class="rc-summary">${esc(p.summary)}</div>
-        <div class="rc-meta"><span>${esc(p.date)}</span><span class="rc-app">${esc(p.application||'')}</span></div>
+        ${img}
+        <div class="rc-body">
+          <div class="rc-tags">${journal}${cite}${tags}</div>
+          <h3>${esc(p.title)}</h3>
+          <div class="rc-summary">${esc(p.summary)}</div>
+          <div class="rc-meta"><span>${esc(p.date)}</span><span class="rc-app">${esc(p.application||'')}</span></div>
+        </div>
       </a>`;
     }).join('') + Array(Math.max(0, 3 - related.length)).fill('<div class="related-empty">곧 발행 예정</div>').join('');
   } catch(err) {
