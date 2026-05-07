@@ -129,9 +129,29 @@ if ([string]::IsNullOrEmpty($Message)) {
 Write-Host "[INFO] commit: $Message" -ForegroundColor Yellow
 git commit -m $Message | Out-Null
 
+# Pull first — sync with GitHub Actions auto-build commits
+Write-Host "[INFO] git pull origin main (sync auto-build commits)" -ForegroundColor Yellow
+git pull origin main --no-edit
+if ($LASTEXITCODE -ne 0) {
+    Write-Host ""
+    Write-Host "==================================================" -ForegroundColor Red
+    Write-Host "  [FAILED] git pull error — resolve manually" -ForegroundColor Red
+    Write-Host "==================================================" -ForegroundColor Red
+    Read-Host "Press Enter to exit"
+    exit 1
+}
+
 Write-Host "[INFO] push to origin/main..." -ForegroundColor Yellow
 Write-Host "       (First push may open browser for GitHub login)" -ForegroundColor DarkGray
 git push origin main
+if ($LASTEXITCODE -ne 0) {
+    Write-Host ""
+    Write-Host "==================================================" -ForegroundColor Red
+    Write-Host "  [FAILED] git push error — see message above" -ForegroundColor Red
+    Write-Host "==================================================" -ForegroundColor Red
+    Read-Host "Press Enter to exit"
+    exit 1
+}
 
 Write-Host ""
 Write-Host "==================================================" -ForegroundColor Green
