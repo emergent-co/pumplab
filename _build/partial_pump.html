@@ -1,0 +1,100 @@
+<div class="container shop-layout">
+
+  <aside class="filter-side">
+
+    <div class="filter-group">
+      <div class="filter-title">시리즈 <span class="clear">초기화</span></div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 속도가변형 (Variable) <span class="count">12</span></label>
+        <label class="filter-item"><input type="checkbox"> 지능형·분주 (Intelligent) <span class="count">8</span></label>
+        <label class="filter-item"><input type="checkbox"> 정밀 기어펌프 <span class="count">4</span></label>
+        <label class="filter-item"><input type="checkbox"> 시린지 일체형 <span class="count">6</span></label>
+        <label class="filter-item"><input type="checkbox"> 시린지 분리형 <span class="count">5</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">유량 범위</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 마이크로 (1 mL/min 이하) <span class="count">5</span></label>
+        <label class="filter-item"><input type="checkbox"> 저유량 (1~100 mL/min) <span class="count">14</span></label>
+        <label class="filter-item"><input type="checkbox"> 표준 (100~1000 mL/min) <span class="count">10</span></label>
+        <label class="filter-item"><input type="checkbox"> 대유량 (1~3 L/min) <span class="count">4</span></label>
+        <label class="filter-item"><input type="checkbox"> 산업용 (3 L/min 이상) <span class="count">2</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">호환 펌프헤드</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> YZ15 / YZ15T <span class="count">12</span></label>
+        <label class="filter-item"><input type="checkbox"> YT25 <span class="count">7</span></label>
+        <label class="filter-item"><input type="checkbox"> DG / DS (마이크로) <span class="count">5</span></label>
+        <label class="filter-item"><input type="checkbox"> DT10 / DT15 (다채널) <span class="count">4</span></label>
+        <label class="filter-item"><input type="checkbox"> KZ25 (고토크) <span class="count">3</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">제어 방식</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 수동 다이얼 <span class="count">8</span></label>
+        <label class="filter-item"><input type="checkbox"> 디지털 LCD <span class="count">15</span></label>
+        <label class="filter-item"><input type="checkbox"> PC·RS485 연동 <span class="count">10</span></label>
+        <label class="filter-item"><input type="checkbox"> 풋스위치·외부 신호 <span class="count">6</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">가격</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 100만원 미만 <span class="count">6</span></label>
+        <label class="filter-item"><input type="checkbox"> 100~200만원 <span class="count">10</span></label>
+        <label class="filter-item"><input type="checkbox"> 200~500만원 <span class="count">12</span></label>
+        <label class="filter-item"><input type="checkbox"> 500만원 이상 <span class="count">5</span></label>
+        <label class="filter-item"><input type="checkbox"> 견적 문의 <span class="count">4</span></label>
+      </div>
+    </div>
+
+  </aside>
+
+  <main class="shop-main">
+    {{SEO_INTRO_BLOCK}}
+
+    <div class="toolbar">
+      <div class="sort-group">
+        <a class="active">셀렙 추천순</a>
+        <a>인기순</a>
+        <a>낮은가격순</a>
+        <a>높은가격순</a>
+        <a>최신순</a>
+      </div>
+      <div class="view-group">
+        <select><option>20개씩</option><option>40개씩</option></select>
+      </div>
+    </div>
+
+    <div class="products">
+
+{{PRODUCTS_HTML}}
+
+    </div>
+
+    <div class="pagination">
+      <a class="disabled">‹</a>
+      <a class="active">1</a>
+      <a>2</a>
+      <a>3</a>
+      <a>›</a>
+    </div>
+
+  </main>
+</div>
+{{JSON_LD_PUMP}}
+
+<style>
+  .prod-img.ph, .prod-img:has(.ph-code){background:linear-gradient(135deg,#f5f9f7 0%,#eef4f0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px}
+  .prod-img:has(.ph-code)::after{content:none}
+  .ph-code{font-size:18px;font-weight:800;color:#1a6e56;letter-spacing:-.02em;font-family:'SF Mono','Roboto Mono',monospace}
+  .ph-series{font-size:11px;color:#5a6779;font-weight:600}
+</style>

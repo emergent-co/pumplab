@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://cellab.kr/</loc><priority>1.0</priority></url>
+  <url><loc>https://cellab.kr/index.html</loc><priority>1.0</priority></url>
+  <url><loc>https://cellab.kr/pump.html</loc><priority>0.8</priority></url>
+  <url><loc>https://cellab.kr/tubing.html</loc><priority>0.8</priority></url>
+  <url><loc>https://cellab.kr/syringe.html</loc><priority>0.8</priority></url>
+  <url><loc>https://cellab.kr/pumphead.html</loc><priority>0.8</priority></url>
+  <url><loc>https://cellab.kr/fitting.html</loc><priority>0.8</priority></url>
+  <url><loc>https://cellab.kr/other.html</loc><priority>0.8</priority></url>
+</urlset>

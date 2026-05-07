@@ -1,0 +1,214 @@
+{
+  "_comment": "전 카테고리 통합 제품 데이터. admin.html에서 편집 → JSON 다운로드 → _build/products.json 덮어쓰기 → build.bat 실행.",
+  "_base_url": "https://cellab.kr/",
+  "_spec_labels": {
+    "pump": [
+      "시리즈",
+      "유량",
+      "헤드",
+      "제어"
+    ],
+    "tubing": [
+      "재질",
+      "내경",
+      "외경",
+      "길이"
+    ],
+    "syringe": [
+      "용량",
+      "재질",
+      "타입",
+      "용도"
+    ],
+    "pumphead": [
+      "시리즈",
+      "채널",
+      "유량",
+      "호환튜브"
+    ],
+    "fitting": [
+      "종류",
+      "사이즈",
+      "재질",
+      "용도"
+    ],
+    "other": [
+      "종류",
+      "스펙1",
+      "스펙2",
+      "스펙3"
+    ]
+  },
+  "products": [
+    {
+      "category": "pump",
+      "id": "BT101S",
+      "name": "BT101S — 속도가변형 페리스탈틱 펌프",
+      "code": "BT101S",
+      "spec1": "속도가변형",
+      "spec2": "0.07 ~ 380 mL/min",
+      "spec3": "YZ15 · YZ25",
+      "spec4": "디지털 LCD",
+      "price": 1200000,
+      "catalog_page": 4,
+      "keywords": [
+        "기본 모델",
+        "L/S #16 호환",
+        "대학·연구실"
+      ]
+    },
+    {
+      "category": "pump",
+      "id": "BT100-2J",
+      "name": "BT100-2J — 마이크로 유량 페리스탈틱",
+      "code": "BT100-2J",
+      "spec1": "속도가변형",
+      "spec2": "0.0001 ~ 720 mL/min",
+      "spec3": "DG · DS · YZ15",
+      "spec4": "디지털 LCD",
+      "price": 1580000,
+      "catalog_page": 5,
+      "keywords": [
+        "초저유량",
+        "μL 단위",
+        "HPLC·분석"
+      ]
+    },
+    {
+      "category": "pump",
+      "id": "BT600S",
+      "name": "BT600S — 지능형 분주 펌프",
+      "code": "BT600S",
+      "spec1": "지능형·분주",
+      "spec2": "0.6 ~ 6000 mL/min",
+      "spec3": "YT25 · KZ25",
+      "spec4": "LCD · RS485",
+      "price": 2800000,
+      "catalog_page": 8,
+      "keywords": [
+        "자동 분주",
+        "대유량",
+        "PC 연동"
+      ]
+    },
+    {
+      "category": "pump",
+      "id": "CT3001",
+      "name": "CT3001 — 정밀 기어펌프",
+      "code": "CT3001",
+      "spec1": "정밀 기어펌프",
+      "spec2": "0.1 ~ 3000 mL/min",
+      "spec3": "자체 기어 헤드",
+      "spec4": "디지털 LCD",
+      "price": 2208000,
+      "catalog_page": 12,
+      "keywords": [
+        "맥동 없음",
+        "고점도",
+        "연속 흐름"
+      ]
+    },
+    {
+      "category": "pump",
+      "id": "TYD03-01",
+      "name": "TYD03-01 — 시린지 일체형 펌프",
+      "code": "TYD03-01",
+      "spec1": "시린지 일체형",
+      "spec2": "0.001 ~ 50 mL/min",
+      "spec3": "시린지 직장착",
+      "spec4": "LCD · RS485",
+      "price": 2286000,
+      "catalog_page": 15,
+      "keywords": [
+        "μL 분주",
+        "세포배양",
+        "전자동"
+      ]
+    },
+    {
+      "category": "pump",
+      "id": "TFD03-01",
+      "name": "TFD03-01 — 시린지 분리형 다채널 펌프",
+      "code": "TFD03-01",
+      "spec1": "시린지 분리형",
+      "spec2": "0.001 ~ 30 mL/min",
+      "spec3": "분리형 4·8·12채널",
+      "spec4": "PC · RS485",
+      "price": 3114000,
+      "catalog_page": 18,
+      "keywords": [
+        "다채널",
+        "자동화 셋업",
+        "병렬 분주"
+      ]
+    },
+    {
+      "category": "tubing",
+      "id": "silicone-16",
+      "name": "실리콘 튜브 #16 (MasterFlex L/S #16 호환)",
+      "code": "SIL-16",
+      "spec1": "백금 가황 실리콘",
+      "spec2": "3.2mm",
+      "spec3": "6.4mm",
+      "spec4": "2m × 4-tube/팩",
+      "price": 35000,
+      "catalog_page": 25,
+      "keywords": [
+        "고청정",
+        "무독성",
+        "L/S #16 호환"
+      ]
+    },
+    {
+      "category": "tubing",
+      "id": "silicone-15",
+      "name": "실리콘 튜브 #15 (L/S #15 호환)",
+      "code": "SIL-15",
+      "spec1": "백금 가황 실리콘",
+      "spec2": "4.8mm",
+      "spec3": "8.0mm",
+      "spec4": "2m × 4-tube/팩",
+      "price": 42000,
+      "catalog_page": 25,
+      "keywords": [
+        "대유량",
+        "YT25 호환",
+        "고청정"
+      ]
+    },
+    {
+      "category": "tubing",
+      "id": "pharmed-16",
+      "name": "Tygon Pharmed BPT #16 (무균·GMP 충전)",
+      "code": "PHM-16",
+      "spec1": "Tygon Pharmed BPT",
+      "spec2": "3.2mm",
+      "spec3": "6.4mm",
+      "spec4": "15m 롤",
+      "price": 0,
+      "catalog_page": 26,
+      "keywords": [
+        "USP Class VI",
+        "장수명",
+        "멸균 가능"
+      ]
+    },
+    {
+      "category": "syringe",
+      "id": "viton-f5500",
+      "name": "Versilon Viton F-5500 (강용제·고온)",
+      "code": "VIT-F5500",
+      "spec1": "Viton (FKM)",
+      "spec2": "3.2mm",
+      "spec3": "6.4mm",
+      "spec4": "15m 롤",
+      "price": 0,
+      "catalog_page": 27,
+      "keywords": [
+        "내약품",
+        "~204°C",
+        "강산 대응"
+      ]
+    }
+  ]
+}

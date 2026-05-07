@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실험실용 정량펌프 — 페리스탈틱·기어·시린지펌프 카탈로그 | Cellab</title>
+<link rel="canonical" href="https://cellab.kr/pump.html">
+<meta name="description" content="Lead Fluid 정량펌프 전 라인업 60+ 모델. 속도가변형·지능형 분주·정밀 기어·시린지 일체형/분리형 5개 카테고리. 4단계 위저드로 맞춤 추천.">
+
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0a2540;--navy-light:#1a3a5c;--teal:#00a78e;--teal-light:#1ec8b0;
+    --bg:#f7f9fc;--card:#fff;--text:#1a2332;--muted:#5a6779;--border:#e3e8ef;--accent:#3a7bd5;
+    --shadow:0 1px 3px rgba(10,37,64,.06),0 4px 16px rgba(10,37,64,.04);
+    --shadow-hover:0 4px 12px rgba(10,37,64,.10),0 12px 32px rgba(10,37,64,.08);
+    --radius:10px;--radius-sm:6px;
+  }
+  html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--text);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1320px;margin:0 auto;padding:0 24px}
+
+  /* Header — 검색창 작아짐 */
+  .header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
+  .header-inner{display:flex;align-items:center;gap:18px;height:60px}
+  .logo{font-weight:800;font-size:21px;color:var(--navy);letter-spacing:-.02em;flex-shrink:0}
+  .logo span{color:var(--teal)}
+  .search-wrap{flex:1;max-width:380px;position:relative}
+  .search-input{width:100%;height:38px;padding:0 40px 0 14px;border:1.5px solid var(--border);border-radius:20px;font-size:13px;background:#fff;outline:none;font-family:inherit}
+  .search-input:focus{border-color:var(--teal)}
+  .search-btn{position:absolute;right:4px;top:4px;width:30px;height:30px;border-radius:50%;background:var(--teal);color:#fff;border:none;font-size:13px;cursor:pointer;display:grid;place-items:center}
+  .header-icons{display:flex;gap:10px;margin-left:auto;flex-shrink:0}
+  .header-icons .icon-btn{padding:5px 8px;font-size:11.5px;color:var(--muted);background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px}
+  .header-icons .icon-btn .ico{font-size:16px}
+
+  /* Sub-nav — 셋업·매트릭스 메뉴 중앙 */
+  .subnav{background:#fff;border-bottom:1px solid var(--border)}
+  .subnav-inner{display:flex;gap:4px;height:46px;align-items:center;font-size:13px;color:var(--muted);flex-wrap:wrap}
+  .subnav-inner a{padding:6px 11px;border-radius:6px;font-weight:600;transition:all .15s;display:inline-flex;align-items:center;gap:5px}
+  .subnav-inner a:hover{background:#f0f4f9;color:var(--navy)}
+  .subnav-inner a.active{background:rgba(0,167,142,.1);color:var(--teal)}
+  .subnav-inner a.featured{color:var(--teal);font-weight:700}
+  
+
+  /* Page title */
+  .page-title{padding:18px 0 12px}
+  .page-title .crumb{font-size:11.5px;color:var(--muted);margin-bottom:4px}
+  .page-title h1{font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:6px}
+  .page-title .total{font-size:13px;color:var(--muted)}
+  .page-title .total strong{color:var(--teal);font-weight:800}
+  .page-title .curation-msg{display:inline-block;margin-top:6px;font-size:12px;color:var(--navy);background:rgba(0,167,142,.08);padding:5px 12px;border-radius:6px;border-left:3px solid var(--teal);font-weight:600}
+
+  /*  NEW: 3-path entry box */
+  .entry-paths{background:linear-gradient(135deg,#f0f9ff 0%,#fff 100%);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:20px}
+  .entry-paths-head{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+  
+  .entry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  @media (max-width:780px){.entry-grid{grid-template-columns:1fr}}
+  .entry-card{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all .15s;text-decoration:none;cursor:pointer}
+  .entry-card:hover{border-color:var(--teal);transform:translateX(2px);box-shadow:var(--shadow-hover)}
+  .entry-icon{font-size:22px;flex-shrink:0}
+  .entry-text{flex:1;min-width:0}
+  .entry-text-q{font-size:11.5px;color:var(--muted);font-weight:600;margin-bottom:1px}
+  .entry-text-cta{font-size:13px;color:var(--navy);font-weight:800;display:flex;align-items:center;gap:4px}
+  .entry-text-cta .arrow{color:var(--teal);font-size:14px}
+
+  /* Layout */
+  .shop-layout{display:grid;grid-template-columns:230px 1fr;gap:24px;padding:32px 0}
+  @media (max-width:900px){.shop-layout{grid-template-columns:1fr}.filter-side{position:fixed;top:0;left:-100%;width:280px;height:100vh;z-index:60;background:#fff;padding:20px;overflow-y:auto;transition:left .3s}.filter-side.open{left:0}.filter-toggle-mobile{display:flex !important}}
+  .filter-toggle-mobile{display:none;align-items:center;gap:6px;padding:8px 12px;background:#fff;border:1px solid var(--border);border-radius:8px;font-weight:700;font-size:12.5px;color:var(--navy);cursor:pointer;font-family:inherit;margin-bottom:10px}
+
+  /* Filter sidebar — 단순화 (4 그룹) */
+  .filter-side{display:flex;flex-direction:column;gap:14px}
+  .filter-group{background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 15px}
+  .filter-title{font-size:12px;font-weight:800;color:var(--navy);letter-spacing:.02em;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center}
+  .filter-title .clear{font-size:10.5px;color:var(--muted);font-weight:600;cursor:pointer}
+  .filter-list{display:flex;flex-direction:column;gap:6px}
+  .filter-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text);cursor:pointer;padding:1px 0}
+  .filter-item input[type=checkbox]{width:14px;height:14px;accent-color:var(--teal);cursor:pointer}
+  .filter-item .count{margin-left:auto;font-size:10.5px;color:var(--muted);font-weight:600;background:#f0f4f9;padding:1px 5px;border-radius:8px;min-width:20px;text-align:center}
+  .filter-item:hover{color:var(--teal)}
+  .filter-item.checked{color:var(--teal);font-weight:700}
+  .filter-item.checked .count{background:rgba(0,167,142,.15);color:var(--teal)}
+
+  /* Main content */
+  .shop-main{display:flex;flex-direction:column;gap:14px}
+
+  /*  NEW: 큐레이션 큐 — 가로 스크롤 칩 */
+  .curated-queue{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}
+  .curated-queue-head{font-size:12.5px;font-weight:800;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  
+  .curated-queue-head .sub{font-size:11px;color:var(--muted);font-weight:600;margin-left:6px}
+  .queue-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x mandatory}
+  .queue-chips::-webkit-scrollbar{height:5px}
+  .queue-chips::-webkit-scrollbar-thumb{background:#d2dae5;border-radius:3px}
+  .q-chip{flex-shrink:0;scroll-snap-align:start;padding:9px 16px;border:1.5px solid var(--border);background:#fff;border-radius:18px;font-size:13px;font-weight:700;color:var(--navy);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .15s;white-space:nowrap;font-family:inherit}
+  .q-chip:hover{background:rgba(0,167,142,.08);border-color:var(--teal);color:var(--teal)}
+  .q-chip .qc-num{font-size:11px;background:#f0f4f9;color:var(--muted);padding:1px 7px;border-radius:8px;font-weight:700}
+  .q-chip:hover .qc-num{background:var(--teal);color:#fff}
+
+  /* Active filters */
+  .active-filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:24px}
+  .active-filters:empty{display:none}
+  .active-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:rgba(0,167,142,.1);color:var(--teal);font-size:11.5px;font-weight:700;border-radius:14px;border:1px solid rgba(0,167,142,.25)}
+  .active-chip .x{cursor:pointer;font-weight:800;opacity:.7}
+
+  /* Toolbar */
+  .toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:6px 0;border-bottom:1px solid var(--border)}
+  .sort-group{display:flex;gap:12px;font-size:12.5px;color:var(--muted);font-weight:600}
+  .sort-group a{cursor:pointer;padding:3px 0;border-bottom:2px solid transparent}
+  .sort-group a:hover{color:var(--navy)}
+  .sort-group a.active{color:var(--navy);font-weight:800;border-bottom-color:var(--teal)}
+  .view-group{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted)}
+  .view-group select{padding:5px 8px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:inherit;background:#fff}
+
+  /* Product grid — 컴팩트 5컬럼 */
+  .products{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  @media (max-width:1200px){.products{grid-template-columns:repeat(4,1fr)}}
+  @media (max-width:900px){.products{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:600px){.products{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:380px){.products{grid-template-columns:1fr}}
+
+  /*  Stage 2 — 외부 제품 자동 수집 컨트롤 바 */
+  .ext-control-info{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .ext-empty{grid-column:1/-1;padding:24px;color:var(--muted);text-align:center;border:1px dashed var(--border);border-radius:8px;font-size:13px}
+
+  .prod{background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .15s;display:flex;flex-direction:column;text-decoration:none;color:inherit;position:relative}
+  .prod:hover{border-color:#b4bfcb}
+  .prod.celleb{border:1.5px solid rgba(0,167,142,.4);background:linear-gradient(180deg,#fff 0%,#fafffd 100%)}
+  .prod.celleb:hover{border-color:var(--teal)}
+  .prod.ext{border:1px dashed #cdd6e0}
+
+  .prod-img{aspect-ratio:1/1;background:#f3f5f9;display:grid;place-items:center;color:#a5b1c2;border-bottom:1px solid var(--border);position:relative;font-size:11px}
+  .prod-img::after{content:"제품 이미지";color:#aab1bd;font-size:11px;font-weight:500}
+  .prod-tag{position:absolute;top:5px;left:5px;background:#e2e8f0;color:#475569;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;letter-spacing:.04em}
+  .prod-tag.ref{background:#e2e8f0;color:#475569}
+
+  .prod-body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:3px;flex:1}
+  .prod-name{font-size:12.5px;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px}
+  .prod-spec{font-size:11px;color:var(--muted);line-height:1.5;display:flex;gap:6px}
+  .prod-spec .label{color:#94a2b6;font-weight:600;width:36px;flex-shrink:0;font-size:10.5px}
+  .prod-spec .val{color:var(--text);font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .prod-spec .val.price{color:var(--navy);font-weight:800;font-size:12px}
+  .prod-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+  .prod-kw{display:inline-block;padding:3px 8px;border:1px solid var(--border);border-radius:10px;background:#f7f9fc;font-size:10.5px;color:var(--muted);font-weight:600;line-height:1.2}
+
+  /* 외부(자동수집) 카드 호환 — 이전 구조 유지 */
+  .prod-foot{margin-top:auto;padding-top:6px;border-top:1px dashed var(--border);display:flex;justify-content:space-between;align-items:flex-end;gap:4px}
+  .prod-seller{font-size:9.5px;color:var(--muted);font-weight:600;line-height:1.25;flex:1;min-width:0;overflow:hidden}
+  .prod-seller strong{color:var(--navy);font-weight:700;font-size:10px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .prod-price{font-size:12px;font-weight:800;color:var(--navy);font-family:'SF Mono','Roboto Mono',monospace;letter-spacing:-.02em;text-align:right;flex-shrink:0;white-space:nowrap}
+  .prod-price .won{font-size:9.5px;color:var(--muted);font-weight:600;font-family:inherit;margin-left:1px}
+  .prod-price.ref{font-size:10px;color:var(--muted);font-weight:700}
+
+  /* Pagination */
+  .pagination{display:flex;justify-content:center;gap:4px;padding:18px 0;font-size:13px}
+  .pagination a{width:30px;height:30px;display:grid;place-items:center;border-radius:6px;color:var(--muted);font-weight:600;cursor:pointer}
+  .pagination a:hover{background:#f0f4f9;color:var(--navy)}
+  .pagination a.active{background:var(--navy);color:#fff;font-weight:800}
+  .pagination a.disabled{color:#cdd6e0;cursor:not-allowed}
+
+  /*  NEW: 하단 회유 모듈 */
+  .funnels{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+  @media (max-width:780px){.funnels{grid-template-columns:1fr}}
+  .funnel{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:all .15s;cursor:pointer}
+  .funnel:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+  .funnel.dark{background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%);color:#fff;border:none}
+  .funnel.dark:hover{transform:translateY(-2px)}
+  .funnel-icon{font-size:22px;margin-bottom:4px}
+  .funnel-title{font-size:14px;font-weight:800;color:var(--navy);line-height:1.3}
+  .funnel.dark .funnel-title{color:#fff}
+  .funnel-desc{font-size:12px;color:var(--muted);line-height:1.55}
+  .funnel.dark .funnel-desc{color:#cdd6e0}
+  .funnel-cta{margin-top:6px;font-size:12.5px;font-weight:800;color:var(--teal)}
+  .funnel.dark .funnel-cta{color:var(--teal-light)}
+
+  /*  NEW: 왜 큐레이션 푸터 메시지 */
+  .why-curate{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-top:18px}
+  .why-curate h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .why-curate h3::before{content:""}
+  .why-curate p{font-size:13px;color:var(--text);line-height:1.7}
+  .why-curate strong{color:var(--navy)}
+  /* Cellab 테마 헤더 */
+  .cellab-header{background:#fff;border-bottom:1px solid #e3e8ef;position:sticky;top:0;z-index:50}
+  .cellab-header-top{padding:14px 0 10px}
+  .cellab-container{max-width:1320px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:18px}
+  .cellab-brand{display:flex;align-items:baseline;gap:8px;flex-shrink:0;text-decoration:none}
+  .cellab-logo{font-size:20px;font-weight:700;color:#1a1a1a;letter-spacing:-.01em}
+  .cellab-logo-sub{font-size:12px;color:#666}
+  .cellab-search{flex:1;max-width:480px;position:relative}
+  .cellab-search input{width:100%;height:38px;padding:0 64px 0 14px;border:1px solid #d2dae5;border-radius:20px;font-size:13.5px;font-family:inherit;background:#f7f9fc;outline:none}
+  .cellab-search input:focus{border-color:#1a6e56;background:#fff}
+  .cellab-search button{position:absolute;right:4px;top:4px;height:30px;padding:0 12px;border-radius:15px;background:#1a6e56;color:#fff;border:none;font-size:12px;cursor:pointer;font-family:inherit}
+  .cellab-cta{background:#1a6e56;color:#fff;padding:8px 16px;border-radius:6px;text-decoration:none;font-size:14px;flex-shrink:0}
+  .cellab-header-bottom{border-top:1px solid #e3e8ef;padding:8px 0;background:#f7f9fc}
+  .cellab-header-bottom .cellab-container{gap:6px;flex-wrap:wrap;font-size:12.5px}
+  .cellab-kw-label{color:#888;margin-right:4px}
+  .cellab-kw{display:inline-block;padding:5px 12px;border:1px solid #d2dae5;border-radius:14px;background:#fff;color:#2a2a2a;text-decoration:none;font-size:12.5px;font-weight:500;transition:all .15s}
+  .cellab-kw:hover{border-color:#1a6e56;color:#1a6e56;background:#f5f9f7}
+  .cellab-kw.active,.cellab-kw.active:hover{border-color:#1a6e56;background:#1a6e56;color:#fff;font-weight:600}
+  /* 사이드 바 도움 박스 — 펌프 위저드로 돌아가는 동선 */
+  /* 브레드크럼 */
+  .breadcrumb{background:#fff;border-bottom:1px solid #e3e8ef;padding:10px 0;font-size:12.5px;color:#888}
+  .breadcrumb a{color:#666;text-decoration:none}
+  .breadcrumb a:hover{color:#1a6e56;text-decoration:underline}
+  .breadcrumb .sep{margin:0 6px;color:#bbb}
+  .breadcrumb .bc-current{color:#2a2a2a;font-weight:600}
+  /* 카드 래퍼 + 액션 버튼 */
+  .prod-card{display:flex;flex-direction:column}
+  .prod-actions{display:flex;gap:6px;margin-top:6px}
+  .prod-actions button{flex:1;padding:8px 6px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;border:1px solid #d2dae5;transition:all .15s}
+  .prod-actions .btn-cart{background:#fff;color:#2a2a2a}
+  .prod-actions .btn-cart:hover{border-color:#1a6e56;color:#1a6e56;background:#f5f9f7}
+  .prod-actions .btn-order{background:#1a6e56;color:#fff;border-color:#1a6e56}
+  .prod-actions .btn-order:hover{background:#155b48;border-color:#155b48}
+  @media(max-width:720px){.cellab-container{flex-wrap:wrap}.cellab-search{order:3;max-width:none;flex-basis:100%}}
+  .cat-prep{background:#fff;border:1px solid #d2dae5;border-radius:10px;padding:32px 28px;margin:24px 0;text-align:center}
+  .cat-prep h2{font-size:20px;font-weight:600;color:#2a2a2a;margin:0 0 8px}
+  .cat-prep p{font-size:14px;color:#555;margin:0 0 18px;line-height:1.6}
+  .cat-prep .cta-row{display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .cat-prep .cta-row a{padding:9px 18px;border-radius:6px;font-size:13.5px;font-weight:600;text-decoration:none}
+  .cat-prep .cta-row a.primary{background:#1a6e56;color:#fff}
+  .cat-prep .cta-row a.secondary{background:#fff;color:#1a6e56;border:1px solid #1a6e56}
+  .search-banner{background:#f5f9f7;border-left:3px solid #1a6e56;padding:10px 16px;border-radius:6px;margin:16px 0;font-size:13px;color:#2a2a2a;display:flex;align-items:center;gap:8px}
+  .search-banner .clear-q{margin-left:auto;color:#1a6e56;cursor:pointer;font-size:12px;text-decoration:underline}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cellab">
+<meta property="og:title" content="실험실용 정량펌프 — 페리스탈틱·기어·시린지펌프 카탈로그 | Cellab">
+<meta property="og:description" content="Lead Fluid 정량펌프 전 라인업 60+ 모델. 속도가변형·지능형 분주·정밀 기어·시린지 일체형/분리형 5개 카테고리. 4단계 위저드로 맞춤 추천.">
+<meta property="og:url" content="https://cellab.kr/pump.html">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="실험실용 정량펌프 — 페리스탈틱·기어·시린지펌프 카탈로그 | Cellab">
+<meta name="twitter:description" content="Lead Fluid 정량펌프 전 라인업 60+ 모델. 속도가변형·지능형 분주·정밀 기어·시린지 일체형/분리형 5개 카테고리. 4단계 위저드로 맞춤 추천.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Cellab",
+  "alternateName": "셀렙",
+  "url": "https://cellab.kr/",
+  "logo": "https://cellab.kr/logo.png",
+  "description": "실험실용 정량펌프·튜브·소모품 큐레이션 전문점. Lead Fluid 정품 취급, MasterFlex 호환 안내.",
+  "areaServed": "KR",
+  "knowsAbout": [
+    "실험실용 정량펌프",
+    "페리스탈틱 펌프",
+    "시린지펌프",
+    "기어펌프",
+    "Lead Fluid",
+    "MasterFlex 호환",
+    "실리콘 튜브",
+    "Tygon PharMed BPT",
+    "Viton 튜브",
+    "펌프헤드",
+    "시린지",
+    "피팅",
+    "디스펜서"
+  ],
+  "sameAs": [
+    "https://leadfluid.com"
+  ]
+}
+</script>
+<style>
+.seo-intro{background:#fff;border:1px solid #e3e8ef;border-radius:8px;padding:18px 22px;margin-bottom:14px}
+.seo-intro h1{font-size:20px;font-weight:700;color:#0a2540;margin:0 0 8px;letter-spacing:-.01em}
+.seo-intro p{font-size:13px;color:#5a6779;line-height:1.65;margin:0}
+</style>
+</head>
+<body>
+
+<header class="cellab-header">
+  <div class="cellab-header-top">
+    <div class="cellab-container">
+      <a href="index.html" class="cellab-brand">
+        <span class="cellab-logo">Cellab</span>
+        <span class="cellab-logo-sub">실험실 펌프·소모품 전문</span>
+      </a>
+      <form class="cellab-search" onsubmit="event.preventDefault();doHeaderSearch();">
+        <input type="text" id="headerSearchInput" placeholder="모델명·호수·재질·응용 검색 (예: BT101S, 실리콘 #16, 세포배양)">
+        <button type="submit">검색</button>
+      </form>
+      <a href="index.html#contact" class="cellab-cta">상담 문의</a>
+    </div>
+  </div>
+  <div class="cellab-header-bottom">
+    <div class="cellab-container">
+      <span class="cellab-kw-label">바로가기:</span>
+      <a class="cellab-kw" data-cat="pump"     href="pump.html">펌프</a>
+      <a class="cellab-kw" data-cat="tubing"   href="tubing.html">튜브</a>
+      <a class="cellab-kw" data-cat="syringe"  href="syringe.html">시린지</a>
+      <a class="cellab-kw" data-cat="pumphead" href="pumphead.html">펌프헤드</a>
+      <a class="cellab-kw" data-cat="fitting"  href="fitting.html">피팅</a>
+      <a class="cellab-kw" data-cat="other"    href="other.html">기타 소모품</a>
+    </div>
+  </div>
+</header>
+
+<nav class="breadcrumb">
+  <div class="container">
+    <a href="index.html">홈</a>
+    <span class="sep">›</span>
+    <a href="tubing.html">소모품</a>
+    <span class="sep">›</span>
+    <span class="bc-current" id="bcCurrent">펌프</span>
+  </div>
+</nav>
+
+<div class="container shop-layout">
+
+  <aside class="filter-side">
+
+    <div class="filter-group">
+      <div class="filter-title">시리즈 <span class="clear">초기화</span></div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 속도가변형 (Variable) <span class="count">12</span></label>
+        <label class="filter-item"><input type="checkbox"> 지능형·분주 (Intelligent) <span class="count">8</span></label>
+        <label class="filter-item"><input type="checkbox"> 정밀 기어펌프 <span class="count">4</span></label>
+        <label class="filter-item"><input type="checkbox"> 시린지 일체형 <span class="count">6</span></label>
+        <label class="filter-item"><input type="checkbox"> 시린지 분리형 <span class="count">5</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">유량 범위</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 마이크로 (1 mL/min 이하) <span class="count">5</span></label>
+        <label class="filter-item"><input type="checkbox"> 저유량 (1~100 mL/min) <span class="count">14</span></label>
+        <label class="filter-item"><input type="checkbox"> 표준 (100~1000 mL/min) <span class="count">10</span></label>
+        <label class="filter-item"><input type="checkbox"> 대유량 (1~3 L/min) <span class="count">4</span></label>
+        <label class="filter-item"><input type="checkbox"> 산업용 (3 L/min 이상) <span class="count">2</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">호환 펌프헤드</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> YZ15 / YZ15T <span class="count">12</span></label>
+        <label class="filter-item"><input type="checkbox"> YT25 <span class="count">7</span></label>
+        <label class="filter-item"><input type="checkbox"> DG / DS (마이크로) <span class="count">5</span></label>
+        <label class="filter-item"><input type="checkbox"> DT10 / DT15 (다채널) <span class="count">4</span></label>
+        <label class="filter-item"><input type="checkbox"> KZ25 (고토크) <span class="count">3</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">제어 방식</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 수동 다이얼 <span class="count">8</span></label>
+        <label class="filter-item"><input type="checkbox"> 디지털 LCD <span class="count">15</span></label>
+        <label class="filter-item"><input type="checkbox"> PC·RS485 연동 <span class="count">10</span></label>
+        <label class="filter-item"><input type="checkbox"> 풋스위치·외부 신호 <span class="count">6</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">가격</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 100만원 미만 <span class="count">6</span></label>
+        <label class="filter-item"><input type="checkbox"> 100~200만원 <span class="count">10</span></label>
+        <label class="filter-item"><input type="checkbox"> 200~500만원 <span class="count">12</span></label>
+        <label class="filter-item"><input type="checkbox"> 500만원 이상 <span class="count">5</span></label>
+        <label class="filter-item"><input type="checkbox"> 견적 문의 <span class="count">4</span></label>
+      </div>
+    </div>
+
+  </aside>
+
+  <main class="shop-main">
+    <div class="seo-intro">
+      <h1>실험실용 정량펌프</h1>
+      <p>Lead Fluid 정량펌프는 페리스탈틱(BT/BQ 시리즈)·정밀 기어(CT3001)·시린지펌프(TYD/TYS/TFD) 60+ 모델로 구성됩니다. 액체 종류·유량 범위·사용 빈도·제어 방식 4가지만 답하시면 4단계 위저드가 30초 안에 맞춤 모델을 추천드립니다. 일반 수용액부터 강산·고점도·세포배양까지 전체 응용을 커버합니다.</p>
+    </div>
+
+    <div class="toolbar">
+      <div class="sort-group">
+        <a class="active">셀렙 추천순</a>
+        <a>인기순</a>
+        <a>낮은가격순</a>
+        <a>높은가격순</a>
+        <a>최신순</a>
+      </div>
+      <div class="view-group">
+        <select><option>20개씩</option><option>40개씩</option></select>
+      </div>
+    </div>
+
+    <div class="products">
+
+<div class="prod-card">
+        <a class="prod" href="Leadfluid-2025-Catalog.pdf#page=4" target="_blank" rel="noopener">
+          <div class="prod-img"><span class="ph-code">BT101S</span><span class="ph-series">속도가변형</span></div>
+          <div class="prod-body">
+            <div class="prod-name">BT101S — 속도가변형 페리스탈틱 펌프</div>
+            <div class="prod-spec"><span class="label">시리즈</span><span class="val">속도가변형</span></div>
+            <div class="prod-spec"><span class="label">유량</span><span class="val">0.07 ~ 380 mL/min</span></div>
+            <div class="prod-spec"><span class="label">헤드</span><span class="val">YZ15 · YZ25</span></div>
+            <div class="prod-spec"><span class="label">제어</span><span class="val">디지털 LCD</span></div>
+            <div class="prod-spec"><span class="label">가격</span><span class="val price">1,200,000원</span></div>
+            <div class="prod-tags">
+              <span class="prod-kw">기본 모델</span>
+              <span class="prod-kw">L/S #16 호환</span>
+              <span class="prod-kw">대학·연구실</span>
+            </div>
+          </div>
+        </a>
+        <div class="prod-actions">
+          <button type="button" class="btn-cart" onclick="addToCart('BT101S')">장바구니</button>
+          <button type="button" class="btn-order" onclick="orderNow('BT101S')">주문하기</button>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <a class="prod" href="Leadfluid-2025-Catalog.pdf#page=5" target="_blank" rel="noopener">
+          <div class="prod-img"><span class="ph-code">BT100-2J</span><span class="ph-series">속도가변형</span></div>
+          <div class="prod-body">
+            <div class="prod-name">BT100-2J — 마이크로 유량 페리스탈틱</div>
+            <div class="prod-spec"><span class="label">시리즈</span><span class="val">속도가변형</span></div>
+            <div class="prod-spec"><span class="label">유량</span><span class="val">0.0001 ~ 720 mL/min</span></div>
+            <div class="prod-spec"><span class="label">헤드</span><span class="val">DG · DS · YZ15</span></div>
+            <div class="prod-spec"><span class="label">제어</span><span class="val">디지털 LCD</span></div>
+            <div class="prod-spec"><span class="label">가격</span><span class="val price">1,580,000원</span></div>
+            <div class="prod-tags">
+              <span class="prod-kw">초저유량</span>
+              <span class="prod-kw">μL 단위</span>
+              <span class="prod-kw">HPLC·분석</span>
+            </div>
+          </div>
+        </a>
+        <div class="prod-actions">
+          <button type="button" class="btn-cart" onclick="addToCart('BT100-2J')">장바구니</button>
+          <button type="button" class="btn-order" onclick="orderNow('BT100-2J')">주문하기</button>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <a class="prod" href="Leadfluid-2025-Catalog.pdf#page=8" target="_blank" rel="noopener">
+          <div class="prod-img"><span class="ph-code">BT600S</span><span class="ph-series">지능형·분주</span></div>
+          <div class="prod-body">
+            <div class="prod-name">BT600S — 지능형 분주 펌프</div>
+            <div class="prod-spec"><span class="label">시리즈</span><span class="val">지능형·분주</span></div>
+            <div class="prod-spec"><span class="label">유량</span><span class="val">0.6 ~ 6000 mL/min</span></div>
+            <div class="prod-spec"><span class="label">헤드</span><span class="val">YT25 · KZ25</span></div>
+            <div class="prod-spec"><span class="label">제어</span><span class="val">LCD · RS485</span></div>
+            <div class="prod-spec"><span class="label">가격</span><span class="val price">2,800,000원</span></div>
+            <div class="prod-tags">
+              <span class="prod-kw">자동 분주</span>
+              <span class="prod-kw">대유량</span>
+              <span class="prod-kw">PC 연동</span>
+            </div>
+          </div>
+        </a>
+        <div class="prod-actions">
+          <button type="button" class="btn-cart" onclick="addToCart('BT600S')">장바구니</button>
+          <button type="button" class="btn-order" onclick="orderNow('BT600S')">주문하기</button>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <a class="prod" href="Leadfluid-2025-Catalog.pdf#page=12" target="_blank" rel="noopener">
+          <div class="prod-img"><span class="ph-code">CT3001</span><span class="ph-series">정밀 기어펌프</span></div>
+          <div class="prod-body">
+            <div class="prod-name">CT3001 — 정밀 기어펌프</div>
+            <div class="prod-spec"><span class="label">시리즈</span><span class="val">정밀 기어펌프</span></div>
+            <div class="prod-spec"><span class="label">유량</span><span class="val">0.1 ~ 3000 mL/min</span></div>
+            <div class="prod-spec"><span class="label">헤드</span><span class="val">자체 기어 헤드</span></div>
+            <div class="prod-spec"><span class="label">제어</span><span class="val">디지털 LCD</span></div>
+            <div class="prod-spec"><span class="label">가격</span><span class="val price">2,208,000원</span></div>
+            <div class="prod-tags">
+              <span class="prod-kw">맥동 없음</span>
+              <span class="prod-kw">고점도</span>
+              <span class="prod-kw">연속 흐름</span>
+            </div>
+          </div>
+        </a>
+        <div class="prod-actions">
+          <button type="button" class="btn-cart" onclick="addToCart('CT3001')">장바구니</button>
+          <button type="button" class="btn-order" onclick="orderNow('CT3001')">주문하기</button>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <a class="prod" href="Leadfluid-2025-Catalog.pdf#page=15" target="_blank" rel="noopener">
+          <div class="prod-img"><span class="ph-code">TYD03-01</span><span class="ph-series">시린지 일체형</span></div>
+          <div class="prod-body">
+            <div class="prod-name">TYD03-01 — 시린지 일체형 펌프</div>
+            <div class="prod-spec"><span class="label">시리즈</span><span class="val">시린지 일체형</span></div>
+            <div class="prod-spec"><span class="label">유량</span><span class="val">0.001 ~ 50 mL/min</span></div>
+            <div class="prod-spec"><span class="label">헤드</span><span class="val">시린지 직장착</span></div>
+            <div class="prod-spec"><span class="label">제어</span><span class="val">LCD · RS485</span></div>
+            <div class="prod-spec"><span class="label">가격</span><span class="val price">2,286,000원</span></div>
+            <div class="prod-tags">
+              <span class="prod-kw">μL 분주</span>
+              <span class="prod-kw">세포배양</span>
+              <span class="prod-kw">전자동</span>
+            </div>
+          </div>
+        </a>
+        <div class="prod-actions">
+          <button type="button" class="btn-cart" onclick="addToCart('TYD03-01')">장바구니</button>
+          <button type="button" class="btn-order" onclick="orderNow('TYD03-01')">주문하기</button>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <a class="prod" href="Leadfluid-2025-Catalog.pdf#page=18" target="_blank" rel="noopener">
+          <div class="prod-img"><span class="ph-code">TFD03-01</span><span class="ph-series">시린지 분리형</span></div>
+          <div class="prod-body">
+            <div class="prod-name">TFD03-01 — 시린지 분리형 다채널 펌프</div>
+            <div class="prod-spec"><span class="label">시리즈</span><span class="val">시린지 분리형</span></div>
+            <div class="prod-spec"><span class="label">유량</span><span class="val">0.001 ~ 30 mL/min</span></div>
+            <div class="prod-spec"><span class="label">헤드</span><span class="val">분리형 4·8·12채널</span></div>
+            <div class="prod-spec"><span class="label">제어</span><span class="val">PC · RS485</span></div>
+            <div class="prod-spec"><span class="label">가격</span><span class="val price">3,114,000원</span></div>
+            <div class="prod-tags">
+              <span class="prod-kw">다채널</span>
+              <span class="prod-kw">자동화 셋업</span>
+              <span class="prod-kw">병렬 분주</span>
+            </div>
+          </div>
+        </a>
+        <div class="prod-actions">
+          <button type="button" class="btn-cart" onclick="addToCart('TFD03-01')">장바구니</button>
+          <button type="button" class="btn-order" onclick="orderNow('TFD03-01')">주문하기</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pagination">
+      <a class="disabled">‹</a>
+      <a class="active">1</a>
+      <a>2</a>
+      <a>3</a>
+      <a>›</a>
+    </div>
+
+  </main>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "홈",
+      "item": "https://cellab.kr/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "카탈로그",
+      "item": "https://cellab.kr/pump.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "펌프"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Cellab 펌프 카탈로그",
+  "numberOfItems": 6,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Product",
+        "name": "BT101S — 속도가변형 페리스탈틱 펌프",
+        "description": "속도가변형 · 0.07 ~ 380 mL/min · YZ15 · YZ25 · 디지털 LCD · 기본 모델, L/S #16 호환, 대학·연구실",
+        "category": "실험실용 정량펌프",
+        "brand": {
+          "@type": "Brand",
+          "name": "Lead Fluid"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Lead Fluid"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "KRW",
+          "price": 1200000,
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Cellab"
+          },
+          "url": "https://cellab.kr/Leadfluid-2025-Catalog.pdf#page=4"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Product",
+        "name": "BT100-2J — 마이크로 유량 페리스탈틱",
+        "description": "속도가변형 · 0.0001 ~ 720 mL/min · DG · DS · YZ15 · 디지털 LCD · 초저유량, μL 단위, HPLC·분석",
+        "category": "실험실용 정량펌프",
+        "brand": {
+          "@type": "Brand",
+          "name": "Lead Fluid"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Lead Fluid"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "KRW",
+          "price": 1580000,
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Cellab"
+          },
+          "url": "https://cellab.kr/Leadfluid-2025-Catalog.pdf#page=5"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Product",
+        "name": "BT600S — 지능형 분주 펌프",
+        "description": "지능형·분주 · 0.6 ~ 6000 mL/min · YT25 · KZ25 · LCD · RS485 · 자동 분주, 대유량, PC 연동",
+        "category": "실험실용 정량펌프",
+        "brand": {
+          "@type": "Brand",
+          "name": "Lead Fluid"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Lead Fluid"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "KRW",
+          "price": 2800000,
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Cellab"
+          },
+          "url": "https://cellab.kr/Leadfluid-2025-Catalog.pdf#page=8"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Product",
+        "name": "CT3001 — 정밀 기어펌프",
+        "description": "정밀 기어펌프 · 0.1 ~ 3000 mL/min · 자체 기어 헤드 · 디지털 LCD · 맥동 없음, 고점도, 연속 흐름",
+        "category": "실험실용 정량펌프",
+        "brand": {
+          "@type": "Brand",
+          "name": "Lead Fluid"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Lead Fluid"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "KRW",
+          "price": 2208000,
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Cellab"
+          },
+          "url": "https://cellab.kr/Leadfluid-2025-Catalog.pdf#page=12"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Product",
+        "name": "TYD03-01 — 시린지 일체형 펌프",
+        "description": "시린지 일체형 · 0.001 ~ 50 mL/min · 시린지 직장착 · LCD · RS485 · μL 분주, 세포배양, 전자동",
+        "category": "실험실용 정량펌프",
+        "brand": {
+          "@type": "Brand",
+          "name": "Lead Fluid"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Lead Fluid"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "KRW",
+          "price": 2286000,
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Cellab"
+          },
+          "url": "https://cellab.kr/Leadfluid-2025-Catalog.pdf#page=15"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Product",
+        "name": "TFD03-01 — 시린지 분리형 다채널 펌프",
+        "description": "시린지 분리형 · 0.001 ~ 30 mL/min · 분리형 4·8·12채널 · PC · RS485 · 다채널, 자동화 셋업, 병렬 분주",
+        "category": "실험실용 정량펌프",
+        "brand": {
+          "@type": "Brand",
+          "name": "Lead Fluid"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Lead Fluid"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "KRW",
+          "price": 3114000,
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Cellab"
+          },
+          "url": "https://cellab.kr/Leadfluid-2025-Catalog.pdf#page=18"
+        }
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  .prod-img.ph, .prod-img:has(.ph-code){background:linear-gradient(135deg,#f5f9f7 0%,#eef4f0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px}
+  .prod-img:has(.ph-code)::after{content:none}
+  .ph-code{font-size:18px;font-weight:800;color:#1a6e56;letter-spacing:-.02em;font-family:'SF Mono','Roboto Mono',monospace}
+  .ph-series{font-size:11px;color:#5a6779;font-weight:600}
+</style>
+
+
+<script>
+document.querySelectorAll('.filter-item input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', e => {
+    e.target.closest('.filter-item').classList.toggle('checked', e.target.checked);
+  });
+});
+document.querySelectorAll('.filter-title .clear').forEach(c => {
+  c.addEventListener('click', e => {
+    e.target.closest('.filter-group').querySelectorAll('input[type=checkbox]').forEach(cb => {
+      cb.checked = false;
+      cb.closest('.filter-item').classList.remove('checked');
+    });
+  });
+});
+
+/* ============================================================
+ *  Stage 2 — 외부 제품 자동 수집 (JSON 동적 렌더링)
+ * /api/data       (GET)  → products_output.json 내용
+ * /api/refresh    (POST) → crawl.py 실행 후 결과
+ * 정적 file:// 환경에서도 동작하도록, /api/data 실패 시
+ * crawler/products_output.json 직접 fetch fallback.
+ * ============================================================ */
+/* 카테고리 자동 감지 — 정적 페이지(pathname) 우선, fallback ?cat= */
+(function(){
+  const VALID_CATS = ['pump','tubing','syringe','pumphead','fitting','other'];
+  // pathname → 파일명 → cat (예: /pump.html → 'pump')
+  const pathCat = (location.pathname.split('/').pop() || '').replace('.html','').toLowerCase();
+  const params = new URLSearchParams(location.search);
+  const queryCat = (params.get('cat') || '').toLowerCase();
+  const cat = VALID_CATS.includes(pathCat) ? pathCat
+            : VALID_CATS.includes(queryCat) ? queryCat
+            : 'tubing';
+  const q = (params.get('q') || '').trim();
+  document.querySelectorAll('.cellab-kw[data-cat]').forEach(a => {
+    if (a.dataset.cat === cat) a.classList.add('active');
+  });
+  // 브레드크럼 라벨은 빌드 시 이미 정확히 채워져 있으므로 JS에서 덮어쓰지 않음
+  if (q) {
+    const input = document.getElementById('headerSearchInput');
+    if (input) input.value = q;
+    const banner = document.createElement('div');
+    banner.className = 'search-banner';
+    const safeQ = q.replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+    banner.innerHTML = '검색어: <strong>' + safeQ + '</strong> <span class="clear-q" onclick="location.href=location.pathname+\'?cat=' + cat + '\'">× 검색 해제</span>';
+    const main = document.querySelector('.shop-main');
+    if (main) main.insertBefore(banner, main.firstChild);
+  }
+  
+  window.doHeaderSearch = function() {
+    const v = (document.getElementById('headerSearchInput').value || '').trim();
+    if (!v) return;
+    let nextCat = 'tubing';
+    if (/(시린지|syringe)/i.test(v)) nextCat = 'syringe';
+    else if (/(펌프헤드|pump\s*head|yz15|yt25|dg|ds|dt10|dt15|kz25|mg|dmd)/i.test(v)) nextCat = 'pumphead';
+    else if (/(피팅|커넥터|connector|barb|루어|이지로드)/i.test(v)) nextCat = 'fitting';
+    else if (/(니들|댐퍼|풋스위치|디스펜서|바이알|클램프|needle|damper|vial|clamp)/i.test(v)) nextCat = 'other';
+    else if (/(튜브|호스|tubing|hose|silicone|실리콘|tygon|pharmed|viton|chemical|#\d+|l\/s)/i.test(v)) nextCat = 'tubing';
+    else if (/(정량펌프|연동펌프|페리스탈틱|기어펌프|시린지펌프|bt\d+|bq\d+|ct3001|tyd|tys|tfd|leadfluid|리드플루이드)/i.test(v)) nextCat = 'pump';
+    if (/^bt101s/i.test(v))           { location.href = 'series_bt101s_sample.html?q=' + encodeURIComponent(v); return; }
+    if (/masterflex|마스터플렉스/i.test(v)) { location.href = 'compatibility_matrix_sample.html?q=' + encodeURIComponent(v); return; }
+    location.href = nextCat + '.html?q=' + encodeURIComponent(v);
+  };
+})();
+
+/* 카드 액션 버튼 — 임시 핸들러 */
+window.addToCart = function(name) {
+  alert('"' + name + '"\n\n장바구니 기능은 준비중입니다.\n빠른 견적이 필요하시면 카톡·이메일 또는 상담 문의로 부탁드립니다.');
+};
+window.orderNow = function(name) {
+  if (confirm('"' + name + '"\n\n주문 기능은 준비중입니다.\n상담 문의 페이지로 이동할까요?')) {
+    location.href = 'index.html#contact';
+  }
+};
+</script>
+
+</body>
+</html>

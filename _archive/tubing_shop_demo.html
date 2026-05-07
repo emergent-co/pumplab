@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>튜브 — 검색·필터로 빠르게 찾기 | 셀렙</title>
+<meta name="description" content="페리스탈틱 펌프 호환 튜브를 카테고리·호환 헤드·재질·공급처·가격으로 즉시 필터링. 실리콘·Tygon·Viton·PTFE 전 라인업.">
+
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0a2540;--navy-light:#1a3a5c;--teal:#00a78e;--teal-light:#1ec8b0;
+    --bg:#f7f9fc;--card:#fff;--text:#1a2332;--muted:#5a6779;--border:#e3e8ef;--accent:#ffb547;
+    --shadow:0 1px 3px rgba(10,37,64,.06),0 4px 16px rgba(10,37,64,.04);
+    --shadow-hover:0 4px 12px rgba(10,37,64,.10),0 12px 32px rgba(10,37,64,.08);
+    --radius:10px;--radius-sm:6px;
+  }
+  html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--text);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1320px;margin:0 auto;padding:0 24px}
+
+  /* Header */
+  .header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
+  .header-inner{display:flex;align-items:center;gap:24px;height:64px}
+  .logo{font-weight:800;font-size:22px;color:var(--navy);letter-spacing:-.02em;flex-shrink:0}
+  .logo span{color:var(--teal)}
+
+  /* Search */
+  .search-wrap{flex:1;max-width:640px;position:relative}
+  .search-input{width:100%;height:44px;padding:0 50px 0 18px;border:2px solid var(--teal);border-radius:30px;font-size:14px;background:#fff;outline:none;font-family:inherit}
+  .search-input:focus{border-color:var(--teal-light);box-shadow:0 0 0 3px rgba(0,167,142,.12)}
+  .search-btn{position:absolute;right:5px;top:5px;width:34px;height:34px;border-radius:50%;background:var(--teal);color:#fff;border:none;font-size:15px;cursor:pointer;display:grid;place-items:center}
+  .search-btn:hover{background:var(--teal-light)}
+  .search-suggest{position:absolute;left:18px;bottom:-22px;font-size:11.5px;color:var(--muted)}
+  .search-suggest a{color:var(--teal);font-weight:600;margin:0 4px}
+
+  .header-icons{display:flex;gap:12px;align-items:center;flex-shrink:0}
+  .header-icons .icon-btn{padding:6px 10px;font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
+  .header-icons .icon-btn:hover{color:var(--navy)}
+  .header-icons .icon-btn .ico{font-size:18px}
+
+  /* Sub navigation */
+  .subnav{background:#fff;border-bottom:1px solid var(--border)}
+  .subnav-inner{display:flex;gap:6px;height:48px;align-items:center;font-size:13.5px;color:var(--muted);flex-wrap:wrap}
+  .subnav-inner a{padding:6px 12px;border-radius:6px;font-weight:600;transition:all .15s}
+  .subnav-inner a:hover{background:#f0f4f9;color:var(--navy)}
+  .subnav-inner a.active{background:rgba(0,167,142,.1);color:var(--teal)}
+
+  /* Page title */
+  .page-title{padding:18px 0 8px}
+  .page-title h1{font-size:21px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+  .page-title .crumb{font-size:12px;color:var(--muted);margin-bottom:6px}
+  .page-title .crumb a{color:var(--muted)}
+  .page-title .crumb a:hover{color:var(--teal)}
+  .page-title .total{font-size:13px;color:var(--muted);margin-top:4px}
+  .page-title .total strong{color:var(--teal);font-weight:800}
+
+  /* Layout */
+  .shop-layout{display:grid;grid-template-columns:240px 1fr;gap:24px;padding:18px 0 48px}
+  @media (max-width:900px){.shop-layout{grid-template-columns:1fr}.filter-side{position:fixed;top:0;left:-100%;width:280px;height:100vh;z-index:60;background:#fff;padding:20px;overflow-y:auto;transition:left .3s;box-shadow:0 0 30px rgba(0,0,0,.1)}.filter-side.open{left:0}.filter-toggle-mobile{display:flex !important}}
+  .filter-toggle-mobile{display:none;align-items:center;gap:6px;padding:9px 14px;background:#fff;border:1px solid var(--border);border-radius:8px;font-weight:700;font-size:13px;color:var(--navy);cursor:pointer;font-family:inherit}
+
+  /* Filter sidebar */
+  .filter-side{display:flex;flex-direction:column;gap:18px}
+  .filter-group{background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px}
+  .filter-title{font-size:12.5px;font-weight:800;color:var(--navy);letter-spacing:.02em;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+  .filter-title .clear{font-size:11px;color:var(--muted);font-weight:600;cursor:pointer}
+  .filter-title .clear:hover{color:var(--teal)}
+  .filter-list{display:flex;flex-direction:column;gap:7px}
+  .filter-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text);cursor:pointer;padding:2px 0}
+  .filter-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--teal);cursor:pointer}
+  .filter-item .count{margin-left:auto;font-size:11px;color:var(--muted);font-weight:600;background:#f0f4f9;padding:1px 6px;border-radius:8px;min-width:22px;text-align:center}
+  .filter-item:hover{color:var(--teal)}
+  .filter-item.checked{color:var(--teal);font-weight:700}
+  .filter-item.checked .count{background:rgba(0,167,142,.15);color:var(--teal)}
+
+  .price-range{display:flex;gap:6px;align-items:center;font-size:12px;margin-top:6px}
+  .price-input{flex:1;padding:6px 8px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-family:inherit;outline:none}
+  .price-input:focus{border-color:var(--teal)}
+  .price-apply{padding:6px 10px;background:var(--navy);color:#fff;border:none;border-radius:5px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit}
+
+  /* Main content */
+  .shop-main{display:flex;flex-direction:column;gap:14px}
+
+  /* Active filter chips */
+  .active-filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:34px}
+  .active-filters:empty{display:none}
+  .active-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;background:rgba(0,167,142,.1);color:var(--teal);font-size:12px;font-weight:700;border-radius:14px;border:1px solid rgba(0,167,142,.25)}
+  .active-chip .x{cursor:pointer;font-weight:800;opacity:.7}
+  .active-chip .x:hover{opacity:1}
+  .active-clear-all{font-size:12px;color:var(--muted);font-weight:600;cursor:pointer;text-decoration:underline;margin-left:6px}
+  .active-clear-all:hover{color:var(--teal)}
+
+  /* Sort + view bar */
+  .toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:8px 0;border-bottom:1px solid var(--border)}
+  .sort-group{display:flex;gap:14px;font-size:13px;color:var(--muted);font-weight:600}
+  .sort-group a{cursor:pointer;padding:4px 0;border-bottom:2px solid transparent}
+  .sort-group a:hover{color:var(--navy)}
+  .sort-group a.active{color:var(--navy);font-weight:800;border-bottom-color:var(--teal)}
+  .view-group{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--muted)}
+  .view-group select{padding:6px 10px;border:1px solid var(--border);border-radius:5px;font-size:12.5px;font-family:inherit;background:#fff}
+  .view-toggle{display:flex;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+  .view-toggle button{width:32px;height:30px;background:#fff;border:none;font-size:14px;cursor:pointer;color:var(--muted)}
+  .view-toggle button.active{background:var(--navy);color:#fff}
+
+  /* Product grid */
+  .products{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media (max-width:1100px){.products{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:780px){.products{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:480px){.products{grid-template-columns:1fr}}
+
+  .prod{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;text-decoration:none;color:inherit;position:relative}
+  .prod:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);border-color:var(--teal)}
+  .prod-img{aspect-ratio:1/1;background:linear-gradient(135deg,#eef2f7 0%,#dde4ee 100%);display:grid;place-items:center;color:#a5b1c2;font-size:11px;font-weight:700;border-bottom:1px solid var(--border);position:relative}
+  .prod-img::after{content:"📷";font-size:30px}
+  .prod-tag{position:absolute;top:8px;left:8px;background:var(--accent);color:var(--navy);font-size:10px;font-weight:800;padding:2px 7px;border-radius:3px;letter-spacing:.04em}
+  .prod-tag.new{background:var(--teal);color:#fff}
+  .prod-wish{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.9);border:none;cursor:pointer;font-size:14px;color:#cdd6e0;display:grid;place-items:center}
+  .prod-wish:hover{color:#ef4444}
+  .prod-wish.active{color:#ef4444}
+
+  .prod-body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .prod-name{font-size:13.5px;font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px}
+  .prod-spec{font-size:11.5px;color:var(--muted);line-height:1.4}
+  .prod-spec .label{color:#94a2b6;font-weight:600;display:inline-block;width:50px;font-size:11px}
+  .prod-spec .val{color:var(--text);font-weight:600}
+  .prod-foot{margin-top:auto;padding-top:8px;border-top:1px dashed var(--border);display:flex;justify-content:space-between;align-items:flex-end;gap:6px}
+  .prod-seller{font-size:11px;color:var(--muted);font-weight:600;line-height:1.3;flex:1;min-width:0}
+  .prod-seller strong{color:var(--navy);font-weight:700}
+  .prod-price{font-size:14.5px;font-weight:800;color:var(--navy);font-family:'SF Mono','Roboto Mono',monospace;letter-spacing:-.02em;text-align:right;flex-shrink:0}
+  .prod-price .won{font-size:11px;color:var(--muted);font-weight:600;font-family:inherit;margin-left:2px}
+  .prod-price.empty{color:var(--muted);font-size:12px;font-weight:600;font-family:inherit}
+
+  /* Pagination */
+  .pagination{display:flex;justify-content:center;gap:4px;padding:24px 0;font-size:13px}
+  .pagination a{width:32px;height:32px;display:grid;place-items:center;border-radius:6px;color:var(--muted);font-weight:600;cursor:pointer}
+  .pagination a:hover{background:#f0f4f9;color:var(--navy)}
+  .pagination a.active{background:var(--navy);color:#fff;font-weight:800}
+  .pagination a.disabled{color:#cdd6e0;cursor:not-allowed}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">셀렙<span>.</span></a>
+    <div class="search-wrap">
+      <input type="text" class="search-input" placeholder="튜브명·호수·호환 헤드·공급처 검색 (예: #16, YZ15T, Tygon, 시그마)">
+      <button class="search-btn">🔍</button>
+      <div class="search-suggest">인기검색: <a>#16</a><a>YZ15T</a><a>MasterFlex 호환</a><a>Tygon Pharmed</a></div>
+    </div>
+    <div class="header-icons">
+      <button class="icon-btn"><span class="ico">👤</span><span>로그인</span></button>
+      <button class="icon-btn"><span class="ico">❤️</span><span>관심</span></button>
+      <button class="icon-btn"><span class="ico">🛒</span><span>장바구니</span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="container subnav-inner">
+    <a>전체</a>
+    <a>펌프 본체</a>
+    <a class="active">튜브</a>
+    <a>시린지</a>
+    <a>펌프헤드</a>
+    <a>피팅 (준비중)</a>
+    <a>바이알 (준비중)</a>
+    <a>응용 셋업</a>
+    <a>호환 매트릭스</a>
+  </div>
+</nav>
+
+<div class="container page-title">
+  <div class="crumb"><a>홈</a> › <a>소모품</a> › <span style="color:var(--navy);font-weight:600">튜브</span></div>
+  <h1>튜브 — 페리스탈틱 펌프 호환 전 라인업</h1>
+  <div class="total">검색결과 <strong>총 24건</strong> · 실리콘·Tygon·Viton·PTFE 등 전 재질 / 셀렙·시그마·올포랩·코랩샵 통합</div>
+</div>
+
+<div class="container">
+  <button class="filter-toggle-mobile" onclick="document.querySelector('.filter-side').classList.toggle('open')">⚙️ 필터 열기</button>
+</div>
+
+<div class="container shop-layout">
+
+  <!-- Filter sidebar -->
+  <aside class="filter-side">
+
+    <div class="filter-group">
+      <div class="filter-title">재질 <span class="clear">초기화</span></div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 실리콘 (Silicone) <span class="count">8</span></label>
+        <label class="filter-item"><input type="checkbox"> Tygon Pharmed BPT <span class="count">3</span></label>
+        <label class="filter-item"><input type="checkbox"> Tygon Chemical <span class="count">2</span></label>
+        <label class="filter-item"><input type="checkbox"> Tygon S3 / A-60-F <span class="count">2</span></label>
+        <label class="filter-item"><input type="checkbox"> Viton (불소고무) <span class="count">2</span></label>
+        <label class="filter-item"><input type="checkbox"> PTFE / PFA <span class="count">3</span></label>
+        <label class="filter-item"><input type="checkbox"> C-Flex <span class="count">2</span></label>
+        <label class="filter-item"><input type="checkbox"> PVC <span class="count">2</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">호환 펌프헤드</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> YZ15 / YZ15T <span class="count">12</span></label>
+        <label class="filter-item"><input type="checkbox"> YT25 <span class="count">7</span></label>
+        <label class="filter-item"><input type="checkbox"> DG / DS (마이크로) <span class="count">5</span></label>
+        <label class="filter-item"><input type="checkbox"> DT10 / DT15 <span class="count">3</span></label>
+        <label class="filter-item"><input type="checkbox"> KZ25 <span class="count">2</span></label>
+        <label class="filter-item"><input type="checkbox"> YZ35 (대유량) <span class="count">2</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">호환 호수 (L/S)</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> #13 <span class="count">3</span></label>
+        <label class="filter-item"><input type="checkbox"> #14 <span class="count">4</span></label>
+        <label class="filter-item"><input type="checkbox"> #15 <span class="count">5</span></label>
+        <label class="filter-item checked"><input type="checkbox" checked> #16 <span class="count">8</span></label>
+        <label class="filter-item"><input type="checkbox"> #17 <span class="count">3</span></label>
+        <label class="filter-item"><input type="checkbox"> #18 <span class="count">3</span></label>
+        <label class="filter-item"><input type="checkbox"> #25 <span class="count">2</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">용도</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 세포배양·바이오 <span class="count">10</span></label>
+        <label class="filter-item"><input type="checkbox"> 무균·GMP <span class="count">5</span></label>
+        <label class="filter-item"><input type="checkbox"> 내약품·강산 <span class="count">4</span></label>
+        <label class="filter-item"><input type="checkbox"> 식품·음료 <span class="count">3</span></label>
+        <label class="filter-item"><input type="checkbox"> HPLC·분석 <span class="count">5</span></label>
+        <label class="filter-item"><input type="checkbox"> 일반 시약 이송 <span class="count">12</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">공급처</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 셀렙 (Lead Fluid) <span class="count">6</span></label>
+        <label class="filter-item"><input type="checkbox"> 시그마알드리치 <span class="count">8</span></label>
+        <label class="filter-item"><input type="checkbox"> 올포랩 <span class="count">4</span></label>
+        <label class="filter-item"><input type="checkbox"> 코랩샵 <span class="count">2</span></label>
+        <label class="filter-item"><input type="checkbox"> 비전랩 <span class="count">2</span></label>
+        <label class="filter-item"><input type="checkbox"> 토탈사이언스 <span class="count">2</span></label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-title">가격대</div>
+      <div class="filter-list">
+        <label class="filter-item"><input type="checkbox"> 5만원 미만 <span class="count">3</span></label>
+        <label class="filter-item"><input type="checkbox"> 5~10만원 <span class="count">7</span></label>
+        <label class="filter-item"><input type="checkbox"> 10~30만원 <span class="count">9</span></label>
+        <label class="filter-item"><input type="checkbox"> 30만원 이상 <span class="count">5</span></label>
+      </div>
+      <div class="price-range">
+        <input type="number" class="price-input" placeholder="최소">
+        <span>~</span>
+        <input type="number" class="price-input" placeholder="최대">
+        <button class="price-apply">적용</button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- Main content -->
+  <main class="shop-main">
+
+    <!-- Active filter chips -->
+    <div class="active-filters">
+      <span class="active-chip">호수: #16 <span class="x">×</span></span>
+      <a class="active-clear-all">필터 모두 해제</a>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="sort-group">
+        <a class="active">정확도순</a>
+        <a>인기순</a>
+        <a>낮은가격순</a>
+        <a>높은가격순</a>
+        <a>최신순</a>
+      </div>
+      <div class="view-group">
+        <span>20개씩</span>
+        <select><option>20개씩</option><option>40개씩</option><option>60개씩</option></select>
+        <div class="view-toggle">
+          <button class="active" title="그리드">▦</button>
+          <button title="리스트">☰</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product grid -->
+    <div class="products">
+
+      <!-- 1 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <span class="prod-tag">★ BEST</span>
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">실리콘 튜브 #16 (MasterFlex L/S #16 호환) — Lead Fluid 정품</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">백금 가황 실리콘</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">YZ15/YZ15T · L/S #16</span></div>
+          <div class="prod-spec"><span class="label">규격</span> <span class="val">[ID·OD 입력] · 4-tube/팩</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>셀렙 (Lead Fluid)</strong></div>
+            <div class="prod-price">[입력]<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <span class="prod-tag">★ BEST</span>
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">실리콘 튜브 #15 (L/S #15 호환) — YT25 펌프헤드용</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">백금 가황 실리콘</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">YT25 · L/S #15</span></div>
+          <div class="prod-spec"><span class="label">규격</span> <span class="val">대유량 · 4-tube/팩</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>셀렙 (Lead Fluid)</strong></div>
+            <div class="prod-price">[입력]<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <button class="prod-wish active">♥</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">[As One] MASTERFLEX TUBING TYGON FOOD 송액펌프용튜브 (15M)</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">Tygon S3 / A-60-F (식품용)</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">L/S #16 · YZ15T</span></div>
+          <div class="prod-spec"><span class="label">길이</span> <span class="val">15 m</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>(주)올포랩</strong></div>
+            <div class="prod-price">342,000<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">정량 펌프용 튜브 / Peristaltic Pump Tubing (Platinum Silicone)</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">Platinum Silicone</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">YZ15T · L/S #16</span></div>
+          <div class="prod-spec"><span class="label">용도</span> <span class="val">세포배양·일반</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>비전랩사이언스</strong></div>
+            <div class="prod-price">135,000<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <span class="prod-tag new">N</span>
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Tygon Pharmed BPT — 무균·GMP 충전 호스 #16</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">Tygon Pharmed BPT</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">YZ15T · L/S #16</span></div>
+          <div class="prod-spec"><span class="label">용도</span> <span class="val">GMP·세포배양·발효</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>셀렙 (Lead Fluid)</strong></div>
+            <div class="prod-price">[입력]<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6 -->
+      <a class="prod" href="https://shsigma.co.kr/shop/PDNN18051800035" target="_blank" rel="noopener noreferrer">
+        <div class="prod-img">
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">[Sigma] Masterflex Platinum-cured Silicone Tubing L/S #16</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">Platinum-cured Silicone</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">YZ15T · L/S #16</span></div>
+          <div class="prod-spec"><span class="label">규격</span> <span class="val">[ID 4.8mm·OD 8.0mm 등]</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>(주)성호씨그마</strong></div>
+            <div class="prod-price">[시그마]<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 7 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">[As One] MASTERFLEX TUBING C-FLEX 송액펌프용튜브 (7.5M)</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">C-Flex (열가소성)</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">L/S #16 · YZ15T</span></div>
+          <div class="prod-spec"><span class="label">길이</span> <span class="val">7.5 m</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>(주)올포랩</strong></div>
+            <div class="prod-price empty">옵션 선택</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 8 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Versilon Viton F-5500 (불소고무) — 강용제·고온 호스</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">Viton (FKM)</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">YZ15T · L/S #16</span></div>
+          <div class="prod-spec"><span class="label">온도</span> <span class="val">~204°C</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>셀렙 (Lead Fluid)</strong></div>
+            <div class="prod-price">[입력]<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 9 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">[Sigma] Tygon E-3603 PVC Laboratory Tubing #16</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">PVC (Tygon E-3603)</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">L/S #16</span></div>
+          <div class="prod-spec"><span class="label">규격</span> <span class="val">25 ft 롤</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>(주)성호씨그마</strong></div>
+            <div class="prod-price">[시그마]<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 10 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">코랩샵 자체 실리콘 튜브 #16 — 일반 미디어 공급용</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">실리콘 (자체)</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">YZ15T · L/S #16</span></div>
+          <div class="prod-spec"><span class="label">길이</span> <span class="val">2 m × 4 tubes</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>코랩샵</strong></div>
+            <div class="prod-price">[코랩샵]<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 11 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">[Sigma] Cole-Parmer MasterFlex L/S Precision Tubing — 정품 #16</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">Cole-Parmer 정품 실리콘</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">L/S Easy-Load · #16</span></div>
+          <div class="prod-spec"><span class="label">정품</span> <span class="val">콜파머 정품 라벨</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>(주)성호씨그마</strong></div>
+            <div class="prod-price">[정품]<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 12 -->
+      <a class="prod" href="#">
+        <div class="prod-img">
+          <button class="prod-wish">♡</button>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Tygon Chemical 강산·강알칼리·강용제용 튜빙 #16</div>
+          <div class="prod-spec"><span class="label">재질</span> <span class="val">Tygon Chemical</span></div>
+          <div class="prod-spec"><span class="label">호환</span> <span class="val">YZ15T · L/S #16</span></div>
+          <div class="prod-spec"><span class="label">용도</span> <span class="val">98% H₂SO₄·아세톤·톨루엔</span></div>
+          <div class="prod-foot">
+            <div class="prod-seller">공급처<br><strong>셀렙 (Lead Fluid)</strong></div>
+            <div class="prod-price">[입력]<span class="won">원</span></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <a class="disabled">‹</a>
+      <a class="active">1</a>
+      <a>2</a>
+      <a>3</a>
+      <a>4</a>
+      <a>5</a>
+      <a>›</a>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// Filter checkbox toggle
+document.querySelectorAll('.filter-item input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', e => {
+    e.target.closest('.filter-item').classList.toggle('checked', e.target.checked);
+  });
+});
+// Clear filter
+document.querySelectorAll('.filter-title .clear').forEach(c => {
+  c.addEventListener('click', e => {
+    e.target.closest('.filter-group').querySelectorAll('input[type=checkbox]').forEach(cb => {
+      cb.checked = false;
+      cb.closest('.filter-item').classList.remove('checked');
+    });
+  });
+});
+// Wish toggle
+document.querySelectorAll('.prod-wish').forEach(b => {
+  b.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.target.classList.toggle('active');
+    e.target.textContent = e.target.classList.contains('active') ? '♥' : '♡';
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>튜브 통합 카탈로그 — 셀렙 직접 + 시그마 등 외부 호환 제품 | 셀렙</title>
+<meta name="description" content="페리스탈틱 펌프 호환 튜브 통합 카탈로그. 셀렙 직접 판매(Lead Fluid 정식) + 시그마알드리치 등 외부 호환 제품을 한 곳에서 비교. 출처·구매 경로 명확 표기.">
+
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0a2540;--navy-light:#1a3a5c;--teal:#00a78e;--teal-light:#1ec8b0;
+    --bg:#f7f9fc;--card:#fff;--text:#1a2332;--muted:#5a6779;--border:#e3e8ef;--accent:#ffb547;
+    --shadow:0 1px 3px rgba(10,37,64,.06),0 4px 16px rgba(10,37,64,.04);
+    --shadow-hover:0 4px 12px rgba(10,37,64,.10),0 12px 32px rgba(10,37,64,.08);
+    --radius:12px;--radius-sm:8px;
+    --ext-color:#7c3aed; /* 외부 제품 구분 색상 (보라) */
+  }
+  html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--text);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1280px;margin:0 auto;padding:0 24px}
+
+  /* Header */
+  .header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-weight:800;font-size:22px;color:var(--navy);letter-spacing:-.02em}
+  .logo span{color:var(--teal)}
+
+  /* Hero */
+  .demo-hero{padding:36px 0 28px;background:linear-gradient(180deg,#fff 0%,#f7f9fc 100%);border-bottom:1px solid var(--border)}
+  .demo-hero h1{font-size:28px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:8px}
+  .demo-hero h1 .accent{color:var(--teal)}
+  .demo-hero p{font-size:14px;color:var(--muted);max-width:760px;margin-bottom:18px}
+
+  /* Tabs */
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:28px;padding-bottom:0}
+  .tab{padding:11px 18px;font-size:14px;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:3px solid transparent;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+  .tab:hover{color:var(--navy)}
+  .tab.active{color:var(--navy);border-bottom-color:var(--teal)}
+  .tab .count{font-size:11px;color:var(--muted);background:#f0f4f9;padding:2px 7px;border-radius:10px;font-weight:700}
+  .tab.active .count{background:var(--teal);color:#fff}
+
+  /* Section */
+  section{padding:32px 0}
+  .section-head{margin-bottom:18px}
+  .eyebrow{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;padding:4px 10px;border-radius:12px}
+  .eyebrow.celleb{color:var(--teal);background:rgba(0,167,142,.1);border:1px solid rgba(0,167,142,.25)}
+  .eyebrow.ext{color:var(--ext-color);background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2)}
+  h2{font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:6px}
+  .lead{color:var(--muted);font-size:13.5px}
+
+  /* Grid */
+  .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media (max-width:1100px){.product-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:800px){.product-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:480px){.product-grid{grid-template-columns:1fr}}
+
+  /* Celleb direct card */
+  .product-card{background:#fff;border:2px solid var(--border);border-radius:var(--radius);padding:0;display:flex;flex-direction:column;overflow:hidden;text-decoration:none;color:inherit;transition:all .15s;position:relative;cursor:pointer}
+  .product-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+  .product-card.celleb{border-color:rgba(0,167,142,.35)}
+  .product-card.celleb:hover{border-color:var(--teal)}
+
+  .pc-source-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;font-size:11px;font-weight:800;letter-spacing:.04em}
+  .product-card.celleb .pc-source-bar{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-light) 100%);color:#fff}
+  .product-card.celleb .pc-source-bar::before{content:"★ 셀렙 직접 판매"}
+  .pc-source-bar .pc-best{background:var(--accent);color:var(--navy);padding:2px 7px;border-radius:3px;font-size:10px;font-weight:800;letter-spacing:.04em}
+
+  .pc-photo{aspect-ratio:4/3;background:linear-gradient(135deg,#eef2f7 0%,#dde4ee 100%);display:grid;place-items:center;color:#a5b1c2;font-size:11px;font-weight:700;border-bottom:1px solid var(--border);position:relative}
+  .pc-photo::after{content:"📷 사진";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+  .pc-photo[data-tag]::before{content:attr(data-tag);position:absolute;top:8px;left:8px;font-size:10px;font-weight:800;background:rgba(255,255,255,.85);color:#7d8a9c;padding:2px 7px;border-radius:3px;z-index:1}
+
+  .pc-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .pc-name{font-size:14.5px;font-weight:800;color:var(--navy);line-height:1.3}
+  .pc-meta{font-size:11.5px;color:var(--muted);line-height:1.5}
+  .pc-spec{font-size:11px;color:var(--text);background:#f0f4f9;padding:5px 8px;border-radius:5px;font-family:'SF Mono','Roboto Mono',monospace;margin-top:4px;line-height:1.4}
+  .pc-price{font-size:13px;font-weight:800;margin-top:6px;display:flex;align-items:baseline;gap:3px}
+  .pc-price .num{color:var(--teal)}
+  .pc-price .from{font-size:10px;color:var(--muted);font-weight:600}
+  .pc-cta{margin-top:auto;padding-top:10px;font-size:12px;font-weight:700;color:var(--teal);display:flex;align-items:center;gap:4px;border-top:1px dashed var(--border)}
+
+  /* External (Sigma etc.) card */
+  .product-card.ext{border-color:rgba(124,58,237,.3);border-style:dashed}
+  .product-card.ext:hover{border-color:var(--ext-color);border-style:solid}
+  .product-card.ext .pc-source-bar{background:linear-gradient(135deg,#7c3aed 0%,#9333ea 100%);color:#fff}
+  .product-card.ext .pc-source-bar::before{content:"🔗 시그마알드리치 (외부)"}
+  .product-card.ext[data-source="korab"] .pc-source-bar{background:linear-gradient(135deg,#0891b2 0%,#0e7490 100%)}
+  .product-card.ext[data-source="korab"] .pc-source-bar::before{content:"🔗 코랩샵 (외부)"}
+  .product-card.ext[data-source="cole"] .pc-source-bar{background:linear-gradient(135deg,#475569 0%,#334155 100%)}
+  .product-card.ext[data-source="cole"] .pc-source-bar::before{content:"🔗 콜파머/MasterFlex (외부)"}
+  .product-card.ext .pc-cta{color:var(--ext-color)}
+  .pc-source-foot{padding:8px 14px;background:#fafbfc;border-top:1px solid var(--border);font-size:10.5px;color:var(--muted);line-height:1.45}
+  .pc-source-foot strong{color:var(--ext-color);font-weight:700}
+
+  /* Stub card (URL only, not yet mapped) */
+  .product-card.stub{border-style:dashed;border-color:#cdd6e0;background:#fafbfc;opacity:.85}
+  .product-card.stub .pc-source-bar{background:#cdd6e0;color:#7d8a9c}
+  .product-card.stub .pc-source-bar::before{content:"⏳ 매핑 대기 중"}
+  .product-card.stub .pc-photo{background:#f0f4f9}
+  .product-card.stub .pc-photo::after{content:"클릭하여 시그마 페이지 열기 →"}
+  .product-card.stub .pc-name{color:var(--muted);font-style:italic}
+  .product-card.stub .pc-name::after{content:" (제품 정보 입력 필요)";font-size:11px;color:#cdd6e0;font-style:normal}
+
+  /* Note box */
+  .info-box{background:#fff;border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:var(--radius-sm);padding:14px 18px;margin:24px 0;font-size:13px;color:var(--text);line-height:1.65}
+  .info-box strong{color:var(--navy)}
+  .info-box.warn{border-left-color:var(--ext-color);background:rgba(124,58,237,.04)}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">셀렙<span>.</span></a>
+    <div style="font-size:13px;color:var(--muted)">📋 견적 문의</div>
+  </div>
+</header>
+
+<section class="demo-hero">
+  <div class="container">
+    <h1>튜브 통합 카탈로그<br><span class="accent">셀렙 직접 + 시그마 등 외부 제품</span></h1>
+    <p>페리스탈틱 펌프 호환 튜브를 한 곳에서 비교하세요. 셀렙 직접 판매(Lead Fluid 정식) + 시그마알드리치·코랩샵 등 외부 사이트 제품 정보. <strong>출처·구매 경로 명확 표기.</strong></p>
+
+    <div class="tabs">
+      <button class="tab active">전체 <span class="count">10</span></button>
+      <button class="tab">★ 셀렙 직접 <span class="count">5</span></button>
+      <button class="tab">🔗 외부 제품 <span class="count">5</span></button>
+      <button class="tab">YZ15T 호환만</button>
+      <button class="tab">YT25 호환만</button>
+      <button class="tab">GMP·무균</button>
+      <button class="tab">내약품</button>
+    </div>
+
+    <div class="info-box">
+      📌 <strong>외부 제품 안내 정책</strong> — 셀렙은 펌프 실험에 필요한 모든 정보를 한 곳에서 제공하기 위해, 셀렙 미취급 제품도 <strong>출처를 명확히 밝히고</strong> 안내합니다. 외부 제품은 해당 사이트(시그마알드리치 등)에서 직접 구매하셔야 합니다. 셀렙은 외부 제품 거래에 관여하지 않습니다.
+    </div>
+  </div>
+</section>
+
+<!-- 셀렙 직접 판매 -->
+<section style="background:#fff">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow celleb">★ Celleb Direct</span>
+      <h2>셀렙 직접 판매 (Lead Fluid 정식)</h2>
+      <p class="lead">셀렙이 직접 판매·A/S·납기 책임지는 Lead Fluid 정식 라인업.</p>
+    </div>
+    <div class="product-grid">
+
+      <a class="product-card celleb" href="#">
+        <div class="pc-source-bar"><span></span><span class="pc-best">★ BEST</span></div>
+        <div class="pc-photo" data-tag="실리콘"></div>
+        <div class="pc-body">
+          <div class="pc-name">실리콘 튜브 #16</div>
+          <div class="pc-meta">YZ15T용 · MasterFlex L/S #16 호환</div>
+          <div class="pc-spec">ID 3.17mm · 4-tube/팩</div>
+          <div class="pc-price"><span class="from">₩</span><span class="num">[입력]</span><span class="from">/팩</span></div>
+          <div class="pc-cta">상세·견적 →</div>
+        </div>
+      </a>
+
+      <a class="product-card celleb" href="#">
+        <div class="pc-source-bar"><span></span><span class="pc-best">★ BEST</span></div>
+        <div class="pc-photo" data-tag="실리콘"></div>
+        <div class="pc-body">
+          <div class="pc-name">실리콘 튜브 #15</div>
+          <div class="pc-meta">YT25용 · MasterFlex L/S #15 호환</div>
+          <div class="pc-spec">고유량 · 4-tube/팩</div>
+          <div class="pc-price"><span class="from">₩</span><span class="num">[입력]</span><span class="from">/팩</span></div>
+          <div class="pc-cta">상세·견적 →</div>
+        </div>
+      </a>
+
+      <a class="product-card celleb" href="#">
+        <div class="pc-source-bar"><span></span><span class="pc-best">★ BEST</span></div>
+        <div class="pc-photo" data-tag="실리콘"></div>
+        <div class="pc-body">
+          <div class="pc-name">실리콘 튜브 2×1mm</div>
+          <div class="pc-meta">DG/DS용 · 마이크로 유량 표준</div>
+          <div class="pc-spec">ID 2mm · OD 4mm</div>
+          <div class="pc-price"><span class="from">₩</span><span class="num">[입력]</span><span class="from">/팩</span></div>
+          <div class="pc-cta">상세·견적 →</div>
+        </div>
+      </a>
+
+      <a class="product-card celleb" href="#">
+        <div class="pc-source-bar"><span></span></div>
+        <div class="pc-photo" data-tag="Tygon GMP"></div>
+        <div class="pc-body">
+          <div class="pc-name">Tygon Pharmed BPT</div>
+          <div class="pc-meta">GMP·세포배양·무균 충전</div>
+          <div class="pc-spec">YZ15T·YT25 호환</div>
+          <div class="pc-price"><span class="from">₩</span><span class="num">[입력]</span><span class="from">부터</span></div>
+          <div class="pc-cta">상세·견적 →</div>
+        </div>
+      </a>
+
+      <a class="product-card celleb" href="#">
+        <div class="pc-source-bar"><span></span></div>
+        <div class="pc-photo" data-tag="Viton"></div>
+        <div class="pc-body">
+          <div class="pc-name">Versilon Viton F-5500</div>
+          <div class="pc-meta">강산·강용제·고온 (~204°C)</div>
+          <div class="pc-spec">YZ15T 호환</div>
+          <div class="pc-price"><span class="from">₩</span><span class="num">[입력]</span><span class="from">부터</span></div>
+          <div class="pc-cta">상세·견적 →</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- 외부 제품 -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow ext">🔗 External Reference</span>
+      <h2>외부 호환 제품 (셀렙 미취급)</h2>
+      <p class="lead">시그마알드리치·코랩샵 등 외부 사이트에서 직접 구매 가능한 호환 제품 정보입니다. 셀렙은 정보만 안내하며 거래에 관여하지 않습니다.</p>
+    </div>
+
+    <div class="product-grid">
+
+      <a class="product-card ext" href="https://shsigma.co.kr/shop/PDNN18051800035?sqstr=%ED%8A%9C%EB%B9%99" target="_blank" rel="noopener noreferrer">
+        <div class="pc-source-bar"></div>
+        <div class="pc-photo" data-tag="Tygon"></div>
+        <div class="pc-body">
+          <div class="pc-name">Tygon LFL/Masterflex 호환 #16</div>
+          <div class="pc-meta">시그마알드리치 정품 라인</div>
+          <div class="pc-spec">[ID·OD 입력 필요]<br>호환: YZ15T / L/S #16</div>
+          <div class="pc-price"><span class="from">₩</span><span class="num">[시그마 가격 입력]</span><span class="from">참고</span></div>
+          <div class="pc-cta">시그마 사이트에서 보기 →</div>
+        </div>
+        <div class="pc-source-foot">
+          ⓘ 정보 출처: <strong>shsigma.co.kr</strong> · 셀렙 미취급 / 시그마알드리치 직접 판매
+        </div>
+      </a>
+
+      <a class="product-card ext" href="#" target="_blank" rel="noopener noreferrer">
+        <div class="pc-source-bar"></div>
+        <div class="pc-photo" data-tag="Tygon"></div>
+        <div class="pc-body">
+          <div class="pc-name">PharMed BPT Tubing</div>
+          <div class="pc-meta">시그마알드리치 정품 (GMP/Bioprocess)</div>
+          <div class="pc-spec">[규격 입력 필요]<br>호환: YZ15T·YT25</div>
+          <div class="pc-price"><span class="from">₩</span><span class="num">[시그마 가격]</span><span class="from">참고</span></div>
+          <div class="pc-cta">시그마 사이트에서 보기 →</div>
+        </div>
+        <div class="pc-source-foot">
+          ⓘ 정보 출처: <strong>shsigma.co.kr</strong> · 셀렙 미취급
+        </div>
+      </a>
+
+      <!-- Stub card 예시 (URL만 있고 내용 미매핑) -->
+      <a class="product-card ext stub" href="https://shsigma.co.kr/shop/EXAMPLE_URL_3" target="_blank" rel="noopener noreferrer">
+        <div class="pc-source-bar"></div>
+        <div class="pc-photo"></div>
+        <div class="pc-body">
+          <div class="pc-name">시그마 제품</div>
+          <div class="pc-meta" style="font-size:11px;color:#94a2b6;font-style:italic">URL: shsigma.co.kr/.../EXAMPLE_3</div>
+          <div class="pc-spec" style="background:#f0f4f9;color:#94a2b6">⏳ 매핑 대기<br>제품명·스펙 입력 필요</div>
+          <div class="pc-cta" style="color:var(--ext-color)">시그마에서 정보 확인 →</div>
+        </div>
+        <div class="pc-source-foot">
+          ⓘ 출처: <strong>shsigma.co.kr</strong> · 클릭하여 매핑 정보 가져오기
+        </div>
+      </a>
+
+      <a class="product-card ext" data-source="korab" href="#" target="_blank" rel="noopener noreferrer">
+        <div class="pc-source-bar"></div>
+        <div class="pc-photo" data-tag="실리콘"></div>
+        <div class="pc-body">
+          <div class="pc-name">코랩샵 자체 실리콘 튜브</div>
+          <div class="pc-meta">코랩샵 자체 라인</div>
+          <div class="pc-spec">[규격 입력 필요]<br>호환: YZ15T</div>
+          <div class="pc-price"><span class="from">₩</span><span class="num">[코랩샵 가격]</span><span class="from">참고</span></div>
+          <div class="pc-cta">코랩샵에서 보기 →</div>
+        </div>
+        <div class="pc-source-foot">
+          ⓘ 정보 출처: <strong>코랩샵</strong> · 셀렙 미취급
+        </div>
+      </a>
+
+      <a class="product-card ext" data-source="cole" href="#" target="_blank" rel="noopener noreferrer">
+        <div class="pc-source-bar"></div>
+        <div class="pc-photo" data-tag="MasterFlex"></div>
+        <div class="pc-body">
+          <div class="pc-name">MasterFlex L/S #16 정품</div>
+          <div class="pc-meta">콜파머(Cole-Parmer) 정품 라인</div>
+          <div class="pc-spec">정품 규격<br>호환: 셀렙 #16과 동일 규격</div>
+          <div class="pc-price"><span class="from">₩</span><span class="num">[정품 가격]</span><span class="from">참고</span></div>
+          <div class="pc-cta">콜파머에서 보기 →</div>
+        </div>
+        <div class="pc-source-foot">
+          ⓘ 정보 출처: <strong>colepamer.kr</strong> · 셀렙 미취급 / <a href="#" style="color:var(--teal);font-weight:600">셀렙 호환 제품 비교 →</a>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="info-box warn" style="margin-top:24px">
+      💡 <strong>매핑 워크플로우 안내</strong> — 외부 제품 카드 중 "⏳ 매핑 대기 중"으로 표시된 항목은 영쨩님이 시그마 등 외부 사이트에서 정보를 가져와야 완성됩니다.
+      <ul style="margin-top:8px;padding-left:18px;list-style:disc;color:var(--text);font-size:13px">
+        <li>대기 중 카드를 클릭 → 외부 사이트가 새 탭으로 열림</li>
+        <li>외부 사이트에서 제품명·규격·가격·이미지 URL 복사</li>
+        <li>매핑 폼 또는 채팅에 정보 전달 → 카드 즉시 업데이트</li>
+        <li>대기 카드는 검색 결과·필터에서 제외 가능</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

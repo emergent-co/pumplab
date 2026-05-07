@@ -1,0 +1,60 @@
+{
+  "_comment": "각 카테고리의 SEO 메타데이터. content가 'full'이면 partial_<id>.html 사용, 'preparing'이면 partial_preparing.html 사용.",
+  "_base_url": "https://cellab.kr/",
+  "categories": {
+    "pump": {
+      "title": "실험실용 정량펌프 — 페리스탈틱·기어·시린지펌프 카탈로그 | Cellab",
+      "meta_description": "Lead Fluid 정량펌프 전 라인업 60+ 모델. 속도가변형·지능형 분주·정밀 기어·시린지 일체형/분리형 5개 카테고리. 4단계 위저드로 맞춤 추천.",
+      "h1": "실험실용 정량펌프",
+      "intro": "Lead Fluid 정량펌프는 페리스탈틱(BT/BQ 시리즈)·정밀 기어(CT3001)·시린지펌프(TYD/TYS/TFD) 60+ 모델로 구성됩니다. 액체 종류·유량 범위·사용 빈도·제어 방식 4가지만 답하시면 4단계 위저드가 30초 안에 맞춤 모델을 추천드립니다. 일반 수용액부터 강산·고점도·세포배양까지 전체 응용을 커버합니다.",
+      "breadcrumb_label": "펌프",
+      "active_cat": "pump",
+      "content": "full"
+    },
+    "tubing": {
+      "title": "실험실용 정량펌프 튜브 — 실리콘·PharMed·Viton 호환 카탈로그 | Cellab",
+      "meta_description": "실험실용 페리스탈틱 펌프 튜브 큐레이션 카탈로그. 실리콘·Tygon·PharMed BPT·Viton 9종 재질, MasterFlex L/S 호수별 정리. 셀렙 직접 + 시그마 호환 제품 비교.",
+      "h1": "실험실용 정량펌프 튜브",
+      "intro": "페리스탈틱 펌프(Lead Fluid BT/BQ 시리즈, MasterFlex 호환)에 사용하는 튜브를 재질·호수·내경별로 큐레이션했습니다. 일반 수용액에는 백금 가황 실리콘, 세포배양·GMP에는 Tygon PharMed BPT, 강산·강염기·고온에는 Viton, 유기용매에는 Tygon Chemical을 권장합니다. 종합몰의 수만 SKU 대신 펌프 실험에 검증된 항목만 추렸습니다.",
+      "breadcrumb_label": "튜브",
+      "active_cat": "tubing",
+      "content": "full"
+    },
+    "syringe": {
+      "title": "실험실용 시린지·가스타이트 — 시린지펌프 호환 | Cellab",
+      "meta_description": "Lead Fluid TYD·TYS·TFD 시린지펌프와 호환되는 가스타이트 시린지 카탈로그. 10μL~60mL 용량별, PE·PP·PTFE 재질별 정리. 세포배양·HPLC·연속분주용.",
+      "h1": "실험실용 시린지·가스타이트",
+      "intro": "시린지펌프(Lead Fluid TYD/TYS/TFD 시리즈)와 함께 사용하는 시린지를 용량(10μL~60mL)·재질(가스타이트·PE·PP·PTFE)별로 정리했습니다. 세포배양 분주, HPLC 주입, 연속 자동분주 등 실험 목적에 맞춰 큐레이션 진행 중입니다.",
+      "breadcrumb_label": "시린지",
+      "active_cat": "syringe",
+      "content": "preparing"
+    },
+    "pumphead": {
+      "title": "페리스탈틱 펌프헤드 — YZ15·YT25·DG/DS·DT10 호환표 | Cellab",
+      "meta_description": "Lead Fluid 펌프헤드 라인업과 MasterFlex 호환 정보. YZ15·YT25·DG/DS·DT10·KZ25·MG·DMD 시리즈별 유량·튜브 호환 매트릭스.",
+      "h1": "페리스탈틱 펌프헤드",
+      "intro": "Lead Fluid 펌프헤드는 시리즈별로 유량 범위와 호환 튜브가 다릅니다. YZ15(가장 흔함)·YT25(중간 유량)·DG/DS(마이크로 유량)·DT10/DT15(다채널)·KZ25(고토크)·MG(자기력)·DMD(이지로드) 등 채널 수와 유량별로 큐레이션 진행 중입니다.",
+      "breadcrumb_label": "펌프헤드",
+      "active_cat": "pumphead",
+      "content": "preparing"
+    },
+    "fitting": {
+      "title": "실험실 피팅·커넥터 — Y/T 커넥터·루어락·이지로드 | Cellab",
+      "meta_description": "페리스탈틱 펌프용 피팅·커넥터 카탈로그. Y/T/직선 커넥터, 1/4-28 스레드, 루어락, 이지로드 어댑터. 316L·304·PP·PVDF 재질별 정리.",
+      "h1": "실험실 피팅·커넥터",
+      "intro": "튜브 연결과 분기에 사용하는 피팅 카탈로그입니다. 직선·Y·T 커넥터(1/4-28 스레드), 루어락 방식, 이지로드 어댑터를 316L 스테인리스·304·PP·PVDF·PTFE 재질로 큐레이션 진행 중입니다.",
+      "breadcrumb_label": "피팅",
+      "active_cat": "fitting",
+      "content": "preparing"
+    },
+    "other": {
+      "title": "실험실 기타 소모품 — 니들·댐퍼·디스펜서·바이알 | Cellab",
+      "meta_description": "페리스탈틱·시린지펌프 실험에 필요한 기타 소모품. ZT 시리즈 디스펜싱 니들, ZN 펄스 댐퍼, SF01 핸드 디스펜서, JT101 풋스위치, 바이알·클램프.",
+      "h1": "실험실 기타 소모품",
+      "intro": "정량펌프 실험에 필요한 부속품을 정리했습니다. ZT 시리즈 디스펜싱 니들(0.7~13mm), ZN 펄스 댐퍼(소형/중형/대형), SF01 핸드 디스펜서, JT101 풋스위치, 바이알·클램프 등 큐레이션 진행 중입니다.",
+      "breadcrumb_label": "기타 소모품",
+      "active_cat": "other",
+      "content": "preparing"
+    }
+  }
+}
