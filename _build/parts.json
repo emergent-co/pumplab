@@ -1,0 +1,88 @@
+{
+  "_comment": "셀렙 부품 마스터 라이브러리. url_groups에 마켓 셀러 검색 페이지 URL을 그룹 단위로 저장 → 같은 그룹의 부품은 자동 같은 URL 사용. 새 부품 추가 시 그룹 1개만 선택하면 URL 자동 적용. 마스터 동선의 B 단계(셀렙 → 마켓 송출) 핵심 인프라.",
+
+  "url_groups": {
+    "bt101_pump": {
+      "label": "BT101 페리스탈틱 펌프",
+      "category": "pump",
+      "navi_url": "TODO_나비엠알오_BT101_펌프_셀러_검색_URL"
+    },
+    "yz_pumphead": {
+      "label": "YZ 시리즈 펌프헤드 · 액세서리",
+      "category": "pumphead",
+      "navi_url": "TODO_나비엠알오_YZ_펌프헤드_셀러_검색_URL"
+    },
+    "silicone_tubing_medical": {
+      "label": "실리콘 튜브 (의료등급)",
+      "category": "tubing",
+      "navi_url": "TODO_나비엠알오_실리콘튜브_셀러_검색_URL"
+    },
+    "luer_fittings": {
+      "label": "Luer-lock 피팅 · 커넥터",
+      "category": "fitting",
+      "navi_url": "TODO_나비엠알오_Luer피팅_셀러_검색_URL"
+    },
+    "media_bottles": {
+      "label": "멸균 저장 용기",
+      "category": "other",
+      "navi_url": "TODO_나비엠알오_저장용기_셀러_검색_URL"
+    }
+  },
+
+  "parts": {
+    "bt101_body": {
+      "name": "BT101 페리스탈틱 펌프 본체",
+      "spec": "0.00011~750 mL/min, 단일 채널",
+      "category": "pump",
+      "url_group": "bt101_pump"
+    },
+    "yz15_head": {
+      "name": "YZ15 펌프헤드",
+      "spec": "단일 채널, 실리콘·PharMed·Tygon 호환",
+      "category": "pumphead",
+      "url_group": "yz_pumphead"
+    },
+    "yz15_clamp": {
+      "name": "카세트·클램프",
+      "spec": "YZ15 호환, 튜브 고정",
+      "category": "pumphead",
+      "url_group": "yz_pumphead"
+    },
+    "silicone_id3mm": {
+      "name": "실리콘 튜브 (메인)",
+      "spec": "의료등급 ID 3.0mm × OD 5.0mm",
+      "category": "tubing",
+      "url_group": "silicone_tubing_medical"
+    },
+    "silicone_id1.6mm": {
+      "name": "실리콘 튜브 (대체)",
+      "spec": "의료등급 ID 1.6mm",
+      "category": "tubing",
+      "url_group": "silicone_tubing_medical"
+    },
+    "y_connector_luer": {
+      "name": "Y 커넥터 (분기·샘플링)",
+      "spec": "1/4-28 또는 luer-lock",
+      "category": "fitting",
+      "url_group": "luer_fittings"
+    },
+    "straight_connector": {
+      "name": "직선 커넥터",
+      "spec": "1/4-28 SS316L 또는 PP",
+      "category": "fitting",
+      "url_group": "luer_fittings"
+    },
+    "luer_lock_adapter": {
+      "name": "Luer-lock 어댑터",
+      "spec": "F-루어, 카테터 연결",
+      "category": "fitting",
+      "url_group": "luer_fittings"
+    },
+    "media_500ml": {
+      "name": "액체 저장 용기",
+      "spec": "멸균 PP/유리 250~500mL",
+      "category": "other",
+      "url_group": "media_bottles"
+    }
+  }
+}

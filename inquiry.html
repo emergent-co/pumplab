@@ -49,6 +49,11 @@
   .item .info{flex:1;min-width:0}
   .item .info .name{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:2px}
   .item .info .spec{font-size:11.5px;color:var(--muted);line-height:1.4}
+  .item .info .market-row{margin-top:6px}
+  .market-link{display:inline-block;padding:4px 10px;background:#fff8e6;border:1px solid #f0d976;color:#6c5005;font-size:11px;font-weight:700;border-radius:4px;text-decoration:none;letter-spacing:.2px;transition:all .15s}
+  .market-link:hover{background:#a05a00;color:#fff;border-color:#a05a00;text-decoration:none}
+  .market-link.disabled{background:#f5f7fa;color:#9aa6b3;border-color:#e3e8ef;cursor:default}
+  .market-link.disabled:hover{background:#f5f7fa;color:#9aa6b3;border-color:#e3e8ef}
   .item .qty{display:flex;align-items:center;gap:5px;flex-shrink:0}
   .item .qty span{font-size:11px;color:var(--muted)}
   .item .qty input{width:54px;padding:6px 8px;border:1px solid var(--border);border-radius:4px;font:inherit;font-size:13px;text-align:center}
@@ -213,11 +218,10 @@
 const params = new URLSearchParams(location.search);
 const setupId = params.get('setup');
 let setupData = null;
+let partsLib  = null; // parts.json 마스터 부품 라이브러리
 
 async function loadSetup() {
-  // 일반 문의 모드 — setup 없거나 셋업 데이터에 없는 ID(e.g. wizard:..., general)
-  // → 부품 선택 단계 건너뛰고 바로 연락처 폼 표시
-  function showGeneralMode(reason){
+  function showGeneralMode(){
     document.getElementById('step1Section').style.display = 'none';
     document.getElementById('step2Section').style.display = 'block';
     document.getElementById('prog1').classList.remove('active');
@@ -225,42 +229,75 @@ async function loadSetup() {
     document.getElementById('prog2').classList.add('active');
     document.querySelector('.summary').style.display = 'none';
     document.getElementById('lead').textContent = '아래 양식을 작성해주시면 셀렙이 직접 답변드립니다.';
-    // wizard:xxx_yyy_zzz 같은 컨텍스트가 있으면 hidden 필드에 저장
     if (setupId){
       document.getElementById('setupIdHidden').value = setupId;
       document.getElementById('setupTitleHidden').value = setupId.startsWith('wizard:') ? '펌프 추천 위저드 결과' : (setupId === 'general' ? '일반 문의' : setupId);
     }
-    // step 2 이전 버튼 비활성 (돌아갈 step 1 없음)
     const prevBtn = document.querySelector('#step2Section .btn-row .btn:not(.btn-primary)');
     if (prevBtn) prevBtn.style.display = 'none';
   }
 
   try {
-    const res = await fetch('_build/setups.json', {cache:'no-store'});
-    const data = await res.json();
-    if (!setupId || !data.setups[setupId]) {
+    // parts.json + setups.json 동시 로드
+    const [setupsRes, partsRes] = await Promise.all([
+      fetch('_build/setups.json', {cache:'no-store'}),
+      fetch('_build/parts.json',  {cache:'no-store'})
+    ]);
+    const setupsData = await setupsRes.json();
+    partsLib = await partsRes.json();
+
+    if (!setupId || !setupsData.setups[setupId]) {
       showGeneralMode();
       return;
     }
-    setupData = data.setups[setupId];
+    setupData = setupsData.setups[setupId];
     document.getElementById('setupTitle').textContent = setupData.title;
     document.getElementById('setupIdHidden').value = setupId;
     document.getElementById('setupTitleHidden').value = setupData.title;
-    renderItems(setupData.items);
+
+    // setups.items가 ID 배열(신규)이면 parts.json에서 join, 객체 배열(레거시)이면 그대로
+    const resolved = resolveItems(setupData.items);
+    renderItems(resolved);
   } catch (e) {
     showGeneralMode();
   }
 }
 
+// items 배열을 parts.json과 join — ID 배열·객체 배열 양쪽 호환
+function resolveItems(items){
+  return items.map(it => {
+    if (typeof it === 'string'){
+      // 신규: 부품 ID 참조
+      const part = partsLib && partsLib.parts && partsLib.parts[it];
+      if (!part) return { id: it, name: it, spec: '(부품 라이브러리에 없음)', url_group: null };
+      return { id: it, ...part };
+    }
+    // 레거시: 객체 그대로
+    return it;
+  });
+}
+
+function getMarketUrl(urlGroupId){
+  if (!urlGroupId || !partsLib || !partsLib.url_groups) return null;
+  const g = partsLib.url_groups[urlGroupId];
+  if (!g || !g.navi_url || g.navi_url.startsWith('TODO_')) return null;
+  return g.navi_url;
+}
+
 function renderItems(items) {
   let html = '';
   items.forEach((it, i) => {
+    const naviUrl = getMarketUrl(it.url_group);
+    const marketBtn = naviUrl
+      ? `<a class="market-link" href="${escapeHtml(naviUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">나비엠알오에서 보기 →</a>`
+      : `<span class="market-link disabled" title="마켓 URL 미등록">마켓 등록 예정</span>`;
     html += `
       <label class="item" data-index="${i}">
         <input type="checkbox" name="item_${i}" value="${escapeHtml(it.name)}" onchange="toggleItem(this)">
         <div class="info">
           <div class="name">${escapeHtml(it.name)}</div>
           <div class="spec">${escapeHtml(it.spec)}</div>
+          <div class="market-row">${marketBtn}</div>
         </div>
         <div class="qty">
           <span>수량</span>
