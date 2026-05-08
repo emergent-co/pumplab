@@ -70,9 +70,9 @@
   .breadcrumb{font-size:12px;color:var(--muted);margin-bottom:16px}
   .breadcrumb a{color:var(--muted)}
 
-  /* 본문 상단 대표 이미지 */
-  .article-hero-img{margin:0 0 28px;background:linear-gradient(135deg,#eaf1f9 0%,#f5f9f7 100%);border:1px solid var(--border);border-radius:12px;overflow:hidden;aspect-ratio:16/9}
-  .article-hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+  /* 본문 상단 대표 이미지 — 잘리지 않게 contain */
+  .article-hero-img{margin:8px 0 22px;background:linear-gradient(135deg,#eaf1f9 0%,#f5f9f7 100%);border:1px solid var(--border);border-radius:12px;overflow:hidden;aspect-ratio:2/1}
+  .article-hero-img img{width:100%;height:100%;object-fit:contain;display:block}
 
   /* 사이드바 카드 */
   .aside-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 18px 16px;margin-bottom:14px}
@@ -97,8 +97,8 @@
   .related-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
   .related-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:all .15s}
   .related-card:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 8px 20px rgba(10,37,64,.06);text-decoration:none}
-  .related-card .rc-img{aspect-ratio:16/9;background:linear-gradient(135deg,#eaf1f9 0%,#f5f9f7 100%);overflow:hidden;border-bottom:1px solid var(--border)}
-  .related-card .rc-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .related-card .rc-img{aspect-ratio:2/1;background:linear-gradient(135deg,#eaf1f9 0%,#f5f9f7 100%);overflow:hidden;border-bottom:1px solid var(--border)}
+  .related-card .rc-img img{width:100%;height:100%;object-fit:contain;display:block}
   .related-card .rc-img.placeholder{display:grid;place-items:center;color:#a9b8cc;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
   .related-card .rc-body{padding:14px 16px;display:flex;flex-direction:column;flex:1}
   .related-card .rc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
@@ -196,10 +196,6 @@
     <a href="/index.html">홈</a> &nbsp;›&nbsp; <a href="/reviews.html">펌프셋업 리뷰</a> &nbsp;›&nbsp; BT101 ex vivo 카테터
   </div>
 
-  <div class="article-hero-img">
-    <img src="/blog/img/bt101-ex-vivo-catheter.svg" alt="BT101 ex vivo catheter closed-loop setup">
-  </div>
-
   <h1>ex vivo 카테터 시험에서 데이터가 매번 흔들린다면 — 회로 설계가 답일 수 있습니다</h1>
 
   <div class="meta">
@@ -209,6 +205,10 @@
     <span class="tag">ex vivo</span>
     <span class="tag">항혈전</span>
     <span class="tag">항균</span>
+  </div>
+
+  <div class="article-hero-img">
+    <img src="/blog/img/bt101-ex-vivo-catheter.svg" alt="BT101 ex vivo catheter closed-loop setup">
   </div>
 
   <div class="lead">
@@ -316,11 +316,6 @@
 </main>
 
 <aside class="article-aside">
-  <!-- 대표 이미지 (사이드바) -->
-  <div class="aside-card aside-img-card">
-    <img src="/blog/img/bt101-ex-vivo-catheter.svg" alt="BT101 ex vivo catheter closed-loop setup">
-  </div>
-
   <!-- 셋업에 필요한 부품 -->
   <div class="aside-card">
     <div class="aside-title">셋업에 필요한 부품</div>
