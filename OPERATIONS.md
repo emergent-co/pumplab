@@ -120,9 +120,11 @@ git checkout <커밋해시> -- blog/bt101-ex-vivo-catheter.html
 - [ ] `https://cellab.kr/sitemap.xml` 열어서 모든 블로그 글 포함 확인
 - [ ] Google Search Console — 색인 현황·노출·검색어 확인
 - [ ] 네이버 서치어드바이저 — 색인 현황·검색 분석 확인
-- [ ] GA4 — 페이지뷰·체류 시간·이탈률 추세
+- [ ] **네이버 cellab01 블로그 통계** — 방문수·검색 유입 키워드·인기글 추세
+- [ ] GA4 — 페이지뷰·체류 시간·이탈률·`referrer = blog.naver.com` 트래픽 확인
 - [ ] 깨진 링크 점검 (특히 `/Leadfluid-2025-Catalog.pdf` 같은 외부 링크)
 - [ ] `_build/parts.json`의 `navi_url` placeholder(`TODO_...`) 남아있는 것 점검·갱신
+- [ ] 셀렙닷컴 ↔ 네이버 양방향 백링크 살아있는지 클릭 테스트
 
 ---
 
@@ -190,6 +192,15 @@ Disallow: /blog/naver/
 - 셀렙닷컴 GA4: `referrer = blog.naver.com` 트래픽 확인
 - 발행 URL 2개 (셀렙닷컴 + 네이버) 양방향 백링크 추가 검토
 
+### 발행 URL 매핑 (현재까지 발행된 시리즈)
+
+| 셀렙닷컴 슬러그 | 네이버 cellab01 글번호 | 발행일 |
+|---|---|---|
+| `bt101-ex-vivo-catheter` | [224279559036](https://blog.naver.com/cellab01/224279559036) | 2026-05-09 |
+| `bt101-solar-droplet-feedback` | [224279562721](https://blog.naver.com/cellab01/224279562721) | 2026-05-09 |
+
+신규 발행 시 위 표에 줄 추가 — 추후 백링크·통계 점검 시 참조.
+
 ---
 
 ## 8. 마스터 동선과 자동 점검 (메모리 참조)
@@ -204,5 +215,5 @@ Disallow: /blog/naver/
 
 ---
 
-**최종 갱신:** 2026-05-09 (7장 신설 — 블로그 글 셀렙닷컴 + 네이버 cellab01 동시 발행 정책)
-**다음 갱신 트리거:** 새 자동 생성 파일 추가 시, 새 사례 발생 시, `.gitattributes` 정책 변경 시, 발행 채널·정책 변경 시
+**최종 갱신:** 2026-05-09 (BT101 시리즈 2편 네이버 발행 완료 — URL 매핑 표 + 정기 점검 항목 추가)
+**다음 갱신 트리거:** 새 블로그 글 발행 시 (URL 매핑 표 갱신), 새 자동 생성 파일·사례 발생 시, 정책 변경 시
