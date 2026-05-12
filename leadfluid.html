@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Fluid 제품 검색 | Cellab</title>
+<link rel="canonical" href="https://cellab.kr/leadfluid.html">
+<meta name="description" content="Lead Fluid 페리스탈틱·시린지·기어 펌프 전 모델을 한 번에 검색. 모델명·유량 범위·응용분야로 즉시 찾기. Cellab 한국 공식 파트너.">
+<meta name="keywords" content="Lead Fluid, 리드플루이드, 페리스탈틱 펌프, 시린지 펌프, 기어 펌프, BT101S, BT103S, BQ80S, WT600S, JP300S, Cellab">
+<meta name="robots" content="index,follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lead Fluid 제품 검색 | Cellab">
+<meta property="og:description" content="Lead Fluid 펌프 전 모델 통합 검색. 모델명·유량·응용분야 즉시 매칭.">
+<meta property="og:url" content="https://cellab.kr/leadfluid.html">
+
+<!-- Google tag (gtag.js) — GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CN3E3PVQVD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CN3E3PVQVD');
+</script>
+
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0a2540;--teal:#1a6e56;--text:#1a2332;--muted:#5a6779;
+    --border:#e3e8ef;--bg:#f7f9fc;--accent:#3a7bd5;
+  }
+  html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--teal);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* 셀렙 site-header */
+  .site-header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+  .site-header-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:16px}
+  .site-logo{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em;flex:1}
+  .site-logo span{color:var(--teal)}
+  .site-logo:hover{text-decoration:none}
+  .site-nav{flex:1;display:flex;justify-content:center;gap:22px;font-size:13.5px;font-weight:600;color:var(--muted)}
+  .site-nav a{color:var(--muted)}
+  .site-nav a:hover{color:var(--teal);text-decoration:none}
+  .site-nav .active{color:var(--teal)}
+  .site-actions{flex:1;display:flex;justify-content:flex-end}
+  .site-login{padding:7px 14px;background:#f5f9f7;color:var(--navy);font-size:12.5px;font-weight:700;border-radius:6px;border:1px solid var(--border);text-decoration:none;transition:all .15s}
+  .site-login:hover{background:var(--teal);color:#fff;border-color:var(--teal);text-decoration:none}
+  @media(max-width:760px){
+    .site-nav{position:static;flex:none;gap:14px;font-size:12.5px}
+    .site-logo{flex:none}
+    .site-actions{flex:none;margin-left:auto}
+    .site-header-inner{flex-wrap:wrap}
+  }
+
+  /* 히어로 */
+  .hero{background:#fff;border-bottom:1px solid var(--border);padding:48px 24px 36px}
+  .hero-inner{max-width:1180px;margin:0 auto}
+  .hero .label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+  .hero h1{font-size:30px;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.25;margin-bottom:10px}
+  .hero .sub{font-size:14.5px;color:var(--muted);max-width:680px;line-height:1.7}
+
+  /* 본문 */
+  .section{padding:32px 24px 80px}
+  .section-inner{max-width:1180px;margin:0 auto}
+
+  /* 검색바 */
+  .search-wrap{position:relative;margin-bottom:16px}
+  .search{
+    width:100%;padding:13px 44px 13px 16px;background:#fff;border:1px solid var(--border);
+    border-radius:8px;color:var(--text);font:inherit;font-size:15px;outline:none;
+    transition:border-color .15s,box-shadow .15s;
+  }
+  .search:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(26,110,86,.10)}
+  .search::placeholder{color:#a9b8cc}
+  .search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:0;color:var(--muted);font-size:18px;cursor:pointer;padding:8px 12px;line-height:1;display:none}
+  .search-clear:hover{color:var(--text)}
+  .search-clear.visible{display:block}
+
+  /* 필터 */
+  .filter-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .filter-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;min-width:64px}
+  .filter-chips{display:flex;gap:8px;flex-wrap:wrap}
+  .filter-btn{padding:7px 13px;border:1px solid var(--border);background:#fff;color:var(--text);border-radius:18px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .15s}
+  .filter-btn:hover{border-color:var(--teal);color:var(--teal)}
+  .filter-btn.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .filter-btn .count{margin-left:5px;color:var(--muted);font-size:11px;font-weight:500}
+  .filter-btn.active .count{color:#cfe8de}
+
+  /* 결과 메타 */
+  .meta{display:flex;align-items:center;justify-content:space-between;margin:18px 0 14px;color:var(--muted);font-size:13px}
+  .meta .count strong{color:var(--navy);font-weight:800}
+
+  /* 카드 그리드 */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px}
+  .card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:all .15s}
+  .card:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 8px 20px rgba(10,37,64,.06)}
+  .card-img{aspect-ratio:2/1;background:#fff;border-bottom:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:8px}
+  .card-img img{max-width:80%;max-height:92%;object-fit:contain;display:block}
+  .card-img.placeholder{color:#a9b8cc;font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:700}
+
+  .card-body{padding:18px 20px;display:flex;flex-direction:column;flex:1}
+  .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+  .card-title{font-size:18px;font-weight:800;color:var(--navy);letter-spacing:-.01em;margin:0}
+  .card-sub{font-size:12.5px;color:var(--muted);margin:0 0 12px}
+  .badge{font-size:10.5px;font-weight:700;color:var(--teal);background:#f5f9f7;padding:3px 8px;border-radius:8px;white-space:nowrap;border:1px solid #d9ead5}
+
+  .specs{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+  .spec{display:flex;gap:10px;font-size:13px;line-height:1.45}
+  .spec-k{color:var(--muted);min-width:46px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:600;padding-top:3px}
+  .spec-v{color:var(--text)}
+  .spec-v .num{font-weight:700;color:var(--navy)}
+
+  .tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+  .tag{font-size:10.5px;color:var(--teal);background:#f5f9f7;padding:2px 8px;border-radius:8px;font-weight:600}
+  .tag.comm{color:var(--navy);background:#e8eef7;border:1px solid #d4dde9}
+
+  .details{border-top:1px solid var(--border);margin-top:auto}
+  .details summary{padding:10px 0 4px;cursor:pointer;color:var(--muted);font-size:12.5px;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none}
+  .details summary::-webkit-details-marker{display:none}
+  .details summary::after{content:"▾";font-size:10px;color:var(--muted);transition:transform .15s}
+  .details[open] summary::after{transform:rotate(180deg)}
+  .details summary:hover{color:var(--teal)}
+  .head-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+  .head-table th,.head-table td{padding:6px 8px;text-align:left;border-bottom:1px solid var(--border)}
+  .head-table th{color:var(--muted);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;background:#fafbfd}
+  .head-table td{color:var(--text)}
+  .head-table tr:last-child td{border-bottom:0}
+  .full-specs{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px}
+  .full-specs > div{display:flex;flex-direction:column;gap:2px}
+  .full-specs .k{color:var(--muted);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  .full-specs .v{color:var(--text)}
+
+  .cta-row{padding:14px 20px;background:#fafbfd;border-top:1px solid var(--border)}
+  .btn-primary{display:block;width:100%;padding:11px 14px;background:var(--teal);color:#fff;border:1px solid var(--teal);border-radius:6px;font:inherit;font-size:14px;font-weight:700;text-align:center;cursor:pointer;text-decoration:none;transition:background .15s}
+  .btn-primary:hover{background:#155b48;text-decoration:none}
+
+  .empty{text-align:center;padding:48px;color:var(--muted);font-size:14px;background:#fff;border:1px dashed var(--border);border-radius:10px}
+
+  /* 푸터 */
+  .foot{margin-top:48px;padding:24px;text-align:center;color:var(--muted);font-size:12.5px;border-top:1px solid var(--border);background:#fff}
+  .foot a{color:var(--muted)}
+  .foot a:hover{color:var(--teal)}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="/index.html"><span>Cellab</span> 셀렙</a>
+    <nav class="site-nav">
+      <a href="/leadfluid.html" class="active">LEADFLUID</a>
+      <a href="/reviews.html">펌프셋업 리뷰</a>
+      <a href="/recommend.html">펌프 추천</a>
+      <a href="/Leadfluid-2025-Catalog.pdf" target="_blank" rel="noopener">제품 카탈로그</a>
+    </nav>
+    <div class="site-actions">
+      <a class="site-login" href="/login.html">로그인</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="label">Lead Fluid · 한국 공식 파트너</div>
+    <h1>Lead Fluid 제품 검색</h1>
+    <div class="sub">페리스탈틱·시린지·기어 펌프 전 모델을 한 번에 검색하세요. 모델명·유량 범위·응용분야로 즉시 매칭됩니다.</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="search-wrap">
+      <input type="search" id="searchInput" class="search" placeholder="모델명·응용분야로 검색 (예: BT101S, cell culture)" autocomplete="off">
+      <button type="button" id="searchClear" class="search-clear" aria-label="검색 지우기">×</button>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">유량</span>
+      <div id="flowFilters" class="filter-chips"></div>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">카테고리</span>
+      <div id="catFilters" class="filter-chips"></div>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">시리즈</span>
+      <div id="seriesFilters" class="filter-chips"></div>
+    </div>
+
+    <div class="meta">
+      <div class="count"><strong id="resultCount">0</strong>개 모델</div>
+    </div>
+
+    <div id="grid" class="grid"></div>
+    <div id="empty" class="empty" style="display:none">검색 결과가 없습니다. 필터를 조정해보세요.</div>
+
+  </div>
+</section>
+
+<div class="foot">
+  <a href="/index.html">홈</a> ·
+  <a href="/reviews.html">펌프셋업 리뷰</a> ·
+  <a href="/recommend.html">펌프 추천</a> ·
+  <a href="/inquiry.html?setup=general">일반 문의</a>
+</div>
+
+<script>
+// =====================================================
+// Lead Fluid 제품 데이터 (BT101S 1건 — 향후 동일 스키마로 추가)
+// =====================================================
+const PRODUCTS = [
+  { id: "BQ80S", name: "BQ80S", sub: "Panel-mount Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BQ80S.png", flow_min: 0.0035, flow_max: 34, flow_display: "0.0035 ~ 34 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "BT103S", name: "BT103S", sub: "Speed Variable Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT103S.png", flow_min: 0.00011, flow_max: 500, flow_display: "0.00011 ~ 500 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "BT101S", name: "BT101S", sub: "Speed Variable Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT101S.png", flow_min: 0.00011, flow_max: 750, flow_display: "0.00011 ~ 750 mL/min", speed_display: "0.1 ~ 150 rpm", weight_kg: 3.6, dimensions_mm: "284×180×197", power: "AC 100-240V 50/60Hz", power_w: 30, ip_grade: "IP31", comm: "RS485 / MODBUS", ext_control: "5-24V, 0-5V/0-10V/4-20mA", speed_accuracy: "<±0.2%", applications: ["Cell Culture","Heart Perfusion","TFF","Liquid Addition","Dispensing","Coating","Medical Aesthetics"], heads: [
+    { name: "DG/DS (10 rollers)", channel: "1,2,4", tube: "wall 0.8~1mm, ID≤3.17mm", flow: "0.00011~32" },
+    { name: "DG/DS (6 rollers)", channel: "1,2,4", tube: "wall 0.8~1mm, ID≤3.17mm", flow: "0.00016~49" },
+    { name: "DT10-18/28", channel: "1,2", tube: "13# 14#, wall 0.8~1mm, ID≤3.17mm", flow: "0.00023~64" },
+    { name: "YZ15 / YZ15T", channel: "1,2", tube: "13# 14# 19# 16# 25# 17# 18#", flow: "0.005~641" },
+    { name: "YT25", channel: "1", tube: "114# 116# 15# 24# 35# 36#", flow: "0.024~750" }
+  ] },
+  { id: "BT301S", name: "BT301S", sub: "Speed Variable Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT301S.png", flow_min: 0.005, flow_max: 1750, flow_display: "0.005 ~ 1750 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "BT601S", name: "BT601S", sub: "Speed Variable Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT601S.png", flow_min: 0.005, flow_max: 3000, flow_display: "0.005 ~ 3000 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "BT100S", name: "BT100S", sub: "Intelligent Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT100S.png", flow_min: 0.00011, flow_max: 750, flow_display: "0.00011 ~ 750 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "BT300S", name: "BT300S", sub: "Intelligent Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT300S.png", flow_min: 0.005, flow_max: 1750, flow_display: "0.005 ~ 1750 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "BT600S", name: "BT600S", sub: "Intelligent Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT600S.png", flow_min: 0.005, flow_max: 3000, flow_display: "0.005 ~ 3000 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "BT100S-1", name: "BT100S-1", sub: "Intelligent Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT100S-1.png", flow_min: 0.00011, flow_max: 750, flow_display: "0.00011 ~ 750 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "WT300S", name: "WT300S", sub: "High-Flow Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/WT300S.png", flow_min: 0.004, flow_max: 4200, flow_display: "0.004 ~ 4200 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "WT600S", name: "WT600S", sub: "High-Flow Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/WT600S.png", flow_min: 0.005, flow_max: 6600, flow_display: "0.005 ~ 6600 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "BT101L", name: "BT101L", sub: "Intelligent Flow Peristaltic Pump", series: "L", series_label: "Intelligent Flow", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT101L.png", flow_min: 0.00011, flow_max: 750, flow_display: "0.00011 ~ 750 mL/min", applications: ["Lab Dispensing","Sampling","Continuous Transfer"], comm: "RS485 / MODBUS" },
+  { id: "BT301L", name: "BT301L", sub: "Intelligent Flow Peristaltic Pump", series: "L", series_label: "Intelligent Flow", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT301L.png", flow_min: 0.005, flow_max: 1750, flow_display: "0.005 ~ 1750 mL/min", applications: ["Lab Dispensing","Sampling","Continuous Transfer"], comm: "RS485 / MODBUS" },
+  { id: "BT601L", name: "BT601L", sub: "Intelligent Flow Peristaltic Pump", series: "L", series_label: "Intelligent Flow", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT601L.png", flow_min: 0.005, flow_max: 3000, flow_display: "0.005 ~ 3000 mL/min", applications: ["Lab Dispensing","Sampling","Continuous Transfer"], comm: "RS485 / MODBUS" },
+  { id: "BT100L", name: "BT100L", sub: "Intelligent Flow Peristaltic Pump", series: "L", series_label: "Intelligent Flow", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT100L.png", flow_min: 0.00011, flow_max: 750, flow_display: "0.00011 ~ 750 mL/min", applications: ["Lab Dispensing","Sampling","Continuous Transfer"], comm: "RS485 / MODBUS" },
+  { id: "BT300L", name: "BT300L", sub: "Intelligent Flow Peristaltic Pump", series: "L", series_label: "Intelligent Flow", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT300L.png", flow_min: 0.005, flow_max: 1750, flow_display: "0.005 ~ 1750 mL/min", applications: ["Lab Dispensing","Sampling","Continuous Transfer"], comm: "RS485 / MODBUS" },
+  { id: "BT600L", name: "BT600L", sub: "Intelligent Flow Peristaltic Pump", series: "L", series_label: "Intelligent Flow", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT600L.png", flow_min: 0.005, flow_max: 3000, flow_display: "0.005 ~ 3000 mL/min", applications: ["Lab Dispensing","Sampling","Continuous Transfer"], comm: "RS485 / MODBUS" },
+  { id: "BT101F", name: "BT101F", sub: "Intelligent Dispensing Peristaltic Pump", series: "F", series_label: "Dispensing", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT101F.png", flow_min: 0.00011, flow_max: 750, flow_display: "0.00011 ~ 750 mL/min", applications: ["Filling","Dispensing","Bottling"], comm: "RS485 / MODBUS" },
+  { id: "BT301F", name: "BT301F", sub: "Intelligent Dispensing Peristaltic Pump", series: "F", series_label: "Dispensing", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT301F.png", flow_min: 0.005, flow_max: 1750, flow_display: "0.005 ~ 1750 mL/min", applications: ["Filling","Dispensing","Bottling"], comm: "RS485 / MODBUS" },
+  { id: "BT601F", name: "BT601F", sub: "Intelligent Dispensing Peristaltic Pump", series: "F", series_label: "Dispensing", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT601F.png", flow_min: 0.005, flow_max: 3000, flow_display: "0.005 ~ 3000 mL/min", applications: ["Filling","Dispensing","Bottling"], comm: "RS485 / MODBUS" },
+  { id: "BT100F", name: "BT100F", sub: "Intelligent Dispensing Peristaltic Pump", series: "F", series_label: "Dispensing", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT100F.png", flow_min: 0.00011, flow_max: 750, flow_display: "0.00011 ~ 750 mL/min", applications: ["Filling","Dispensing","Bottling"], comm: "RS485 / MODBUS" },
+  { id: "BT300F", name: "BT300F", sub: "Intelligent Dispensing Peristaltic Pump", series: "F", series_label: "Dispensing", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT300F.png", flow_min: 0.005, flow_max: 1750, flow_display: "0.005 ~ 1750 mL/min", applications: ["Filling","Dispensing","Bottling"], comm: "RS485 / MODBUS" },
+  { id: "BT600F", name: "BT600F", sub: "Intelligent Dispensing Peristaltic Pump", series: "F", series_label: "Dispensing", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT600F.png", flow_min: 0.005, flow_max: 3000, flow_display: "0.005 ~ 3000 mL/min", applications: ["Filling","Dispensing","Bottling"], comm: "RS485 / MODBUS" },
+  { id: "BT100F-1", name: "BT100F-1", sub: "Intelligent Dispensing Peristaltic Pump", series: "F", series_label: "Dispensing", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT100F-1.png", flow_min: 0.00011, flow_max: 1650, flow_display: "0.00011 ~ 1650 mL/min", applications: ["Filling","Dispensing","Bottling"], comm: "RS485 / MODBUS" },
+  { id: "WT300F", name: "WT300F", sub: "High-Flow Dispensing Pump", series: "F", series_label: "Dispensing", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/WT300F.png", flow_min: 0.005, flow_max: 4200, flow_display: "0.005 ~ 4200 mL/min", applications: ["Filling","Dispensing","Bottling"], comm: "RS485 / MODBUS" },
+  { id: "WT600F", name: "WT600F", sub: "High-Flow Dispensing Pump", series: "F", series_label: "Dispensing", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/WT600F.png", flow_min: 0.005, flow_max: 6600, flow_display: "0.005 ~ 6600 mL/min", applications: ["Filling","Dispensing","Bottling"], comm: "RS485 / MODBUS" },
+  { id: "WG600S", name: "WG600S", sub: "Industrial Peristaltic Pump", series: "Industrial", series_label: "Industrial WG", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/WG600S.png", flow_min: 400, flow_max: 13200, flow_display: "0.4 ~ 13.2 L/min", applications: ["Industrial Transfer","Process Line"], comm: "RS485 / MODBUS" },
+  { id: "WG600F", name: "WG600F", sub: "Industrial Dispensing Peristaltic Pump", series: "Industrial", series_label: "Industrial WG", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/WG600F.png", flow_min: 1.3, flow_max: 13200, flow_display: "0.0013 ~ 13.2 L/min", applications: ["Industrial Transfer","Process Line"], comm: "RS485 / MODBUS" },
+  { id: "JP301S", name: "JP301S", sub: "Batch Transfer Peristaltic Pump", series: "Batch", series_label: "Batch Transfer JP", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/JP301S.png", flow_min: 640, flow_max: 33000, flow_display: "0.64 ~ 33 L/min", applications: ["Industrial Batch Transfer","Bulk Liquid"], comm: "RS485 / MODBUS" },
+  { id: "JP300S", name: "JP300S", sub: "Batch Transfer Peristaltic Pump", series: "Batch", series_label: "Batch Transfer JP", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/JP300S.png", flow_min: 640, flow_max: 33000, flow_display: "0.64 ~ 33 L/min", applications: ["Industrial Batch Transfer","Bulk Liquid"], comm: "RS485 / MODBUS" },
+  { id: "BT600P", name: "BT600P", sub: "Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BT600P.png", flow_min: 0.006, flow_max: 2900, flow_display: "0.006 ~ 2900 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "BX600S", name: "BX600S", sub: "Peristaltic Pump", series: "S", series_label: "Speed Variable", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/BX600S.png", flow_min: 1.5, flow_max: 3700, flow_display: "1.5 ~ 3700 mL/min", applications: ["Lab Transfer","Cell Culture","Bioreactor","Dispensing","TFF"], comm: "RS485 / MODBUS" },
+  { id: "DS600", name: "DS600", sub: "Filling System Pump", series: "Filling", series_label: "Filling System", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/DS600.png", flow_min: 0.005, flow_max: 3000, flow_display: "0.005 ~ 3000 mL/min", applications: ["Automated Filling","Bottling","Multi-channel"], comm: "RS485 / MODBUS" },
+  { id: "MF-Series", name: "MF-Series", sub: "High Protection Peristaltic Pump (MF)", series: "HighProt", series_label: "High Protection", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/MF-Series.png", flow_min: 0.006, flow_max: 7800, flow_display: "0.006 ~ 7800 mL/min", applications: ["Wash-down","IP66 Environment","Pharma"], comm: "RS485 / MODBUS" },
+  { id: "MS-Series", name: "MS-Series", sub: "High Protection Peristaltic Pump (MS)", series: "HighProt", series_label: "High Protection", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/MS-Series.png", flow_min: 0.006, flow_max: 7800, flow_display: "0.006 ~ 7800 mL/min", applications: ["Wash-down","IP66 Environment","Pharma"], comm: "RS485 / MODBUS" },
+  { id: "EF800", name: "EF800", sub: "Explosion-proof Peristaltic Pump", series: "EX", series_label: "Explosion-proof", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/EF800.png", flow_min: 0.005, flow_max: 7800, flow_display: "0.005 ~ 7800 mL/min", applications: ["Explosion Zone","Solvent","ATEX/IECEx"], comm: "—" },
+  { id: "EF900", name: "EF900", sub: "Explosion-proof Peristaltic Pump", series: "EX", series_label: "Explosion-proof", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/EF900.png", flow_min: 0.005, flow_max: 33000, flow_display: "0.005 ~ 33000 mL/min", applications: ["Explosion Zone","Solvent","ATEX/IECEx"], comm: "—" },
+  { id: "FP300S-A3", name: "FP300S-A3", sub: "Air-driven Explosion-proof Pump", series: "EX", series_label: "Explosion-proof", category: "peristaltic", category_label: "페리스탈틱", image: "/img/leadfluid/FP300S-A3.png", flow_min: 600, flow_max: 33000, flow_display: "0.6 ~ 33 L/min", applications: ["Explosion Zone","Solvent","ATEX/IECEx"], comm: "—" },
+  { id: "TYD01-01", name: "TYD01-01", sub: "Laboratory Syringe Pump", series: "TYD", series_label: "Laboratory TYD", category: "syringe", category_label: "시린지", image: null, flow_min: 1.84e-07, flow_max: 83.318, flow_display: "0.184 nL/min ~ 83.318 mL/min", applications: ["Microsphere Preparation","Electrospinning","Animal Experiments","Coating","Mass Spec"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TYD01-02", name: "TYD01-02", sub: "Laboratory Syringe Pump", series: "TYD", series_label: "Laboratory TYD", category: "syringe", category_label: "시린지", image: null, flow_min: 1.84e-07, flow_max: 173.718, flow_display: "0.184 nL/min ~ 173.718 mL/min", applications: ["Microsphere Preparation","Electrospinning","Animal Experiments","Coating","Mass Spec"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TYD02-01", name: "TYD02-01", sub: "Laboratory Syringe Pump (2-ch)", series: "TYD", series_label: "Laboratory TYD", category: "syringe", category_label: "시린지", image: null, flow_min: 1.84e-07, flow_max: 173.718, flow_display: "0.184 nL/min ~ 173.718 mL/min", applications: ["Microsphere Preparation","Electrospinning","Animal Experiments","Coating","Mass Spec"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TYD02-02", name: "TYD02-02", sub: "Laboratory Syringe Pump (2-ch)", series: "TYD", series_label: "Laboratory TYD", category: "syringe", category_label: "시린지", image: null, flow_min: 1.84e-07, flow_max: 173.718, flow_display: "0.184 nL/min ~ 173.718 mL/min", applications: ["Microsphere Preparation","Electrospinning","Animal Experiments","Coating","Mass Spec"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TYD02-04", name: "TYD02-04", sub: "Laboratory Syringe Pump (4-ch)", series: "TYD", series_label: "Laboratory TYD", category: "syringe", category_label: "시린지", image: null, flow_min: 1.84e-07, flow_max: 24.52, flow_display: "0.184 nL/min ~ 24.520 mL/min", applications: ["Microsphere Preparation","Electrospinning","Animal Experiments","Coating","Mass Spec"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TYD02-06", name: "TYD02-06", sub: "Laboratory Syringe Pump (6-ch)", series: "TYD", series_label: "Laboratory TYD", category: "syringe", category_label: "시린지", image: null, flow_min: 1.84e-07, flow_max: 24.52, flow_display: "0.184 nL/min ~ 24.520 mL/min", applications: ["Microsphere Preparation","Electrospinning","Animal Experiments","Coating","Mass Spec"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TYD02-10", name: "TYD02-10", sub: "Laboratory Syringe Pump (10-ch)", series: "TYD", series_label: "Laboratory TYD", category: "syringe", category_label: "시린지", image: null, flow_min: 1.84e-07, flow_max: 24.52, flow_display: "0.184 nL/min ~ 24.520 mL/min", applications: ["Microsphere Preparation","Electrospinning","Animal Experiments","Coating","Mass Spec"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TYD03-01", name: "TYD03-01", sub: "Laboratory Syringe Pump (High Precision)", series: "TYD", series_label: "Laboratory TYD", category: "syringe", category_label: "시린지", image: null, flow_min: 3.7e-08, flow_max: 16.663, flow_display: "0.037 nL/min ~ 16.663 mL/min", applications: ["Microsphere Preparation","Electrospinning","Animal Experiments","Coating","Mass Spec"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TFD01-01", name: "TFD01-01", sub: "Split Style Syringe Pump", series: "TFD", series_label: "Split TFD", category: "syringe", category_label: "시린지", image: null, flow_min: 2e-08, flow_max: 0.003048, flow_display: "20 pL/min ~ 3.048 μL/min", applications: ["Microfluidics","Precision Dispensing","Cell Injection","Pharma R&D"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TFD02-01", name: "TFD02-01", sub: "Split Style Syringe Pump", series: "TFD", series_label: "Split TFD", category: "syringe", category_label: "시린지", image: null, flow_min: 1.63e-07, flow_max: 24.52, flow_display: "0.163 nL/min ~ 24.520 mL/min", applications: ["Microfluidics","Precision Dispensing","Cell Injection","Pharma R&D"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TFD03-01", name: "TFD03-01", sub: "Split Style Syringe Pump", series: "TFD", series_label: "Split TFD", category: "syringe", category_label: "시린지", image: null, flow_min: 8.3e-11, flow_max: 0.016893, flow_display: "83 pL/min ~ 16.893 μL/min", applications: ["Microfluidics","Precision Dispensing","Cell Injection","Pharma R&D"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TFD04", name: "TFD04", sub: "Split Style Syringe Pump (Multi-syringe)", series: "TFD", series_label: "Split TFD", category: "syringe", category_label: "시린지", image: null, flow_min: 4.17e-10, flow_max: 0.124984, flow_display: "417 pL/min ~ 124.984 μL/min", applications: ["Microfluidics","Precision Dispensing","Cell Injection","Pharma R&D"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TYS01-02", name: "TYS01-02", sub: "Dual-Rate Industrial Syringe Pump", series: "TYS", series_label: "Industrial TYS", category: "syringe", category_label: "시린지", image: null, flow_min: 0.001, flow_max: 3.0, flow_display: "1 μL ~ 3000 μL", applications: ["Filling","Pharma Dispensing","Sample Loading"], comm: "RS485 / MODBUS" },
+  { id: "TGD01-01", name: "TGD01-01", sub: "Precision High-Pressure Syringe Pump", series: "TGD", series_label: "Industrial TGD", category: "syringe", category_label: "시린지", image: null, flow_min: 3e-09, flow_max: 214.915, flow_display: "3.000 pL/min ~ 214.915 mL/min", applications: ["High-pressure Coating","Corrosive Liquid","Continuous Injection"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "TSD01-01", name: "TSD01-01", sub: "Two-way Push-pull Syringe Pump", series: "TSD", series_label: "Industrial TSD", category: "syringe", category_label: "시린지", image: null, flow_min: 1e-06, flow_max: 100, flow_display: "Push-pull continuous mode", applications: ["Two-way Continuous","Pump Synchronization","Process R&D"], comm: "RS485 / MODBUS / WiFi" },
+  { id: "G3030-1S", name: "G3030-1S", sub: "Industrial Syringe Pump", series: "G-Ind", series_label: "Industrial G", category: "syringe", category_label: "시린지", image: null, flow_min: 0.0005, flow_max: 250, flow_display: "0.0005 ~ 250 mL/min", applications: ["Micro Continuous Transfer","Quality Testing","Material Prep"], comm: "RS485 / MODBUS" },
+  { id: "G6060-1S", name: "G6060-1S", sub: "Industrial Syringe Pump", series: "G-Ind", series_label: "Industrial G", category: "syringe", category_label: "시린지", image: null, flow_min: 0.0003125, flow_max: 1250, flow_display: "0.0003125 ~ 1250 mL/min", applications: ["Micro Continuous Transfer","Quality Testing","Material Prep"], comm: "RS485 / MODBUS" },
+  { id: "CT3001S", name: "CT3001S", sub: "Basic Speed Variable Precision Gear Pump", series: "CT-Gear", series_label: "Lab Gear CT", category: "gear", category_label: "기어", image: null, flow_min: 15, flow_max: 2700, flow_display: "15 ~ 2700 mL/min", applications: ["High-viscosity Liquid","Cosmetics","Reaction Vessels","Coating"], comm: "RS485 / MODBUS" },
+  { id: "CT3000S", name: "CT3000S", sub: "Basic Speed Variable Precision Gear Pump", series: "CT-Gear", series_label: "Lab Gear CT", category: "gear", category_label: "기어", image: null, flow_min: 15, flow_max: 2700, flow_display: "15 ~ 2700 mL/min", applications: ["High-viscosity Liquid","Cosmetics","Reaction Vessels","Coating"], comm: "RS485 / MODBUS" },
+  { id: "CT3001F", name: "CT3001F", sub: "Intelligent Dispensing Precision Gear Pump", series: "CT-Gear", series_label: "Lab Gear CT", category: "gear", category_label: "기어", image: null, flow_min: 15, flow_max: 2700, flow_display: "15 ~ 2700 mL/min", applications: ["High-viscosity Liquid","Cosmetics","Reaction Vessels","Coating"], comm: "RS485 / MODBUS" },
+  { id: "CT3000F", name: "CT3000F", sub: "Intelligent Dispensing Precision Gear Pump", series: "CT-Gear", series_label: "Lab Gear CT", category: "gear", category_label: "기어", image: null, flow_min: 15, flow_max: 2700, flow_display: "15 ~ 2700 mL/min", applications: ["High-viscosity Liquid","Cosmetics","Reaction Vessels","Coating"], comm: "RS485 / MODBUS" },
+  { id: "FG601S-A3", name: "FG601S-A3", sub: "Air-driven Explosion-proof Gear Pump", series: "EX", series_label: "Explosion-proof Gear", category: "gear", category_label: "기어", image: "/img/leadfluid/FG601S-A3.png", flow_min: 1000, flow_max: 13000, flow_display: "1000 ~ 13000 mL/min", applications: ["Explosion Zone","Solvent","Petrochemical","ATEX"], comm: "—" },
+  { id: "FG600S-A3", name: "FG600S-A3", sub: "Air-driven Explosion-proof Gear Pump", series: "EX", series_label: "Explosion-proof Gear", category: "gear", category_label: "기어", image: "/img/leadfluid/FG600S-A3.png", flow_min: 4, flow_max: 6000, flow_display: "4 ~ 6000 mL/min", applications: ["Explosion Zone","Solvent","Petrochemical","ATEX"], comm: "—" },
+  { id: "FG601S-W3", name: "FG601S-W3", sub: "Wash-down Explosion-proof Gear Pump", series: "EX", series_label: "Explosion-proof Gear", category: "gear", category_label: "기어", image: "/img/leadfluid/FG601S-W3.png", flow_min: 1800, flow_max: 13000, flow_display: "1800 ~ 13000 mL/min", applications: ["Explosion Zone","Solvent","Petrochemical","ATEX"], comm: "—" },
+  { id: "FG600S-W3", name: "FG600S-W3", sub: "Wash-down Explosion-proof Gear Pump", series: "EX", series_label: "Explosion-proof Gear", category: "gear", category_label: "기어", image: "/img/leadfluid/FG600S-W3.png", flow_min: 8, flow_max: 6000, flow_display: "8 ~ 6000 mL/min", applications: ["Explosion Zone","Solvent","Petrochemical","ATEX"], comm: "—" },
+];
+
+// =====================================================
+// 필터 정의
+// =====================================================
+const CATEGORIES = [
+  { id: "peristaltic", label: "페리스탈틱" },
+  { id: "syringe",     label: "시린지" },
+  { id: "gear",        label: "기어" }
+];
+
+const SERIES = [
+  { id: "S",          label: "S Speed (페리스탈틱)" },
+  { id: "L",          label: "L Intelligent (페리스탈틱)" },
+  { id: "F",          label: "F Dispensing (페리스탈틱)" },
+  { id: "Industrial", label: "Industrial WG (페리스탈틱)" },
+  { id: "Batch",      label: "Batch JP (페리스탈틱)" },
+  { id: "Filling",    label: "Filling System (페리스탈틱)" },
+  { id: "HighProt",   label: "High Protection (페리스탈틱)" },
+  { id: "EX",         label: "Explosion-proof (페리스탈틱/기어)" },
+  { id: "TYD",        label: "TYD Laboratory (시린지)" },
+  { id: "TFD",        label: "TFD Split (시린지)" },
+  { id: "TYS",        label: "TYS Industrial (시린지)" },
+  { id: "TGD",        label: "TGD High Pressure (시린지)" },
+  { id: "TSD",        label: "TSD Push-pull (시린지)" },
+  { id: "G-Ind",      label: "G-Series Industrial (시린지)" },
+  { id: "CT-Gear",    label: "CT Lab Gear (기어)" }
+];
+
+const FLOW_PRESETS = [
+  { id: "micro", label: "마이크로 <1 mL/min", min: 0,     max: 1 },
+  { id: "low",   label: "저 1-100 mL/min",    min: 1,     max: 100 },
+  { id: "mid",   label: "중 100-1000 mL/min", min: 100,   max: 1000 },
+  { id: "high",  label: "고 1-10 L/min",      min: 1000,  max: 10000 },
+  { id: "xhigh", label: "초대 10+ L/min",     min: 10000, max: Infinity }
+];
+
+// =====================================================
+// 상태
+// =====================================================
+const state = {
+  q: "",
+  cats: new Set(),
+  series: new Set(),
+  flow: null
+};
+
+// =====================================================
+// 매칭 로직
+// =====================================================
+function flowOverlap(p, preset){
+  return p.flow_max >= preset.min && p.flow_min <= preset.max;
+}
+
+function matches(p, s = state){
+  if (s.cats.size > 0 && !s.cats.has(p.category)) return false;
+  if (s.series.size > 0 && !s.series.has(p.series)) return false;
+  if (s.flow){
+    const preset = FLOW_PRESETS.find(f => f.id === s.flow);
+    if (preset && !flowOverlap(p, preset)) return false;
+  }
+  if (s.q){
+    const q = s.q.toLowerCase().trim();
+    const hay = [p.id, p.name, p.sub, p.series, p.category_label, ...(p.applications||[]), ...(p.keywords||[])].join(" ").toLowerCase();
+    if (!hay.includes(q)) return false;
+  }
+  return true;
+}
+
+function countMatches(s){
+  return PRODUCTS.filter(p => matches(p, s)).length;
+}
+
+// =====================================================
+// 칩 빌더
+// =====================================================
+function buildFlowChips(){
+  const c = document.getElementById("flowFilters");
+  c.innerHTML = "";
+
+  const all = document.createElement("button");
+  all.type = "button";
+  all.className = "filter-btn" + (state.flow === null ? " active" : "");
+  all.textContent = "전체";
+  all.addEventListener("click", () => { state.flow = null; render(); });
+  c.appendChild(all);
+
+  FLOW_PRESETS.forEach(preset => {
+    const count = countMatches({...state, flow: preset.id});
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "filter-btn" + (state.flow === preset.id ? " active" : "");
+    chip.innerHTML = `${escapeHtml(preset.label)} <span class="count">${count}</span>`;
+    chip.addEventListener("click", () => {
+      state.flow = (state.flow === preset.id) ? null : preset.id;
+      render();
+    });
+    c.appendChild(chip);
+  });
+}
+
+function buildMultiChips(containerId, items, stateSet, stateKey){
+  const c = document.getElementById(containerId);
+  c.innerHTML = "";
+  items.forEach(it => {
+    const probe = {...state};
+    probe[stateKey] = new Set([it.id]);
+    const count = countMatches(probe);
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "filter-btn" + (stateSet.has(it.id) ? " active" : "");
+    chip.innerHTML = `${escapeHtml(it.label)} <span class="count">${count}</span>`;
+    chip.addEventListener("click", () => {
+      if (stateSet.has(it.id)) stateSet.delete(it.id);
+      else stateSet.add(it.id);
+      render();
+    });
+    c.appendChild(chip);
+  });
+}
+
+// =====================================================
+// 렌더
+// =====================================================
+function render(){
+  const list = PRODUCTS.filter(p => matches(p));
+  document.getElementById("resultCount").textContent = list.length;
+  const grid = document.getElementById("grid");
+  const empty = document.getElementById("empty");
+  if (list.length === 0){
+    grid.innerHTML = "";
+    empty.style.display = "block";
+  } else {
+    empty.style.display = "none";
+    grid.innerHTML = list.map(renderCard).join("");
+  }
+  buildFlowChips();
+  buildMultiChips("catFilters", CATEGORIES, state.cats, "cats");
+  buildMultiChips("seriesFilters", SERIES, state.series, "series");
+}
+
+function renderCard(p){
+  // 통신 태그 (RS485 / MODBUS / WiFi 등) — 응용분야 태그와 별도 색상
+  const commTags = [];
+  if (p.comm){
+    if (/RS485/i.test(p.comm))  commTags.push("RS485");
+    if (/MODBUS/i.test(p.comm)) commTags.push("MODBUS");
+    if (/WiFi/
