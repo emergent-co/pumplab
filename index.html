@@ -176,6 +176,17 @@
     .section{padding:32px 18px}
     .grid{grid-template-columns:1fr}
   }
+
+  /* 펌프 추천 위저드 임베드 */
+  .wizard-embed{padding:36px 24px 28px;background:#fff;border-bottom:1px solid var(--border)}
+  .wizard-embed-inner{max-width:1100px;margin:0 auto}
+  .wizard-embed .we-head{margin-bottom:16px;text-align:center}
+  .wizard-embed .we-head .label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+  .wizard-embed .we-head h2{font-size:24px;font-weight:800;color:var(--navy);letter-spacing:-.01em;margin-bottom:6px}
+  .wizard-embed .we-head .desc{font-size:13.5px;color:var(--muted)}
+  .wizard-embed iframe{width:100%;border:1px solid var(--border);border-radius:10px;display:block;background:#fff;min-height:560px}
+  .wizard-embed .we-more{text-align:center;margin-top:14px;font-size:13px}
+  .wizard-embed .we-more a{color:var(--teal);font-weight:700}
 </style>
 </head>
 <body>
@@ -198,6 +209,19 @@
   <div class="hero-inner">
     <h1>정량펌프 응용 셋업 가이드</h1>
     <p class="sub">페리스탈틱·시린지·기어 펌프의 실험 셋업을 논문 기반으로 분석하고, 동일·유사 응용에 필요한 부품 매트릭스를 제공합니다.</p>
+  </div>
+</section>
+
+<!-- 0. 펌프 추천 위저드 (메인 임베드) -->
+<section class="wizard-embed" id="wizard">
+  <div class="wizard-embed-inner">
+    <div class="we-head">
+      <div class="label">30초 펌프 추천</div>
+      <h2>어떤 펌프가 맞는지 모르겠다면</h2>
+      <div class="desc">아래 위저드 몇 가지 답변만으로 적합한 제품군을 안내합니다.</div>
+    </div>
+    <iframe src="/recommend.html?embed=1" loading="lazy" title="펌프 추천 위저드"></iframe>
+    <div class="we-more"><a href="/recommend.html">전체 위저드 페이지 열기 →</a></div>
   </div>
 </section>
 
