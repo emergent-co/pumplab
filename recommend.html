@@ -435,6 +435,20 @@ body.iq-locked{overflow:hidden}
       <fieldset class="wz-q" data-step="7">
         <legend><span class="num">7</span>현재 사용 중인 튜브 / 펌프 모델 (선택)</legend>
         <div class="wz-options">
+          <div style="margin-bottom:14px">
+            <span style="font-size:12.5px;color:var(--muted);display:block;margin-bottom:6px">튜브 재질 (복수 선택 가능, 없으면 건너뛰기)</span>
+            <div style="display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px">
+              <label><input type="checkbox" name="tube_mat" value="silicone"> 실리콘 (Silicone)</label>
+              <label><input type="checkbox" name="tube_mat" value="pharmed"> PharMed BPT</label>
+              <label><input type="checkbox" name="tube_mat" value="tygon"> Tygon (R-3603 / A-60-F / LFL)</label>
+              <label><input type="checkbox" name="tube_mat" value="norprene"> Norprene</label>
+              <label><input type="checkbox" name="tube_mat" value="viton"> Viton (FKM)</label>
+              <label><input type="checkbox" name="tube_mat" value="pvc"> PVC</label>
+              <label><input type="checkbox" name="tube_mat" value="ptfe"> PTFE / Teflon</label>
+              <label><input type="checkbox" name="tube_mat" value="pu"> PU (폴리우레탄)</label>
+              <label><input type="checkbox" name="tube_mat" value="unsure"> 모르겠음</label>
+            </div>
+          </div>
           <label style="display:block;margin-bottom:10px">
             <span style="font-size:12.5px;color:var(--muted);display:block;margin-bottom:4px">튜브 내경 (mm) — 없으면 비워두세요</span>
             <input type="text" name="tube_id" placeholder="예: 3.17, 4.8, 6.4" style="width:100%;padding:9px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px">
@@ -1004,6 +1018,7 @@ window.addEventListener('message', e=>{
     const ctrlAll = getVals('ctrl').join(', ') || ctrl;
     const freqAll = getVals('freq').join(', ') || freq;
     const channelsAll = getVals('channels').join(', ') || '';
+    const tubeMatAll = getVals('tube_mat').join(', ') || '';
     const tubeIdEl = $form.querySelector('input[name="tube_id"]');
     const tubeOdEl = $form.querySelector('input[name="tube_od"]');
     const tubeId = tubeIdEl ? tubeIdEl.value.trim() : '';
@@ -1012,7 +1027,7 @@ window.addEventListener('message', e=>{
     if (tubeId || tubeOd) {
       tubeStr = '내경 ' + (tubeId || '?') + 'mm × 외경 ' + (tubeOd || '?') + 'mm';
     }
-    const wizSummary = '[펌프 추천 위저드 응답]\n· 작업: ' + workAll + '\n· 액체: ' + fluidAll + '\n· 유량: ' + flowAll + '\n· 제어/통신: ' + ctrlAll + '\n· 빈도: ' + freqAll + (channelsAll ? '\n· 채널 수: ' + channelsAll : '') + (tubeStr ? '\n· 현재 튜브: ' + tubeStr : '') + (currentModel ? '\n· 현재 모델: ' + currentModel : '') + '\n\n추천: ' + r.cat + '\n사유: ' + r.why;
+    const wizSummary = '[펌프 추천 위저드 응답]\n· 작업: ' + workAll + '\n· 액체: ' + fluidAll + '\n· 유량: ' + flowAll + '\n· 제어/통신: ' + ctrlAll + '\n· 빈도: ' + freqAll + (channelsAll ? '\n· 채널 수: ' + channelsAll : '') + (tubeMatAll ? '\n· 튜브 재질: ' + tubeMatAll : '') + (tubeStr ? '\n· 튜브 치수: ' + tubeStr : '') + (currentModel ? '\n· 현재 모델: ' + currentModel : '') + '\n\n추천: ' + r.cat + '\n사유: ' + r.why;
     $res.innerHTML = `
       <div class="res-label">추천 제품군</div>
       <div class="res-cat">${r.cat}</div>
