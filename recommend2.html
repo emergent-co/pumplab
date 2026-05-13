@@ -363,7 +363,7 @@ body.iq-locked{overflow:hidden}
     <form class="wz-form" id="wzForm">
       <div class="wz-progress">
         <div class="wz-progress-bar"><div class="wz-progress-fill" id="wzProgressFill"></div></div>
-        <div class="wz-progress-text" id="wzProgressText">1 / 7</div>
+        <div class="wz-progress-text" id="wzProgressText">1 / 5</div>
       </div>
       <!-- Q1: 상황 분류 (라우팅) -->
       <fieldset class="wz-q active" data-step="1">
@@ -920,12 +920,18 @@ window.addEventListener('message', e=>{
     criteria:'#faq-criteria',
     tubing:'#faq-tubing'
   };
-  const TOTAL = 7;
+  const TOTAL = 5;
   let currentStep = 1;
 
   function showStep(n){
+    const situation = getVal('situation');
     document.querySelectorAll('.wz-q').forEach(q=>{
-      q.classList.toggle('active', parseInt(q.dataset.step)===n);
+      const stepMatch = parseInt(q.dataset.step) === n;
+      const branch = q.dataset.branch;
+      let active = stepMatch;
+      // Q2 분기 처리: data-branch가 있으면 situation과 일치해야 active
+      if (stepMatch && branch && branch !== situation) active = false;
+      q.classList.toggle('active', active);
     });
     currentStep = n;
     document.getElementById('wzProgressFill').style.width = (n/TOTAL*100)+'%';
@@ -939,7 +945,7 @@ window.addEventListener('message', e=>{
     document.getElementById('wzResult').classList.remove('show');
   }
 
-  function recommend(work, fluid, flow, ctrl, freq){
+  function recommend(situation, fluid, flow, func, ctrl, channels){
     // 우선순위: 작업 특수성 > 액체 특수성 > 빈도
     if (work === 'micro')
       return {cat:'시린지펌프', why:'μL 단위 미량 주입은 시린지 직접 구동 방식이 가장 정확합니다. 분석기 시료 주입·미세 약물 반응 등에 적합합니다.'};
@@ -978,12 +984,19 @@ window.addEventListener('message', e=>{
     return Array.from($form.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
   }
 
-  // 옵션 선택 시 — checkbox 모드: 자동 진행 X, "다음" 버튼 노출
+  // 옵션 선택 시
   $form.addEventListener('change', e => {
+    // Q1 (radio, situation) 선택 시 자동 다음 단계
+    if (e.target.matches('input[type=radio][name="situation"]')){
+      setTimeout(()=> showStep(2), 220);
+      return;
+    }
+    // Q2~Q5 (checkbox) — [다음] 버튼 노출
     if (e.target.matches('input[type=checkbox]')){
       const stepEl = e.target.closest('.wz-q');
       const step   = parseInt(stepEl.dataset.step);
-      const hasAny = stepEl.querySelectorAll('input[type=checkbox]:checked').length > 0;
+      const hasAny = stepEl.querySelectorAll('input[type=checkbox]:checked').length > 0
+                   || stepEl.querySelectorAll('input[type=text]').length > 0;
       if (hasAny){
         if (step < TOTAL){
           document.getElementById('wzNext').style.display = '';
@@ -1020,12 +1033,10 @@ window.addEventListener('message', e=>{
       requestAnimationFrame(() => $res.classList.add('show'));
       return;
     }
-    const r = recommend(work, fluid, flow, ctrl, freq);
-    const workAll = getVals('work').join(', ') || work;
-    const fluidAll = getVals('fluid').join(', ') || fluid;
-    const flowAll = getVals('flow').join(', ') || flow;
-    const ctrlAll = getVals('ctrl').join(', ') || ctrl;
-    const freqAll = getVals('freq').join(', ') || freq;
+    const r = recommend(situation, fluid, flow, func, ctrl, getVal('channels'));
+    const fluidAll = getVals('fluid').join(', ') || fluid || '';
+    const flowAll = getVals('flow').join(', ') || flow || '';
+    const ctrlAll = getVals('ctrl').join(', ') || ctrl || '';
     const channelsAll = getVals('channels').join(', ') || '';
     const tubeMatAll = getVals('tube_mat').join(', ') || '';
     const tubeIdEl = $form.querySelector('input[name="tube_id"]');
@@ -1036,13 +1047,13 @@ window.addEventListener('message', e=>{
     if (tubeId || tubeOd) {
       tubeStr = '내경 ' + (tubeId || '?') + 'mm × 외경 ' + (tubeOd || '?') + 'mm';
     }
-    const wizSummary = '[펌프 추천 위저드 응답]\n· 작업: ' + workAll + '\n· 액체: ' + fluidAll + '\n· 유량: ' + flowAll + '\n· 제어/통신: ' + ctrlAll + '\n· 빈도: ' + freqAll + (channelsAll ? '\n· 채널 수: ' + channelsAll : '') + (tubeMatAll ? '\n· 튜브 재질: ' + tubeMatAll : '') + (tubeStr ? '\n· 튜브 치수: ' + tubeStr : '') + (currentModel ? '\n· 현재 모델: ' + currentModel : '') + '\n\n추천: ' + r.cat + '\n사유: ' + r.why;
+    const wizSummary = '[펌프 추천 위저드 응답 v2]\n· 상황: ' + (situation==='replace'?'기존 펌프 교체':'신규 도입') + (fluidAll ? '\n· 이송 유체: ' + fluidAll : '') + (flowAll ? '\n· 필요 유량: ' + flowAll : '') + '\n· 기능: ' + (getVals('func').join(', ')||func) + '\n· 제어: ' + ctrlAll + (getVals('reason').length ? '\n· 교체 이유: ' + getVals('reason').join(', ') : '') + (channelsAll ? '\n· 채널 수: ' + channelsAll : '') + (tubeMatAll ? '\n· 튜브 재질: ' + tubeMatAll : '') + (tubeStr ? '\n· 튜브 치수: ' + tubeStr : '') + (currentModel ? '\n· 현재 모델: ' + currentModel : '') + '\n\n추천: ' + r.cat + '\n사유: ' + r.why;
     $res.innerHTML = `
       <div class="res-label">추천 제품군</div>
       <div class="res-cat">${r.cat}</div>
       <div class="res-why">${r.why}</div>
       <div class="res-actions">
-        <button type="button" class="res-primary" onclick="openInquiry('wizard:${work}_${fluid}_${flow}_${ctrl}_${freq}_${(getVals('channels').join('-')||'na')}', window.__wizSummary)" style="border:none;cursor:pointer;font-family:inherit">이 조건으로 문의하기 →</button>
+        <button type="button" class="res-primary" onclick="openInquiry('wizard:${situation}_${getVal('func')||'na'}_${getVal('ctrl')||'na'}_${getVal('channels')||'na'}', window.__wizSummary)" style="border:none;cursor:pointer;font-family:inherit">이 조건으로 문의하기 →</button>
         <a class="res-sec" href="${FAQ_ID.cat}" data-open="faq-types">제품군 비교 보기</a>
       </div>
     `;
