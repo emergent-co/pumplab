@@ -42,6 +42,97 @@ function onInquiryClick(){
   if (extras) summary += '\n\n[추가 정보]' + extras;
   openInquiry(window.__wizLast ? window.__wizLast.setupId : 'wizard:general', summary);
 }
+// ===== admin_pumps.json 매칭·렌더 =====
+let __adminPumps = null;
+async function fetchAndMatchPumps(wiz){
+  const box = document.getElementById('matchedPumps');
+  if (!box) return;
+  box.innerHTML = '<div style="padding:14px;color:var(--muted);font-size:13px">매칭 펌프 불러오는 중...</div>';
+  try {
+    if (!__adminPumps){
+      const res = await fetch('/_build/admin_pumps.json', {cache:'no-store'});
+      const data = await res.json();
+      __adminPumps = data.pumps || [];
+    }
+    const matched = matchPumps(__adminPumps, wiz);
+    renderMatched(box, matched);
+  } catch(e){
+    box.innerHTML = '<div class="no-match">매칭 펌프 데이터를 불러오지 못했습니다. 견적 문의로 안내드릴게요.</div>';
+    console.error('fetchAndMatchPumps error:', e);
+  }
+}
+function matchPumps(pumps, wiz){
+  // 각 펌프에 대해 위저드 응답과 matching 규칙 교집합 점수 계산
+  const scored = pumps.map(p => {
+    const m = p.matching || {};
+    let score = 0, total = 0;
+    // 유량
+    if (wiz.flow && wiz.flow.length && m.flow && m.flow.length){
+      total += 2;
+      const hit = wiz.flow.some(f => m.flow.includes(f));
+      if (hit) score += 2;
+    }
+    // 기능
+    if (wiz.func && wiz.func.length && m.func && m.func.length){
+      total += 2;
+      const hit = wiz.func.some(f => m.func.includes(f));
+      if (hit) score += 2;
+    }
+    // 제어
+    if (wiz.ctrl && wiz.ctrl.length && m.ctrl && m.ctrl.length){
+      total += 1;
+      const hit = wiz.ctrl.some(c => m.ctrl.includes(c));
+      if (hit) score += 1;
+    }
+    // 유체 (신규 분기만)
+    if (wiz.fluid && wiz.fluid.length && m.fluid && m.fluid.length){
+      total += 1;
+      const hit = wiz.fluid.some(f => m.fluid.includes(f));
+      if (hit) score += 1;
+    }
+    // 채널
+    if (wiz.channels && m.channels && m.channels.length){
+      total += 1;
+      if (m.channels.includes(wiz.channels)) score += 1;
+    }
+    const ratio = total > 0 ? score/total : 0;
+    return { pump: p, score, ratio };
+  });
+  // 점수 높은 순 정렬, 상위 5개
+  scored.sort((a,b) => b.ratio - a.ratio || b.score - a.score);
+  return scored.filter(x => x.ratio >= 0.5).slice(0, 5);
+}
+function renderMatched(box, matched){
+  if (!matched.length){
+    box.innerHTML = '<div class="no-match"><strong>매칭되는 모델이 없습니다.</strong><br>아래 견적 문의로 사장님이 직접 추천드립니다.</div>';
+    return;
+  }
+  let h = '<div style="margin-bottom:10px;font-size:13px;font-weight:700;color:var(--navy)">📋 조건에 맞는 추천 모델 ' + matched.length + '개</div>';
+  h += '<div class="match-grid">';
+  matched.forEach(({pump:p, score, ratio}) => {
+    const img = p.image
+      ? '<div class="mc-img"><img src="'+escapeHtml(p.image)+'" alt="'+escapeHtml(p.name)+'" loading="lazy"></div>'
+      : '<div class="mc-img ph">'+escapeHtml(p.name)+'</div>';
+    const matchPct = Math.round(ratio * 100);
+    h += '<div class="match-card">' + img +
+      '<div class="mc-body">' +
+        '<div class="mc-head"><div class="mc-name">'+escapeHtml(p.name)+'</div><span class="mc-badge">'+escapeHtml(p.series||'')+'</span></div>' +
+        '<div class="mc-sub">'+escapeHtml(p.sub||'')+'</div>' +
+        '<div class="mc-spec"><strong>유량</strong> '+escapeHtml(p.flow_display||'')+'</div>' +
+        (p.speed_display ? '<div class="mc-spec"><strong>속도</strong> '+escapeHtml(p.speed_display)+'</div>' : '') +
+        '<div class="mc-score">조건 매칭 '+matchPct+'%</div>' +
+        '<div class="mc-actions">' +
+          '<a class="mc-btn" href="/leadfluid.html#'+encodeURIComponent(p.id)+'" target="_blank">자세히</a>' +
+          (p.navimro_url ? '<a class="mc-btn" href="'+escapeHtml(p.navimro_url)+'" target="_blank" rel="noopener">나비엠알오</a>' : '') +
+          '<a class="mc-btn primary" href="/inquiry.html?product='+encodeURIComponent(p.id)+'">견적</a>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  });
+  h += '</div>';
+  box.innerHTML = h;
+}
+function escapeHtml(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 </script>
 
 <style>
@@ -352,6 +443,28 @@ body.iq-locked{overflow:hidden}
   body.embed-mode{background:#fff;overflow:hidden;margin:0;padding:0}
   body.embed-mode .wizard-wrap{padding:0;min-height:auto}
   body.embed-mode .wizard-card{box-shadow:none;border:none;padding:14px 16px 8px}
+
+  /* 매칭 펌프 결과 카드 */
+  .match-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:14px}
+  .match-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:all .15s}
+  .match-card:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 6px 16px rgba(10,37,64,.08)}
+  .match-card .mc-img{aspect-ratio:2/1;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:8px}
+  .match-card .mc-img img{max-width:80%;max-height:90%;object-fit:contain}
+  .match-card .mc-img.ph{color:#a9b8cc;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .match-card .mc-body{padding:12px 14px;flex:1;display:flex;flex-direction:column}
+  .match-card .mc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .match-card .mc-name{font-size:15px;font-weight:800;color:var(--navy)}
+  .match-card .mc-badge{font-size:10px;font-weight:700;color:var(--teal);background:#f5f9f7;padding:2px 6px;border-radius:4px;border:1px solid #d9ead5}
+  .match-card .mc-sub{font-size:11.5px;color:var(--muted);margin-bottom:6px}
+  .match-card .mc-spec{font-size:12px;color:var(--text);margin-bottom:6px}
+  .match-card .mc-spec strong{color:var(--navy);font-weight:700}
+  .match-card .mc-score{font-size:10.5px;color:var(--teal);font-weight:700;margin-bottom:8px}
+  .match-card .mc-actions{display:flex;gap:6px;margin-top:auto}
+  .match-card .mc-btn{flex:1;padding:7px 8px;border:1px solid var(--border);background:#fff;color:var(--text);font-size:11.5px;font-weight:600;border-radius:5px;text-decoration:none;text-align:center;transition:all .15s}
+  .match-card .mc-btn:hover{border-color:var(--teal);color:var(--teal);background:#f5f9f7}
+  .match-card .mc-btn.primary{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .match-card .mc-btn.primary:hover{background:#155b48}
+  .no-match{padding:18px;background:#fff8e6;border:1px solid #f0d976;border-radius:8px;text-align:center;font-size:13px;color:#6c5005}
 </style>
 </head>
 <body>
@@ -1165,6 +1278,11 @@ window.addEventListener('message', e=>{
       return;
     }
     const r = recommend(situation, fluid, flow, func, ctrl, getVal('channels'));
+    // admin 매칭 펌프 fetch + 렌더링
+    fetchAndMatchPumps({
+      situation, fluid: getVals('fluid'), flow: getVals('flow'),
+      func: getVals('func'), ctrl: getVals('ctrl'), channels: getVal('channels')
+    });
     const fluidAll = getVals('fluid').join(', ') || fluid || '';
     const flowAll = getVals('flow').join(', ') || flow || '';
     const ctrlAll = getVals('ctrl').join(', ') || ctrl || '';
