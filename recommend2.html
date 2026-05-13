@@ -398,11 +398,11 @@ body.iq-locked{overflow:hidden}
       <fieldset class="wz-q" data-step="2" data-branch="replace">
         <legend><span class="num">2</span>현재 쓰고 계신 펌프 정보</legend>
         <div class="wz-options">
-          <label style="display:block;margin-bottom:10px">
-            <span style="font-size:12.5px;color:var(--muted);display:block;margin-bottom:4px">현재 펌프 모델명</span>
-            <input type="text" name="current_model" placeholder="예: EYELA MP-2000, Watson-Marlow 313, Cole-Parmer Masterflex L/S" style="width:100%;padding:9px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px">
-          </label>
-          <div style="margin:10px 0 6px;font-size:12.5px;color:var(--muted)">교체·업그레이드 이유 (복수 선택)</div>
+          <div style="margin-bottom:12px">
+            <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px;font-weight:600">현재 펌프 모델명</div>
+            <input type="text" name="current_model" placeholder="예: EYELA MP-2000, Watson-Marlow 313, Cole-Parmer Masterflex L/S" style="width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px">
+          </div>
+          <div style="margin:14px 0 8px;font-size:12.5px;color:var(--muted);font-weight:600">교체·업그레이드 이유 <span style="font-weight:400">(복수 선택 가능)</span></div>
           <div style="display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px">
             <label><input type="checkbox" name="reason" value="flow_up"> 유량 증가 필요</label>
             <label><input type="checkbox" name="reason" value="control"> 제어 강화</label>
@@ -412,12 +412,15 @@ body.iq-locked{overflow:hidden}
             <label><input type="checkbox" name="reason" value="comm"> 통신·자동화 필요</label>
             <label><input type="checkbox" name="reason" value="etc"> 기타</label>
           </div>
-          <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted)">현재 사용 튜브 정보 (선택)</div>
-          <div style="display:flex;gap:10px;margin-top:6px;flex-wrap:wrap">
-            <input type="text" name="tube_id" placeholder="내경 mm (예: 3.17)" style="flex:1;min-width:120px;padding:9px;border:1px solid var(--border);border-radius:6px;font-size:13px">
-            <input type="text" name="tube_od" placeholder="외경 mm (예: 6.4)" style="flex:1;min-width:120px;padding:9px;border:1px solid var(--border);border-radius:6px;font-size:13px">
+          <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border)">
+            <div style="font-size:12.5px;color:var(--muted);margin-bottom:8px;font-weight:600">현재 사용 튜브 치수</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <input type="text" name="tube_id" placeholder="내경 mm (예: 3.17)" style="flex:1;min-width:120px;padding:9px;border:1px solid var(--border);border-radius:6px;font-size:13px">
+              <input type="text" name="tube_od" placeholder="외경 mm (예: 6.4)" style="flex:1;min-width:120px;padding:9px;border:1px solid var(--border);border-radius:6px;font-size:13px">
+            </div>
+            <label style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px"><input type="checkbox" name="tube_size_unknown" value="1"> 튜브 치수 모름</label>
           </div>
-          <div style="margin:8px 0 6px;font-size:12.5px;color:var(--muted)">튜브 재질 (복수 선택)</div>
+          <div style="margin:14px 0 8px;font-size:12.5px;color:var(--muted);font-weight:600">튜브 재질 <span style="font-weight:400">(복수 선택 가능)</span></div>
           <div style="display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px">
             <label><input type="checkbox" name="tube_mat" value="silicone"> 실리콘</label>
             <label><input type="checkbox" name="tube_mat" value="pharmed"> PharMed BPT</label>
@@ -427,6 +430,7 @@ body.iq-locked{overflow:hidden}
             <label><input type="checkbox" name="tube_mat" value="pvc"> PVC</label>
             <label><input type="checkbox" name="tube_mat" value="ptfe"> PTFE</label>
             <label><input type="checkbox" name="tube_mat" value="pu"> PU</label>
+            <label><input type="checkbox" name="tube_mat" value="unknown"> 재질 모름</label>
           </div>
         </div>
       </fieldset>
@@ -458,25 +462,22 @@ body.iq-locked{overflow:hidden}
 
       <!-- Q3: 기능 중심 -->
       <fieldset class="wz-q" data-step="3">
-        <legend><span class="num">3</span>주로 어떤 기능이 필요하신가요?</legend>
+        <legend><span class="num">3</span>주로 어떤 기능이 필요하신가요? <span style="font-size:12px;font-weight:400;color:var(--muted)">(복수 선택 가능)</span></legend>
         <div class="wz-options">
           <label><input type="checkbox" name="func" value="metering"> 정량 이송 (일정 유량·연속)</label>
           <label><input type="checkbox" name="func" value="dispensing"> 분주 (정해진 양 반복)</label>
           <label><input type="checkbox" name="func" value="filling"> 충진 (용기·라인 채우기)</label>
-          <label><input type="checkbox" name="func" value="combined"> 복합 (위 기능 2개 이상)</label>
           <label><input type="checkbox" name="func" value="pc_prog"> PC 프로그램 제어 (자체 SW로 시퀀스 제어)</label>
         </div>
       </fieldset>
 
       <!-- Q4: 제어 방식 -->
       <fieldset class="wz-q" data-step="4">
-        <legend><span class="num">4</span>어떤 방식으로 제어하실 건가요?</legend>
+        <legend><span class="num">4</span>어떤 방식으로 제어하실 건가요? <span style="font-size:12px;font-weight:400;color:var(--muted)">(복수 선택 가능)</span></legend>
         <div class="wz-options">
-          <label><input type="checkbox" name="ctrl" value="dial"> 다이얼 (단순 속도 조정만)</label>
-          <label><input type="checkbox" name="ctrl" value="digital"> 디지털 표시 + 키패드 (PC 연동 없음)</label>
+          <label><input type="checkbox" name="ctrl" value="local"> 로컬 제어 (다이얼·키패드·버튼, PC 연동 없음)</label>
           <label><input type="checkbox" name="ctrl" value="comm"> PC·PLC 통신 연동 (RS485/RS232)</label>
           <label><input type="checkbox" name="ctrl" value="auto_sw"> 자동제어 시스템 구축 (자체 SW로 펌프 직접 제어)</label>
-          <label><input type="checkbox" name="ctrl" value="unsure"> 협의·미정</label>
         </div>
       </fieldset>
 
@@ -484,11 +485,10 @@ body.iq-locked{overflow:hidden}
       <fieldset class="wz-q" data-step="5">
         <legend><span class="num">5</span>동시에 몇 개의 라인이 필요하신가요?</legend>
         <div class="wz-options">
-          <label><input type="checkbox" name="channels" value="1"> 1채널 (단일 라인)</label>
-          <label><input type="checkbox" name="channels" value="2"> 2채널</label>
-          <label><input type="checkbox" name="channels" value="4"> 4채널</label>
-          <label><input type="checkbox" name="channels" value="multi"> 다채널 (8/12/16/24)</label>
-          <label><input type="checkbox" name="channels" value="unsure"> 협의·미정</label>
+          <label><input type="radio" name="channels" value="1"> 1채널 (단일 라인)</label>
+          <label><input type="radio" name="channels" value="2"> 2채널</label>
+          <label><input type="radio" name="channels" value="4"> 4채널</label>
+          <label><input type="radio" name="channels" value="multi"> 다채널 (8/12/16/24)</label>
         </div>
       </fieldset>
 
@@ -1037,6 +1037,12 @@ window.addEventListener('message', e=>{
     // Q1 (radio, situation) 선택 시 자동 다음 단계
     if (e.target.matches('input[type=radio][name="situation"]')){
       setTimeout(()=> showStep(2), 220);
+      return;
+    }
+    // Q5 (radio, channels) 선택 시 추천받기 버튼 노출
+    if (e.target.matches('input[type=radio][name="channels"]')){
+      $run.style.display = '';
+      document.getElementById('wzHint').textContent = '추천 받기 버튼을 눌러주세요';
       return;
     }
     // Q2~Q5 (checkbox) — [다음] 버튼 노출
