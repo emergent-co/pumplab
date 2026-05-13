@@ -1095,7 +1095,7 @@ window.addEventListener('message', e=>{
   function validateCurrentStep(){
     const activeFs = document.querySelector('.wz-q.active');
     if (!activeFs) return false;
-    // Q2 교체 분기: 현재 펌프 모델명 필수
+    // Q2 교체 분기: 모델명 / 교체이유 / 튜브 치수 / 튜브 재질 모두 필수
     if (currentStep === 2 && getVal('situation') === 'replace'){
       const cm = $form.querySelector('input[name="current_model"]');
       if (!cm || !cm.value.trim()){
@@ -1103,12 +1103,40 @@ window.addEventListener('message', e=>{
         if (cm) cm.focus();
         return false;
       }
+      if (getVals('reason').length === 0){
+        alert('교체·업그레이드 이유를 1개 이상 선택해주세요.');
+        return false;
+      }
+      const tid = $form.querySelector('input[name="tube_id"]');
+      const tod = $form.querySelector('input[name="tube_od"]');
+      const tubeUnknown = $form.querySelector('input[name="tube_size_unknown"]:checked');
+      const hasTubeSize = (tid && tid.value.trim()) || (tod && tod.value.trim()) || tubeUnknown;
+      if (!hasTubeSize){
+        alert('튜브 치수(내경 또는 외경)를 입력하거나 "튜브 치수 모름"을 체크해주세요.');
+        return false;
+      }
+      if (getVals('tube_mat').length === 0){
+        alert('튜브 재질을 1개 이상 선택하거나 "재질 모름"을 체크해주세요.');
+        return false;
+      }
+      return true;
     }
+    // Q2 신규 분기: 유체 + 유량 모두 필수
+    if (currentStep === 2 && getVal('situation') === 'new'){
+      if (getVals('fluid').length === 0){
+        alert('이송 유체를 1개 이상 선택해주세요.');
+        return false;
+      }
+      if (getVals('flow').length === 0){
+        alert('필요 유량 범위를 1개 이상 선택해주세요.');
+        return false;
+      }
+      return true;
+    }
+    // 그 외 단계: 하나 이상 선택 필수
     const hasCheck = activeFs.querySelectorAll('input[type=checkbox]:checked, input[type=radio]:checked').length > 0;
-    const textInputs = Array.from(activeFs.querySelectorAll('input[type=text]'));
-    const hasText = textInputs.some(i => i.value.trim().length > 0);
-    if (!hasCheck && !hasText){
-      alert('하나 이상 선택 또는 입력해주세요.');
+    if (!hasCheck){
+      alert('하나 이상 선택해주세요.');
       return false;
     }
     return true;
