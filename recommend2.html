@@ -397,9 +397,9 @@ body.iq-locked{overflow:hidden}
       <!-- Q2-A: 교체 분기 (situation=replace일 때만) -->
       <fieldset class="wz-q" data-step="2" data-branch="replace">
         <legend><span class="num">2</span>현재 쓰고 계신 펌프 정보</legend>
-        <div class="wz-options">
+        <div class="wz-options" style="display:block">
           <div style="margin-bottom:12px">
-            <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px;font-weight:600">현재 펌프 모델명</div>
+            <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px;font-weight:600">현재 펌프 모델명 <span style="color:#b94545">*</span></div>
             <input type="text" name="current_model" placeholder="예: EYELA MP-2000, Watson-Marlow 313, Cole-Parmer Masterflex L/S" style="width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px">
           </div>
           <div style="margin:14px 0 8px;font-size:12.5px;color:var(--muted);font-weight:600">교체·업그레이드 이유 <span style="font-weight:400">(복수 선택 가능)</span></div>
@@ -438,7 +438,7 @@ body.iq-locked{overflow:hidden}
       <!-- Q2-B: 신규 도입 분기 (situation=new일 때만) -->
       <fieldset class="wz-q" data-step="2" data-branch="new">
         <legend><span class="num">2</span>이송 유체와 필요 유량</legend>
-        <div class="wz-options">
+        <div class="wz-options" style="display:block">
           <div style="margin-bottom:8px;font-size:12.5px;color:var(--muted)">이송 유체 (복수 선택)</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;margin-bottom:14px">
             <label><input type="checkbox" name="fluid" value="aqueous"> 물·수용액·일반 시약</label>
@@ -982,6 +982,20 @@ window.addEventListener('message', e=>{
       q.classList.toggle('active', active);
     });
     currentStep = n;
+    // 버그 fix: 이 단계에 이미 입력/선택이 있으면 [다음] 또는 [추천] 버튼 노출
+    setTimeout(() => {
+      const activeFieldset = document.querySelector('.wz-q.active');
+      if (!activeFieldset) return;
+      const hasCheck = activeFieldset.querySelectorAll('input[type=checkbox]:checked, input[type=radio]:checked').length > 0;
+      const textInputs = Array.from(activeFieldset.querySelectorAll('input[type=text]'));
+      const hasText = textInputs.some(i => i.value.trim().length > 0);
+      const nextBtn = document.getElementById('wzNext');
+      if (n < TOTAL && (hasCheck || hasText)){
+        if (nextBtn) nextBtn.style.display = '';
+      } else if (n === TOTAL && hasCheck){
+        $run.style.display = '';
+      }
+    }, 50);
     document.getElementById('wzProgressFill').style.width = (n/TOTAL*100)+'%';
     document.getElementById('wzProgressText').textContent = `${n} / ${TOTAL}`;
     document.getElementById('wzPrev').style.display  = n>1 ? '' : 'none';
