@@ -1372,11 +1372,12 @@ window.addEventListener('message', e=>{
   });
 
   $run.addEventListener('click', () => {
-    const work = getVal('work'), fluid = getVal('fluid'), flow = getVal('flow'),
-          ctrl = getVal('ctrl'), freq = getVal('freq');
+    const situation = getVal('situation');
+    const work = null, fluid = getVal('fluid'), flow = getVal('flow'),
+          func = getVal('func'), ctrl = getVal('ctrl'), freq = null;
     const cmEl = $form.querySelector('input[name="current_model"]');
     const currentModel = cmEl ? cmEl.value.trim() : '';
-    if (!work || !fluid || !flow || !ctrl || !freq){
+    if (!getVal('situation') || !getVal('func') || !getVal('ctrl') || !getVal('channels')){
       $res.classList.remove('show');
       $res.innerHTML = '<div class="res-label">알림</div><div class="res-cat" style="font-size:16px">필수 항목을 모두 답변해주세요</div>';
       requestAnimationFrame(() => $res.classList.add('show'));
@@ -1425,7 +1426,7 @@ window.addEventListener('message', e=>{
 
     window.__wizSummary = wizSummary;
     if (typeof gtag === 'function') {
-      gtag('event','wizard_recommend',{work, fluid, flow, ctrl, freq, recommended: r.cat});
+      gtag('event','wizard_recommend_v2',{situation: getVal('situation'), func: getVal('func'), recommended: r.cat});
     }
 
     // 추천 결과 FAQ 자동 펼침 + inner 자세히 보기까지
