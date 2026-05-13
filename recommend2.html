@@ -22,6 +22,26 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-CN3E3PVQVD');
+function onInquiryClick(){
+  let summary = window.__wizLast ? window.__wizLast.wizSummary : '';
+  // 추가 정보 토글 항목 수집
+  function val(n){ const e=document.querySelector('[name="'+n+'"]'); return e?e.value.trim():''; }
+  function radioVal(n){ const e=document.querySelector('[name="'+n+'"]:checked'); return e?e.value:''; }
+  const bp = val('back_pressure');
+  const ip = radioVal('ip_grade');
+  const med = val('medium_note');
+  const req = val('extra_req');
+  const note = document.getElementById('wzExtraNote');
+  const noteVal = note ? note.value.trim() : '';
+  let extras = '';
+  if (bp)  extras += '\n· 토출 배압/라인: ' + bp;
+  if (ip)  extras += '\n· IP 등급: ' + ip;
+  if (med) extras += '\n· 매질 특이사항: ' + med;
+  if (req) extras += '\n· 부가 요구사항: ' + req;
+  if (noteVal) extras += '\n· 기타 요청: ' + noteVal;
+  if (extras) summary += '\n\n[추가 정보]' + extras;
+  openInquiry(window.__wizLast ? window.__wizLast.setupId : 'wizard:general', summary);
+}
 </script>
 
 <style>
@@ -473,6 +493,34 @@ body.iq-locked{overflow:hidden}
       </fieldset>
 
       
+
+      <!-- 추가 정보 토글 (선택) -->
+      <details class="wz-extra" style="margin-top:18px;border-top:1px solid var(--border);padding-top:14px">
+        <summary style="cursor:pointer;font-size:13px;font-weight:700;color:var(--teal);user-select:none">추가 정보 (선택, 클릭해서 펼치기) ▾</summary>
+        <div style="margin-top:14px;display:flex;flex-direction:column;gap:14px">
+          <div>
+            <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px;font-weight:600">토출 배압 / 라인 구성</div>
+            <textarea name="back_pressure" placeholder="펌프~다음 장치까지 거리, 높이, 중간 필터 유무 등" style="width:100%;padding:9px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px;min-height:50px;resize:vertical"></textarea>
+          </div>
+          <div>
+            <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px;font-weight:600">IP 방수 등급 요건</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px">
+              <label><input type="radio" name="ip_grade" value="none"> 불필요</label>
+              <label><input type="radio" name="ip_grade" value="ip54"> IP54</label>
+              <label><input type="radio" name="ip_grade" value="ip66"> IP66</label>
+              <label><input type="radio" name="ip_grade" value="unsure"> 모름·협의</label>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px;font-weight:600">매질 특이사항</div>
+            <textarea name="medium_note" placeholder="점도(cP), 부식성, 온도(℃), 입자 함유 등" style="width:100%;padding:9px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px;min-height:50px;resize:vertical"></textarea>
+          </div>
+          <div>
+            <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px;font-weight:600">부가 요구사항 (캘리브레이션 성적서 / A/S 패키지 / 설치 지원 등)</div>
+            <textarea name="extra_req" placeholder="필요한 부가 사항을 자유롭게 적어주세요" style="width:100%;padding:9px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px;min-height:50px;resize:vertical"></textarea>
+          </div>
+        </div>
+      </details>
 
       <div class="wz-actions">
         <button type="button" class="wz-btn alt" id="wzPrev" style="display:none">← 이전</button>
