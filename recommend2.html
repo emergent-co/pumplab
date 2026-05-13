@@ -105,6 +105,9 @@ a:hover{text-decoration:underline}
 .wz-q legend{display:block;font-size:14.5px;font-weight:700;color:var(--navy);margin-bottom:14px;padding:0;line-height:1.5}
 .wz-q legend .num{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-size:11.5px;font-weight:800;text-align:center;line-height:22px;margin-right:8px}
 .wz-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wz-options.single{display:block}
+.wz-options.single > *{width:100%;margin-bottom:12px}
+.wz-options.single > *:last-child{margin-bottom:0}
 .wz-options label{display:flex;align-items:center;gap:9px;padding:10px 14px;background:#fff;border:1px solid var(--border);border-radius:8px;font-size:13px;cursor:pointer;transition:all .15s;color:var(--text)}
 .wz-options label:hover{border-color:var(--teal);background:#fafdfc}
 .wz-options input{accent-color:var(--teal);flex-shrink:0}
@@ -397,7 +400,7 @@ body.iq-locked{overflow:hidden}
       <!-- Q2-A: 교체 분기 (situation=replace일 때만) -->
       <fieldset class="wz-q" data-step="2" data-branch="replace">
         <legend><span class="num">2</span>현재 쓰고 계신 펌프 정보</legend>
-        <div class="wz-options" style="display:block">
+        <div class="wz-options single">
           <div style="margin-bottom:12px">
             <div style="font-size:12.5px;color:var(--muted);margin-bottom:6px;font-weight:600">현재 펌프 모델명 <span style="color:#b94545">*</span></div>
             <input type="text" name="current_model" placeholder="예: EYELA MP-2000, Watson-Marlow 313, Cole-Parmer Masterflex L/S" style="width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:13px">
@@ -438,7 +441,7 @@ body.iq-locked{overflow:hidden}
       <!-- Q2-B: 신규 도입 분기 (situation=new일 때만) -->
       <fieldset class="wz-q" data-step="2" data-branch="new">
         <legend><span class="num">2</span>이송 유체와 필요 유량</legend>
-        <div class="wz-options" style="display:block">
+        <div class="wz-options single">
           <div style="margin-bottom:8px;font-size:12.5px;color:var(--muted)">이송 유체 (복수 선택)</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;margin-bottom:14px">
             <label><input type="checkbox" name="fluid" value="aqueous"> 물·수용액·일반 시약</label>
@@ -977,34 +980,40 @@ window.addEventListener('message', e=>{
       const stepMatch = parseInt(q.dataset.step) === n;
       const branch = q.dataset.branch;
       let active = stepMatch;
-      // Q2 분기 처리: data-branch가 있으면 situation과 일치해야 active
       if (stepMatch && branch && branch !== situation) active = false;
       q.classList.toggle('active', active);
     });
     currentStep = n;
-    // 버그 fix: 이 단계에 이미 입력/선택이 있으면 [다음] 또는 [추천] 버튼 노출
-    setTimeout(() => {
-      const activeFieldset = document.querySelector('.wz-q.active');
-      if (!activeFieldset) return;
-      const hasCheck = activeFieldset.querySelectorAll('input[type=checkbox]:checked, input[type=radio]:checked').length > 0;
-      const textInputs = Array.from(activeFieldset.querySelectorAll('input[type=text]'));
-      const hasText = textInputs.some(i => i.value.trim().length > 0);
-      const nextBtn = document.getElementById('wzNext');
-      if (n < TOTAL && (hasCheck || hasText)){
-        if (nextBtn) nextBtn.style.display = '';
-      } else if (n === TOTAL && hasCheck){
-        $run.style.display = '';
-      }
-    }, 50);
     document.getElementById('wzProgressFill').style.width = (n/TOTAL*100)+'%';
     document.getElementById('wzProgressText').textContent = `${n} / ${TOTAL}`;
     document.getElementById('wzPrev').style.display  = n>1 ? '' : 'none';
     document.getElementById('wzReset').style.display = n>1 ? '' : 'none';
-    document.getElementById('wzRun').style.display   = n===TOTAL ? '' : 'none';
-    document.getElementById('wzHint').textContent = n===TOTAL
-      ? '마지막 질문입니다. 답변 후 추천 받기를 누르세요'
-      : '옵션을 선택하면 다음 질문으로 자동 이동합니다';
+    document.getElementById('wzRun').style.display   = 'none';
+    const nextBtn = document.getElementById('wzNext');
+    if (nextBtn) nextBtn.style.display = 'none';
     document.getElementById('wzResult').classList.remove('show');
+    // 버그 fix: 이미 입력된 항목 있으면 [다음] 또는 [추천] 버튼 자동 노출 (1→2→1→2 재방문)
+    requestAnimationFrame(() => {
+      const activeFs = document.querySelector('.wz-q.active');
+      if (!activeFs){
+        document.getElementById('wzHint').textContent = '옵션을 선택해주세요';
+        return;
+      }
+      const hasCheck = activeFs.querySelectorAll('input[type=checkbox]:checked, input[type=radio]:checked').length > 0;
+      const textInputs = Array.from(activeFs.querySelectorAll('input[type=text]'));
+      const hasText = textInputs.some(i => i.value.trim().length > 0);
+      if (n < TOTAL && (hasCheck || hasText)){
+        if (nextBtn) nextBtn.style.display = '';
+        document.getElementById('wzHint').textContent = '[다음] 버튼을 눌러주세요';
+      } else if (n === TOTAL && hasCheck){
+        document.getElementById('wzRun').style.display = '';
+        document.getElementById('wzHint').textContent = '[추천 받기] 버튼을 눌러주세요';
+      } else {
+        document.getElementById('wzHint').textContent = n===TOTAL
+          ? '마지막 질문입니다. 답변 후 추천 받기를 누르세요'
+          : '항목을 선택하세요';
+      }
+    });
   }
 
   function recommend(situation, fluid, flow, func, ctrl, channels){
