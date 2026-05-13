@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>정량펌프, 어떤 걸 골라야 하나요? — Cellab</title>
 <link rel="canonical" href="https://cellab.kr/recommend.html">
-<meta name="description" content="셀렙이 현장에서 자주 받는 정량펌프 선택 질문을 30초 위저드 + 펼침형 가이드로 정리했습니다. 작업·액체·강도 3가지만 답하면 적합한 제품군을 안내드립니다.">
+<meta name="description" content="셀렙이 현장에서 자주 받는 정량펌프 선택 질문을 30초 위저드 + 펼침형 가이드로 정리했습니다. 복수 선택 가능한 위저드로 30초 안에 적합한 제품군을 안내드립니다.">
 <meta name="keywords" content="정량펌프 선택, 정량펌프 추천, 페리스탈틱 펌프, 시린지펌프, 기어펌프, OEM 펌프, 분주펌프, Lead Fluid, Cellab">
 <meta name="google-site-verification" content="Rmsvu2bCzPOi66nb9epKw-gbrb07Hyem6hM5uNu71ss" />
 <meta name="naver-site-verification" content="82636349d93e7dcacc819bd0780336585cf7fe2f" />
@@ -356,8 +356,8 @@ body.iq-locked{overflow:hidden}
   <div class="wizard-card">
     <div class="wz-head">
       <span class="wz-mark">30초 추천</span>
-      <h2>3가지만 답해주세요</h2>
-      <p>응답에 따라 적합한 제품군을 안내합니다. 정확한 모델 비교는 추천 결과의 링크에서 이어집니다.</p>
+      <h2>30초 안에 추천해드립니다</h2>
+      <p>해당하는 항목을 모두 선택해주세요 (복수 선택 가능). 정확한 모델 비교는 추천 결과의 링크에서 이어집니다.</p>
     </div>
 
     <form class="wz-form" id="wzForm">
@@ -369,55 +369,55 @@ body.iq-locked{overflow:hidden}
       <fieldset class="wz-q active" data-step="1">
         <legend><span class="num">1</span>어떤 작업이 필요하신가요?</legend>
         <div class="wz-options">
-          <label><input type="radio" name="work" value="continuous"> 연속으로 흘려보내기</label>
-          <label><input type="radio" name="work" value="dispense"> 정해진 양 반복 분주</label>
-          <label><input type="radio" name="work" value="micro"> μL 단위 미량 주입</label>
-          <label><input type="radio" name="work" value="large"> 대용량 (L/min 이상)</label>
-          <label><input type="radio" name="work" value="oem"> 장비 내장(OEM)</label>
+          <label><input type="checkbox" name="work" value="continuous"> 연속으로 흘려보내기</label>
+          <label><input type="checkbox" name="work" value="dispense"> 정해진 양 반복 분주</label>
+          <label><input type="checkbox" name="work" value="micro"> μL 단위 미량 주입</label>
+          <label><input type="checkbox" name="work" value="large"> 대용량 (L/min 이상)</label>
+          <label><input type="checkbox" name="work" value="oem"> 장비 내장(OEM)</label>
         </div>
       </fieldset>
 
       <fieldset class="wz-q" data-step="2">
         <legend><span class="num">2</span>다루는 액체에 가까운 건?</legend>
         <div class="wz-options">
-          <label><input type="radio" name="fluid" value="aqueous"> 수용액·배지·일반 시약</label>
-          <label><input type="radio" name="fluid" value="medical"> 의료·멸균 등급(혈액·세포·약액)</label>
-          <label><input type="radio" name="fluid" value="viscous"> 점성·기름·코팅·수지</label>
-          <label><input type="radio" name="fluid" value="flammable"> 인화성·휘발성·부식성</label>
+          <label><input type="checkbox" name="fluid" value="aqueous"> 수용액·배지·일반 시약</label>
+          <label><input type="checkbox" name="fluid" value="medical"> 의료·멸균 등급(혈액·세포·약액)</label>
+          <label><input type="checkbox" name="fluid" value="viscous"> 점성·기름·코팅·수지</label>
+          <label><input type="checkbox" name="fluid" value="flammable"> 인화성·휘발성·부식성</label>
         </div>
       </fieldset>
 
       <fieldset class="wz-q" data-step="3">
         <legend><span class="num">3</span>필요한 최대 유량은?</legend>
         <div class="wz-options">
-          <label><input type="radio" name="flow" value="micro"> 마이크로 (1 mL/min 미만, μL 단위)</label>
-          <label><input type="radio" name="flow" value="low"> 저유량 (1 ~ 100 mL/min)</label>
-          <label><input type="radio" name="flow" value="mid"> 중유량 (100 ~ 1000 mL/min)</label>
-          <label><input type="radio" name="flow" value="high"> 고유량 (1 ~ 10 L/min)</label>
-          <label><input type="radio" name="flow" value="xhigh"> 초대용량 (10 L/min 이상)</label>
-          <label><input type="radio" name="flow" value="unsure"> 모르겠음 / 미정</label>
+          <label><input type="checkbox" name="flow" value="micro"> 마이크로 (1 mL/min 미만, μL 단위)</label>
+          <label><input type="checkbox" name="flow" value="low"> 저유량 (1 ~ 100 mL/min)</label>
+          <label><input type="checkbox" name="flow" value="mid"> 중유량 (100 ~ 1000 mL/min)</label>
+          <label><input type="checkbox" name="flow" value="high"> 고유량 (1 ~ 10 L/min)</label>
+          <label><input type="checkbox" name="flow" value="xhigh"> 초대용량 (10 L/min 이상)</label>
+          <label><input type="checkbox" name="flow" value="unsure"> 모르겠음 / 미정</label>
         </div>
       </fieldset>
 
       <fieldset class="wz-q" data-step="4">
         <legend><span class="num">4</span>PC/외부 제어 또는 통신이 필요한가요?</legend>
         <div class="wz-options">
-          <label><input type="radio" name="ctrl" value="none"> 필요 없음 (수동 패널만 OK)</label>
-          <label><input type="radio" name="ctrl" value="analog"> 아날로그 (0-10V / 4-20mA)</label>
-          <label><input type="radio" name="ctrl" value="rs485"> RS485 / MODBUS</label>
-          <label><input type="radio" name="ctrl" value="usb"> USB / PC 소프트웨어</label>
-          <label><input type="radio" name="ctrl" value="wifi"> WiFi 무선</label>
-          <label><input type="radio" name="ctrl" value="full"> 전부 필요</label>
+          <label><input type="checkbox" name="ctrl" value="none"> 필요 없음 (수동 패널만 OK)</label>
+          <label><input type="checkbox" name="ctrl" value="analog"> 아날로그 (0-10V / 4-20mA)</label>
+          <label><input type="checkbox" name="ctrl" value="rs485"> RS485 / MODBUS</label>
+          <label><input type="checkbox" name="ctrl" value="usb"> USB / PC 소프트웨어</label>
+          <label><input type="checkbox" name="ctrl" value="wifi"> WiFi 무선</label>
+          <label><input type="checkbox" name="ctrl" value="full"> 전부 필요</label>
         </div>
       </fieldset>
 
       <fieldset class="wz-q" data-step="5">
         <legend><span class="num">5</span>사용 빈도는 어느 정도인가요?</legend>
         <div class="wz-options">
-          <label><input type="radio" name="freq" value="occasional"> 실험할 때만 가끔</label>
-          <label><input type="radio" name="freq" value="daily"> 매일 몇 시간</label>
-          <label><input type="radio" name="freq" value="continuous"> 24시간 연속·장시간</label>
-          <label><input type="radio" name="freq" value="multi"> 여러 라인 동시 운전</label>
+          <label><input type="checkbox" name="freq" value="occasional"> 실험할 때만 가끔</label>
+          <label><input type="checkbox" name="freq" value="daily"> 매일 몇 시간</label>
+          <label><input type="checkbox" name="freq" value="continuous"> 24시간 연속·장시간</label>
+          <label><input type="checkbox" name="freq" value="multi"> 여러 라인 동시 운전</label>
         </div>
       </fieldset>
 
@@ -433,6 +433,7 @@ body.iq-locked{overflow:hidden}
 
       <div class="wz-actions">
         <button type="button" class="wz-btn alt" id="wzPrev" style="display:none">← 이전</button>
+        <button type="button" class="wz-btn" id="wzNext" style="display:none">다음 →</button>
         <button type="button" class="wz-btn" id="wzRun" style="display:none">추천 받기 →</button>
         <button type="button" class="wz-btn alt" id="wzReset" style="display:none">처음부터</button>
         <span class="wz-hint" id="wzHint">옵션을 선택하면 다음 질문으로 자동 이동합니다</span>
@@ -925,22 +926,39 @@ window.addEventListener('message', e=>{
   const $prev  = document.getElementById('wzPrev');
 
   function getVal(name){
+    // checkbox 모드: 선택된 값 중 첫 번째 반환 (recommend 함수 호환)
     const el = $form.querySelector(`input[name="${name}"]:checked`);
     return el ? el.value : null;
   }
+  function getVals(name){
+    // 복수 선택값 배열로 반환
+    return Array.from($form.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
+  }
 
-  // 옵션 선택 시 자동 다음 단계
+  // 옵션 선택 시 — checkbox 모드: 자동 진행 X, "다음" 버튼 노출
   $form.addEventListener('change', e => {
-    if (e.target.matches('input[type=radio]')){
+    if (e.target.matches('input[type=checkbox]')){
       const stepEl = e.target.closest('.wz-q');
       const step   = parseInt(stepEl.dataset.step);
-      if (step < TOTAL){
-        setTimeout(()=> showStep(step + 1), 220);
-      } else {
-        // 마지막 단계 — 추천 받기 버튼 노출
-        $run.style.display = '';
-        document.getElementById('wzHint').textContent = '추천 받기 버튼을 눌러주세요';
+      const hasAny = stepEl.querySelectorAll('input[type=checkbox]:checked').length > 0;
+      if (hasAny){
+        if (step < TOTAL){
+          document.getElementById('wzNext').style.display = '';
+          document.getElementById('wzHint').textContent = '선택 후 [다음] 버튼을 눌러주세요 (복수 선택 가능)';
+        } else {
+          $run.style.display = '';
+          document.getElementById('wzHint').textContent = '추천 받기 버튼을 눌러주세요';
+        }
       }
+    }
+  });
+  
+  // 다음 버튼
+  const $next = document.getElementById('wzNext');
+  if ($next) $next.addEventListener('click', () => {
+    if (currentStep < TOTAL){
+      showStep(currentStep + 1);
+      $next.style.display = 'none';
     }
   });
 
@@ -960,7 +978,12 @@ window.addEventListener('message', e=>{
       return;
     }
     const r = recommend(work, fluid, flow, ctrl, freq);
-    const wizSummary = '[펌프 추천 위저드 응답]\n· 작업: ' + work + '\n· 액체: ' + fluid + '\n· 유량: ' + flow + '\n· 제어/통신: ' + ctrl + '\n· 빈도: ' + freq + (currentModel ? '\n· 현재 모델: ' + currentModel : '') + '\n\n추천: ' + r.cat + '\n사유: ' + r.why;
+    const workAll = getVals('work').join(', ') || work;
+    const fluidAll = getVals('fluid').join(', ') || fluid;
+    const flowAll = getVals('flow').join(', ') || flow;
+    const ctrlAll = getVals('ctrl').join(', ') || ctrl;
+    const freqAll = getVals('freq').join(', ') || freq;
+    const wizSummary = '[펌프 추천 위저드 응답]\n· 작업: ' + workAll + '\n· 액체: ' + fluidAll + '\n· 유량: ' + flowAll + '\n· 제어/통신: ' + ctrlAll + '\n· 빈도: ' + freqAll + (currentModel ? '\n· 현재 모델: ' + currentModel : '') + '\n\n추천: ' + r.cat + '\n사유: ' + r.why;
     $res.innerHTML = `
       <div class="res-label">추천 제품군</div>
       <div class="res-cat">${r.cat}</div>
