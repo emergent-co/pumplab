@@ -751,7 +751,7 @@ body.iq-locked{overflow:hidden}
       <div class="wz-actions">
         <button type="button" class="wz-btn alt" id="wzPrev" style="display:none">← 이전</button>
         <button type="button" class="wz-btn" id="wzNext" style="display:none">다음 →</button>
-        <button type="button" class="wz-btn" id="wzRun" style="display:none">추천 받기 →</button>
+        <button type="button" class="wz-btn" id="wzRun" style="display:none">이 조건으로 문의하기 →</button>
         <button type="button" class="wz-btn alt" id="wzReset" style="display:none">처음부터</button>
         <span class="wz-hint" id="wzHint">옵션을 선택하면 다음 질문으로 자동 이동합니다</span>
       </div>
@@ -1230,35 +1230,47 @@ window.addEventListener('message', e=>{
         document.getElementById('wzHint').textContent = '[다음] 버튼을 눌러주세요';
       } else if (n === TOTAL && hasCheck){
         document.getElementById('wzRun').style.display = '';
-        document.getElementById('wzHint').textContent = '[추천 받기] 버튼을 눌러주세요';
+        document.getElementById('wzHint').textContent = '[이 조건으로 문의하기] 버튼을 눌러주세요';
       } else {
         document.getElementById('wzHint').textContent = n===TOTAL
-          ? '마지막 질문입니다. 답변 후 추천 받기를 누르세요'
+          ? '마지막 질문입니다. 답변 후 문의하기를 누르세요'
           : '항목을 선택하세요';
       }
     });
   }
 
   function recommend(situation, fluid, flow, func, ctrl, channels){
-    // 우선순위: 작업 특수성 > 액체 특수성 > 빈도
-    if (work === 'micro')
+    // 배열 정규화 (호출부에서 단일 값/배열 모두 허용)
+    const F  = Array.isArray(fluid)? fluid : (fluid? [fluid] : []);
+    const FL = Array.isArray(flow) ? flow  : (flow ? [flow]  : []);
+    const FN = Array.isArray(func) ? func  : (func ? [func]  : []);
+    const C  = Array.isArray(ctrl) ? ctrl  : (ctrl ? [ctrl]  : []);
+    const ch = channels || '';
+
+    // 우선순위: 위험성 > 유체 특수성 > 유량 > 채널 > 기능 > 제어 > 기본
+    if (F.includes('organic'))
+      return {cat:'방폭 정량펌프', why:'유기용매·휘발성 액체는 일반 펌프 사용이 어렵습니다. 방폭 인증(EX) 라인을 우선 검토합니다.'};
+    if (F.includes('acid') && (C.includes('auto_sw') || FN.includes('pc_prog')))
+      return {cat:'산·알칼리 대응 정량펌프 (HighProt)', why:'부식성 매질 + 자동 제어 환경은 IP66급 본체와 화학 내성 튜브(Viton/PTFE)가 함께 필요합니다.'};
+    if (F.includes('viscous'))
+      return {cat:'기어펌프', why:'점성·기름 매질은 페리스탈틱보다 기어펌프의 토출 안정성이 좋습니다.'};
+    if (FL.includes('micro') && !FL.includes('mid') && !FL.includes('high') && !FL.includes('xhigh'))
       return {cat:'시린지펌프', why:'μL 단위 미량 주입은 시린지 직접 구동 방식이 가장 정확합니다. 분석기 시료 주입·미세 약물 반응 등에 적합합니다.'};
-    if (work === 'oem')
-      return {cat:'OEM 정량펌프', why:'장비 내부에 들어가는 모듈은 사양 외에 장착 공간·전원·통신 인터페이스를 함께 검토합니다.'};
-    if (work === 'large' || (freq === 'continuous' && fluid === 'aqueous' && work === 'continuous'))
-      return {cat:'대용량 정량펌프', why:'L/min급 처리량과 장시간 운전을 위해 헤드·튜브 내구성을 우선합니다.'};
-    if (fluid === 'flammable')
-      return {cat:'방폭 정량펌프', why:'인화·휘발성 액체와 방폭 구역은 일반 펌프 사용이 어렵습니다. 인증 등급 라인으로 검토합니다.'};
-    if (fluid === 'viscous')
-      return {cat:'기어펌프', why:'점성이 있거나 자연압·배관 압력이 큰 조건에서는 페리스탈틱보다 토출 안정성이 좋습니다.'};
-    if (work === 'dispense'){
-      if (freq === 'multi') return {cat:'다중채널 디스펜스', why:'여러 라인 동시 분주가 필요한 경우. 채널별 독립 유량 제어가 필요하면 별도 확인이 필요합니다.'};
-      if (freq === 'continuous') return {cat:'자동분주기', why:'반복 분주를 장시간·자동으로 운영해야 할 때 작업자 피로와 편차를 줄일 수 있습니다.'};
-      return {cat:'디스펜스 정량펌프', why:'1회 분주량과 반복 횟수가 정해진 작업에 적합합니다.'};
+    if (FL.includes('xhigh') || FL.includes('high'))
+      return {cat:'대용량 정량펌프', why:'L/min급 처리량과 장시간 운전을 위해 헤드·튜브 내구성을 우선합니다 (WT/JP 시리즈).'};
+    if (ch === 'multi' || ch === '4'){
+      if (FN.includes('dispensing'))
+        return {cat:'다중채널 분주펌프', why:'여러 라인 동시 분주에 적합합니다. 채널별 독립 유량 제어는 별도 협의 필요.'};
+      return {cat:'다중채널 정량펌프', why:'여러 라인을 같은 조건으로 동시 운전 — DMD/MC 시리즈를 검토합니다.'};
     }
-    // 기본 = 연속 이송
-    if (freq === 'multi') return {cat:'다중채널 디스펜스', why:'여러 라인을 같은 조건으로 동시에 운전할 때 적합합니다.'};
-    if (freq === 'continuous') return {cat:'유량조절 정량펌프', why:'장시간 운전·표준화된 유량 관리가 중요한 라인은 RPM보다 유량 기준 운전이 유리합니다.'};
+    if (FN.includes('pc_prog') || C.includes('auto_sw'))
+      return {cat:'PC 프로그램 제어 정량펌프', why:'자체 SW로 시퀀스를 짜고 펌프를 직접 제어할 때 — RS485/RS232 통신 + SDK 지원 모델 검토.'};
+    if (FN.includes('dispensing') || FN.includes('filling'))
+      return {cat:'분주·디스펜스 정량펌프', why:'정해진 양을 반복 분주하거나 용기·라인을 채울 때 — 분주 모드 내장 모델이 작업 효율을 높입니다.'};
+    if (C.includes('comm'))
+      return {cat:'통신 가능 정량펌프', why:'RS485/RS232 연동으로 PC·PLC에서 펌프 제어 — 일반 스피드형보다 통신 패키지 모델이 유리합니다.'};
+    if (FN.includes('metering'))
+      return {cat:'유량조절 정량펌프', why:'장시간 운전·표준화된 유량 관리가 중요한 라인은 RPM보다 유량 기준 운전이 유리합니다.'};
     return {cat:'스피드 정량펌프', why:'일반 수용액·시약을 가끔~매일 흘려보내는 범용 작업에 가장 무난한 기본형입니다.'};
   }
 
@@ -1286,8 +1298,9 @@ window.addEventListener('message', e=>{
       return;
     }
     if (e.target.matches('input[type=radio][name="channels"]')){
-      // 마지막 단계 — 자동으로 추천받기 실행
-      setTimeout(() => $run.click(), 280);
+      // 자동 진행 OFF — 사용자가 직접 [이 조건으로 문의하기] 버튼을 눌러야 모달 오픈
+      $run.style.display = '';
+      document.getElementById('wzHint').textContent = '[이 조건으로 문의하기] 버튼을 눌러주세요';
       return;
     }
     // Q2~Q5 (checkbox) — [다음] 버튼 노출
@@ -1302,7 +1315,7 @@ window.addEventListener('message', e=>{
           document.getElementById('wzHint').textContent = '선택 후 [다음] 버튼을 눌러주세요 (복수 선택 가능)';
         } else {
           $run.style.display = '';
-          document.getElementById('wzHint').textContent = '추천 받기 버튼을 눌러주세요';
+          document.getElementById('wzHint').textContent = '이 조건으로 문의하기 버튼을 눌러주세요';
         }
       }
     }
@@ -1373,8 +1386,11 @@ window.addEventListener('message', e=>{
 
   $run.addEventListener('click', () => {
     const situation = getVal('situation');
-    const work = null, fluid = getVal('fluid'), flow = getVal('flow'),
-          func = getVal('func'), ctrl = getVal('ctrl'), freq = null;
+    const fluidArr = getVals('fluid');
+    const flowArr  = getVals('flow');
+    const funcArr  = getVals('func');
+    const ctrlArr  = getVals('ctrl');
+    const channelsVal = getVal('channels');
     const cmEl = $form.querySelector('input[name="current_model"]');
     const currentModel = cmEl ? cmEl.value.trim() : '';
     if (!getVal('situation') || !getVal('func') || !getVal('ctrl') || !getVal('channels')){
@@ -1383,7 +1399,7 @@ window.addEventListener('message', e=>{
       requestAnimationFrame(() => $res.classList.add('show'));
       return;
     }
-    const r = recommend(situation, fluid, flow, func, ctrl, getVal('channels'));
+    const r = recommend(situation, fluidArr, flowArr, funcArr, ctrlArr, channelsVal);
     // admin 매칭 펌프 fetch + 렌더링
     // 추가 정보 토글 수집
     function _v(n){ const e=$form.querySelector('[name="'+n+'"]'); return e?e.value.trim():''; }
@@ -1399,10 +1415,10 @@ window.addEventListener('message', e=>{
       func: getVals('func'), ctrl: getVals('ctrl'), channels: getVal('channels'),
       extras
     });
-    const fluidAll = getVals('fluid').join(', ') || fluid || '';
-    const flowAll = getVals('flow').join(', ') || flow || '';
-    const ctrlAll = getVals('ctrl').join(', ') || ctrl || '';
-    const channelsAll = getVals('channels').join(', ') || '';
+    const fluidAll = fluidArr.join(', ');
+    const flowAll  = flowArr.join(', ');
+    const ctrlAll  = ctrlArr.join(', ');
+    const channelsAll = channelsVal || '';
     const tubeMatAll = getVals('tube_mat').join(', ') || '';
     const tubeIdEl = $form.querySelector('input[name="tube_id"]');
     const tubeOdEl = $form.querySelector('input[name="tube_od"]');
@@ -1413,6 +1429,23 @@ window.addEventListener('message', e=>{
       tubeStr = '내경 ' + (tubeId || '?') + 'mm × 외경 ' + (tubeOd || '?') + 'mm';
     }
     const wizSummary = '[펌프 추천 위저드 응답 v2]\n· 상황: ' + (situation==='replace'?'기존 펌프 교체':'신규 도입') + (fluidAll ? '\n· 이송 유체: ' + fluidAll : '') + (flowAll ? '\n· 필요 유량: ' + flowAll : '') + '\n· 기능: ' + (getVals('func').join(', ')||func) + '\n· 제어: ' + ctrlAll + (getVals('reason').length ? '\n· 교체 이유: ' + getVals('reason').join(', ') : '') + (channelsAll ? '\n· 채널 수: ' + channelsAll : '') + (tubeMatAll ? '\n· 튜브 재질: ' + tubeMatAll : '') + (tubeStr ? '\n· 튜브 치수: ' + tubeStr : '') + (currentModel ? '\n· 현재 모델: ' + currentModel : '') + '\n\n추천: ' + r.cat + '\n사유: ' + r.why;
+    // === wizSummary / __wizLast 먼저 세팅 (분기 무관 사용) ===
+    window.__wizSummary = wizSummary;
+    window.__wizLast = {
+      wizSummary,
+      setupId: `wizard:${situation}_${(funcArr[0]||'na')}_${(ctrlArr[0]||'na')}_${channelsVal||'na'}`
+    };
+
+    // ★ 추천 결과 표시 잠정중단 — 바로 문의 모달 오픈
+    //   복원하려면 아래 SHOW_RESULT 를 true 로 변경
+    const SHOW_RESULT = false;
+    if (!SHOW_RESULT){
+      if (typeof gtag === 'function') gtag('event','inquiry_open_from_wizard',{situation: getVal('situation')});
+      openInquiry(window.__wizLast.setupId, wizSummary);
+      return;
+    }
+
+    // === 이하 SHOW_RESULT=true 일 때만 실행 (잠정중단) ===
     $res.innerHTML = `
       <div class="res-label">추천 제품군</div>
       <div class="res-cat">${r.cat}</div>
@@ -1423,8 +1456,6 @@ window.addEventListener('message', e=>{
       </div>
     `;
     requestAnimationFrame(() => $res.classList.add('show'));
-
-    window.__wizSummary = wizSummary;
     if (typeof gtag === 'function') {
       gtag('event','wizard_recommend_v2',{situation: getVal('situation'), func: getVal('func'), recommended: r.cat});
     }
