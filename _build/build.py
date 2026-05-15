@@ -384,7 +384,7 @@ def main():
     sitemap_lines.append(f'  <url>\n    <loc>{base_url}recommend.html</loc>\n    <priority>0.7</priority>\n    <changefreq>monthly</changefreq>\n  </url>')
 
     # posts.json에서 블로그 글 합산
-    posts_json = os.path.join(BUILD_DIR, 'posts.json')
+    posts_json = os.path.join(SCRIPT_DIR, 'posts.json')
     if os.path.exists(posts_json):
         try:
             with open(posts_json, 'r', encoding='utf-8') as f:
