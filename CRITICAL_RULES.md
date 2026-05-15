@@ -56,3 +56,4 @@ git reset
 ---
 
 자세한 사례·해결법은 `OPERATIONS.md` 2장 "발생 사례 + 재발 방지" 참조.
+사이트 전략·방향·admin DB 통합 계획은 `STRATEGY.md` 참조 (모든 신규 작업의 기준점).

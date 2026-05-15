@@ -444,7 +444,7 @@ async function saveAndBuild(){
         .map(([c, n]) => `${c}=${n}`)
         .join(', ');
       setStatus(
-        `저장 + 빌드 완료. 6개 카테고리 페이지(pump/tubing/syringe/pumphead/fitting/other) 모두 갱신됨. ` +
+        `저장 + 빌드 완료. (카테고리 페이지는 2026-05-15에 폐기, leadfluid.html이 대체) ` +
         `(${json.products.length}개 제품: ${catSummary}). ` +
         `각 카테고리 페이지 탭에서 Ctrl+Shift+R로 새로고침하면 변경사항이 즉시 보입니다.`,
         'ok'

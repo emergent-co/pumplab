@@ -294,17 +294,7 @@
       <a href="index.html#contact" class="cellab-cta">상담 문의</a>
     </div>
   </div>
-  <div class="cellab-header-bottom">
-    <div class="cellab-container">
-      <span class="cellab-kw-label">바로가기:</span>
-      <a class="cellab-kw" data-cat="pump"     href="pump.html">펌프</a>
-      <a class="cellab-kw" data-cat="tubing"   href="tubing.html">튜브</a>
-      <a class="cellab-kw" data-cat="syringe"  href="syringe.html">시린지</a>
-      <a class="cellab-kw" data-cat="pumphead" href="pumphead.html">펌프헤드</a>
-      <a class="cellab-kw" data-cat="fitting"  href="fitting.html">피팅</a>
-      <a class="cellab-kw" data-cat="other"    href="other.html">기타 소모품</a>
-    </div>
-  </div>
+  <!-- 카테고리 페이지(쇼핑몰형) 폐기 (2026-05-15). leadfluid.html에서 카탈로그 검색·필터로 대체. -->
 </header>
 
 <nav class="breadcrumb">
@@ -343,8 +333,8 @@ document.querySelectorAll('.filter-title .clear').forEach(c => {
  * ============================================================ */
 /* 카테고리 자동 감지 — 정적 페이지(pathname) 우선, fallback ?cat= */
 (function(){
-  const VALID_CATS = ['pump','tubing','syringe','pumphead','fitting','other'];
-  // pathname → 파일명 → cat (예: /pump.html → 'pump')
+  const VALID_CATS = [];  // 카테고리 페이지 폐기 — 2026-05-15
+  // pathname → 파일명 → cat (예: /tubing.html → 'tubing')
   const pathCat = (location.pathname.split('/').pop() || '').replace('.html','').toLowerCase();
   const params = new URLSearchParams(location.search);
   const queryCat = (params.get('cat') || '').toLowerCase();

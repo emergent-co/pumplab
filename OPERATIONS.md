@@ -226,6 +226,8 @@ Disallow: /blog/naver/
 
 이 동선에 거스르는 작업·결정은 메모리 `feedback_cellab_master_funnel.md` 위배. 진행 전 점검.
 
+**상세 전략·페이지 역할·admin DB 통합 방향·Phase Plan은 별도 문서 `STRATEGY.md` 참조** (2026-05-15 신설). 신규 작업 시 본 문서(`OPERATIONS.md`) + `CRITICAL_RULES.md` + `STRATEGY.md` 세 문서 모두 점검.
+
 ---
 
 **최종 갱신:** 2026-05-09 (블로그 디자인 v2 톤 정책 신설 — 핵심박스·미니멀헤딩·모던표·FAQ Q-A·키워드태그·보조 인포그래픽)

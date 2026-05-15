@@ -1,21 +1,18 @@
 """
-정적 카테고리 페이지 빌드 스크립트
+sitemap.xml 빌드 스크립트 (카테고리 페이지는 2026-05-15에 폐기)
 ============================================================
-사용법: build.bat 더블클릭
+사용법: GitHub Actions가 _build/ 변경 시 자동 실행
 
 입력:
-  _build/template.html              공통 골격
-  _build/partial_<id>.html          카테고리별 본문 (full)
-  _build/partial_preparing.html     준비중 본문
-  _build/categories.json            카테고리별 SEO 메타·콘텐츠
-  _build/products.json              전 카테고리 통합 제품 데이터
+  _build/categories.json            (카테고리 빈 dict — 폐기 표시)
+  _build/posts.json                 블로그 글 메타
 
 출력 (워크스페이스 루트):
-  pump.html / tubing.html / syringe.html / pumphead.html / fitting.html / other.html
   sitemap.xml
 
-새 제품 추가:
-  admin.html에서 편집 → JSON 다운로드 → _build/products.json 덮어쓰기 → build.bat
+카테고리 페이지 폐기 이력:
+  2026-05-15  pump.html / tubing.html / syringe.html / pumphead.html / fitting.html / other.html
+              모두 leadfluid.html redirect 1장으로 교체. STRATEGY.md § 5 참조.
 ============================================================
 """
 
@@ -317,7 +314,6 @@ def main():
 
     template = read(os.path.join(SCRIPT_DIR, 'template.html'))
     partial_tubing = read(os.path.join(SCRIPT_DIR, 'partial_tubing.html'))
-    partial_pump = read(os.path.join(SCRIPT_DIR, 'partial_pump.html'))
     partial_preparing = read(os.path.join(SCRIPT_DIR, 'partial_preparing.html'))
 
     with open(os.path.join(SCRIPT_DIR, 'categories.json'), 'r', encoding='utf-8') as f:
@@ -357,7 +353,7 @@ def main():
 
     base_url = cats_config.get('_base_url', 'https://cellab.kr/')
     cats = cats_config['categories']
-    partials_full = {'tubing': partial_tubing, 'pump': partial_pump}
+    partials_full = {'tubing': partial_tubing}
 
     print(f'\n카테고리 {len(cats)}개:\n')
     for cat_id, n in [(c, len(products_by_cat.get(c, []))) for c in cats]:
