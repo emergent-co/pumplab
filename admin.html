@@ -969,19 +969,28 @@ function catalogClearAll(){
 
 function catalogReadSheet(){
   const rows = [];
+  // 진단용: 비정상 행 카운트
+  let skippedRows = 0;
   document.querySelectorAll('#catalogSheetBody tr:not(.row-detail)').forEach(tr => {
     // 메인 행: 직접 편집되는 input/select들만 수집 (펼침 패널의 체크박스 제외)
     const inputs = tr.querySelectorAll(':scope > td > input[type="text"]');
     const selects = tr.querySelectorAll(':scope > td > select');
+    // 안전책: 정상 행은 input 6개 + select 2개. 그보다 적으면 옛 캐시 또는 깨진 행 — 스킵
+    if (inputs.length < 6 || selects.length < 2){
+      skippedRows++;
+      console.warn('[catalogReadSheet] 비정상 행 스킵 — inputs:', inputs.length, 'selects:', selects.length, tr);
+      return;
+    }
+    const safe = (el) => el && typeof el.value === 'string' ? el.value.trim() : '';
     const r = {
-      id: inputs[0].value.trim(),
-      name: inputs[1].value.trim(),
-      sub: inputs[2].value.trim(),
-      series: selects[0].value,
-      category: selects[1].value || 'peristaltic',
-      image: inputs[3].value.trim() || null,
-      flow_display: inputs[4].value.trim(),
-      comm: inputs[5].value.trim()
+      id: safe(inputs[0]),
+      name: safe(inputs[1]),
+      sub: safe(inputs[2]),
+      series: (selects[0] && selects[0].value) || '',
+      category: (selects[1] && selects[1].value) || 'peristaltic',
+      image: safe(inputs[3]) || null,
+      flow_display: safe(inputs[4]),
+      comm: safe(inputs[5])
     };
     // Phase 4 — 펼침 행에서 matching/heads/사양 수집
     const detail = tr.nextElementSibling;
