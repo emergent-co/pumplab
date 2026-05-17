@@ -5,6 +5,24 @@
   "updated_at": "2026-05-17",
   "source": "admin.html (Phase 4 editor — matching)",
   "count": 63,
+  "series_urls": {
+    "_comment": "시리즈별 나비엠알오 URL. 카드 렌더 시 펌프의 series에서 조회. 펌프별 navimro_url(override) 우선, 없으면 본 매핑 사용.",
+    "S": "",
+    "L": "",
+    "F": "",
+    "Industrial": "",
+    "Batch": "",
+    "Filling": "",
+    "HighProt": "",
+    "EX": "",
+    "TYD": "",
+    "TFD": "",
+    "TYS": "",
+    "TGD": "",
+    "TSD": "",
+    "G-Ind": "",
+    "CT-Gear": ""
+  },
   "pumps": [
     {
       "id": "BQ80S",

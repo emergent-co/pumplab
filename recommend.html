@@ -44,6 +44,13 @@ function onInquiryClick(){
 }
 // ===== catalog.json 매칭·렌더 (Phase 3: SSOT 통합 — 2026-05-15) =====
 let __catalogPumps = null;
+let __catalogSeriesUrls = null;
+function getNavimroUrl(p){
+  // 펌프별 navimro_url override 우선, 없으면 시리즈 URL fallback
+  if (p && p.navimro_url) return p.navimro_url;
+  if (__catalogSeriesUrls && p && p.series && __catalogSeriesUrls[p.series]) return __catalogSeriesUrls[p.series];
+  return '';
+}
 async function fetchAndMatchPumps(wiz){
   const box = document.getElementById('matchedPumps');
   if (!box) return;
@@ -53,6 +60,7 @@ async function fetchAndMatchPumps(wiz){
       const res = await fetch('/_build/catalog.json', {cache:'no-store'});
       const data = await res.json();
       __catalogPumps = data.pumps || [];
+      __catalogSeriesUrls = data.series_urls || {};
     }
     const matched = matchPumps(__catalogPumps, wiz);
     renderMatched(box, matched);
@@ -209,7 +217,7 @@ function renderPrimaryCard({pump:p, score, ratio}){
       '<div class="mc-score">조건 매칭 '+matchPct+'%</div>' +
       '<div class="mc-actions">' +
         '<a class="mc-btn" href="/leadfluid.html#'+encodeURIComponent(p.id)+'" target="_blank">자세히</a>' +
-        (p.navimro_url ? '<a class="mc-btn" href="'+escapeHtml(p.navimro_url)+'" target="_blank" rel="noopener">나비엠알오</a>' : '') +
+        ((function(u){return u ? '<a class="mc-btn" href="'+escapeHtml(u)+'" target="_blank" rel="noopener">나비엠알오</a>' : '';})(getNavimroUrl(p))) +
         '<a class="mc-btn primary" href="/inquiry.html?product='+encodeURIComponent(p.id)+'">견적 문의</a>' +
       '</div>' +
     '</div>' +
