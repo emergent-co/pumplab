@@ -82,6 +82,21 @@
   .ft-links a:hover{color:var(--teal)}
   .ft-meta{font-size:12px;color:#a9b8cc}
 
+  /* ===== 로그인 오버레이 (2026-05-15) ===== */
+  .auth-overlay{position:fixed;inset:0;background:#0a2540;color:#fff;display:grid;place-items:center;z-index:1000;font-family:inherit}
+  .auth-box{background:#fff;color:#1a2332;padding:32px 36px;border-radius:10px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .auth-box h2{font-size:18px;font-weight:800;color:#0a2540;margin-bottom:6px;letter-spacing:-.02em}
+  .auth-box .auth-sub{font-size:12.5px;color:#5a6779;margin-bottom:22px}
+  .auth-box input[type=password]{width:100%;padding:11px 13px;border:1.5px solid #d2dae5;border-radius:6px;font-family:inherit;font-size:14px;color:#1a2332;outline:none;transition:border-color .15s}
+  .auth-box input[type=password]:focus{border-color:#1a6e56}
+  .auth-box .auth-btn{width:100%;margin-top:10px;padding:11px;background:#1a6e56;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+  .auth-box .auth-btn:hover{background:#155b48}
+  .auth-box .auth-btn:disabled{background:#a5b4c5;cursor:wait}
+  .auth-box .auth-err{font-size:12.5px;color:#b94545;margin-top:10px;min-height:18px}
+  .auth-box .auth-pwchg{font-size:11.5px;color:#5a6779;margin-top:18px;padding-top:14px;border-top:1px solid #e3e8ef}
+  .auth-box .auth-pwchg a{color:#1a6e56;cursor:pointer;text-decoration:underline}
+  .logout-link{display:inline-block;margin-left:10px;font-size:11.5px;color:#b94545;cursor:pointer;text-decoration:underline}
+
   /* ===== 탭 (2026-05-15 Phase 2) ===== */
   .tabs{display:flex;gap:0;border-bottom:2px solid #e3e8ef;margin:14px 0 18px}
   .tab-btn{padding:10px 22px;background:#f5f7fa;color:#5a6779;border:none;border-bottom:2px solid transparent;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;transition:all .15s;margin-bottom:-2px}
@@ -93,9 +108,25 @@
 </head>
 <body>
 
-<div class="container">
+<!-- ===== 로그인 게이트 (2026-05-15 Phase 5.5 — Cloudflare Access 이전 임시) ===== -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-box">
+    <h2>Cellab 관리자</h2>
+    <div class="auth-sub">비밀번호를 입력해주세요</div>
+    <form id="authForm" onsubmit="return authSubmit(event)">
+      <input type="password" id="authPw" placeholder="비밀번호" autofocus autocomplete="current-password">
+      <button type="submit" class="auth-btn" id="authBtn">로그인</button>
+    </form>
+    <div class="auth-err" id="authErr"></div>
+    <div class="auth-pwchg">
+      <a onclick="authChangePassword()">비밀번호 변경 (로그인 후만 가능)</a>
+    </div>
+  </div>
+</div>
 
-  <h1>Cellab 관리자 — 통합 카탈로그 대시보드</h1>
+<div class="container" id="adminMain" style="display:none">
+
+  <h1>Cellab 관리자 — 통합 카탈로그 대시보드 <a class="logout-link" onclick="authLogout()">로그아웃</a></h1>
   <!-- GitHub 인증 (cellab.kr 자동 저장+빌드용) -->
   <div class="panel" style="border-color:#1a6e56">
     
@@ -816,6 +847,85 @@ async function catalogSaveAndBuild(){
     catalogSetStatus('실패: ' + e.message, 'err');
   }
 }
+
+// ===== 로그인 게이트 (2026-05-15) =====
+// SHA-256 해시 (실제 비번은 사장님만 앎). localStorage에 사장님이 변경한 해시 우선 사용.
+const AUTH_HASH_DEFAULT = 'ff5ecc583e45d94ee50ff29dd2d1f4a4a06ab73c45b1099e37ae560c1b3c9a9d';
+const AUTH_HASH_KEY = 'cellab_admin_pw_hash';
+const AUTH_SESSION_KEY = 'cellab_admin_authed';
+
+function getAuthHash(){
+  return localStorage.getItem(AUTH_HASH_KEY) || AUTH_HASH_DEFAULT;
+}
+
+async function sha256Hex(s){
+  const buf = new TextEncoder().encode(s);
+  const hash = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function authSubmit(ev){
+  ev.preventDefault();
+  const pw = document.getElementById('authPw').value;
+  const btn = document.getElementById('authBtn');
+  const err = document.getElementById('authErr');
+  if (!pw){ err.textContent = '비밀번호를 입력해주세요'; return false; }
+  btn.disabled = true; btn.textContent = '확인 중...';
+  err.textContent = '';
+  await new Promise(r => setTimeout(r, 600));  // brute-force 완화
+  const hash = await sha256Hex(pw);
+  if (hash === getAuthHash()){
+    sessionStorage.setItem(AUTH_SESSION_KEY, '1');
+    document.getElementById('authOverlay').style.display = 'none';
+    document.getElementById('adminMain').style.display = '';
+    // 본문 로드 트리거 (이미 DOMContentLoaded에서 catalogLoad 호출했지만 안전상)
+    if (typeof refreshTokenStatus === 'function') refreshTokenStatus();
+  } else {
+    err.textContent = '로그인 실패 — 비밀번호 확인';
+    document.getElementById('authPw').value = '';
+    document.getElementById('authPw').focus();
+  }
+  btn.disabled = false; btn.textContent = '로그인';
+  return false;
+}
+
+function authLogout(){
+  if (!confirm('로그아웃하시겠습니까?')) return;
+  sessionStorage.removeItem(AUTH_SESSION_KEY);
+  location.reload();
+}
+
+async function authChangePassword(){
+  if (sessionStorage.getItem(AUTH_SESSION_KEY) !== '1'){
+    document.getElementById('authErr').textContent = '먼저 로그인 후 변경 가능합니다';
+    return;
+  }
+  const cur = prompt('현재 비밀번호:');
+  if (!cur) return;
+  const curHash = await sha256Hex(cur);
+  if (curHash !== getAuthHash()){ alert('현재 비밀번호가 다릅니다'); return; }
+  const npw = prompt('새 비밀번호 (15자 이상 권장):');
+  if (!npw || npw.length < 4){ alert('너무 짧습니다'); return; }
+  const npw2 = prompt('새 비밀번호 다시 입력:');
+  if (npw !== npw2){ alert('일치하지 않습니다'); return; }
+  const newHash = await sha256Hex(npw);
+  localStorage.setItem(AUTH_HASH_KEY, newHash);
+  alert('비밀번호 변경 완료. 이 브라우저에서만 적용됩니다.\n다른 컴퓨터에서 쓰시려면 admin.html 코드의 AUTH_HASH_DEFAULT를 새 해시로 바꿔 push 필요.\n\n새 해시 (코드에 박을 값): ' + newHash);
+}
+
+// 진입 시 세션 체크
+(function checkAuth(){
+  if (sessionStorage.getItem(AUTH_SESSION_KEY) === '1'){
+    document.getElementById('authOverlay').style.display = 'none';
+    document.getElementById('adminMain').style.display = '';
+  } else {
+    // 인증 안 됨 — 로그인 폼 노출 유지
+    setTimeout(() => {
+      const i = document.getElementById('authPw');
+      if (i) i.focus();
+    }, 100);
+  }
+})();
 
 // ===== 초기 로드 =====
 window.addEventListener('DOMContentLoaded', () => {
