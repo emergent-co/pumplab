@@ -334,6 +334,7 @@ function renderSubCard({pump:p, score, ratio}){
   '</div>';
 }
 function escapeHtml(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function escapeAttr(s){return String(s==null?'':s).replace(/"/g,'&quot;');}
 </script>
 
 <style>
@@ -1432,7 +1433,7 @@ window.addEventListener('message', e=>{
     // 결과 화면은 fetchAndMatchPumps가 wzResult에 그룹 추천 카드를 렌더함.
     // 사용자가 [나비엠알오에서 보기] 또는 [셀렙에 직접 문의] 버튼을 명시적으로 클릭하도록.
     if (typeof gtag === 'function') {
-      gtag('event','wizard_recommend_v2',{situation: getVal('situation'), func: getVal('func'), recommended: r.cat});
+      gtag('event','wizard_recommend_v3',{use_case: useCase, flow_range: flowRange});
     }
   });
 
