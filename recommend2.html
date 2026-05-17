@@ -42,19 +42,19 @@ function onInquiryClick(){
   if (extras) summary += '\n\n[추가 정보]' + extras;
   openInquiry(window.__wizLast ? window.__wizLast.setupId : 'wizard:general', summary);
 }
-// ===== admin_pumps.json 매칭·렌더 =====
-let __adminPumps = null;
+// ===== catalog.json 매칭·렌더 (Phase 3: SSOT 통합 — 2026-05-15) =====
+let __catalogPumps = null;
 async function fetchAndMatchPumps(wiz){
   const box = document.getElementById('matchedPumps');
   if (!box) return;
   box.innerHTML = '<div style="padding:14px;color:var(--muted);font-size:13px">매칭 펌프 불러오는 중...</div>';
   try {
-    if (!__adminPumps){
-      const res = await fetch('/_build/admin_pumps.json', {cache:'no-store'});
+    if (!__catalogPumps){
+      const res = await fetch('/_build/catalog.json', {cache:'no-store'});
       const data = await res.json();
-      __adminPumps = data.pumps || [];
+      __catalogPumps = data.pumps || [];
     }
-    const matched = matchPumps(__adminPumps, wiz);
+    const matched = matchPumps(__catalogPumps, wiz);
     renderMatched(box, matched);
   } catch(e){
     box.innerHTML = '<div class="no-match">매칭 펌프 데이터를 불러오지 못했습니다. 견적 문의로 안내드릴게요.</div>';

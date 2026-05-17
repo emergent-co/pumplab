@@ -113,7 +113,7 @@
 
 | 우선 | 데이터 | 현 위치 | 통합 방향 |
 |---|---|---|---|
-| 1 | **펌프 86종 사양·매칭·이미지** | `leadfluid.html` 하드코딩 + `_build/admin_pumps.json` (63) + `_build/products.json` (14) **3곳 분산** | 단일 `_build/catalog.json`으로 통합 |
+| 1 | **펌프 63종 사양·매칭·이미지** | ✅ `_build/catalog.json` 단일 SSOT (Phase 1~3 완료, 2026-05-15). admin_pumps.json 폐기, leadfluid.html 하드코딩 제거 | (완료) |
 | 2 | **펌프셋업 데이터 (펌프+튜브+헤드 조합)** | `_build/setups.json` + `_build/parts.json` | 그대로 유지, admin에 편집 UI 추가 |
 | 3 | **블로그 글 메타** | `_build/posts.json` | admin에 발행 메타 편집 추가 |
 | 4 | **응용별 가이드 콘텐츠** | 가이드 페이지 직접 편집 | 신규 — 응용별 페이지 자동 생성 가능하게 |
@@ -167,12 +167,15 @@
 | Phase | 작업 | 시각 변화 | 상태 |
 |---|---|---|---|
 | 0 | recommend2 버그 fix + pump.html 삭제 (leadfluid redirect) | 없음 | ✅ 완료 (2026-05-15) |
-| **1** | **`leadfluid.html` PRODUCTS 86개 → `_build/catalog.json` 추출** | 없음 | 다음 진행 |
-| 2 | admin.html에 catalog.json 편집 탭 추가 (기본 필드만) | admin 변화 | 대기 |
-| 3 | recommend2 위저드 매칭 데이터를 catalog.json 사용으로 통합 (admin_pumps.json 폐기) | 위저드 매칭 정밀도 ↑ | 대기 |
-| 4 | admin.html 편집 UI 확장 (사양·헤드·매칭 키워드) | admin 변화 | 대기 |
+| 카테고리 5페이지 폐기 | tubing/syringe/pumphead/fitting/other 완전 삭제 (쇼핑몰형 폐기) | 메뉴 변화 | ✅ 완료 (2026-05-15) |
+| 1 | `leadfluid.html` PRODUCTS 63개 → `_build/catalog.json` 추출 (SSOT 시작) | 없음 | ✅ 완료 (2026-05-15) |
+| 2 | admin.html에 catalog.json 편집 탭 추가 (기본 8 필드) | admin 변화 | ✅ 완료 (2026-05-15) |
+| 3 | recommend2 위저드 매칭 데이터를 catalog.json 통합 + admin_pumps.json 폐기 | 위저드 매칭 정밀도 ↑ | ✅ 완료 (2026-05-15) |
+| **4** | **admin.html 편집 UI 확장 (사양·헤드·매칭 키워드)** | admin 변화 | **다음** |
 | 5 | 응용 가이드 페이지 자동 빌드 시스템 | 가이드 페이지 확장 | 선택 |
 | 6 | 이미지 업로드 기능 (GitHub Contents API) | admin 변화 | 선택 |
+| 7 | (의제) Cloudflare Pages 이전 — 배포 속도 1~3분 → 10~30초 | 없음 | 미정 |
+| 8 | (의제) PSYS 결제 통합 — Cloudflare Workers 백엔드 | 새 결제 흐름 | PSYS 계약 후 |
 
 각 Phase 완료 시:
 1. `OPERATIONS.md`에 변경 기록

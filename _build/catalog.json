@@ -1,9 +1,9 @@
 {
-  "_comment": "Cellab 통합 펌프 카탈로그 (SSOT) — leadfluid.html PRODUCTS에서 추출 (2026-05-15). STRATEGY.md § 6 참조. 향후 모든 펌프 사양·매칭·이미지·마켓 URL은 본 파일에서 관리.",
+  "_comment": "Cellab 통합 펌프 카탈로그 (SSOT). leadfluid + admin_pumps 통합 완료. STRATEGY.md § 6 참조. 향후 모든 펌프 사양·매칭·이미지·헤드·마켓 URL은 본 파일에서 관리.",
   "_base_url": "https://cellab.kr/",
   "version": "1.0",
   "updated_at": "2026-05-15",
-  "source": "leadfluid.html PRODUCTS array (Phase 1 extraction)",
+  "source": "leadfluid.html PRODUCTS + admin_pumps.json merge (Phase 3)",
   "count": 63,
   "pumps": [
     {
@@ -25,7 +25,41 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT103S",
@@ -46,7 +80,42 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT101S",
@@ -109,7 +178,30 @@
           "tube": "114# 116# 15# 24# 35# 36#",
           "flow": "0.024~750"
         }
-      ]
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT301S",
@@ -130,7 +222,43 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT601S",
@@ -151,7 +279,43 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT100S",
@@ -172,7 +336,42 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT300S",
@@ -193,7 +392,43 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT600S",
@@ -214,7 +449,43 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT100S-1",
@@ -235,7 +506,42 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "WT300S",
@@ -256,7 +562,43 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "WT600S",
@@ -277,7 +619,43 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT101L",
@@ -296,7 +674,44 @@
         "Sampling",
         "Continuous Transfer"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "DT10-18/28",
+          "tube": "13#·14#",
+          "flow": "~64mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT301L",
@@ -315,7 +730,45 @@
         "Sampling",
         "Continuous Transfer"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "DT10-18/28",
+          "tube": "13#·14#",
+          "flow": "~64mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT601L",
@@ -334,7 +787,45 @@
         "Sampling",
         "Continuous Transfer"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "DT10-18/28",
+          "tube": "13#·14#",
+          "flow": "~64mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT100L",
@@ -353,7 +844,44 @@
         "Sampling",
         "Continuous Transfer"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "DT10-18/28",
+          "tube": "13#·14#",
+          "flow": "~64mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT300L",
@@ -372,7 +900,45 @@
         "Sampling",
         "Continuous Transfer"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "DT10-18/28",
+          "tube": "13#·14#",
+          "flow": "~64mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT600L",
@@ -391,7 +957,45 @@
         "Sampling",
         "Continuous Transfer"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "DT10-18/28",
+          "tube": "13#·14#",
+          "flow": "~64mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT101F",
@@ -410,7 +1014,46 @@
         "Dispensing",
         "Bottling"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "DG/DS (다채널)",
+          "tube": "wall 0.8~1mm",
+          "flow": "~49mL/min"
+        },
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "dispensing",
+          "filling",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4",
+          "multi"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT301F",
@@ -429,7 +1072,47 @@
         "Dispensing",
         "Bottling"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "DG/DS (다채널)",
+          "tube": "wall 0.8~1mm",
+          "flow": "~49mL/min"
+        },
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "dispensing",
+          "filling",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4",
+          "multi"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT601F",
@@ -448,7 +1131,47 @@
         "Dispensing",
         "Bottling"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "DG/DS (다채널)",
+          "tube": "wall 0.8~1mm",
+          "flow": "~49mL/min"
+        },
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "dispensing",
+          "filling",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4",
+          "multi"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT100F",
@@ -467,7 +1190,46 @@
         "Dispensing",
         "Bottling"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "DG/DS (다채널)",
+          "tube": "wall 0.8~1mm",
+          "flow": "~49mL/min"
+        },
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "dispensing",
+          "filling",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4",
+          "multi"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT300F",
@@ -486,7 +1248,47 @@
         "Dispensing",
         "Bottling"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "DG/DS (다채널)",
+          "tube": "wall 0.8~1mm",
+          "flow": "~49mL/min"
+        },
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "dispensing",
+          "filling",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4",
+          "multi"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT600F",
@@ -505,7 +1307,47 @@
         "Dispensing",
         "Bottling"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "DG/DS (다채널)",
+          "tube": "wall 0.8~1mm",
+          "flow": "~49mL/min"
+        },
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "dispensing",
+          "filling",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4",
+          "multi"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT100F-1",
@@ -524,7 +1366,47 @@
         "Dispensing",
         "Bottling"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "DG/DS (다채널)",
+          "tube": "wall 0.8~1mm",
+          "flow": "~49mL/min"
+        },
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "dispensing",
+          "filling",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4",
+          "multi"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "WT300F",
@@ -543,7 +1425,47 @@
         "Dispensing",
         "Bottling"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "DG/DS (다채널)",
+          "tube": "wall 0.8~1mm",
+          "flow": "~49mL/min"
+        },
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "dispensing",
+          "filling",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4",
+          "multi"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "WT600F",
@@ -562,7 +1484,47 @@
         "Dispensing",
         "Bottling"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "DG/DS (다채널)",
+          "tube": "wall 0.8~1mm",
+          "flow": "~49mL/min"
+        },
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "dispensing",
+          "filling",
+          "pc_prog"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4",
+          "multi"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "WG600S",
@@ -580,7 +1542,45 @@
         "Industrial Transfer",
         "Process Line"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~3000mL/min"
+        },
+        {
+          "name": "YZ35",
+          "tube": "73#·82#",
+          "flow": "~13L/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "mid",
+          "high",
+          "xhigh"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "organic",
+          "acid",
+          "aqueous",
+          "viscous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "WG600F",
@@ -598,7 +1598,46 @@
         "Industrial Transfer",
         "Process Line"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~3000mL/min"
+        },
+        {
+          "name": "YZ35",
+          "tube": "73#·82#",
+          "flow": "~13L/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "low",
+          "mid",
+          "high",
+          "xhigh"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "organic",
+          "acid",
+          "aqueous",
+          "viscous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "JP301S",
@@ -616,7 +1655,37 @@
         "Industrial Batch Transfer",
         "Bulk Liquid"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "JY-Series 대구경 헤드",
+          "tube": "25# 36# 73#",
+          "flow": "~33L/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "mid",
+          "high",
+          "xhigh"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "JP300S",
@@ -634,7 +1703,37 @@
         "Industrial Batch Transfer",
         "Bulk Liquid"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "JY-Series 대구경 헤드",
+          "tube": "25# 36# 73#",
+          "flow": "~33L/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "mid",
+          "high",
+          "xhigh"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BT600P",
@@ -655,7 +1754,43 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "BX600S",
@@ -676,7 +1811,42 @@
         "Dispensing",
         "TFF"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15/YZ15T",
+          "tube": "13#~18#",
+          "flow": "~641mL/min"
+        },
+        {
+          "name": "YT25",
+          "tube": "114#~36#",
+          "flow": "~750mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "DS600",
@@ -695,7 +1865,39 @@
         "Bottling",
         "Multi-channel"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "YZ15T 다채널",
+          "tube": "13#~18#",
+          "flow": "분주용"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "filling",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "MF-Series",
@@ -714,7 +1916,38 @@
         "IP66 Environment",
         "Pharma"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "IP66 호환 헤드 (YT25/YZ35)",
+          "tube": "wash-down",
+          "flow": "~7800mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "MS-Series",
@@ -733,7 +1966,38 @@
         "IP66 Environment",
         "Pharma"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "IP66 호환 헤드 (YT25/YZ35)",
+          "tube": "wash-down",
+          "flow": "~7800mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "aqueous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "EF800",
@@ -752,7 +2016,40 @@
         "Solvent",
         "ATEX/IECEx"
       ],
-      "comm": "—"
+      "comm": "—",
+      "heads": [
+        {
+          "name": "방폭 헤드 (YT25/YZ35)",
+          "tube": "ATEX",
+          "flow": "~7800mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local"
+        ],
+        "fluid": [
+          "organic",
+          "acid",
+          "aqueous",
+          "viscous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "EF900",
@@ -771,7 +2068,41 @@
         "Solvent",
         "ATEX/IECEx"
       ],
-      "comm": "—"
+      "comm": "—",
+      "heads": [
+        {
+          "name": "방폭 헤드 (YT25/YZ35)",
+          "tube": "ATEX",
+          "flow": "~7800mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high",
+          "xhigh"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local"
+        ],
+        "fluid": [
+          "organic",
+          "acid",
+          "aqueous",
+          "viscous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "FP300S-A3",
@@ -790,7 +2121,39 @@
         "Solvent",
         "ATEX/IECEx"
       ],
-      "comm": "—"
+      "comm": "—",
+      "heads": [
+        {
+          "name": "방폭 헤드 (YT25/YZ35)",
+          "tube": "ATEX",
+          "flow": "~7800mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "mid",
+          "high",
+          "xhigh"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local"
+        ],
+        "fluid": [
+          "organic",
+          "acid",
+          "aqueous",
+          "viscous"
+        ],
+        "channels": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TYD01-01",
@@ -801,7 +2164,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 1.84e-7,
+      "flow_min": 1.84e-07,
       "flow_max": 83.318,
       "flow_display": "0.184 nL/min ~ 83.318 mL/min",
       "applications": [
@@ -811,7 +2174,37 @@
         "Coating",
         "Mass Spec"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "10μL~140mL 시린지",
+          "tube": "시린지 직접",
+          "flow": "nL~mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TYD01-02",
@@ -822,7 +2215,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 1.84e-7,
+      "flow_min": 1.84e-07,
       "flow_max": 173.718,
       "flow_display": "0.184 nL/min ~ 173.718 mL/min",
       "applications": [
@@ -832,7 +2225,38 @@
         "Coating",
         "Mass Spec"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "10μL~140mL 시린지",
+          "tube": "시린지 직접",
+          "flow": "nL~mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TYD02-01",
@@ -843,7 +2267,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 1.84e-7,
+      "flow_min": 1.84e-07,
       "flow_max": 173.718,
       "flow_display": "0.184 nL/min ~ 173.718 mL/min",
       "applications": [
@@ -853,7 +2277,38 @@
         "Coating",
         "Mass Spec"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "10μL~140mL 시린지",
+          "tube": "시린지 직접",
+          "flow": "nL~mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TYD02-02",
@@ -864,7 +2319,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 1.84e-7,
+      "flow_min": 1.84e-07,
       "flow_max": 173.718,
       "flow_display": "0.184 nL/min ~ 173.718 mL/min",
       "applications": [
@@ -874,7 +2329,38 @@
         "Coating",
         "Mass Spec"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "10μL~140mL 시린지",
+          "tube": "시린지 직접",
+          "flow": "nL~mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TYD02-04",
@@ -885,7 +2371,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 1.84e-7,
+      "flow_min": 1.84e-07,
       "flow_max": 24.52,
       "flow_display": "0.184 nL/min ~ 24.520 mL/min",
       "applications": [
@@ -895,7 +2381,37 @@
         "Coating",
         "Mass Spec"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "10μL~140mL 시린지",
+          "tube": "시린지 직접",
+          "flow": "nL~mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TYD02-06",
@@ -906,7 +2422,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 1.84e-7,
+      "flow_min": 1.84e-07,
       "flow_max": 24.52,
       "flow_display": "0.184 nL/min ~ 24.520 mL/min",
       "applications": [
@@ -916,7 +2432,37 @@
         "Coating",
         "Mass Spec"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "10μL~140mL 시린지",
+          "tube": "시린지 직접",
+          "flow": "nL~mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TYD02-10",
@@ -927,7 +2473,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 1.84e-7,
+      "flow_min": 1.84e-07,
       "flow_max": 24.52,
       "flow_display": "0.184 nL/min ~ 24.520 mL/min",
       "applications": [
@@ -937,7 +2483,37 @@
         "Coating",
         "Mass Spec"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "10μL~140mL 시린지",
+          "tube": "시린지 직접",
+          "flow": "nL~mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TYD03-01",
@@ -948,7 +2524,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 3.7e-8,
+      "flow_min": 3.7e-08,
       "flow_max": 16.663,
       "flow_display": "0.037 nL/min ~ 16.663 mL/min",
       "applications": [
@@ -958,7 +2534,37 @@
         "Coating",
         "Mass Spec"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "10μL~140mL 시린지",
+          "tube": "시린지 직접",
+          "flow": "nL~mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TFD01-01",
@@ -969,7 +2575,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 2e-8,
+      "flow_min": 2e-08,
       "flow_max": 0.003048,
       "flow_display": "20 pL/min ~ 3.048 μL/min",
       "applications": [
@@ -978,7 +2584,36 @@
         "Cell Injection",
         "Pharma R&D"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "5μL~1mL 시린지 (분할형)",
+          "tube": "시린지 직접",
+          "flow": "pL~μL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TFD02-01",
@@ -989,7 +2624,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 1.63e-7,
+      "flow_min": 1.63e-07,
       "flow_max": 24.52,
       "flow_display": "0.163 nL/min ~ 24.520 mL/min",
       "applications": [
@@ -998,7 +2633,37 @@
         "Cell Injection",
         "Pharma R&D"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "5μL~1mL 시린지 (분할형)",
+          "tube": "시린지 직접",
+          "flow": "pL~μL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TFD03-01",
@@ -1018,7 +2683,36 @@
         "Cell Injection",
         "Pharma R&D"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "5μL~1mL 시린지 (분할형)",
+          "tube": "시린지 직접",
+          "flow": "pL~μL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TFD04",
@@ -1038,7 +2732,36 @@
         "Cell Injection",
         "Pharma R&D"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "5μL~1mL 시린지 (분할형)",
+          "tube": "시린지 직접",
+          "flow": "pL~μL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TYS01-02",
@@ -1057,7 +2780,36 @@
         "Pharma Dispensing",
         "Sample Loading"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "1~3000μL 시린지 (Dual)",
+          "tube": "시린지 직접",
+          "flow": "분주용"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TGD01-01",
@@ -1068,7 +2820,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 3e-9,
+      "flow_min": 3e-09,
       "flow_max": 214.915,
       "flow_display": "3.000 pL/min ~ 214.915 mL/min",
       "applications": [
@@ -1076,7 +2828,38 @@
         "Corrosive Liquid",
         "Continuous Injection"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "0.5μL~140mL 스테인리스 시린지",
+          "tube": "시린지 직접",
+          "flow": "pL~mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "TSD01-01",
@@ -1087,7 +2870,7 @@
       "category": "syringe",
       "category_label": "시린지",
       "image": null,
-      "flow_min": 0.000001,
+      "flow_min": 1e-06,
       "flow_max": 100,
       "flow_display": "Push-pull continuous mode",
       "applications": [
@@ -1095,7 +2878,38 @@
         "Pump Synchronization",
         "Process R&D"
       ],
-      "comm": "RS485 / MODBUS / WiFi"
+      "comm": "RS485 / MODBUS / WiFi",
+      "heads": [
+        {
+          "name": "Push-Pull 시린지 (2개)",
+          "tube": "시린지 직접",
+          "flow": "연속"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm",
+          "auto_sw"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "G3030-1S",
@@ -1114,7 +2928,37 @@
         "Quality Testing",
         "Material Prep"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "50μL~5mL 글래스 시린지",
+          "tube": "시린지 직접",
+          "flow": "정밀 미량"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "G6060-1S",
@@ -1133,7 +2977,38 @@
         "Quality Testing",
         "Material Prep"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "50μL~5mL 글래스 시린지",
+          "tube": "시린지 직접",
+          "flow": "정밀 미량"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "micro",
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering",
+          "dispensing"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "organic",
+          "aqueous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "CT3001S",
@@ -1153,7 +3028,37 @@
         "Reaction Vessels",
         "Coating"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "MG209/MG213/MS209 (PEEK)",
+          "tube": "관 연결",
+          "flow": "15~2700mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "slurry",
+          "aqueous",
+          "viscous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "CT3000S",
@@ -1173,7 +3078,37 @@
         "Reaction Vessels",
         "Coating"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "MG209/MG213/MS209 (PEEK)",
+          "tube": "관 연결",
+          "flow": "15~2700mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "slurry",
+          "aqueous",
+          "viscous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "CT3001F",
@@ -1193,7 +3128,37 @@
         "Reaction Vessels",
         "Coating"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "MG209/MG213/MS209 (PEEK)",
+          "tube": "관 연결",
+          "flow": "15~2700mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "slurry",
+          "aqueous",
+          "viscous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "CT3000F",
@@ -1213,7 +3178,37 @@
         "Reaction Vessels",
         "Coating"
       ],
-      "comm": "RS485 / MODBUS"
+      "comm": "RS485 / MODBUS",
+      "heads": [
+        {
+          "name": "MG209/MG213/MS209 (PEEK)",
+          "tube": "관 연결",
+          "flow": "15~2700mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local",
+          "comm"
+        ],
+        "fluid": [
+          "slurry",
+          "aqueous",
+          "viscous"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "FG601S-A3",
@@ -1233,7 +3228,38 @@
         "Petrochemical",
         "ATEX"
       ],
-      "comm": "—"
+      "comm": "—",
+      "heads": [
+        {
+          "name": "방폭 기어 헤드 (PEEK/SS)",
+          "tube": "관 연결",
+          "flow": "4~13000mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "mid",
+          "high",
+          "xhigh"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local"
+        ],
+        "fluid": [
+          "acid",
+          "aqueous",
+          "viscous",
+          "organic",
+          "slurry"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "FG600S-A3",
@@ -1253,7 +3279,38 @@
         "Petrochemical",
         "ATEX"
       ],
-      "comm": "—"
+      "comm": "—",
+      "heads": [
+        {
+          "name": "방폭 기어 헤드 (PEEK/SS)",
+          "tube": "관 연결",
+          "flow": "4~13000mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local"
+        ],
+        "fluid": [
+          "acid",
+          "aqueous",
+          "viscous",
+          "organic",
+          "slurry"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "FG601S-W3",
@@ -1273,7 +3330,37 @@
         "Petrochemical",
         "ATEX"
       ],
-      "comm": "—"
+      "comm": "—",
+      "heads": [
+        {
+          "name": "방폭 기어 헤드 (PEEK/SS)",
+          "tube": "관 연결",
+          "flow": "4~13000mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "high",
+          "xhigh"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local"
+        ],
+        "fluid": [
+          "acid",
+          "aqueous",
+          "viscous",
+          "organic",
+          "slurry"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     },
     {
       "id": "FG600S-W3",
@@ -1293,7 +3380,38 @@
         "Petrochemical",
         "ATEX"
       ],
-      "comm": "—"
+      "comm": "—",
+      "heads": [
+        {
+          "name": "방폭 기어 헤드 (PEEK/SS)",
+          "tube": "관 연결",
+          "flow": "4~13000mL/min"
+        }
+      ],
+      "matching": {
+        "flow": [
+          "low",
+          "mid",
+          "high"
+        ],
+        "func": [
+          "metering"
+        ],
+        "ctrl": [
+          "local"
+        ],
+        "fluid": [
+          "acid",
+          "aqueous",
+          "viscous",
+          "organic",
+          "slurry"
+        ],
+        "channels": [
+          "1"
+        ]
+      },
+      "navimro_url": ""
     }
   ]
 }
