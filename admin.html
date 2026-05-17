@@ -918,6 +918,10 @@ function catalogDetailRowHtml(d){
                 <input type="number" data-field="flow_max" value="${d.flow_max ?? ''}" step="any" placeholder="1000">
               </div>
               <div class="spec-field spec-field-wide">
+                <label class="spec-label">회전 속도 (rpm 표시 문자열, speed_display)</label>
+                <input type="text" data-field="speed_display" value="${escapeAttr(d.speed_display||'')}" placeholder="예: 0.1 ~ 150 rpm">
+              </div>
+              <div class="spec-field spec-field-wide">
                 <label class="spec-label">응용 (applications)</label>
                 <div class="chip-list">
                   <div class="chip-stack">${appsChipsHtml}</div>
@@ -1064,7 +1068,7 @@ async function catalogLoad(){
     // Phase 4부터 matching/heads/applications/flow_min/flow_max/navimro_url은 펼침 패널에서 명시 편집 — extras에서 제외
     window.__catalogExtras = {};
     const UI_FIELDS = ['id','name','sub','series','category','image','flow_display','comm',
-                       'matching','heads','applications','flow_min','flow_max','navimro_url'];
+                       'matching','heads','applications','flow_min','flow_max','navimro_url','speed_display'];
     pumps.forEach(p => {
       const extras = {};
       Object.keys(p).forEach(k => {
