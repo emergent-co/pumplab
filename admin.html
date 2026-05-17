@@ -57,6 +57,25 @@
   table.sheet tr.row-new td{background:#f5f9f7}
   table.sheet tr.row-hidden{display:none}
 
+  /* Phase 4 — 행별 펼침 (matching/heads/specs 편집) */
+  table.sheet td.col-toggle{width:32px;text-align:center;padding:2px}
+  table.sheet td.col-toggle button{background:none;border:none;cursor:pointer;font-size:11px;color:#5a6779;padding:2px 6px;font-family:inherit}
+  table.sheet td.col-toggle button:hover{color:#1a6e56}
+  table.sheet tr.row-detail td{background:#f7f9fb;padding:14px 18px;border-bottom:2px solid #e3e8ef}
+  .detail-panel{max-width:920px}
+  .detail-sec{margin-bottom:12px;border:1px solid #e3e8ef;border-radius:6px;background:#fff}
+  .detail-sec > summary{font-weight:700;font-size:12.5px;cursor:pointer;padding:8px 12px;color:#0a2540;list-style:none;background:#f5f7fa;border-radius:6px 6px 0 0}
+  .detail-sec > summary::before{content:'▶ ';font-size:10px;color:#5a6779;margin-right:4px}
+  .detail-sec[open] > summary::before{content:'▼ '}
+  .detail-sec[open] > summary{border-bottom:1px solid #e3e8ef;border-radius:6px 6px 0 0}
+  .detail-sec-body{padding:10px 12px}
+  .match-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 18px}
+  .match-axis{display:flex;flex-direction:column;gap:4px}
+  .match-axis .axis-name{font-size:11.5px;color:#5a6779;font-weight:700}
+  .chk-row{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px}
+  .chk-row label{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+  .chk-row input{width:auto !important}
+
   .status{padding:10px 14px;border-radius:6px;font-size:13px;margin-top:10px;display:none}
   .status.show{display:block}
   .status.ok{background:#e8f4ef;color:#1a6e56;border:1px solid #c5e3d4}
@@ -177,12 +196,13 @@
           <label>검색:</label>
           <input type="text" id="catalogSearchFilter" placeholder="id·모델명·부제" oninput="catalogApplyFilters()">
         </div>
-        <div style="font-size:11.5px;color:#5a6779">Phase 2 기본 필드만 (매칭·헤드·사양은 Phase 3·4에서 확장)</div>
+        <div style="font-size:11.5px;color:#5a6779">▶ 토글로 매칭 키워드 편집 가능 (Phase 4 · 헤드·사양은 다음 commit에서)</div>
       </div>
       <div class="sheet-wrap">
         <table class="sheet">
           <thead>
             <tr>
+              <th style="width:32px"></th>
               <th style="width:90px">id</th>
               <th style="width:140px">모델명</th>
               <th>부제 (sub)</th>
@@ -683,6 +703,15 @@ function catalogSetStatus(msg, kind){
   if (kind === 'ok') setTimeout(() => el.classList.remove('show'), 4000);
 }
 
+// Phase 4 — matching 축 옵션 (recommend2 위저드와 1:1 매칭)
+const MATCHING_AXES = [
+  { key:'flow',    label:'유량 (flow)',    opts:['micro','low','mid','high','xhigh'] },
+  { key:'fluid',   label:'유체 (fluid)',   opts:['aqueous','acid','organic','viscous','slurry','other'] },
+  { key:'func',    label:'기능 (func)',    opts:['metering','dispensing','filling','pc_prog'] },
+  { key:'ctrl',    label:'제어 (ctrl)',    opts:['local','comm','auto_sw'] },
+  { key:'channels',label:'채널 (channels)',opts:['1','2','4','multi'] }
+];
+
 function catalogRowHtml(d){
   d = d || {category:'peristaltic'};
   const catOpts = CATALOG_CATS.map(c =>
@@ -691,6 +720,7 @@ function catalogRowHtml(d){
     CATALOG_SERIES.map(s => `<option value="${s}"${d.series===s?' selected':''}>${s}</option>`)
   ).join('');
   return `<tr data-cat="${escapeAttr(d.category||'peristaltic')}" data-ser="${escapeAttr(d.series||'')}">
+    <td class="col-toggle"><button type="button" onclick="catalogToggleDetails(this)" title="펼침/접기">▶</button></td>
     <td class="col-id"><input type="text" value="${escapeAttr(d.id)}" placeholder="BT101S"></td>
     <td><input type="text" value="${escapeAttr(d.name)}" placeholder="BT101S"></td>
     <td><input type="text" value="${escapeAttr(d.sub)}" placeholder="Speed Variable Peristaltic Pump"></td>
@@ -699,14 +729,57 @@ function catalogRowHtml(d){
     <td><input type="text" value="${escapeAttr(d.image||'')}" placeholder="/img/leadfluid/BT101S.png"></td>
     <td><input type="text" value="${escapeAttr(d.flow_display)}" placeholder="0.005 ~ 1000 mL/min"></td>
     <td><input type="text" value="${escapeAttr(d.comm)}" placeholder="RS485 / MODBUS"></td>
-    <td class="col-action"><button onclick="this.closest('tr').remove();catalogApplyFilters()">삭제</button></td>
+    <td class="col-action"><button onclick="catalogRemoveRow(this)">삭제</button></td>
   </tr>`;
+}
+
+function catalogDetailRowHtml(d){
+  d = d || {};
+  const m = d.matching || {};
+  const axisHtml = MATCHING_AXES.map(a => {
+    const sel = Array.isArray(m[a.key]) ? m[a.key] : [];
+    const opts = a.opts.map(o =>
+      `<label><input type="checkbox" data-axis="${a.key}" value="${o}"${sel.includes(o)?' checked':''}> ${o}</label>`
+    ).join('');
+    return `<div class="match-axis"><span class="axis-name">${a.label}</span><div class="chk-row">${opts}</div></div>`;
+  }).join('');
+  return `<tr class="row-detail" style="display:none">
+    <td colspan="10">
+      <div class="detail-panel">
+        <details class="detail-sec" open>
+          <summary>매칭 키워드 (위저드 추천 기준)</summary>
+          <div class="detail-sec-body"><div class="match-grid">${axisHtml}</div></div>
+        </details>
+      </div>
+    </td>
+  </tr>`;
+}
+
+function catalogToggleDetails(btn){
+  const row = btn.closest('tr');
+  const detail = row.nextElementSibling;
+  if (!detail || !detail.classList.contains('row-detail')) return;
+  const isOpen = detail.style.display !== 'none';
+  detail.style.display = isOpen ? 'none' : 'table-row';
+  btn.textContent = isOpen ? '▶' : '▼';
+}
+
+function catalogRemoveRow(btn){
+  const row = btn.closest('tr');
+  const detail = row.nextElementSibling;
+  if (detail && detail.classList.contains('row-detail')) detail.remove();
+  row.remove();
+  catalogApplyFilters();
 }
 
 function catalogAddRow(data){
   const body = document.getElementById('catalogSheetBody');
-  body.insertAdjacentHTML('beforeend', catalogRowHtml(data));
-  if (!data) body.lastElementChild.classList.add('row-new');
+  body.insertAdjacentHTML('beforeend', catalogRowHtml(data) + catalogDetailRowHtml(data));
+  // 마지막 두 행 중 첫 번째(메인 행)에 row-new 클래스
+  if (!data){
+    const rows = body.querySelectorAll('tr:not(.row-detail)');
+    if (rows.length) rows[rows.length-1].classList.add('row-new');
+  }
   catalogApplyFilters();
 }
 
@@ -719,9 +792,10 @@ function catalogClearAll(){
 
 function catalogReadSheet(){
   const rows = [];
-  document.querySelectorAll('#catalogSheetBody tr').forEach(tr => {
-    const inputs = tr.querySelectorAll('input');
-    const selects = tr.querySelectorAll('select');
+  document.querySelectorAll('#catalogSheetBody tr:not(.row-detail)').forEach(tr => {
+    // 메인 행: 직접 편집되는 input/select들만 수집 (펼침 패널의 체크박스 제외)
+    const inputs = tr.querySelectorAll(':scope > td > input[type="text"]');
+    const selects = tr.querySelectorAll(':scope > td > select');
     const r = {
       id: inputs[0].value.trim(),
       name: inputs[1].value.trim(),
@@ -732,7 +806,21 @@ function catalogReadSheet(){
       flow_display: inputs[4].value.trim(),
       comm: inputs[5].value.trim()
     };
-    // 보존된 추가 필드(applications, heads 등)는 메타 보관소에서 합성
+    // Phase 4 — 펼침 행의 matching 체크박스 수집
+    const detail = tr.nextElementSibling;
+    if (detail && detail.classList.contains('row-detail')){
+      const matching = {};
+      detail.querySelectorAll('input[type="checkbox"][data-axis]').forEach(cb => {
+        const axis = cb.dataset.axis;
+        if (!matching[axis]) matching[axis] = [];
+        if (cb.checked) matching[axis].push(cb.value);
+      });
+      // 빈 배열은 제거 (catalog.json 깨끗하게)
+      Object.keys(matching).forEach(k => { if (!matching[k].length) delete matching[k]; });
+      if (Object.keys(matching).length) r.matching = matching;
+    }
+    // 보존된 추가 필드(applications, heads 등 — 아직 UI 없는 것)는 메타 보관소에서 합성
+    // 단, matching은 이제 명시 편집이므로 extras로 덮어쓰지 않음
     if (window.__catalogExtras && window.__catalogExtras[r.id]){
       const extra = window.__catalogExtras[r.id];
       Object.keys(extra).forEach(k => { if (!(k in r)) r[k] = extra[k]; });
@@ -760,12 +848,14 @@ async function catalogLoad(){
     const serSel = document.getElementById('catalogSeriesFilter');
     serSel.innerHTML = '<option value="">전체</option>' +
       Array.from(seriesSet).sort().map(s => `<option value="${s}">${s}</option>`).join('');
-    // 행 미포함 필드 (applications, heads, flow_min/max, series_label, category_label 등) 보존
+    // 행/펼침 패널 미포함 필드 (applications, heads, flow_min/max, series_label, category_label 등) 보존
+    // Phase 4부터 'matching'은 펼침 패널에서 명시 편집 — extras에서 제외
     window.__catalogExtras = {};
+    const UI_FIELDS = ['id','name','sub','series','category','image','flow_display','comm','matching'];
     pumps.forEach(p => {
       const extras = {};
       Object.keys(p).forEach(k => {
-        if (!['id','name','sub','series','category','image','flow_display','comm'].includes(k)){
+        if (!UI_FIELDS.includes(k)){
           extras[k] = p[k];
         }
       });
@@ -785,7 +875,8 @@ function catalogApplyFilters(){
   const cat = document.getElementById('catalogCatFilter').value;
   const ser = document.getElementById('catalogSeriesFilter').value;
   const q = (document.getElementById('catalogSearchFilter').value || '').toLowerCase().trim();
-  const rows = document.querySelectorAll('#catalogSheetBody tr');
+  // Phase 4 — 메인 행만 필터 대상 (펼침 행은 메인 행을 따라감)
+  const rows = document.querySelectorAll('#catalogSheetBody tr:not(.row-detail)');
   let visible = 0;
   const total = rows.length;
   rows.forEach(tr => {
@@ -794,6 +885,11 @@ function catalogApplyFilters(){
     const text = tr.textContent.toLowerCase();
     const ok = (!cat || trCat === cat) && (!ser || trSer === ser) && (!q || text.includes(q));
     tr.classList.toggle('row-hidden', !ok);
+    // 펼침 행도 함께 숨김 (사용자가 열어둔 상태 유지하되 메인이 숨겨지면 같이)
+    const detail = tr.nextElementSibling;
+    if (detail && detail.classList.contains('row-detail')){
+      detail.classList.toggle('row-hidden', !ok);
+    }
     if (ok) visible++;
   });
   document.getElementById('catalogCount').textContent = `${visible} / ${total}개`;
@@ -821,7 +917,7 @@ async function catalogSaveAndBuild(){
       _base_url: base._base_url || 'https://cellab.kr/',
       version: base.version || '1.0',
       updated_at: today,
-      source: 'admin.html (Phase 2 editor)',
+      source: 'admin.html (Phase 4 editor — matching)',
       count: rows.length,
       pumps: rows
     };
@@ -831,7 +927,7 @@ async function catalogSaveAndBuild(){
       method: 'PUT',
       headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        message: `Update catalog.json (admin Phase 2) ${new Date().toISOString().slice(0,16).replace('T',' ')}`,
+        message: `Update catalog.json (admin Phase 4 — matching) ${new Date().toISOString().slice(0,16).replace('T',' ')}`,
         content: contentB64,
         sha: meta.sha
       })
