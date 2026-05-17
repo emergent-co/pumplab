@@ -230,5 +230,67 @@ Disallow: /blog/naver/
 
 ---
 
-**최종 갱신:** 2026-05-09 (블로그 디자인 v2 톤 정책 신설 — 핵심박스·미니멀헤딩·모던표·FAQ Q-A·키워드태그·보조 인포그래픽)
+## 9. 멀티컴퓨터 작업 흐름 (2026-05-15)
+
+**원칙:** 작업 폴더는 어느 컴퓨터에든 있을 수 있다. Drive/OneDrive 동기화 금지. **git이 유일한 동기화 수단**.
+
+### 9.1 새 컴퓨터에서 처음 작업 시 (1회 setup)
+
+```powershell
+# git 설치
+winget install Git.Git
+git config --global user.name "Younghyun Lee"
+git config --global user.email "emgt.yhlee@gmail.com"
+
+# 프로젝트 clone (경로는 자유 — C:\dev\cellab_homepage 권장)
+cd C:\dev
+git clone https://github.com/emergent-co/cellab.git cellab_homepage
+cd cellab_homepage
+
+# Cowork 앱 설치 + 위 폴더 선택
+```
+
+### 9.2 매 작업 시작 시 (모든 컴퓨터에서)
+
+```powershell
+cd C:\dev\cellab_homepage      # 경로는 컴퓨터마다 다를 수 있음
+git pull origin main
+git status                      # 깨끗한지 확인
+```
+
+`git pull`로 다른 컴퓨터에서 한 변경 받아오기. **이 단계 빠뜨리면 conflict 위험**.
+
+### 9.3 매 작업 종료 시
+
+```powershell
+git add -A
+git commit -m "작업 요약"
+git push origin main
+```
+
+다른 컴퓨터에서 받아갈 수 있게 push.
+
+### 9.4 깜빡하고 pull 안 한 채 작업한 경우
+
+```powershell
+git status                  # 미커밋 변경 확인
+git stash                   # 임시 보관
+git pull origin main        # 다른 컴퓨터 변경 받기
+git stash pop               # 보관한 변경 다시 적용
+# conflict 발생 시 git이 안내 — 수동 merge 후 commit
+```
+
+### 9.5 AI 에이전트(Cowork) 안내 시 주의
+
+- **모든 PowerShell 명령 안내는 `cd → git pull → 작업 → git add/commit/push` 패턴 기본**
+- "C:\dev\cellab_homepage" 경로는 예시 — 사장님이 다른 경로 쓰실 수 있음을 전제
+- git 명령은 어느 컴퓨터든 같음 (경로만 다름)
+
+### 9.6 Drive/OneDrive 동기화 금지 이유
+
+`.git/index` 파손, lock 파일 sync, race condition 등으로 git 자체가 깨짐 — 본 세션에서 여러 번 발생한 패턴. 멀티컴퓨터 동기화는 git push/pull로만.
+
+---
+
+**최종 갱신:** 2026-05-15 (§ 9 멀티컴퓨터 작업 흐름 신설 — git pull/push 표준 패턴 정립)
 **다음 갱신 트리거:** 새 블로그 글 발행 시 (URL 매핑 표 갱신), 새 자동 생성 파일·사례 발생 시, 정책 변경 시
