@@ -1082,6 +1082,22 @@ async function catalogLoad(){
     body.innerHTML = '';
     pumps.forEach(p => catalogAddRow(p));
     catalogApplyFilters();
+    // Stage 2a (2026-05-18) — settings.json fetch → 박힌 NAV_GROUPS 갱신 (실패 시 fallback)
+    try {
+      const sRes = await fetch('_build/settings.json', { cache: 'no-store' });
+      if (sRes.ok) {
+        const s = await sRes.json();
+        if (Array.isArray(s.nav_groups) && s.nav_groups.length) {
+          NAV_GROUPS.length = 0;
+          s.nav_groups
+            .slice()
+            .sort((a,b) => (a.order||0) - (b.order||0))
+            .forEach(g => NAV_GROUPS.push({ key: g.key, label: g.label }));
+        }
+      }
+    } catch (e) {
+      console.warn('[admin] settings.json fetch 실패, NAV_GROUPS fallback:', e);
+    }
     // 그룹 URL 패널 렌더 (data.nav_group_urls fallback data.series_urls — 마이그레이션 전 호환)
     const urlsForPanel = data.nav_group_urls || data.series_urls || {};
     catalogRenderNavGroupUrls(urlsForPanel, pumps);
