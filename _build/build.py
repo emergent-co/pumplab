@@ -386,6 +386,8 @@ def main():
         ('product/',      '0.9', 'weekly'),   # 제품 (상업 최우선)
         ('quote/',        '0.8', 'monthly'),  # 견적 문의
         ('requests/',     '0.6', 'weekly'),   # 개발 요청
+        ('tubing.html',   '0.7', 'monthly'),  # 튜브 선택
+        ('application/cell-culture-perfusion.html', '0.8', 'monthly'),  # 응용 SEO 페이지
     ]
     for path, prio, freq in static_pages:
         sitemap_lines.append(

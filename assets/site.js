@@ -7,9 +7,10 @@
   var path = location.pathname;
 
   var NAV = [
-    ['/product/',  '제품'],
-    ['/requests/', '개발 요청'],
-    ['/quote/',    '견적 문의']
+    ['/product/',    '펌프 가이드'],
+    ['/tubing.html', '튜브 선택'],
+    ['/requests/',   '개발 요청'],
+    ['/quote/',      '견적 문의']
   ];
   var navHTML = NAV.map(function (n) {
     var cls = (n[0] === '/quote/') ? ' class="ch-quote"' : '';

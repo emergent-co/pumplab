@@ -24,4 +24,16 @@
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
   </url>
+  <url>
+    <loc>https://cellab.kr/tubing.html</loc>
+    <lastmod>2026-06-29</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cellab.kr/application/cell-culture-perfusion.html</loc>
+    <lastmod>2026-06-29</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>
