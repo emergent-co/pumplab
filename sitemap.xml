@@ -21,19 +21,7 @@
   <url>
     <loc>https://cellab.kr/requests/</loc>
     <lastmod>2026-06-29</lastmod>
-    <priority>0.6</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://cellab.kr/reviews.html</loc>
-    <lastmod>2026-06-29</lastmod>
     <priority>0.7</priority>
     <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://cellab.kr/recommend.html</loc>
-    <lastmod>2026-06-29</lastmod>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
   </url>
 </urlset>

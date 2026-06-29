@@ -386,8 +386,6 @@ def main():
         ('product/',      '0.9', 'weekly'),   # 제품 (상업 최우선)
         ('quote/',        '0.8', 'monthly'),  # 견적 문의
         ('requests/',     '0.6', 'weekly'),   # 개발 요청
-        ('reviews.html',  '0.7', 'weekly'),   # 펌프셋업 리뷰
-        ('recommend.html','0.7', 'monthly'),  # 위저드
     ]
     for path, prio, freq in static_pages:
         sitemap_lines.append(
