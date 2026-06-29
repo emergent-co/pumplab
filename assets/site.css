@@ -1,0 +1,58 @@
+/* ============================================================
+   Cellab 공유 스타일 (site.css) — 전 페이지 디자인 통일 (홈 기준)
+   각 페이지 <head> 끝(인라인 <style> 이후)에서 로드되어,
+   색 토큰을 홈 팔레트로 덮어써 배경·색·제목을 통일한다.
+   B 계열(recommend·leadfluid·inquiry)의 --navy/--teal/--text/--bg 변수도
+   여기서 홈 값으로 재매핑되므로 마크업 수정 없이 톤이 맞춰진다.
+   ============================================================ */
+
+/* 1) 색 토큰 — 홈 팔레트로 통일 */
+:root{
+  --ink:#1A1A1A; --gray:#6B6B6B; --gray-2:#9A9A9A;
+  --green:#1A6E56; --green-dk:#155A46; --green-bg:#F3F8F5;
+  --line:#EAEAEA; --bg:#FFFFFF;
+  --serif:"Noto Serif KR", Georgia, "Times New Roman", serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+
+  /* B 계열 변수 → 홈 팔레트로 재매핑 (네이비/틸 → 잉크/초록, 배경 → 흰색) */
+  --navy:#1A1A1A;
+  --teal:#1A6E56;
+  --text:#1A1A1A;
+  --muted:#6B6B6B;
+  --border:#EAEAEA;
+  --soft:#F3F8F5;
+  --soft-blue:#F3F8F5;
+  --accent:#1A6E56;
+}
+
+/* 2) 본문 기본 — 흰 배경 + 한글 줄바꿈 */
+html, body{
+  background:#fff;
+  color:var(--ink);
+  font-family:var(--sans);
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+
+/* 3) 제목 — 세리프 (홈 기준). 컴포넌트 라벨(div/span)은 영향 없음 */
+h1, h2, h3{
+  font-family:var(--serif);
+  color:var(--ink);
+}
+
+/* 4) 헤더 — 흰 배경 + 하단 라인 (A·B 헤더 공통 톤) */
+header,
+.site-header{
+  background:#fff;
+  border-bottom:1px solid var(--line);
+}
+
+/* 5) 푸터로 옮긴 회사정보 블록 정렬 (홈 .botbar 안) */
+.botbar .company{
+  max-width:1080px;
+  margin:0 auto 18px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+}
+.botbar .company .cbrand{ font-family:var(--serif); }
