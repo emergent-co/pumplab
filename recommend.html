@@ -1519,5 +1519,18 @@ document.querySelectorAll('.faq-more-btn').forEach(btn => {
 });
 </script>
 
+<script>
+/* 임베드(iframe) 모드: 부모(제품 페이지)에 위저드 높이 전달 → 자동 높이조절 */
+(function(){
+  if(new URLSearchParams(location.search).get('embed')!=='1') return;
+  function postH(){
+    try{ parent.postMessage({type:'cellab-wizard-height', height:document.documentElement.scrollHeight}, '*'); }catch(e){}
+  }
+  window.addEventListener('load', postH);
+  if(window.MutationObserver){ new MutationObserver(postH).observe(document.documentElement, {subtree:true, childList:true, attributes:true}); }
+  setInterval(postH, 800);
+})();
+</script>
+
 </body>
 </html>
