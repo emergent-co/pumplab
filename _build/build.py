@@ -373,23 +373,36 @@ def main():
         print(f'  [{cat_id:<10}] {cat_id}.html  ({size_kb:5.1f} KB · {kind} · {n_prod}개)')
         written.append(cat_id)
 
-    # sitemap.xml 생성 — 신 사이트 정체성 (논문 리뷰 블로그) 우선
-    # posts.json에서 블로그 글 목록 자동 합산. deprecated 카테고리는 sitemap에서 제외.
+    # sitemap.xml 생성 — 상업 funnel(공급) 페이지 우선 + 논문 리뷰 블로그
+    # posts.json에서 블로그 글 자동 합산(단, noindex=true 글은 제외). deprecated 카테고리도 제외.
+    from datetime import datetime
+    build_date = datetime.now().strftime('%Y-%m-%d')
     sitemap_lines = ['<?xml version="1.0" encoding="UTF-8"?>',
                      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 
-    # 메인 페이지·리뷰·추천
-    sitemap_lines.append(f'  <url>\n    <loc>{base_url}</loc>\n    <priority>1.0</priority>\n    <changefreq>weekly</changefreq>\n  </url>')
-    sitemap_lines.append(f'  <url>\n    <loc>{base_url}reviews.html</loc>\n    <priority>0.9</priority>\n    <changefreq>weekly</changefreq>\n  </url>')
-    sitemap_lines.append(f'  <url>\n    <loc>{base_url}recommend.html</loc>\n    <priority>0.7</priority>\n    <changefreq>monthly</changefreq>\n  </url>')
+    # 메인 + 상업 funnel 페이지 (loc 경로, priority, changefreq)
+    static_pages = [
+        ('',              '1.0', 'weekly'),   # 홈
+        ('product/',      '0.9', 'weekly'),   # 제품 (상업 최우선)
+        ('quote/',        '0.8', 'monthly'),  # 견적 문의
+        ('requests/',     '0.6', 'weekly'),   # 개발 요청
+        ('reviews.html',  '0.7', 'weekly'),   # 펌프셋업 리뷰
+        ('recommend.html','0.7', 'monthly'),  # 위저드
+    ]
+    for path, prio, freq in static_pages:
+        sitemap_lines.append(
+            f'  <url>\n    <loc>{base_url}{path}</loc>\n    <lastmod>{build_date}</lastmod>\n    <priority>{prio}</priority>\n    <changefreq>{freq}</changefreq>\n  </url>'
+        )
 
-    # posts.json에서 블로그 글 합산
+    # posts.json에서 블로그 글 합산 (noindex=true 글은 sitemap 제외)
     posts_json = os.path.join(SCRIPT_DIR, 'posts.json')
     if os.path.exists(posts_json):
         try:
             with open(posts_json, 'r', encoding='utf-8') as f:
                 posts_data = json.load(f)
             for p in posts_data.get('posts', []):
+                if p.get('noindex'):
+                    continue
                 url = p.get('url', '')
                 date = p.get('date', '')
                 if url:

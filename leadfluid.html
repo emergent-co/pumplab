@@ -30,7 +30,7 @@
     --navy:#0a2540;--teal:#1a6e56;--text:#1a2332;--muted:#5a6779;
     --border:#e3e8ef;--bg:#f7f9fc;--accent:#3a7bd5;
   }
-  html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  html,body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
   a{color:var(--teal);text-decoration:none}
   a:hover{text-decoration:underline}
 
@@ -52,6 +52,7 @@
     .site-logo{flex:none}
     .site-actions{flex:none;margin-left:auto}
     .site-header-inner{flex-wrap:wrap}
+    .full-specs{grid-template-columns:1fr}
   }
 
   /* 히어로 */
