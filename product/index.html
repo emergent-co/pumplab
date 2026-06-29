@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!-- 배포 경로: cellab.kr/product/index.html  (메뉴 '제품' — 펌프 통합 1페이지)
+     레이아웃: Claude 랜딩 템플릿 참고 (가운데 세리프 히어로·2단 구분선 피처행·아코디언 FAQ) -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실험실 펌프 — 정량·연동·시린지·방폭펌프 | Cellab</title>
+<meta name="description" content="실험실 정량펌프·연동(페리스탈틱)펌프·시린지펌프·방폭펌프. 정밀 분주부터 무오염 관류, 위험지역(Ex)까지 LeadFluid 정식 공급. 펌프 제어 프로그램 연동. 무료 견적.">
+<link rel="canonical" href="https://cellab.kr/product/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1A1A1A;--gray:#6B6B6B;--gray-2:#9A9A9A;--green:#1A6E56;--green-bg:#F3F8F5;--line:#EAEAEA;--bg:#fff;
+        --serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7}
+  a{text-decoration:none;color:inherit}
+  h1,h2,h3{font-family:var(--serif);letter-spacing:-.3px;color:var(--ink);font-weight:600}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  /* header */
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px}.brand b{color:var(--green)}
+  .menu{display:flex;gap:24px;align-items:center}.menu a{font-size:15px;color:var(--gray);font-weight:500}
+  .menu a:hover{color:var(--ink)} .menu .quote{color:var(--green);font-weight:600}
+  /* hero (가운데 정렬 + 아이콘 + 세리프) */
+  .hero{text-align:center;padding:64px 0 56px}
+  .hero .ic{width:48px;height:48px;margin:0 auto 22px;stroke:var(--ink);fill:none;stroke-width:1.4}
+  .hero h1{font-size:48px;line-height:1.15}
+  .hero p{margin:20px auto 0;max-width:560px;font-size:18px;color:var(--gray)}
+  .hero .btns{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .b1{background:var(--ink);color:#fff;padding:13px 24px;border-radius:9px;font-weight:600}
+  .b1:hover{background:#000}
+  .b2{background:#fff;border:1px solid var(--line);padding:13px 22px;border-radius:9px;font-weight:600}
+  .b2:hover{border-color:var(--gray-2)}
+  /* 2단 구분선 피처행 (템플릿 핵심 패턴) */
+  .rows{max-width:880px;margin:0 auto;padding:8px 0 64px}
+  .row{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;padding:40px 0;border-top:1px solid var(--line)}
+  .row .lt{display:flex;gap:14px;align-items:flex-start}
+  .row .lt svg{width:22px;height:22px;stroke:var(--green);fill:none;stroke-width:1.7;flex:none;margin-top:4px}
+  .row .lt h3{font-family:var(--sans);font-size:19px;font-weight:700;line-height:1.4}
+  .row .rt{color:var(--gray);font-size:16px}
+  .row .rt .kw{display:inline-block;margin-top:12px;font-size:12px;color:var(--green);background:var(--green-bg);padding:3px 9px;border-radius:6px;font-weight:700}
+  .row .rt a.more{display:inline-block;margin-top:14px;font-weight:600;color:var(--ink);border-bottom:2px solid var(--green);padding-bottom:2px}
+  /* 튜브 표 */
+  .sec{padding:56px 0;border-top:1px solid var(--line)}
+  .sec-h{text-align:center;max-width:600px;margin:0 auto 32px}
+  .sec-h h2{font-size:30px}.sec-h p{color:var(--gray);margin-top:10px;font-size:15px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left}
+  th{background:#FAFAFA;font-weight:700}
+  td .y{color:var(--green);font-weight:700}
+  /* FAQ 아코디언 (템플릿 패턴) */
+  .faq{max-width:760px;margin:0 auto}
+  .faq .ic{width:40px;height:40px;margin:0 auto 16px;display:block;stroke:var(--ink);fill:none;stroke-width:1.5}
+  details{border-bottom:1px solid var(--line)}
+  summary{list-style:none;cursor:pointer;padding:20px 4px;font-size:17px;font-weight:600;
+          display:flex;justify-content:space-between;align-items:center;font-family:var(--sans)}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--gray-2);font-weight:400;font-size:22px}
+  details[open] summary::after{content:"–"}
+  details p{padding:0 4px 22px;color:var(--gray);font-size:15px}
+  details a{color:var(--green);font-weight:600}
+  /* CTA */
+  .cta{background:var(--green-bg);text-align:center;padding:64px 0}
+  .cta h2{font-size:28px}.cta p{color:var(--gray);margin:12px 0 24px}
+  footer{padding:36px 0;font-size:13px;color:var(--gray-2);border-top:1px solid var(--line);text-align:center}
+  @media(max-width:760px){.menu{display:none}.hero h1{font-size:34px}.row{grid-template-columns:1fr;gap:14px;padding:30px 0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/">Cellab<b>.</b></a>
+    <nav class="menu">
+      <a href="/#download">프로그램 다운로드</a>
+      <a href="/product/">제품</a>
+      <a href="/requests/">개발 요청</a>
+      <a class="quote" href="/quote/">견적 문의</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <svg class="ic" viewBox="0 0 24 24"><path d="M12 2c3 4 5 6.5 5 9.5A5 5 0 0 1 7 11.5C7 8.5 9 6 12 2z"/></svg>
+    <h1>실험실 펌프, 한 곳에서</h1>
+    <p><b>정량펌프</b>·<b>연동(페리스탈틱)펌프</b>·<b>시린지펌프</b>·<b>방폭펌프</b>까지.
+       정밀 분주부터 무오염 관류, 위험지역까지 LeadFluid 정식 공급, 펌프 제어 프로그램으로 PC에서 제어합니다.</p>
+    <div class="btns">
+      <a class="b1" href="/quote/">무료 견적 문의</a>
+      <a class="b2" href="/#download">제어 프로그램 다운로드</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2단 구분선 피처행 -->
+<div class="wrap rows">
+  <div class="row" id="metering">
+    <div class="lt">
+      <svg viewBox="0 0 24 24"><path d="M4 19V5m4 14V9m4 10V7m4 12v-6m4 6V11"/></svg>
+      <h3>정량펌프<br>— 정밀 분주·이송</h3>
+    </div>
+    <div class="rt">
+      µL 단위 분주부터 연속 정량 이송까지. 마이크로플루이딕·분석 전처리·시약 정량 주입에
+      맞는 모델을 유량 범위와 정밀도로 선택합니다.
+      <span class="kw">검색 타겟: 정량펌프</span><br>
+      <a class="more" href="/quote/">정량펌프 견적 받기 →</a>
+    </div>
+  </div>
+
+  <div class="row" id="peristaltic">
+    <div class="lt">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+      <h3>연동(페리스탈틱)펌프<br>— 무오염 비접촉 이송</h3>
+    </div>
+    <div class="rt">
+      유체가 튜브 안에서만 흐르는 <b>연동식 펌프</b>는 펌프 본체가 시료에 닿지 않아
+      세포배양·관류·발효처럼 오염이 치명적인 실험에 최적입니다.
+      <span class="kw">검색 타겟: 연동식 펌프 · 페리스탈틱 펌프</span><br>
+      <a class="more" href="/quote/">연동펌프 견적 받기 →</a>
+    </div>
+  </div>
+
+  <div class="row" id="syringe">
+    <div class="lt">
+      <svg viewBox="0 0 24 24"><path d="M4 20l9-9M13 5l6 6M11 7l6 6M14 4l6 6-2 2-6-6z"/></svg>
+      <h3>시린지펌프<br>— 초정밀 미소유량</h3>
+    </div>
+    <div class="rt">
+      µL급 미소 유량을 맥동 없이 정밀하게 연속 주입. 마이크로플루이딕·약물주입·정밀 적정 등
+      재현성이 중요한 실험에 적합합니다.
+      <span class="kw">검색 타겟: 시린지펌프</span><br>
+      <a class="more" href="/quote/">시린지펌프 견적 받기 →</a>
+    </div>
+  </div>
+
+  <div class="row" id="explosionproof">
+    <div class="lt">
+      <svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/></svg>
+      <h3>방폭펌프<br>— 위험지역(Ex) 대응</h3>
+    </div>
+    <div class="rt">
+      인화성 용제·가연성 분위기 등 위험지역(Ex)용 방폭 인증 펌프. 용제 이송·화학 합성·도장 라인 등
+      안전이 최우선인 환경에 사용합니다.
+      <span class="kw">검색 타겟: 방폭펌프</span><br>
+      <a class="more" href="/quote/">방폭펌프 견적 받기 →</a>
+    </div>
+  </div>
+
+  <div class="row" id="control">
+    <div class="lt">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg>
+      <h3>펌프 제어 프로그램<br>— PC에서 제어</h3>
+    </div>
+    <div class="rt">
+      유량·RPM 설정, 시퀀스 스케줄링, 실시간 모니터링을 하나의 프로그램에서.
+      장시간 무인 운전으로 재현 가능한 데이터를 쌓습니다.
+      <a class="more" href="/#download" style="margin-top:14px">무료 다운로드 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- 튜브 선택 표 -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-h">
+      <h2>연동펌프 튜브 선택</h2>
+      <p>성능은 펌프만큼 튜브가 좌우합니다. 재질별 특성을 확인하세요.</p>
+    </div>
+    <table>
+      <thead><tr><th>튜브 재질</th><th>특성</th><th>적합 응용</th></tr></thead>
+      <tbody>
+        <tr><td><b>실리콘</b></td><td>유연·생체적합</td><td><span class="y">세포배양·일반 수계</span></td></tr>
+        <tr><td><b>TPE</b></td><td>긴 수명·저용출</td><td><span class="y">장시간 관류·발효</span></td></tr>
+        <tr><td><b>Tygon</b></td><td>내약품 범용</td><td><span class="y">시약·완충액</span></td></tr>
+        <tr><td><b>Viton/Fluoro</b></td><td>강한 내화학성</td><td><span class="y">용제·부식성</span></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--gray-2);margin-top:10px">※ 시약별 정확한 적합 등급은 견적 시 함께 확인해 드립니다.</p>
+  </div>
+</section>
+
+<!-- FAQ 아코디언 -->
+<section class="sec">
+  <div class="wrap faq">
+    <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3 2.4c-.8.3-1 .8-1 1.6M12 17h.01"/></svg>
+    <div class="sec-h"><h2>자주 묻는 질문</h2></div>
+    <details><summary>정량펌프와 연동펌프, 뭐가 다른가요?</summary>
+      <p>정량펌프는 정밀 분주에, 연동(페리스탈틱)펌프는 비접촉 무오염 이송에 강합니다. 오염이 치명적인 세포배양·관류라면 연동펌프를 검토하세요.</p></details>
+    <details><summary>페리스탈틱 펌프와 연동식 펌프는 같은 건가요?</summary>
+      <p>네, 같은 펌프입니다. 영어 'peristaltic pump'를 우리말로 '연동식 펌프'라고 부릅니다.</p></details>
+    <details><summary>PC로 유량을 제어할 수 있나요?</summary>
+      <p>네. <a href="/#download">펌프 제어 프로그램</a>으로 유량·RPM 설정, 시퀀스 스케줄링, 실시간 모니터링이 가능합니다.</p></details>
+    <details><summary>튜브는 얼마나 자주 교체하나요?</summary>
+      <p>재질·유량·연속운전 시간에 따라 다릅니다. 응용을 알려주시면 권장 교체 주기를 안내합니다.</p></details>
+    <details><summary>원하는 기능이 없으면 어떻게 하나요?</summary>
+      <p>제어 프로그램에 필요한 기능을 <a href="/requests/">개발 요청 게시판</a>에 남기시면 검토 후 진행 상황을 공개합니다.</p></details>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2>실험에 맞는 펌프, 같이 골라드립니다</h2>
+    <p>유량·정밀도·시약 조건만 알려주시면 펌프와 튜브를 함께, 1영업일 내 회신.</p>
+    <a class="b1" href="/quote/">무료 견적 문의</a>
+  </div>
+</section>
+
+<footer>© 2026 Cellab · LeadFluid 정식 공급 · 펌프 제어 프로그램</footer>
+</body>
+</html>

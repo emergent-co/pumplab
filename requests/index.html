@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!-- 배포 경로: cellab.kr/requests/index.html  (메뉴 '개발 요청')
+     운영: 요청자는 이메일로 보냄 → 관리자가 아래 REQUESTS 목록에 한 줄 추가/수정만 하면 보드가 자동 갱신.
+     백엔드 없음(정적). 유지보수 = 목록 편집뿐. -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개발 요청 게시판 — 펌프 제어 프로그램 | Cellab</title>
+<meta name="description" content="펌프 제어 프로그램에 필요한 기능을 요청하고, 검토·개발·완료 진행 상황을 공개로 확인하세요.">
+<link rel="canonical" href="https://cellab.kr/requests/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1A1A1A;--gray:#6B6B6B;--gray-2:#9A9A9A;--green:#1A6E56;--green-bg:#F3F8F5;--navy:#0A2540;
+        --amber:#B26B12;--amber-bg:#FBF3E6;--line:#EAEAEA;--bg:#fff;
+        --serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.65}
+  a{text-decoration:none;color:inherit}
+  h1,h2{font-family:var(--serif);letter-spacing:-.3px;color:var(--ink)}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1080px;margin:0 auto;padding:0 24px}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px}.brand b{color:var(--green)}
+  .menu{display:flex;gap:24px;align-items:center}.menu a{font-size:15px;color:var(--gray);font-weight:500}
+  .menu a:hover{color:var(--ink)} .menu .quote{color:var(--green);font-weight:600}
+  .hero{text-align:center;padding:56px 0 36px}
+  .hero h1{font-size:40px}.hero p{color:var(--gray);margin:14px auto 0;max-width:540px;font-size:16px}
+  .hero .btns{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .b1{background:var(--ink);color:#fff;padding:13px 22px;border-radius:9px;font-weight:600}
+  .b1:hover{background:#000}
+  .b2{background:#fff;border:1px solid var(--line);padding:13px 20px;border-radius:9px;font-weight:600}
+  /* summary */
+  .sum{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:8px 0 28px;border-bottom:1px solid var(--line)}
+  .pill{border:1px solid var(--line);border-radius:30px;padding:7px 15px;font-size:13px;font-weight:600;color:var(--gray);cursor:pointer;background:#fff}
+  .pill.active{border-color:var(--ink);color:var(--ink)}
+  .pill b{color:var(--ink)}
+  /* board */
+  .board{padding:30px 0 56px;display:grid;gap:14px}
+  .req{border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:start}
+  .req h3{font-family:var(--sans);font-size:17px;font-weight:700}
+  .req p{color:var(--gray);font-size:14px;margin-top:5px;grid-column:1/2}
+  .req .meta{grid-column:1/2;font-size:12px;color:var(--gray-2);margin-top:8px}
+  .badge{justify-self:end;font-size:12px;font-weight:700;padding:5px 11px;border-radius:7px;white-space:nowrap}
+  .s-req{background:#F0F1F3;color:#5A6573}
+  .s-rev{background:var(--amber-bg);color:var(--amber)}
+  .s-dev{background:var(--navy);color:#fff}
+  .s-done{background:var(--green-bg);color:var(--green)}
+  .empty{text-align:center;color:var(--gray-2);padding:40px 0;font-size:14px}
+  .legend{font-size:12px;color:var(--gray-2);text-align:center;padding-bottom:40px}
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center}
+  footer .tl{font-size:13px;font-weight:700}.footer .bn{margin-top:10px}
+  footer .bn{margin-top:10px;font-size:13px;color:var(--gray)}
+  footer .cp{margin-top:8px;font-size:12px;color:var(--gray-2)}
+  @media(max-width:680px){.menu{display:none}.hero h1{font-size:30px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="brand" href="/">Cellab<b>.</b></a>
+    <nav class="menu">
+      <a href="/#download">프로그램 다운로드</a>
+      <a href="/product/">제품</a>
+      <a href="/requests/">개발 요청</a>
+      <a class="quote" href="/quote/">견적 문의</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>개발 요청 게시판</h1>
+    <p>펌프 제어 프로그램에 필요한 기능을 이메일로 보내주시면, 검토 후 아래 대기열에 올리고
+       <b>개발 진행 상황을 공개</b>로 보여드립니다.</p>
+    <div class="btns">
+      <!-- 이메일 요청: 받는 주소·템플릿은 실제 값으로 교체 -->
+      <a class="b1" href="mailto:contact@cellab.kr?subject=%5B%EA%B0%9C%EB%B0%9C%20%EC%9A%94%EC%B2%AD%5D%20&body=%E2%96%A0%20%EC%9A%94%EC%B2%AD%20%EA%B8%B0%EB%8A%A5%3A%0A%E2%96%A0%20%EC%82%AC%EC%9A%A9%20%EC%83%81%ED%99%A9%2F%EC%9D%B4%EC%9C%A0%3A%0A%E2%96%A0%20%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84(%EC%83%81%2F%EC%A4%91%2F%ED%95%98)%3A%0A%E2%96%A0%20%ED%9A%8C%EC%82%AC%C2%B7%EC%97%B0%EA%B5%AC%EC%8B%A4%3A%0A%E2%96%A0%20%EC%97%B0%EB%9D%BD%EC%B2%98%3A%0A">이메일로 개발 요청 보내기</a>
+      <a class="b2" href="#board">진행 상황 보기</a>
+    </div>
+  </div>
+</section>
+
+<section id="board">
+  <div class="wrap">
+    <div class="sum" id="sum"><!-- JS가 채움 --></div>
+    <div class="board" id="boardList"><!-- JS가 채움 --></div>
+    <p class="legend">상태 흐름: 요청됨 → 검토중 → 개발중 → 완료 &nbsp;·&nbsp; 모든 요청은 검토 후 게시됩니다.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="tl">Lead Fluid 한국 공식 총판 · 3년 무상 보증 · 국내 A/S 직접 응대</div>
+    <div class="bn"><a href="/">홈</a> · <a href="/product/">제품</a> · <a href="/requests/">개발 요청</a> · <a href="/quote/">견적 문의</a></div>
+    <div class="cp">© 2026 셀렙 (Cellab) · 사업자등록 637-05-03629</div>
+  </div>
+</footer>
+
+<script>
+/* ▼▼▼ 여기만 편집하세요 ▼▼▼
+   요청이 이메일로 오면 아래 목록에 한 줄 추가하고, 진행되면 status만 바꾸세요.
+   status: "req"(요청됨) → "rev"(검토중) → "dev"(개발중) → "done"(완료) */
+const REQUESTS = [
+  { title:"유량 자동 캘리브레이션", desc:"튜브 교체 후 실측 유량을 입력하면 보정계수를 자동 계산.", status:"dev",  date:"2026-06-20", note:"개발 중" },
+  { title:"CSV 로그 자동 내보내기", desc:"유량·누적량 로그를 일정 주기로 CSV 저장.",               status:"rev",  date:"2026-06-24", note:"검토 중" },
+  { title:"다중 펌프 동시 제어", desc:"여러 BT101을 한 화면에서 개별 제어.",                    status:"req",  date:"2026-06-27", note:"" },
+  { title:"실시간 유량 그래프", desc:"최근 60초 유량을 실시간 라인 차트로 표시.",               status:"done", date:"2026-06-10", note:"v1.0 반영" },
+];
+/* ▲▲▲ 여기까지 ▲▲▲ */
+
+const LABEL = { req:"요청됨", rev:"검토중", dev:"개발중", done:"완료" };
+const CLS   = { req:"s-req", rev:"s-rev", dev:"s-dev", done:"s-done" };
+const ORDER = ["req","rev","dev","done"];
+let filter = "all";
+
+function counts(){
+  const c = {all:REQUESTS.length, req:0, rev:0, dev:0, done:0};
+  REQUESTS.forEach(r => c[r.status]++);
+  return c;
+}
+function renderSum(){
+  const c = counts();
+  const items = [["all","전체"],["req","요청됨"],["rev","검토중"],["dev","개발중"],["done","완료"]];
+  document.getElementById("sum").innerHTML = items.map(([k,l]) =>
+    `<button class="pill ${filter===k?'active':''}" onclick="setFilter('${k}')">${l} <b>${c[k]}</b></button>`
+  ).join("");
+}
+function renderList(){
+  const list = REQUESTS
+    .filter(r => filter==="all" || r.status===filter)
+    .sort((a,b) => ORDER.indexOf(a.status)-ORDER.indexOf(b.status) || b.date.localeCompare(a.date));
+  const el = document.getElementById("boardList");
+  if(!list.length){ el.innerHTML = `<p class="empty">해당 상태의 요청이 없습니다.</p>`; return; }
+  el.innerHTML = list.map(r => `
+    <div class="req">
+      <h3>${r.title}</h3>
+      <span class="badge ${CLS[r.status]}">${LABEL[r.status]}</span>
+      <p>${r.desc}</p>
+      <div class="meta">요청일 ${r.date}${r.note?` · ${r.note}`:""}</div>
+    </div>`).join("");
+}
+function setFilter(k){ filter=k; renderSum(); renderList(); }
+renderSum(); renderList();
+</script>
+</body>
+</html>

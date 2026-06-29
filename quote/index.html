@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- 배포 경로: cellab.kr/quote/index.html
+     ▼ 정적 호스팅(GitHub Pages)이라 백엔드가 없습니다. 폼 전송은 외부 서비스로 처리:
+       1) Formspree(무료) 가입 → 양식 ID 발급 → 아래 form action의 XXXXXXX 교체
+       2) 또는 폼 대신 하단 이메일/전화로만 받기(유지보수 0)
+     GA4 전환: 제출 버튼에 generate_lead 이벤트 연결 권장 -->
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>견적 문의 — 정량·연동펌프 | Cellab</title>
+<meta name="description" content="정량펌프·연동펌프 무료 견적 문의. 응용·유량·시약 조건만 남기면 1영업일 내 회신.">
+<link rel="canonical" href="https://cellab.kr/quote/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1A1A1A;--gray:#6B6B6B;--gray-2:#9A9A9A;--green:#1A6E56;--green-dk:#155A46;--green-bg:#F3F8F5;--line:#EAEAEA;--bg:#fff;
+        --serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.65}
+  a{text-decoration:none;color:inherit}
+  h1,h2{font-family:var(--serif);letter-spacing:-.3px;color:var(--ink)}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1000px;margin:0 auto;padding:0 24px}
+  .brand{font-family:var(--serif);font-weight:700;font-size:21px}.brand b{color:var(--green)}
+  .menu{display:flex;gap:24px;align-items:center}.menu a{font-size:15px;color:var(--gray);font-weight:500}
+  .menu a:hover{color:var(--ink)} .menu .quote{color:var(--green);font-weight:600}
+  .hero{text-align:center;padding:48px 0 8px}
+  .hero h1{font-size:36px}.hero p{color:var(--gray);margin-top:12px;font-size:16px}
+  form{margin:32px 0 0;display:grid;gap:16px}
+  label{font-size:14px;font-weight:600;display:block;margin-bottom:6px}
+  label .req{color:var(--green)}
+  input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:9px;
+        font-family:inherit;font-size:15px;color:var(--ink);background:#fff}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green)}
+  textarea{min-height:110px;resize:vertical}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .submit{background:var(--ink);color:#fff;border:none;padding:15px;border-radius:10px;
+        font-size:16px;font-weight:600;cursor:pointer;font-family:inherit}
+  .submit:hover{background:#000}
+  .alt{margin:28px 0 48px;padding:20px;background:var(--green-bg);border-radius:12px;text-align:center;font-size:14px}
+  .alt a{color:var(--green-dk);font-weight:700}
+  .priv{font-size:12px;color:var(--gray-2);text-align:center}
+  footer{padding:32px 0;font-size:13px;color:var(--gray-2);border-top:1px solid var(--line)}
+  @media(max-width:680px){.menu{display:none}.row2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="brand" href="/">Cellab<b>.</b></a>
+    <nav class="menu">
+      <a href="/#download">프로그램 다운로드</a>
+      <a href="/product/">제품</a>
+      <a href="/requests/">개발 요청</a>
+      <a class="quote" href="/quote/">견적 문의</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>무료 견적 문의</h1>
+    <p>응용·유량·시약 조건만 남겨주시면 펌프와 튜브를 함께, 1영업일 내 회신드립니다.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <!-- Formspree 사용 시 action의 XXXXXXX를 발급받은 양식 ID로 교체 -->
+  <form action="https://formspree.io/f/XXXXXXX" method="POST">
+    <div>
+      <label>이름 / 회사·연구실 <span class="req">*</span></label>
+      <input type="text" name="name" required placeholder="홍길동 / OO대학교 OO연구실">
+    </div>
+    <div class="row2">
+      <div>
+        <label>이메일 <span class="req">*</span></label>
+        <input type="email" name="email" required placeholder="you@lab.ac.kr">
+      </div>
+      <div>
+        <label>연락처</label>
+        <input type="tel" name="phone" placeholder="010-0000-0000">
+      </div>
+    </div>
+    <div class="row2">
+      <div>
+        <label>펌프 종류</label>
+        <select name="pump_type">
+          <option>정량펌프</option>
+          <option>연동식(페리스탈틱) 펌프</option>
+          <option>잘 모르겠음 — 추천 요청</option>
+        </select>
+      </div>
+      <div>
+        <label>목표 유량</label>
+        <input type="text" name="flow" placeholder="예: 5 mL/min, µL급 등">
+      </div>
+    </div>
+    <div>
+      <label>응용 / 이송 시약</label>
+      <input type="text" name="application" placeholder="예: 세포배양 관류 / 에탄올 이송">
+    </div>
+    <div>
+      <label>문의 내용</label>
+      <textarea name="message" placeholder="실험 조건, 수량, 납기 등 자유롭게 적어주세요."></textarea>
+    </div>
+    <button class="submit" type="submit">견적 요청 보내기</button>
+    <p class="priv">제출하신 정보는 견적 회신 목적으로만 사용됩니다.</p>
+  </form>
+
+  <div class="alt">
+    폼 대신 바로 연락도 가능합니다 —
+    <a href="mailto:contact@cellab.kr">contact@cellab.kr</a>
+    <!-- ▲ 실제 이메일/전화로 교체 -->
+  </div>
+</div>
+
+<footer><div class="wrap" style="max-width:1000px">© 2026 Cellab · LeadFluid 정식 공급 · 펌프 제어 프로그램</div></footer>
+</body>
+</html>
