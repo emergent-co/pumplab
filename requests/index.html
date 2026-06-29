@@ -37,13 +37,18 @@
   .pill{border:1px solid var(--line);border-radius:30px;padding:7px 15px;font-size:13px;font-weight:600;color:var(--gray);cursor:pointer;background:#fff}
   .pill.active{border-color:var(--ink);color:var(--ink)}
   .pill b{color:var(--ink)}
-  /* board */
-  .board{padding:30px 0 56px;display:grid;gap:14px}
-  .req{border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:start}
-  .req h3{font-family:var(--sans);font-size:17px;font-weight:700}
-  .req p{color:var(--gray);font-size:14px;margin-top:5px;grid-column:1/2}
-  .req .meta{grid-column:1/2;font-size:12px;color:var(--gray-2);margin-top:8px}
-  .badge{justify-self:end;font-size:12px;font-weight:700;padding:5px 11px;border-radius:7px;white-space:nowrap}
+  /* board — 3열 카드 그리드 */
+  .board{padding:30px 0 56px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+  .req{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;cursor:pointer;display:flex;flex-direction:column;transition:box-shadow .15s,border-color .15s}
+  .req:hover{border-color:var(--green);box-shadow:0 6px 18px rgba(0,0,0,.07)}
+  .req-img{aspect-ratio:16/10;background:var(--green-bg);display:flex;align-items:center;justify-content:center;color:var(--gray-2);font-size:12px;font-weight:600;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+  .req-img img{width:100%;height:100%;object-fit:cover}
+  .req-bd{padding:15px 17px;display:flex;flex-direction:column;gap:7px;flex:1}
+  .req-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .req h3{font-family:var(--sans);font-size:16px;font-weight:700;line-height:1.35}
+  .req .desc{color:var(--gray);font-size:13.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .req .meta{font-size:12px;color:var(--gray-2);margin-top:auto;padding-top:4px}
+  .badge{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:7px;white-space:nowrap;flex:0 0 auto}
   .s-req{background:#F0F1F3;color:#5A6573}
   .s-rev{background:var(--amber-bg);color:var(--amber)}
   .s-dev{background:var(--navy);color:#fff}
@@ -54,21 +59,25 @@
   footer .tl{font-size:13px;font-weight:700}.footer .bn{margin-top:10px}
   footer .bn{margin-top:10px;font-size:13px;color:var(--gray)}
   footer .cp{margin-top:8px;font-size:12px;color:var(--gray-2)}
-  @media(max-width:680px){.menu{display:none}.hero h1{font-size:30px}.req{grid-template-columns:1fr}.badge{justify-self:start}}
+  /* 확대 모달 */
+  .req-modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+  .req-modal.open{display:flex}
+  .req-modal .box{position:relative;background:#fff;border-radius:14px;max-width:560px;width:100%;max-height:88vh;overflow:auto}
+  .req-modal .m-img{aspect-ratio:16/9;background:var(--green-bg);display:flex;align-items:center;justify-content:center;color:var(--gray-2);font-size:13px;font-weight:600}
+  .req-modal .m-img img{width:100%;height:100%;object-fit:cover}
+  .req-modal .m-bd{padding:22px 24px}
+  .req-modal h3{font-family:var(--serif);font-size:22px;margin:8px 0 0}
+  .req-modal .m-desc{color:var(--ink);font-size:15px;line-height:1.75;margin-top:12px}
+  .req-modal .m-meta{color:var(--gray-2);font-size:13px;margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+  .req-modal .m-close{position:absolute;top:8px;right:12px;font-size:28px;line-height:1;color:#fff;cursor:pointer;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+  @media(max-width:900px){.board{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.board{grid-template-columns:1fr}}
+  @media(max-width:680px){.menu{display:none}.hero h1{font-size:30px}}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
-<header>
-  <div class="nav">
-    <a class="brand" href="/">Cellab<b>.</b></a>
-    <nav class="menu">
-      <a href="/product/">제품</a>
-      <a href="/requests/">개발 요청</a>
-      <a class="quote" href="/quote/">견적 문의</a>
-    </nav>
-  </div>
-</header>
+<div id="cellab-header"></div>
 
 <section class="hero">
   <div class="wrap">
@@ -91,23 +100,33 @@
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <div class="tl">Lead Fluid 한국 공식 총판 · 3년 무상 보증 · 국내 A/S 직접 응대</div>
-    <div class="bn"><a href="/">홈</a> · <a href="/product/">제품</a> · <a href="/requests/">개발 요청</a> · <a href="/quote/">견적 문의</a></div>
-    <div class="cp">© 2026 셀렙 (Cellab) · 사업자등록 637-05-03629</div>
+<!-- 확대 모달 -->
+<div class="req-modal" id="reqModal" onclick="if(event.target===this)closeReq()">
+  <div class="box">
+    <span class="m-close" onclick="closeReq()">×</span>
+    <div class="m-img" id="mImg"></div>
+    <div class="m-bd">
+      <span class="badge" id="mBadge"></span>
+      <h3 id="mTitle"></h3>
+      <p class="m-desc" id="mDesc"></p>
+      <div class="m-meta" id="mMeta"></div>
+    </div>
   </div>
-</footer>
+</div>
+
+<div id="cellab-footer"></div>
+<script src="/assets/site.js" defer></script>
 
 <script>
 /* ▼▼▼ 여기만 편집하세요 ▼▼▼
    요청이 이메일로 오면 아래 목록에 한 줄 추가하고, 진행되면 status만 바꾸세요.
    status: "req"(요청됨) → "rev"(검토중) → "dev"(개발중) → "done"(완료) */
+// image: 대표 이미지 경로 지정 시 카드/모달에 표시 (예: "/img/req-calib.png"). 비우면 '이미지 준비중' 표시.
 const REQUESTS = [
-  { title:"유량 자동 캘리브레이션", desc:"튜브 교체 후 실측 유량을 입력하면 보정계수를 자동 계산.", status:"dev",  date:"2026-06-20", note:"개발 중" },
-  { title:"CSV 로그 자동 내보내기", desc:"유량·누적량 로그를 일정 주기로 CSV 저장.",               status:"rev",  date:"2026-06-24", note:"검토 중" },
-  { title:"다중 펌프 동시 제어", desc:"여러 BT101을 한 화면에서 개별 제어.",                    status:"req",  date:"2026-06-27", note:"" },
-  { title:"실시간 유량 그래프", desc:"최근 60초 유량을 실시간 라인 차트로 표시.",               status:"done", date:"2026-06-10", note:"v1.0 반영" },
+  { title:"유량 자동 캘리브레이션", desc:"튜브 교체 후 실측 유량을 입력하면 보정계수를 자동 계산.", status:"dev",  date:"2026-06-20", note:"개발 중",  image:"" },
+  { title:"CSV 로그 자동 내보내기", desc:"유량·누적량 로그를 일정 주기로 CSV 저장.",               status:"rev",  date:"2026-06-24", note:"검토 중",  image:"" },
+  { title:"다중 펌프 동시 제어", desc:"여러 BT101을 한 화면에서 개별 제어.",                    status:"req",  date:"2026-06-27", note:"",        image:"" },
+  { title:"실시간 유량 그래프", desc:"최근 60초 유량을 실시간 라인 차트로 표시.",               status:"done", date:"2026-06-10", note:"v1.0 반영", image:"" },
 ];
 /* ▲▲▲ 여기까지 ▲▲▲ */
 
@@ -134,15 +153,36 @@ function renderList(){
     .sort((a,b) => ORDER.indexOf(a.status)-ORDER.indexOf(b.status) || b.date.localeCompare(a.date));
   const el = document.getElementById("boardList");
   if(!list.length){ el.innerHTML = `<p class="empty">해당 상태의 요청이 없습니다.</p>`; return; }
-  el.innerHTML = list.map(r => `
-    <div class="req">
-      <h3>${r.title}</h3>
-      <span class="badge ${CLS[r.status]}">${LABEL[r.status]}</span>
-      <p>${r.desc}</p>
-      <div class="meta">요청일 ${r.date}${r.note?` · ${r.note}`:""}</div>
-    </div>`).join("");
+  el.innerHTML = list.map(r => {
+    const i = REQUESTS.indexOf(r);
+    const img = r.image ? `<img src="${r.image}" alt="${r.title}">` : '이미지 준비중';
+    return `
+    <div class="req" onclick="openReq(${i})">
+      <div class="req-img">${img}</div>
+      <div class="req-bd">
+        <div class="req-top">
+          <h3>${r.title}</h3>
+          <span class="badge ${CLS[r.status]}">${LABEL[r.status]}</span>
+        </div>
+        <p class="desc">${r.desc}</p>
+        <div class="meta">요청일 ${r.date}${r.note?` · ${r.note}`:""}</div>
+      </div>
+    </div>`;
+  }).join("");
 }
 function setFilter(k){ filter=k; renderSum(); renderList(); }
+function openReq(i){
+  const r = REQUESTS[i];
+  document.getElementById('mImg').innerHTML = r.image ? `<img src="${r.image}" alt="">` : '이미지 준비중';
+  const b = document.getElementById('mBadge'); b.className = 'badge ' + CLS[r.status]; b.textContent = LABEL[r.status];
+  document.getElementById('mTitle').textContent = r.title;
+  document.getElementById('mDesc').textContent = r.desc;
+  document.getElementById('mMeta').textContent = `요청일 ${r.date}${r.note?` · ${r.note}`:''}`;
+  document.getElementById('reqModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeReq(){ document.getElementById('reqModal').classList.remove('open'); document.body.style.overflow=''; }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeReq(); });
 renderSum(); renderList();
 </script>
 </body>
