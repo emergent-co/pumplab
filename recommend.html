@@ -237,8 +237,9 @@ const NAV_GROUP_LABELS = {
 // 그룹별 나비엠알오 URL (사장님 제공). gear/ef-fg(ct·TFD)는 매핑 확정 후 추가.
 const NAV_GROUP_URLS = {
   'S': 'https://www.navimro.com/g/3359128/',              // bq-s, bt-s
-  'L': 'https://www.navimro.com/g/3359124/',              // bt-l,f,p
+  'L': 'https://www.navimro.com/g/3435897/',              // TFD — 정밀정량
   'F': 'https://www.navimro.com/g/3359124/',              // bt-l,f,p
+  'gear': 'https://www.navimro.com/g/3435895/',           // ct — 고압 기어
   'syringe-integrated': 'https://www.navimro.com/g/3435896/', // tys, tyd
   'syringe-split': 'https://www.navimro.com/g/3435896/'       // tys, tyd
 };
@@ -305,10 +306,9 @@ function renderGroupResult(box, scored){
   if (naviUrl){
     html += '<a class="gr-btn primary" href="' + escapeHtml(naviUrl) + '" target="_blank" rel="noopener">나비엠알오에서 보기 →</a>';
   } else {
-    html += '<div class="no-match" style="margin:0">나비엠알오 URL이 아직 등록되지 않은 그룹입니다. 셀렙에 직접 문의해주세요.</div>';
+    html += '<a class="gr-btn" href="/Leadfluid-2025-Catalog.pdf" download>카탈로그 다운로드</a>';
+    html += '<button type="button" class="gr-btn primary" onclick="openInquiry(\'wizard:group_' + escapeAttr(topGroup) + '\', window.__wizSummary||\'\')">셀렙에 직접 문의</button>';
   }
-  html += '<button type="button" class="gr-btn" onclick="openInquiry(\'wizard:group_' + escapeAttr(topGroup) + '\', window.__wizSummary||\'\')">셀렙에 직접 문의</button>';
-  html += '<button type="button" class="gr-btn" onclick="closeWzResult();if(document.getElementById(\'wzReset\'))document.getElementById(\'wzReset\').click();">처음부터 다시</button>';
   html += '</div>';
   html += '</div>';
   box.innerHTML = html;
@@ -1503,5 +1503,6 @@ document.querySelectorAll('.faq-more-btn').forEach(btn => {
 })();
 </script>
 
+<script src="/assets/site.js" defer></script>
 </body>
 </html>

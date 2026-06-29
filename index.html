@@ -373,34 +373,46 @@
       <h2>펌프 라인업</h2>
       <p>응용과 유량에 맞는 펌프를 고르고, 바로 견적까지. LeadFluid 정식 공급.</p>
     </div>
-    <div class="lineup">
-      <div class="pump">
-        <svg class="pic" viewBox="0 0 24 24"><path d="M12 3c3 4 5 6.5 5 9.5A5 5 0 0 1 7 11.5C7 8.5 9 6 12 3z"/></svg>
-        <h3>정량펌프</h3>
+    <style>
+      .lineup3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 38px;margin-top:8px}
+      .lineup3 .li3 h3{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin:0 0 5px;line-height:1.35}
+      .lineup3 .li3 h3 span{color:var(--gray);font-weight:500;font-size:16px}
+      .lineup3 .li3 .kw{font-size:12.5px;color:var(--green);font-weight:600;margin-bottom:9px}
+      .lineup3 .li3 p{font-size:15px;color:var(--gray);line-height:1.72;margin:0 0 13px}
+      .lineup3 .li3 a.more{display:inline-block;font-weight:600;color:var(--ink);border-bottom:2px solid var(--green);padding-bottom:2px;font-size:14.5px}
+      @media(max-width:860px){.lineup3{grid-template-columns:1fr 1fr;gap:28px 30px}}
+      @media(max-width:560px){.lineup3{grid-template-columns:1fr}}
+    </style>
+    <div class="lineup3">
+      <div class="li3">
+        <h3>정량펌프 <span>— 정밀 분주·이송</span></h3>
         <div class="kw">정량펌프 · 디스펜싱</div>
-        <p>정밀 분주·이송용. 마이크로플루이딕부터 분석 전처리까지, 유량·시퀀스를 PC에서 설정.</p>
-        <a class="more" href="/product/#metering">더 알아보기</a>
+        <p>µL 단위 분주부터 연속 정량 이송까지. 마이크로플루이딕·분석 전처리·시약 정량 주입에 맞는 모델을 유량 범위와 정밀도로 선택합니다.</p>
+        <a class="more" href="/quote/">정량펌프 견적 받기 →</a>
       </div>
-      <div class="pump">
-        <svg class="pic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
-        <h3>연동(페리스탈틱)펌프</h3>
+      <div class="li3">
+        <h3>연동(페리스탈틱)펌프 <span>— 무오염 비접촉 이송</span></h3>
         <div class="kw">연동식 펌프 · 페리스탈틱 펌프</div>
-        <p>비접촉 이송으로 오염 없이. 세포배양·관류·발효에 최적. 튜브 규격·시약 적합성까지.</p>
-        <a class="more" href="/product/#peristaltic">더 알아보기</a>
+        <p>유체가 튜브 안에서만 흐르는 연동식 펌프는 펌프 본체가 시료에 닿지 않아 세포배양·관류·발효처럼 오염이 치명적인 실험에 최적입니다.</p>
+        <a class="more" href="/quote/">연동펌프 견적 받기 →</a>
       </div>
-      <div class="pump">
-        <svg class="pic" viewBox="0 0 24 24"><path d="M4 20l9-9M13 5l6 6M11 7l6 6M14 4l6 6-2 2-6-6z"/></svg>
-        <h3>시린지펌프</h3>
-        <div class="kw">시린지펌프 · 초정밀 미소유량</div>
-        <p>µL급 미소 유량을 끊김 없이 정밀 주입. 마이크로플루이딕·약물주입·정밀 적정에.</p>
-        <a class="more" href="/product/#syringe">더 알아보기</a>
+      <div class="li3">
+        <h3>시린지펌프 <span>— 초정밀 미소유량</span></h3>
+        <div class="kw">시린지펌프</div>
+        <p>µL급 미소 유량을 맥동 없이 정밀하게 연속 주입. 마이크로플루이딕·약물주입·정밀 적정 등 재현성이 중요한 실험에 적합합니다.</p>
+        <a class="more" href="/quote/">시린지펌프 견적 받기 →</a>
       </div>
-      <div class="pump">
-        <svg class="pic" viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/></svg>
-        <h3>방폭펌프</h3>
-        <div class="kw">방폭펌프 · 위험지역(Ex)</div>
-        <p>인화성 용제·위험지역용 방폭 인증 펌프. 용제 이송·화학 합성 환경에서 안전하게.</p>
-        <a class="more" href="/product/#explosionproof">더 알아보기</a>
+      <div class="li3">
+        <h3>방폭펌프 <span>— 위험지역(Ex) 대응</span></h3>
+        <div class="kw">방폭펌프</div>
+        <p>인화성 용제·가연성 분위기 등 위험지역(Ex)용 방폭 인증 펌프. 용제 이송·화학 합성·도장 라인 등 안전이 최우선인 환경에 사용합니다.</p>
+        <a class="more" href="/quote/">방폭펌프 견적 받기 →</a>
+      </div>
+      <div class="li3">
+        <h3>펌프 제어 프로그램 <span>— PC에서 제어</span></h3>
+        <div class="kw">PC 제어 · 스케줄링 · 모니터링</div>
+        <p>유량·RPM 설정, 시퀀스 스케줄링, 실시간 모니터링을 하나의 프로그램에서. 장시간 무인 운전으로 재현 가능한 데이터를 쌓습니다.</p>
+        <a class="more" href="/#download">무료 다운로드 →</a>
       </div>
     </div>
   </div>

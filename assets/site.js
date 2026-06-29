@@ -45,3 +45,36 @@
     inject();
   }
 })();
+
+/* ============================================================
+   GA4 + 클릭 추적 — 전 페이지 공통 (무엇을 눌렀는지 측정)
+   ============================================================ */
+(function () {
+  var GA_ID = 'G-CN3E3PVQVD';
+
+  // 이미 gtag가 있는 페이지(recommend·inquiry·블로그 등)는 중복 로드 방지
+  if (typeof window.gtag !== 'function') {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+  }
+
+  // 버튼·링크 클릭을 'click' 이벤트로 전송 (link_text = 누른 텍스트)
+  document.addEventListener('click', function (e) {
+    var el = (e.target && e.target.closest) ? e.target.closest('a, button, [data-ga]') : null;
+    if (!el || typeof window.gtag !== 'function') return;
+    var label = (el.getAttribute('data-ga') || el.textContent || el.getAttribute('aria-label') || '')
+      .replace(/\s+/g, ' ').trim().slice(0, 90);
+    if (!label) return;
+    gtag('event', 'click', {
+      link_text: label,
+      link_url: el.getAttribute('href') || '',
+      page_path: location.pathname
+    });
+  }, true);
+})();
