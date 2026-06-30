@@ -7,7 +7,7 @@
   var path = location.pathname;
 
   var NAV = [
-    { href:'/repair/',   label:'무상 수리' },
+    { href:'/repair/',   label:'무상 진단' },
     { label:'가이드', children:[
         ['/product/',     '펌프 가이드'],
         ['/tubing.html',  '튜브 가이드'],
@@ -18,7 +18,7 @@
     { href:'/contact/',  label:'문의하기', quote:true }
   ];
   function isCur(href){ return href !== '/' && path.indexOf(href) === 0; }
-  var navHTML = NAV.map(function (n) {
+  function renderItem(n) {
     if (n.children) {
       var open = n.children.some(function (c) { return isCur(c[0]); });
       var sub = n.children.map(function (c) {
@@ -30,18 +30,21 @@
     }
     var cls = n.quote ? ' class="ch-quote"' : '';
     return '<a href="' + n.href + '"' + cls + (isCur(n.href) ? ' aria-current="page"' : '') + '>' + n.label + '</a>';
-  }).join('');
+  }
+  var navHTML = NAV.filter(function (n) { return !n.quote; }).map(renderItem).join('');
+  var ctaHTML = NAV.filter(function (n) { return n.quote; }).map(renderItem).join('');
 
   var HEADER =
     '<header class="chrome-header"><div class="ch-inner">' +
       '<a class="ch-brand" href="/">Cellab<b>.</b>' +
-        '<span class="ch-tag">R&D Control Solution</span></a>' +
+        '<span class="ch-tag">펌프 수리부터 제어 소프트웨어까지</span></a>' +
       '<nav class="ch-nav">' + navHTML + '</nav>' +
+      '<div class="ch-cta">' + ctaHTML + '</div>' +
     '</div></header>';
 
   var FOOTER =
     '<footer class="chrome-footer"><div class="cf-inner">' +
-      '<div class="cf-co"><strong>Cellab</strong> · R&D Pumps and Consumables<br>' +
+      '<div class="cf-co"><strong>Cellab</strong> · 펌프를 고치고, 제어 소프트웨어를 만드는 셀렙<br>' +
         '셀렙 (Cellab) · 이영현 · 637-05-03629<br>' +
         '부산광역시 북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩) · 도매·소매업 / 정보통신업</div>' +
       '<div class="cf-cp">© 2026 Cellab</div>' +
