@@ -31,15 +31,14 @@
     var cls = n.quote ? ' class="ch-quote"' : '';
     return '<a href="' + n.href + '"' + cls + (isCur(n.href) ? ' aria-current="page"' : '') + '>' + n.label + '</a>';
   }
-  var navHTML = NAV.filter(function (n) { return !n.quote; }).map(renderItem).join('');
-  var ctaHTML = NAV.filter(function (n) { return n.quote; }).map(renderItem).join('');
+  var navHTML = NAV.map(renderItem).join('');
 
   var HEADER =
     '<header class="chrome-header"><div class="ch-inner">' +
       '<a class="ch-brand" href="/">Cellab<b>.</b>' +
         '<span class="ch-tag">펌프 수리부터 제어까지</span></a>' +
+      '<button class="ch-burger" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>' +
       '<nav class="ch-nav">' + navHTML + '</nav>' +
-      '<div class="ch-cta">' + ctaHTML + '</div>' +
     '</div></header>';
 
   var FOOTER =
@@ -61,6 +60,22 @@
       document.addEventListener('click', function (e) {
         var d = document.querySelector('.ch-drop.open');
         if (d && !d.contains(e.target)) d.classList.remove('open');
+      });
+    }
+    var burger = document.querySelector('.ch-burger');
+    var nav = document.querySelector('.ch-nav');
+    if (burger && nav) {
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target.closest('a')) {
+          nav.classList.remove('open');
+          burger.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+        }
       });
     }
   }
