@@ -234,15 +234,15 @@
   <div class="wrap hgrid">
     <div>
       <h1>필요한 소프트웨어 기능을<br>만들어 드려요!</h1>
-      <p class="sub">유량 설정·시퀀스 스케줄링·실시간 모니터링은 기본. 실험에 필요한 펌프 제어 기능을
-         직접 개발해 무료로 드립니다 — 없는 기능은 요청만 하세요.</p>
+      <p class="sub">유량 설정·시퀀스 스케줄링·실시간 모니터링은 기본. 연구에 필요한 펌프 제어 기능을
+         직접 개발해 무료로 드립니다 — 없는 기능은 요청만 하세요. 연구를 더 편하고, 더 정확하게.</p>
       <div class="dlrow">
         <!-- TODO: href를 실제 설치파일(.exe) URL로 교체 -->
         <a class="btn-dl" href="#" download>
           <svg viewBox="0 0 24 24"><path d="M3 5.5 10 4.5v7H3zM11 4.3 21 3v8.5H11zM3 12.5h7v7l-7-1zM11 12.5h10V21l-10-1.3z"/></svg>
           Windows용 다운로드
         </a>
-        <a class="btn-2" href="#features">기능 살펴보기</a>
+        <a class="btn-2" href="/requests/#preview">기능 살펴보기</a>
       </div>
       <p class="meta">Windows 10/11 · 무료 · 최신 버전 v1.0 <!-- 버전·용량은 실제 값으로 교체 --></p>
     </div>
@@ -292,6 +292,37 @@
   </div>
 </section>
 
+<!-- ════════ 수리·보증 (제조사가 포기한 펌프도) ════════ -->
+<section id="repair-band">
+  <style>
+    #repair-band{background:var(--green-bg);border-bottom:1px solid var(--line)}
+    #repair-band .rb{display:grid;grid-template-columns:1.5fr 1fr;gap:30px;align-items:center;padding:46px 0}
+    #repair-band .kk{font-size:13px;font-weight:700;color:var(--green);letter-spacing:.5px;text-transform:uppercase}
+    #repair-band h2{font-family:var(--serif);font-size:27px;line-height:1.3;color:var(--ink);margin:10px 0 12px}
+    #repair-band p{font-size:15px;color:#33433d;line-height:1.7;max-width:560px}
+    #repair-band p b{color:var(--ink)}
+    #repair-band .rcta{display:flex;align-items:center;justify-content:center}
+    #repair-band .rcta a{display:inline-block;background:var(--ink);color:#fff;padding:14px 26px;border-radius:10px;font-weight:700;font-size:15px;text-align:center}
+    #repair-band .rcta a:hover{background:#000}
+    #repair-band .warr{display:block;font-size:12.5px;color:var(--green);font-weight:700;margin-top:10px}
+    @media(max-width:780px){#repair-band .rb{grid-template-columns:1fr;gap:20px;padding:36px 0}}
+  </style>
+  <div class="wrap rb">
+    <div>
+      <span class="kk">Repair &amp; Warranty</span>
+      <h2>제조사가 포기한 펌프, 저희에게 주세요<br>— 무상으로 진단해 드립니다</h2>
+      <p>브랜드 무관, <b>다른 회사 연동펌프도 고칩니다.</b> 타사 펌프도 고치는데
+         셀렙에서 산 펌프는 말할 것도 없죠 — LeadFluid 펌프는 <b>심지어 3년 무상보증</b>입니다.</p>
+    </div>
+    <div class="rcta">
+      <div>
+        <a href="/repair/">무상 수리 진단 받기 →</a>
+        <span class="warr">LeadFluid 펌프 3년 무상보증</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ════════ Papers — 정량·연동펌프가 사용된 연구 ════════ -->
 <section id="papers">
   <style>
@@ -315,168 +346,11 @@
     #papers .pa a:hover{color:var(--green-dk)}
   </style>
   <div class="wrap">
-    <div class="ph"><h2>Papers</h2><span class="sub">정량·연동펌프가 사용된 연구</span></div>
-    <div class="pstat">국내외 연구진이 <b>Nature</b> 등 저널에 발표한 연구에 <b>LeadFluid</b> 펌프가 사용되었습니다.</div>
+    <div class="ph"><h2>Papers</h2><span class="sub">Nature가 쓴 펌프, 서울대가 쓰는 펌프</span></div>
+    <div class="pstat"><b>서울대학교</b>를 비롯한 국내외 연구진이 <b>Nature</b> 저널 연구에 <b>LeadFluid</b> 펌프를 사용했습니다 — 논문이 인정한, 신뢰할 수 있는 펌프입니다.</div>
     <div class="prow">
-      <article class="pcard"><div class="pj"><span class="bj">Nature Communications</span><span class="yr">2021</span></div><h3>Geminate labels programmed by two-tone microdroplets combining structural and fluorescent color</h3><div class="au">Yu, Yanlei et al.</div><div class="snip">"…controlled by the flow rates of the outer phases using <mark>Lead Fluid TYD01 syringe pumps</mark>…"</div><div class="pa"><a href="https://www.nature.com/articles/s41467-021-20908-y" target="_blank" rel="noopener">Read Article ↗</a></div></article>
-      <article class="pcard"><div class="pj"><span class="bj">Nature Communications</span><span class="yr">2022</span></div><h3>Humidity-sensitive chemoelectric flexible sensors based on metal-air redox reaction for health management</h3><div class="au">Zhang, Yingying et al.</div><div class="snip">"…the ink was extruded by a <mark>syringe pump (Lead Fluid TSD01)</mark> at a speed of 200 μL/min…"</div><div class="pa"><a href="https://www.nature.com/articles/s41467-022-33133-y" target="_blank" rel="noopener">Read Article ↗</a></div></article>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ 프로그램 기능 — 탭 쇼케이스 (말 대신 화면) ════════ -->
-<section id="features">
-  <div class="wrap">
-    <div class="sec-h">
-      <span class="kicker">Pump Control Program</span>
-      <h2>이렇게 동작합니다</h2>
-      <p>탭을 눌러 실제 프로그램 화면을 확인하세요.</p>
-    </div>
-
-    <div class="tabs">
-      <button class="tab active" data-t="flow"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>유량·RPM 제어</button>
-      <button class="tab" data-t="seq"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>시퀀스 스케줄링</button>
-      <button class="tab" data-t="mon"><svg viewBox="0 0 24 24"><path d="M4 19V5m4 14V9m4 10V7m4 12v-6m4 6V11"/></svg>실시간 모니터링</button>
-    </div>
-
-    <div class="showcase">
-      <!-- 유량·RPM -->
-      <div class="demo active" data-d="flow">
-        <div class="win">
-          <div class="winbar"><span class="dots"><i></i><i></i><i></i></span>유량 설정</div>
-          <div class="winbody">
-            <div class="crow"><span class="k">목표 유량</span><span class="cin">12.5 mL/min</span></div>
-            <div class="crow"><span class="k">회전수</span><span class="cin">120 rpm</span></div>
-            <div class="crow"><span class="k">튜브</span><span class="cin">Masterflex L/S 16 ▾</span></div>
-            <span class="chip">⇄ 자동 환산 · 12.5 mL/min = 120 rpm (calib 1.05)</span><br>
-            <span class="applybtn">적용</span>
-          </div>
-        </div>
-        <div class="sidecard"><div class="t">이렇게</div><p>목표 유량만 입력하면 RPM·튜브 계수를 자동 환산. 숫자 외울 필요 없이 mL/min으로.</p></div>
-      </div>
-
-      <!-- 시퀀스 -->
-      <div class="demo" data-d="seq">
-        <div class="win">
-          <div class="winbar"><span class="dots"><i></i><i></i><i></i></span>시퀀스</div>
-          <div class="winbody" style="padding:0">
-            <table class="seq">
-              <thead><tr><th>#</th><th>동작</th><th>유량</th><th>시간</th></tr></thead>
-              <tbody>
-                <tr><td>1</td><td class="st">주입</td><td>12.5 mL/min</td><td>10:00</td></tr>
-                <tr><td>2</td><td class="st">정지</td><td>—</td><td>02:00</td></tr>
-                <tr><td>3</td><td class="st">역방향</td><td>8 mL/min</td><td>05:00</td></tr>
-                <tr><td>4</td><td class="st">주입</td><td>12.5 mL/min</td><td>30:00</td></tr>
-              </tbody>
-            </table>
-            <div style="padding:12px 14px;font-size:12px;color:var(--gray)">총 47분 · 반복 ×3 · 무인 운전</div>
-          </div>
-        </div>
-        <div class="sidecard"><div class="t">이렇게</div><p>주입·정지·역방향을 시간표로 짜두면 밤샘 없이 장시간 관류·발효를 무인 운전.</p></div>
-      </div>
-
-      <!-- 모니터링 -->
-      <div class="demo" data-d="mon">
-        <div class="win">
-          <div class="winbar"><span class="dots"><i></i><i></i><i></i></span>모니터링</div>
-          <div class="winbody">
-            <div class="mstat">
-              <div><b>12.5</b><span>현재 mL/min</span></div>
-              <div><b>312 mL</b><span>누적</span></div>
-              <div><b>00:42:10</b><span>경과</span></div>
-            </div>
-            <svg viewBox="0 0 440 150" style="width:100%;height:auto">
-              <line x1="20" y1="34" x2="430" y2="34" stroke="#D98A2B" stroke-width="1.2" stroke-dasharray="4 3"/>
-              <path d="M20 130 L80 28 L140 40 L200 32 L260 38 L320 34 L430 34 L430 130 Z" fill="#1A6E56" fill-opacity="0.10"/>
-              <polyline points="20,130 80,28 140,40 200,32 260,38 320,34 430,34" fill="none" stroke="#1A6E56" stroke-width="2"/>
-              <circle cx="430" cy="34" r="3.4" fill="#1A6E56"/>
-            </svg>
-            <span class="applybtn">로그 CSV 내보내기</span>
-          </div>
-        </div>
-        <div class="sidecard"><div class="t">이렇게</div><p>유량·누적량·경과시간을 실시간으로 보고, 로그를 CSV로 내보내 분석에 바로.</p></div>
-      </div>
-    </div>
-  </div>
-  <script>
-    document.querySelectorAll('.tabs .tab').forEach(function(t){
-      t.addEventListener('click',function(){
-        var k=t.dataset.t;
-        document.querySelectorAll('.tabs .tab').forEach(function(x){x.classList.toggle('active',x===t)});
-        document.querySelectorAll('.showcase .demo').forEach(function(d){d.classList.toggle('active',d.dataset.d===k)});
-      });
-    });
-  </script>
-</section>
-
-<!-- ════════ 펌프 라인업 (상업 키워드 랜딩) ════════ -->
-<section id="pumps">
-  <div class="wrap">
-    <div class="sec-h">
-      <svg viewBox="0 0 24 24" style="width:40px;height:40px;stroke:var(--ink);fill:none;stroke-width:1.4;margin:0 auto 14px;display:block"><path d="M12 2c3 4 5 6.5 5 9.5A5 5 0 0 1 7 11.5C7 8.5 9 6 12 2z"/></svg>
-      <h2>펌프 라인업</h2>
-      <p>응용과 유량에 맞는 펌프를 고르고, 바로 견적까지. LeadFluid 정식 공급.</p>
-    </div>
-    <style>
-      .lineup3{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:10px}
-      .lineup3 .li3{display:block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 18px;text-decoration:none;transition:border-color .18s,box-shadow .18s,transform .18s}
-      .lineup3 .li3:hover{border-color:var(--green);box-shadow:0 10px 26px rgba(0,0,0,.06);transform:translateY(-3px)}
-      .lineup3 .li3 .ic{display:inline-flex;width:40px;height:40px;border-radius:11px;align-items:center;justify-content:center;background:var(--green-bg);color:var(--green);margin-bottom:14px}
-      .lineup3 .li3 .ic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-      .lineup3 .li3 h3{font-family:var(--serif);font-size:16.5px;font-weight:600;color:var(--ink);margin:0;line-height:1.3}
-      .lineup3 .li3 .sub{font-size:12.5px;color:var(--gray);margin:2px 0 9px}
-      .lineup3 .li3 .kw{font-size:11px;color:var(--green);font-weight:700;margin-bottom:8px}
-      .lineup3 .li3 p{font-size:13.5px;color:var(--gray);line-height:1.6;margin:0}
-      @media(max-width:860px){.lineup3{grid-template-columns:1fr 1fr}}
-      @media(max-width:520px){.lineup3{grid-template-columns:1fr}}
-    </style>
-    <div class="lineup3">
-      <a class="li3" href="/product/#metering">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V5m4 14V9m4 10V7m4 12v-6m4 6V11"/></svg></span>
-        <h3>정량펌프</h3>
-        <div class="sub">정밀 분주·이송</div>
-        <div class="kw">정량펌프 · 디스펜싱</div>
-        <p>µL 단위 분주부터 연속 정량 이송까지.</p>
-      </a>
-      <a class="li3" href="/product/#peristaltic">
-        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span>
-        <h3>연동(페리스탈틱)펌프</h3>
-        <div class="sub">무오염 비접촉 이송</div>
-        <div class="kw">연동식 펌프 · 페리스탈틱</div>
-        <p>본체가 시료에 닿지 않아 세포배양·관류·발효에 최적.</p>
-      </a>
-      <a class="li3" href="/product/#syringe">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 20l9-9M13 5l6 6M11 7l6 6M14 4l6 6-2 2-6-6z"/></svg></span>
-        <h3>시린지펌프</h3>
-        <div class="sub">초정밀 미소유량</div>
-        <div class="kw">시린지펌프</div>
-        <p>µL급 미소 유량을 맥동 없이 정밀 주입.</p>
-      </a>
-      <a class="li3" href="/product/#explosionproof">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/></svg></span>
-        <h3>방폭펌프</h3>
-        <div class="sub">위험지역(Ex) 대응</div>
-        <div class="kw">방폭펌프</div>
-        <p>인화성 용제·위험지역(Ex)용 방폭 인증 펌프.</p>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ 추천 / 카탈로그 카드 ════════ -->
-<section class="dual">
-  <div class="wrap dgrid">
-    <div class="dcard">
-      <h3>어떤 펌프가 맞는지 모르겠다면</h3>
-      <p>응용 분야·유량 조건·튜브 호환을 입력하면 30+ 모델 라인업에서 적합한 펌프를 추천합니다.
-         페리스탈틱·기어·시린지 통합.</p>
-      <a class="green-btn" href="/product/#wizard">펌프 추천 받기 →</a>
-    </div>
-    <div class="dcard dark">
-      <h3>전체 제품 카탈로그</h3>
-      <p>Cellab이 취급하는 정량펌프·펌프헤드·튜브·피팅·시린지 풀 라인업 PDF. 사양·호환·응용 정리.</p>
-      <!-- TODO: 실제 카탈로그 PDF URL로 교체 -->
-      <a class="light-btn" href="/Leadfluid-2025-Catalog.pdf" download>카탈로그 PDF 다운로드 →</a>
+      <article class="pcard"><div class="pj"><span class="bj">Nature Electronics</span><span class="yr">2024</span></div><h3>A biodegradable and self-deployable electronic tent electrode for brain cortex interfacing</h3><div class="au">Bae, Jae-Young et al.</div><div class="snip">"…the injection process was controlled using a customized injection module. This module comprises a <mark>syringe pump (TYD01-01, Lead Fluid Technology)</mark> for precise control of the injection speed…"</div><div class="pa"><a href="https://www.nature.com/articles/s41928-024-01216-x" target="_blank" rel="noopener">Read Article ↗</a></div></article>
+      <article class="pcard"><div class="pj"><span class="bj">Nature Communications</span><span class="yr">2023</span></div><h3>Importance of broken geometric symmetry of single-atom Pt sites for efficient electrocatalysis</h3><div class="au">Cho, Junsic et al.</div><div class="snip">"…The electrolyte flow rate was set to 0.07 mL min⁻¹ using a <mark>syringe pump (TYD01-01, LEADFLUID)</mark>…"</div><div class="pa"><a href="https://www.nature.com/articles/s41467-023-38964-x" target="_blank" rel="noopener">Read Article ↗</a></div></article>
     </div>
   </div>
 </section>
