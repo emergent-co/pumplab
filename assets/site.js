@@ -7,16 +7,28 @@
   var path = location.pathname;
 
   var NAV = [
-    ['/product/',     '펌프 가이드'],
-    ['/tubing.html',  '튜브 가이드'],
-    ['/application/', '셋업 가이드'],
-    ['/requests/',    '개발 요청'],
-    ['/quote/',       '견적 문의']
+    { href:'/repair/',   label:'무상 수리' },
+    { label:'가이드', children:[
+        ['/product/',     '펌프 가이드'],
+        ['/tubing.html',  '튜브 가이드'],
+        ['/application/', '실험 가이드']
+      ] },
+    { href:'/requests/', label:'소프트웨어' },
+    { href:'/contact/',  label:'문의하기', quote:true }
   ];
+  function isCur(href){ return href !== '/' && path.indexOf(href) === 0; }
   var navHTML = NAV.map(function (n) {
-    var cls = (n[0] === '/quote/') ? ' class="ch-quote"' : '';
-    var cur = (path.indexOf(n[0]) === 0) ? ' aria-current="page"' : '';
-    return '<a href="' + n[0] + '"' + cls + cur + '>' + n[1] + '</a>';
+    if (n.children) {
+      var open = n.children.some(function (c) { return isCur(c[0]); });
+      var sub = n.children.map(function (c) {
+        return '<a href="' + c[0] + '"' + (isCur(c[0]) ? ' aria-current="page"' : '') + '>' + c[1] + '</a>';
+      }).join('');
+      return '<div class="ch-drop' + (open ? ' active' : '') + '">' +
+               '<button type="button" class="ch-droptg">' + n.label + ' <span class="ch-arr">▾</span></button>' +
+               '<div class="ch-dropm">' + sub + '</div></div>';
+    }
+    var cls = n.quote ? ' class="ch-quote"' : '';
+    return '<a href="' + n.href + '"' + cls + (isCur(n.href) ? ' aria-current="page"' : '') + '>' + n.label + '</a>';
   }).join('');
 
   var HEADER =
@@ -39,6 +51,14 @@
     if (h) h.outerHTML = HEADER;
     var f = document.getElementById('cellab-footer');
     if (f) f.outerHTML = FOOTER;
+    var tg = document.querySelector('.ch-droptg');
+    if (tg) {
+      tg.addEventListener('click', function (e) { e.preventDefault(); tg.parentNode.classList.toggle('open'); });
+      document.addEventListener('click', function (e) {
+        var d = document.querySelector('.ch-drop.open');
+        if (d && !d.contains(e.target)) d.classList.remove('open');
+      });
+    }
   }
 
   if (document.readyState === 'loading') {

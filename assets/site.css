@@ -70,7 +70,19 @@ header,
 .ch-nav a:hover{ color:var(--ink); }
 .ch-nav a.ch-quote{ color:var(--green); font-weight:600; }
 .ch-nav a[aria-current="page"]{ color:var(--ink); font-weight:600; }
-@media(max-width:600px){ .ch-tag{ display:none; } .ch-nav{ gap:15px; } .ch-nav a{ font-size:14px; } .ch-brand{ font-size:19px; } }
+/* 가이드 드롭다운 */
+.ch-drop{ position:relative; display:inline-flex; }
+.ch-drop::after{ content:""; position:absolute; left:0; right:0; top:100%; height:12px; }
+.ch-droptg{ font:inherit; font-size:15px; color:var(--gray); font-weight:500; background:none; border:0; cursor:pointer; padding:0; display:inline-flex; align-items:center; gap:3px; }
+.ch-droptg:hover{ color:var(--ink); }
+.ch-drop.active .ch-droptg{ color:var(--ink); font-weight:600; }
+.ch-arr{ font-size:10px; }
+.ch-dropm{ position:absolute; top:100%; left:50%; transform:translateX(-50%); margin-top:12px; background:#fff; border:1px solid var(--line); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.08); padding:6px; min-width:148px; display:none; z-index:40; }
+.ch-drop:hover .ch-dropm, .ch-drop.open .ch-dropm{ display:block; }
+.ch-dropm a{ display:block; padding:9px 12px; font-size:14px; color:var(--gray); border-radius:7px; white-space:nowrap; text-decoration:none; }
+.ch-dropm a:hover{ background:var(--green-bg); color:var(--ink); }
+.ch-dropm a[aria-current="page"]{ color:var(--green); font-weight:600; }
+@media(max-width:600px){ .ch-tag{ display:none; } .ch-nav{ gap:14px; } .ch-nav a, .ch-droptg{ font-size:14px; } .ch-brand{ font-size:19px; } .ch-dropm{ left:auto; right:0; transform:none; } }
 
 /* 7) 공유 푸터 (site.js가 주입) — 회사정보 텍스트만, 중복 제거 */
 .chrome-footer{ background:#fff; border-top:1px solid var(--line); margin-top:48px; }

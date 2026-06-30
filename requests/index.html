@@ -161,8 +161,10 @@
    항목 추가·상태 변경은 _build/requests.json 을 편집하고 build.py 실행 →
    build.py 가 위 #requests-data(JSON)와 보드 정적 카드를 주입(색인 가능). */
 const REQUESTS = (function () {
-  try { return JSON.parse(document.getElementById('requests-data').textContent || '[]'); }
-  catch (e) { return []; }
+  try {
+    var t = (document.getElementById('requests-data').textContent || '').replace(/<!--[^]*?-->/g, '').trim();
+    return JSON.parse(t || '[]');
+  } catch (e) { return []; }
 })();
 
 const LABEL = { req:"요청됨", rev:"검토중", dev:"개발중", done:"완료" };
