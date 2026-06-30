@@ -8,17 +8,17 @@
 - **취급 브랜드**: Lead Fluid (정품 딜러)
 - **호환 라인업**: MasterFlex L/S 호수별 튜브·펌프헤드 호환 매트릭스 제공
 - **차별점**: 종합몰의 수만 SKU 대신 펌프 실험에 검증된 항목만 큐레이션. 4단계 위저드로 맞춤 모델 추천. 엔지니어 직접 A/S, 평일 1시간 응답.
-- **연락**: index.html#contact 페이지에서 카톡·이메일 상담 신청
+- **연락**: [견적·문의 페이지](https://cellab.kr/quote/)에서 이메일 상담 신청 (emgt.yhlee@gmail.com)
 
 ## 주요 페이지
 
-- [홈](https://cellab.kr/index.html): 4단계 위저드 + 6개 카테고리 안내
-- [정량펌프](https://cellab.kr/pump.html): Lead Fluid 펌프 60+ 모델 (BT/BQ 페리스탈틱, CT3001 기어, TYD/TYS/TFD 시린지)
-- [튜브](https://cellab.kr/tubing.html): 실리콘·PharMed BPT·Viton·Tygon Chemical 등 9종 재질, MasterFlex L/S 호수별
-- [시린지](https://cellab.kr/syringe.html): 가스타이트·PE·PP·PTFE 시린지 (준비중)
-- [펌프헤드](https://cellab.kr/pumphead.html): YZ15·YT25·DG/DS·DT·KZ25·MG·DMD 시리즈 (준비중)
-- [피팅](https://cellab.kr/fitting.html): Y/T 커넥터·루어락·이지로드 어댑터 (준비중)
-- [기타 소모품](https://cellab.kr/other.html): ZT 니들·ZN 댐퍼·SF01 디스펜서·풋스위치 (준비중)
+- [홈](https://cellab.kr/): 펌프 제어 프로그램 무료 다운로드 + 펌프 추천 위저드
+- [펌프 가이드](https://cellab.kr/product/): Lead Fluid 정량·연동(페리스탈틱)·시린지·방폭펌프 라인업과 선택 가이드
+- [튜브 가이드](https://cellab.kr/tubing.html): 실리콘·PharMed BPT·Viton·Tygon 등 9종 재질, MasterFlex L/S 호수별 호환
+- [셋업 가이드](https://cellab.kr/application/): 세포배양 관류 등 응용별 펌프·튜브 셋업
+- [정량펌프 추천](https://cellab.kr/recommend.html): 4단계 위저드로 맞춤 모델 추천
+- [개발 요청](https://cellab.kr/requests/): 펌프 제어 소프트웨어 맞춤 기능 요청·진행현황 공개
+- [견적·문의](https://cellab.kr/quote/): 정량·연동펌프 견적, 국내 A/S 직접 상담
 - [카탈로그 PDF](https://cellab.kr/Leadfluid-2025-Catalog.pdf): Lead Fluid 2025 영문 공식 카탈로그 24p
 
 ## 사용 권장

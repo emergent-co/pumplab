@@ -49,6 +49,47 @@
 })();
 
 /* ============================================================
+   구조화 데이터(JSON-LD) — 전 페이지 공통 Organization / WebSite
+   페이지별 Product·FAQ 스키마는 각 페이지 <head>에 정적 삽입.
+   ============================================================ */
+(function () {
+  if (document.getElementById('ld-org')) return;
+  var data = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://cellab.kr/#org',
+        'name': 'Cellab',
+        'alternateName': '셀렙',
+        'url': 'https://cellab.kr/',
+        'email': 'emgt.yhlee@gmail.com',
+        'description': 'Lead Fluid 정량·연동(페리스탈틱)·시린지·방폭펌프와 호환 소모품을 큐레이션 판매하고, PC 제어 프로그램을 직접 개발·무료 제공하는 한국 실험기기 전문점. 국내 A/S 직접 응대.',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': '북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)',
+          'addressLocality': '부산광역시',
+          'addressCountry': 'KR'
+        }
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://cellab.kr/#website',
+        'name': 'Cellab',
+        'url': 'https://cellab.kr/',
+        'publisher': { '@id': 'https://cellab.kr/#org' },
+        'inLanguage': 'ko'
+      }
+    ]
+  };
+  var sc = document.createElement('script');
+  sc.type = 'application/ld+json';
+  sc.id = 'ld-org';
+  sc.text = JSON.stringify(data);
+  document.head.appendChild(sc);
+})();
+
+/* ============================================================
    GA4 + 클릭 추적 — 전 페이지 공통 (무엇을 눌렀는지 측정)
    ============================================================ */
 (function () {
@@ -78,5 +119,32 @@
       link_url: el.getAttribute('href') || '',
       page_path: location.pathname
     });
+  }, true);
+
+  // 전환(주요 이벤트) — 프로그램 다운로드
+  document.addEventListener('click', function (e) {
+    var a = (e.target && e.target.closest) ? e.target.closest('a') : null;
+    if (!a || typeof window.gtag !== 'function') return;
+    var href = a.getAttribute('href') || '';
+    if (a.hasAttribute('download') || /\.(exe|zip|msi)(\?|#|$)/i.test(href)) {
+      gtag('event', 'file_download', {
+        file_name: (href.split('/').pop() || (a.textContent || '').trim()).slice(0, 60),
+        link_url: href,
+        page_path: location.pathname
+      });
+    }
+  }, true);
+
+  // 전환(주요 이벤트) — 견적·문의·개발요청 폼 제출
+  document.addEventListener('submit', function (e) {
+    var f = e.target;
+    if (!f || f.tagName !== 'FORM' || typeof window.gtag !== 'function') return;
+    var act = f.getAttribute('action') || '';
+    if (/formspree\.io/i.test(act) || /\/(quote|inquiry|requests)\//.test(location.pathname)) {
+      gtag('event', 'generate_lead', {
+        form_action: act,
+        page_path: location.pathname
+      });
+    }
   }, true);
 })();

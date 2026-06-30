@@ -307,6 +307,70 @@ def render_page(cat_id, cat_data, template, partial_full, partial_preparing,
     return html
 
 
+REQ_LABEL = {'req': '요청됨', 'rev': '검토중', 'dev': '개발중', 'done': '완료'}
+REQ_CLS = {'req': 's-req', 'rev': 's-rev', 'dev': 's-dev', 'done': 's-done'}
+REQ_ORDER = {'req': 0, 'rev': 1, 'dev': 2, 'done': 3}
+
+
+def _inject_between(html, start, end, content):
+    """start~end 마커 사이를 content로 교체 (마커 유지, 정규식 미사용). 성공 여부 반환."""
+    i = html.find(start)
+    j = html.find(end)
+    if i == -1 or j == -1 or j < i:
+        return html, False
+    i += len(start)
+    return html[:i] + content + html[j:], True
+
+
+def build_requests():
+    """_build/requests.json → requests/index.html 에 정적 카드 + JSON 주입 (색인 가능, SSOT)."""
+    req_path = os.path.join(SCRIPT_DIR, 'requests.json')
+    html_path = os.path.join(ROOT_DIR, 'requests', 'index.html')
+    if not os.path.exists(req_path) or not os.path.exists(html_path):
+        print('  [skip] requests.json 또는 requests/index.html 없음')
+        return
+    with open(req_path, 'r', encoding='utf-8') as f:
+        items = json.load(f).get('requests', [])
+
+    # 표시 정렬: 상태순(req→rev→dev→done) → 날짜 내림차순. 원본 인덱스(openReq용) 유지.
+    indexed = list(enumerate(items))
+    indexed.sort(key=lambda t: t[1].get('date', ''), reverse=True)
+    indexed.sort(key=lambda t: REQ_ORDER.get(t[1].get('status'), 9))
+
+    cards = []
+    for orig_i, r in indexed:
+        status = r.get('status', 'req')
+        cls = REQ_CLS.get(status, 's-req')
+        label = REQ_LABEL.get(status, '요청됨')
+        title = escape(r.get('title', ''))
+        desc = escape(r.get('desc', ''))
+        date = escape(r.get('date', ''))
+        note = r.get('note', '')
+        meta = '요청일 ' + date + (' · ' + escape(note) if note else '')
+        image = (r.get('image') or '').strip()
+        img = f'<img src="{escape(image)}" alt="{title}">' if image else '이미지 준비중'
+        cards.append(
+            f'<div class="req" onclick="openReq({orig_i})">'
+            f'<div class="req-img">{img}</div>'
+            f'<div class="req-bd"><div class="req-top"><h3>{title}</h3>'
+            f'<span class="badge {cls}">{label}</span></div>'
+            f'<p class="desc">{desc}</p>'
+            f'<div class="meta">{meta}</div></div></div>'
+        )
+    cards_html = '\n'.join(cards)
+    # JSON-in-HTML 안전: </script> 등 닫힘 방지
+    json_str = json.dumps(items, ensure_ascii=False).replace('</', '<\\/')
+
+    html = read(html_path)
+    html, ok1 = _inject_between(html, '<!--REQ_CARDS_START-->', '<!--REQ_CARDS_END-->', cards_html)
+    html, ok2 = _inject_between(html, '<!--REQ_JSON_START-->', '<!--REQ_JSON_END-->', json_str)
+    if ok1 and ok2:
+        write(html_path, html)
+        print(f'  requests/index.html: {len(items)}개 요청 정적 렌더 + JSON 주입')
+    else:
+        print('  [warn] requests 마커를 찾지 못함 — 주입 생략 (카드/JSON 마커 확인)')
+
+
 def main():
     print('=' * 60)
     print('  Cellab 카테고리 페이지 빌드')
@@ -417,6 +481,9 @@ def main():
 
     sitemap_lines.append('</urlset>')
     write(os.path.join(ROOT_DIR, 'sitemap.xml'), '\n'.join(sitemap_lines) + '\n')
+
+    # 개발 요청 게시판 정적 렌더 (SSOT: _build/requests.json)
+    build_requests()
 
     print('\n' + '=' * 60)
     print(f'  완료: {len(written)}개 페이지 + sitemap.xml')

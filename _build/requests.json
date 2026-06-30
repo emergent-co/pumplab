@@ -1,0 +1,9 @@
+{
+  "_comment": "개발 요청 게시판 데이터 (SSOT). status: req(요청됨) → rev(검토중) → dev(개발중) → done(완료). 편집 후 build.py 실행 시 requests/index.html 에 정적 카드 + JSON 주입(색인 가능). image: 카드/모달 대표 이미지 경로(비우면 '이미지 준비중').",
+  "requests": [
+    { "title": "유량 자동 캘리브레이션", "desc": "튜브 교체 후 실측 유량을 입력하면 보정계수를 자동 계산.", "status": "dev", "date": "2026-06-20", "note": "개발 중", "image": "" },
+    { "title": "CSV 로그 자동 내보내기", "desc": "유량·누적량 로그를 일정 주기로 CSV 저장.", "status": "rev", "date": "2026-06-24", "note": "검토 중", "image": "" },
+    { "title": "다중 펌프 동시 제어", "desc": "여러 BT101을 한 화면에서 개별 제어.", "status": "req", "date": "2026-06-27", "note": "", "image": "" },
+    { "title": "실시간 유량 그래프", "desc": "최근 60초 유량을 실시간 라인 차트로 표시.", "status": "done", "date": "2026-06-10", "note": "v1.0 반영", "image": "" }
+  ]
+}
