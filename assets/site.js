@@ -7,7 +7,6 @@
   var path = location.pathname;
 
   var NAV = [
-    { href:'/repair/',   label:'무상 진단' },
     { href:'/application/', label:'실험 가이드' },
     { href:'/requests/', label:'소프트웨어' },
     { href:'/faq/',      label:'FAQ' },
@@ -39,16 +38,66 @@
 
   var FOOTER =
     '<footer class="chrome-footer">' +
-      '<div class="cf-trust">' +
-        '<span class="cf-tline">LeadFluid 공식 한국 A/S 파트너 · 나비엠알오 등록 공급사 · 셀렙 구매 고객 3년 무상보증</span>' +
-        '<a class="cf-tcta" href="/repair/#apply">무료 수리진단 신청 →</a>' +
-      '</div>' +
       '<div class="cf-inner">' +
       '<div class="cf-co"><strong>Cellab</strong> · 펌프 수리부터 제어까지<br>' +
+        'LeadFluid 공식 한국 A/S 파트너 · 나비엠알오 등록 공급사 · 셀렙 구매 고객 3년 무상보증<br>' +
         '셀렙 (Cellab) · 이영현 · 637-05-03629<br>' +
         '부산광역시 북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩) · 도매·소매업 / 정보통신업</div>' +
       '<div class="cf-cp">© 2026 Cellab</div>' +
     '</div></footer>';
+
+  var REPAIR_MODAL =
+    '<div class="rp-modal" id="repairModal">' +
+      '<div class="rp-box">' +
+        '<button class="rp-close" type="button" aria-label="닫기">×</button>' +
+        '<h3>무료 수리진단 신청</h3>' +
+        '<p class="rp-sub">모델명·증상·연락처만 적으면 끝. 보내실 주소를 안내드립니다.</p>' +
+        '<form id="repairPopForm">' +
+          '<input type="hidden" name="_subject" value="[무상 진단 신청] 펌프 수리">' +
+          '<label>펌프 모델명 <span class="opt">(모르면 \'모름\')</span>' +
+            '<input type="text" name="모델명" placeholder="예: BT100S / 모름"></label>' +
+          '<label>증상 <span class="req">*</span>' +
+            '<textarea name="증상" required placeholder="예: 유량이 안 나옴 / 소음 / 안 켜짐 / 누액"></textarea></label>' +
+          '<label>연락처(이메일 또는 전화) <span class="req">*</span>' +
+            '<input type="text" name="연락처" required placeholder="you@lab.ac.kr 또는 010-0000-0000"></label>' +
+          '<label>회사·연구실명 <span class="opt">(선택)</span>' +
+            '<input type="text" name="소속" placeholder="OO대학교 OO연구실"></label>' +
+          '<button class="rp-send" type="submit">무료 수리진단 신청 보내기</button>' +
+          '<div class="rp-alt">또는 이메일 <a href="mailto:emgt.yhlee@gmail.com">emgt.yhlee@gmail.com</a></div>' +
+        '</form>' +
+        '<div class="rp-done" id="repairPopDone"><div class="ok">✓</div><h3>신청이 접수되었습니다</h3><p>보내실 주소를 안내드리겠습니다.</p></div>' +
+      '</div>' +
+    '</div>';
+
+  function initRepairModal() {
+    if (document.getElementById('repairModal')) return;
+    document.body.insertAdjacentHTML('beforeend', REPAIR_MODAL);
+    var rm = document.getElementById('repairModal');
+    window.openRepairForm = function () { rm.classList.add('open'); document.body.style.overflow = 'hidden'; };
+    window.closeRepairForm = function () { rm.classList.remove('open'); document.body.style.overflow = ''; };
+    rm.addEventListener('click', function (e) { if (e.target === rm) closeRepairForm(); });
+    rm.querySelector('.rp-close').addEventListener('click', closeRepairForm);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeRepairForm(); });
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest ? e.target.closest('.js-repair') : null;
+      if (t) { e.preventDefault(); openRepairForm(); }
+    });
+    var rf = document.getElementById('repairPopForm');
+    rf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = e.target, btn = f.querySelector('.rp-send');
+      btn.disabled = true; btn.textContent = '보내는 중…';
+      fetch('https://formspree.io/f/mnjkzppj', { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } })
+        .then(function (r) {
+          btn.disabled = false; btn.textContent = '무료 수리진단 신청 보내기';
+          if (r.ok) {
+            if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_type: 'repair_diagnosis', page_path: location.pathname });
+            f.style.display = 'none'; document.getElementById('repairPopDone').style.display = 'block';
+          } else { alert('전송에 실패했습니다. 이메일로 보내주세요: emgt.yhlee@gmail.com'); }
+        })
+        .catch(function () { btn.disabled = false; btn.textContent = '무료 수리진단 신청 보내기'; alert('전송에 실패했습니다. 이메일로 보내주세요: emgt.yhlee@gmail.com'); });
+    });
+  }
 
   function inject() {
     var h = document.getElementById('cellab-header');
@@ -79,6 +128,7 @@
         }
       });
     }
+    initRepairModal();
   }
 
   if (document.readyState === 'loading') {

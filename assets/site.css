@@ -108,16 +108,35 @@ header,
 
 /* 7) 공유 푸터 (site.js가 주입) — 회사정보 텍스트만, 중복 제거 */
 .chrome-footer{ background:#fff; border-top:1px solid var(--line); margin-top:48px; }
-.cf-trust{ max-width:1080px; margin:0 auto; padding:18px 24px; display:flex; flex-wrap:wrap; gap:12px 22px; align-items:center; justify-content:center; text-align:center; border-bottom:1px solid var(--line); }
-.cf-tline{ font-size:13.5px; font-weight:700; color:var(--ink); }
-.cf-tcta{ font-size:13.5px; font-weight:700; color:#fff; background:var(--ink); padding:9px 18px; border-radius:8px; text-decoration:none; white-space:nowrap; }
-.cf-tcta:hover{ background:#000; }
 .cf-inner{ max-width:1080px; margin:0 auto; padding:30px 24px; text-align:center; }
 .cf-co{ font-size:12.5px; color:var(--gray); line-height:1.95; }
 .cf-co strong{ font-family:var(--serif); color:var(--ink); font-size:14px; }
 .cf-bar{ margin-top:14px; font-size:13px; font-weight:600; color:var(--gray); }
 .cf-cp{ margin-top:8px; font-size:12px; color:var(--gray-2); }
 .cf-cp a{ color:var(--gray-2); }
+
+/* 8) 공유 무료 수리진단 신청 팝업 (site.js가 주입) */
+.rp-modal{ position:fixed; inset:0; background:rgba(10,20,40,.55); display:none; align-items:flex-start; justify-content:center; padding:24px 16px; z-index:100; overflow:auto; }
+.rp-modal.open{ display:flex; }
+.rp-box{ position:relative; background:#fff; border-radius:16px; max-width:480px; width:100%; margin:auto; padding:28px 26px 22px; }
+.rp-close{ position:absolute; top:12px; right:16px; font-size:26px; line-height:1; color:var(--gray); background:none; border:0; cursor:pointer; }
+.rp-close:hover{ color:var(--ink); }
+.rp-box h3{ font-family:var(--serif); font-size:22px; color:var(--ink); margin-bottom:6px; }
+.rp-sub{ color:var(--gray); font-size:13.5px; margin-bottom:14px; }
+.rp-box label{ display:block; font-size:13px; font-weight:600; color:var(--ink); margin-top:12px; }
+.rp-box .opt{ color:var(--gray-2); font-weight:400; }
+.rp-box .req{ color:#c00; }
+.rp-box input, .rp-box textarea{ width:100%; margin-top:5px; padding:10px 12px; border:1px solid var(--line); border-radius:8px; font-family:inherit; font-size:14px; background:#fff; color:var(--ink); }
+.rp-box textarea{ min-height:72px; resize:vertical; }
+.rp-send{ margin-top:18px; width:100%; background:var(--ink); color:#fff; border:0; padding:13px; border-radius:9px; font-weight:700; font-size:15px; cursor:pointer; }
+.rp-send:hover{ background:#000; }
+.rp-send:disabled{ opacity:.6; cursor:default; }
+.rp-alt{ text-align:center; font-size:12.5px; color:var(--gray); margin-top:12px; }
+.rp-alt a{ color:var(--green); font-weight:600; }
+.rp-done{ display:none; text-align:center; padding:18px 0; }
+.rp-done .ok{ width:52px; height:52px; border-radius:50%; background:var(--green-bg); color:var(--green); display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:800; margin:0 auto 14px; }
+.rp-done h3{ margin-bottom:6px; }
+.rp-done p{ color:var(--gray); font-size:14px; }
 
 /* 임베드(iframe) 모드에서는 공유 헤더·푸터 숨김 */
 body.embed-mode .chrome-header, body.embed-mode .chrome-footer{ display:none !important; }
