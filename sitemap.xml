@@ -42,4 +42,16 @@
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://cellab.kr/application/pump-selection.html</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cellab.kr/application/tube-selection.html</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>

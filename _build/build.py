@@ -453,6 +453,8 @@ def main():
         ('faq/',          '0.7', 'monthly'),  # FAQ
         ('application/',  '0.7', 'monthly'),  # 셋업 가이드 (목록)
         ('application/cell-culture-perfusion.html', '0.8', 'monthly'),  # 응용 SEO 페이지
+        ('application/pump-selection.html', '0.7', 'monthly'),  # 펌프 고르는 방법
+        ('application/tube-selection.html', '0.7', 'monthly'),  # 튜브 선택 가이드
     ]
     for path, prio, freq in static_pages:
         sitemap_lines.append(
