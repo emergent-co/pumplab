@@ -54,16 +54,17 @@
         '<p class="rp-sub">모델명·증상·연락처만 적으면 끝. 보내실 주소를 안내드립니다.</p>' +
         '<form id="repairPopForm">' +
           '<input type="hidden" name="_subject" value="[무상 진단 신청] 펌프 수리">' +
-          '<label>펌프 모델명 <span class="opt">(모르면 \'모름\')</span>' +
-            '<input type="text" name="모델명" placeholder="예: BT100S / 모름"></label>' +
+          '<label>펌프 모델명 <span class="req">*</span>' +
+            '<input type="text" name="모델명" required placeholder="예: BT100S"></label>' +
+          '<label>제조사 <span class="req">*</span>' +
+            '<input type="text" name="제조사" required placeholder="예: LeadFluid / Masterflex / 기타"></label>' +
           '<label>증상 <span class="req">*</span>' +
             '<textarea name="증상" required placeholder="예: 유량이 안 나옴 / 소음 / 안 켜짐 / 누액"></textarea></label>' +
           '<label>연락처(이메일 또는 전화) <span class="req">*</span>' +
             '<input type="text" name="연락처" required placeholder="you@lab.ac.kr 또는 010-0000-0000"></label>' +
-          '<label>회사·연구실명 <span class="opt">(선택)</span>' +
-            '<input type="text" name="소속" placeholder="OO대학교 OO연구실"></label>' +
+          '<label>회사·연구실명 <span class="req">*</span>' +
+            '<input type="text" name="소속" required placeholder="OO대학교 OO연구실"></label>' +
           '<button class="rp-send" type="submit">무료 수리진단 신청 보내기</button>' +
-          '<div class="rp-alt">또는 이메일 <a href="mailto:emgt.yhlee@gmail.com">emgt.yhlee@gmail.com</a></div>' +
         '</form>' +
         '<div class="rp-done" id="repairPopDone"><div class="ok">✓</div><h3>신청이 접수되었습니다</h3><p>보내실 주소를 안내드리겠습니다.</p></div>' +
       '</div>' +
@@ -129,6 +130,13 @@
       });
     }
     initRepairModal();
+    if (!document.querySelector('.navimro-fab')) {
+      document.body.insertAdjacentHTML('beforeend',
+        '<a class="navimro-fab" href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" aria-label="나비엠알오에서 LeadFluid 제품 보기">' +
+          '<span class="nm-brand">NAVI<b>MRO</b></span>' +
+          '<span class="nm-t">LeadFluid<br>제품 바로가기</span>' +
+        '</a>');
+    }
   }
 
   if (document.readyState === 'loading') {

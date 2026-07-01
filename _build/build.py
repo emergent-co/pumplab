@@ -447,13 +447,11 @@ def main():
     # 메인 + 상업 funnel 페이지 (loc 경로, priority, changefreq)
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
-        ('product/',      '0.9', 'weekly'),   # 제품 (상업 최우선)
         ('quote/',        '0.8', 'monthly'),  # 견적 문의
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
         ('contact/',      '0.8', 'monthly'),  # 문의하기
         ('repair/',       '0.8', 'monthly'),  # 무상 진단
         ('faq/',          '0.7', 'monthly'),  # FAQ
-        ('tubing.html',   '0.7', 'monthly'),  # 튜브 가이드
         ('application/',  '0.7', 'monthly'),  # 셋업 가이드 (목록)
         ('application/cell-culture-perfusion.html', '0.8', 'monthly'),  # 응용 SEO 페이지
     ]
