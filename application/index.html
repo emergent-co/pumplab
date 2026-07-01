@@ -61,6 +61,14 @@
   .gi b{font-size:14.5px;color:var(--ink)}
   .gi span{display:block;font-size:13px;color:var(--gray);line-height:1.6;margin-top:3px}
   @media(max-width:640px){.pmini{grid-template-columns:1fr 1fr}.tlist{grid-template-columns:1fr}}
+  .subh{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink);margin:34px 0 12px;padding-top:26px;border-top:1px solid var(--line)}
+  .wzbtn{display:inline-block;background:var(--ink);color:#fff;border:0;border-radius:9px;padding:12px 20px;font-weight:700;font-size:14.5px;cursor:pointer;font-family:inherit}
+  .wzbtn:hover{background:#000}
+  .pf-modal{position:fixed;inset:0;background:rgba(10,20,40,.5);display:none;align-items:flex-start;justify-content:center;padding:24px 16px;z-index:90;overflow:auto}
+  .pf-modal.open{display:flex}
+  .pf-box{position:relative;background:var(--green-bg);border-radius:14px;max-width:960px;width:100%;margin:auto;padding:14px}
+  .pf-head{text-align:center;font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin:6px 0 12px}
+  .pf-close{position:absolute;top:6px;right:12px;font-size:28px;line-height:1;color:var(--gray);cursor:pointer;background:none;border:0;z-index:2}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 </head>
@@ -75,7 +83,6 @@
 </section>
 
 <div class="wrap">
-  <!-- 1) 응용별 셋업 -->
   <section class="sec" style="border-top:0">
     <div class="sech"><h2>응용별 셋업</h2><span class="d">실험 종류에 맞는 펌프·튜브·제어 구성</span></div>
     <div class="glist" style="padding:0">
@@ -90,11 +97,8 @@
       </a>
       <div class="soon">발효 정량주입 · 마이크로플루이딕 등 추가 예정</div>
     </div>
-  </section>
 
-  <!-- 2) 펌프 고르는 방법 -->
-  <section class="sec">
-    <div class="sech"><h2>펌프 고르는 방법</h2></div>
+    <h3 class="subh">펌프 고르는 방법</h3>
     <p class="tnote">순서대로 <b>4가지</b>만 정하면 펌프 종류가 거의 자동으로 좁혀집니다 — ① 사용 목적 · ② 유량 범위(최소·최대) · ③ 액체 특성(점도·부식·휘발·오염 민감도) · ④ 정밀도·제어 방식.</p>
     <div class="ginfo">
       <div class="gi"><b>연동(페리스탈틱)펌프 — 오염이 치명적인 실험</b><span>유체가 튜브 안에서만 흐르고 본체가 시료에 닿지 않습니다. 세포배양·관류·발효에 최적이고, 튜브만 교체하면 되어 관리가 간단합니다.</span></div>
@@ -103,11 +107,9 @@
       <div class="gi"><b>방폭펌프 — 위험지역(Ex)</b><span>인화성 용제·가연성 분위기용 방폭 인증. 용제 이송·화학 합성 등 안전이 최우선인 환경에.</span></div>
     </div>
     <p class="tnote" style="margin-top:14px">고민되면 <b>액체 종류·유량·사용 방식</b>만 알려주세요. 모델명 없이도 맞는 펌프를 같이 골라드립니다.</p>
-  </section>
+    <div style="margin-top:14px"><button class="wzbtn" type="button" onclick="openPumpFind()">⚡ 30초만에 펌프 추천 받기 →</button></div>
 
-  <!-- 3) 튜브 선택 가이드 -->
-  <section class="sec">
-    <div class="sech"><h2>튜브 선택 가이드</h2></div>
+    <h3 class="subh">튜브 선택 가이드</h3>
     <p class="tnote">연동펌프 성능은 <b>튜브가 좌우</b>합니다. 재질에 따라 내화학성·수명·용출·생체적합성이 다르니, 다루는 액체와 사용 시간에 맞춰 고릅니다.</p>
     <div class="tlist">
       <div class="t"><b>실리콘 (플래티넘)</b><span>생체적합·유연 — 세포배양·의료·완충액</span></div>
@@ -119,9 +121,32 @@
   </section>
 
   <div style="display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 44px">
-    <a href="/quote/" style="display:inline-block;background:#1A1A1A;border-radius:9px;padding:13px 20px;font-weight:600;color:#fff">응용 맞춤 견적 문의 →</a>
+    <a href="/contact/" style="display:inline-block;background:#1A1A1A;border-radius:9px;padding:13px 20px;font-weight:600;color:#fff">응용 맞춤 견적 문의 →</a>
   </div>
 </div>
+
+<!-- 펌프 추천 위저드 팝업 -->
+<div class="pf-modal" id="pumpFindModal" onclick="if(event.target===this)closePumpFind()">
+  <div class="pf-box">
+    <button class="pf-close" type="button" onclick="closePumpFind()" aria-label="닫기">×</button>
+    <div class="pf-head">30초 펌프 추천</div>
+    <iframe id="wizardFrame" src="/recommend.html?embed=1" title="펌프 추천 위저드" loading="lazy" scrolling="no" style="width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;display:block;min-height:340px"></iframe>
+  </div>
+</div>
+<script>
+  function openPumpFind(){ document.getElementById('pumpFindModal').classList.add('open'); document.body.style.overflow='hidden'; }
+  function closePumpFind(){ document.getElementById('pumpFindModal').classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closePumpFind(); });
+  window.addEventListener('message', function(e){
+    if(!e.data) return;
+    var f = document.getElementById('wizardFrame');
+    if(!f) return;
+    if(e.data.type === 'cellab-wizard-height' && e.data.height){
+      var hpx = e.data.height + 'px';
+      if(f.style.height !== hpx) f.style.height = hpx;
+    }
+  });
+</script>
 
 <div id="cellab-footer"></div>
 <script src="/assets/site.js" defer></script>

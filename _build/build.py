@@ -447,7 +447,6 @@ def main():
     # 메인 + 상업 funnel 페이지 (loc 경로, priority, changefreq)
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
-        ('quote/',        '0.8', 'monthly'),  # 견적 문의
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
         ('contact/',      '0.8', 'monthly'),  # 문의하기
         ('repair/',       '0.8', 'monthly'),  # 무상 진단

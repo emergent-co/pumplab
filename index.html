@@ -270,11 +270,11 @@
 <section id="trust">
   <style>
     #trust{background:var(--green-bg);border-bottom:1px solid var(--line)}
-    #trust .tg{max-width:1000px;margin:0 auto;padding:48px 24px;display:grid;grid-template-columns:0.82fr 1.18fr;gap:40px;align-items:center}
-    #trust .certwrap{min-width:0}
-    #trust .cert{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 12px 34px rgba(10,37,64,.10);line-height:0}
-    #trust .cert img{width:100%;height:auto;display:block}
-    #trust .cert .ph{aspect-ratio:1/1.4;display:none;align-items:center;justify-content:center;color:var(--gray-2);font-size:13px;text-align:center;padding:24px;line-height:1.7}
+    #trust .tg{max-width:1000px;margin:0 auto;padding:48px 24px;display:grid;grid-template-columns:0.8fr 1.2fr;gap:40px;align-items:center}
+    #trust .certwrap{min-width:0;text-align:center}
+    #trust .cert{display:inline-block;max-width:100%;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 12px 34px rgba(10,37,64,.10);line-height:0}
+    #trust .cert img{max-height:400px;max-width:100%;width:auto;height:auto;display:block}
+    #trust .cert .ph{width:280px;aspect-ratio:1/1.4;display:none;align-items:center;justify-content:center;color:var(--gray-2);font-size:13px;text-align:center;padding:24px;line-height:1.7}
     #trust .cap{font-size:12px;color:var(--gray);text-align:center;margin-top:10px}
     #trust .tbadge{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.03em;color:var(--green);border:1px solid #c9d6e8;border-radius:30px;padding:5px 14px;margin-bottom:16px}
     #trust h2{font-family:var(--serif);font-size:clamp(21px,5vw,27px);color:var(--ink);margin-bottom:12px}
@@ -309,11 +309,11 @@
     #cases{padding:52px 0;border-bottom:1px solid var(--line)}
     #cases h2{font-family:var(--serif);font-size:clamp(21px,5vw,26px);text-align:center;color:var(--ink)}
     #cases .s2{text-align:center;color:var(--gray);font-size:15px;margin:10px 0 30px}
-    #cases .cwrap{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;max-width:1010px;margin:0 auto}
-    #cases .cimg{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#f4f6f9;line-height:0;box-shadow:0 12px 30px rgba(10,37,64,.08)}
+    #cases .cwrap{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:stretch;max-width:1040px;margin:0 auto}
+    #cases .cimg{align-self:center;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#f4f6f9;line-height:0;box-shadow:0 12px 30px rgba(10,37,64,.08)}
     #cases .cimg img{width:100%;height:auto;display:block}
     #cases .cimg .ph{aspect-ratio:16/11;display:none;align-items:center;justify-content:center;color:var(--gray-2);font-size:13px}
-    #cases .clist{display:flex;flex-direction:column;gap:12px}
+    #cases .clist{display:flex;flex-direction:column;justify-content:space-between;gap:12px}
     #cases .cc{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fff}
     #cases .cc .sym{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:9px}
     #cases .cc .fl{font-size:13px;color:var(--gray);line-height:1.5;position:relative;padding-left:16px;margin-bottom:6px}
@@ -349,6 +349,8 @@
     #edge .ec .t{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--ink);margin-bottom:8px}
     #edge .ec p{font-size:14px;color:var(--gray);line-height:1.65}
     #edge .ec .eclink{display:inline-block;margin-top:13px;font-weight:700;color:var(--green);font-size:13.5px}
+    #edge .edl{text-align:center;margin-top:28px}
+    #edge .edl-meta{font-size:12.5px;color:var(--gray);margin-top:10px}
     @media(max-width:780px){#edge .eg{grid-template-columns:1fr}}
   </style>
   <div class="wrap">
@@ -400,6 +402,11 @@
         </div>
       </div>
       <div class="foot"><span><span class="on">● Connected</span> &nbsp; COM3 · 9600 8N1 · addr 1</span><span>Running · 120 rpm · CCW</span></div>
+    </div>
+    <div class="edl">
+      <!-- TODO: href를 실제 설치파일(.exe) URL로 교체 -->
+      <a class="btn-dl" href="#" download><svg viewBox="0 0 24 24"><path d="M3 5.5 10 4.5v7H3zM11 4.3 21 3v8.5H11zM3 12.5h7v7l-7-1zM11 12.5h10V21l-10-1.3z"/></svg>Windows용 다운로드</a>
+      <div class="edl-meta">Windows 10/11 · 무료 · 최신 버전 v1.0</div>
     </div>
   </div>
 </section>
