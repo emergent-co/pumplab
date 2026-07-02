@@ -159,15 +159,20 @@
         '@id': 'https://cellab.kr/#org',
         'name': 'Cellab',
         'alternateName': '셀렙',
+        'legalName': 'emergent co.',
         'url': 'https://cellab.kr/',
         'email': 'emgt.yhlee@gmail.com',
-        'description': 'Lead Fluid 정량·연동(페리스탈틱)·시린지·방폭펌프와 호환 소모품을 큐레이션 판매하고, PC 제어 프로그램을 직접 개발·무료 제공하는 한국 실험기기 전문점. 국내 A/S 직접 응대.',
+        'description': 'LeadFluid 정량·연동(페리스탈틱)·시린지펌프에 제어 소프트웨어를 얹은 실험실 펌프 시스템을 공급하고, 하드웨어를 직접 진단·수리하는 한국 A/S 전문점. 관류·연속배양 등 무인·정밀·재현이 필요한 연구에 맞춘 제어를 제공합니다.',
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': '북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)',
           'addressLocality': '부산광역시',
           'addressCountry': 'KR'
-        }
+        },
+        'makesOffer': [
+          { '@type': 'Offer', 'itemOffered': { '@type': 'Product', 'name': 'LeadFluid 정량·연동·시린지펌프 + 제어 소프트웨어', 'category': '실험실 정량·연동 펌프 시스템', 'brand': { '@type': 'Brand', 'name': 'LeadFluid' } } },
+          { '@type': 'Offer', 'itemOffered': { '@type': 'Product', 'name': 'Alicat 질량유량계(MFC)', 'category': '질량유량계(Mass Flow Controller)', 'brand': { '@type': 'Brand', 'name': 'Alicat Scientific' } } }
+        ]
       },
       {
         '@type': 'WebSite',
