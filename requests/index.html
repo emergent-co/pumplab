@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>펌프 제어 소프트웨어를 무료로 만들어드립니다 | 셀렙</title>
-<meta name="description" content="펌프 제어 프로그램에 필요한 기능을 요청하고, 검토·개발·완료 진행 상황을 공개로 확인하세요.">
+<title>무인 장시간 관류·채널별 독립 유량·기록 재현 — 소프트웨어 제어 펌프 시스템 | 셀렙</title>
+<meta name="description" content="밤샘 수동 조작 없이 관류·연속배양을 재현하세요. LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 얹어 무인 장시간 운전, 채널별 독립 유량·다펌프 동기, 유량 프로파일 기록·재현을 구현합니다. 필요한 기능은 요청하면 무료 개발.">
 <link rel="canonical" href="https://cellab.kr/requests/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,6 +132,9 @@
   .swmeta{display:block;font-size:12.5px;color:var(--gray);margin-top:10px}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"소프트웨어 제어 펌프 시스템","serviceType":"실험실 펌프 자동 제어 시스템","provider":{"@type":"Organization","name":"Cellab","url":"https://cellab.kr/"},"areaServed":"KR","brand":{"@type":"Brand","name":"LeadFluid"},"url":"https://cellab.kr/requests/","description":"LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 결합해 무인 장시간 관류, 채널별 독립 유량·다펌프 동기, 유량 프로파일 기록·재현을 제공. 관류배양·연속배양·flow chemistry 등 무인·정밀·재현이 필요한 연구에 적합."}
+</script>
 </head>
 <body>
 <div id="cellab-header"></div>
@@ -143,7 +146,7 @@
     #edge .eh{text-align:center;max-width:620px;margin:0 auto 26px}
     #edge .eh h2{font-family:var(--serif);font-size:26px;color:var(--ink)}
     #edge .eh p{color:var(--gray);font-size:15px;margin-top:10px}
-    #edge .eg{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin:0 auto}
+    #edge .eg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;max-width:900px;margin:0 auto}
     #edge .ec{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
     #edge .ec .t{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--ink);margin-bottom:8px}
     #edge .ec p{font-size:14px;color:var(--gray);line-height:1.65}
@@ -188,13 +191,15 @@
   </style>
   <div class="wrap">
     <div class="eh">
-      <h2>단순 수리를 넘어, 제어까지 만들어 드립니다</h2>
-      <p>단순 판매 대리점엔 없는 두 가지.</p>
+      <h2>밤샘 없이, 흔들림 없이 — 실험을 프로그램이 대신 지킵니다</h2>
+      <p>관류·연속배양·flow chemistry처럼 <b>무인·정밀·재현</b>이 실험 성립 조건인 연구를 위한 제어입니다.</p>
     </div>
     <div class="eg">
-      <div class="ec"><div class="t">폐루프 정밀제어 (LEADFLUID Pump + Alicat MFC)</div><p>LEADFLUID 펌프와 Alicat 질량유량계(MFC)를 연동해, 목표 유량을 실시간 피드백으로 잡아주는 제어를 직접 개발합니다.</p></div>
-      <div class="ec"><div class="t">맞춤 제어 소프트웨어 무료</div><p>유량·시퀀스·실시간 모니터링은 기본. 연구에 필요한 기능은 요청만 하면 만들어 무료로 드립니다.</p></div>
+      <div class="ec"><div class="t">무인 장시간 관류</div><p>유량·시퀀스를 설정해 두면 며칠~몇 주를 무인 운전. 밤사이 흔들림 없이 재현 가능한 데이터가 쌓입니다.</p></div>
+      <div class="ec"><div class="t">채널별 독립 유량 · 다펌프 동기</div><p>조건군마다 다른 유량을 독립 제어하고 여러 펌프를 동기화. 대조군을 한 번에 돌립니다.</p></div>
+      <div class="ec"><div class="t">유량 프로파일 기록 · 재현</div><p>무엇을 언제 얼마나 흘렸는지 로그로 남기고, 같은 프로파일을 그대로 재실행 — 논문 수준 재현성.</p></div>
     </div>
+    <p style="text-align:center;color:var(--gray);font-size:14px;max-width:640px;margin:18px auto 0">이 모두를 <b>LeadFluid 정량·연동·시린지펌프 + 제어 소프트웨어</b>로 구현합니다. 필요한 기능은 요청만 하면 무료로 개발합니다. <span style="color:var(--gray-2)">(정밀 유량 피드백이 필요하면 Alicat 질량유량계(MFC) 연동 폐루프 제어도 별도 지원.)</span></p>
     <div class="app" aria-label="Cellab Pump Control 화면">
       <div class="bar"><span class="gd"></span>Cellab Pump Control<span class="wctl"><span class="wbtn"><svg viewBox="0 0 12 12"><line x1="2" y1="6.5" x2="10" y2="6.5"/></svg></span><span class="wbtn"><svg viewBox="0 0 12 12"><rect x="2.5" y="2.5" width="7" height="7" rx="1"/></svg></span><span class="wbtn wclose"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></span></span></div>
       <div class="body">
