@@ -47,10 +47,7 @@
         ['/application/pump-selection.html', '펌프 종류·선택'],
         ['/application/tube-selection.html', '튜브·화학 적합성']
       ] },
-    { href:'/requests/',   label:'실험을 자동화할 때', icon:'sw', sub:[
-        ['/requests/',       '소프트웨어 제어'],
-        ['/requests/#board', '개발 요청 게시판']
-      ] },
+    { href:'/requests/',   label:'실험을 자동화할 때', icon:'sw' },
     { href:'/application/cell-culture-perfusion.html', label:'실험별 셋업 가이드', icon:'guide', sub:[
         ['/application/cell-culture-perfusion.html', '세포배양 관류']
       ] },

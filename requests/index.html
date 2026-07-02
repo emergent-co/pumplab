@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<!-- 배포 경로: cellab.kr/requests/index.html  (메뉴 '개발 요청')
-     운영: 요청자는 이메일로 보냄 → 관리자가 아래 REQUESTS 목록에 한 줄 추가/수정만 하면 보드가 자동 갱신.
-     백엔드 없음(정적). 유지보수 = 목록 편집뿐. -->
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -9,189 +6,40 @@
 <title>무인 장시간 관류·채널별 독립 유량·기록 재현 — 소프트웨어 제어 펌프 시스템 | 셀렙</title>
 <meta name="description" content="밤샘 수동 조작 없이 관류·연속배양을 재현하세요. LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 얹어 무인 장시간 운전, 채널별 독립 유량·다펌프 동기, 유량 프로파일 기록·재현을 구현합니다. 필요한 기능은 요청하면 무료 개발.">
 <link rel="canonical" href="https://cellab.kr/requests/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{--ink:#1A1A1A;--gray:#6B6B6B;--gray-2:#9A9A9A;--green:#1A1A1A;--green-bg:#F6F7F8;--navy:#0A2540;
-        --amber:#B26B12;--amber-bg:#FBF3E6;--line:#EAEAEA;--bg:#fff;
-        --serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.65;word-break:keep-all;overflow-wrap:break-word}
-  a{text-decoration:none;color:inherit}
-  h1,h2{font-family:var(--serif);letter-spacing:-.3px;color:var(--ink)}
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
-  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:20}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1080px;margin:0 auto;padding:0 24px}
-  .brand{font-family:var(--serif);font-weight:700;font-size:21px}.brand b{color:var(--green)}
-  .menu{display:flex;gap:24px;align-items:center}.menu a{font-size:15px;color:var(--gray);font-weight:500}
-  .menu a:hover{color:var(--ink)} .menu .quote{color:var(--green);font-weight:600}
-  .hero{text-align:center;padding:56px 0 36px}
-  .hero h1{font-size:40px}.hero p{color:var(--gray);margin:14px auto 0;max-width:540px;font-size:16px}
-  .hero .btns{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .b1{background:var(--ink);color:#fff;padding:13px 22px;border-radius:9px;font-weight:600}
-  .b1:hover{background:#000}
-  .b2{background:#fff;border:1px solid var(--line);padding:13px 20px;border-radius:9px;font-weight:600}
-  /* summary */
-  .sum{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:8px 0 28px;border-bottom:1px solid var(--line)}
-  .pill{border:1px solid var(--line);border-radius:30px;padding:7px 15px;font-size:13px;font-weight:600;color:var(--gray);cursor:pointer;background:#fff}
-  .pill.active{border-color:var(--ink);color:var(--ink)}
-  .pill b{color:var(--ink)}
-  /* board — 3열 카드 그리드 */
-  .board{padding:30px 0 56px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
-  .req{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;cursor:pointer;display:flex;flex-direction:column;transition:box-shadow .15s,border-color .15s}
-  .req:hover{border-color:var(--green);box-shadow:0 6px 18px rgba(0,0,0,.07)}
-  .req-img{aspect-ratio:16/10;background:var(--green-bg);display:flex;align-items:center;justify-content:center;color:var(--gray-2);font-size:12px;font-weight:600;letter-spacing:.04em;border-bottom:1px solid var(--line)}
-  .req-img img{width:100%;height:100%;object-fit:cover}
-  .req-bd{padding:15px 17px;display:flex;flex-direction:column;gap:7px;flex:1}
-  .req-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-  .req h3{font-family:var(--sans);font-size:16px;font-weight:700;line-height:1.35}
-  .req .desc{color:var(--gray);font-size:13.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .req .meta{font-size:12px;color:var(--gray-2);margin-top:auto;padding-top:4px}
-  .badge{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:7px;white-space:nowrap;flex:0 0 auto}
-  .s-req{background:#F0F1F3;color:#5A6573}
-  .s-rev{background:var(--amber-bg);color:var(--amber)}
-  .s-dev{background:var(--navy);color:#fff}
-  .s-done{background:var(--green-bg);color:var(--green)}
-  .empty{text-align:center;color:var(--gray-2);padding:40px 0;font-size:14px}
-  .legend{font-size:12px;color:var(--gray-2);text-align:center;padding-bottom:40px}
-  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center}
-  footer .tl{font-size:13px;font-weight:700}.footer .bn{margin-top:10px}
-  footer .bn{margin-top:10px;font-size:13px;color:var(--gray)}
-  footer .cp{margin-top:8px;font-size:12px;color:var(--gray-2)}
-  /* 확대 모달 */
-  .req-modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
-  .req-modal.open{display:flex}
-  .req-modal .box{position:relative;background:#fff;border-radius:14px;max-width:560px;width:100%;max-height:88vh;overflow:auto}
-  .req-modal .m-img{aspect-ratio:16/9;background:var(--green-bg);display:flex;align-items:center;justify-content:center;color:var(--gray-2);font-size:13px;font-weight:600}
-  .req-modal .m-img img{width:100%;height:100%;object-fit:cover}
-  .req-modal .m-bd{padding:22px 24px}
-  .req-modal h3{font-family:var(--serif);font-size:22px;margin:8px 0 0}
-  .req-modal .m-desc{color:var(--ink);font-size:15px;line-height:1.75;margin-top:12px}
-  .req-modal .m-meta{color:var(--gray-2);font-size:13px;margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
-  .req-modal .m-close{position:absolute;top:8px;right:12px;font-size:28px;line-height:1;color:#fff;cursor:pointer;text-shadow:0 1px 4px rgba(0,0,0,.5)}
-  /* 개발 요청 폼 팝업 */
-  .rf-modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
-  .rf-modal.open{display:flex}
-  .rf-box{position:relative;background:#fff;border-radius:14px;max-width:520px;width:100%;max-height:90vh;overflow:auto;padding:26px 26px 22px}
-  .rf-box h3{font-family:var(--serif);font-size:22px;margin-bottom:6px}
-  .rf-box .rf-sub{color:var(--gray);font-size:13.5px;margin-bottom:14px}
-  .rf-close{position:absolute;top:12px;right:16px;font-size:26px;line-height:1;color:var(--gray);cursor:pointer}
-  .rf-box label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-top:12px}
-  .rf-box input,.rf-box select,.rf-box textarea{width:100%;margin-top:5px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:14px;background:#fff;color:var(--ink)}
-  .rf-box textarea{min-height:68px;resize:vertical}
-  .rf-send{margin-top:18px;width:100%;background:var(--ink);color:#fff;border:0;padding:12px;border-radius:9px;font-weight:600;font-size:15px;cursor:pointer}
-  .rf-send:hover{background:#000}
-  .rf-send:disabled{opacity:.6;cursor:default}
-  @media(max-width:900px){.board{grid-template-columns:1fr 1fr}}
-  @media(max-width:600px){.board{grid-template-columns:1fr}}
-  @media(max-width:680px){.menu{display:none}.hero h1{font-size:30px}}
-  /* ===== 소프트웨어 미리보기 (Pump Control Program 데모) — 팝업 ===== */
-  #preview{position:fixed;inset:0;background:rgba(10,20,40,.55);display:none;align-items:flex-start;justify-content:center;padding:24px 16px;z-index:80;overflow:auto}
-  #preview.open{display:flex}
-  #preview .pv-box{position:relative;background:#fff;border-radius:16px;max-width:920px;width:100%;margin:auto;padding:14px 22px 30px}
-  #preview .pv-close{position:absolute;top:8px;right:14px;font-size:30px;line-height:1;color:var(--gray);cursor:pointer;background:none;border:0;z-index:2}
-  #preview .pv-close:hover{color:var(--ink)}
-  #preview .sec-h{text-align:center;max-width:640px;margin:14px auto 30px}
-  #preview .sec-h .kicker{font-size:13px;font-weight:700;color:var(--green);letter-spacing:.5px;text-transform:uppercase}
-  #preview .sec-h h2{font-size:30px;margin-top:10px}
-  #preview .sec-h p{color:var(--gray);font-size:16px;margin-top:12px}
-  #preview .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
-  #preview .tab{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;border-radius:30px;padding:10px 16px;font-size:13.5px;font-weight:600;color:var(--gray);cursor:pointer}
-  #preview .tab:hover{color:var(--ink)}
-  #preview .tab.active{border-color:var(--green);color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
-  #preview .tab svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
-  #preview .showcase{background:var(--green-bg);border-radius:20px;padding:34px}
-  #preview .demo{display:none}
-  #preview .demo.active{display:grid;grid-template-columns:1.4fr .6fr;gap:18px;align-items:stretch}
-  #preview .win{background:#fff;border-radius:12px;box-shadow:0 16px 44px rgba(10,37,64,.10);overflow:hidden;font-size:13px}
-  #preview .winbar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);font-weight:700;font-size:12px}
-  #preview .winbar .dots{display:flex;gap:5px}
-  #preview .winbar .dots i{width:9px;height:9px;border-radius:50%;background:#E2E5EA;display:block}
-  #preview .winbody{padding:16px}
-  #preview .crow{display:grid;grid-template-columns:80px 1fr;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
-  #preview .crow .k{color:var(--gray);font-size:12px}
-  #preview .cin{border:1px solid var(--line);border-radius:7px;padding:8px 10px;font-weight:700}
-  #preview .chip{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);color:var(--green);border-radius:7px;padding:7px 11px;font-size:12px;font-weight:700;margin-top:12px}
-  #preview .applybtn{margin-top:12px;background:var(--green);color:#fff;border-radius:8px;padding:9px 14px;font-weight:700;font-size:12px;display:inline-block}
-  #preview .seq{width:100%;border-collapse:collapse;font-size:12.5px}
-  #preview .seq th,#preview .seq td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left}
-  #preview .seq th{background:#FAFAFA;font-size:11px;color:var(--gray);font-weight:700}
-  #preview .seq .st{color:var(--green);font-weight:700}
-  #preview .mstat{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:10px}
-  #preview .mstat b{font-size:17px}#preview .mstat span{display:block;font-size:11px;color:var(--gray)}
-  #preview .sidecard{background:#1E3A5F;border-radius:12px;padding:18px;display:flex;flex-direction:column;justify-content:center}
-  #preview .sidecard .t{font-size:11px;color:#9A9A9A;font-weight:700;margin-bottom:8px;letter-spacing:.5px}
-  #preview .sidecard p{font-size:13.5px;color:#E6F0EB;line-height:1.6}
-  @media(max-width:780px){#preview .demo.active{grid-template-columns:1fr}#preview .showcase{padding:18px}}
-  .swshow{padding:4px 0 44px}
-  .swimg{max-width:900px;margin:0 auto;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f4f6f9;line-height:0;box-shadow:0 12px 30px rgba(10,37,64,.08)}
-  .swimg img{width:100%;height:auto;display:block}
-  .swimg .swph{aspect-ratio:16/9;display:none;align-items:center;justify-content:center;color:var(--gray-2);font-size:13px}
-  .swdl{text-align:center;margin-top:24px}
-  .swmeta{display:block;font-size:12.5px;color:var(--gray);margin-top:10px}
-</style>
-<link rel="stylesheet" href="/assets/site.css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="소프트웨어 제어 펌프 시스템 — 무인 관류·채널 독립 유량·기록 재현 | 셀렙">
+<meta property="og:description" content="LeadFluid 펌프 + 제어 소프트웨어로 무인 장시간 운전·채널별 독립 유량·기록/재현.">
+<meta property="og:url" content="https://cellab.kr/requests/">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Service","name":"소프트웨어 제어 펌프 시스템","serviceType":"실험실 펌프 자동 제어 시스템","provider":{"@type":"Organization","name":"Cellab","url":"https://cellab.kr/"},"areaServed":"KR","brand":{"@type":"Brand","name":"LeadFluid"},"url":"https://cellab.kr/requests/","description":"LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 결합해 무인 장시간 관류, 채널별 독립 유량·다펌프 동기, 유량 프로파일 기록·재현을 제공. 관류배양·연속배양·flow chemistry 등 무인·정밀·재현이 필요한 연구에 적합."}
 </script>
+<style>
+  .edge{ padding:46px 40px 64px; }
+  .ewrap{ max-width:900px; margin:0 auto; }
+  .eh{ text-align:center; max-width:640px; margin:0 auto 28px; }
+  .eh h1{ font-family:var(--serif); font-size:clamp(23px,5vw,29px); color:var(--ink); letter-spacing:-.02em; line-height:1.32; }
+  .eh p{ color:var(--gray); font-size:15px; margin-top:12px; }
+  .eg{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; }
+  .ec{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px; }
+  .ec .t{ font-family:var(--serif); font-size:17px; font-weight:600; color:var(--ink); margin-bottom:8px; }
+  .ec p{ font-size:14px; color:var(--gray); line-height:1.65; }
+  .enote{ text-align:center; color:var(--gray); font-size:14px; max-width:640px; margin:20px auto 0; line-height:1.7; }
+  .enote b{ color:var(--ink); }
+  .edl{ text-align:center; margin-top:30px; }
+  .edl a{ display:inline-block; background:var(--ink); color:#fff; padding:14px 28px; border-radius:10px; font-weight:700; font-size:15px; }
+  .edl a:hover{ background:#000; }
+  .edl-meta{ font-size:12.5px; color:var(--gray); margin-top:10px; }
+  @media(max-width:640px){ .edge{ padding:28px 20px 52px; } }
+</style>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 <div id="cellab-header"></div>
 
-<!-- ═══ 제어 소프트웨어 (단순 수리를 넘어 제어까지) — 최상단 ═══ -->
-<section id="edge">
-  <style>
-    #edge{padding:44px 0 8px}
-    #edge .eh{text-align:center;max-width:620px;margin:0 auto 26px}
-    #edge .eh h2{font-family:var(--serif);font-size:26px;color:var(--ink)}
-    #edge .eh p{color:var(--gray);font-size:15px;margin-top:10px}
-    #edge .eg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;max-width:900px;margin:0 auto}
-    #edge .ec{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
-    #edge .ec .t{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--ink);margin-bottom:8px}
-    #edge .ec p{font-size:14px;color:var(--gray);line-height:1.65}
-    #edge .edl{text-align:center;margin-top:26px}
-    #edge .edl a{display:inline-block;background:var(--ink);color:#fff;padding:14px 26px;border-radius:10px;font-weight:700;font-size:15px}
-    #edge .edl a:hover{background:#000}
-    #edge .edl-meta{font-size:12.5px;color:var(--gray);margin-top:10px}
-    @media(max-width:780px){#edge .eg{grid-template-columns:1fr}}
-    /* 프로그램 목업 (홈에서 사용하던 화면) */
-    #edge .app{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 24px 60px rgba(10,37,64,.13);font-family:var(--sans);max-width:900px;margin:30px auto 0}
-    #edge .app .bar{display:flex;align-items:center;gap:9px;padding:11px 14px;background:#F6F7F9;border-bottom:1px solid var(--line);font-size:13px;font-weight:700;color:var(--ink)}
-    #edge .app .bar .gd{width:12px;height:12px;border-radius:3px;background:var(--green)}
-    #edge .app .bar .wctl{margin-left:auto;display:flex;gap:1px}
-    #edge .app .bar .wbtn{width:38px;height:26px;display:flex;align-items:center;justify-content:center;border-radius:5px;color:#5A6472}
-    #edge .app .bar .wbtn svg{width:11px;height:11px;stroke:currentColor;stroke-width:1.2;fill:none}
-    #edge .app .bar .wbtn:hover{background:#E7EAEF}
-    #edge .app .bar .wclose:hover{background:#E5484D;color:#fff}
-    #edge .app .body{display:grid;grid-template-columns:1fr 1fr}
-    #edge .app .pane{padding:13px}
-    #edge .app .pl{border-right:1px solid var(--line)}
-    #edge .app .lbl{font-size:10px;font-weight:700;color:var(--gray);margin:0 0 6px}
-    #edge .app .conn{display:flex;gap:6px;margin-bottom:11px}
-    #edge .app .fld{flex:1;border:1px solid var(--line);border-radius:6px;padding:7px 8px;font-size:10px;color:var(--ink)}
-    #edge .app .mbtn{background:var(--green);color:#fff;border-radius:6px;padding:7px 9px;font-size:10px;font-weight:700}
-    #edge .app .card{border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:11px}
-    #edge .app .run{display:inline-block;background:#ECEDEF;border-radius:5px;padding:3px 8px;font-size:11px;font-weight:700}
-    #edge .app .upd{float:right;color:var(--gray-2);font-size:10px;font-weight:400;margin-top:4px}
-    #edge .app .kv{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:6px 8px;margin-top:9px;font-size:10px;align-items:baseline}
-    #edge .app .kv .k{color:var(--gray)} #edge .app .kv .v{font-weight:700;text-align:right}
-    #edge .app .ops{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-    #edge .app .op{border:1px solid var(--line);border-radius:6px;padding:8px 0;text-align:center;font-size:10px;font-weight:600}
-    #edge .app .op.go{background:var(--green);color:#fff;border-color:var(--green)}
-    #edge .app .set{margin-top:11px;display:grid;gap:6px}
-    #edge .app .setrow{display:grid;grid-template-columns:42px 1fr auto;gap:6px;align-items:center;font-size:10px}
-    #edge .app .setrow .k{color:var(--gray)}
-    #edge .app .ap{border:1px solid var(--line);border-radius:6px;padding:6px 9px;font-size:10px;color:var(--gray)}
-    #edge .app .chart .ct{font-size:13px;font-weight:700}
-    #edge .app .chart .cs{font-size:10px;color:var(--gray-2);font-weight:400}
-    #edge .app .foot{border-top:1px solid var(--line);padding:8px 14px;display:flex;justify-content:space-between;font-size:10px;color:var(--gray)}
-    #edge .app .foot .on{color:var(--green);font-weight:700}
-    @media(max-width:560px){#edge .app .body{grid-template-columns:1fr}#edge .app .pl{border-right:0;border-bottom:1px solid var(--line)}}
-  </style>
-  <div class="wrap">
+<main class="edge">
+  <div class="ewrap">
     <div class="eh">
-      <h2>밤샘 없이, 흔들림 없이 — 실험을 프로그램이 대신 지킵니다</h2>
+      <h1>밤샘 없이, 흔들림 없이 — 실험을 프로그램이 대신 지킵니다</h1>
       <p>관류·연속배양·flow chemistry처럼 <b>무인·정밀·재현</b>이 실험 성립 조건인 연구를 위한 제어입니다.</p>
     </div>
     <div class="eg">
@@ -199,158 +47,15 @@
       <div class="ec" id="channels"><div class="t">채널별 독립 유량 · 다펌프 동기</div><p>조건군마다 다른 유량을 독립 제어하고 여러 펌프를 동기화. 대조군을 한 번에 돌립니다.</p></div>
       <div class="ec" id="record"><div class="t">유량 프로파일 기록 · 재현</div><p>무엇을 언제 얼마나 흘렸는지 로그로 남기고, 같은 프로파일을 그대로 재실행 — 논문 수준 재현성.</p></div>
     </div>
-    <p style="text-align:center;color:var(--gray);font-size:14px;max-width:640px;margin:18px auto 0">이 모두를 <b>LeadFluid 정량·연동·시린지펌프 + 제어 소프트웨어</b>로 구현합니다. 필요한 기능은 요청만 하면 무료로 개발합니다. <span style="color:var(--gray-2)">(정밀 유량 피드백이 필요하면 Alicat 질량유량계(MFC) 연동 폐루프 제어도 별도 지원.)</span></p>
+    <p class="enote">이 모두를 <b>LeadFluid 정량·연동·시린지펌프 + 제어 소프트웨어</b>로 구현합니다. 필요한 기능은 요청만 하면 무료로 개발합니다. <span style="color:var(--gray-2)">(정밀 유량 피드백이 필요하면 Alicat 질량유량계(MFC) 연동 폐루프 제어도 별도 지원.)</span></p>
     <div class="edl">
-      <!-- TODO: href를 실제 설치파일(.exe) URL로 교체 -->
       <a href="#" download>Windows용 다운로드</a>
       <div class="edl-meta">Windows 10/11 · 무료 · 최신 버전 v1.0</div>
     </div>
   </div>
-</section>
-
-<section class="hero" id="board">
-  <div class="wrap">
-    <h1>개발 요청 게시판</h1>
-    <p>펌프 제어 프로그램에 필요한 기능을 이메일로 보내주시면, 검토 후 아래 대기열에 올리고
-       <b>개발 진행 상황을 공개</b>로 보여드립니다.</p>
-    <div class="btns">
-      <button class="b1" type="button" onclick="openReqForm()" style="border:0;cursor:pointer;font:inherit">개발 요청하기</button>
-    </div>
-  </div>
-</section>
-
-<section id="board-list">
-  <div class="wrap">
-    <div class="sum" id="sum"><!-- JS가 채움 --></div>
-    <div class="board" id="boardList"><!--REQ_CARDS_START--><div class="req" onclick="openReq(2)"><div class="req-img">이미지 준비중</div><div class="req-bd"><div class="req-top"><h3>다중 펌프 동시 제어</h3><span class="badge s-req">요청됨</span></div><p class="desc">여러 BT101을 한 화면에서 개별 제어.</p><div class="meta">요청일 2026-06-27</div></div></div>
-<div class="req" onclick="openReq(1)"><div class="req-img">이미지 준비중</div><div class="req-bd"><div class="req-top"><h3>CSV 로그 자동 내보내기</h3><span class="badge s-rev">검토중</span></div><p class="desc">유량·누적량 로그를 일정 주기로 CSV 저장.</p><div class="meta">요청일 2026-06-24 · 검토 중</div></div></div>
-<div class="req" onclick="openReq(0)"><div class="req-img">이미지 준비중</div><div class="req-bd"><div class="req-top"><h3>유량 자동 캘리브레이션</h3><span class="badge s-dev">개발중</span></div><p class="desc">튜브 교체 후 실측 유량을 입력하면 보정계수를 자동 계산.</p><div class="meta">요청일 2026-06-20 · 개발 중</div></div></div>
-<div class="req" onclick="openReq(3)"><div class="req-img">이미지 준비중</div><div class="req-bd"><div class="req-top"><h3>실시간 유량 그래프</h3><span class="badge s-done">완료</span></div><p class="desc">최근 60초 유량을 실시간 라인 차트로 표시.</p><div class="meta">요청일 2026-06-10 · v1.0 반영</div></div></div><!--REQ_CARDS_END--></div>
-  </div>
-</section>
-
-<!-- 확대 모달 -->
-<div class="req-modal" id="reqModal" onclick="if(event.target===this)closeReq()">
-  <div class="box">
-    <span class="m-close" onclick="closeReq()">×</span>
-    <div class="m-img" id="mImg"></div>
-    <div class="m-bd">
-      <span class="badge" id="mBadge"></span>
-      <h3 id="mTitle"></h3>
-      <p class="m-desc" id="mDesc"></p>
-      <div class="m-meta" id="mMeta"></div>
-    </div>
-  </div>
-</div>
-
-<!-- 개발 요청 폼 팝업 -->
-<div class="rf-modal" id="reqFormModal" onclick="if(event.target===this)closeReqForm()">
-  <div class="rf-box">
-    <span class="rf-close" onclick="closeReqForm()">×</span>
-    <h3>개발 요청하기</h3>
-    <p class="rf-sub">필요한 기능을 남겨주시면 검토 후 진행 상황을 공개로 보여드립니다.</p>
-    <form id="reqForm">
-      <input type="hidden" name="_subject" value="[개발 요청] 펌프 제어 프로그램">
-      <label>요청 기능 <span style="color:#c00">*</span>
-        <textarea name="요청 기능" required placeholder="예: 다중 펌프 동시 제어"></textarea></label>
-      <label>사용 상황 / 이유
-        <textarea name="사용 상황·이유" placeholder="어떤 실험·작업에서 필요한지"></textarea></label>
-      <label>회사 · 연구실
-        <input type="text" name="회사·연구실" placeholder="OO대학교 OO연구실"></label>
-      <label>이메일 <span style="color:#c00">*</span>
-        <input type="email" name="email" required placeholder="you@lab.ac.kr"></label>
-      <label>성함 <span style="color:#c00">*</span>
-        <input type="text" name="성함" required placeholder="홍길동"></label>
-      <button class="rf-send" type="submit">요청 보내기</button>
-    </form>
-  </div>
-</div>
+</main>
 
 <div id="cellab-footer"></div>
 <script src="/assets/site.js" defer></script>
-
-<!-- 개발 요청 데이터 (build.py 가 _build/requests.json 으로부터 주입) -->
-<script type="application/json" id="requests-data"><!--REQ_JSON_START-->[{"title": "유량 자동 캘리브레이션", "desc": "튜브 교체 후 실측 유량을 입력하면 보정계수를 자동 계산.", "status": "dev", "date": "2026-06-20", "note": "개발 중", "image": ""}, {"title": "CSV 로그 자동 내보내기", "desc": "유량·누적량 로그를 일정 주기로 CSV 저장.", "status": "rev", "date": "2026-06-24", "note": "검토 중", "image": ""}, {"title": "다중 펌프 동시 제어", "desc": "여러 BT101을 한 화면에서 개별 제어.", "status": "req", "date": "2026-06-27", "note": "", "image": ""}, {"title": "실시간 유량 그래프", "desc": "최근 60초 유량을 실시간 라인 차트로 표시.", "status": "done", "date": "2026-06-10", "note": "v1.0 반영", "image": ""}]<!--REQ_JSON_END--></script>
-
-<script>
-/* 데이터는 _build/requests.json (SSOT) 에서 관리.
-   항목 추가·상태 변경은 _build/requests.json 을 편집하고 build.py 실행 →
-   build.py 가 위 #requests-data(JSON)와 보드 정적 카드를 주입(색인 가능). */
-const REQUESTS = (function () {
-  try {
-    var t = (document.getElementById('requests-data').textContent || '').replace(/<!--[^]*?-->/g, '').trim();
-    return JSON.parse(t || '[]');
-  } catch (e) { return []; }
-})();
-
-const LABEL = { req:"요청됨", rev:"검토중", dev:"개발중", done:"완료" };
-const CLS   = { req:"s-req", rev:"s-rev", dev:"s-dev", done:"s-done" };
-const ORDER = ["req","rev","dev","done"];
-let filter = "all";
-
-function counts(){
-  const c = {all:REQUESTS.length, req:0, rev:0, dev:0, done:0};
-  REQUESTS.forEach(r => c[r.status]++);
-  return c;
-}
-function renderSum(){
-  const c = counts();
-  const items = [["all","전체"],["req","요청됨"],["rev","검토중"],["dev","개발중"],["done","완료"]];
-  document.getElementById("sum").innerHTML = items.map(([k,l]) =>
-    `<button class="pill ${filter===k?'active':''}" onclick="setFilter('${k}')">${l} <b>${c[k]}</b></button>`
-  ).join("");
-}
-function renderList(){
-  const list = REQUESTS
-    .filter(r => filter==="all" || r.status===filter)
-    .sort((a,b) => ORDER.indexOf(a.status)-ORDER.indexOf(b.status) || b.date.localeCompare(a.date));
-  const el = document.getElementById("boardList");
-  if(!list.length){ el.innerHTML = `<p class="empty">해당 상태의 요청이 없습니다.</p>`; return; }
-  el.innerHTML = list.map(r => {
-    const i = REQUESTS.indexOf(r);
-    const img = r.image ? `<img src="${r.image}" alt="${r.title}">` : '이미지 준비중';
-    return `
-    <div class="req" onclick="openReq(${i})">
-      <div class="req-img">${img}</div>
-      <div class="req-bd">
-        <div class="req-top">
-          <h3>${r.title}</h3>
-          <span class="badge ${CLS[r.status]}">${LABEL[r.status]}</span>
-        </div>
-        <p class="desc">${r.desc}</p>
-        <div class="meta">요청일 ${r.date}${r.note?` · ${r.note}`:""}</div>
-      </div>
-    </div>`;
-  }).join("");
-}
-function setFilter(k){ filter=k; renderSum(); renderList(); }
-function openReq(i){
-  const r = REQUESTS[i];
-  document.getElementById('mImg').innerHTML = r.image ? `<img src="${r.image}" alt="">` : '이미지 준비중';
-  const b = document.getElementById('mBadge'); b.className = 'badge ' + CLS[r.status]; b.textContent = LABEL[r.status];
-  document.getElementById('mTitle').textContent = r.title;
-  document.getElementById('mDesc').textContent = r.desc;
-  document.getElementById('mMeta').textContent = `요청일 ${r.date}${r.note?` · ${r.note}`:''}`;
-  document.getElementById('reqModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeReq(){ document.getElementById('reqModal').classList.remove('open'); document.body.style.overflow=''; }
-function openReqForm(){ document.getElementById('reqFormModal').classList.add('open'); document.body.style.overflow='hidden'; }
-function closeReqForm(){ document.getElementById('reqFormModal').classList.remove('open'); document.body.style.overflow=''; }
-document.getElementById('reqForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  var f = e.target, btn = f.querySelector('.rf-send');
-  btn.disabled = true; btn.textContent = '전송 중…';
-  fetch('https://formspree.io/f/mnjkzppj', { method:'POST', body:new FormData(f), headers:{'Accept':'application/json'} })
-    .then(function(r){
-      btn.disabled = false; btn.textContent = '요청 보내기';
-      if(r.ok){ f.reset(); closeReqForm(); alert('개발 요청이 접수되었습니다. 감사합니다!'); }
-      else { alert('전송에 실패했습니다. 이메일로 보내주세요: emgt.yhlee@gmail.com'); }
-    })
-    .catch(function(){ btn.disabled = false; btn.textContent = '요청 보내기'; alert('전송에 실패했습니다. 이메일로 보내주세요: emgt.yhlee@gmail.com'); });
-});
-document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeReq(); closeReqForm(); } });
-renderSum(); renderList();
-</script>
 </body>
 </html>
