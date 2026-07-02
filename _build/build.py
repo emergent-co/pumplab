@@ -450,6 +450,10 @@ def main():
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
         ('contact/',      '0.8', 'monthly'),  # 문의하기
         ('trust/',        '0.8', 'monthly'),  # 믿고 도입할 때 (신뢰·A/S)
+        ('setups/',       '0.8', 'weekly'),   # 셋업사례 (인덱스)
+        ('setups/brain-electrode-tyd01.html', '0.7', 'monthly'),
+        ('setups/catheter-heparin-bt101.html', '0.7', 'monthly'),
+        ('setups/co2-capture-ct3001f.html', '0.7', 'monthly'),
         ('faq/',          '0.7', 'monthly'),  # FAQ
         ('blog/',         '0.6', 'weekly'),   # 블로그(피드)
         ('application/',  '0.7', 'monthly'),  # 셋업 가이드 (목록)

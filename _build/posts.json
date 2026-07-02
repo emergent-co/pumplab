@@ -1,7 +1,50 @@
 {
-  "_comment": "블로그 글 메타데이터. 메인 페이지 카드 그리드·블로그 인덱스가 이 파일을 fetch해서 카드 렌더링.",
+  "_comment": "콘텐츠 메타데이터(SSOT). type=blog|setup. 홈 최신 아티클=전체 날짜순, 블로그=blog, 셋업사례=setup.",
   "posts": [
     {
+      "type": "setup",
+      "slug": "brain-electrode-tyd01",
+      "title": "뇌 피질 인터페이싱 전자 텐트 전극 — 시린지펌프 TYD01-01",
+      "summary": "주입 모듈에서 주입 속도를 정밀 제어",
+      "date": "2026-07-02",
+      "tags": ["바이오", "뇌공학", "시린지펌프", "TYD01-01", "Nature Electronics"],
+      "url": "/setups/brain-electrode-tyd01.html",
+      "model_focus": "TYD01-01 시린지",
+      "application": "바이오·뇌공학",
+      "image": "/img/og-cover.png",
+      "journal": "Nature Electronics",
+      "doi": "10.1038/s41928-024-01216-x"
+    },
+    {
+      "type": "setup",
+      "slug": "catheter-heparin-bt101",
+      "title": "혈관내 카테터 헤파린 코팅 — 연동펌프 BT101 L",
+      "summary": "실리콘 튜브 폐루프 순환 회로 구성",
+      "date": "2026-06-30",
+      "tags": ["의료", "소재", "연동펌프", "BT101", "Nature Communications"],
+      "url": "/setups/catheter-heparin-bt101.html",
+      "model_focus": "BT101 L 연동",
+      "application": "의료·소재",
+      "image": "/img/og-cover.png",
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-023-44478-3"
+    },
+    {
+      "type": "setup",
+      "slug": "co2-capture-ct3001f",
+      "title": "연속 CO₂ 포집 — 마그네틱펌프 CT3001F",
+      "summary": "anolyte·catholyte 전해액 순환",
+      "date": "2026-06-28",
+      "tags": ["에너지", "탄소포집", "마그네틱펌프", "CT3001F", "Nature Communications"],
+      "url": "/setups/co2-capture-ct3001f.html",
+      "model_focus": "CT3001F 마그네틱",
+      "application": "에너지·탄소포집",
+      "image": "/img/og-cover.png",
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-024-55334-3"
+    },
+    {
+      "type": "blog",
       "slug": "bt101-ex-vivo-catheter",
       "noindex": true,
       "title": "ex vivo 카테터 시험 데이터가 매번 흔들린다면 — 회로 설계가 답일 수 있습니다",
@@ -17,6 +60,7 @@
       "citations": null
     },
     {
+      "type": "blog",
       "slug": "bt101-solar-droplet-feedback",
       "noindex": true,
       "title": "농축 태양광 하 droplet 증발 데이터가 흔들린다면 — 펌프 + 저울 피드백 조합이 답",
@@ -32,6 +76,7 @@
       "citations": null
     },
     {
+      "type": "blog",
       "slug": "biureactor-perfusion",
       "noindex": false,
       "title": "관류 배양을 논문처럼 재현하려면 펌프 제어를 어떻게 해야 하나 — bIUreactor(Butch 2024) 분석",

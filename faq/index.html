@@ -149,9 +149,13 @@
         });
       });
     });
-    // #repair / #pump / #sw 해시로 진입 시 해당 탭 선택
-    var h = (location.hash || '').replace('#','');
-    if (panels[h]) { var b = document.querySelector('.ftab[data-p="'+h+'"]'); if (b) b.click(); }
+    // #repair / #pump / #sw 해시로 진입/이동 시 해당 탭 선택
+    function fromHash(){
+      var h = (location.hash || '').replace('#','');
+      if (panels[h]) { var b = document.querySelector('.ftab[data-p="'+h+'"]'); if (b) b.click(); }
+    }
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
   })();
 </script>
 </body>

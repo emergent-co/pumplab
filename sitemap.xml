@@ -25,6 +25,30 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://cellab.kr/setups/</loc>
+    <lastmod>2026-07-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://cellab.kr/setups/brain-electrode-tyd01.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cellab.kr/setups/catheter-heparin-bt101.html</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cellab.kr/setups/co2-capture-ct3001f.html</loc>
+    <lastmod>2026-06-28</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://cellab.kr/blog/</loc>
     <lastmod>2026-07-01</lastmod>
     <priority>0.6</priority>

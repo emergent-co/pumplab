@@ -6,6 +6,30 @@
 (function () {
   var path = location.pathname;
 
+  var SEARCH_INDEX = [
+    { t:'홈', u:'/', k:'소프트웨어 제어 펌프 시스템 관류', c:'페이지' },
+    { t:'소프트웨어 제어 펌프 시스템', u:'/requests/', k:'자동화 무인 관류 채널 독립 유량 기록 재현 modbus rs485 python 스케줄 레시피 로그 다펌프 동기', c:'실험을 자동화할 때' },
+    { t:'무인 연속 운전', u:'/requests/#unattended', k:'무인 장시간 관류 밤샘 연속', c:'실험을 자동화할 때' },
+    { t:'채널 독립·다펌프 동기', u:'/requests/#channels', k:'채널별 독립 유량 다펌프 동기 대조군', c:'실험을 자동화할 때' },
+    { t:'유량 기록·재현', u:'/requests/#record', k:'로그 기록 재현 프로파일 재현성', c:'실험을 자동화할 때' },
+    { t:'펌프 고르는 방법', u:'/application/pump-selection.html', k:'펌프 선택 종류 연동 시린지 기어 정량 유량 정밀도 미량 추천 위저드', c:'펌프를 고를 때' },
+    { t:'튜브 선택 가이드', u:'/application/tube-selection.html', k:'튜브 재질 실리콘 tygon pharmed viton 화학 적합성 교체', c:'펌프를 고를 때' },
+    { t:'세포배양 관류 펌프', u:'/application/cell-culture-perfusion.html', k:'관류 perfusion 배지 교환 연동 페리스탈틱 무오염 연속배양', c:'실험별 셋업 가이드' },
+    { t:'실험 가이드', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험별 셋업 가이드' },
+    { t:'셋업사례 — LeadFluid 논문 셋업', u:'/setups/', k:'논문 nature 셋업 leadfluid 펌프 사용 사례', c:'셋업사례' },
+    { t:'국내 A/S·정품·3년보증', u:'/trust/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'믿고 도입할 때' },
+    { t:'블로그', u:'/blog/', k:'아티클 논문 셋업 인사이트', c:'블로그' },
+    { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
+    { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
+  ];
+  fetch('/_build/posts.json').then(function (r) { return r.json(); }).then(function (d) {
+    (d.posts || []).forEach(function (p) {
+      SEARCH_INDEX.push({ t: p.title, u: p.url,
+        k: (p.tags || []).join(' ') + ' ' + (p.journal || '') + ' ' + (p.model_focus || '') + ' ' + (p.application || ''),
+        c: (p.type === 'setup' ? '셋업사례' : '블로그') });
+    });
+  }).catch(function () {});
+
   var ICONS = {
     home:'<svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
     sw:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
@@ -19,18 +43,18 @@
   };
   var NAV = [
     { href:'/',            label:'홈',        icon:'home' },
-    { href:'/application/#papers', label:'성공사례', icon:'star' },
+    { href:'/setups/', label:'셋업사례', icon:'star' },
     { href:'/blog/',       label:'블로그',     icon:'feed' },
     { href:'/application/pump-selection.html', label:'펌프를 고를 때', icon:'pick', sub:[
         ['/application/pump-selection.html', '펌프 종류·선택'],
         ['/application/tube-selection.html', '튜브·화학 적합성']
       ] },
     { href:'/requests/',   label:'실험을 자동화할 때', icon:'sw', sub:[
-        ['/requests/#unattended', '무인 연속 운전'],
-        ['/requests/#channels',   '채널 독립·다펌프 동기'],
-        ['/requests/#record',     '유량 기록·재현']
+        ['/requests/',       '소프트웨어 제어'],
+        ['/requests/#board', '개발 요청 게시판']
       ] },
     { href:'/application/', label:'실험별 셋업 가이드', icon:'guide', sub:[
+        ['/application/', '가이드 전체'],
         ['/application/cell-culture-perfusion.html', '세포배양 관류']
       ] },
     { href:'/trust/',      label:'믿고 도입할 때', icon:'shield', sub:[
@@ -38,7 +62,11 @@
         ['/trust/#cases', '수리 사례']
       ] },
     { href:'/contact/',    label:'문의하기',   icon:'contact' },
-    { href:'/faq/',        label:'FAQ',       icon:'faq' }
+    { href:'/faq/',        label:'FAQ',       icon:'faq', sub:[
+        ['/faq/#repair', '수리·A/S'],
+        ['/faq/#pump',   '펌프'],
+        ['/faq/#sw',     '소프트웨어']
+      ] }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
   function isCur(n){ if(matches(n.href)) return true; return n.sub ? n.sub.some(function(s){ return matches(s[0]); }) : false; }
@@ -59,8 +87,8 @@
     '<header class="ch-top">' +
       '<button class="ch-burger" type="button" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>' +
       '<a class="ch-brand" href="/">Cellab<b>.</b></a>' +
-      '<form class="ch-search" id="chSearch" role="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="search" placeholder="검색" aria-label="사이트 검색"></form>' +
-      '<a class="ch-cta" href="/contact/#repair">무료 수리진단</a>' +
+      '<form class="ch-search" id="chSearch" role="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="search" placeholder="검색" aria-label="사이트 검색" autocomplete="off"><div class="ch-results" id="chResults"></div></form>' +
+      '<a class="ch-cta" href="/contact/">문의하기</a>' +
     '</header>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
       '<div class="ch-side-foot">LeadFluid 공식 한국 A/S 파트너<br>나비엠알오 등록 공급사</div>' +
@@ -158,11 +186,34 @@
       side.addEventListener('click', function (e) { if (e.target.closest('a')) closeSide(); });
     }
     var sf = document.getElementById('chSearch');
-    if (sf) sf.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var q = (sf.querySelector('input').value || '').trim();
-      if (q) window.open('https://www.google.com/search?q=' + encodeURIComponent('site:cellab.kr ' + q), '_blank');
-    });
+    var rbox = document.getElementById('chResults');
+    if (sf && rbox) {
+      var inp = sf.querySelector('input');
+      function esc(s){ return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+      function doSearch() {
+        var q = (inp.value || '').trim().toLowerCase();
+        if (!q) { rbox.classList.remove('open'); rbox.innerHTML = ''; return; }
+        var hits = SEARCH_INDEX.filter(function (it) {
+          return (it.t + ' ' + (it.k || '') + ' ' + (it.c || '')).toLowerCase().indexOf(q) > -1;
+        }).slice(0, 8);
+        if (!hits.length) {
+          rbox.innerHTML = '<div class="rempty">"' + esc(inp.value.trim()) + '" 검색 결과가 없습니다.</div>';
+        } else {
+          rbox.innerHTML = hits.map(function (it) {
+            return '<a href="' + it.u + '"><div class="rc">' + esc(it.c || '') + '</div><div class="rt">' + esc(it.t) + '</div></a>';
+          }).join('');
+        }
+        rbox.classList.add('open');
+      }
+      inp.addEventListener('input', doSearch);
+      inp.addEventListener('focus', function () { if (inp.value.trim()) doSearch(); });
+      sf.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var first = rbox.querySelector('a');
+        if (first) location.href = first.getAttribute('href');
+      });
+      document.addEventListener('click', function (e) { if (!sf.contains(e.target)) rbox.classList.remove('open'); });
+    }
     if (!document.querySelector('.navimro-fab')) {
       document.body.insertAdjacentHTML('beforeend',
         '<a class="navimro-fab" href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_fab" aria-label="나비엠알오에서 LeadFluid 제품 보기">' +
