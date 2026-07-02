@@ -33,9 +33,9 @@
     { href:'/application/', label:'실험별 셋업 가이드', icon:'guide', sub:[
         ['/application/cell-culture-perfusion.html', '세포배양 관류']
       ] },
-    { href:'/#trust',      label:'믿고 도입할 때', icon:'shield', sub:[
-        ['/#trust', '국내 A/S·정품·3년보증'],
-        ['/#cases', '수리 사례']
+    { href:'/trust/',      label:'믿고 도입할 때', icon:'shield', sub:[
+        ['/trust/#as',    '국내 A/S·정품·3년보증'],
+        ['/trust/#cases', '수리 사례']
       ] },
     { href:'/contact/',    label:'문의하기',   icon:'contact' },
     { href:'/faq/',        label:'FAQ',       icon:'faq' }

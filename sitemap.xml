@@ -19,6 +19,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://cellab.kr/trust/</loc>
+    <lastmod>2026-07-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://cellab.kr/blog/</loc>
     <lastmod>2026-07-01</lastmod>
     <priority>0.6</priority>

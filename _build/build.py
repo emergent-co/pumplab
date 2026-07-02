@@ -449,6 +449,7 @@ def main():
         ('',              '1.0', 'weekly'),   # 홈
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
         ('contact/',      '0.8', 'monthly'),  # 문의하기
+        ('trust/',        '0.8', 'monthly'),  # 믿고 도입할 때 (신뢰·A/S)
         ('faq/',          '0.7', 'monthly'),  # FAQ
         ('blog/',         '0.6', 'weekly'),   # 블로그(피드)
         ('application/',  '0.7', 'monthly'),  # 셋업 가이드 (목록)
