@@ -22,7 +22,7 @@
 |---|---|
 | `index.html`, `reviews.html`, `recommend.html`, `login.html`, `inquiry.html`, `admin.html` | 사이트 페이지 |
 | `blog/*.html` | 블로그 글 |
-| `_build/posts.json`, `setups.json`, `parts.json` | 데이터 |
+| `_build/posts.json`, `parts.json` | 데이터 (setups.json은 2026-07 폐기) |
 | `_build/build.py`, `_build/template.html`, `_build/partial_*.html` | 빌드 스크립트·템플릿 |
 | `OPERATIONS.md` (이 문서) | 운영 지침 |
 | `.gitattributes` | 줄바꿈·바이너리 정책 파일 — 변경 시 반드시 본 문서도 함께 갱신 |

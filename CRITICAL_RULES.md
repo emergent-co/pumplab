@@ -62,7 +62,7 @@ git reset
 - `_build/catalog.json` — 펌프 사양·매칭·헤드·이미지·그룹·URL
 - `_build/posts.json` — 블로그 글 메타
 - `_build/products.json` — 기타 제품
-- `_build/setups.json` + `_build/parts.json` — 펌프셋업 리뷰
+- `_build/parts.json` — 부품 라이브러리 (setups.json은 2026-07 폐기)
 - `_build/categories.json` — 카테고리 메타
 - (향후) `_build/settings.json` — 그룹 정의·라벨·매칭 어휘·위저드 옵션 등 메타 설정
 

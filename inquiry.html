@@ -235,10 +235,7 @@ const params = new URLSearchParams(location.search);
 const setupId = params.get('setup');
 const productParam = params.get('product'); // Lead Fluid 모델 prefill (예: ?product=BT101S)
 const wizParam     = params.get('wiz');     // 펌프 추천 위저드 자연어 요약
-let setupData = null;
-let partsLib  = null; // parts.json 마스터 부품 라이브러리
-
-async function loadSetup() {
+function loadSetup() {
   function showGeneralMode(){
     document.getElementById('step1Section').style.display = 'none';
     document.getElementById('step2Section').style.display = 'block';
@@ -270,93 +267,13 @@ async function loadSetup() {
     if (prevBtn) prevBtn.style.display = 'none';
   }
 
-  // product 또는 wiz 파라미터가 있으면 setups 로딩 건너뛰고 바로 general 모드 + prefill
-  if (productParam || wizParam){
-    showGeneralMode();
-    return;
-  }
-
-  try {
-    // parts.json + setups.json 동시 로드
-    const [setupsRes, partsRes] = await Promise.all([
-      fetch('_build/setups.json', {cache:'no-store'}),
-      fetch('_build/parts.json',  {cache:'no-store'})
-    ]);
-    const setupsData = await setupsRes.json();
-    partsLib = await partsRes.json();
-
-    if (!setupId || !setupsData.setups[setupId]) {
-      showGeneralMode();
-      return;
-    }
-    setupData = setupsData.setups[setupId];
-    document.getElementById('setupTitle').textContent = setupData.title;
-    document.getElementById('setupIdHidden').value = setupId;
-    document.getElementById('setupTitleHidden').value = setupData.title;
-
-    // setups.items가 ID 배열(신규)이면 parts.json에서 join, 객체 배열(레거시)이면 그대로
-    const resolved = resolveItems(setupData.items);
-    renderItems(resolved);
-  } catch (e) {
-    showGeneralMode();
-  }
-}
-
-// items 배열을 parts.json과 join — ID 배열·객체 배열 양쪽 호환
-function resolveItems(items){
-  return items.map(it => {
-    if (typeof it === 'string'){
-      // 신규: 부품 ID 참조
-      const part = partsLib && partsLib.parts && partsLib.parts[it];
-      if (!part) return { id: it, name: it, spec: '(부품 라이브러리에 없음)', url_group: null };
-      return { id: it, ...part };
-    }
-    // 레거시: 객체 그대로
-    return it;
-  });
-}
-
-function getMarketUrl(urlGroupId){
-  if (!urlGroupId || !partsLib || !partsLib.url_groups) return null;
-  const g = partsLib.url_groups[urlGroupId];
-  if (!g || !g.navi_url || g.navi_url.startsWith('TODO_')) return null;
-  return g.navi_url;
-}
-
-function renderItems(items) {
-  let html = '';
-  items.forEach((it, i) => {
-    const naviUrl = getMarketUrl(it.url_group);
-    const marketBtn = naviUrl
-      ? `<a class="market-link" href="${escapeHtml(naviUrl)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">나비엠알오에서 보기 →</a>`
-      : `<span class="market-link disabled" title="마켓 URL 미등록">마켓 등록 예정</span>`;
-    html += `
-      <label class="item" data-index="${i}">
-        <input type="checkbox" name="item_${i}" value="${escapeHtml(it.name)}" onchange="toggleItem(this)">
-        <div class="info">
-          <div class="name">${escapeHtml(it.name)}</div>
-          <div class="spec">${escapeHtml(it.spec)}</div>
-          <div class="market-row">${marketBtn}</div>
-        </div>
-        <div class="qty">
-          <span>수량</span>
-          <input type="number" name="qty_${i}" min="1" value="1">
-        </div>
-      </label>
-    `;
-  });
-  document.getElementById('itemsList').innerHTML = html;
+  // setups.json 폐기 — 항상 general 모드 (product/wiz prefill은 showGeneralMode 내부 처리)
+  showGeneralMode();
 }
 
 function escapeHtml(s) {
   return String(s||'').replace(/[&<>"']/g, c =>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-function toggleItem(cb) {
-  const item = cb.closest('.item');
-  if (cb.checked) item.classList.add('checked');
-  else item.classList.remove('checked');
 }
 
 function getSelected() {
