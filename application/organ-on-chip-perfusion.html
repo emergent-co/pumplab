@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>장기칩·오가노이드 관류 — 미세유체 저유량 관류 펌프 셋업 | 셀렙</title>
+<meta name="description" content="장기칩(organ-on-chip)·오가노이드 관류는 미세유체 채널에 배지를 초저유량(µL/min)으로 연속 관류해 영양·산소 공급과 전단응력을 제어합니다. 저맥동·초저유량 정밀, 장시간 무인, 채널별 독립을 위한 펌프 셋업을 정리했습니다.">
+<link rel="canonical" href="https://cellab.kr/application/organ-on-chip-perfusion.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="장기칩·오가노이드 관류 — 미세유체 저유량 관류 펌프 셋업">
+<meta property="og:description" content="µL/min 초저유량 연속 관류로 영양·산소 공급과 전단응력 제어. 저맥동 펌프 셋업.">
+<meta property="og:url" content="https://cellab.kr/application/organ-on-chip-perfusion.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"장기칩·오가노이드 관류에는 어떤 펌프를 쓰나요?","acceptedAnswer":{"@type":"Answer","text":"미세유체 채널에 µL/min 수준의 초저유량으로 배지를 연속 관류하므로, 맥동이 적고 저유량 정밀도가 높은 시린지펌프 또는 저속 연동펌프가 적합합니다. 장시간 무인 운전 안정성과 채널별 독립 제어가 중요합니다."}},
+{"@type":"Question","name":"전단응력(shear stress)은 어떻게 제어하나요?","acceptedAnswer":{"@type":"Answer","text":"전단응력은 채널 형상과 유량으로 정해지므로, 목표 유량을 소프트웨어로 정밀하게 고정하고 조건별로 다른 유량을 독립 설정합니다. 유량 이력을 기록하면 실험 간 관류 조건을 재현할 수 있습니다."}}
+]}
+</script>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div id="cellab-header"></div>
+
+<article class="sd-wrap">
+  <div class="sd-crumb"><a href="/">홈</a> › <a href="/application/">실험별 셋업 가이드</a> › 장기칩·오가노이드</div>
+  <h1>장기칩·오가노이드 관류 —<br>미세유체 저유량 관류 펌프 셋업</h1>
+  <div class="sd-meta">실험별 셋업 가이드 · 장기칩·오가노이드</div>
+
+  <div class="sd-summary">
+    <h3>핵심 요약</h3>
+    <div class="row"><span class="k">실험</span><span>장기칩(organ-on-chip)·오가노이드 관류</span></div>
+    <div class="row"><span class="k">핵심 변수</span><span><b>초저유량(µL/min) · 전단응력 · 무맥동</b></span></div>
+    <div class="row"><span class="k">권장 펌프</span><span><b>시린지펌프 / 저속 연동펌프</b></span></div>
+    <div class="row"><span class="k">관건</span><span>저맥동·초저유량 정밀 · 장시간 무인 · 채널별 독립</span></div>
+  </div>
+
+  <div class="sd-answer">
+    <b>장기칩·오가노이드 관류는 미세유체 채널에 배지를 초저유량(µL/min)으로 연속 관류해 영양·산소를 공급하고 전단응력을 제어하는 방식입니다.</b> 유량이 맥동하거나 흔들리면 세포에 가해지는 전단응력과 물질 전달이 요동쳐 실험이 무너지므로, <b>저맥동·초저유량 정밀도와 장시간 무인 안정성, 채널별 독립 제어</b>가 실험 성립 조건입니다.
+  </div>
+
+  <div class="sd-body">
+    <h2>왜 저유량 정밀도가 실험을 좌우하나</h2>
+    <p>미세유체 환경에서 세포는 <b>유량으로 만들어지는 전단응력</b>에 민감하게 반응합니다. µL/min 스케일에서는 작은 맥동·드리프트도 세포 미세환경을 바꿔 재현을 무너뜨립니다. 그래서 저유량 구간의 정밀도와 무맥동성이 다른 사양보다 우선합니다.</p>
+
+    <h2>어떤 펌프·셋업이 맞나</h2>
+    <p>맥동이 적고 초저유량을 정밀하게 내는 <b>시린지펌프</b>가 대표적이며, 장시간 연속 관류에는 <b>저속 연동펌프</b>도 쓰입니다. 조건군마다 다른 유량을 <b>채널별로 독립 제어</b>하고, 며칠~몇 주의 관류를 사람 없이 안정적으로 유지하는 무인 운전이 중요합니다.</p>
+
+    <h2>재현 포인트</h2>
+    <p>목표 유량을 소프트웨어로 고정하고 운전 로그를 남기면, 전단응력·물질 전달 조건을 실험 간에 그대로 재현할 수 있습니다. 여러 칩을 병렬로 돌린다면 다펌프 동기가 필요합니다.</p>
+  </div>
+
+  <div class="sd-bridge">
+    <h2>초저유량 관류, 프로그램이 대신 지킵니다</h2>
+    <p>셀렙은 LeadFluid 시린지·연동펌프에 제어 소프트웨어를 얹어 초저유량 정밀 제어·채널별 독립·무인 장시간 운전과 기록/재현을 구현합니다. 채널 수·유량 범위·관류 시간을 알려주시면 구성을 제안드립니다.</p>
+    <a href="/contact/#experiment">내 실험 상담하기 →</a>
+  </div>
+
+  <div class="sd-tags"><span>#장기칩</span><span>#organ-on-chip</span><span>#오가노이드</span><span>#미세유체</span><span>#관류</span></div>
+
+  <div class="sd-related">
+    <h3>관련 콘텐츠</h3>
+    <div class="sd-rel-grid">
+      <a class="sd-rc" href="/application/cell-culture-perfusion.html"><div class="cat">셋업 가이드 · 관류</div><div class="t">세포배양 관류 펌프 셋업</div><div class="d">무오염 연속 관류를 위한 연동펌프 구성.</div></a>
+      <a class="sd-rc" href="/setups/brain-electrode-tyd01.html"><div class="cat">셋업사례 · 바이오</div><div class="t">시린지펌프 TYD01-01 셋업</div><div class="d">주입 속도를 정밀 제어한 Nature Electronics 사례.</div></a>
+      <a class="sd-rc" href="/requests/"><div class="cat">소프트웨어</div><div class="t">소프트웨어 제어 펌프 시스템</div><div class="d">초저유량 정밀·채널 독립·무인 운전·기록/재현.</div></a>
+    </div>
+  </div>
+</article>
+
+<div id="cellab-footer"></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

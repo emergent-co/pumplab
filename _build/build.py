@@ -456,6 +456,10 @@ def main():
         ('application/cell-culture-perfusion.html', '0.8', 'monthly'),  # 응용 SEO 페이지
         ('application/pump-selection.html', '0.7', 'monthly'),  # 펌프 고르는 방법
         ('application/tube-selection.html', '0.7', 'monthly'),  # 튜브 선택 가이드
+        ('application/chemostat-continuous-culture.html', '0.8', 'monthly'),  # 연속배양
+        ('application/photobioreactor-microalgae.html', '0.8', 'monthly'),    # 광배양·미세조류
+        ('application/flow-chemistry.html', '0.8', 'monthly'),                # flow chemistry
+        ('application/organ-on-chip-perfusion.html', '0.8', 'monthly'),       # 장기칩·오가노이드
     ]
     for path, prio, freq in static_pages:
         sitemap_lines.append(

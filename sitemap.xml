@@ -78,4 +78,28 @@
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://cellab.kr/application/chemostat-continuous-culture.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cellab.kr/application/photobioreactor-microalgae.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cellab.kr/application/flow-chemistry.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://cellab.kr/application/organ-on-chip-perfusion.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 </urlset>

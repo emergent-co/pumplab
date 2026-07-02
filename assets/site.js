@@ -9,13 +9,18 @@
   var SEARCH_INDEX = [
     { t:'홈', u:'/', k:'소프트웨어 제어 펌프 시스템 관류', c:'페이지' },
     { t:'소프트웨어 제어 펌프 시스템', u:'/requests/', k:'자동화 무인 관류 채널 독립 유량 기록 재현 modbus rs485 python 스케줄 레시피 로그 다펌프 동기', c:'실험을 자동화할 때' },
-    { t:'무인 연속 운전', u:'/requests/#unattended', k:'무인 장시간 관류 밤샘 연속', c:'실험을 자동화할 때' },
-    { t:'채널 독립·다펌프 동기', u:'/requests/#channels', k:'채널별 독립 유량 다펌프 동기 대조군', c:'실험을 자동화할 때' },
-    { t:'유량 기록·재현', u:'/requests/#record', k:'로그 기록 재현 프로파일 재현성', c:'실험을 자동화할 때' },
+    { t:'프로그래밍 제어 (Modbus·RS-485·Python)', u:'/requests/#control', k:'modbus rs485 python 시리얼 제어 자동화 스크립트 레지스터', c:'실험을 자동화할 때' },
+    { t:'유량 스케줄·ramp·레시피', u:'/requests/#schedule', k:'스케줄 ramp 램프 레시피 시퀀스 프로파일 반복 저장', c:'실험을 자동화할 때' },
+    { t:'다펌프 동기·무인 연속 운전', u:'/requests/#sync', k:'다펌프 동기 무인 장시간 연속 운전 대조군 채널 독립', c:'실험을 자동화할 때' },
+    { t:'운전 로그 기록·재현', u:'/requests/#record', k:'로그 기록 csv 재현 프로파일 재현성', c:'실험을 자동화할 때' },
     { t:'펌프 고르는 방법', u:'/application/pump-selection.html', k:'펌프 선택 종류 연동 시린지 기어 정량 유량 정밀도 미량 추천 위저드', c:'펌프를 고를 때' },
     { t:'튜브 선택 가이드', u:'/application/tube-selection.html', k:'튜브 재질 실리콘 tygon pharmed viton 화학 적합성 교체', c:'펌프를 고를 때' },
-    { t:'세포배양 관류 펌프', u:'/application/cell-culture-perfusion.html', k:'관류 perfusion 배지 교환 연동 페리스탈틱 무오염 연속배양', c:'실험별 셋업 가이드' },
-    { t:'실험 가이드', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험별 셋업 가이드' },
+    { t:'관류배양 자동 배지교환 (세포배양 관류)', u:'/application/cell-culture-perfusion.html', k:'관류 perfusion 배지 교환 연동 페리스탈틱 무오염 세포배양', c:'실험별 셋업 가이드' },
+    { t:'연속배양(chemostat) 유량제어', u:'/application/chemostat-continuous-culture.html', k:'연속배양 chemostat 희석률 정상상태 배지 공급 배출 연동펌프', c:'실험별 셋업 가이드' },
+    { t:'광배양·미세조류 정량공급', u:'/application/photobioreactor-microalgae.html', k:'광배양 미세조류 광생물반응기 photobioreactor co2 영양 정량 공급', c:'실험별 셋업 가이드' },
+    { t:'flow chemistry 연속흐름 반응', u:'/application/flow-chemistry.html', k:'flow chemistry 연속흐름 반응 시린지 유량비 체류시간 마그네틱 유기용매', c:'실험별 셋업 가이드' },
+    { t:'장기칩·오가노이드 관류', u:'/application/organ-on-chip-perfusion.html', k:'장기칩 organ on chip 오가노이드 관류 미세유체 저유량 전단응력', c:'실험별 셋업 가이드' },
+    { t:'실험 가이드 허브', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험별 셋업 가이드' },
     { t:'셋업사례 — LeadFluid 논문 셋업', u:'/setups/', k:'논문 nature 셋업 leadfluid 펌프 사용 사례', c:'셋업사례' },
     { t:'국내 A/S·정품·3년보증', u:'/trust/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'믿고 도입할 때' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
@@ -47,9 +52,19 @@
         ['/application/pump-selection.html', '펌프 종류·선택'],
         ['/application/tube-selection.html', '튜브·화학 적합성']
       ] },
-    { href:'/requests/',   label:'실험을 자동화할 때', icon:'sw' },
+    { href:'/requests/',   label:'실험을 자동화할 때', icon:'sw', sub:[
+        ['/requests/',          '소프트웨어 제어'],
+        ['/requests/#control',  '프로그래밍 제어 (Modbus·Python)'],
+        ['/requests/#schedule', '유량 스케줄·레시피'],
+        ['/requests/#sync',     '다펌프 동기·무인 운전'],
+        ['/requests/#record',   '로그 기록·재현']
+      ] },
     { href:'/application/cell-culture-perfusion.html', label:'실험별 셋업 가이드', icon:'guide', sub:[
-        ['/application/cell-culture-perfusion.html', '세포배양 관류']
+        ['/application/cell-culture-perfusion.html',        '관류배양 자동 배지교환'],
+        ['/application/chemostat-continuous-culture.html',  '연속배양(chemostat)'],
+        ['/application/photobioreactor-microalgae.html',    '광배양·미세조류'],
+        ['/application/flow-chemistry.html',                'flow chemistry'],
+        ['/application/organ-on-chip-perfusion.html',       '장기칩·오가노이드']
       ] },
     { href:'/trust/',      label:'믿고 도입할 때', icon:'shield' },
     { href:'/contact/',    label:'문의하기',   icon:'contact' },
