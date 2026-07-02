@@ -23,9 +23,12 @@
 <style>
   .rq{ padding:46px 40px 64px; }
   .rqw{ max-width:900px; margin:0 auto; }
-  .rq-hero{ text-align:center; max-width:660px; margin:0 auto 30px; }
-  .rq-hero h1{ font-family:var(--serif); font-size:clamp(23px,5vw,29px); color:var(--ink); letter-spacing:-.02em; line-height:1.32; }
-  .rq-hero p{ color:var(--gray); font-size:15px; margin-top:12px; }
+  .rq-hero{ margin:0 0 8px; }
+  .rq-hero h1{ font-family:var(--serif); font-size:clamp(24px,5vw,32px); font-weight:700; color:var(--ink); letter-spacing:-.02em; line-height:1.3; }
+  .rq-hero p{ color:var(--gray); font-size:15px; margin-top:10px; }
+  .rq-hero p b{ color:var(--ink); }
+  .rq-answer{ background:var(--green-bg); border:1px solid #d6e0ee; border-radius:12px; padding:16px 18px; margin:22px 0 26px; font-size:14px; color:#26333f; line-height:1.7; }
+  .rq-answer b{ color:var(--ink); }
   .rq-cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; }
   .rq-c{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px; }
   .rq-c .t{ font-family:var(--serif); font-size:16px; font-weight:600; color:var(--ink); margin-bottom:7px; }
@@ -85,6 +88,13 @@
 <main class="rq">
   <div class="rqw">
 
+    <div class="rq-hero">
+      <h1>밤샘 없이, 흔들림 없이 — 실험을 프로그램이 대신 지킵니다</h1>
+      <p>관류·연속배양·flow chemistry처럼 <b>무인·정밀·재현</b>이 실험 성립 조건인 연구를 위한 소프트웨어 제어 펌프 시스템입니다. LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 얹었습니다.</p>
+    </div>
+
+    <div class="rq-answer"><b>LeadFluid 펌프에 셀렙 제어 소프트웨어를 얹어, 밤샘 수동 조작 없이 관류·연속배양·flow chemistry를 무인·정밀·재현으로 운전합니다.</b> Modbus·RS-485·Python 프로그래밍 제어, 유량 스케줄·레시피, 다펌프 동기·무인 연속운전, 운전 로그 기록·재현 — Windows 프로그램으로 바로 시작하세요.</div>
+
     <div class="app" aria-label="Cellab Pump Control 화면">
       <div class="bar"><span class="gd"></span>Cellab Pump Control<span class="wctl"><span class="wbtn"><svg viewBox="0 0 12 12"><line x1="2" y1="6.5" x2="10" y2="6.5"/></svg></span><span class="wbtn"><svg viewBox="0 0 12 12"><rect x="2.5" y="2.5" width="7" height="7" rx="1"/></svg></span><span class="wbtn wclose"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></span></span></div>
       <div class="body">
@@ -133,11 +143,7 @@
       <div class="edl-meta">Windows 10/11 · 무료 · 최신 버전 v1.0</div>
     </div>
 
-    <div class="rq-hero" style="margin-top:44px">
-      <h1>밤샘 없이, 흔들림 없이 — 실험을 프로그램이 대신 지킵니다</h1>
-      <p>관류·연속배양·flow chemistry처럼 <b>무인·정밀·재현</b>이 실험 성립 조건인 연구를 위한 소프트웨어 제어 펌프 시스템입니다. LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 얹었습니다.</p>
-    </div>
-    <div class="rq-cards">
+    <div class="rq-cards" style="margin-top:38px">
       <div class="rq-c"><div class="t">프로그래밍 제어</div><p>Modbus·RS-485·Python으로 유량·시퀀스를 명령.</p></div>
       <div class="rq-c"><div class="t">스케줄·다펌프 동기</div><p>ramp·레시피로 유량 프로파일, 여러 펌프 동기 운전.</p></div>
       <div class="rq-c"><div class="t">기록·재현</div><p>운전 로그를 남기고 같은 프로파일을 그대로 재실행.</p></div>
