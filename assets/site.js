@@ -59,7 +59,8 @@
         ['/requests/#sync',     '다펌프 동기·무인 운전'],
         ['/requests/#record',   '로그 기록·재현']
       ] },
-    { href:'/application/cell-culture-perfusion.html', label:'실험별 셋업 가이드', icon:'guide', sub:[
+    { href:'/application/', label:'실험별 셋업 가이드', icon:'guide', sub:[
+        ['/application/',                                   '가이드 전체'],
         ['/application/cell-culture-perfusion.html',        '관류배양 자동 배지교환'],
         ['/application/chemostat-continuous-culture.html',  '연속배양(chemostat)'],
         ['/application/photobioreactor-microalgae.html',    '광배양·미세조류'],
