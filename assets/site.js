@@ -6,35 +6,55 @@
 (function () {
   var path = location.pathname;
 
+  var ICONS = {
+    home:'<svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
+    sw:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+    guide:'<svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5.2 8.6A2 2 0 0 0 6.5 21h11a2 2 0 0 0 1.7-3.4L14 9V3"/></svg>',
+    feed:'<svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="1.6"/><path d="M4 11a9 9 0 0 1 9 9M4 5a15 15 0 0 1 15 15"/></svg>',
+    faq:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3 2.4c-.8.3-1 .8-1 1.6M12 17h.01"/></svg>',
+    contact:'<svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 3z"/></svg>'
+  };
   var NAV = [
-    { href:'/requests/', label:'소프트웨어' },
-    { href:'/application/', label:'실험 가이드' },
-    { href:'/faq/',      label:'FAQ' },
-    { href:'/contact/',  label:'문의하기', quote:true }
+    { href:'/',            label:'홈',        icon:'home' },
+    { href:'/requests/',   label:'소프트웨어', icon:'sw' },
+    { href:'/application/', label:'실험 가이드', icon:'guide', sub:[
+        ['/application/pump-selection.html', '펌프 고르는 방법'],
+        ['/application/tube-selection.html', '튜브 선택 가이드'],
+        ['/application/cell-culture-perfusion.html', '세포배양 관류']
+      ] },
+    { href:'/blog/',       label:'블로그',     icon:'feed' },
+    { href:'/faq/',        label:'FAQ',       icon:'faq' },
+    { href:'/contact/',    label:'문의하기',   icon:'contact', sub:[
+        ['/contact/#repair', '수리 문의'],
+        ['/contact/#dev',    '개발 문의'],
+        ['/contact/#quote',  '견적 문의']
+      ] }
   ];
-  function isCur(href){ return href !== '/' && path.indexOf(href) === 0; }
-  function renderItem(n) {
-    if (n.children) {
-      var open = n.children.some(function (c) { return isCur(c[0]); });
-      var sub = n.children.map(function (c) {
-        return '<a href="' + c[0] + '"' + (isCur(c[0]) ? ' aria-current="page"' : '') + '>' + c[1] + '</a>';
-      }).join('');
-      return '<div class="ch-drop' + (open ? ' active' : '') + '">' +
-               '<button type="button" class="ch-droptg">' + n.label + ' <span class="ch-arr">▾</span></button>' +
-               '<div class="ch-dropm">' + sub + '</div></div>';
+  function isCur(href){ return href === '/' ? path === '/' : path.indexOf(href) === 0; }
+  var navHTML = NAV.map(function (n) {
+    var cur = isCur(n.href);
+    var row = '<a class="s-item' + (cur ? ' active' : '') + '" href="' + n.href + '"' +
+              (cur ? ' aria-current="page"' : '') + '>' + (ICONS[n.icon] || '') +
+              '<span>' + n.label + '</span></a>';
+    if (n.sub) {
+      row += '<div class="s-sub">' + n.sub.map(function (s) {
+        return '<a href="' + s[0] + '">' + s[1] + '</a>';
+      }).join('') + '</div>';
     }
-    var cls = n.quote ? ' class="ch-quote"' : '';
-    return '<a href="' + n.href + '"' + cls + (isCur(n.href) ? ' aria-current="page"' : '') + '>' + n.label + '</a>';
-  }
-  var navHTML = NAV.map(renderItem).join('');
+    return row;
+  }).join('');
 
   var HEADER =
-    '<header class="chrome-header"><div class="ch-inner">' +
-      '<a class="ch-brand" href="/">Cellab<b>.</b>' +
-        '<span class="ch-tag">펌프 수리부터 제어까지</span></a>' +
-      '<button class="ch-burger" type="button" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>' +
-      '<nav class="ch-nav">' + navHTML + '</nav>' +
-    '</div></header>';
+    '<header class="ch-top">' +
+      '<button class="ch-burger" type="button" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>' +
+      '<a class="ch-brand" href="/">Cellab<b>.</b></a>' +
+      '<form class="ch-search" id="chSearch" role="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="search" placeholder="검색" aria-label="사이트 검색"></form>' +
+      '<a class="ch-cta" href="/contact/#repair">무료 수리진단</a>' +
+    '</header>' +
+    '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
+      '<div class="ch-side-foot">LeadFluid 공식 한국 A/S 파트너<br>나비엠알오 등록 공급사</div>' +
+    '</aside>' +
+    '<div class="ch-scrim" id="chScrim"></div>';
 
   var FOOTER =
     '<footer class="chrome-footer">' +
@@ -105,30 +125,25 @@
     if (h) h.outerHTML = HEADER;
     var f = document.getElementById('cellab-footer');
     if (f) f.outerHTML = FOOTER;
-    var tg = document.querySelector('.ch-droptg');
-    if (tg) {
-      tg.addEventListener('click', function (e) { e.preventDefault(); tg.parentNode.classList.toggle('open'); });
-      document.addEventListener('click', function (e) {
-        var d = document.querySelector('.ch-drop.open');
-        if (d && !d.contains(e.target)) d.classList.remove('open');
-      });
-    }
     var burger = document.querySelector('.ch-burger');
-    var nav = document.querySelector('.ch-nav');
-    if (burger && nav) {
+    var side = document.getElementById('chSide');
+    var scrim = document.getElementById('chScrim');
+    if (burger && side) {
+      function closeSide() { side.classList.remove('open'); if (scrim) scrim.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
       burger.addEventListener('click', function () {
-        var open = nav.classList.toggle('open');
-        burger.classList.toggle('open', open);
+        var open = side.classList.toggle('open');
+        if (scrim) scrim.classList.toggle('open', open);
         burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
-      nav.addEventListener('click', function (e) {
-        if (e.target.closest('a')) {
-          nav.classList.remove('open');
-          burger.classList.remove('open');
-          burger.setAttribute('aria-expanded', 'false');
-        }
-      });
+      if (scrim) scrim.addEventListener('click', closeSide);
+      side.addEventListener('click', function (e) { if (e.target.closest('a')) closeSide(); });
     }
+    var sf = document.getElementById('chSearch');
+    if (sf) sf.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var q = (sf.querySelector('input').value || '').trim();
+      if (q) window.open('https://www.google.com/search?q=' + encodeURIComponent('site:cellab.kr ' + q), '_blank');
+    });
     if (!document.querySelector('.navimro-fab')) {
       document.body.insertAdjacentHTML('beforeend',
         '<a class="navimro-fab" href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_fab" aria-label="나비엠알오에서 LeadFluid 제품 보기">' +
