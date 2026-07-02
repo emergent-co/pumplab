@@ -1,0 +1,5 @@
+# Cloudflare Pages 리다이렉트 — 옛 URL SEO 보존 (query·hash 자동 유지)
+# GitHub Pages에서는 무시됨(HTML 스텁이 대신 처리). CF 전환 후 활성.
+/reviews.html      /product/          301
+/recommend2.html   /recommend.html    301
+/tubing.html       /application/       301
