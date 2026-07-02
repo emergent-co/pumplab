@@ -11,20 +11,20 @@
 /* 1) 색 토큰 — 홈 팔레트로 통일 */
 :root{
   --ink:#1A1A1A; --gray:#6B6B6B; --gray-2:#9A9A9A;
-  --green:#3182F6; --green-dk:#1B64DA; --green-bg:#EAF2FE;
+  --green:#1E3A5F; --green-dk:#142A45; --green-bg:#EDF1F8;
   --line:#EAEAEA; --bg:#FFFFFF;
   --serif:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
 
   /* B 계열 변수 → 홈 팔레트로 재매핑 (네이비/틸 → 잉크/초록, 배경 → 흰색) */
   --navy:#1A1A1A;
-  --teal:#3182F6;
+  --teal:#1E3A5F;
   --text:#1A1A1A;
   --muted:#6B6B6B;
   --border:#EAEAEA;
   --soft:#F2F4F6;
-  --soft-blue:#EAF2FE;
-  --accent:#3182F6;
+  --soft-blue:#EDF1F8;
+  --accent:#1E3A5F;
 }
 /* 중요 글자 하이라이트 (마커 스타일) — 전 페이지 공통 */
 .hl{ background:linear-gradient(transparent 60%, #FFE49A 60%); font-weight:700; padding:0 1px; }
