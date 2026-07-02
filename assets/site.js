@@ -12,23 +12,34 @@
     guide:'<svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5.2 8.6A2 2 0 0 0 6.5 21h11a2 2 0 0 0 1.7-3.4L14 9V3"/></svg>',
     feed:'<svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="1.6"/><path d="M4 11a9 9 0 0 1 9 9M4 5a15 15 0 0 1 15 15"/></svg>',
     faq:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3 2.4c-.8.3-1 .8-1 1.6M12 17h.01"/></svg>',
-    contact:'<svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 3z"/></svg>'
+    contact:'<svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 3z"/></svg>',
+    star:'<svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 17.8 6.4 20.4l1.4-6.3L3 9.8l6.4-.6z"/></svg>',
+    pick:'<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/></svg>',
+    shield:'<svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>'
   };
   var NAV = [
     { href:'/',            label:'홈',        icon:'home' },
-    { href:'/requests/',   label:'소프트웨어', icon:'sw' },
-    { href:'/application/', label:'실험 가이드', icon:'guide', sub:[
-        ['/application/pump-selection.html', '펌프 고르는 방법'],
-        ['/application/tube-selection.html', '튜브 선택 가이드'],
-        ['/application/cell-culture-perfusion.html', '세포배양 관류']
-      ] },
+    { href:'/application/#papers', label:'성공사례', icon:'star' },
     { href:'/blog/',       label:'블로그',     icon:'feed' },
-    { href:'/faq/',        label:'FAQ',       icon:'faq' },
-    { href:'/contact/',    label:'문의하기',   icon:'contact', sub:[
-        ['/contact/#repair', '수리 문의'],
-        ['/contact/#dev',    '개발 문의'],
-        ['/contact/#quote',  '견적 문의']
-      ] }
+    { href:'/application/pump-selection.html', label:'펌프를 고를 때', icon:'pick', sub:[
+        ['/application/pump-selection.html', '펌프 종류·선택'],
+        ['/application/tube-selection.html', '튜브·화학 적합성']
+      ] },
+    { href:'/requests/',   label:'실험을 자동화할 때', icon:'sw', sub:[
+        ['/requests/#unattended', '무인 연속 운전'],
+        ['/requests/#channels',   '채널 독립·다펌프 동기'],
+        ['/requests/#record',     '유량 기록·재현']
+      ] },
+    { href:'/application/', label:'실험별 셋업 가이드', icon:'guide', sub:[
+        ['/application/cell-culture-perfusion.html', '세포배양 관류'],
+        ['/application/pump-selection.html', '펌프 고르는 방법']
+      ] },
+    { href:'/#trust',      label:'믿고 도입할 때', icon:'shield', sub:[
+        ['/#trust', '국내 A/S·정품·3년보증'],
+        ['/#cases', '수리 사례']
+      ] },
+    { href:'/contact/',    label:'문의하기',   icon:'contact' },
+    { href:'/faq/',        label:'FAQ',       icon:'faq' }
   ];
   function isCur(href){ return href === '/' ? path === '/' : path.indexOf(href) === 0; }
   var navHTML = NAV.map(function (n) {
