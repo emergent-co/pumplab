@@ -455,6 +455,7 @@ def main():
         ('application/',  '0.7', 'monthly'),  # 실험 가이드 (목록)
         ('application/pump-selection.html', '0.7', 'monthly'),  # 펌프 고르는 방법 (posts.json 미포함)
         ('application/tube-selection.html', '0.7', 'monthly'),  # 튜브 선택 가이드 (posts.json 미포함)
+        ('application/pump-pc-control-modbus-rs485.html', '0.7', 'monthly'),  # 펌프 PC 제어(Modbus·RS485) 확인법 (posts.json 미포함)
         # 응용 가이드 5편(관류·연속배양·광배양·flowchem·장기칩)은 posts.json(type=guide) 루프가 추가 — 중복 방지
     ]
     for path, prio, freq in static_pages:

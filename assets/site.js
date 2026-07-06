@@ -15,6 +15,7 @@
     { t:'운전 로그 기록·재현', u:'/requests/#record', k:'로그 기록 csv 재현 프로파일 재현성', c:'실험을 자동화할 때' },
     { t:'펌프 고르는 방법', u:'/application/pump-selection.html', k:'펌프 선택 종류 연동 시린지 기어 정량 유량 정밀도 미량 추천 위저드', c:'펌프를 고를 때' },
     { t:'튜브 선택 가이드', u:'/application/tube-selection.html', k:'튜브 재질 실리콘 tygon pharmed viton 화학 적합성 교체', c:'펌프를 고를 때' },
+    { t:'펌프 PC 제어(Modbus·RS485) 확인법', u:'/application/pump-pc-control-modbus-rs485.html', k:'modbus rtu rs485 rs232 usb 외부신호 4-20ma 0-10v external signal control 통신 프로토콜 레지스터맵 원격제어 pc 제어 pymodbus 자동화', c:'실험을 자동화할 때' },
     { t:'관류배양 자동 배지교환 (세포배양 관류)', u:'/application/cell-culture-perfusion.html', k:'관류 perfusion 배지 교환 연동 페리스탈틱 무오염 세포배양', c:'실험별 셋업 가이드' },
     { t:'연속배양(chemostat) 유량제어', u:'/application/chemostat-continuous-culture.html', k:'연속배양 chemostat 희석률 정상상태 배지 공급 배출 연동펌프', c:'실험별 셋업 가이드' },
     { t:'광배양·미세조류 정량공급', u:'/application/photobioreactor-microalgae.html', k:'광배양 미세조류 광생물반응기 photobioreactor co2 영양 정량 공급', c:'실험별 셋업 가이드' },
