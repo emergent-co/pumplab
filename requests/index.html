@@ -154,6 +154,7 @@
       <h2>Modbus·RS-485·Python으로 펌프를 제어합니다</h2>
       <p>손으로 버튼을 누르지 않고 PC·스크립트로 펌프를 움직입니다. LeadFluid 정량·연동펌프는 <b>RS-485(Modbus RTU)</b> 인터페이스를 제공하며, 셀렙 제어 소프트웨어가 유량·RPM·회전 방향·기동/정지를 명령으로 주고받습니다.</p>
       <p>직접 코드로 통합하고 싶다면 <b>Modbus 레지스터 맵과 Python 예제</b>를 제공합니다. 센서를 읽어 유량을 조정하는 폐루프, 다른 장비와의 시퀀스 연동 등 기존 실험 자동화 스크립트에 펌프를 그대로 넣을 수 있습니다.</p>
+      <p style="margin-top:12px"><a href="/application/pump-pc-control-modbus-rs485.html" style="color:var(--green);font-weight:700;font-size:14px">내 펌프가 PC 제어되는지 확인하는 법 →</a></p>
     </section>
 
     <section class="rq-sec" id="schedule">
@@ -165,6 +166,7 @@
         <li>농도 구배·조건 스윕 — 유량을 단계적으로 변경</li>
         <li>레시피 파일 저장 — 실험 간 동일 조건 재사용</li>
       </ul>
+      <p style="margin-top:12px"><a href="/application/pump-flow-schedule-ramp.html" style="color:var(--green);font-weight:700;font-size:14px">유량 스케줄·ramp 자동화하는 법 →</a></p>
     </section>
 
     <section class="rq-sec" id="sync">
@@ -172,6 +174,7 @@
       <h2>여러 펌프를 동기화하고, 며칠~몇 주를 무인으로 돌립니다</h2>
       <p>여러 펌프를 한 화면에서 개별·동기 제어합니다. 조건군마다 다른 유량을 <b>채널별로 독립 설정</b>하거나, 여러 펌프를 같은 타임라인에 묶어 동시에 기동합니다.</p>
       <p>한 번 시퀀스를 걸면 사람이 없어도 설정대로 유량을 유지해 <b>장시간 무인 관류·연속배양</b>을 흔들림 없이 이어갑니다. 대조군을 한 번에 돌리고, 밤사이 데이터 손실 없이 재현 데이터를 쌓습니다.</p>
+      <p style="margin-top:12px"><a href="/application/multi-pump-sync-unattended.html" style="color:var(--green);font-weight:700;font-size:14px">다펌프 동기·무인 운전 구성하는 법 →</a></p>
     </section>
 
     <section class="rq-sec" id="record">
@@ -179,6 +182,7 @@
       <h2>운전 로그를 남기고 같은 운전을 재현합니다</h2>
       <p>무엇을 언제 얼마나 흘렸는지 <b>유량·누적량·상태 변화를 타임스탬프와 함께 기록</b>하고 CSV로 내보내, 데이터 분석·논문 부록에 그대로 씁니다.</p>
       <p>같은 프로파일을 다시 불러 재실행하면 이전과 동일한 운전을 <b>재현</b>할 수 있어, 재현성이 성립 조건인 연구에서 실험 간 편차를 줄입니다. <span style="color:var(--gray-2)">(정밀 유량 피드백이 필요하면 Alicat 질량유량계(MFC) 연동 폐루프 제어도 별도 지원.)</span></p>
+      <p style="margin-top:12px"><a href="/application/pump-run-log-csv-reproducibility.html" style="color:var(--green);font-weight:700;font-size:14px">운전 로그(CSV)로 실험 재현하는 법 →</a></p>
     </section>
 
   </div>

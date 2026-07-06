@@ -55,10 +55,10 @@
       ] },
     { href:'/requests/',   label:'실험을 자동화할 때', icon:'sw', sub:[
         ['/requests/',          '소프트웨어 제어'],
-        ['/requests/#control',  '프로그래밍 제어 (Modbus·Python)'],
-        ['/requests/#schedule', '유량 스케줄·레시피'],
-        ['/requests/#sync',     '다펌프 동기·무인 운전'],
-        ['/requests/#record',   '로그 기록·재현']
+        ['/application/pump-pc-control-modbus-rs485.html', '프로그래밍 제어 (Modbus·RS485)'],
+        ['/application/pump-flow-schedule-ramp.html',       '유량 스케줄·ramp'],
+        ['/application/multi-pump-sync-unattended.html',    '다펌프 동기·무인 운전'],
+        ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현']
       ] },
     { href:'/application/', label:'실험 가이드', icon:'guide', sub:[
         ['/application/',                                   '가이드 전체'],

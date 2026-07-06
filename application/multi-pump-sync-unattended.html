@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>여러 펌프를 동기화해 무인으로 장시간 돌리는 법 — 다펌프 연속운전 | 셀렙</title>
+<meta name="description" content="여러 펌프를 한 화면에서 채널별 독립 유량으로 제어하고, 같은 타임라인에 묶어 동기화하는 법. 한 번 시퀀스를 걸면 며칠~몇 주를 사람 없이 무인 운전해 대조군을 동시에 돌리고 장시간 관류·연속배양을 흔들림 없이 이어갑니다.">
+<meta name="keywords" content="다펌프 제어, 다펌프 동기화, 채널별 독립 유량, 무인 연속운전, 장시간 관류, 대조군 동시 운전, 멀티채널 펌프, LeadFluid, Cellab">
+<link rel="canonical" href="https://cellab.kr/application/multi-pump-sync-unattended.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="여러 펌프를 동기화해 무인으로 장시간 돌리는 법">
+<meta property="og:description" content="채널별 독립 유량 + 다펌프 동기 + 무인 장시간 운전으로 대조군을 동시에, 흔들림 없이.">
+<meta property="og:url" content="https://cellab.kr/application/multi-pump-sync-unattended.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"여러 펌프를 동시에 제어할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 제어 소프트웨어에서 여러 펌프를 한 화면에 연결해 개별·동기 제어할 수 있습니다. 조건군마다 다른 유량을 채널별로 독립 설정하거나, 여러 펌프를 같은 타임라인에 묶어 동시에 기동할 수 있습니다."}},
+{"@type":"Question","name":"채널(펌프)마다 다른 유량을 줄 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 각 펌프에 서로 다른 유량·시퀀스를 독립적으로 지정할 수 있어, 대조군과 실험군을 한 번에 다른 조건으로 운전할 수 있습니다. 동시에 시작·정지가 필요하면 하나의 타임라인으로 동기화합니다."}},
+{"@type":"Question","name":"며칠씩 사람 없이 무인으로 돌릴 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"한 번 시퀀스를 걸면 사람이 없어도 설정대로 유량을 유지해 며칠~몇 주의 장시간 무인 관류·연속배양이 가능합니다. 운전 로그를 남겨 밤사이 데이터 손실 없이 재현 데이터를 쌓습니다."}}
+]}
+</script>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div id="cellab-header"></div>
+
+<article class="sd-wrap">
+  <div class="sd-crumb"><a href="/">홈</a> › <a href="/requests/">소프트웨어 제어</a> › 다펌프 동기·무인 운전</div>
+  <h1>여러 펌프를 동기화해 무인으로<br>장시간 돌리는 법</h1>
+  <div class="sd-meta">제어·자동화 가이드 · 다펌프·무인 운전</div>
+
+  <div class="sd-summary">
+    <h3>핵심 요약</h3>
+    <div class="row"><span class="k">채널 독립</span><span><b>펌프마다 다른 유량·시퀀스</b>를 독립 설정</span></div>
+    <div class="row"><span class="k">동기</span><span>여러 펌프를 <b>같은 타임라인</b>에 묶어 동시 기동</span></div>
+    <div class="row"><span class="k">무인</span><span>한 번 걸면 <b>며칠~몇 주</b> 사람 없이 연속 운전</span></div>
+    <div class="row"><span class="k">쓰임</span><span>대조군 동시 운전 · 장시간 관류·연속배양</span></div>
+  </div>
+
+  <div class="sd-answer">
+    <b>여러 펌프를 한 화면에서 채널별 독립 유량으로 제어하고, 같은 타임라인에 묶어 동기화할 수 있습니다.</b> 조건군마다 다른 유량을 독립 설정하거나 여러 펌프를 동시에 기동하고, 한 번 시퀀스를 걸면 사람이 없어도 <b>며칠~몇 주의 장시간 무인 운전</b>을 이어갑니다. 대조군을 한 번에 돌리고, 밤사이 흔들림 없이 재현 데이터를 쌓는 구성입니다.
+  </div>
+
+  <div class="sd-body">
+    <h2>1. 채널별 독립 유량 — 대조군을 한 번에</h2>
+    <p>실험은 대개 조건이 여럿입니다. 각 펌프(채널)에 <b>서로 다른 유량·시퀀스를 독립 지정</b>하면, 실험군과 대조군을 동시에 다른 조건으로 운전할 수 있습니다. 한 사람이 여러 조건을 동시에 관리하므로, 반복 실험을 병렬로 압축할 수 있습니다.</p>
+
+    <h2>2. 다펌프 동기 — 같은 타임라인에 묶기</h2>
+    <p>동시에 시작·정지하거나 정해진 순서로 기동해야 할 때는 여러 펌프를 <b>하나의 타임라인으로 동기화</b>합니다. 예를 들어 유입 펌프와 배출 펌프를 같은 유량으로 묶으면 배양 부피가 일정하게 유지되고(연속배양), 여러 채널을 동시에 시작하면 실험 시작 시점이 정확히 맞춰집니다.</p>
+
+    <h2>3. 무인 장시간 운전 — 며칠~몇 주</h2>
+    <p>한 번 시퀀스를 걸면 사람이 없어도 설정대로 유량을 유지해 <b>장시간 무인 관류·연속배양</b>을 이어갑니다. 관건은 흔들림 없이 유지되는 것과, 무슨 일이 있었는지 남는 것입니다. 운전 로그를 함께 기록하면 밤사이 데이터 손실 없이 재현 데이터를 쌓을 수 있습니다. <span style="color:var(--gray-2)">(정밀 유량 피드백이 필요하면 Alicat 질량유량계(MFC) 연동 폐루프 제어도 별도 지원.)</span></p>
+
+    <h2>확인 포인트</h2>
+    <ul>
+      <li>제어할 펌프가 <b>몇 채널</b>인가 — 조건군 수만큼 독립 제어 필요</li>
+      <li>채널을 <b>독립</b>으로 둘지 <b>동기</b>로 묶을지 (유입·배출 쌍은 동기)</li>
+      <li>연속 운전 기간 — <b>며칠~몇 주</b>면 무인 안정성·로그가 핵심</li>
+    </ul>
+  </div>
+
+  <div class="sd-bridge">
+    <h2>다펌프 무인 운전 구성을 셋업해 드립니다</h2>
+    <p>셀렙 제어 소프트웨어는 LeadFluid 펌프 여러 대를 채널별 독립·동기 제어하고 장시간 무인 운전·로그 기록을 지원합니다. 채널 수와 조건(독립/동기·운전 기간)을 알려주시면 그대로 구성해 드립니다.</p>
+    <a href="/contact/#experiment">다펌프 구성 상담하기 →</a>
+    <a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_cta_multipump" style="margin-left:16px">나비엠알오에서 구매 →</a>
+  </div>
+
+  <div class="sd-tags"><span>#다펌프동기</span><span>#채널독립유량</span><span>#무인운전</span><span>#장시간관류</span><span>#대조군</span></div>
+
+  <div class="sd-related">
+    <h3>관련 콘텐츠</h3>
+    <div class="sd-rel-grid">
+      <a class="sd-rc" href="/requests/"><div class="cat">소프트웨어</div><div class="t">소프트웨어 제어 펌프 시스템</div><div class="d">제어·스케줄·기록·다펌프 동기 전체 개요.</div></a>
+      <a class="sd-rc" href="/application/pump-flow-schedule-ramp.html"><div class="cat">제어 · 자동화</div><div class="t">유량 스케줄·ramp 자동화</div><div class="d">채널별 유량 프로파일을 시퀀스로 자동화.</div></a>
+      <a class="sd-rc" href="/application/pump-run-log-csv-reproducibility.html"><div class="cat">제어 · 자동화</div><div class="t">운전 로그·재현 (CSV)</div><div class="d">장시간 운전을 기록해 재현 데이터로.</div></a>
+    </div>
+  </div>
+</article>
+
+<div id="cellab-footer"></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

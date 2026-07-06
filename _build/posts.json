@@ -102,6 +102,36 @@
       "tags": ["Modbus", "RS485", "PC제어", "외부신호제어", "원격제어"],
       "url": "/application/pump-pc-control-modbus-rs485.html",
       "image": "/img/og-cover.png"
+    },
+    {
+      "type": "guide",
+      "slug": "pump-flow-schedule-ramp",
+      "title": "펌프 유량을 시간에 따라 자동으로 바꾸는 법 — 스케줄·ramp·레시피",
+      "summary": "고정·ramp·스텝을 시퀀스로 짜고 레시피로 저장해 관류 배지교환·농도 구배를 무인 재현.",
+      "date": "2026-07-06",
+      "tags": ["유량스케줄", "ramp", "레시피", "실험자동화"],
+      "url": "/application/pump-flow-schedule-ramp.html",
+      "image": "/img/og-cover.png"
+    },
+    {
+      "type": "guide",
+      "slug": "multi-pump-sync-unattended",
+      "title": "여러 펌프를 동기화해 무인으로 장시간 돌리는 법",
+      "summary": "채널별 독립 유량 + 다펌프 동기 + 며칠~몇 주 무인 운전으로 대조군을 동시에.",
+      "date": "2026-07-06",
+      "tags": ["다펌프동기", "채널독립유량", "무인운전", "장시간관류"],
+      "url": "/application/multi-pump-sync-unattended.html",
+      "image": "/img/og-cover.png"
+    },
+    {
+      "type": "guide",
+      "slug": "pump-run-log-csv-reproducibility",
+      "title": "펌프 운전 로그(CSV)로 실험을 재현하는 법",
+      "summary": "유량·누적량·상태를 타임스탬프와 기록해 CSV로 내보내고, 같은 프로파일 재실행으로 재현.",
+      "date": "2026-07-06",
+      "tags": ["운전로그", "CSV", "유량기록", "실험재현성"],
+      "url": "/application/pump-run-log-csv-reproducibility.html",
+      "image": "/img/og-cover.png"
     }
   ]
 }

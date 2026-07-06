@@ -14,6 +14,9 @@
 
 - [홈](https://cellab.kr/): 소프트웨어 제어 펌프 시스템 개요 + 제어 프로그램 무료 다운로드
 - [소프트웨어 제어](https://cellab.kr/requests/): 무인 장시간 관류·채널별 독립 유량·기록/재현·Modbus·RS-485·Python 제어·개발 요청
+  - [유량 스케줄·ramp 자동화하는 법](https://cellab.kr/application/pump-flow-schedule-ramp.html)
+  - [다펌프 동기·무인 장시간 운전 구성하는 법](https://cellab.kr/application/multi-pump-sync-unattended.html)
+  - [운전 로그(CSV)로 실험 재현하는 법](https://cellab.kr/application/pump-run-log-csv-reproducibility.html)
 - [실험 가이드(방법)](https://cellab.kr/application/): 실험 응용별 펌프 셋업 방법
   - [관류배양 자동 배지교환](https://cellab.kr/application/cell-culture-perfusion.html)
   - [연속배양(chemostat) 유량제어](https://cellab.kr/application/chemostat-continuous-culture.html)

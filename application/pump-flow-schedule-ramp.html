@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>펌프 유량을 시간에 따라 자동으로 바꾸는 법 — 스케줄·ramp·레시피 | 셀렙</title>
+<meta name="description" content="정량·연동펌프 유량을 시간에 따라 자동으로 바꾸는 법. 일정 유량 유지·선형 증감(ramp)·단계 스텝을 시퀀스로 짜고 레시피로 저장해 반복하면, 관류 배지교환·농도 구배·조건 스윕을 사람 없이 재현할 수 있습니다.">
+<meta name="keywords" content="펌프 유량 스케줄, 유량 ramp, 유량 프로파일, 레시피 자동화, 관류 배지교환 주기, 농도 구배, 정량펌프 자동화, LeadFluid, Cellab">
+<link rel="canonical" href="https://cellab.kr/application/pump-flow-schedule-ramp.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="펌프 유량을 시간에 따라 자동으로 바꾸는 법 — 스케줄·ramp·레시피">
+<meta property="og:description" content="일정 유량·ramp·스텝을 시퀀스로 짜고 레시피로 저장해 반복. 관류 배지교환·농도 구배를 무인으로 재현.">
+<meta property="og:url" content="https://cellab.kr/application/pump-flow-schedule-ramp.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"펌프 유량을 시간에 따라 자동으로 바꿀 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 제어 소프트웨어로 '언제 얼마를 흘릴지'를 시퀀스로 짤 수 있습니다. 일정 시간 특정 유량 유지, 선형 증감(ramp), 단계별 스텝을 조합해 유량 프로파일을 만들고, 시작하면 사람이 없어도 설정대로 유량이 자동으로 바뀝니다."}},
+{"@type":"Question","name":"ramp(램프)가 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"ramp는 유량을 한 값에서 다른 값으로 정해진 시간 동안 선형으로 서서히 바꾸는 것입니다. 예를 들어 10분에 걸쳐 1 mL/min에서 5 mL/min으로 올리면, 급격한 유량 변화로 인한 세포 전단 스트레스나 압력 충격 없이 조건을 전환할 수 있습니다."}},
+{"@type":"Question","name":"같은 유량 조건을 매 실험마다 똑같이 반복하려면?","acceptedAnswer":{"@type":"Answer","text":"한 번 짠 시퀀스를 레시피 파일로 저장하고 다음 실험에서 그대로 불러 실행하면 됩니다. 사람이 손으로 맞추는 편차가 없어져, 실험 간 유량 조건이 동일하게 재현됩니다."}}
+]}
+</script>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div id="cellab-header"></div>
+
+<article class="sd-wrap">
+  <div class="sd-crumb"><a href="/">홈</a> › <a href="/requests/">소프트웨어 제어</a> › 유량 스케줄·ramp</div>
+  <h1>펌프 유량을 시간에 따라 자동으로 바꾸는 법 —<br>스케줄·ramp·레시피</h1>
+  <div class="sd-meta">제어·자동화 가이드 · 유량 프로파일</div>
+
+  <div class="sd-summary">
+    <h3>핵심 요약</h3>
+    <div class="row"><span class="k">핵심</span><span><b>'언제 얼마를 흘릴지'를 시퀀스로 짜서 자동 실행</b></span></div>
+    <div class="row"><span class="k">구성 요소</span><span>고정 유량 유지 · <b>ramp(선형 증감)</b> · 단계 스텝</span></div>
+    <div class="row"><span class="k">재현</span><span>시퀀스를 <b>레시피 파일</b>로 저장 → 다음 실험에 그대로 반복</span></div>
+    <div class="row"><span class="k">쓰임</span><span>관류 배지교환 주기 · 농도 구배 · 조건 스윕</span></div>
+  </div>
+
+  <div class="sd-answer">
+    <b>유량 스케줄은 '언제 얼마를 흘릴지'를 미리 시퀀스로 짜 두고 자동 실행하는 것입니다.</b> 일정 시간 특정 유량 유지, 선형 증감(ramp), 단계별 스텝을 조합해 유량 프로파일을 만들고, 한 번 시작하면 사람이 없어도 설정대로 유량이 바뀝니다. 이 시퀀스를 레시피로 저장하면 다음 실험에서 그대로 불러 <b>동일 조건을 재현</b>할 수 있습니다.
+  </div>
+
+  <div class="sd-body">
+    <h2>1. 유량 스케줄이란 — 고정·ramp·스텝</h2>
+    <p>수동 제어는 "지금 유량을 얼마로" 한 번 정하는 것이지만, 스케줄 제어는 <b>시간축 위에 유량을 그리는 것</b>입니다. 가장 기본은 세 가지 블록입니다. ① <b>고정</b> — 정해진 시간 동안 같은 유량 유지, ② <b>ramp</b> — 한 유량에서 다른 유량으로 서서히 전환, ③ <b>스텝</b> — 특정 시점에 유량을 즉시 다른 값으로 변경. 이 블록들을 이어 붙이면 실험 전체의 유량 프로파일이 됩니다.</p>
+
+    <h2>2. ramp — 급변 없이 조건을 전환</h2>
+    <p><b>ramp(선형 증감)</b>는 유량을 정해진 시간에 걸쳐 서서히 바꿉니다. 급격한 유량 변화는 세포에 전단 스트레스를 주거나 회로에 압력 충격을 줄 수 있는데, ramp로 완만하게 올리고 내리면 이를 피할 수 있습니다. 예를 들어 관류를 시작할 때 0에서 목표 유량까지 10분간 ramp로 올리면, 배양물이 갑작스러운 흐름에 노출되지 않습니다.</p>
+
+    <h2>3. 레시피 저장·반복 — 재현의 핵심</h2>
+    <p>한 번 짠 시퀀스를 <b>레시피 파일로 저장</b>했다가 다음 실험에서 그대로 불러 실행하면, 사람이 손으로 맞추는 편차가 사라집니다. "이 실험은 어떤 유량으로 돌렸나"가 파일 하나로 남아, 실험 간 조건이 동일하게 <b>재현</b>됩니다. 재현성이 성립 조건인 연구에서 특히 중요합니다.</p>
+
+    <h2>이럴 때 씁니다</h2>
+    <ul>
+      <li><b>관류 배지교환 스케줄</b> — 정해진 주기로 유량을 전환해 배지를 갈아줌</li>
+      <li><b>농도 구배·조건 스윕</b> — 유량을 단계적으로 바꿔 여러 조건을 한 번에 탐색</li>
+      <li><b>장시간 무인 프로토콜</b> — 밤사이 유량 변화를 사람 없이 자동 진행</li>
+    </ul>
+  </div>
+
+  <div class="sd-bridge">
+    <h2>유량 프로파일을 실험에 맞게 셋업해 드립니다</h2>
+    <p>셀렙 제어 소프트웨어는 LeadFluid 정량·연동·시린지펌프에서 고정·ramp·스텝 시퀀스와 레시피 저장·반복을 지원합니다. 원하는 유량 시나리오(주기·구간·조건)를 알려주시면 그대로 셋업해 드립니다.</p>
+    <a href="/contact/#experiment">유량 스케줄 상담하기 →</a>
+    <a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_cta_schedule" style="margin-left:16px">나비엠알오에서 구매 →</a>
+  </div>
+
+  <div class="sd-tags"><span>#유량스케줄</span><span>#ramp</span><span>#레시피</span><span>#관류배지교환</span><span>#실험자동화</span></div>
+
+  <div class="sd-related">
+    <h3>관련 콘텐츠</h3>
+    <div class="sd-rel-grid">
+      <a class="sd-rc" href="/requests/"><div class="cat">소프트웨어</div><div class="t">소프트웨어 제어 펌프 시스템</div><div class="d">제어·스케줄·기록·다펌프 동기 전체 개요.</div></a>
+      <a class="sd-rc" href="/application/multi-pump-sync-unattended.html"><div class="cat">제어 · 자동화</div><div class="t">다펌프 동기·무인 운전</div><div class="d">여러 펌프를 같은 타임라인에 묶어 장시간 무인 운전.</div></a>
+      <a class="sd-rc" href="/application/chemostat-continuous-culture.html"><div class="cat">셋업 가이드 · 연속배양</div><div class="t">연속배양(chemostat) 유량 제어</div><div class="d">희석률을 유량 스케줄로 일정하게 유지.</div></a>
+    </div>
+  </div>
+</article>
+
+<div id="cellab-footer"></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
