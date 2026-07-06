@@ -48,14 +48,13 @@
   var NAV = [
     { href:'/',            label:'홈',        icon:'home' },
     { href:'/setups/', label:'논문 사례', icon:'star' },
-    { href:'/application/pump-selection.html', label:'펌프를 고를 때', icon:'pick', sub:[
+    { href:'/application/pump-selection.html', label:'펌프 가이드', icon:'pick', sub:[
         ['/application/pump-selection.html', '펌프 종류·선택'],
         ['/application/tube-selection.html', '튜브·화학 적합성'],
         ['/application/pump-pc-control-modbus-rs485.html', '펌프 PC 제어 (Modbus·RS485)']
       ] },
     { href:'/requests/',   label:'실험을 자동화할 때', icon:'sw', sub:[
         ['/requests/',          '소프트웨어 제어'],
-        ['/application/pump-pc-control-modbus-rs485.html', '프로그래밍 제어 (Modbus·RS485)'],
         ['/application/pump-flow-schedule-ramp.html',       '유량 스케줄·ramp'],
         ['/application/multi-pump-sync-unattended.html',    '다펌프 동기·무인 운전'],
         ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현']

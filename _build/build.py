@@ -535,6 +535,10 @@ BREADCRUMB_SECTIONS = {
     'faq': ('자주 묻는 질문(FAQ)', '/faq/'),
 }
 
+# /application/ 내 페이지 중 섹션을 다르게 잡을 것 (펌프 가이드 / 소프트웨어 제어)
+PUMP_GUIDE_FILES = {'pump-selection.html', 'tube-selection.html', 'pump-pc-control-modbus-rs485.html'}
+SW_GUIDE_FILES = {'pump-flow-schedule-ramp.html', 'multi-pump-sync-unattended.html', 'pump-run-log-csv-reproducibility.html'}
+
 
 def _page_title_short(html):
     m = re.search(r'<title>(.*?)</title>', html, re.S)
@@ -551,19 +555,28 @@ def _page_title_short(html):
 def _breadcrumb_ld(rel, html):
     rel = rel.replace(os.sep, '/')
     parts = rel.split('/')
-    if rel == 'index.html':
+    if rel == 'index.html' or len(parts) != 2:
         return None
-    if len(parts) == 2 and parts[0] in BREADCRUMB_SECTIONS:
-        sec_name, sec_url = BREADCRUMB_SECTIONS[parts[0]]
-        items = [
-            {"@type": "ListItem", "position": 1, "name": "홈", "item": BASE_URL_LD + "/"},
-            {"@type": "ListItem", "position": 2, "name": sec_name, "item": BASE_URL_LD + sec_url},
-        ]
-        if parts[1] != 'index.html':
-            leaf = _page_title_short(html) or parts[1]
-            items.append({"@type": "ListItem", "position": 3, "name": leaf, "item": BASE_URL_LD + '/' + rel})
-        return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items}
-    return None
+    seg, fn = parts[0], parts[1]
+    if seg == 'application':
+        if fn in PUMP_GUIDE_FILES:
+            sec_name, sec_url = '펌프 가이드', '/application/pump-selection.html'
+        elif fn in SW_GUIDE_FILES:
+            sec_name, sec_url = '소프트웨어 제어', '/requests/'
+        else:
+            sec_name, sec_url = BREADCRUMB_SECTIONS['application']
+    elif seg in BREADCRUMB_SECTIONS:
+        sec_name, sec_url = BREADCRUMB_SECTIONS[seg]
+    else:
+        return None
+    items = [
+        {"@type": "ListItem", "position": 1, "name": "홈", "item": BASE_URL_LD + "/"},
+        {"@type": "ListItem", "position": 2, "name": sec_name, "item": BASE_URL_LD + sec_url},
+    ]
+    if fn != 'index.html' and ('/' + rel) != sec_url:
+        leaf = _page_title_short(html) or fn
+        items.append({"@type": "ListItem", "position": 3, "name": leaf, "item": BASE_URL_LD + '/' + rel})
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items}
 
 
 def inject_head_schema():

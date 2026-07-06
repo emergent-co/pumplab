@@ -51,11 +51,51 @@
     <p>부식성 시약은 펌프 본체가 액에 닿지 않는 <b>연동펌프</b>로 이송하고 내화학성 튜브를 선택합니다. 정량 투입 시퀀스를 소프트웨어로 스케줄링하면 배치 간 조건을 동일하게 재현할 수 있습니다.</p>
   </div>
 
+  <div class="sw-sec">
+    <h2>본문 기능, 셀렙 소프트웨어로 이렇게 구현됩니다</h2>
+    <p class="sw-cap" style="margin:0 0 4px">유량비 반응·정량 디스펜싱을 아래 기능들로 실제 구현합니다. <b>화면은 셀렙 제어 소프트웨어 예시</b>(구매 고객 무상 제공).</p>
+    <div class="sw-cards">
+      <div class="sw-card"><div class="ch"><span class="gd"></span>유량비 제어</div><div class="cb">
+        <svg viewBox="0 0 220 100" style="width:100%;height:auto" role="img" aria-label="두 스트림 유량비"><g stroke="#EEF1F4" stroke-width="1"><line x1="12" y1="30" x2="212" y2="30"/><line x1="12" y1="56" x2="212" y2="56"/><line x1="12" y1="82" x2="212" y2="82"/></g><polyline points="12,38 212,38" fill="none" stroke="#1E3A5F" stroke-width="2"/><polyline points="12,68 212,68" fill="none" stroke="#5A7AA0" stroke-width="2"/><g font-size="9" font-family="sans-serif" fill="#6B6B6B"><text x="150" y="35">시약 A</text><text x="150" y="65">시약 B</text><text x="16" y="20" fill="#1a6e56" font-weight="700">비율 2:1 유지</text></g></svg>
+        <div class="cap2">두 시약 스트림을 정밀 유량비로 합류</div>
+      </div></div>
+      <div class="sw-card"><div class="ch"><span class="gd"></span>정량 디스펜싱</div><div class="cb">
+        <div class="setr"><span class="sk">토출량</span><span class="sv">0.5 mL</span><span class="sa">적용</span></div>
+        <div class="setr"><span class="sk">속도</span><span class="sv">무맥동</span><span class="sa">적용</span></div>
+        <div class="setr"><span class="sk">펌프</span><span class="sv">기어</span><span class="sa">적용</span></div>
+        <div class="cap2">고점도·접착제를 무맥동 정량 토출</div>
+      </div></div>
+      <div class="sw-card"><div class="ch"><span class="gd"></span>운전 로그·재현</div><div class="cb">
+        <table class="log"><tr><td>13:00:00</td><td>2:1</td><td>Run</td></tr><tr><td>13:30:00</td><td>0.5 mL</td><td>Dose</td></tr><tr><td>14:00:00</td><td>—</td><td>Log</td></tr></table>
+        <div class="cap2">반응·토출 조건을 CSV로 기록 → <span class="rep">재현 OK</span></div>
+      </div></div>
+    </div>
+  </div>
+
   <div class="sd-bridge">
     <h2>공정 특성에 맞는 펌프 방식을 셀렙이 잡아드립니다</h2>
     <p>연속흐름 반응인지 고점도 디스펜싱인지 부식성 정량 투입인지, 점도·유량·화학 특성을 알려주시면 LeadFluid 연동·시린지·기어 구성으로 맞춰 드립니다. 유량비·스케줄·기록은 제어 소프트웨어로 연결합니다.</p>
     <a href="/contact/#experiment">산업화학·소재 펌프 상담하기 →</a>
     <a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_cta_industrial" style="margin-left:16px">나비엠알오에서 구매 →</a>
+  </div>
+
+  <div class="sw-sec">
+    <h2>셀렙 vs 일반 펌프 단독 도입</h2>
+    <div class="cmp-wrap">
+    <table class="cmp">
+      <thead><tr><th>항목</th><th>셀렙 (LeadFluid 공식 한국 A/S + 제어 SW)</th><th>일반 펌프 단독 도입</th></tr></thead>
+      <tbody>
+        <tr><th>유량 스케줄·ramp 자동화</th><td class="c"><span class="yes">✔ 소프트웨어 제공</span></td><td class="c"><span class="no">수동/미지원 다수</span></td></tr>
+        <tr><th>다펌프 동기·무인 장시간 운전</th><td class="c"><span class="yes">✔</span></td><td class="c"><span class="no">제한적</span></td></tr>
+        <tr><th>운전 로그(CSV)·재현</th><td class="c"><span class="yes">✔</span></td><td class="c"><span class="no">✕</span></td></tr>
+        <tr><th>Modbus·RS485·Python 제어</th><td class="c"><span class="yes">✔ 프로토콜 문서·예제</span></td><td class="c"><span class="no">문서 미제공 잦음</span></td></tr>
+        <tr><th>LeadFluid 공식 한국 A/S</th><td class="c"><span class="yes">✔ 국내 직접 진단·수리(본사 반송 불필요)</span></td><td class="c"><span class="no">해외 반송/교체</span></td></tr>
+        <tr><th>무상보증</th><td class="c"><span class="yes">✔ 3년(셀렙 구매)</span></td><td class="c"><span class="no">짧거나 없음</span></td></tr>
+        <tr><th>제어 소프트웨어</th><td class="c"><span class="yes">✔ 무상(구매 고객)</span></td><td class="c"><span class="no">별도/미제공</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="sw-cap">특정 제조사 비교가 아니라, "제어 소프트웨어·국내 A/S 패키지"와 "펌프 단독 도입"의 차이입니다.</p>
   </div>
 
   <div class="sd-tags"><span>#산업화학</span><span>#소재제조</span><span>#flowchemistry</span><span>#디스펜싱</span><span>#기어펌프</span></div>
