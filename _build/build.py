@@ -601,6 +601,29 @@ def inject_head_schema():
     print(f'  head JSON-LD(Org·WebSite·Breadcrumb) 주입: {count}개 페이지')
 
 
+def normalize_html_urls():
+    """Cloudflare Pages는 /x.html을 /x로 서빙하고 /x.html은 /x로 리다이렉트한다.
+    내부 링크(href·src)·canonical·og·JSON-LD의 .html을 제거해 리다이렉트 홉을 없앤다.
+    리다이렉트 스텁(meta refresh)은 제외(그 자체가 옛 .html URL을 처리)."""
+    count = 0
+    for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
+        if '_build' in dirpath.split(os.sep):
+            continue
+        for fn in filenames:
+            if not fn.endswith('.html'):
+                continue
+            p = os.path.join(dirpath, fn)
+            html = read(p)
+            if 'http-equiv="refresh"' in html:
+                continue
+            new = re.sub(r'((?:href|src)=")(/[^"\s]*)\.html(?=["#?])', r'\1\2', html)
+            new = re.sub(r'(https://cellab\.kr/[^"\s]*)\.html(?=["#?])', r'\1', new)
+            if new != html:
+                write(p, new)
+                count += 1
+    print(f'  URL 정규화(.html 제거): {count}개 페이지')
+
+
 def main():
     print('=' * 60)
     print('  Cellab 카테고리 페이지 빌드')
@@ -694,8 +717,9 @@ def main():
         # 응용 가이드 6편(관류·연속배양·광배양·flowchem·장기칩·PC제어)은 posts.json(type=guide) 루프가 추가 — 중복 방지
     ]
     for path, prio, freq in static_pages:
+        loc = (base_url + path).replace('.html', '')  # CF 클린 URL(.html 없이 서빙)에 맞춤
         sitemap_lines.append(
-            f'  <url>\n    <loc>{base_url}{path}</loc>\n    <lastmod>{build_date}</lastmod>\n    <priority>{prio}</priority>\n    <changefreq>{freq}</changefreq>\n  </url>'
+            f'  <url>\n    <loc>{loc}</loc>\n    <lastmod>{build_date}</lastmod>\n    <priority>{prio}</priority>\n    <changefreq>{freq}</changefreq>\n  </url>'
         )
 
     # posts.json에서 콘텐츠(셋업사례) 합산 (noindex=true 글은 sitemap 제외)
@@ -710,7 +734,7 @@ def main():
                 url = p.get('url', '')
                 date = p.get('date', '')
                 if url:
-                    full_url = base_url.rstrip('/') + url
+                    full_url = (base_url.rstrip('/') + url).replace('.html', '')  # CF 클린 URL에 맞춤
                     lastmod_line = f'\n    <lastmod>{date}</lastmod>' if date else ''
                     sitemap_lines.append(
                         f'  <url>\n    <loc>{full_url}</loc>{lastmod_line}\n    <priority>0.9</priority>\n    <changefreq>monthly</changefreq>\n  </url>'
@@ -728,6 +752,7 @@ def main():
     build_setups()
     inject_static_nav()
     inject_head_schema()
+    normalize_html_urls()
 
     print('\n' + '=' * 60)
     print(f'  완료: {len(written)}개 페이지 + sitemap.xml')
