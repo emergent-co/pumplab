@@ -92,6 +92,16 @@
       "tags": ["장기칩", "오가노이드", "미세유체"],
       "url": "/application/organ-on-chip-perfusion.html",
       "image": "/img/og-cover.png"
+    },
+    {
+      "type": "guide",
+      "slug": "pump-pc-control-modbus-rs485",
+      "title": "내 펌프, PC로 제어할 수 있을까 — Modbus·RS485 확인법",
+      "summary": "통신 인터페이스·프로토콜·외부신호(4-20mA)로 펌프 PC 제어 가능 여부 확인.",
+      "date": "2026-07-05",
+      "tags": ["Modbus", "RS485", "PC제어", "외부신호제어", "원격제어"],
+      "url": "/application/pump-pc-control-modbus-rs485.html",
+      "image": "/img/og-cover.png"
     }
   ]
 }
