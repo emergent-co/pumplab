@@ -276,8 +276,8 @@
           'addressCountry': 'KR'
         },
         'makesOffer': [
-          { '@type': 'Offer', 'itemOffered': { '@type': 'Product', 'name': 'LeadFluid 정량·연동·시린지펌프 + 제어 소프트웨어', 'category': '실험실 정량·연동 펌프 시스템', 'brand': { '@type': 'Brand', 'name': 'LeadFluid' } } },
-          { '@type': 'Offer', 'itemOffered': { '@type': 'Product', 'name': 'Alicat 질량유량계(MFC)', 'category': '질량유량계(Mass Flow Controller)', 'brand': { '@type': 'Brand', 'name': 'Alicat Scientific' } } }
+          { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S', 'serviceType': '실험실 펌프 시스템 공급 및 소프트웨어 제어', 'brand': { '@type': 'Brand', 'name': 'LeadFluid' } } },
+          { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'Alicat 질량유량계(MFC) 공급·시스템 연동', 'serviceType': '질량유량계 공급 및 제어 연동', 'brand': { '@type': 'Brand', 'name': 'Alicat Scientific' } } }
         ]
       },
       {
