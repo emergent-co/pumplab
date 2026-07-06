@@ -18,6 +18,7 @@ sitemap.xml 빌드 스크립트 (카테고리 페이지는 2026-05-15에 폐기)
 
 import json
 import os
+import re
 from html import escape
 from urllib.parse import quote
 
@@ -489,6 +490,117 @@ def build_setups():
         print('  [warn] setups 마커 못 찾음 — 주입 생략 (ST_CARDS/ST_COUNT/ST_ANSWER 마커 확인)')
 
 
+BASE_URL_LD = 'https://cellab.kr'
+
+ORG_WEBSITE_GRAPH = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            "@id": "https://cellab.kr/#org",
+            "name": "Cellab",
+            "alternateName": "셀렙",
+            "legalName": "emergent co.",
+            "url": "https://cellab.kr/",
+            "email": "emgt.yhlee@gmail.com",
+            "description": "LeadFluid 정량·연동(페리스탈틱)·시린지펌프에 제어 소프트웨어를 얹은 실험실 펌프 시스템을 공급하고, 하드웨어를 직접 진단·수리하는 한국 A/S 전문점. 관류·연속배양 등 무인·정밀·재현이 필요한 연구에 맞춘 제어를 제공합니다.",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)",
+                "addressLocality": "부산광역시",
+                "addressCountry": "KR"
+            },
+            "makesOffer": [
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid"}}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}
+            ]
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://cellab.kr/#website",
+            "name": "Cellab",
+            "url": "https://cellab.kr/",
+            "publisher": {"@id": "https://cellab.kr/#org"},
+            "inLanguage": "ko"
+        }
+    ]
+}
+
+BREADCRUMB_SECTIONS = {
+    'application': ('실험 가이드', '/application/'),
+    'setups': ('논문 사례', '/setups/'),
+    'requests': ('소프트웨어 제어', '/requests/'),
+    'trust': ('믿고 도입할 때', '/trust/'),
+    'contact': ('문의하기', '/contact/'),
+    'faq': ('자주 묻는 질문(FAQ)', '/faq/'),
+}
+
+
+def _page_title_short(html):
+    m = re.search(r'<title>(.*?)</title>', html, re.S)
+    if not m:
+        return None
+    t = m.group(1).strip()
+    for sep in ('—', '|'):
+        if sep in t:
+            t = t.split(sep)[0].strip()
+            break
+    return t or None
+
+
+def _breadcrumb_ld(rel, html):
+    rel = rel.replace(os.sep, '/')
+    parts = rel.split('/')
+    if rel == 'index.html':
+        return None
+    if len(parts) == 2 and parts[0] in BREADCRUMB_SECTIONS:
+        sec_name, sec_url = BREADCRUMB_SECTIONS[parts[0]]
+        items = [
+            {"@type": "ListItem", "position": 1, "name": "홈", "item": BASE_URL_LD + "/"},
+            {"@type": "ListItem", "position": 2, "name": sec_name, "item": BASE_URL_LD + sec_url},
+        ]
+        if parts[1] != 'index.html':
+            leaf = _page_title_short(html) or parts[1]
+            items.append({"@type": "ListItem", "position": 3, "name": leaf, "item": BASE_URL_LD + '/' + rel})
+        return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": items}
+    return None
+
+
+def inject_head_schema():
+    """모든 색인 콘텐츠 페이지 <head>에 Organization/WebSite + 페이지별 BreadcrumbList JSON-LD 정적 주입(크롤러 가시화).
+    리다이렉트(meta refresh)·noindex 페이지는 제외."""
+    START, END = '<!--HEADLD_START-->', '<!--HEADLD_END-->'
+    org_json = json.dumps(ORG_WEBSITE_GRAPH, ensure_ascii=False).replace('</', '<\\/')
+    count = 0
+    for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
+        if '_build' in dirpath.split(os.sep):
+            continue
+        for fn in filenames:
+            if not fn.endswith('.html'):
+                continue
+            p = os.path.join(dirpath, fn)
+            html = read(p)
+            if 'http-equiv="refresh"' in html or 'noindex' in html:
+                continue
+            rel = os.path.relpath(p, ROOT_DIR)
+            blocks = [org_json]
+            bc = _breadcrumb_ld(rel, html)
+            if bc:
+                blocks.append(json.dumps(bc, ensure_ascii=False).replace('</', '<\\/'))
+            payload = ''.join('<script type="application/ld+json">' + b + '</script>' for b in blocks)
+            if START in html:
+                html2, ok = _inject_between(html, START, END, payload)
+            elif '</head>' in html:
+                html2 = html.replace('</head>', START + payload + END + '</head>', 1)
+                ok = True
+            else:
+                continue
+            if ok and html2 != html:
+                write(p, html2)
+                count += 1
+    print(f'  head JSON-LD(Org·WebSite·Breadcrumb) 주입: {count}개 페이지')
+
+
 def main():
     print('=' * 60)
     print('  Cellab 카테고리 페이지 빌드')
@@ -615,6 +727,7 @@ def main():
     # GEO: 논문 사례 목록 정적 렌더 + 전 페이지 크롤러 nav 주입
     build_setups()
     inject_static_nav()
+    inject_head_schema()
 
     print('\n' + '=' * 60)
     print(f'  완료: {len(written)}개 페이지 + sitemap.xml')
