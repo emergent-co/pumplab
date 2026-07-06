@@ -6,7 +6,7 @@
 <title>정량펌프 추천 — 교수님한테 칭찬받은 모델 | 셀렙</title>
 <link rel="canonical" href="https://cellab.kr/product/">
 <meta name="robots" content="noindex,follow">
-<script>(function(){if(new URLSearchParams(location.search).get('embed')!=='1'&&window.self===window.top){location.replace('/product/');}})();</script>
+<script>(function(){if(new URLSearchParams(location.search).get('embed')!=='1'&&window.self===window.top){location.replace('/application/pump-selection.html');}})();</script>
 <meta name="description" content="같은 정량펌프라도 실험에 따라 맞는 모델이 다릅니다. 30초 위저드로 응용·유량을 입력하면, 교수·연구자가 반복 구매하는 모델을 포함해 적합한 펌프를 추천합니다.">
 <meta name="keywords" content="정량펌프 선택, 정량펌프 추천, 페리스탈틱 펌프, 시린지펌프, 기어펌프, OEM 펌프, 분주펌프, Lead Fluid, Cellab">
 <meta name="google-site-verification" content="Rmsvu2bCzPOi66nb9epKw-gbrb07Hyem6hM5uNu71ss" />
@@ -357,9 +357,8 @@ function renderPrimaryCard({pump:p, score, ratio}){
       (heads.length ? '<div style="margin-top:8px;padding-top:8px;border-top:1px solid #eef1f5"><div style="font-size:11px;color:var(--muted);font-weight:700;margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em">호환 펌프헤드</div><ul style="list-style:none;padding:0;margin:0">'+headsHtml+'</ul></div>' : '') +
       '<div class="mc-score">조건 매칭 '+matchPct+'%</div>' +
       '<div class="mc-actions">' +
-        '<a class="mc-btn" href="/leadfluid.html#'+encodeURIComponent(p.id)+'" target="_blank">자세히</a>' +
-        ((function(u){return u ? '<a class="mc-btn" href="'+escapeHtml(u)+'" target="_blank" rel="noopener">나비엠알오</a>' : '';})(getNavimroUrl(p))) +
-        '<a class="mc-btn primary" href="/inquiry.html?product='+encodeURIComponent(p.id)+'">견적 문의</a>' +
+        ((function(u){return u ? '<a class="mc-btn primary" href="'+escapeHtml(u)+'" target="_blank" rel="noopener" data-ga="navimro_wizard">나비엠알오에서 구매</a>' : '';})(getNavimroUrl(p))) +
+        '<a class="mc-btn" href="/contact/#quote" target="_top">상담·견적</a>' +
       '</div>' +
     '</div>' +
   '</div>';
@@ -376,8 +375,8 @@ function renderSubCard({pump:p, score, ratio}){
       '<div style="font-size:11px;color:var(--muted);margin-bottom:4px">'+escapeHtml(p.flow_display||'')+'</div>' +
       (head ? '<div style="font-size:10.5px;color:var(--text)"><strong>'+escapeHtml(head.name)+'</strong></div>' : '') +
       '<div style="margin-top:6px;display:flex;gap:4px">' +
-        '<a class="mc-btn" style="padding:5px 6px;font-size:10.5px;flex:1" href="/leadfluid.html#'+encodeURIComponent(p.id)+'" target="_blank">상세</a>' +
-        '<a class="mc-btn primary" style="padding:5px 6px;font-size:10.5px;flex:1" href="/inquiry.html?product='+encodeURIComponent(p.id)+'">견적</a>' +
+        ((function(u){return u ? '<a class="mc-btn primary" style="padding:5px 6px;font-size:10.5px;flex:1" href="'+escapeHtml(u)+'" target="_blank" rel="noopener" data-ga="navimro_wizard">구매</a>' : '';})(getNavimroUrl(p))) +
+        '<a class="mc-btn" style="padding:5px 6px;font-size:10.5px;flex:1" href="/contact/#quote" target="_top">견적</a>' +
       '</div>' +
     '</div>' +
   '</div>';

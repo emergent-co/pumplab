@@ -15,12 +15,12 @@
     { t:'운전 로그 기록·재현', u:'/requests/#record', k:'로그 기록 csv 재현 프로파일 재현성', c:'실험을 자동화할 때' },
     { t:'펌프 고르는 방법', u:'/application/pump-selection.html', k:'펌프 선택 종류 연동 시린지 기어 정량 유량 정밀도 미량 추천 위저드', c:'펌프를 고를 때' },
     { t:'튜브 선택 가이드', u:'/application/tube-selection.html', k:'튜브 재질 실리콘 tygon pharmed viton 화학 적합성 교체', c:'펌프를 고를 때' },
-    { t:'관류배양 자동 배지교환 (세포배양 관류)', u:'/application/cell-culture-perfusion.html', k:'관류 perfusion 배지 교환 연동 페리스탈틱 무오염 세포배양', c:'실험별 셋업 가이드' },
-    { t:'연속배양(chemostat) 유량제어', u:'/application/chemostat-continuous-culture.html', k:'연속배양 chemostat 희석률 정상상태 배지 공급 배출 연동펌프', c:'실험별 셋업 가이드' },
-    { t:'광배양·미세조류 정량공급', u:'/application/photobioreactor-microalgae.html', k:'광배양 미세조류 광생물반응기 photobioreactor co2 영양 정량 공급', c:'실험별 셋업 가이드' },
-    { t:'flow chemistry 연속흐름 반응', u:'/application/flow-chemistry.html', k:'flow chemistry 연속흐름 반응 시린지 유량비 체류시간 마그네틱 유기용매', c:'실험별 셋업 가이드' },
-    { t:'장기칩·오가노이드 관류', u:'/application/organ-on-chip-perfusion.html', k:'장기칩 organ on chip 오가노이드 관류 미세유체 저유량 전단응력', c:'실험별 셋업 가이드' },
-    { t:'실험 가이드 허브', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험별 셋업 가이드' },
+    { t:'관류배양 자동 배지교환 (세포배양 관류)', u:'/application/cell-culture-perfusion.html', k:'관류 perfusion 배지 교환 연동 페리스탈틱 무오염 세포배양', c:'실험 가이드' },
+    { t:'연속배양(chemostat) 유량제어', u:'/application/chemostat-continuous-culture.html', k:'연속배양 chemostat 희석률 정상상태 배지 공급 배출 연동펌프', c:'실험 가이드' },
+    { t:'광배양·미세조류 정량공급', u:'/application/photobioreactor-microalgae.html', k:'광배양 미세조류 광생물반응기 photobioreactor co2 영양 정량 공급', c:'실험 가이드' },
+    { t:'flow chemistry 연속흐름 반응', u:'/application/flow-chemistry.html', k:'flow chemistry 연속흐름 반응 시린지 유량비 체류시간 마그네틱 유기용매', c:'실험 가이드' },
+    { t:'장기칩·오가노이드 관류', u:'/application/organ-on-chip-perfusion.html', k:'장기칩 organ on chip 오가노이드 관류 미세유체 저유량 전단응력', c:'실험 가이드' },
+    { t:'실험 가이드 허브', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험 가이드' },
     { t:'셋업사례 — LeadFluid 논문 셋업', u:'/setups/', k:'논문 nature 셋업 leadfluid 펌프 사용 사례', c:'셋업사례' },
     { t:'국내 A/S·정품·3년보증', u:'/trust/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'믿고 도입할 때' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
@@ -50,7 +50,8 @@
     { href:'/setups/', label:'셋업사례', icon:'star' },
     { href:'/application/pump-selection.html', label:'펌프를 고를 때', icon:'pick', sub:[
         ['/application/pump-selection.html', '펌프 종류·선택'],
-        ['/application/tube-selection.html', '튜브·화학 적합성']
+        ['/application/tube-selection.html', '튜브·화학 적합성'],
+        ['/application/pump-pc-control-modbus-rs485.html', '펌프 PC 제어 (Modbus·RS485)']
       ] },
     { href:'/requests/',   label:'실험을 자동화할 때', icon:'sw', sub:[
         ['/requests/',          '소프트웨어 제어'],
@@ -59,7 +60,7 @@
         ['/requests/#sync',     '다펌프 동기·무인 운전'],
         ['/requests/#record',   '로그 기록·재현']
       ] },
-    { href:'/application/', label:'실험별 셋업 가이드', icon:'guide', sub:[
+    { href:'/application/', label:'실험 가이드', icon:'guide', sub:[
         ['/application/',                                   '가이드 전체'],
         ['/application/cell-culture-perfusion.html',        '관류배양 자동 배지교환'],
         ['/application/chemostat-continuous-culture.html',  '연속배양(chemostat)'],
@@ -120,7 +121,7 @@
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
           '<div class="cf-col"><h4>바로가기</h4>' +
-            '<a href="/requests/">소프트웨어</a><a href="/application/">실험 가이드</a><a href="/setups/">셋업사례</a><a href="/faq/">FAQ</a></div>' +
+            '<a href="/requests/">소프트웨어 제어</a><a href="/application/">실험 가이드</a><a href="/setups/">셋업사례</a><a href="/faq/">FAQ</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
             '<a href="/contact/#repair">수리 문의</a><a href="/contact/#dev">개발 문의</a>' +
             '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_footer">견적·구매 (나비엠알오)</a></div>' +
