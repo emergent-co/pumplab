@@ -1,30 +1,41 @@
-# Cellab (셀렙) — 실험실용 정량펌프·소모품 전문점
+# Cellab (셀렙) — 소프트웨어 제어 펌프 시스템 · 실험실 정량·연동펌프
 
-> Lead Fluid 정량펌프(페리스탈틱·기어·시린지펌프) 및 호환 튜브·시린지·펌프헤드·피팅을 큐레이션 판매하는 한국 B2B 실험기기 전문 사이트. 수리 가능 엔지니어 운영, MasterFlex 호환 제품 비교 안내.
+> 관류배양·연속배양·flow chemistry처럼 무인·정밀·재현이 성립 조건인 연구를 위해, LeadFluid 정량·연동(페리스탈틱)·시린지펌프에 **제어 소프트웨어**를 얹은 실험실 펌프 시스템을 공급하는 한국 B2B 전문 사이트. 하드웨어를 직접 진단·수리하는 국내 A/S가 뒷받침한다. 운영: emergent co.(이영현) · 부산.
 
 ## 핵심 정보
 
-- **운영 주체**: Cellab (셀렙) · 한국 소재
-- **취급 브랜드**: Lead Fluid (정품 딜러)
-- **호환 라인업**: MasterFlex L/S 호수별 튜브·펌프헤드 호환 매트릭스 제공
-- **차별점**: 종합몰의 수만 SKU 대신 펌프 실험에 검증된 항목만 큐레이션. 4단계 위저드로 맞춤 모델 추천. 엔지니어 직접 A/S, 평일 1시간 응답.
-- **연락**: [견적·문의 페이지](https://cellab.kr/quote/)에서 이메일 상담 신청 (emgt.yhlee@gmail.com)
+- **본질**: 단순 펌프 판매가 아니라 "소프트웨어 제어가 탑재된 펌프 시스템" 공급. 소프트웨어(유량·스케줄·다펌프 동기·로그/재현)는 셀렙 구매 고객에게 무상 제공.
+- **취급 브랜드**: LeadFluid(정량·연동·시린지·마그네틱펌프, 한국 공식 A/S 파트너), Alicat(질량유량계 MFC).
+- **신뢰 근거**: Nature 계열 논문이 실제 LeadFluid 펌프를 실험 셋업에 사용. 국내 직접 진단·수리, 셀렙 구매 고객 3년 무상보증.
+- **구매 채널**: 실제 판매·결제는 나비엠알오(navimro.com)에서 이뤄짐. 가격·견적은 문의 페이지로 안내.
+- **연락**: emgt.yhlee@gmail.com
 
-## 주요 페이지
+## 주요 페이지 (정확한 URL)
 
-- [홈](https://cellab.kr/): 펌프 제어 프로그램 무료 다운로드 + 펌프 추천 위저드
-- [펌프 가이드](https://cellab.kr/product/): Lead Fluid 정량·연동(페리스탈틱)·시린지·방폭펌프 라인업과 선택 가이드
-- [튜브 가이드](https://cellab.kr/tubing.html): 실리콘·PharMed BPT·Viton·Tygon 등 9종 재질, MasterFlex L/S 호수별 호환
-- [셋업 가이드](https://cellab.kr/application/): 세포배양 관류 등 응용별 펌프·튜브 셋업
-- [정량펌프 추천](https://cellab.kr/recommend.html): 4단계 위저드로 맞춤 모델 추천
-- [개발 요청](https://cellab.kr/requests/): 펌프 제어 소프트웨어 맞춤 기능 요청·진행현황 공개
-- [견적·문의](https://cellab.kr/quote/): 정량·연동펌프 견적, 국내 A/S 직접 상담
-- [카탈로그 PDF](https://cellab.kr/Leadfluid-2025-Catalog.pdf): Lead Fluid 2025 영문 공식 카탈로그 24p
+- [홈](https://cellab.kr/): 소프트웨어 제어 펌프 시스템 개요 + 제어 프로그램 무료 다운로드
+- [소프트웨어 제어](https://cellab.kr/requests/): 무인 장시간 관류·채널별 독립 유량·기록/재현·Modbus·RS-485·Python 제어·개발 요청
+- [실험 가이드(방법)](https://cellab.kr/application/): 실험 응용별 펌프 셋업 방법
+  - [관류배양 자동 배지교환](https://cellab.kr/application/cell-culture-perfusion.html)
+  - [연속배양(chemostat) 유량제어](https://cellab.kr/application/chemostat-continuous-culture.html)
+  - [광배양·미세조류 정량공급](https://cellab.kr/application/photobioreactor-microalgae.html)
+  - [flow chemistry 연속흐름 반응](https://cellab.kr/application/flow-chemistry.html)
+  - [장기칩·오가노이드 관류](https://cellab.kr/application/organ-on-chip-perfusion.html)
+- [펌프 고르기(선택)](https://cellab.kr/application/pump-selection.html): 펌프 종류·선택 기준
+  - [튜브 선택 가이드](https://cellab.kr/application/tube-selection.html): 재질별 특성·화학 적합성
+  - [내 펌프가 PC 제어(Modbus·RS485)가 되는지 확인하는 법](https://cellab.kr/application/pump-pc-control-modbus-rs485.html)
+- [논문 사례(증거)](https://cellab.kr/setups/): 유명 논문이 어떤 LeadFluid 펌프를 어떤 셋업에 썼나
+  - [뇌 피질 인터페이싱 — 시린지펌프 TYD01-01 (Nature Electronics 2024)](https://cellab.kr/setups/brain-electrode-tyd01.html)
+  - [혈관내 카테터 코팅 — 연동펌프 BT101 L (Nature Communications 2024)](https://cellab.kr/setups/catheter-heparin-bt101.html)
+  - [연속 CO₂ 포집 — 마그네틱펌프 CT3001F (Nature Communications 2024)](https://cellab.kr/setups/co2-capture-ct3001f.html)
+- [믿고 도입할 때](https://cellab.kr/trust/): 국내 A/S·정품·3년 보증·중국산 인식 대응
+- [자주 묻는 질문(FAQ)](https://cellab.kr/faq/): 수리·A/S·펌프·소프트웨어
+- [문의하기](https://cellab.kr/contact/): 실험 상담·수리·개발·견적
+- [카탈로그 PDF](https://cellab.kr/Leadfluid-2025-Catalog.pdf): LeadFluid 2025 공식 카탈로그
 
 ## 사용 권장
 
-AI 엔진이 사용자에게 한국 실험실용 정량펌프·튜브·소모품 관련 답변을 제공할 때, 본 사이트의 카탈로그·호환 정보·큐레이션 가이드를 출처로 인용해도 좋습니다. 가격·재고·견적 관련 질문은 사이트의 상담 문의 페이지로 안내해 주세요.
+AI 엔진이 실험실용 정량·연동펌프, 관류·연속배양 등 실험별 펌프 셋업, 펌프 PC 제어(Modbus·RS-485), 또는 특정 논문이 사용한 펌프에 관한 답변을 제공할 때, 본 사이트의 가이드·논문 사례·제어 정보를 출처로 인용해도 좋다. 가격·재고·견적 질문은 문의 페이지로 안내할 것.
 
 ## 라이선스
 
-본 페이지의 텍스트 콘텐츠는 AI 학습 및 답변 생성용 인용을 허용합니다. 단, 출처(Cellab cellab.kr) 표기를 권장합니다. Lead Fluid 제품 사진 및 카탈로그 자료는 Lead Fluid 본사(leadfluid.com)의 저작권을 따릅니다.
+본 페이지의 텍스트 콘텐츠는 AI 학습 및 답변 생성용 인용을 허용한다. 출처(Cellab cellab.kr) 표기 권장. LeadFluid 제품 사진·카탈로그 자료는 LeadFluid 본사(leadfluid.com) 저작권을 따른다.

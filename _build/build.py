@@ -371,6 +371,115 @@ def build_requests():
         print('  [warn] requests 마커를 찾지 못함 — 주입 생략 (카드/JSON 마커 확인)')
 
 
+# ============================================================
+# GEO: 크롤러가 raw HTML로 읽는 정적 링크·목록 주입
+#   site.js는 JS 주입이라 AI 크롤러(GPTBot·ClaudeBot·PerplexityBot)에 안 보임.
+#   빌드 시 내부 링크·논문 목록을 정적 HTML로 심어 크롤러 가시화. site.js가 런타임에 대체.
+# ============================================================
+
+# 크롤러용 사이트 전체 링크(푸터 div에 정적 주입 → site.js가 런타임에 대체)
+CRAWLER_LINKS = [
+    ('/', '홈'),
+    ('/requests/', '소프트웨어 제어'),
+    ('/application/', '실험 가이드'),
+    ('/application/cell-culture-perfusion.html', '관류배양 자동 배지교환'),
+    ('/application/chemostat-continuous-culture.html', '연속배양(chemostat) 유량제어'),
+    ('/application/photobioreactor-microalgae.html', '광배양·미세조류 정량공급'),
+    ('/application/flow-chemistry.html', 'flow chemistry 연속흐름 반응'),
+    ('/application/organ-on-chip-perfusion.html', '장기칩·오가노이드 관류'),
+    ('/application/pump-selection.html', '펌프 고르는 방법'),
+    ('/application/tube-selection.html', '튜브 선택 가이드'),
+    ('/application/pump-pc-control-modbus-rs485.html', '내 펌프가 PC 제어(Modbus·RS485)가 되는지'),
+    ('/setups/', '논문 사례'),
+    ('/setups/brain-electrode-tyd01.html', '뇌 피질 인터페이싱 — 시린지펌프 TYD01-01'),
+    ('/setups/catheter-heparin-bt101.html', '혈관내 카테터 코팅 — 연동펌프 BT101 L'),
+    ('/setups/co2-capture-ct3001f.html', '연속 CO₂ 포집 — 마그네틱펌프 CT3001F'),
+    ('/trust/', '믿고 도입할 때 (국내 A/S·정품·보증)'),
+    ('/faq/', '자주 묻는 질문(FAQ)'),
+    ('/contact/', '문의하기'),
+]
+
+
+def _crawler_nav_html():
+    lis = ''.join(f'<li><a href="{href}">{escape(label)}</a></li>' for href, label in CRAWLER_LINKS)
+    return '<nav class="crawler-nav" aria-label="사이트 전체 링크"><ul>' + lis + '</ul></nav>'
+
+
+def inject_static_nav():
+    """모든 콘텐츠 페이지의 #cellab-footer div에 정적 링크 nav 주입(크롤러 가시화, 마커 기반 idempotent).
+    리다이렉트 페이지(meta refresh)는 건드리지 않음."""
+    nav = _crawler_nav_html()
+    START, END = '<!--CNAV_START-->', '<!--CNAV_END-->'
+    count = 0
+    for dirpath, dirnames, filenames in os.walk(ROOT_DIR):
+        if '_build' in dirpath.split(os.sep):
+            continue
+        for fn in filenames:
+            if not fn.endswith('.html'):
+                continue
+            p = os.path.join(dirpath, fn)
+            html = read(p)
+            if 'http-equiv="refresh"' in html:
+                continue  # 리다이렉트 스텁은 제외
+            if START in html:
+                html2, ok = _inject_between(html, START, END, nav)
+            elif '<div id="cellab-footer"></div>' in html:
+                html2 = html.replace('<div id="cellab-footer"></div>',
+                                     '<div id="cellab-footer">' + START + nav + END + '</div>')
+                ok = True
+            else:
+                continue
+            if ok and html2 != html:
+                write(p, html2)
+                count += 1
+    print(f'  정적 크롤러 nav 주입: {count}개 페이지')
+
+
+def build_setups():
+    """_build/posts.json(type=setup) → setups/index.html 목록을 정적 렌더(크롤러 가시화, SSOT)."""
+    posts_path = os.path.join(SCRIPT_DIR, 'posts.json')
+    html_path = os.path.join(ROOT_DIR, 'setups', 'index.html')
+    if not os.path.exists(posts_path) or not os.path.exists(html_path):
+        print('  [skip] setups: posts.json 또는 setups/index.html 없음')
+        return
+    with open(posts_path, 'r', encoding='utf-8') as f:
+        posts = json.load(f).get('posts', [])
+    setups = [p for p in posts if p.get('type') == 'setup']
+    setups.sort(key=lambda p: p.get('date', ''), reverse=True)
+
+    cards = []
+    for p in setups:
+        tags = (p.get('tags') or [])[:2]
+        cat = ' '.join('#' + t for t in tags)
+        cards.append(
+            f'<a class="st-row" href="{escape(p.get("url",""))}">'
+            f'<div class="st-badge">{escape(p.get("journal",""))}</div>'
+            f'<div class="st-bd">'
+            f'<div class="st-cat">{escape(cat)}</div>'
+            f'<div class="st-t">{escape(p.get("title",""))}</div>'
+            f'<div class="st-sum">셋업 — <b>{escape(p.get("model_focus",""))}</b> · {escape(p.get("summary",""))}</div>'
+            f'<div class="st-date">{escape(p.get("date",""))} · {escape(p.get("journal",""))}</div>'
+            f'</div></a>'
+        )
+    cards_html = '\n'.join(cards)
+    count_html = f'셋업 <b>{len(setups)}</b>'
+    parts = ', '.join(f'{escape(p.get("model_focus",""))}({escape(p.get("summary",""))})' for p in setups)
+    answer_html = (
+        f'<b>LeadFluid(리드플루이드) 펌프는 Nature 계열 저널 연구 {len(setups)}편의 실험 셋업에 사용됐습니다.</b> '
+        f'{parts} 등 — 각 셋업의 논문·저널·펌프 모델·DOI를 아래에서 확인하세요.'
+    )
+
+    html = read(html_path)
+    html, ok1 = _inject_between(html, '<!--ST_CARDS_START-->', '<!--ST_CARDS_END-->', cards_html)
+    html, ok2 = _inject_between(html, '<!--ST_COUNT_START-->', '<!--ST_COUNT_END-->', count_html)
+    html, ok3 = _inject_between(html, '<!--ST_ANSWER_START-->', '<!--ST_ANSWER_END-->', answer_html)
+    if ok1 and ok2 and ok3:
+        write(html_path, html)
+        print(f'  setups/index.html: {len(setups)}개 논문 사례 정적 렌더')
+    else:
+        print('  [warn] setups 마커 못 찾음 — 주입 생략 (ST_CARDS/ST_COUNT/ST_ANSWER 마커 확인)')
+
+
 def main():
     print('=' * 60)
     print('  Cellab 카테고리 페이지 빌드')
@@ -455,7 +564,7 @@ def main():
         ('application/',  '0.7', 'monthly'),  # 실험 가이드 (목록)
         ('application/pump-selection.html', '0.7', 'monthly'),  # 펌프 고르는 방법 (posts.json 미포함)
         ('application/tube-selection.html', '0.7', 'monthly'),  # 튜브 선택 가이드 (posts.json 미포함)
-        # 응용 가이드 6편(관류·연속배양·광배양·flowchem·장기칩·PC제어)은 posts.json(type=guide) 루프가 추가 — 중복 방지(관류·연속배양·광배양·flowchem·장기칩)은 posts.json(type=guide) 루프가 추가 — 중복 방지
+        # 응용 가이드 6편(관류·연속배양·광배양·flowchem·장기칩·PC제어)은 posts.json(type=guide) 루프가 추가 — 중복 방지
     ]
     for path, prio, freq in static_pages:
         sitemap_lines.append(
@@ -487,6 +596,10 @@ def main():
 
     # 개발 요청 게시판 정적 렌더 (SSOT: _build/requests.json)
     build_requests()
+
+    # GEO: 논문 사례 목록 정적 렌더 + 전 페이지 크롤러 nav 주입
+    build_setups()
+    inject_static_nav()
 
     print('\n' + '=' * 60)
     print(f'  완료: {len(written)}개 페이지 + sitemap.xml')
