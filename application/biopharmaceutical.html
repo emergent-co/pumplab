@@ -38,12 +38,33 @@
   .sw-mock .ops{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; }
   .sw-mock .op{ border:1px solid var(--line); border-radius:6px; padding:8px 0; text-align:center; font-size:10px; font-weight:600; color:var(--ink); }
   .sw-mock .op.go{ background:var(--green); color:#fff; border-color:var(--green); }
+  .sw-mock .fn{ display:flex; flex-direction:column; gap:5px; margin-bottom:11px; }
+  .sw-mock .fx{ border:1px solid var(--line); border-radius:6px; padding:7px 9px; font-size:10.5px; font-weight:600; color:var(--gray); display:flex; align-items:center; gap:7px; }
+  .sw-mock .fx::before{ content:""; width:7px; height:7px; border-radius:50%; background:#CFD6DE; flex:0 0 auto; }
+  .sw-mock .fx.on{ border-color:var(--green); color:var(--ink); background:var(--green-bg); }
+  .sw-mock .fx.on::before{ background:var(--green); }
   .sw-mock .chart .ct{ font-size:13px; font-weight:700; }
   .sw-mock .chart .cs{ font-size:10px; color:var(--gray-2); font-weight:400; }
   .sw-mock .foot{ border-top:1px solid var(--line); padding:8px 14px; display:flex; justify-content:space-between; font-size:10px; color:var(--gray); }
   .sw-mock .foot .on{ color:var(--green); font-weight:700; }
   .sw-cap{ font-size:12.5px; color:var(--gray); line-height:1.6; margin-top:8px; }
   .sw-cap b{ color:var(--ink); }
+  .sw-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:14px 0 6px; }
+  .sw-card{ border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff; box-shadow:0 12px 30px rgba(10,37,64,.09); }
+  .sw-card .ch{ display:flex; align-items:center; gap:7px; padding:9px 11px; background:#F6F7F9; border-bottom:1px solid var(--line); font-size:11.5px; font-weight:700; color:var(--ink); }
+  .sw-card .ch .gd{ width:9px; height:9px; border-radius:2px; background:var(--green); flex:0 0 auto; }
+  .sw-card .cb{ padding:8px 10px 11px; }
+  .sw-card .cap2{ font-size:10.5px; color:var(--gray); line-height:1.5; margin-top:6px; }
+  @media(max-width:640px){ .sw-cards{ grid-template-columns:1fr; } }
+  .sw-card .chan{ display:grid; grid-template-columns:auto 1fr auto; gap:8px; align-items:center; border:1px solid var(--line); border-radius:6px; padding:7px 9px; margin-bottom:6px; font-size:10.5px; }
+  .sw-card .chan .cn{ font-weight:700; color:var(--ink); }
+  .sw-card .chan .cf{ color:var(--gray); text-align:right; }
+  .sw-card .chan .cs2{ color:var(--green); font-weight:700; font-size:9.5px; }
+  .sw-card .log{ width:100%; border-collapse:collapse; font-size:9.5px; }
+  .sw-card .log td{ border-bottom:1px solid #EEF1F4; padding:5px 4px; color:var(--gray); }
+  .sw-card .log td:first-child{ color:var(--gray-2); }
+  .sw-card .log td:last-child{ color:var(--ink); font-weight:600; text-align:right; }
+  .sw-card .rep{ display:inline-block; background:var(--green-bg); color:var(--green); border-radius:4px; padding:1px 6px; font-weight:700; }
   @media(max-width:560px){ .sw-mock .body{ grid-template-columns:1fr; } .sw-mock .pl{ border-right:0; border-bottom:1px solid var(--line); } }
   .cmp-wrap{ overflow-x:auto; }
   .cmp{ width:100%; border-collapse:collapse; margin:12px 0 4px; font-size:13.5px; }
@@ -88,38 +109,41 @@
   </div>
 
   <div class="sw-sec">
-    <h2>이 기능, 실제 소프트웨어에서 구현됩니다</h2>
-    <div class="sw-mock" aria-label="Cellab Pump Control 예시 화면">
-      <div class="bar"><span class="gd"></span>Cellab Pump Control</div>
-      <div class="body">
-        <div class="pane pl">
-          <div class="lbl">Connection</div>
-          <div class="conn"><div class="fld">COM3 — USB-Serial (BT101L)</div><div class="mbtn">Reconnect</div></div>
-          <div class="card">
-            <span class="run">Running</span>
-            <div class="kv">
-              <span class="k">Flow</span><span class="v">12.5 mL/min</span><span class="k">Target</span><span class="v">12.5</span>
-              <span class="k">Mode</span><span class="v">연속 공급</span><span class="k">Log</span><span class="v">기록 중</span>
-            </div>
-          </div>
-          <div class="lbl">Operation</div>
-          <div class="ops"><div class="op go">Start</div><div class="op">Pause</div><div class="op">Stop</div></div>
-        </div>
-        <div class="pane chart">
-          <div class="ct">Flow rate <span class="cs">mL/min · last 60s</span></div>
-          <svg viewBox="0 0 300 200" style="width:100%;height:auto;margin-top:6px">
-            <g fill="#9AA3AE" font-size="9" font-family="sans-serif"><text x="6" y="26">15</text><text x="6" y="80">10</text><text x="10" y="134">5</text><text x="14" y="186">0</text></g>
-            <line x1="30" y1="50" x2="288" y2="50" stroke="#B0B6BE" stroke-width="1.3" stroke-dasharray="4 3"/>
-            <text x="206" y="44" fill="#6B6B6B" font-size="9.5" font-weight="700" font-family="sans-serif">Target 12.5</text>
-            <path d="M30 180 L72 44 L114 58 L156 48 L198 54 L240 50 L288 50 L288 180 Z" fill="#1E3A5F" fill-opacity="0.10"/>
-            <polyline points="30,180 72,44 114,58 156,48 198,54 240,50 288,50" fill="none" stroke="#1E3A5F" stroke-width="2"/>
-            <circle cx="288" cy="50" r="3.4" fill="#1E3A5F"/>
+    <h2>본문 기능, 셀렙 소프트웨어로 이렇게 구현됩니다</h2>
+    <p class="sw-cap" style="margin:0 0 4px">발효·연속배양의 정량 공급을 아래 기능들로 실제 구현합니다. <b>화면은 셀렙 제어 소프트웨어 예시</b>(구매 고객 무상 제공).</p>
+    <div class="sw-cards">
+      <div class="sw-card">
+        <div class="ch"><span class="gd"></span>유량 스케줄·ramp</div>
+        <div class="cb">
+          <svg viewBox="0 0 220 100" style="width:100%;height:auto" role="img" aria-label="구간별 유량·ramp 프로파일">
+            <g stroke="#EEF1F4" stroke-width="1"><line x1="12" y1="26" x2="212" y2="26"/><line x1="12" y1="52" x2="212" y2="52"/><line x1="12" y1="78" x2="212" y2="78"/></g>
+            <path d="M12 78 L58 78 L92 32 L138 32 L138 56 L212 56 L212 90 L12 90 Z" fill="#1E3A5F" fill-opacity="0.08"/>
+            <polyline points="12,78 58,78 92,32 138,32 138,56 212,56" fill="none" stroke="#1E3A5F" stroke-width="2"/>
           </svg>
+          <div class="cap2">구간별 유량·ramp을 레시피로 저장·반복</div>
         </div>
       </div>
-      <div class="foot"><span><span class="on">● Connected</span> &nbsp; COM3 · 9600 8N1</span><span>연속 공급 · 로그 기록 중</span></div>
+      <div class="sw-card">
+        <div class="ch"><span class="gd"></span>다펌프 동기·무인 운전</div>
+        <div class="cb">
+          <div class="chan"><span class="cn">CH1</span><span class="cf">12.5 mL/min</span><span class="cs2">● 동기</span></div>
+          <div class="chan"><span class="cn">CH2</span><span class="cf">8.0 mL/min</span><span class="cs2">● 동기</span></div>
+          <div class="chan"><span class="cn">CH3</span><span class="cf">20.0 mL/min</span><span class="cs2">● 동기</span></div>
+          <div class="cap2">채널별 독립 유량 + 동기로 무인 장시간 운전</div>
+        </div>
+      </div>
+      <div class="sw-card">
+        <div class="ch"><span class="gd"></span>운전 로그·재현</div>
+        <div class="cb">
+          <table class="log">
+            <tr><td>14:32:05</td><td>12.5 mL/min</td><td>Run</td></tr>
+            <tr><td>14:35:00</td><td>12.5 mL/min</td><td>Log</td></tr>
+            <tr><td>15:10:00</td><td>10.0 mL/min</td><td>Ramp</td></tr>
+          </table>
+          <div class="cap2">CSV로 기록 → 같은 프로파일 <span class="rep">재현 OK</span></div>
+        </div>
+      </div>
     </div>
-    <p class="sw-cap">위 화면은 <b>셀렙 제어 소프트웨어 예시</b>입니다 — 본문의 유량 정량 공급·연속 운전·로그 기록이 실제로 구현됩니다. (셀렙 구매 고객 무상 제공)</p>
   </div>
 
   <div class="sd-bridge">
@@ -133,13 +157,13 @@
     <h2>셀렙 vs 일반 펌프 단독 도입</h2>
     <div class="cmp-wrap">
     <table class="cmp">
-      <thead><tr><th>항목</th><th>셀렙 (LeadFluid + 제어 SW · 국내 A/S)</th><th>일반 펌프 단독 도입</th></tr></thead>
+      <thead><tr><th>항목</th><th>셀렙 (LeadFluid 공식 한국 A/S + 제어 SW)</th><th>일반 펌프 단독 도입</th></tr></thead>
       <tbody>
         <tr><th>유량 스케줄·ramp 자동화</th><td class="c"><span class="yes">✔ 소프트웨어 제공</span></td><td class="c"><span class="no">수동/미지원 다수</span></td></tr>
         <tr><th>다펌프 동기·무인 장시간 운전</th><td class="c"><span class="yes">✔</span></td><td class="c"><span class="no">제한적</span></td></tr>
         <tr><th>운전 로그(CSV)·재현</th><td class="c"><span class="yes">✔</span></td><td class="c"><span class="no">✕</span></td></tr>
         <tr><th>Modbus·RS485·Python 제어</th><td class="c"><span class="yes">✔ 프로토콜 문서·예제</span></td><td class="c"><span class="no">문서 미제공 잦음</span></td></tr>
-        <tr><th>국내 직접 진단·수리</th><td class="c"><span class="yes">✔ 본사 반송 불필요</span></td><td class="c"><span class="no">해외 반송/교체</span></td></tr>
+        <tr><th>LeadFluid 공식 한국 A/S</th><td class="c"><span class="yes">✔ 국내 직접 진단·수리(본사 반송 불필요)</span></td><td class="c"><span class="no">해외 반송/교체</span></td></tr>
         <tr><th>무상보증</th><td class="c"><span class="yes">✔ 3년(셀렙 구매)</span></td><td class="c"><span class="no">짧거나 없음</span></td></tr>
         <tr><th>제어 소프트웨어</th><td class="c"><span class="yes">✔ 무상(구매 고객)</span></td><td class="c"><span class="no">별도/미제공</span></td></tr>
       </tbody>
