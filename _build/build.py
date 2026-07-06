@@ -382,6 +382,12 @@ CRAWLER_LINKS = [
     ('/', '홈'),
     ('/requests/', '소프트웨어 제어'),
     ('/application/', '실험 가이드'),
+    ('/application/biopharmaceutical.html', '바이오의약 — 발효·세포배양·정제·충전'),
+    ('/application/analytical-instrument.html', '분석기기 — 컬럼 주입·시료 정량 주입'),
+    ('/application/medical-device-ivd.html', '의료기기·IVD — 시약·세척·폐액'),
+    ('/application/environmental.html', '환경 — 수질·폐수 정량 투입'),
+    ('/application/industrial-chemical-material.html', '산업화학·소재 — 정량·연속흐름·디스펜싱'),
+    ('/application/food-beverage.html', '식음료 — 위생 충전·정량 분주'),
     ('/application/cell-culture-perfusion.html', '관류배양 자동 배지교환'),
     ('/application/chemostat-continuous-culture.html', '연속배양(chemostat) 유량제어'),
     ('/application/photobioreactor-microalgae.html', '광배양·미세조류 정량공급'),
@@ -565,6 +571,12 @@ def main():
         ('setups/',       '0.8', 'weekly'),   # 셋업사례 (인덱스) — 상세 페이지는 posts.json 루프가 추가
         ('faq/',          '0.7', 'monthly'),  # FAQ
         ('application/',  '0.7', 'monthly'),  # 실험 가이드 (목록)
+        ('application/biopharmaceutical.html', '0.8', 'monthly'),        # 응용분야 클러스터
+        ('application/analytical-instrument.html', '0.8', 'monthly'),
+        ('application/medical-device-ivd.html', '0.8', 'monthly'),
+        ('application/environmental.html', '0.8', 'monthly'),
+        ('application/industrial-chemical-material.html', '0.8', 'monthly'),
+        ('application/food-beverage.html', '0.8', 'monthly'),
         ('application/pump-selection.html', '0.7', 'monthly'),  # 펌프 고르는 방법 (posts.json 미포함)
         ('application/tube-selection.html', '0.7', 'monthly'),  # 튜브 선택 가이드 (posts.json 미포함)
         # 응용 가이드 6편(관류·연속배양·광배양·flowchem·장기칩·PC제어)은 posts.json(type=guide) 루프가 추가 — 중복 방지

@@ -17,12 +17,14 @@
   - [유량 스케줄·ramp 자동화하는 법](https://cellab.kr/application/pump-flow-schedule-ramp.html)
   - [다펌프 동기·무인 장시간 운전 구성하는 법](https://cellab.kr/application/multi-pump-sync-unattended.html)
   - [운전 로그(CSV)로 실험 재현하는 법](https://cellab.kr/application/pump-run-log-csv-reproducibility.html)
-- [실험 가이드(방법)](https://cellab.kr/application/): 실험 응용별 펌프 셋업 방법
-  - [관류배양 자동 배지교환](https://cellab.kr/application/cell-culture-perfusion.html)
-  - [연속배양(chemostat) 유량제어](https://cellab.kr/application/chemostat-continuous-culture.html)
-  - [광배양·미세조류 정량공급](https://cellab.kr/application/photobioreactor-microalgae.html)
-  - [flow chemistry 연속흐름 반응](https://cellab.kr/application/flow-chemistry.html)
-  - [장기칩·오가노이드 관류](https://cellab.kr/application/organ-on-chip-perfusion.html)
+- [실험 가이드(응용 분야)](https://cellab.kr/application/): LeadFluid 공식 응용 분류 기준 분야별 펌프 셋업
+  - [바이오의약 — 발효·세포배양·정제·충전](https://cellab.kr/application/biopharmaceutical.html)
+  - [분석기기 — 크로마토그래피 컬럼 주입·시료 정량 주입](https://cellab.kr/application/analytical-instrument.html)
+  - [의료기기·IVD — 진단분석기 시약·세척·폐액 이송](https://cellab.kr/application/medical-device-ivd.html)
+  - [환경 — 수질 시료·시약 정량 투입·폐수 처리](https://cellab.kr/application/environmental.html)
+  - [산업화학·소재 — 정량 투입·연속흐름 반응·디스펜싱](https://cellab.kr/application/industrial-chemical-material.html)
+  - [식음료 — 위생 충전·정량 분주·이송](https://cellab.kr/application/food-beverage.html)
+- 실험 기법별 셋업: [세포배양 관류](https://cellab.kr/application/cell-culture-perfusion.html) · [연속배양(chemostat)](https://cellab.kr/application/chemostat-continuous-culture.html) · [광배양·미세조류](https://cellab.kr/application/photobioreactor-microalgae.html) · [flow chemistry](https://cellab.kr/application/flow-chemistry.html) · [장기칩·오가노이드](https://cellab.kr/application/organ-on-chip-perfusion.html)
 - [펌프 고르기(선택)](https://cellab.kr/application/pump-selection.html): 펌프 종류·선택 기준
   - [튜브 선택 가이드](https://cellab.kr/application/tube-selection.html): 재질별 특성·화학 적합성
   - [내 펌프가 PC 제어(Modbus·RS485)가 되는지 확인하는 법](https://cellab.kr/application/pump-pc-control-modbus-rs485.html)

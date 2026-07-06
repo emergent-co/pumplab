@@ -61,12 +61,13 @@
         ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현']
       ] },
     { href:'/application/', label:'실험 가이드', icon:'guide', sub:[
-        ['/application/',                                   '가이드 전체'],
-        ['/application/cell-culture-perfusion.html',        '관류배양 자동 배지교환'],
-        ['/application/chemostat-continuous-culture.html',  '연속배양(chemostat)'],
-        ['/application/photobioreactor-microalgae.html',    '광배양·미세조류'],
-        ['/application/flow-chemistry.html',                'flow chemistry'],
-        ['/application/organ-on-chip-perfusion.html',       '장기칩·오가노이드']
+        ['/application/',                                      '가이드 전체'],
+        ['/application/biopharmaceutical.html',               '바이오의약'],
+        ['/application/analytical-instrument.html',           '분석기기'],
+        ['/application/medical-device-ivd.html',              '의료기기·IVD'],
+        ['/application/environmental.html',                   '환경'],
+        ['/application/industrial-chemical-material.html',    '산업화학·소재'],
+        ['/application/food-beverage.html',                   '식음료']
       ] },
     { href:'/trust/',      label:'믿고 도입할 때', icon:'shield' },
     { href:'/contact/',    label:'문의하기',   icon:'contact' },
