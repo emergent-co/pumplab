@@ -382,6 +382,11 @@ def build_requests():
 CRAWLER_LINKS = [
     ('/', '홈'),
     ('/requests/', '소프트웨어 제어'),
+    ('/pumps/', '펌프 종류'),
+    ('/pumps/peristaltic.html', '연동펌프 — 무오염 저유량 연속 이송'),
+    ('/pumps/syringe.html', '시린지펌프 — 초저유량 정밀 주입'),
+    ('/pumps/metering.html', '정량펌프(연동식) — 정량·디스펜싱'),
+    ('/pumps/gear.html', '기어펌프 — 고압 대유량 이송'),
     ('/application/', '실험 가이드'),
     ('/application/biopharmaceutical.html', '바이오의약 — 발효·세포배양·정제·충전'),
     ('/application/analytical-instrument.html', '분석기기 — 컬럼 주입·시료 정량 주입'),
@@ -531,6 +536,7 @@ ORG_WEBSITE_GRAPH = {
 
 BREADCRUMB_SECTIONS = {
     'application': ('실험 가이드', '/application/'),
+    'pumps': ('펌프 종류', '/pumps/'),
     'setups': ('논문 사례', '/setups/'),
     'requests': ('소프트웨어 제어', '/requests/'),
     'trust': ('믿고 도입할 때', '/trust/'),
@@ -539,8 +545,8 @@ BREADCRUMB_SECTIONS = {
 }
 
 # /application/ 내 페이지 중 섹션을 다르게 잡을 것 (펌프 가이드 / 소프트웨어 제어)
-PUMP_GUIDE_FILES = {'pump-selection.html', 'tube-selection.html', 'pump-pc-control-modbus-rs485.html'}
-SW_GUIDE_FILES = {'pump-flow-schedule-ramp.html', 'multi-pump-sync-unattended.html', 'pump-run-log-csv-reproducibility.html'}
+PUMP_GUIDE_FILES = {'pump-selection.html', 'tube-selection.html'}
+SW_GUIDE_FILES = {'pump-flow-schedule-ramp.html', 'multi-pump-sync-unattended.html', 'pump-run-log-csv-reproducibility.html', 'pump-pc-control-modbus-rs485.html'}
 
 
 def _page_title_short(html):
@@ -563,7 +569,7 @@ def _breadcrumb_ld(rel, html):
     seg, fn = parts[0], parts[1]
     if seg == 'application':
         if fn in PUMP_GUIDE_FILES:
-            sec_name, sec_url = '펌프 가이드', '/application/pump-selection.html'
+            sec_name, sec_url = '펌프 종류', '/pumps/'
         elif fn in SW_GUIDE_FILES:
             sec_name, sec_url = '소프트웨어 제어', '/requests/'
         else:
@@ -722,6 +728,11 @@ def main():
         ('setups/',       '0.8', 'weekly'),   # 셋업사례 (인덱스) — 상세 페이지는 posts.json 루프가 추가
         ('faq/',          '0.7', 'monthly'),  # FAQ
         ('application/',  '0.7', 'monthly'),  # 실험 가이드 (목록)
+        ('pumps/',        '0.8', 'monthly'),  # 펌프 종류 (허브)
+        ('pumps/peristaltic.html', '0.8', 'monthly'),  # 연동펌프
+        ('pumps/syringe.html',     '0.8', 'monthly'),  # 시린지펌프
+        ('pumps/metering.html',    '0.8', 'monthly'),  # 정량펌프(연동식)
+        ('pumps/gear.html',        '0.7', 'monthly'),  # 기어펌프
         ('application/biopharmaceutical.html', '0.8', 'monthly'),        # 응용분야 클러스터
         ('application/analytical-instrument.html', '0.8', 'monthly'),
         ('application/medical-device-ivd.html', '0.8', 'monthly'),
@@ -777,3 +788,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+# pumps pillar wired: peristaltic/syringe/metering/gear + hub (2026-07)

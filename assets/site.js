@@ -8,6 +8,11 @@
 
   var SEARCH_INDEX = [
     { t:'홈', u:'/', k:'소프트웨어 제어 펌프 시스템 관류', c:'페이지' },
+    { t:'펌프 종류 — 연동·시린지·기어 선택', u:'/pumps/', k:'펌프 종류 연동펌프 시린지펌프 기어펌프 정량펌프 선택 실험용 펌프', c:'펌프 종류' },
+    { t:'연동펌프 (페리스탈틱)', u:'/pumps/peristaltic.html', k:'연동펌프 페리스탈틱 peristaltic 튜브펌프 무오염 저유량 관류 정량 BT101 BQ80S EF800 LeadFluid', c:'펌프 종류' },
+    { t:'시린지펌프 (주사기펌프)', u:'/pumps/syringe.html', k:'시린지펌프 주사기펌프 syringe pump 초저유량 정밀 주입 미세유체 flow chemistry TYD01 TFD 다채널', c:'펌프 종류' },
+    { t:'정량펌프 (연동식 정량·디스펜싱)', u:'/pumps/metering.html', k:'정량펌프 디스펜싱 dosing metering 분주 정량 주입 pH 제어 BQ80S BT101F 연동식', c:'펌프 종류' },
+    { t:'기어펌프', u:'/pumps/gear.html', k:'기어펌프 gear pump 무맥동 고압 대유량 유기용매 방폭 FG601S 산업 이송', c:'펌프 종류' },
     { t:'소프트웨어 제어 펌프 시스템', u:'/requests/', k:'자동화 무인 관류 채널 독립 유량 기록 재현 modbus rs485 python 스케줄 레시피 로그 다펌프 동기', c:'실험을 자동화할 때' },
     { t:'프로그래밍 제어 (Modbus·RS-485·Python)', u:'/requests/#control', k:'modbus rs485 python 시리얼 제어 자동화 스크립트 레지스터', c:'실험을 자동화할 때' },
     { t:'유량 스케줄·ramp·레시피', u:'/requests/#schedule', k:'스케줄 ramp 램프 레시피 시퀀스 프로파일 반복 저장', c:'실험을 자동화할 때' },
@@ -47,27 +52,31 @@
   };
   var NAV = [
     { href:'/',            label:'홈',        icon:'home' },
-    { href:'/setups/', label:'논문 사례', icon:'star' },
-    { href:'/application/pump-selection.html', label:'펌프 가이드', icon:'pick', sub:[
-        ['/application/pump-selection.html', '펌프 종류·선택'],
-        ['/application/tube-selection.html', '튜브·화학 적합성'],
-        ['/application/pump-pc-control-modbus-rs485.html', '펌프 PC 제어 (Modbus·RS485)']
+    { href:'/pumps/', label:'펌프 종류', icon:'pick', sub:[
+        ['/pumps/',                     '종류 전체'],
+        ['/pumps/peristaltic.html',     '연동펌프'],
+        ['/pumps/syringe.html',         '시린지펌프'],
+        ['/pumps/metering.html',        '정량펌프(연동식)'],
+        ['/pumps/gear.html',            '기어펌프'],
+        ['/application/pump-selection.html', '펌프 고르는 방법'],
+        ['/application/tube-selection.html', '튜브·화학 적합성']
       ] },
-    { href:'/requests/',   label:'실험을 자동화할 때', icon:'sw', sub:[
+    { href:'/application/', label:'실험 가이드', icon:'guide', sub:[
+        ['/application/',                                     '가이드 전체'],
+        ['/application/cell-culture-perfusion.html',         '세포배양 관류'],
+        ['/application/chemostat-continuous-culture.html',   '연속배양(chemostat)'],
+        ['/application/photobioreactor-microalgae.html',     '광배양·미세조류'],
+        ['/application/flow-chemistry.html',                 'flow chemistry'],
+        ['/application/organ-on-chip-perfusion.html',        '장기칩·오가노이드']
+      ] },
+    { href:'/requests/',   label:'펌프 자동화 (SW)', icon:'sw', sub:[
         ['/requests/',          '소프트웨어 제어'],
         ['/application/pump-flow-schedule-ramp.html',       '유량 스케줄·ramp'],
         ['/application/multi-pump-sync-unattended.html',    '다펌프 동기·무인 운전'],
-        ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현']
+        ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현'],
+        ['/application/pump-pc-control-modbus-rs485.html',  'PC 제어 (Modbus·RS485)']
       ] },
-    { href:'/application/', label:'실험 가이드', icon:'guide', sub:[
-        ['/application/',                                      '가이드 전체'],
-        ['/application/biopharmaceutical.html',               '바이오의약'],
-        ['/application/analytical-instrument.html',           '분석기기'],
-        ['/application/medical-device-ivd.html',              '의료기기·IVD'],
-        ['/application/environmental.html',                   '환경'],
-        ['/application/industrial-chemical-material.html',    '산업화학·소재'],
-        ['/application/food-beverage.html',                   '식음료']
-      ] },
+    { href:'/setups/', label:'논문 사례', icon:'star' },
     { href:'/trust/',      label:'믿고 도입할 때', icon:'shield' },
     { href:'/contact/',    label:'문의하기',   icon:'contact' },
     { href:'/faq/',        label:'FAQ',       icon:'faq', sub:[

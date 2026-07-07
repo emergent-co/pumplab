@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>시린지펌프란? 초저유량 정밀 주입·모델 선택 가이드 | Cellab</title>
+<meta name="description" content="시린지펌프(주사기펌프)는 모터가 주사기 플런저를 정밀하게 밀어 pL/min~mL/min 초저유량을 맥동 없이 정량 주입하는 펌프입니다. flow chemistry·미세유체·약물 주입에 표준으로 쓰이며, LeadFluid 14종의 유량·채널·정밀도 선택 기준을 정리했습니다.">
+<meta name="keywords" content="시린지펌프, 주사기펌프, syringe pump, 초저유량, 정밀 주입, 미세유체, flow chemistry, LeadFluid, TYD01, TFD, Cellab">
+<link rel="canonical" href="https://cellab.kr/pumps/syringe.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="시린지펌프란? 초저유량 정밀 주입·모델 선택 가이드">
+<meta property="og:description" content="플런저 직접 구동으로 맥동 없는 초저유량 정량 주입이 되는 시린지펌프의 원리와 LeadFluid 14종 모델 선택 기준.">
+<meta property="og:url" content="https://cellab.kr/pumps/syringe.html">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"시린지펌프란 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"시린지펌프(주사기펌프)는 모터가 주사기 플런저를 일정 속도로 밀어 유체를 정량 주입하는 펌프입니다. 플런저를 직접 구동하므로 맥동이 거의 없고 pL/min~mL/min의 초저유량을 정밀하게 제어할 수 있어, 미세유체·flow chemistry·약물 주입처럼 미량 정밀 주입이 필요한 실험에 표준으로 쓰입니다."}},
+{"@type":"Question","name":"시린지펌프와 연동펌프는 어떻게 다른가요?","acceptedAnswer":{"@type":"Answer","text":"시린지펌프는 주사기 용량만큼만 연속 주입할 수 있지만 맥동이 없고 초저유량 정밀도가 뛰어나 미량 정량에 유리합니다. 연동펌프는 튜브만 있으면 무한 연속 이송이 가능해 관류·순환처럼 장시간 대량 이송에 유리합니다. 미량·무맥동 정밀 주입은 시린지, 무오염 연속 이송은 연동펌프를 선택합니다."}},
+{"@type":"Question","name":"시린지펌프 모델은 어떻게 고르나요?","acceptedAnswer":{"@type":"Answer","text":"목표 유량과 정밀도, 채널 수, 주사기 규격을 기준으로 고릅니다. LeadFluid는 단일 실험용(TYD01), 2~10채널 다채널(TYD02), 고정밀(TYD03), 원격 분리형(TFD), 산업용 대유량(G시리즈)을 제공합니다. 여러 시약을 동시에 다루면 다채널을, 극미량 정밀도가 중요하면 고정밀·분리형을 권장합니다."}}
+]}
+</script>
+<style>
+  :root{
+    --ink:#1A1A1A; --gray:#6B6B6B; --gray-2:#9A9A9A;
+    --green:#1A6E56; --green-bg:#F6F7F8; --line:#EAEAEA; --bg:#fff;
+    --serif:"Noto Serif KR",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  .hero{padding:48px 0 8px}
+  .hero .crumb{font-size:13px;color:var(--gray-2);margin-bottom:14px}
+  .hero .crumb a{color:var(--green);text-decoration:none}
+  h1{font-family:var(--serif);font-size:30px;font-weight:700;line-height:1.3;letter-spacing:-.02em}
+  .hero .lead{margin-top:14px;font-size:16.5px;color:var(--gray);line-height:1.7}
+  article{padding:24px 0 40px}
+  article h2{font-family:var(--serif);font-size:21px;font-weight:600;margin:34px 0 10px;letter-spacing:-.01em}
+  article p{font-size:16px;color:#2a2a2a;margin:0 0 14px}
+  article ul{margin:0 0 16px 18px}
+  article li{font-size:16px;color:#2a2a2a;margin-bottom:7px}
+  .box{background:var(--green-bg);border:1px solid #d9ead5;border-radius:12px;padding:18px 20px;margin:20px 0}
+  .box h3{font-family:var(--serif);font-size:17px;margin-bottom:8px}
+  .ans{background:#eef4f1;border:1px solid #cfe3da;border-left:4px solid var(--green);border-radius:10px;padding:16px 18px;margin:18px 0 6px;font-size:16px;color:#20302a;line-height:1.7}
+  .spec{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:14.5px}
+  .spec th,.spec td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  .spec th{background:#f7f9fc;font-weight:700}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 8px}
+  .btn{display:inline-block;padding:12px 20px;border-radius:9px;font-weight:600;text-decoration:none}
+  .btn.p{background:var(--ink);color:#fff}
+  .btn.s{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .rel{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;font-size:14px;color:var(--gray)}
+  .rel a{color:var(--green);text-decoration:none;font-weight:600}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div id="cellab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/">홈</a> › <a href="/pumps/">펌프 종류</a> › 시린지펌프</div>
+    <h1>시린지펌프란? —<br>초저유량 정밀 주입·모델 선택 가이드</h1>
+    <p class="lead">시린지(주사기)펌프는 <b>맥동 없는 초저유량 정량 주입</b>이 필요한 실험의 표준입니다. flow chemistry·미세유체·약물 주입에서의 역할과 LeadFluid 14종 모델의 선택 기준을 정리했습니다.</p>
+  </div>
+</section>
+
+<article>
+  <div class="wrap">
+    <div class="ans"><b>시린지펌프(주사기펌프)</b>는 모터가 주사기 플런저를 일정 속도로 밀어 유체를 정량 주입하는 펌프입니다. 플런저를 직접 구동해 <b>맥동이 거의 없고</b> pL/min~mL/min 초저유량을 정밀하게 제어할 수 있어, 미량 정밀 주입에 표준으로 쓰입니다.</div>
+
+    <h2>어떻게 작동하나</h2>
+    <p>시린지펌프는 스텝모터·리드스크류로 주사기 플런저를 밀어 유량을 만듭니다. 유량 = 플런저 전진 속도 × 주사기 단면적이므로, 주사기 규격만 알면 <b>유량을 계산·재현</b>할 수 있습니다. 연속 회전이 아니라 직선 이송이라 맥동이 없고, 극미량에서도 유량이 흔들리지 않는 것이 장점입니다.</p>
+
+    <h2>어디에 쓰나</h2>
+    <ul>
+      <li><b>flow chemistry</b> — 여러 시약을 정확한 유량비로 합류, 체류시간 제어. → <a href="/application/flow-chemistry.html">flow chemistry 가이드</a></li>
+      <li><b>미세유체·장기칩</b> — 저유량·저전단 관류로 세포 자극. → <a href="/application/organ-on-chip-perfusion.html">장기칩 관류 가이드</a></li>
+      <li><b>신경·전극 주입</b> — 극미량 물질을 정밀 주입. → <a href="/setups/brain-electrode-tyd01.html">논문: 뇌 피질 전극(TYD01-01)</a></li>
+      <li><b>약물·시약 정량</b> — 정해진 속도로 미량을 일정하게 투여.</li>
+    </ul>
+
+    <h2>시린지펌프 vs 연동펌프</h2>
+    <p>시린지펌프는 주사기 용량만큼만 연속 주입할 수 있지만 <b>맥동이 없고 초저유량 정밀도가 뛰어나</b> 미량 정량에 유리합니다. 반면 <a href="/pumps/peristaltic.html">연동펌프</a>는 튜브만 있으면 무한 연속 이송이 가능해 관류·순환 같은 장시간 대량 이송에 유리합니다. 미량·무맥동 정밀 주입은 시린지, 무오염 연속 이송은 연동을 선택합니다.</p>
+
+    <h2>LeadFluid 시린지펌프 모델 라인업</h2>
+    <table class="spec">
+      <tr><th>시리즈</th><th>특징</th><th>대표 모델</th><th>유량 범위</th></tr>
+      <tr><td>TYD01</td><td>단일 실험용</td><td>TYD01-01·TYD01-02</td><td>0.184 nL/min ~ 173 mL/min</td></tr>
+      <tr><td>TYD02</td><td>다채널(2·4·6·10ch)</td><td>TYD02-01 ~ TYD02-10</td><td>0.184 nL/min ~ 173 mL/min</td></tr>
+      <tr><td>TYD03</td><td>고정밀</td><td>TYD03-01</td><td>0.037 nL/min ~ 16 mL/min</td></tr>
+      <tr><td>TFD</td><td>분리형(원격 주사기)</td><td>TFD01·02·03·04</td><td>20 pL/min ~ 124 mL/min</td></tr>
+      <tr><td>G</td><td>산업용·대유량</td><td>G3030-1S·G6060-1S</td><td>0.0003 ~ 1,250 mL/min</td></tr>
+    </table>
+    <p style="font-size:14.5px;color:var(--gray)">유량 범위는 시리즈 내 모델·주사기 규격 조합의 상·하한입니다. 실제 유량은 장착하는 주사기 용량에 따라 달라집니다.</p>
+
+    <h2>시린지펌프 선택 기준 4가지</h2>
+    <ul>
+      <li><b>목표 유량·정밀도</b> — 극미량(pL/nL)이면 고정밀·분리형, 상대적 대유량이면 산업용 G계열.</li>
+      <li><b>채널 수</b> — 여러 시약을 동시에 다루면 2~10채널(TYD02).</li>
+      <li><b>주사기 규격</b> — 사용할 주사기 용량·브랜드 호환.</li>
+      <li><b>제어 방식</b> — 로컬 조작 vs PC·Modbus로 유량비·시퀀스 자동화·기록. → <a href="/application/pump-pc-control-modbus-rs485.html">PC 제어 확인법</a></li>
+    </ul>
+
+    <h2>셀렙 제어 소프트웨어로 무인·재현</h2>
+    <p>셀렙은 LeadFluid 한국 공식 A/S 파트너로, 시린지펌프에 <b>펌프 제어 프로그램</b>을 직접 만들어 구매 고객에게 무상 제공합니다. 유량비·체류시간·주입 시퀀스를 스케줄링하고 실시간 모니터링·CSV 로그로 <b>재현 가능한 주입 데이터</b>를 쌓을 수 있습니다. 하드웨어는 국내에서 직접 진단·수리하며 셀렙 구매 고객에게 3년 무상보증을 제공합니다.</p>
+
+    <div class="cta">
+      <a class="btn p" href="/contact/#experiment">모델·유량 상담받기</a>
+      <a class="btn s" href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_cta_syringe">나비엠알오에서 구매 →</a>
+    </div>
+    <p style="margin:8px 0 0;font-size:13px;color:var(--gray-2)">셀렙(나비엠알오) 구매 시 <b style="color:var(--green)">펌프 제어 소프트웨어 무상 제공 · 국내 3년 A/S</b></p>
+
+    <div class="rel">
+      관련: <a href="/pumps/peristaltic.html">연동펌프</a> · <a href="/pumps/metering.html">연동식 정량·디스펜싱</a> · <a href="/application/flow-chemistry.html">flow chemistry</a> · <a href="/application/organ-on-chip-perfusion.html">장기칩·오가노이드 관류</a> · <a href="/application/pump-selection.html">펌프 고르는 방법</a>
+    </div>
+  </div>
+</article>
+
+<div id="cellab-footer"></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연동펌프란? 종류·유량·튜브 선택 가이드 | Cellab</title>
+<meta name="description" content="연동펌프(페리스탈틱)는 롤러가 튜브를 눌러 유체를 밀어내는 펌프로, 본체가 시료에 닿지 않아 무오염·멸균이 쉽고 저유량 정밀 이송·정량 주입에 표준으로 쓰입니다. LeadFluid 연동펌프 13종의 유량·채널·제어 기준과 모델 선택 가이드.">
+<meta name="keywords" content="연동펌프, 페리스탈틱 펌프, peristaltic pump, 정량펌프, 연동펌프 종류, 연동펌프 유량, 튜브펌프, LeadFluid, BT101, BQ80S, Cellab">
+<link rel="canonical" href="https://cellab.kr/pumps/peristaltic.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="연동펌프란? 종류·유량·튜브 선택 가이드">
+<meta property="og:description" content="본체 비접촉으로 무오염·정밀 저유량 이송이 되는 연동펌프의 원리와, LeadFluid 13종 모델 선택 기준.">
+<meta property="og:url" content="https://cellab.kr/pumps/peristaltic.html">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"연동펌프란 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"연동펌프(페리스탈틱 펌프)는 회전하는 롤러가 유연한 튜브를 순차적으로 눌러 유체를 밀어내는 펌프입니다. 유체가 튜브 안에서만 흐르고 펌프 본체(롤러)에는 닿지 않아, 무오염·멸균이 쉽고 저유량 정밀 이송과 정량 주입에 표준으로 쓰입니다."}},
+{"@type":"Question","name":"연동펌프와 다이어프램·기어펌프의 차이는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"연동펌프는 유체가 튜브 내부로만 흘러 펌프 부품에 닿지 않으므로 세척 없이 튜브 교체만으로 무균을 유지합니다. 다이어프램·기어펌프는 유체가 펌프 내부 부품에 직접 닿아 세척·멸균이 까다롭고 오염·화학 적합성 관리가 필요합니다. 그래서 세포배양·의약·분석처럼 무오염이 중요한 저유량 이송에는 연동펌프가 적합합니다."}},
+{"@type":"Question","name":"연동펌프 유량과 모델은 어떻게 고르나요?","acceptedAnswer":{"@type":"Answer","text":"목표 유량(µL/min~수 L/min), 채널 수, 제어 방식(로컬 조작 vs PC·Modbus 제어), 튜브 규격·화학 적합성을 기준으로 고릅니다. LeadFluid는 패널형 정량(BQ80S), 표준 속도가변(BT-S), 지능형 유량(BT-L), 분주·디스펜싱(BT-F), 방폭 대유량(EF) 계열을 제공하며, 저유량 정밀도가 중요하면 저유량 헤드를, 정량 분주가 중요하면 BT-F 계열을 권장합니다."}}
+]}
+</script>
+<style>
+  :root{
+    --ink:#1A1A1A; --gray:#6B6B6B; --gray-2:#9A9A9A;
+    --green:#1A6E56; --green-bg:#F6F7F8; --line:#EAEAEA; --bg:#fff;
+    --serif:"Noto Serif KR",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  .hero{padding:48px 0 8px}
+  .hero .crumb{font-size:13px;color:var(--gray-2);margin-bottom:14px}
+  .hero .crumb a{color:var(--green);text-decoration:none}
+  h1{font-family:var(--serif);font-size:30px;font-weight:700;line-height:1.3;letter-spacing:-.02em}
+  .hero .lead{margin-top:14px;font-size:16.5px;color:var(--gray);line-height:1.7}
+  article{padding:24px 0 40px}
+  article h2{font-family:var(--serif);font-size:21px;font-weight:600;margin:34px 0 10px;letter-spacing:-.01em}
+  article p{font-size:16px;color:#2a2a2a;margin:0 0 14px}
+  article ul{margin:0 0 16px 18px}
+  article li{font-size:16px;color:#2a2a2a;margin-bottom:7px}
+  .box{background:var(--green-bg);border:1px solid #d9ead5;border-radius:12px;padding:18px 20px;margin:20px 0}
+  .box h3{font-family:var(--serif);font-size:17px;margin-bottom:8px}
+  .ans{background:#eef4f1;border:1px solid #cfe3da;border-left:4px solid var(--green);border-radius:10px;padding:16px 18px;margin:18px 0 6px;font-size:16px;color:#20302a;line-height:1.7}
+  .spec{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:14.5px}
+  .spec th,.spec td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  .spec th{background:#f7f9fc;font-weight:700}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 8px}
+  .btn{display:inline-block;padding:12px 20px;border-radius:9px;font-weight:600;text-decoration:none}
+  .btn.p{background:var(--ink);color:#fff}
+  .btn.s{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .rel{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;font-size:14px;color:var(--gray)}
+  .rel a{color:var(--green);text-decoration:none;font-weight:600}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div id="cellab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/">홈</a> › <a href="/pumps/">펌프 종류</a> › 연동펌프</div>
+    <h1>연동펌프란? —<br>종류·유량·튜브 선택 가이드</h1>
+    <p class="lead">연동(페리스탈틱)펌프는 세포배양 관류부터 정량 주입·환경 순환까지, <b>무오염·저유량 정밀 이송</b>이 필요한 실험의 표준입니다. 원리와 LeadFluid 13종 모델의 선택 기준을 정리했습니다.</p>
+  </div>
+</section>
+
+<article>
+  <div class="wrap">
+    <div class="ans"><b>연동펌프(페리스탈틱 펌프)</b>는 회전하는 롤러가 유연한 튜브를 순차적으로 눌러 유체를 밀어내는 펌프입니다. 유체가 <b>튜브 안에서만 흐르고 펌프 본체에는 닿지 않아</b>, 무오염·멸균이 쉽고 저유량 정밀 이송·정량 주입에 표준으로 쓰입니다.</div>
+
+    <h2>어떻게 작동하나</h2>
+    <p>연동펌프는 롤러가 튜브를 눌렀다 놓는 연동(蠕動) 운동으로 유체를 이송합니다. 유체가 접촉하는 부분은 <b>교체 가능한 튜브뿐</b>이라, 펌프를 거쳐도 시료가 오염되지 않습니다. 이 비접촉 구조 덕분에 세척 없이 튜브만 멸균·교체하면 무균 환경을 유지할 수 있고, 역류·자흡·건식 운전에도 강합니다.</p>
+
+    <h2>어디에 쓰나</h2>
+    <ul>
+      <li><b>세포배양 관류</b> — 배지를 무오염·저전단으로 연속 공급/배출. → <a href="/application/cell-culture-perfusion.html">관류 셋업 가이드</a></li>
+      <li><b>정량 주입·pH 제어</b> — 산·염기·시약을 일정량 정밀 투입. → <a href="/setups/nitrification-ph-bq50s.html">논문: 질산화 pH제어(BQ50S)</a></li>
+      <li><b>환경·반응기 순환</b> — 반응조 액상을 장시간 순환. → <a href="/setups/damo-recirculation-bt600s.html">논문: 혐기성 반응기 순환(BT600S)</a></li>
+      <li><b>의료·체외 관류</b> — 헤파린 코팅·장기 관류 등 생체적합 이송. → <a href="/setups/heart-eshp-bt101l.html">논문: 심장 체외 관류(BT101L)</a></li>
+    </ul>
+
+    <h2>연동펌프 vs 다이어프램·기어펌프</h2>
+    <p>연동펌프는 유체가 튜브 내부로만 흐르므로 <b>세척 없이 튜브 교체만으로 무균을 유지</b>합니다. 반면 다이어프램·기어펌프는 유체가 펌프 내부 부품에 직접 닿아 세척·멸균이 까다롭고 화학 적합성 관리가 필요합니다. 그래서 무오염이 중요한 저유량 이송에는 연동펌프가, 고압·연속 대유량엔 기어펌프가 유리합니다.</p>
+
+    <h2>LeadFluid 연동펌프 모델 라인업</h2>
+    <table class="spec">
+      <tr><th>시리즈</th><th>특징</th><th>대표 모델</th><th>유량 범위</th></tr>
+      <tr><td>BQ</td><td>패널 장착형·정량</td><td>BQ80S</td><td>0.0035 ~ 34 mL/min</td></tr>
+      <tr><td>BT-S</td><td>표준 속도가변</td><td>BT103S·BT101S·BT301S·BT601S</td><td>0.0001 ~ 3,000 mL/min</td></tr>
+      <tr><td>BT-L</td><td>지능형 유량제어</td><td>BT101L·BT301L·BT601L</td><td>0.0001 ~ 3,000 mL/min</td></tr>
+      <tr><td>BT-F</td><td>지능형 분주·디스펜싱</td><td>BT101F·BT301F·BT601F</td><td>0.0001 ~ 3,000 mL/min</td></tr>
+      <tr><td>EF</td><td>방폭·대유량</td><td>EF800·EF900</td><td>0.005 ~ 33,000 mL/min</td></tr>
+    </table>
+    <p style="font-size:14.5px;color:var(--gray)">유량 범위는 시리즈 내 모델·헤드 조합 기준의 상·하한입니다. 실제 유량은 튜브 규격과 헤드에 따라 달라집니다.</p>
+
+    <h2>연동펌프 선택 기준 4가지</h2>
+    <ul>
+      <li><b>목표 유량</b> — µL/min 저유량이면 저유량 헤드, 수 L/min 대유량이면 BT601·EF 계열.</li>
+      <li><b>채널 수</b> — 여러 라인을 동시에 돌리면 다채널 헤드/다펌프 동기.</li>
+      <li><b>제어 방식</b> — 로컬 조작만 필요한지, PC·Modbus·RS485로 자동화·기록할지.</li>
+      <li><b>튜브·화학 적합성</b> — 시료에 맞는 재질(실리콘·PharMed·Viton 등). → <a href="/application/tube-selection.html">튜브 선택 가이드</a></li>
+    </ul>
+
+    <div class="box">
+      <h3>정량·분주가 목적이라면</h3>
+      <p style="margin:0;font-size:15px;color:#2a2a2a">"정량펌프"는 별도 하드웨어가 아니라 <b>연동펌프의 정량 주입 기능</b>으로 구현됩니다. 패널형 <b>BQ80S</b>나 분주 특화 <b>BT-F 계열</b>이 정량·디스펜싱에 적합합니다. → <a href="/pumps/metering.html" style="color:var(--green);font-weight:600">연동식 정량·디스펜싱 자세히</a></p>
+    </div>
+
+    <h2>셀렙 제어 소프트웨어로 무인·재현</h2>
+    <p>셀렙은 LeadFluid 한국 공식 A/S 파트너로 펌프·헤드·튜브를 함께 공급하고, <b>펌프 제어 프로그램</b>을 직접 만들어 구매 고객에게 무상 제공합니다. 유량 설정·시퀀스 스케줄링·다펌프 동기·실시간 모니터링·CSV 로그로 <b>밤샘 없이 재현 가능한 데이터</b>를 쌓을 수 있습니다. 하드웨어는 국내에서 직접 진단·수리하며 셀렙 구매 고객에게 3년 무상보증을 제공합니다.</p>
+
+    <div class="cta">
+      <a class="btn p" href="/contact/#experiment">모델·유량 상담받기</a>
+      <a class="btn s" href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_cta_peristaltic">나비엠알오에서 구매 →</a>
+    </div>
+    <p style="margin:8px 0 0;font-size:13px;color:var(--gray-2)">셀렙(나비엠알오) 구매 시 <b style="color:var(--green)">펌프 제어 소프트웨어 무상 제공 · 국내 3년 A/S</b></p>
+
+    <div class="rel">
+      관련: <a href="/pumps/syringe.html">시린지펌프</a> · <a href="/pumps/metering.html">연동식 정량·디스펜싱</a> · <a href="/application/cell-culture-perfusion.html">세포배양 관류</a> · <a href="/application/tube-selection.html">튜브·화학 적합성</a> · <a href="/application/pump-selection.html">펌프 고르는 방법</a>
+    </div>
+  </div>
+</article>
+
+<div id="cellab-footer"></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
