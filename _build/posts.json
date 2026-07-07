@@ -3,6 +3,48 @@
   "posts": [
     {
       "type": "setup",
+      "slug": "heart-eshp-bt101l",
+      "title": "심장 체외 관류(ex situ) — 미세연동펌프 BT101L",
+      "summary": "정상체온 체외 심장 관류(ESHP) 회로 구동에 사용",
+      "date": "2026-07-07",
+      "tags": ["심장", "장기관류", "연동펌프", "BT101", "Frontiers"],
+      "url": "/setups/heart-eshp-bt101l.html",
+      "model_focus": "BT101L 연동",
+      "application": "심장·장기관류",
+      "image": "/img/og-cover.png",
+      "journal": "Frontiers in Cardiovascular Medicine",
+      "doi": "10.3389/fcvm.2021.639701"
+    },
+    {
+      "type": "setup",
+      "slug": "damo-recirculation-bt600s",
+      "title": "혐기성 메탄산화 반응기 액상 순환 — 연동펌프 BT600S",
+      "summary": "막 바이오필름 반응기(MBfR) 완전혼합 200 mL/min 순환에 사용",
+      "date": "2026-07-06",
+      "tags": ["환경", "바이오필름반응기", "메탄산화", "연동펌프", "BT600S"],
+      "url": "/setups/damo-recirculation-bt600s.html",
+      "model_focus": "BT600S 연동",
+      "application": "환경·수처리",
+      "image": "/img/og-cover.png",
+      "journal": "Environmental Science & Technology",
+      "doi": "10.1021/acs.est.0c02664"
+    },
+    {
+      "type": "setup",
+      "slug": "nitrification-ph-bq50s",
+      "title": "폐수 질산화 반응기 pH 제어 — 정량펌프 BQ50S",
+      "summary": "SBR pH 7.5~8.5 자동 유지 산·염기 정량 투입에 사용",
+      "date": "2026-07-05",
+      "tags": ["환경", "수처리", "질산화", "정량펌프", "BQ50S"],
+      "url": "/setups/nitrification-ph-bq50s.html",
+      "model_focus": "BQ50S 정량",
+      "application": "환경·수처리",
+      "image": "/img/og-cover.png",
+      "journal": "Bioresource Technology",
+      "doi": "10.1016/j.biortech.2017.07.155"
+    },
+    {
+      "type": "setup",
       "slug": "brain-electrode-tyd01",
       "title": "뇌 피질 인터페이싱 전자 텐트 전극 — 시린지펌프 TYD01-01",
       "summary": "주입 모듈에서 주입 속도를 정밀 제어",
