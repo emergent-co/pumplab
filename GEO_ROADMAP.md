@@ -1,94 +1,97 @@
-# GEO 로드맵 — 남은 작업(4~7) 이어가기용 핸드오프
+# GEO 로드맵 — 이어가기용 핸드오프 (최종 업데이트: 2026-07-07)
 
-> **목적:** 다른 컴퓨터·새 세션에서 이 문서만 읽으면 GEO 작업을 그대로 이어갈 수 있게 한다.
-> **대전제:** GEO 최적화가 **0순위**(`OPERATIONS.md §0`). 모든 변경은 "GEO에 유리한가"를 먼저 통과해야 한다.
-> 시작 전 `git pull` 필수. 작업은 파일도구 편집 → PowerShell `git add -A; commit; push`. 배포는 Cloudflare Pages 자동(빌드 `python _build/build.py`).
+> **목적:** 다른 컴퓨터·새 세션에서 이 문서만 읽으면 그대로 이어갈 수 있게 한다.
+> **대전제:** GEO 최적화가 **0순위**(`OPERATIONS.md §0`). 모든 변경은 "GEO에 유리한가"를 먼저 통과.
+> **워크플로:** 시작 전 `git pull` 필수 → 파일도구로 편집 → PowerShell `git add -A; git commit; git push`. 배포는 **Cloudflare Pages 자동**(빌드 명령 `python _build/build.py`, main 푸시 시 실행). GitHub Pages 워크플로는 실패해도 무시(꺼도 됨).
 
 ---
 
-## A. 지금까지 완료 (참고)
+## A. 완료 (라이브 확인됨)
 
-- **IA 정리**: `셋업사례→논문 사례` rename / 실험 가이드 허브는 **방법 5편**만(선택 3종은 「펌프 고를 때」로 분리, 허브 하단 링크로 발견성 유지) / 리다이렉트 체인 제거(`reviews→/setups/`, `tubing→/application/tube-selection.html`, `recommend2·recommend(비임베드)→/application/pump-selection.html`) / 구형 페이지 정리(`leadfluid` noindex+redirect, `inquiry` noindex+redirect) / 위저드(recommend.html embed) 결과 CTA를 나비엠알오+contact로.
-- **GEO 1~3**: `build.py inject_static_nav()`(전 페이지 푸터에 사이트 전체 링크 정적 주입 — 크롤러 가시화) / `build_setups()`(논문 목록·정답블록 정적 렌더) / `llms.txt` 새 IA로 재작성.
-- **전환**: 홈·가이드 CTA에 "나비엠알오에서 구매" + "제어 SW 무상·3년 A/S" 캡션. GA4 주요 이벤트 3종(`navimro_click`·`generate_lead`·`file_download`) 지정 완료.
-- **인증**: 홈에 google+naver(`388fb335…`) 사이트 인증 정착.
+**IA 정리**
+- `셋업사례→논문 사례` rename, 「실험별 셋업 가이드」→「실험 가이드」 통일(용어 충돌 해소)
+- 3축 분리: **펌프 고를 때(선택)** / **실험 가이드(방법)** / **논문 사례(증거)**
+- 실험 가이드 허브 = 방법 5편만(선택 3종은 하단 링크로 분리)
+- 리다이렉트 체인 제거(reviews→/setups/, tubing→tube-selection, recommend·recommend2→pump-selection)
+- 구형 페이지 정리(leadfluid·inquiry noindex+redirect), 위저드(recommend.html) 결과 CTA를 나비엠알오/contact로
+- 홈·가이드 CTA에 "나비엠알오에서 구매" + "제어 SW 무상·3년 A/S" 캡션
+
+**GEO 구조 (build.py가 빌드 시 정적 주입 — 소스엔 마커만, 크롤러 가시화 목적)**
+- `inject_static_nav()` — 전 페이지 푸터에 사이트 전체 링크(`CRAWLER_LINKS`) 정적 삽입
+- `build_setups()` — /setups/ 논문 목록·정답블록 정적 렌더(마커 `<!--ST_CARDS_START-->` 등)
+- `inject_head_schema()` — Organization/WebSite + 페이지별 **BreadcrumbList** JSON-LD를 `<head>`에 정적 주입(`ORG_WEBSITE_GRAPH`, `_breadcrumb_ld`)
+- `normalize_html_urls()` — **main() 맨 마지막** 실행. 내부 `.html`을 제거해 clean URL(무확장자) 통일. canonical·og·링크·nav·스키마 전부 정리. sitemap도 `.replace('.html','')`
+- `build_requests()` — /requests/ 개발요청 카드 정적 렌더
+
+**콘텐츠 (SSOT = `_build/posts.json`)**
+- 소프트웨어 moat 토픽 3편: pump-flow-schedule-ramp, multi-pump-sync-unattended, pump-run-log-csv-reproducibility (`type:guide`)
+- 6대 응용분야(LeadFluid 공식 분류): biopharmaceutical, analytical-instrument, medical-device-ivd, environmental, industrial-chemical-material, food-beverage (`static_pages`)
+- **논문 사례 6편**(`type:setup`, 전부 LeadFluid 명시 원문 확인·인용문 포함):
+  | 파일 | 모델 | 논문/저널 | 연구군 |
+  |---|---|---|---|
+  | brain-electrode-tyd01 | TYD01-01 시린지 | Nature Electronics 2024 | 바이오 |
+  | catheter-heparin-bt101 | BT101 L 연동 | Nature Communications 2024 | 의료 |
+  | co2-capture-ct3001f | CT3001F 마그네틱 | Nature Communications 2024 | 에너지 |
+  | heart-eshp-bt101l | BT101L 연동 | Frontiers Cardiovasc. Med. 2021 | **관류(장기)** |
+  | damo-recirculation-bt600s | BT600S 연동 | Environ. Sci. Technol. 2021 | 환경 |
+  | nitrification-ph-bq50s | BQ50S 정량 | Bioresource Technology 2017 | 환경 |
+- 클러스터 상호링크: 관류 가이드↔심장논문, 환경 vertical↔환경논문 2편
+
+**표현·기타**
+- A/S 문구 "한국/국내 유일" → **"한국 공식 A/S 파트너"** 사이트 전체 통일(GBP 설명글도 동일)
+- 나비엠알오 FAB 데스크톱(≥821px)만 ≈1.3배 확대(site.css)
+- GA4 주요 이벤트 3종(navimro_click·generate_lead·file_download) 지정 완료
+- 홈에 google+naver(388fb335…) 사이트 인증 정착
+- llms.txt 새 IA로 재작성
+
+---
 
 ## B. 반드시 지킬 규약
 
-1. **새 콘텐츠 페이지 필수 요건**: ① 질문형 롱테일 제목 ② 첫 문단 **정답 블록(80~100자)** ③ JSON-LD(`TechArticle`+`FAQPage`, 필요시 `Product`·`BreadcrumbList`) ④ **내부 링크가 raw HTML에 존재** ⑤ 1페이지=1주제.
-2. **SSOT**: 콘텐츠 메타는 `_build/posts.json`에만 추가(`type`=`setup`|`guide`, 숨기려면 `noindex:true`). → 홈 최신아티클·사이트검색·sitemap·`/setups/` 목록에 **자동 반영**. 유틸 페이지(위저드 등)는 `build.py`의 `static_pages` 목록에.
-3. **정적 렌더 패턴**: `build.py`의 `_inject_between(html, '<!--X_START-->', '<!--X_END-->', content)` 사용. 대상 페이지에 마커를 심고 build.py에서 주입. 마커 못 찾으면 경고만 하고 skip(배포 안 깨짐).
-4. **크롤러 nav**: 신규 페이지는 `build.py`의 `CRAWLER_LINKS`에 추가해야 전 페이지 푸터 정적 링크에 포함됨.
-5. **검증은 배포 후**: `web_fetch`(또는 `curl`)로 **raw HTML**을 받아 링크·정답블록·스키마가 JS 없이 보이는지 확인. (site.js는 JS 주입이라 크롤러 미가시 → 정적 주입이 핵심)
-6. **주의(마운트 지연)**: 샌드박스 bash 마운트가 파일도구 편집을 즉시 반영 못 할 때가 있음(잘린 뷰). **파일도구 Read가 authoritative.** 로컬 `py_compile` 실패가 마운트 truncation 때문일 수 있으니, 코드 패턴은 독립 스크립트로 검증하고 최종은 배포 후 web_fetch로 확인.
-7. **날조 금지**: 논문·수치·인용은 실제 출처(DOI·원문)로만. 못 찾으면 쓰지 않는다. LeadFluid 명시 논문만 "논문 사례"로.
+1. **새 콘텐츠 페이지 필수**: ① 질문형 롱테일 제목 ② 첫 문단 **정답블록(80~100자)** ③ JSON-LD(TechArticle+FAQPage, BreadcrumbList는 build.py 자동) ④ 내부 링크가 raw HTML에 존재 ⑤ 1페이지=1주제.
+2. **SSOT**: 콘텐츠 메타는 `_build/posts.json`에만 추가(`type=setup|guide`). → 홈·검색·sitemap·/setups/ 목록 자동 반영. 유틸/분야 페이지는 `build.py`의 `static_pages`.
+3. **신규 페이지는 `CRAWLER_LINKS`(build.py)에도 추가** — 안 하면 크롤러 nav에서 빠짐.
+4. **논문 사례 추가 규칙**: 본문에 "Lead Fluid"/"Leadfluid"가 **실제 명시**돼야 하고 **원문 인용문·DOI·모델** 필수. 못 찾으면 만들지 말 것(날조 금지). 논문이 다른 브랜드 펌프도 함께 쓰면 "LeadFluid가 담당한 역할만" 기술하고 출처 주석에 명기. 템플릿 = 기존 `setups/*.html`.
+5. **검증은 배포 후 raw HTML** — `web_fetch`로 확인. **주의: web_fetch는 URL별로 캐시**하니, 이미 받아본 URL은 **`?v=날짜` 쿼리 붙여 캐시 우회**. (예: `https://cellab.kr/setups/?v=0708`)
+6. **마운트 지연 주의**: 샌드박스 bash가 파일도구 편집을 truncated/stale로 읽을 때가 많음(py_compile 오탐, JSON 오탐). **파일도구 Read가 authoritative.** build.py 로직 검증은 격리 스크립트로, 최종은 배포 후 web_fetch로.
+7. **URL은 무확장자**가 정답(Cloudflare가 .html→무확장자 301). 새 canonical·링크는 소스에 .html로 써도 `normalize_html_urls`가 정리하지만, 가급적 무확장자로 통일.
 
 ---
 
-## C. 남은 작업
+## C. 남은 작업 (우선순위)
 
-### 4. 연구군 토픽 클러스터 완성 — **GEO 임팩트 최대, 먼저 할 것**
+### 1. 논문 사례 확장 — 파일럿 연구군 커버 (임팩트 최대)
+현재 6편이지만 파일럿 연구군 중 **관류 세포배양·연속배양(chemostat)·광배양·flow chemistry**엔 전용 논문이 아직 없음(심장 논문은 장기 관류라 근접).
+- **RSC Lab on a Chip** (`10.1039/D0LC00493F`, 혈관신생 microfluidic, organ-on-chip/관류): 사장님이 PDF 보유. LeadFluid 명시 확인되면 organ-on-chip·관류 클러스터에 추가. (앞서 페이월로 미확인 → PDF로 검증 필요)
+- chemostat/photobioreactor/flow-chemistry 연구군에서 LeadFluid 사용 논문 확보되면 각 가이드에 증거로 연결.
+- 방법: PDF에서 `grep -i "lead *fluid"` 로 모델·인용문 추출 → 기존 setups 템플릿으로 페이지 생성 → posts.json + CRAWLER_LINKS + 해당 가이드 sd-related 양방향 링크.
 
-**문제:** 논문 사례 3편(뇌전극·카테터·CO₂포집)이 우선 연구군(관류배양·연속배양·광배양)과 불일치 → "방법 가이드 + 증거 논문 + 제품/제어" 삼각형이 끊겨 있음. AI는 한 주제로 뭉친 클러스터를 인용에 선호.
+### 2. (c) 나비엠알오 리스팅 문구 점검
+실제 결제가 나비엠알오에서 일어나므로, 리스팅 제목·키워드·상세에 "제어 SW 포함·한국 공식 A/S·3년 보증"이 박혀 있는지 점검(navmro-review 스킬 활용). GEO(사이트)=인지, 나비엠알오 리스팅=전환.
 
-**할 일**
-- 우선 연구군에 맞는 **논문 사례 추가**(각 1논문=1페이지). `setups/`에 신규 `.html` 생성 + `_build/posts.json`(`type:setup`) 등록 + `CRAWLER_LINKS` 등록.
-  - 템플릿: 기존 `setups/brain-electrode-tyd01.html` 구조 그대로(`sd-wrap`, `TechArticle`+`FAQPage` JSON-LD, 정답블록, 원문 인용문+DOI, sd-bridge CTA).
-  - 제목은 질문형: 예) "관류배양 논문은 어떤 펌프를 썼나 — LeadFluid BT○○ (저널 연도)".
-  - **실제 LeadFluid 명시 논문만.** 원문 인용·DOI 필수. 관류/연속배양/광배양에서 LeadFluid 사용 논문을 리서치해 확보.
-- **클러스터 상호링크**(핵심): 각 실험 가이드(`application/*`)의 `sd-related`에 대응 논문 사례 카드 추가, 논문 사례 페이지의 `sd-related`에 대응 [가이드 + 펌프 선택 + 소프트웨어 제어] 링크.
-  - 예(관류 pillar): `cell-culture-perfusion.html` ↔ 관류 논문 사례 ↔ `pump-selection.html` ↔ `/requests/`.
+### 3. 메뉴 pillar 재편 (item 7) — 신중, 큰 작업
+콘텐츠 메뉴가 여러 개(논문사례/펌프고를때/소프트웨어제어/실험가이드+6분야). 응용(연구군/분야)을 pillar로 재정렬 검토. site.js NAV + 전 페이지 breadcrumb 동시 변경 → GA 효과 측정 후 결정.
 
-**수용 기준:** 우선 연구군마다 [가이드·논문·선택·제어] 4각형이 raw HTML에서 상호 링크됨.
-
-### 5. 소프트웨어 moat 토픽 분리 — 독립 롱테일 페이지
-
-**문제:** `/requests/` 하위 4토픽이 한 페이지의 해시 앵커로 뭉쳐 있어 각 롱테일 인용력이 약함.
-- `#control` Modbus·RS-485·Python 제어 / `#schedule` 유량 스케줄·ramp·레시피 / `#sync` 다펌프 동기·무인 운전 / `#record` 운전 로그 기록·재현.
-
-**할 일:** 검색량 큰 것부터 **독립 페이지화**. 좋은 템플릿 = `application/pump-pc-control-modbus-rs485.html`(정답블록+FAQPage+체크리스트+CTA+sd-related).
-- 후보 제목(질문형):
-  - "연동펌프 유량을 스케줄·ramp로 자동화하는 법"
-  - "다펌프를 동기화해 무인 장시간 연속운전 구성하는 법"
-  - "펌프 운전 로그(CSV)로 실험을 재현하는 법"
-- 각각 `posts.json`(`type:guide`) + `CRAWLER_LINKS` + `site.js` NAV(자동화/펌프 그룹) 등록. `/requests/` 본문 해당 섹션에서 "자세히 →"로 링크.
-
-**수용 기준:** 각 토픽이 질문형 제목+정답블록+FAQPage를 가진 독립 URL. sitemap·llms.txt 반영.
-
-### 6. 스키마 보강 (FAQPage·BreadcrumbList) — 크롤러 정적 가시화
-
-**할 일**
-- **FAQPage** 없는 허브에 추가: `application/index.html`, `setups/index.html`(정답블록 있음, 스키마 추가). `faq/`는 기존 확인.
-- **BreadcrumbList JSON-LD**를 전 콘텐츠 페이지에 추가. **권장: `build.py`에 `inject_breadcrumbs()` 신설** — 페이지 경로·제목 기반으로 `홈 > 섹션 > 현재` BreadcrumbList 생성해 `<head>` 마커(예 `<!--BC-->`)에 정적 주입(SSOT). 또는 페이지별 정적 삽입.
-- **중요:** `site.js`가 `Organization`/`WebSite` JSON-LD를 **JS로** 주입 중 → 크롤러 미가시. GEO상 이 스키마도 `build.py` 정적 주입으로 옮기는 게 이상적(본 항목에 포함 검토).
-
-**수용 기준:** Rich Results Test에서 FAQPage·BreadcrumbList 감지. raw HTML에 스키마 존재(Organization 포함).
-
-### 7. 메뉴 대재편 (연구군 pillar) — **신중, 4·5·6 후**
-
-**문제:** 콘텐츠 메뉴 4개(논문 사례/펌프 고를 때/실험을 자동화할 때/실험 가이드)에 제품축·응용축이 혼재.
-**할 일(검토 후):** 응용(연구군)을 pillar로 세우고 각 아래 방법·증거·제품·제어를 매달기. `site.js` NAV 구조 + 전 페이지 breadcrumb 동시 변경 필요 → 큰 작업. **4·5·6 완료 후 GA로 효과 측정하고 진행 여부 결정.**
-**수용 기준:** 유저 여정(선택/방법/증거/제어)이 명확하고 GEO 클러스터 구조와 일치.
+### 4. (선택) 홈페이지 톤 정리
+GBP용으로 정리한 "소프트웨어-우선 + 사실기반" 톤을 홈 카피에도 반영, 과장 표현(있으면) 점검.
 
 ---
 
 ## D. 매 작업 후 GEO 체크리스트
-
-1. `web_fetch`로 raw HTML 받아 내부링크·정답블록·스키마가 **JS 없이** 보이는가?
+1. raw HTML(web_fetch, `?v=` 캐시우회)로 내부링크·정답블록·스키마가 JS 없이 보이는가?
 2. 죽은 링크·리다이렉트 체인(2홉+) 없는가?
-3. `llms.txt`·`sitemap.xml`이 최신 IA와 일치하는가?
-4. `posts.json` SSOT 반영(홈 최신아티클·검색 자동 반영) 확인.
-5. Rich Results Test로 스키마 감지 확인.
+3. llms.txt·sitemap이 최신 IA와 일치?
+4. posts.json SSOT 반영(홈 최신아티클·검색 자동)?
+5. Rich Results Test로 FAQPage·BreadcrumbList 감지? (FAQ 리치결과는 구글이 폐지해 RRT에 안 떠도 정상 — Schema Markup Validator로 확인)
 
 ## E. 파일·경로 레퍼런스
-
 | 역할 | 경로 | 메모 |
 |---|---|---|
-| 빌드 | `_build/build.py` | `inject_static_nav`·`build_setups`·`build_requests`·sitemap. `CRAWLER_LINKS`, `static_pages` 목록 |
-| 콘텐츠 SSOT | `_build/posts.json` | `type=setup\|guide`, `noindex` 플래그 |
-| 공유 nav/footer/GA/JSON-LD | `assets/site.js` | `NAV` 배열, `SEARCH_INDEX`, Organization/WebSite(JS주입) |
-| 스타일 | `assets/site.css` | `sd-*`(상세) `ag-*`(가이드허브) `st-*`(논문허브) `ch-*`(크롬) |
-| 리다이렉트 | `_redirects` + 각 옛 html 스텁 | Cloudflare 서버 301 |
+| 빌드 | `_build/build.py` | `CRAWLER_LINKS`, `static_pages`, `ORG_WEBSITE_GRAPH`, 5개 주입함수(nav/setups/head_schema/normalize/requests). main() 순서: build_setups→inject_static_nav→inject_head_schema→**normalize_html_urls(마지막)** |
+| 콘텐츠 SSOT | `_build/posts.json` | `type=setup\|guide`, `noindex` 플래그. setup 6 + guide 6 |
+| 공유 nav/footer/GA | `assets/site.js` | `NAV` 배열, `SEARCH_INDEX`. (Org/WebSite JSON-LD는 build.py로 이관됨) |
+| 스타일 | `assets/site.css` | `sd-*`(상세) `ag-*`(가이드허브) `st-*`(논문허브) `sw-*`(비교표/쇼케이스) `ch-*`(크롬) `navimro-fab`(FAB) |
+| 리다이렉트 | `_redirects` + 옛 html 스텁 | Cloudflare 서버 301, 무확장자 타겟 |
 | AI 지도 | `llms.txt`, `robots.txt` | AI 크롤러 Allow |
 | 원칙 | `OPERATIONS.md §0` | GEO 0순위 |
-| 배포 | Cloudflare Pages | 빌드 `python _build/build.py`, main 푸시 자동. GitHub Pages는 꺼도 됨(실패 무시) |
+| 배포/검증 | Cloudflare Pages | 빌드 시 build.py 실행. 검증은 web_fetch `?v=` 캐시우회 |
