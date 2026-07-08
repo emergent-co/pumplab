@@ -24,7 +24,7 @@
 
 ## 1. 사이트 구조
 
-정적 사이트 · Cloudflare Pages(`emergent-co/pumplab`) · 도메인 pumplab.co.kr.
+정적 사이트 · GitHub Pages(`emergent-co/pumplab`) · 도메인 pumplab.co.kr.
 
 **공유 크롬(SSOT):** `assets/site.js`가 `#pumplab-header`/`#pumplab-footer`에 상단바+좌측 사이드바+푸터를 주입. `assets/site.css`가 색·폰트 토큰과 사이드바·아티클·검색 스타일. 색=네이비 `#1E3A5F`, 폰트=Pretendard.
 
@@ -80,4 +80,4 @@ lock 파손 시 `Remove-Item .git\*.lock -Force`. 배포 전 로컬 확인 `pyth
 ## 6. 발생 사례(교훈)
 
 - **HTML 중간 잘림** — 일괄 sed·linter 부작용. 방지: 파일별 Edit, 작업 후 `wc -l` 점검, 완료 즉시 push(git 복원 가능).
-- **CRLF↔LF 노이즈로 35개 파일 미커밋 누적 + PDF 손상** — `.gitattributes`(`* text=auto eol=lf` + 바이너리 명시) + `git config core.autocrlf true`로 해결. `git status`에 파일이 비정상적으로 많으면 `git diff -w --stat`로 확인(insertions==deletions면 줄�
+- **CRLF↔LF 노이즈로 35개 파일 미커밋 누적 + PDF 손상** — `.gitattributes`(`* text=auto eol=lf` + 바이너리 명시) + `git config core.autocrlf true`로 해결. `git status`에 파일이 비정상적으로 많으면 `git diff -w --stat`로 확인(insertions==deletions면 줄바꿈 문제).

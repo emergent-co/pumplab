@@ -764,4 +764,28 @@ def main():
                     full_url = (base_url.rstrip('/') + url).replace('.html', '')  # CF 클린 URL에 맞춤
                     lastmod_line = f'\n    <lastmod>{date}</lastmod>' if date else ''
                     sitemap_lines.append(
-                        f'  <url>\n    <
+                        f'  <url>\n    <loc>{full_url}</loc>{lastmod_line}\n    <priority>0.9</priority>\n    <changefreq>monthly</changefreq>\n  </url>'
+                    )
+        except Exception as e:
+            print(f'  [warn] posts.json 읽기 실패 (블로그 글 sitemap 누락): {e}')
+
+    sitemap_lines.append('</urlset>')
+    write(os.path.join(ROOT_DIR, 'sitemap.xml'), '\n'.join(sitemap_lines) + '\n')
+
+    # 개발 요청 게시판 정적 렌더 (SSOT: _build/requests.json)
+    build_requests()
+
+    # GEO: 논문 사례 목록 정적 렌더 + 전 페이지 크롤러 nav 주입
+    build_setups()
+    inject_static_nav()
+    inject_head_schema()
+    normalize_html_urls()
+
+    print('\n' + '=' * 60)
+    print(f'  완료: {len(written)}개 페이지 + sitemap.xml')
+    print('=' * 60)
+
+
+if __name__ == '__main__':
+    main()
+# pumps pillar wired: peristaltic/syringe/metering/gear + hub (2026-07)
