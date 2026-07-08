@@ -52,8 +52,13 @@
   };
   var NAV = [
     { href:'/',            label:'홈',        icon:'home' },
+    { href:'/requests/',   label:'펌프 자동화 (SW)', icon:'sw', sub:[
+        ['/application/pump-flow-schedule-ramp.html',       '유량 스케줄·ramp'],
+        ['/application/multi-pump-sync-unattended.html',    '다펌프 동기·무인 운전'],
+        ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현'],
+        ['/application/pump-pc-control-modbus-rs485.html',  'PC 제어 (Modbus·RS485)']
+      ] },
     { href:'/pumps/', label:'펌프 종류', icon:'pick', sub:[
-        ['/pumps/',                     '종류 전체'],
         ['/pumps/peristaltic.html',     '연동펌프'],
         ['/pumps/syringe.html',         '시린지펌프'],
         ['/pumps/metering.html',        '정량펌프(연동식)'],
@@ -61,19 +66,11 @@
         ['/application/pump-selection.html', '펌프 고르는 방법']
       ] },
     { href:'/application/', label:'실험 가이드', icon:'guide', sub:[
-        ['/application/',                                     '가이드 전체'],
         ['/application/cell-culture-perfusion.html',         '세포배양 관류'],
         ['/application/chemostat-continuous-culture.html',   '연속배양(chemostat)'],
         ['/application/photobioreactor-microalgae.html',     '광배양·미세조류'],
         ['/application/flow-chemistry.html',                 'flow chemistry'],
         ['/application/organ-on-chip-perfusion.html',        '장기칩·오가노이드']
-      ] },
-    { href:'/requests/',   label:'펌프 자동화 (SW)', icon:'sw', sub:[
-        ['/requests/',          '소프트웨어 제어'],
-        ['/application/pump-flow-schedule-ramp.html',       '유량 스케줄·ramp'],
-        ['/application/multi-pump-sync-unattended.html',    '다펌프 동기·무인 운전'],
-        ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현'],
-        ['/application/pump-pc-control-modbus-rs485.html',  'PC 제어 (Modbus·RS485)']
       ] },
     { href:'/setups/', label:'근거·신뢰', icon:'shield', sub:[
         ['/setups/', '논문 사례'],
@@ -84,8 +81,8 @@
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
   function subOnPage(href){ var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }
   var navHTML = NAV.map(function (n) {
-    // 하위탭이 있는 그룹은 부모(메인)에 활성표시를 주지 않고, 일치하는 하위탭을 활성화한다.
-    var cur = n.sub ? false : matches(n.href);
+    // 부모 페이지(예: /pumps/)에 있으면 부모를 활성화하고, 하위 페이지에 있으면 해당 하위탭을 활성화한다.
+    var cur = matches(n.href);
     var row = '<a class="s-item' + (cur ? ' active' : '') + '" href="' + n.href + '"' +
               (cur ? ' aria-current="page"' : '') + '>' + (ICONS[n.icon] || '') +
               '<span>' + n.label + '</span></a>';

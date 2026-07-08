@@ -28,8 +28,12 @@
   .h-promo h1{ font-family:var(--serif); font-size:clamp(22px,4.6vw,29px); font-weight:700; color:#fff; line-height:1.32; letter-spacing:-.02em; }
   .h-promo .p-tx p{ font-size:14.5px; color:#d7e1ef; margin-top:11px; max-width:430px; line-height:1.6; }
   .h-promo .p-btn{ display:inline-block; margin-top:20px; background:#fff; color:var(--green); font-weight:800; font-size:14.5px; padding:12px 22px; border-radius:10px; }
-  .h-promo .p-ill{ flex:0 0 auto; }
-  .h-promo .p-ill svg{ width:120px; height:120px; }
+  .h-promo .p-ill{ flex:0 0 auto; cursor:zoom-in; text-align:center; }
+  .h-promo .p-ill svg{ width:246px; height:auto; border-radius:11px; filter:drop-shadow(0 10px 24px rgba(8,25,50,.38)); }
+  .h-promo .p-ill-cap{ display:block; margin-top:8px; font-size:12px; font-weight:700; color:#c5d5ea; }
+  .sw-zoom{ position:fixed; inset:0; background:rgba(8,20,40,.74); display:none; align-items:center; justify-content:center; padding:18px; z-index:200; cursor:zoom-out; }
+  .sw-zoom.on{ display:flex; }
+  .sw-zoom svg{ width:min(94vw,780px); height:auto; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.45); }
   /* 섹션 제목 */
   .h-sec-t{ font-family:var(--serif); font-size:clamp(20px,4.2vw,24px); font-weight:700; color:var(--ink); letter-spacing:-.02em; margin:42px 0 18px; }
   /* 2) 펌프실험 A-Z 타일 */
@@ -54,7 +58,8 @@
   @media(max-width:640px){
     .home-main{ padding:24px 20px 56px; }
     .h-promo{ flex-direction:column; align-items:flex-start; padding:26px 24px; }
-    .h-promo .p-ill{ display:none; }
+    .h-promo .p-ill{ display:block; width:100%; margin-top:20px; }
+    .h-promo .p-ill svg{ width:100%; }
     .h-cats{ grid-template-columns:1fr 1fr 1fr; gap:10px; }
     .h-cat .tile svg{ width:30px; height:30px; }
     .h-cat b{ font-size:12.5px; }.h-cat span{ display:none; }
@@ -78,15 +83,32 @@
         <p>연동·정량·시린지펌프의 유량·시퀀스·모니터링을 PC로. 무인 장시간 운전 · 채널별 독립 유량 · 유량 프로파일 기록/재현.</p>
         <span class="p-btn">무료로 받기 →</span>
       </div>
-      <div class="p-ill" aria-hidden="true">
-        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#7E9AC0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="16" y="20" width="88" height="62" rx="8"/>
-          <path d="M16 34h88"/><circle cx="24" cy="27" r="1.6" fill="#7E9AC0"/><circle cx="31" cy="27" r="1.6" fill="#7E9AC0"/>
-          <path d="M60 46v22"/><path d="M50 60l10 10 10-10"/>
-          <path d="M40 96h40"/>
+      <div class="p-ill" role="button" tabindex="0" aria-label="소프트웨어 화면 크게 보기" onclick="event.preventDefault();event.stopPropagation();var z=document.getElementById('swZoom');z.innerHTML='';z.appendChild(this.querySelector('svg').cloneNode(true));z.classList.add('on');">
+        <svg viewBox="0 0 260 168" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',sans-serif">
+          <rect x="0.5" y="0.5" width="259" height="167" rx="11" fill="#ffffff"/>
+          <path d="M0.5 12 A11.5 11.5 0 0 1 12 0.5 H248 A11.5 11.5 0 0 1 259.5 12 V25 H0.5 Z" fill="#1E3A5F"/>
+          <circle cx="14" cy="13" r="3" fill="#ff5f56"/><circle cx="24" cy="13" r="3" fill="#ffbd2e"/><circle cx="34" cy="13" r="3" fill="#27c93f"/>
+          <text x="132" y="16.5" fill="#cdd7e6" font-size="8.5" text-anchor="middle" font-weight="700">정량펌프연구소 Pump Control</text>
+          <text x="14" y="42" fill="#8a97a8" font-size="8">Connection</text>
+          <rect x="13" y="46" width="110" height="15" rx="4" fill="#eef2f8" stroke="#dbe3ee"/>
+          <text x="19" y="56" fill="#5b6b7f" font-size="7.5">COM3 · USB-Serial (BT101L)</text>
+          <rect x="13" y="66" width="110" height="34" rx="5" fill="#f4f7fb" stroke="#e2e9f2"/>
+          <rect x="19" y="71" width="30" height="10" rx="2.5" fill="#e6f4ec"/><text x="34" y="78.5" fill="#2a9d64" font-size="6.8" text-anchor="middle" font-weight="700">Running</text>
+          <text x="19" y="91" fill="#7c8a9c" font-size="7.2">Flow  12.5 mL/min · 120 rpm</text>
+          <rect x="13" y="107" width="52" height="17" rx="4" fill="#1E3A5F"/><text x="39" y="118.5" fill="#fff" font-size="8.2" text-anchor="middle" font-weight="700">Start</text>
+          <rect x="71" y="107" width="52" height="17" rx="4" fill="#fff" stroke="#cdd7e4"/><text x="97" y="118.5" fill="#66748a" font-size="8.2" text-anchor="middle">Stop</text>
+          <text x="140" y="42" fill="#8a97a8" font-size="8">Flow rate <tspan fill="#b3bdca">mL/min · 60s</tspan></text>
+          <line x1="140" y1="122" x2="247" y2="122" stroke="#e4eaf1" stroke-width="1"/>
+          <line x1="140" y1="64" x2="247" y2="64" stroke="#9aa3ae" stroke-width="1" stroke-dasharray="3 2"/>
+          <text x="247" y="60" fill="#6b6b6b" font-size="7" text-anchor="end" font-weight="700">Target 12.5</text>
+          <path d="M140 118 L157 60 L174 71 L191 63 L208 67 L227 63 L247 63 L247 122 L140 122 Z" fill="#1E3A5F" fill-opacity="0.10"/>
+          <polyline points="140,118 157,60 174,71 191,63 208,67 227,63 247,63" fill="none" stroke="#1E3A5F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle cx="247" cy="63" r="2.8" fill="#1E3A5F"/>
         </svg>
+        <span class="p-ill-cap">🔍 크게 보기</span>
       </div>
     </a>
+    <div id="swZoom" class="sw-zoom" onclick="this.classList.remove('on')" aria-hidden="true"></div>
 
     <!-- 1b) 구매 동선: 소프트웨어 → 펌프 구매 -->
     <p style="margin:16px 4px 0;font-size:14px;color:#4a4a4a;line-height:1.65">이 소프트웨어는 <b style="color:var(--ink)">정량펌프연구소에서 구매한 LeadFluid 펌프</b>에 무상 제공됩니다.
