@@ -187,7 +187,7 @@
     im.alt = '펌프 제어 소프트웨어 화면';
     im.onload = function(){ z.innerHTML = ''; z.appendChild(im); };
     im.onerror = function(){ var s = document.querySelector('.p-ill svg'); z.innerHTML = ''; if(s) z.appendChild(s.cloneNode(true)); };
-    im.src = '/img/sw-screenshot.jpg';
+    im.src = '/img/software_sample.png';
     z.classList.add('on');
   }
   fetch('/_build/posts.json').then(function(r){return r.json();}).then(function(d){
