@@ -193,7 +193,7 @@
           </svg>
         </div>
       </div>
-      <div class="foot"><span><span class="on">● Connected</span> &nbsp; COM3 · 9600 8N1 · addr 1</span><span>Running · 120 rpm · CCW</span></div>
+      <div class="foot"><span><span class="on">● Connected</span> &nbsp; COM3 · 9600 8E1 · addr 1</span><span>Running · 120 rpm · CCW</span></div>
     </div>
 
     <div class="edl">
@@ -222,11 +222,34 @@
     </div>
 
     <div class="rq-acc" aria-label="소프트웨어 제어 기능 상세">
-      <details class="rq-d" id="control">
+      <details class="rq-d" id="control" open>
         <summary><span class="tag">프로그래밍 제어</span><span class="rq-dh">Modbus·RS-485·Python으로 펌프를 제어합니다</span></summary>
         <div class="rq-dbody">
           <p>손으로 버튼을 누르지 않고 PC·스크립트로 펌프를 움직입니다. LeadFluid 정량·연동펌프는 <b>RS-485(Modbus RTU)</b> 인터페이스를 제공하며, 정량펌프연구소 제어 소프트웨어가 유량·RPM·회전 방향·기동/정지를 명령으로 주고받습니다.</p>
           <p>직접 코드로 통합하고 싶다면 <b>Modbus 레지스터 맵과 Python 예제</b>를 제공합니다. 센서를 읽어 유량을 조정하는 폐루프, 다른 장비와의 시퀀스 연동 등 기존 실험 자동화 스크립트에 펌프를 그대로 넣을 수 있습니다.</p>
+
+          <div style="margin-top:14px">
+            <p style="margin:0 0 8px;font-size:14px"><b>연결</b> — RS485 · Modbus RTU · <b>9600 · 8데이터 · Even 패리티 · 1스톱</b> · 슬레이브 주소 1–247</p>
+            <table style="width:100%;border-collapse:collapse;font-size:13px;margin:0 0 12px">
+              <thead><tr style="background:#f2f4f5;text-align:left"><th style="padding:7px 10px;border:1px solid #e2e6e8">기능</th><th style="padding:7px 10px;border:1px solid #e2e6e8">레지스터</th><th style="padding:7px 10px;border:1px solid #e2e6e8">값</th></tr></thead>
+              <tbody>
+                <tr><td style="padding:7px 10px;border:1px solid #e2e6e8">유량 설정(ml/min)</td><td style="padding:7px 10px;border:1px solid #e2e6e8">4015 (float)</td><td style="padding:7px 10px;border:1px solid #e2e6e8">단위 4022 먼저</td></tr>
+                <tr><td style="padding:7px 10px;border:1px solid #e2e6e8">방향</td><td style="padding:7px 10px;border:1px solid #e2e6e8">4023</td><td style="padding:7px 10px;border:1px solid #e2e6e8">0=CW · 1=CCW</td></tr>
+                <tr><td style="padding:7px 10px;border:1px solid #e2e6e8">Start / Stop</td><td style="padding:7px 10px;border:1px solid #e2e6e8">4126</td><td style="padding:7px 10px;border:1px solid #e2e6e8">1 · 0</td></tr>
+                <tr><td style="padding:7px 10px;border:1px solid #e2e6e8">현재 회전수 읽기</td><td style="padding:7px 10px;border:1px solid #e2e6e8">1002 (float)</td><td style="padding:7px 10px;border:1px solid #e2e6e8">FC 04</td></tr>
+              </tbody>
+            </table>
+            <pre style="background:#0d1117;color:#e6edf3;padding:14px;border-radius:8px;overflow:auto;font-size:13px;line-height:1.55;margin:0"><code>import minimalmodbus
+p = minimalmodbus.Instrument('COM3', 1)
+p.serial.baudrate = 9600
+p.serial.parity = minimalmodbus.serial.PARITY_EVEN   # 8E1
+CDAB = minimalmodbus.BYTEORDER_LITTLE_SWAP
+p.write_register(4022, 2, functioncode=6)   # 단위 ml/min
+p.write_float(4015, 12.5, byteorder=CDAB)   # 유량 12.5
+p.write_register(4126, 1, functioncode=6)   # Start (BT101L)</code></pre>
+            <p style="margin:10px 0 0;font-size:13px;color:#667">전체 레지스터 맵(S/L/F 시리즈 · 시린지 · 기어 포함)은 구매 고객에게 제공합니다.</p>
+          </div>
+
           <p style="margin-top:12px"><a href="/application/pump-pc-control-modbus-rs485.html" style="color:var(--green);font-weight:700;font-size:14px">내 펌프가 PC 제어되는지 확인하는 법 →</a></p>
         </div>
       </details>
