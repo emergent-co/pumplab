@@ -119,6 +119,13 @@
     '<div class="ch-scrim" id="chScrim"></div>';
 
   var FOOTER =
+    '<section class="cta-band"><div class="cta-band-in">' +
+      '<div class="cta-band-t">내 펌프, 소프트웨어로 완성하세요</div>' +
+      '<div class="cta-band-btns">' +
+        '<a href="/application/pump-pc-control-modbus-rs485" data-ga="band_check">내 펌프가 제어되나요? 확인 →</a>' +
+        '<a href="/requests/" data-ga="band_sw">제어 SW 무료 받기 →</a>' +
+        '<a class="cta-band-main" href="/contact/" data-ga="band_contact">무료 견적·문의 →</a>' +
+      '</div></div></section>' +
     '<footer class="chrome-footer">' +
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
@@ -135,6 +142,13 @@
           '부산광역시 북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩) · 도매·소매업 / 정보통신업</div>' +
         '<div class="cf-cp">© 2026 정량펌프연구소. All Rights Reserved.</div>' +
       '</div></footer>';
+
+  var CTA_FAB =
+    '<div class="cta-fab" aria-label="빠른 문의">' +
+      '<a href="http://pf.kakao.com/_GCsjX" target="_blank" rel="noopener" data-ga="fab_kakao" aria-label="카카오 상담">카톡</a>' +
+      '<a href="mailto:info@pumplab.co.kr" data-ga="fab_email" aria-label="이메일 문의">메일</a>' +
+      '<a class="cta-fab-main" href="/contact/" data-ga="fab_contact">문의하기</a>' +
+    '</div>';
 
   var REPAIR_MODAL =
     '<div class="rp-modal" id="repairModal">' +
@@ -195,6 +209,7 @@
     if (h) h.outerHTML = HEADER;
     var f = document.getElementById('pumplab-footer');
     if (f) f.outerHTML = FOOTER;
+    if (document.body && !document.querySelector('.cta-fab')) document.body.insertAdjacentHTML('beforeend', CTA_FAB);
     var burger = document.querySelector('.ch-burger');
     var side = document.getElementById('chSide');
     var scrim = document.getElementById('chScrim');

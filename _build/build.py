@@ -511,7 +511,7 @@ ORG_WEBSITE_GRAPH = {
             "legalName": "emergent co.",
             "url": "https://pumplab.co.kr/",
             "email": "info@pumplab.co.kr",
-            "description": "LeadFluid 정량·연동(페리스탈틱)·시린지펌프에 제어 소프트웨어를 얹은 실험실 펌프 시스템을 공급하고, 하드웨어를 직접 진단·수리하는 한국 A/S 전문점. 관류·연속배양 등 무인·정밀·재현이 필요한 연구에 맞춘 제어를 제공합니다.",
+            "description": "Modbus·RS485 기반 제어 소프트웨어로 브랜드와 무관하게 펌프를 제어하고, LeadFluid 정량·연동(페리스탈틱)·시린지·기어펌프와 국내 직접 A/S·3년 무상보증으로 완결된 시스템을 제공합니다. 액체(펌프)와 기체(Alicat 질량유량계·MFC) 정량 제어를 아우르는 실험실 정량 유체 제어 전문점. 관류·연속배양 등 무인·정밀·재현이 필요한 연구에 맞춘 제어를 제공합니다.",
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)",

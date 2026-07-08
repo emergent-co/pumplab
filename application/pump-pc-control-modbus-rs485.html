@@ -18,6 +18,13 @@
 {"@type":"Question","name":"통신 기능이 없는 펌프도 PC로 제어할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"External Signal Control(외부 신호 제어) 단자가 있으면 4-20mA·0-5V·0-10V 아날로그 신호로 유량을 조절할 수 있습니다. DAQ·신호발생기로 이 신호를 만들면 통신 프로토콜 없이도 PC에서 유량을 원격 조정할 수 있습니다. 다만 상태 읽기·로그 기록은 통신 방식보다 제한적입니다."}}
 ]}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"내 펌프가 PC(Modbus·RS485)로 제어되는지 확인하는 법","description":"통신 인터페이스와 프로토콜을 확인해 펌프의 PC 제어 가능 여부를 판단합니다.","step":[
+{"@type":"HowToStep","position":1,"name":"통신 인터페이스 확인","text":"사양서에 RS485·RS232·USB 통신 단자가 있는지 확인합니다."},
+{"@type":"HowToStep","position":2,"name":"통신 프로토콜 확인","text":"Modbus RTU 또는 제조사 통신 프로토콜(레지스터 맵)을 지원하는지 확인합니다."},
+{"@type":"HowToStep","position":3,"name":"외부신호 대안 확인","text":"통신이 없으면 4-20mA·0-10V 외부신호 입력 단자로 유량을 제어할 수 있는지 확인합니다."}
+]}
+</script>
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -57,6 +64,24 @@
       <li>제조사가 <b>통신 프로토콜 문서(레지스터 맵)</b>를 제공하는가</li>
       <li>통신이 없다면 <b>4-20mA·0-10V 외부신호</b> 입력 단자가 있는가</li>
     </ul>
+  </div>
+
+  <div class="sw-sec">
+    <h2>어떤 펌프가 제어되나요? — 지원 펌프 호환표</h2>
+    <p class="sw-cap" style="margin:0 0 8px">LeadFluid 전 시리즈는 물론, <b>Modbus·RS485(Modbus RTU)를 지원하는 펌프면 브랜드와 무관하게</b> 기본 제어가 됩니다.</p>
+    <div class="cmp-wrap">
+    <table class="cmp">
+      <thead><tr><th>브랜드 · 시리즈</th><th>통신 방식</th><th>소프트웨어 제어</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><th>LeadFluid 연동 BT·BQ</th><td>RS485 (Modbus RTU)</td><td>유량·RPM·방향·Start/Stop·스케줄·로그/재현</td><td>전 모델</td></tr>
+        <tr><th>LeadFluid 시린지 TYD·TFD</th><td>RS485 · USB</td><td>주입량·유량·다채널</td><td>—</td></tr>
+        <tr><th>LeadFluid 마그네틱 CT</th><td>RS485</td><td>유량·Start/Stop</td><td>—</td></tr>
+        <tr><th>LeadFluid 기어 FG·WT</th><td>RS485</td><td>유량·Start/Stop</td><td>—</td></tr>
+        <tr><th>타 브랜드 (Modbus·RS485 지원 기종)</th><td>RS485 (Modbus RTU)</td><td>유량·Start/Stop 등 기본 제어</td><td>기본 제어 무료 · 모델별 레지스터 맵 확인</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="sw-cap">타 브랜드 특정 모델의 제어 가능 여부는 <a href="/contact/">문의</a> 시 레지스터 맵 기준으로 확인해 드립니다.</p>
   </div>
 
   <div class="sw-sec">

@@ -38,6 +38,13 @@
   .home-pager button{ min-width:34px; height:34px; padding:0 10px; border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; }
   .home-pager .pg-num.on{ background:var(--green); color:#fff; border-color:var(--green); }
   .home-pager button:disabled{ opacity:.4; cursor:default; }
+  .h-subcta{ display:flex; gap:18px; flex-wrap:wrap; margin:14px 4px 0; }
+  .h-subcta a{ font-size:13.5px; font-weight:700; color:var(--green); }
+  .trust-bar{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 9px; margin:16px 4px 0; padding:11px 16px; background:#f6f8fb; border:1px solid var(--line); border-radius:10px; font-size:12.5px; font-weight:600; color:var(--ink); line-height:1.5; }
+  .trust-bar span{ color:var(--gray-2); }
+  .paper-strip{ display:block; margin:10px 4px 0; padding:11px 16px; background:var(--green-bg,#eef4ee); border:1px solid #d6e0ee; border-radius:10px; font-size:13px; font-weight:600; color:#26333f; }
+  .paper-strip b{ color:var(--ink); }
+  .paper-strip:hover{ background:#e6efe6; }
   /* 섹션 제목 */
   .h-sec-t{ font-family:var(--serif); font-size:clamp(20px,4.2vw,24px); font-weight:700; color:var(--ink); letter-spacing:-.02em; margin:42px 0 18px; }
   /* 2) 펌프실험 A-Z 타일 */
@@ -82,12 +89,12 @@
   <div class="hwrap">
 
     <!-- 1) 소프트웨어 다운로드 -->
-    <a class="h-promo" id="download" href="/requests/">
+    <a class="h-promo" id="download" href="/application/pump-pc-control-modbus-rs485">
       <div class="p-tx">
-        <div class="p-sub">정량펌프연구소 · 무료 제공</div>
-        <h1>펌프 제어 소프트웨어</h1>
-        <p>연동·정량·시린지펌프의 유량·시퀀스·모니터링을 PC로. 무인 장시간 운전 · 채널별 독립 유량 · 유량 프로파일 기록/재현.</p>
-        <span class="p-btn">무료로 받기 →</span>
+        <div class="p-sub">펌프 제어 소프트웨어 · Modbus·RS485 · 브랜드 무관</div>
+        <h1>당신의 펌프, 소프트웨어로 완성하세요</h1>
+        <p>무인 운전 · 채널 독립 유량 · 기록/재현 — Modbus·RS485면 <b>브랜드 무관</b>으로 연동·정량·시린지·기어펌프를 제어합니다.</p>
+        <span class="p-btn">내 펌프가 제어되는지 30초 확인 →</span>
       </div>
       <div class="p-ill" role="button" tabindex="0" aria-label="소프트웨어 화면 크게 보기" onclick="event.preventDefault();event.stopPropagation();openSwZoom();">
         <svg viewBox="0 0 260 168" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',sans-serif">
@@ -115,6 +122,9 @@
       </div>
     </a>
     <div id="swZoom" class="sw-zoom" onclick="this.classList.remove('on')" aria-hidden="true"></div>
+    <div class="h-subcta"><a href="/requests/">제어 SW 무료 받기 →</a><a href="/contact/">호환·견적 문의 →</a></div>
+    <div class="trust-bar">국내 직접 A/S<span>·</span>3년 무상보증<span>·</span>브랜드 무관 제어(Modbus·RS485)<span>·</span>LeadFluid = Ingersoll Rand 계열<span>·</span>Nature 계열 논문 사용</div>
+    <a class="paper-strip" href="/setups/"><b>Nature Electronics · Nature Communications · Frontiers</b> 등 실제 논문 셋업에 사용된 LeadFluid 펌프 — 논문 사례 보기 →</a>
 
     <!-- 1b) 구매 동선: 소프트웨어 → 펌프 구매 -->
     <p style="margin:16px 4px 0;font-size:14px;color:#4a4a4a;line-height:1.65">이 소프트웨어는 <b style="color:var(--ink)">정량펌프연구소에서 구매한 LeadFluid 펌프</b>에 무상 제공됩니다.
