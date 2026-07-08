@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>정량펌프 추천 — 교수님한테 칭찬받은 모델 | 셀렙</title>
+<title>정량펌프 추천 — 교수님한테 칭찬받은 모델 | 정량펌프연구소</title>
 <link rel="canonical" href="https://cellab.kr/product/">
 <meta name="robots" content="noindex,follow">
 <script>(function(){if(new URLSearchParams(location.search).get('embed')!=='1'&&window.self===window.top){location.replace('/application/pump-selection.html');}})();</script>
 <meta name="description" content="같은 정량펌프라도 실험에 따라 맞는 모델이 다릅니다. 30초 위저드로 응용·유량을 입력하면, 교수·연구자가 반복 구매하는 모델을 포함해 적합한 펌프를 추천합니다.">
-<meta name="keywords" content="정량펌프 선택, 정량펌프 추천, 페리스탈틱 펌프, 시린지펌프, 기어펌프, OEM 펌프, 분주펌프, Lead Fluid, Cellab">
+<meta name="keywords" content="정량펌프 선택, 정량펌프 추천, 페리스탈틱 펌프, 시린지펌프, 기어펌프, OEM 펌프, 분주펌프, Lead Fluid, 정량펌프연구소">
 <meta name="google-site-verification" content="Rmsvu2bCzPOi66nb9epKw-gbrb07Hyem6hM5uNu71ss" />
 <meta name="naver-site-verification" content="82636349d93e7dcacc819bd0780336585cf7fe2f" />
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="정량펌프 추천 — 교수님한테 칭찬받은 모델 | 셀렙">
+<meta property="og:title" content="정량펌프 추천 — 교수님한테 칭찬받은 모델 | 정량펌프연구소">
 <meta property="og:description" content="같은 정량펌프라도 실험에 따라 맞는 모델이 다릅니다. 30초 위저드로 응용·유량을 입력하면, 교수·연구자가 반복 구매하는 모델을 포함해 적합한 펌프를 추천합니다.">
 <meta property="og:url" content="https://cellab.kr/recommend.html">
 
@@ -135,7 +135,7 @@ async function fetchAndMatchPumps(wiz){
     renderGroupResult(box, matched);
     openWzResult();
   } catch(e){
-    box.innerHTML = '<div class="no-match"><strong>일시적으로 추천을 불러오지 못했습니다.</strong><br><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px"><a class="gr-btn" href="/Leadfluid-2025-Catalog.pdf" download>카탈로그 다운로드</a><button class="gr-btn primary" type="button" onclick="openInquiry(\'wizard:fetch-error\', window.__wizSummary||\'\')">셀렙에 직접 문의 →</button></div></div>';
+    box.innerHTML = '<div class="no-match"><strong>일시적으로 추천을 불러오지 못했습니다.</strong><br><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px"><a class="gr-btn" href="/Leadfluid-2025-Catalog.pdf" download>카탈로그 다운로드</a><button class="gr-btn primary" type="button" onclick="openInquiry(\'wizard:fetch-error\', window.__wizSummary||\'\')">정량펌프연구소에 직접 문의 →</button></div></div>';
     openWzResult();
     console.error('fetchAndMatchPumps error:', e);
   }
@@ -254,7 +254,7 @@ function renderGroupResult(box, scored){
   });
   const sortedGroups = Object.entries(groupScores).sort((a,b) => b[1] - a[1]);
   if (!sortedGroups.length){
-    box.innerHTML = '<div class="no-match"><strong>조건에 맞는 펌프를 바로 찾지 못했습니다.</strong><br><span style="font-size:12px">카탈로그를 확인하시거나 셀렙에 직접 문의해주세요.</span><br><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px"><a class="gr-btn" href="/Leadfluid-2025-Catalog.pdf" download>카탈로그 다운로드</a><button class="gr-btn primary" type="button" onclick="openInquiry(\'wizard:no-match\', window.__wizSummary||\'\')">셀렙에 직접 문의 →</button></div></div>';
+    box.innerHTML = '<div class="no-match"><strong>조건에 맞는 펌프를 바로 찾지 못했습니다.</strong><br><span style="font-size:12px">카탈로그를 확인하시거나 정량펌프연구소에 직접 문의해주세요.</span><br><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px"><a class="gr-btn" href="/Leadfluid-2025-Catalog.pdf" download>카탈로그 다운로드</a><button class="gr-btn primary" type="button" onclick="openInquiry(\'wizard:no-match\', window.__wizSummary||\'\')">정량펌프연구소에 직접 문의 →</button></div></div>';
     return;
   }
   const topGroup = sortedGroups[0][0];
@@ -307,7 +307,7 @@ function renderGroupResult(box, scored){
     html += '<a class="gr-btn primary" href="' + escapeHtml(naviUrl) + '" target="_blank" rel="noopener">나비엠알오에서 보기 →</a>';
   } else {
     html += '<a class="gr-btn" href="/Leadfluid-2025-Catalog.pdf" download>카탈로그 다운로드</a>';
-    html += '<button type="button" class="gr-btn primary" onclick="openInquiry(\'wizard:group_' + escapeAttr(topGroup) + '\', window.__wizSummary||\'\')">셀렙에 직접 문의</button>';
+    html += '<button type="button" class="gr-btn primary" onclick="openInquiry(\'wizard:group_' + escapeAttr(topGroup) + '\', window.__wizSummary||\'\')">정량펌프연구소에 직접 문의</button>';
   }
   html += '</div>';
   html += '</div>';
@@ -505,9 +505,9 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
 .faq-body p:last-child{margin-bottom:0}
 .faq-body strong{color:var(--navy);font-weight:700}
 
-/* ===== A+C 조합 — 셀렙 답변 + 시각 패턴 + 팁 ===== */
+/* ===== A+C 조합 — 정량펌프연구소 답변 + 시각 패턴 + 팁 ===== */
 
-/* C: 셀렙의 답 블록 */
+/* C: 정량펌프연구소의 답 블록 */
 .cellab-answer{display:flex;gap:12px;align-items:flex-start;margin:16px 0 14px;padding:14px 16px;background:linear-gradient(135deg,var(--soft) 0%,#fff 100%);border-left:3px solid var(--teal);border-radius:0 8px 8px 0}
 .cellab-answer .ans-mark{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;letter-spacing:.5px}
 .cellab-answer .ans-text{flex:1;font-size:14px;color:var(--text);line-height:1.7}
@@ -767,7 +767,7 @@ body.iq-locked{overflow:hidden}
 
 <header class="site-header">
   <div class="site-header-inner">
-    <a class="site-logo" href="/index.html"><span>Cellab</span> 셀렙</a>
+    <a class="site-logo" href="/index.html"><span>정량펌프연구소</span> 정량펌프연구소</a>
     <nav class="site-nav">
       <a href="/product/">제품</a>
       <a href="/requests/">개발 요청</a>
@@ -780,7 +780,7 @@ body.iq-locked{overflow:hidden}
 <section class="hero">
   <div class="container">
     <h1 class="fade-in-1">정량펌프, 어떤 걸 골라야 하나요?</h1>
-    <p class="lead fade-in-2">셀렙이 현장에서 가장 자주 받는 질문 3개에 답하시면 적합한 <b>제품군</b>을 먼저 좁혀드립니다. 그 아래는 자주 헷갈리는 부분만 펼쳐서 확인할 수 있는 가이드입니다.</p>
+    <p class="lead fade-in-2">정량펌프연구소가 현장에서 가장 자주 받는 질문 3개에 답하시면 적합한 <b>제품군</b>을 먼저 좁혀드립니다. 그 아래는 자주 헷갈리는 부분만 펼쳐서 확인할 수 있는 가이드입니다.</p>
   </div>
 </section>
 
@@ -1273,7 +1273,7 @@ body.iq-locked{overflow:hidden}
       <a href="/reviews.html">펌프셋업 리뷰</a> ·
     <a href="/recommend.html">펌프 추천</a> ·
   </div>
-  <div style="margin-top:8px">© Cellab — R&amp;D Pumps and Consumables</div>
+  <div style="margin-top:8px">© 정량펌프연구소 — R&amp;D Pumps and Consumables</div>
   <div style="margin-top:6px"><a href="mailto:emgt.yhlee@gmail.com">emgt.yhlee@gmail.com</a></div>
 </footer>
 
@@ -1442,7 +1442,7 @@ window.addEventListener('message', e=>{
     };
 
     // 결과 화면은 fetchAndMatchPumps가 wzResult에 그룹 추천 카드를 렌더함.
-    // 사용자가 [나비엠알오에서 보기] 또는 [셀렙에 직접 문의] 버튼을 명시적으로 클릭하도록.
+    // 사용자가 [나비엠알오에서 보기] 또는 [정량펌프연구소에 직접 문의] 버튼을 명시적으로 클릭하도록.
     if (typeof gtag === 'function') {
       gtag('event','wizard_recommend_v3',{use_case: useCase, flow_range: flowRange});
     }

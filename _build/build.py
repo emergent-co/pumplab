@@ -201,7 +201,7 @@ def render_category_jsonld(cat_id, cat_data, products, base_url, page_url):
                 "priceCurrency": "KRW",
                 "price": p.get('price', 0),
                 "availability": "https://schema.org/InStock",
-                "seller": {"@type": "Organization", "name": "Cellab"},
+                "seller": {"@type": "Organization", "name": "정량펌프연구소"},
                 "url": f"{base_url}Leadfluid-2025-Catalog.pdf#page={p.get('catalog_page', 1)}"
             }
         })
@@ -209,7 +209,7 @@ def render_category_jsonld(cat_id, cat_data, products, base_url, page_url):
     itemlist = {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": f"Cellab {label} 카탈로그",
+        "name": f"정량펌프연구소 {label} 카탈로그",
         "numberOfItems": len(product_items),
         "itemListElement": [
             {"@type": "ListItem", "position": i + 1, "item": pi}
@@ -506,8 +506,8 @@ ORG_WEBSITE_GRAPH = {
         {
             "@type": "Organization",
             "@id": "https://cellab.kr/#org",
-            "name": "Cellab",
-            "alternateName": "셀렙",
+            "name": "정량펌프연구소",
+            "alternateName": "Cellab",
             "legalName": "emergent co.",
             "url": "https://cellab.kr/",
             "email": "emgt.yhlee@gmail.com",
@@ -526,7 +526,7 @@ ORG_WEBSITE_GRAPH = {
         {
             "@type": "WebSite",
             "@id": "https://cellab.kr/#website",
-            "name": "Cellab",
+            "name": "정량펌프연구소",
             "url": "https://cellab.kr/",
             "publisher": {"@id": "https://cellab.kr/#org"},
             "inLanguage": "ko"
@@ -648,7 +648,7 @@ def normalize_html_urls():
 
 def main():
     print('=' * 60)
-    print('  Cellab 카테고리 페이지 빌드')
+    print('  정량펌프연구소 카테고리 페이지 빌드')
     print('=' * 60)
 
     template = read(os.path.join(SCRIPT_DIR, 'template.html'))

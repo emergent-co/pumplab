@@ -1,5 +1,5 @@
 /* ============================================================
-   Cellab 공유 헤더·푸터 (site.js) — 전 페이지 동일 구조 주입(SSOT)
+   정량펌프연구소 공유 헤더·푸터 (site.js) — 전 페이지 동일 구조 주입(SSOT)
    각 페이지의 <div id="cellab-header"></div> / <div id="cellab-footer"></div>
    자리에 아래 마크업을 넣는다. 헤더·푸터는 여기서만 고치면 전 페이지 반영.
    ============================================================ */
@@ -116,7 +116,7 @@
   var HEADER =
     '<header class="ch-top">' +
       '<button class="ch-burger" type="button" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>' +
-      '<a class="ch-brand" href="/">Cellab<b>.</b></a>' +
+      '<a class="ch-brand" href="/">정량펌프연구소</a>' +
       '<form class="ch-search" id="chSearch" role="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="search" placeholder="검색" aria-label="사이트 검색" autocomplete="off"><div class="ch-results" id="chResults"></div></form>' +
       '<a class="ch-cta" href="/contact/">문의하기</a>' +
     '</header>' +
@@ -136,11 +136,11 @@
             '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_footer">견적·구매 (나비엠알오)</a></div>' +
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:emgt.yhlee@gmail.com">emgt.yhlee@gmail.com</a>' +
-            '<span>LeadFluid 한국 공식 A/S 파트너</span><span>셀렙 구매 고객 3년 무상보증</span></div>' +
+            '<span>LeadFluid 한국 공식 A/S 파트너</span><span>정량펌프연구소 구매 고객 3년 무상보증</span></div>' +
         '</div>' +
-        '<div class="cf-co"><strong>Cellab (셀렙)</strong> · 이영현 · 사업자등록 637-05-03629<br>' +
+        '<div class="cf-co"><strong>정량펌프연구소</strong> · 이영현 · 사업자등록 637-05-03629<br>' +
           '부산광역시 북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩) · 도매·소매업 / 정보통신업</div>' +
-        '<div class="cf-cp">© 2026 Cellab. All Rights Reserved.</div>' +
+        '<div class="cf-cp">© 2026 정량펌프연구소. All Rights Reserved.</div>' +
       '</div></footer>';
 
   var REPAIR_MODAL =

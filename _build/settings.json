@@ -1,5 +1,5 @@
 {
-  "_comment": "Cellab 사이트 메타 설정 — admin DB의 일부로서 SSOT. nav_groups·wizard 옵션 어휘를 한 곳에서 관리. STRATEGY.md §7.1 마이그레이션 큐의 1순위 통합 결과.",
+  "_comment": "정량펌프연구소 사이트 메타 설정 — admin DB의 일부로서 SSOT. nav_groups·wizard 옵션 어휘를 한 곳에서 관리. STRATEGY.md §7.1 마이그레이션 큐의 1순위 통합 결과.",
   "version": 1,
   "updated_at": "2026-05-18",
   "source": "admin.html NAV_GROUPS + recommend2.html NAV_GROUP_LABELS·USE_CASE_INFO·FLOW_RANGE_BOUNDS·FLOW_LABEL 통합",
@@ -15,7 +15,7 @@
   ],
 
   "wizard": {
-    "_comment_use_cases": "위저드 Q1 선택지. recommend2.html USE_CASE_INFO에서 이전. 'unsure'는 셀렙 직접 상담 분기용 (실제 펌프 그룹 아님).",
+    "_comment_use_cases": "위저드 Q1 선택지. recommend2.html USE_CASE_INFO에서 이전. 'unsure'는 정량펌프연구소 직접 상담 분기용 (실제 펌프 그룹 아님).",
     "use_cases": [
       { "key": "S",                  "label": "S 시리즈 (속도 가변 페리스탈틱)",    "why": "일반 실험실 펌핑 — 배지·시약 연속 이송에 가장 무난한 기본형" },
       { "key": "L",                  "label": "L 시리즈 (Intelligent Flow)",       "why": "유량을 정확히 표시·제어해야 할 때" },

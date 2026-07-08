@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>무인 장시간 관류·채널별 독립 유량·기록 재현 — 소프트웨어 제어 펌프 시스템 | 셀렙</title>
+<title>무인 장시간 관류·채널별 독립 유량·기록 재현 — 소프트웨어 제어 펌프 시스템 | 정량펌프연구소</title>
 <meta name="description" content="밤샘 수동 조작 없이 관류·연속배양을 재현하세요. LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 얹어 Modbus·RS-485·Python 프로그래밍 제어, 유량 스케줄·레시피, 다펌프 동기·무인 연속운전, 운전 로그 기록·재현을 구현합니다.">
 <link rel="canonical" href="https://cellab.kr/requests/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="소프트웨어 제어 펌프 시스템 — 무인 관류·채널 독립 유량·기록 재현 | 셀렙">
+<meta property="og:title" content="소프트웨어 제어 펌프 시스템 — 무인 관류·채널 독립 유량·기록 재현 | 정량펌프연구소">
 <meta property="og:description" content="LeadFluid 펌프 + 제어 소프트웨어로 Modbus·Python 제어·유량 스케줄·다펌프 동기·기록/재현.">
 <meta property="og:url" content="https://cellab.kr/requests/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"소프트웨어 제어 펌프 시스템","serviceType":"실험실 펌프 자동 제어 시스템","provider":{"@type":"Organization","name":"Cellab","url":"https://cellab.kr/"},"areaServed":"KR","brand":{"@type":"Brand","name":"LeadFluid"},"url":"https://cellab.kr/requests/","description":"LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 결합해 Modbus·RS-485·Python 프로그래밍 제어, 유량 스케줄·레시피, 다펌프 동기·무인 연속운전, 유량 프로파일 기록·재현을 제공. 관류배양·연속배양·flow chemistry 등 무인·정밀·재현이 필요한 연구에 적합."}
+{"@context":"https://schema.org","@type":"Service","name":"소프트웨어 제어 펌프 시스템","serviceType":"실험실 펌프 자동 제어 시스템","provider":{"@type":"Organization","name":"정량펌프연구소","url":"https://cellab.kr/"},"areaServed":"KR","brand":{"@type":"Brand","name":"LeadFluid"},"url":"https://cellab.kr/requests/","description":"LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 결합해 Modbus·RS-485·Python 프로그래밍 제어, 유량 스케줄·레시피, 다펌프 동기·무인 연속운전, 유량 프로파일 기록·재현을 제공. 관류배양·연속배양·flow chemistry 등 무인·정밀·재현이 필요한 연구에 적합."}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"정량·연동펌프를 PC나 Python으로 제어할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. LeadFluid 펌프는 RS-485(Modbus RTU)를 제공해 셀렙 제어 소프트웨어로 유량·RPM·방향·기동/정지를 명령할 수 있고, Python 등 사용자 코드에서 직접 제어하도록 레지스터 맵과 예제를 제공합니다."}},
+{"@type":"Question","name":"정량·연동펌프를 PC나 Python으로 제어할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. LeadFluid 펌프는 RS-485(Modbus RTU)를 제공해 정량펌프연구소 제어 소프트웨어로 유량·RPM·방향·기동/정지를 명령할 수 있고, Python 등 사용자 코드에서 직접 제어하도록 레지스터 맵과 예제를 제공합니다."}},
 {"@type":"Question","name":"시간에 따라 유량을 자동으로 바꿀 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 특정 유량 유지, 선형 증감(ramp), 단계 스텝을 시퀀스로 짜서 레시피로 저장하고 그대로 반복 실행할 수 있어, 실험 간 동일 조건을 재사용합니다."}},
 {"@type":"Question","name":"여러 펌프를 동시에·무인으로 오래 돌릴 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"여러 펌프를 개별·동기 제어하고, 한 번 시퀀스를 걸면 며칠~몇 주를 무인 운전합니다. 운전 로그를 기록해 CSV로 내보내고 같은 프로파일을 재실행해 재현합니다."}}
 ]}
@@ -55,13 +55,44 @@
   .dl-box .req{ color:#d24; }
   .dl-box input, .dl-box textarea{ display:block; width:100%; margin-top:5px; border:1px solid var(--line); border-radius:8px; padding:9px 11px; font-size:14px; font-family:inherit; font-weight:400; color:var(--ink); box-sizing:border-box; }
   .dl-box textarea{ resize:vertical; }
+  .dl-feat{ margin:4px 0 16px; background:#f4f8f6; border:1px solid var(--line); border-radius:9px; padding:12px 14px; }
+  .dl-feat-h{ font-size:12.5px; font-weight:700; color:var(--ink); margin-bottom:9px; }
+  .dl-feat-h b{ color:var(--green); }
+  .dl-feat ul{ margin:0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:6px 12px; }
+  .dl-feat li{ font-size:12.5px; color:var(--ink); font-weight:400; position:relative; padding-left:16px; line-height:1.4; }
+  .dl-feat li::before{ content:"✓"; position:absolute; left:0; color:var(--green); font-weight:700; }
+  .dl-spec{ margin-top:18px; padding-top:16px; border-top:1px dashed var(--line); }
+  .dl-spec-h{ font-size:12.5px; font-weight:700; color:var(--ink); margin-bottom:9px; }
+  .dl-spec-h b{ color:#c67d1e; }
+  .dl-spec ul{ margin:0 0 12px; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:6px 12px; }
+  .dl-spec li{ font-size:12.5px; color:var(--ink); font-weight:400; position:relative; padding-left:16px; line-height:1.4; }
+  .dl-spec li::before{ content:"＋"; position:absolute; left:0; color:#c67d1e; font-weight:700; }
+  .dl-spec-btn{ display:block; width:100%; text-align:center; background:#fff; color:var(--ink); border:1.5px solid var(--ink); border-radius:9px; padding:12px; font-size:14px; font-weight:700; text-decoration:none; box-sizing:border-box; }
+  .dl-spec-btn:hover{ background:var(--ink); color:#fff; }
+  .rq-ver{ margin-top:24px; }
+  .rq-ver > h2{ font-family:var(--serif); font-size:19px; color:var(--ink); margin:0 0 12px; }
+  .verlog .ver{ border:1px solid var(--line); border-left:3px solid var(--green); border-radius:8px; padding:14px 16px; }
+  .vhead{ display:flex; align-items:baseline; gap:10px; margin-bottom:8px; }
+  .vnum{ font-weight:800; font-size:15px; color:var(--ink); }
+  .vdate{ font-size:12.5px; color:var(--gray-2); }
+  .verlog ul{ margin:0; padding-left:18px; }
+  .verlog li{ font-size:13.5px; color:var(--ink); line-height:1.65; }
+  .rq-acc{ margin-top:32px; border-top:1px solid var(--line); }
+  .rq-d{ border-bottom:1px solid var(--line); }
+  .rq-d > summary{ list-style:none; cursor:pointer; padding:15px 28px 15px 2px; position:relative; }
+  .rq-d > summary::-webkit-details-marker{ display:none; }
+  .rq-d > summary::after{ content:"+"; position:absolute; right:6px; top:50%; transform:translateY(-50%); font-size:20px; color:var(--gray-2); }
+  .rq-d[open] > summary::after{ content:"\2013"; }
+  .rq-d > summary .tag{ display:inline-block; margin:0 10px 0 0; vertical-align:middle; font-size:12px; font-weight:700; color:var(--green); letter-spacing:.02em; }
+  .rq-dh{ font-family:var(--serif); font-size:15.5px; font-weight:700; color:var(--ink); vertical-align:middle; }
+  .rq-dbody{ padding:0 2px 18px; }
   .dl-submit{ width:100%; background:var(--green); color:#fff; border:0; border-radius:9px; padding:13px; font-size:15px; font-weight:700; cursor:pointer; margin-top:4px; }
   .dl-submit:hover{ background:var(--green-dk); }
   .dl-thanks{ display:none; text-align:center; padding:8px 0; }
   .dl-thanks.show{ display:block; }
   .dl-ok{ width:52px; height:52px; border-radius:50%; background:var(--green-bg); color:var(--green); font-size:28px; font-weight:700; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
   .edl-meta{ font-size:12.5px; color:var(--gray); margin-top:10px; }
-  /* 프로그램 목업 (Cellab Pump Control 예시 화면) */
+  /* 프로그램 목업 (정량펌프연구소 Pump Control 예시 화면) */
   .rq .app{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 24px 60px rgba(10,37,64,.13);font-family:var(--sans);max-width:900px;margin:0 auto 0}
   .rq .app .bar{display:flex;align-items:center;gap:9px;padding:11px 14px;background:#F6F7F9;border-bottom:1px solid var(--line);font-size:13px;font-weight:700;color:var(--ink)}
   .rq .app .bar .gd{width:12px;height:12px;border-radius:3px;background:var(--green)}
@@ -109,10 +140,10 @@
       <p>관류·연속배양·flow chemistry처럼 <b>무인·정밀·재현</b>이 실험 성립 조건인 연구를 위한 소프트웨어 제어 펌프 시스템입니다. LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 얹었습니다.</p>
     </div>
 
-    <div class="rq-answer"><b>LeadFluid 펌프에 셀렙 제어 소프트웨어를 얹어, 밤샘 수동 조작 없이 관류·연속배양·flow chemistry를 무인·정밀·재현으로 운전합니다.</b> Modbus·RS-485·Python 프로그래밍 제어, 유량 스케줄·레시피, 다펌프 동기·무인 연속운전, 운전 로그 기록·재현 — Windows 프로그램으로 바로 시작하세요.</div>
+    <div class="rq-answer"><b>LeadFluid 펌프에 정량펌프연구소 제어 소프트웨어를 얹어, 밤샘 수동 조작 없이 관류·연속배양·flow chemistry를 무인·정밀·재현으로 운전합니다.</b> Modbus·RS-485·Python 프로그래밍 제어, 유량 스케줄·레시피, 다펌프 동기·무인 연속운전, 운전 로그 기록·재현 — Windows 프로그램으로 바로 시작하세요.</div>
 
-    <div class="app" aria-label="Cellab Pump Control 화면">
-      <div class="bar"><span class="gd"></span>Cellab Pump Control<span class="wctl"><span class="wbtn"><svg viewBox="0 0 12 12"><line x1="2" y1="6.5" x2="10" y2="6.5"/></svg></span><span class="wbtn"><svg viewBox="0 0 12 12"><rect x="2.5" y="2.5" width="7" height="7" rx="1"/></svg></span><span class="wbtn wclose"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></span></span></div>
+    <div class="app" aria-label="정량펌프연구소 Pump Control 화면">
+      <div class="bar"><span class="gd"></span>정량펌프연구소 Pump Control<span class="wctl"><span class="wbtn"><svg viewBox="0 0 12 12"><line x1="2" y1="6.5" x2="10" y2="6.5"/></svg></span><span class="wbtn"><svg viewBox="0 0 12 12"><rect x="2.5" y="2.5" width="7" height="7" rx="1"/></svg></span><span class="wbtn wclose"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></span></span></div>
       <div class="body">
         <div class="pane pl">
           <div class="lbl">Connection</div>
@@ -158,53 +189,73 @@
       <div class="edl-meta">Windows 10/11 · 무료 · 최신 버전 v1.0</div>
     </div>
 
+    <div class="rq-ver">
+      <h2>업데이트 이력</h2>
+      <div class="verlog">
+        <div class="ver">
+          <div class="vhead"><span class="vnum">v1.0</span><span class="vdate">2026-07 · 최초 릴리스</span></div>
+          <ul>
+            <li>LeadFluid 펌프 시작·제어 · 운전 로그 확인</li>
+            <li>RS-485 통신(펌프 1대 제어) · 실시간 유량 그래프</li>
+            <li>유량 캘리브레이션 · 펌프헤드·내경 사이즈 변경</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <div class="rq-cards" style="margin-top:38px">
       <div class="rq-c"><div class="t">프로그래밍 제어</div><p>Modbus·RS-485·Python으로 유량·시퀀스를 명령.</p></div>
       <div class="rq-c"><div class="t">스케줄·다펌프 동기</div><p>ramp·레시피로 유량 프로파일, 여러 펌프 동기 운전.</p></div>
       <div class="rq-c"><div class="t">기록·재현</div><p>운전 로그를 남기고 같은 프로파일을 그대로 재실행.</p></div>
     </div>
 
-    <section class="rq-sec" id="control">
-      <div class="tag">프로그래밍 제어</div>
-      <h2>Modbus·RS-485·Python으로 펌프를 제어합니다</h2>
-      <p>손으로 버튼을 누르지 않고 PC·스크립트로 펌프를 움직입니다. LeadFluid 정량·연동펌프는 <b>RS-485(Modbus RTU)</b> 인터페이스를 제공하며, 셀렙 제어 소프트웨어가 유량·RPM·회전 방향·기동/정지를 명령으로 주고받습니다.</p>
-      <p>직접 코드로 통합하고 싶다면 <b>Modbus 레지스터 맵과 Python 예제</b>를 제공합니다. 센서를 읽어 유량을 조정하는 폐루프, 다른 장비와의 시퀀스 연동 등 기존 실험 자동화 스크립트에 펌프를 그대로 넣을 수 있습니다.</p>
-      <p style="margin-top:12px"><a href="/application/pump-pc-control-modbus-rs485.html" style="color:var(--green);font-weight:700;font-size:14px">내 펌프가 PC 제어되는지 확인하는 법 →</a></p>
-    </section>
+    <div class="rq-acc" aria-label="소프트웨어 제어 기능 상세">
+      <details class="rq-d" id="control">
+        <summary><span class="tag">프로그래밍 제어</span><span class="rq-dh">Modbus·RS-485·Python으로 펌프를 제어합니다</span></summary>
+        <div class="rq-dbody">
+          <p>손으로 버튼을 누르지 않고 PC·스크립트로 펌프를 움직입니다. LeadFluid 정량·연동펌프는 <b>RS-485(Modbus RTU)</b> 인터페이스를 제공하며, 정량펌프연구소 제어 소프트웨어가 유량·RPM·회전 방향·기동/정지를 명령으로 주고받습니다.</p>
+          <p>직접 코드로 통합하고 싶다면 <b>Modbus 레지스터 맵과 Python 예제</b>를 제공합니다. 센서를 읽어 유량을 조정하는 폐루프, 다른 장비와의 시퀀스 연동 등 기존 실험 자동화 스크립트에 펌프를 그대로 넣을 수 있습니다.</p>
+          <p style="margin-top:12px"><a href="/application/pump-pc-control-modbus-rs485.html" style="color:var(--green);font-weight:700;font-size:14px">내 펌프가 PC 제어되는지 확인하는 법 →</a></p>
+        </div>
+      </details>
 
-    <section class="rq-sec" id="schedule">
-      <div class="tag">유량 스케줄 · 레시피</div>
-      <h2>시간에 따라 유량을 바꾸고, 레시피로 저장·반복합니다</h2>
-      <p>일정 시간 특정 유량 유지, 선형 증감(<b>ramp</b>), 단계별 스텝을 시퀀스로 짜고 저장했다가 그대로 반복 실행합니다. "언제 얼마를 흘릴지"가 실험 조건인 경우에 특히 유용합니다.</p>
-      <ul>
-        <li>관류 배지 교환 스케줄 — 정해진 주기로 유량 전환</li>
-        <li>농도 구배·조건 스윕 — 유량을 단계적으로 변경</li>
-        <li>레시피 파일 저장 — 실험 간 동일 조건 재사용</li>
-      </ul>
-      <p style="margin-top:12px"><a href="/application/pump-flow-schedule-ramp.html" style="color:var(--green);font-weight:700;font-size:14px">유량 스케줄·ramp 자동화하는 법 →</a></p>
-    </section>
+      <details class="rq-d" id="schedule">
+        <summary><span class="tag">유량 스케줄 · 레시피</span><span class="rq-dh">시간에 따라 유량을 바꾸고, 레시피로 저장·반복합니다</span></summary>
+        <div class="rq-dbody">
+          <p>일정 시간 특정 유량 유지, 선형 증감(<b>ramp</b>), 단계별 스텝을 시퀀스로 짜고 저장했다가 그대로 반복 실행합니다. "언제 얼마를 흘릴지"가 실험 조건인 경우에 특히 유용합니다.</p>
+          <ul>
+            <li>관류 배지 교환 스케줄 — 정해진 주기로 유량 전환</li>
+            <li>농도 구배·조건 스윕 — 유량을 단계적으로 변경</li>
+            <li>레시피 파일 저장 — 실험 간 동일 조건 재사용</li>
+          </ul>
+          <p style="margin-top:12px"><a href="/application/pump-flow-schedule-ramp.html" style="color:var(--green);font-weight:700;font-size:14px">유량 스케줄·ramp 자동화하는 법 →</a></p>
+        </div>
+      </details>
 
-    <section class="rq-sec" id="sync">
-      <div class="tag">다펌프 동기 · 무인 운전</div>
-      <h2>여러 펌프를 동기화하고, 며칠~몇 주를 무인으로 돌립니다</h2>
-      <p>여러 펌프를 한 화면에서 개별·동기 제어합니다. 조건군마다 다른 유량을 <b>채널별로 독립 설정</b>하거나, 여러 펌프를 같은 타임라인에 묶어 동시에 기동합니다.</p>
-      <p>한 번 시퀀스를 걸면 사람이 없어도 설정대로 유량을 유지해 <b>장시간 무인 관류·연속배양</b>을 흔들림 없이 이어갑니다. 대조군을 한 번에 돌리고, 밤사이 데이터 손실 없이 재현 데이터를 쌓습니다.</p>
-      <p style="margin-top:12px"><a href="/application/multi-pump-sync-unattended.html" style="color:var(--green);font-weight:700;font-size:14px">다펌프 동기·무인 운전 구성하는 법 →</a></p>
-    </section>
+      <details class="rq-d" id="sync">
+        <summary><span class="tag">다펌프 동기 · 무인 운전</span><span class="rq-dh">여러 펌프를 동기화하고, 며칠~몇 주를 무인으로 돌립니다</span></summary>
+        <div class="rq-dbody">
+          <p>여러 펌프를 한 화면에서 개별·동기 제어합니다. 조건군마다 다른 유량을 <b>채널별로 독립 설정</b>하거나, 여러 펌프를 같은 타임라인에 묶어 동시에 기동합니다.</p>
+          <p>한 번 시퀀스를 걸면 사람이 없어도 설정대로 유량을 유지해 <b>장시간 무인 관류·연속배양</b>을 흔들림 없이 이어갑니다. 대조군을 한 번에 돌리고, 밤사이 데이터 손실 없이 재현 데이터를 쌓습니다.</p>
+          <p style="margin-top:12px"><a href="/application/multi-pump-sync-unattended.html" style="color:var(--green);font-weight:700;font-size:14px">다펌프 동기·무인 운전 구성하는 법 →</a></p>
+        </div>
+      </details>
 
-    <section class="rq-sec" id="record">
-      <div class="tag">기록 · 재현</div>
-      <h2>운전 로그를 남기고 같은 운전을 재현합니다</h2>
-      <p>무엇을 언제 얼마나 흘렸는지 <b>유량·누적량·상태 변화를 타임스탬프와 함께 기록</b>하고 CSV로 내보내, 데이터 분석·논문 부록에 그대로 씁니다.</p>
-      <p>같은 프로파일을 다시 불러 재실행하면 이전과 동일한 운전을 <b>재현</b>할 수 있어, 재현성이 성립 조건인 연구에서 실험 간 편차를 줄입니다. <span style="color:var(--gray-2)">(정밀 유량 피드백이 필요하면 Alicat 질량유량계(MFC) 연동 폐루프 제어도 별도 지원.)</span></p>
-      <p style="margin-top:12px"><a href="/application/pump-run-log-csv-reproducibility.html" style="color:var(--green);font-weight:700;font-size:14px">운전 로그(CSV)로 실험 재현하는 법 →</a></p>
-    </section>
+      <details class="rq-d" id="record">
+        <summary><span class="tag">기록 · 재현</span><span class="rq-dh">운전 로그를 남기고 같은 운전을 재현합니다</span></summary>
+        <div class="rq-dbody">
+          <p>무엇을 언제 얼마나 흘렸는지 <b>유량·누적량·상태 변화를 타임스탬프와 함께 기록</b>하고 CSV로 내보내, 데이터 분석·논문 부록에 그대로 씁니다.</p>
+          <p>같은 프로파일을 다시 불러 재실행하면 이전과 동일한 운전을 <b>재현</b>할 수 있어, 재현성이 성립 조건인 연구에서 실험 간 편차를 줄입니다. <span style="color:var(--gray-2)">(정밀 유량 피드백이 필요하면 Alicat 질량유량계(MFC) 연동 폐루프 제어도 별도 지원.)</span></p>
+          <p style="margin-top:12px"><a href="/application/pump-run-log-csv-reproducibility.html" style="color:var(--green);font-weight:700;font-size:14px">운전 로그(CSV)로 실험 재현하는 법 →</a></p>
+        </div>
+      </details>
+    </div>
 
     <div class="sw-sec">
-      <h2>셀렙 vs 일반 펌프 단독 도입</h2>
+      <h2>정량펌프연구소 vs 일반 펌프 단독 도입</h2>
       <div class="cmp-wrap">
       <table class="cmp">
-        <thead><tr><th>항목</th><th>셀렙 (LeadFluid 한국 공식 A/S + 제어 SW)</th><th>일반 펌프 단독 도입</th></tr></thead>
+        <thead><tr><th>항목</th><th>정량펌프연구소 (LeadFluid 한국 공식 A/S + 제어 SW)</th><th>일반 펌프 단독 도입</th></tr></thead>
         <tbody>
           <tr><th>유량 스케줄·ramp 자동화</th><td class="c"><span class="yes">✔ 소프트웨어</span></td><td class="c"><span class="no">수동/미지원</span></td></tr>
           <tr><th>다펌프 동기·무인 장시간 운전</th><td class="c"><span class="yes">✔</span></td><td class="c"><span class="no">제한적</span></td></tr>
@@ -225,9 +276,9 @@
   <div class="dl-box">
     <button type="button" class="dl-close" onclick="closeDlForm()" aria-label="닫기">×</button>
     <h3>펌프 제어 소프트웨어 받기</h3>
-    <p class="dl-lead">아래 정보를 남겨주시면 <b>다운로드 링크를 이메일로</b> 보내드립니다. (무료 · 셀렙 구매 고객 무상 제공)</p>
+    <p class="dl-lead">아래 정보를 남겨주시면 <b>다운로드 링크를 이메일로</b> 보내드립니다. (무료 · 정량펌프연구소 구매 고객 무상 제공)</p>
     <form id="dlForm" action="https://formspree.io/f/mnjkzppj" method="POST">
-      <input type="hidden" name="_subject" value="[Cellab] 소프트웨어 다운로드 요청">
+      <input type="hidden" name="_subject" value="[정량펌프연구소] 소프트웨어 다운로드 요청">
       <input type="hidden" name="form_type" value="software_download">
       <label>이메일 <span class="req">*</span>
         <input type="email" name="email" required placeholder="name@lab.ac.kr">
@@ -241,15 +292,36 @@
       <label>사용 분야
         <input type="text" name="field" placeholder="세포배양 관류 / 발효 / flow chemistry ...">
       </label>
-      <label>필요 기능
-        <textarea name="features" rows="3" placeholder="예: 유량 스케줄·ramp, 다펌프 동기, 로그/재현, Modbus 제어 ..."></textarea>
-      </label>
+      <input type="hidden" name="version" value="기본기능(Basic)">
+      <div class="dl-feat">
+        <div class="dl-feat-h"><b>기본기능 버전</b>을 보내드립니다 — 포함 기능</div>
+        <ul>
+          <li>LeadFluid 펌프 시작·제어</li>
+          <li>운전 로그 확인</li>
+          <li>RS-485 통신 (펌프 1대 제어)</li>
+          <li>실시간 유량 그래프</li>
+          <li>유량 캘리브레이션</li>
+          <li>펌프헤드·내경 사이즈 변경</li>
+        </ul>
+      </div>
       <button type="submit" class="dl-submit">다운로드 링크 받기</button>
     </form>
+    <div class="dl-spec">
+      <div class="dl-spec-h"><b>특수기능 (맞춤 제어)</b> — 즉시 다운로드 불가, 요청 후 별도 제공</div>
+      <ul>
+        <li>유량 스케줄·ramp (시간별 자동 변경)</li>
+        <li>다펌프 동기·무인 장기 운전</li>
+        <li>다대(2대 이상) RS-485 동시 제어</li>
+        <li>운전 로그 CSV·재현 기록</li>
+        <li>pH·센서 연동 피드백 제어</li>
+        <li>맞춤 자동화 (사양 협의 개발)</li>
+      </ul>
+      <a href="/contact/#dev" class="dl-spec-btn" onclick="if(typeof gtag==='function')gtag('event','special_feature_request',{page:'requests'});">특수기능 요청하기 →</a>
+    </div>
     <div class="dl-thanks" id="dlThanks">
       <div class="dl-ok">✓</div>
       <h3>감사합니다!</h3>
-      <p class="dl-lead" style="margin-top:8px">입력하신 이메일로 <b>다운로드 링크</b>를 보내드리겠습니다. 필요 기능도 함께 검토해 셀렙이 곧 연락드립니다.</p>
+      <p class="dl-lead" style="margin-top:8px">입력하신 이메일로 <b>기본기능 버전 다운로드 링크</b>를 보내드리겠습니다. 추가 기능·맞춤 제어가 필요하시면 정량펌프연구소가 곧 연락드립니다.</p>
     </div>
   </div>
 </div>
@@ -268,6 +340,7 @@
       var res = await fetch(f.action, { method:'POST', headers:{'Accept':'application/json'}, body:new FormData(f) });
       if (res.ok) {
         f.style.display = 'none';
+        var spec = document.querySelector('.dl-spec'); if (spec) spec.style.display = 'none';
         document.getElementById('dlThanks').classList.add('show');
         if (typeof gtag === 'function') gtag('event','generate_lead',{ lead_type:'software_download' });
       } else { alert('전송에 실패했습니다. 다시 시도해 주세요.'); btn.disabled=false; btn.textContent=orig; }
