@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>정량펌프 추천 — 교수님한테 칭찬받은 모델 | 정량펌프연구소</title>
-<link rel="canonical" href="https://cellab.kr/product/">
+<link rel="canonical" href="https://pumplab.co.kr/product/">
 <meta name="robots" content="noindex,follow">
 <script>(function(){if(new URLSearchParams(location.search).get('embed')!=='1'&&window.self===window.top){location.replace('/application/pump-selection.html');}})();</script>
 <meta name="description" content="같은 정량펌프라도 실험에 따라 맞는 모델이 다릅니다. 30초 위저드로 응용·유량을 입력하면, 교수·연구자가 반복 구매하는 모델을 포함해 적합한 펌프를 추천합니다.">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="정량펌프 추천 — 교수님한테 칭찬받은 모델 | 정량펌프연구소">
 <meta property="og:description" content="같은 정량펌프라도 실험에 따라 맞는 모델이 다릅니다. 30초 위저드로 응용·유량을 입력하면, 교수·연구자가 반복 구매하는 모델을 포함해 적합한 펌프를 추천합니다.">
-<meta property="og:url" content="https://cellab.kr/recommend.html">
+<meta property="og:url" content="https://pumplab.co.kr/recommend.html">
 
 <!-- Google tag (gtag.js) — GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CN3E3PVQVD"></script>
@@ -508,10 +508,10 @@ details.faq[open] .faq-q-icon{transform:rotate(45deg);background:var(--teal);col
 /* ===== A+C 조합 — 정량펌프연구소 답변 + 시각 패턴 + 팁 ===== */
 
 /* C: 정량펌프연구소의 답 블록 */
-.cellab-answer{display:flex;gap:12px;align-items:flex-start;margin:16px 0 14px;padding:14px 16px;background:linear-gradient(135deg,var(--soft) 0%,#fff 100%);border-left:3px solid var(--teal);border-radius:0 8px 8px 0}
-.cellab-answer .ans-mark{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;letter-spacing:.5px}
-.cellab-answer .ans-text{flex:1;font-size:14px;color:var(--text);line-height:1.7}
-.cellab-answer .ans-text b{color:var(--navy);font-weight:700}
+.pumplab-answer{display:flex;gap:12px;align-items:flex-start;margin:16px 0 14px;padding:14px 16px;background:linear-gradient(135deg,var(--soft) 0%,#fff 100%);border-left:3px solid var(--teal);border-radius:0 8px 8px 0}
+.pumplab-answer .ans-mark{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;letter-spacing:.5px}
+.pumplab-answer .ans-text{flex:1;font-size:14px;color:var(--text);line-height:1.7}
+.pumplab-answer .ans-text b{color:var(--navy);font-weight:700}
 
 /* C: 추가 팁 카드 */
 .extra-tip{display:flex;gap:10px;align-items:flex-start;margin-top:14px;padding:11px 14px;background:#fff8e6;border:1px solid #f0d976;border-radius:8px}
@@ -892,7 +892,7 @@ body.iq-locked{overflow:hidden}
           <span class="faq-q-icon">+</span>
         </summary>
         <div class="faq-body">
-          <div class="cellab-answer">
+          <div class="pumplab-answer">
             <div class="ans-mark">A</div>
             <div class="ans-text"><b>이 4가지면 충분합니다.</b> 모델명을 모르셔도 이 순서대로 정리해두시면 후속 모델 비교에 그대로 재사용할 수 있습니다.</div>
           </div>
@@ -1490,7 +1490,7 @@ document.querySelectorAll('.faq-more-btn').forEach(btn => {
     var h = Math.ceil(el.getBoundingClientRect().height);
     if(h && Math.abs(h - last) > 2){
       last = h;
-      try{ parent.postMessage({type:'cellab-wizard-height', height:h}, '*'); }catch(e){}
+      try{ parent.postMessage({type:'pumplab-wizard-height', height:h}, '*'); }catch(e){}
     }
   }
   window.addEventListener('load', postH);

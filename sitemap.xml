@@ -1,103 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cellab.kr/</loc>
+    <loc>https://pumplab.co.kr/</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/requests/</loc>
+    <loc>https://pumplab.co.kr/requests/</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>0.6</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/contact/</loc>
+    <loc>https://pumplab.co.kr/contact/</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/trust/</loc>
+    <loc>https://pumplab.co.kr/trust/</loc>
     <lastmod>2026-07-02</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/setups/</loc>
+    <loc>https://pumplab.co.kr/setups/</loc>
     <lastmod>2026-07-02</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/setups/brain-electrode-tyd01.html</loc>
+    <loc>https://pumplab.co.kr/setups/brain-electrode-tyd01.html</loc>
     <lastmod>2026-07-02</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/setups/catheter-heparin-bt101.html</loc>
+    <loc>https://pumplab.co.kr/setups/catheter-heparin-bt101.html</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/setups/co2-capture-ct3001f.html</loc>
+    <loc>https://pumplab.co.kr/setups/co2-capture-ct3001f.html</loc>
     <lastmod>2026-06-28</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/faq/</loc>
+    <loc>https://pumplab.co.kr/faq/</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/application/</loc>
+    <loc>https://pumplab.co.kr/application/</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/application/cell-culture-perfusion.html</loc>
+    <loc>https://pumplab.co.kr/application/cell-culture-perfusion.html</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/application/pump-selection.html</loc>
+    <loc>https://pumplab.co.kr/application/pump-selection.html</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/application/tube-selection.html</loc>
+    <loc>https://pumplab.co.kr/application/tube-selection.html</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/application/chemostat-continuous-culture.html</loc>
+    <loc>https://pumplab.co.kr/application/chemostat-continuous-culture.html</loc>
     <lastmod>2026-07-02</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/application/photobioreactor-microalgae.html</loc>
+    <loc>https://pumplab.co.kr/application/photobioreactor-microalgae.html</loc>
     <lastmod>2026-07-02</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/application/flow-chemistry.html</loc>
+    <loc>https://pumplab.co.kr/application/flow-chemistry.html</loc>
     <lastmod>2026-07-02</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://cellab.kr/application/organ-on-chip-perfusion.html</loc>
+    <loc>https://pumplab.co.kr/application/organ-on-chip-perfusion.html</loc>
     <lastmod>2026-07-02</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>

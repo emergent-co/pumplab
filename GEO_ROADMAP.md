@@ -52,7 +52,7 @@
 2. **SSOT**: 콘텐츠 메타는 `_build/posts.json`에만 추가(`type=setup|guide`). → 홈·검색·sitemap·/setups/ 목록 자동 반영. 유틸/분야 페이지는 `build.py`의 `static_pages`.
 3. **신규 페이지는 `CRAWLER_LINKS`(build.py)에도 추가** — 안 하면 크롤러 nav에서 빠짐.
 4. **논문 사례 추가 규칙**: 본문에 "Lead Fluid"/"Leadfluid"가 **실제 명시**돼야 하고 **원문 인용문·DOI·모델** 필수. 못 찾으면 만들지 말 것(날조 금지). 논문이 다른 브랜드 펌프도 함께 쓰면 "LeadFluid가 담당한 역할만" 기술하고 출처 주석에 명기. 템플릿 = 기존 `setups/*.html`.
-5. **검증은 배포 후 raw HTML** — `web_fetch`로 확인. **주의: web_fetch는 URL별로 캐시**하니, 이미 받아본 URL은 **`?v=날짜` 쿼리 붙여 캐시 우회**. (예: `https://cellab.kr/setups/?v=0708`)
+5. **검증은 배포 후 raw HTML** — `web_fetch`로 확인. **주의: web_fetch는 URL별로 캐시**하니, 이미 받아본 URL은 **`?v=날짜` 쿼리 붙여 캐시 우회**. (예: `https://pumplab.co.kr/setups/?v=0708`)
 6. **마운트 지연 주의**: 샌드박스 bash가 파일도구 편집을 truncated/stale로 읽을 때가 많음(py_compile 오탐, JSON 오탐). **파일도구 Read가 authoritative.** build.py 로직 검증은 격리 스크립트로, 최종은 배포 후 web_fetch로.
 7. **URL은 무확장자**가 정답(Cloudflare가 .html→무확장자 301). 새 canonical·링크는 소스에 .html로 써도 `normalize_html_urls`가 정리하지만, 가급적 무확장자로 통일.
 

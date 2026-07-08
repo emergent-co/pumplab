@@ -1,6 +1,6 @@
 /* ============================================================
    정량펌프연구소 공유 헤더·푸터 (site.js) — 전 페이지 동일 구조 주입(SSOT)
-   각 페이지의 <div id="cellab-header"></div> / <div id="cellab-footer"></div>
+   각 페이지의 <div id="pumplab-header"></div> / <div id="pumplab-footer"></div>
    자리에 아래 마크업을 넣는다. 헤더·푸터는 여기서만 고치면 전 페이지 반영.
    ============================================================ */
 (function () {
@@ -58,8 +58,7 @@
         ['/pumps/syringe.html',         '시린지펌프'],
         ['/pumps/metering.html',        '정량펌프(연동식)'],
         ['/pumps/gear.html',            '기어펌프'],
-        ['/application/pump-selection.html', '펌프 고르는 방법'],
-        ['/application/tube-selection.html', '튜브·화학 적합성']
+        ['/application/pump-selection.html', '펌프 고르는 방법']
       ] },
     { href:'/application/', label:'실험 가이드', icon:'guide', sub:[
         ['/application/',                                     '가이드 전체'],
@@ -76,14 +75,11 @@
         ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현'],
         ['/application/pump-pc-control-modbus-rs485.html',  'PC 제어 (Modbus·RS485)']
       ] },
-    { href:'/setups/', label:'논문 사례', icon:'star' },
-    { href:'/trust/',      label:'믿고 도입할 때', icon:'shield' },
-    { href:'/contact/',    label:'문의하기',   icon:'contact' },
-    { href:'/faq/',        label:'FAQ',       icon:'faq', sub:[
-        ['/faq/#repair', '수리·A/S'],
-        ['/faq/#pump',   '펌프'],
-        ['/faq/#sw',     '소프트웨어']
-      ] }
+    { href:'/setups/', label:'근거·신뢰', icon:'shield', sub:[
+        ['/setups/', '논문 사례'],
+        ['/trust/',  '믿고 도입할 때 (A/S·정품·보증)']
+      ] },
+    { href:'/faq/',        label:'FAQ',       icon:'faq' }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
   function subOnPage(href){ var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }
@@ -198,9 +194,9 @@
   }
 
   function inject() {
-    var h = document.getElementById('cellab-header');
+    var h = document.getElementById('pumplab-header');
     if (h) h.outerHTML = HEADER;
-    var f = document.getElementById('cellab-footer');
+    var f = document.getElementById('pumplab-footer');
     if (f) f.outerHTML = FOOTER;
     var burger = document.querySelector('.ch-burger');
     var side = document.getElementById('chSide');
@@ -306,31 +302,4 @@
         link_url: href,
         page_path: location.pathname
       });
-    }
-  }, true);
-
-  // 전환(주요 이벤트) — 문의·개발요청 폼 제출
-  document.addEventListener('submit', function (e) {
-    var f = e.target;
-    if (!f || f.tagName !== 'FORM' || typeof window.gtag !== 'function') return;
-    var act = f.getAttribute('action') || '';
-    if (/formspree\.io/i.test(act) || /\/(inquiry|requests)\//.test(location.pathname)) {
-      gtag('event', 'generate_lead', {
-        form_action: act,
-        page_path: location.pathname
-      });
-    }
-  }, true);
-
-  // 전환 후보 — 나비엠알오(구매 채널) 클릭
-  document.addEventListener('click', function (e) {
-    var a = (e.target && e.target.closest) ? e.target.closest('a') : null;
-    if (!a || typeof window.gtag !== 'function') return;
-    if (/navimro\.com/i.test(a.getAttribute('href') || '')) {
-      gtag('event', 'navimro_click', {
-        link_text: (a.getAttribute('data-ga') || a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60),
-        page_path: location.pathname
-      });
-    }
-  }, true);
-})();
+ 

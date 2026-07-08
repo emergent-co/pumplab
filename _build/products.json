@@ -1,6 +1,6 @@
 {
   "_comment": "전 카테고리 통합 제품 데이터. admin.html에서 편집 → JSON 다운로드 → _build/products.json 덮어쓰기 → build.bat 실행.",
-  "_base_url": "https://cellab.kr/",
+  "_base_url": "https://pumplab.co.kr/",
   "_spec_labels": {
     "pump": [
       "시리즈",

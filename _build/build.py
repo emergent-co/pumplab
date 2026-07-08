@@ -31,7 +31,7 @@ def append_utm(url, source_campaign):
     if not url:
         return url
     sep = '&' if '?' in url else '?'
-    return url + sep + 'utm_source=cellab&utm_medium=catalog&utm_campaign=' + source_campaign
+    return url + sep + 'utm_source=pumplab&utm_medium=catalog&utm_campaign=' + source_campaign
 
 
 # 올포랩 시리즈 페이지 매핑 — 모델명 패턴으로 자동 매핑
@@ -424,7 +424,7 @@ def _crawler_nav_html():
 
 
 def inject_static_nav():
-    """모든 콘텐츠 페이지의 #cellab-footer div에 정적 링크 nav 주입(크롤러 가시화, 마커 기반 idempotent).
+    """모든 콘텐츠 페이지의 #pumplab-footer div에 정적 링크 nav 주입(크롤러 가시화, 마커 기반 idempotent).
     리다이렉트 페이지(meta refresh)는 건드리지 않음."""
     nav = _crawler_nav_html()
     START, END = '<!--CNAV_START-->', '<!--CNAV_END-->'
@@ -441,9 +441,9 @@ def inject_static_nav():
                 continue  # 리다이렉트 스텁은 제외
             if START in html:
                 html2, ok = _inject_between(html, START, END, nav)
-            elif '<div id="cellab-footer"></div>' in html:
-                html2 = html.replace('<div id="cellab-footer"></div>',
-                                     '<div id="cellab-footer">' + START + nav + END + '</div>')
+            elif '<div id="pumplab-footer"></div>' in html:
+                html2 = html.replace('<div id="pumplab-footer"></div>',
+                                     '<div id="pumplab-footer">' + START + nav + END + '</div>')
                 ok = True
             else:
                 continue
@@ -498,18 +498,18 @@ def build_setups():
         print('  [warn] setups 마커 못 찾음 — 주입 생략 (ST_CARDS/ST_COUNT/ST_ANSWER 마커 확인)')
 
 
-BASE_URL_LD = 'https://cellab.kr'
+BASE_URL_LD = 'https://pumplab.co.kr'
 
 ORG_WEBSITE_GRAPH = {
     "@context": "https://schema.org",
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://cellab.kr/#org",
+            "@id": "https://pumplab.co.kr/#org",
             "name": "정량펌프연구소",
             "alternateName": "Cellab",
             "legalName": "emergent co.",
-            "url": "https://cellab.kr/",
+            "url": "https://pumplab.co.kr/",
             "email": "emgt.yhlee@gmail.com",
             "description": "LeadFluid 정량·연동(페리스탈틱)·시린지펌프에 제어 소프트웨어를 얹은 실험실 펌프 시스템을 공급하고, 하드웨어를 직접 진단·수리하는 한국 A/S 전문점. 관류·연속배양 등 무인·정밀·재현이 필요한 연구에 맞춘 제어를 제공합니다.",
             "address": {
@@ -525,10 +525,10 @@ ORG_WEBSITE_GRAPH = {
         },
         {
             "@type": "WebSite",
-            "@id": "https://cellab.kr/#website",
+            "@id": "https://pumplab.co.kr/#website",
             "name": "정량펌프연구소",
-            "url": "https://cellab.kr/",
-            "publisher": {"@id": "https://cellab.kr/#org"},
+            "url": "https://pumplab.co.kr/",
+            "publisher": {"@id": "https://pumplab.co.kr/#org"},
             "inLanguage": "ko"
         }
     ]
@@ -639,7 +639,7 @@ def normalize_html_urls():
             if 'http-equiv="refresh"' in html:
                 continue
             new = re.sub(r'((?:href|src)=")(/[^"\s]*)\.html(?=["#?])', r'\1\2', html)
-            new = re.sub(r'(https://cellab\.kr/[^"\s]*)\.html(?=["#?])', r'\1', new)
+            new = re.sub(r'(https://pumplab\.co\.kr/[^"\s]*)\.html(?=["#?])', r'\1', new)
             if new != html:
                 write(p, new)
                 count += 1
@@ -690,7 +690,7 @@ def main():
         cat = p.get('category', 'pump')
         products_by_cat.setdefault(cat, []).append(p)
 
-    base_url = cats_config.get('_base_url', 'https://cellab.kr/')
+    base_url = cats_config.get('_base_url', 'https://pumplab.co.kr/')
     cats = cats_config['categories']
     partials_full = {'tubing': partial_tubing}
 
@@ -764,28 +764,4 @@ def main():
                     full_url = (base_url.rstrip('/') + url).replace('.html', '')  # CF 클린 URL에 맞춤
                     lastmod_line = f'\n    <lastmod>{date}</lastmod>' if date else ''
                     sitemap_lines.append(
-                        f'  <url>\n    <loc>{full_url}</loc>{lastmod_line}\n    <priority>0.9</priority>\n    <changefreq>monthly</changefreq>\n  </url>'
-                    )
-        except Exception as e:
-            print(f'  [warn] posts.json 읽기 실패 (블로그 글 sitemap 누락): {e}')
-
-    sitemap_lines.append('</urlset>')
-    write(os.path.join(ROOT_DIR, 'sitemap.xml'), '\n'.join(sitemap_lines) + '\n')
-
-    # 개발 요청 게시판 정적 렌더 (SSOT: _build/requests.json)
-    build_requests()
-
-    # GEO: 논문 사례 목록 정적 렌더 + 전 페이지 크롤러 nav 주입
-    build_setups()
-    inject_static_nav()
-    inject_head_schema()
-    normalize_html_urls()
-
-    print('\n' + '=' * 60)
-    print(f'  완료: {len(written)}개 페이지 + sitemap.xml')
-    print('=' * 60)
-
-
-if __name__ == '__main__':
-    main()
-# pumps pillar wired: peristaltic/syringe/metering/gear + hub (2026-07)
+                        f'  <url>\n    <
