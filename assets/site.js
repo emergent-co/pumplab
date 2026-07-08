@@ -260,7 +260,7 @@
    GA4 + 클릭 추적 — 전 페이지 공통 (무엇을 눌렀는지 측정)
    ============================================================ */
 (function () {
-  var GA_ID = 'G-CN3E3PVQVD';
+  var GA_ID = 'G-QPK55EPDVM';
 
   // 이미 gtag가 있는 페이지(recommend·inquiry·블로그 등)는 중복 로드 방지
   if (typeof window.gtag !== 'function') {

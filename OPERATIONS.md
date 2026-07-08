@@ -54,7 +54,7 @@
 
 ## 3. 폼 · 분석
 
-- 문의 폼: Formspree. GA4 `G-CN3E3PVQVD`, `generate_lead`는 폼 성공 응답에 발화.
+- 문의 폼: Formspree. GA4 `G-QPK55EPDVM`, `generate_lead`는 폼 성공 응답에 발화.
 
 ## 4. 배포
 
