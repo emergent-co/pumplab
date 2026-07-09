@@ -405,7 +405,7 @@ CRAWLER_LINKS = [
     ('/application/pump-flow-schedule-ramp.html', '유량 스케줄·ramp 자동화'),
     ('/application/multi-pump-sync-unattended.html', '다펌프 동기·무인 운전'),
     ('/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현(CSV)'),
-    ('/setups/', '논문 사례'),
+    ('/setups/', '도입·논문 사례'),
     ('/setups/brain-electrode-tyd01.html', '뇌 피질 인터페이싱 — 시린지펌프 TYD01-01'),
     ('/setups/catheter-heparin-bt101.html', '혈관내 카테터 코팅 — 연동펌프 BT101 L'),
     ('/setups/co2-capture-ct3001f.html', '연속 CO₂ 포집 — 마그네틱펌프 CT3001F'),
@@ -495,7 +495,7 @@ def build_setups():
     html, ok3 = _inject_between(html, '<!--ST_ANSWER_START-->', '<!--ST_ANSWER_END-->', answer_html)
     if ok1 and ok2 and ok3:
         write(html_path, html)
-        print(f'  setups/index.html: {len(setups)}개 논문 사례 정적 렌더')
+        print(f'  setups/index.html: {len(setups)}개 도입·논문 사례 정적 렌더')
     else:
         print('  [warn] setups 마커 못 찾음 — 주입 생략 (ST_CARDS/ST_COUNT/ST_ANSWER 마커 확인)')
 
@@ -539,7 +539,7 @@ ORG_WEBSITE_GRAPH = {
 BREADCRUMB_SECTIONS = {
     'application': ('실험 가이드', '/application/'),
     'pumps': ('펌프 종류', '/pumps/'),
-    'setups': ('논문 사례', '/setups/'),
+    'setups': ('도입·논문 사례', '/setups/'),
     'requests': ('소프트웨어 제어', '/requests/'),
     'trust': ('믿고 도입할 때', '/trust/'),
     'contact': ('문의하기', '/contact/'),
@@ -777,7 +777,7 @@ def main():
     # 개발 요청 게시판 정적 렌더 (SSOT: _build/requests.json)
     build_requests()
 
-    # GEO: 논문 사례 목록 정적 렌더 + 전 페이지 크롤러 nav 주입
+    # GEO: 도입·논문 사례 목록 정적 렌더 + 전 페이지 크롤러 nav 주입
     build_setups()
     inject_static_nav()
     inject_head_schema()

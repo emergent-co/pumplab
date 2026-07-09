@@ -9,8 +9,8 @@
 ## A. 완료 (라이브 확인됨)
 
 **IA 정리**
-- `셋업사례→논문 사례` rename, 「실험별 셋업 가이드」→「실험 가이드」 통일(용어 충돌 해소)
-- 3축 분리: **펌프 고를 때(선택)** / **실험 가이드(방법)** / **논문 사례(증거)**
+- `셋업사례→도입·논문 사례` rename, 「실험별 셋업 가이드」→「실험 가이드」 통일(용어 충돌 해소)
+- 3축 분리: **펌프 고를 때(선택)** / **실험 가이드(방법)** / **도입·논문 사례(증거)**
 - 실험 가이드 허브 = 방법 5편만(선택 3종은 하단 링크로 분리)
 - 리다이렉트 체인 제거(reviews→/setups/, tubing→tube-selection, recommend·recommend2→pump-selection)
 - 구형 페이지 정리(leadfluid·inquiry noindex+redirect), 위저드(recommend.html) 결과 CTA를 나비엠알오/contact로
@@ -26,7 +26,7 @@
 **콘텐츠 (SSOT = `_build/posts.json`)**
 - 소프트웨어 moat 토픽 3편: pump-flow-schedule-ramp, multi-pump-sync-unattended, pump-run-log-csv-reproducibility (`type:guide`)
 - 6대 응용분야(LeadFluid 공식 분류): biopharmaceutical, analytical-instrument, medical-device-ivd, environmental, industrial-chemical-material, food-beverage (`static_pages`)
-- **논문 사례 6편**(`type:setup`, 전부 LeadFluid 명시 원문 확인·인용문 포함):
+- **도입·논문 사례 6편**(`type:setup`, 전부 LeadFluid 명시 원문 확인·인용문 포함):
   | 파일 | 모델 | 논문/저널 | 연구군 |
   |---|---|---|---|
   | brain-electrode-tyd01 | TYD01-01 시린지 | Nature Electronics 2024 | 바이오 |
@@ -51,7 +51,7 @@
 1. **새 콘텐츠 페이지 필수**: ① 질문형 롱테일 제목 ② 첫 문단 **정답블록(80~100자)** ③ JSON-LD(TechArticle+FAQPage, BreadcrumbList는 build.py 자동) ④ 내부 링크가 raw HTML에 존재 ⑤ 1페이지=1주제.
 2. **SSOT**: 콘텐츠 메타는 `_build/posts.json`에만 추가(`type=setup|guide`). → 홈·검색·sitemap·/setups/ 목록 자동 반영. 유틸/분야 페이지는 `build.py`의 `static_pages`.
 3. **신규 페이지는 `CRAWLER_LINKS`(build.py)에도 추가** — 안 하면 크롤러 nav에서 빠짐.
-4. **논문 사례 추가 규칙**: 본문에 "Lead Fluid"/"Leadfluid"가 **실제 명시**돼야 하고 **원문 인용문·DOI·모델** 필수. 못 찾으면 만들지 말 것(날조 금지). 논문이 다른 브랜드 펌프도 함께 쓰면 "LeadFluid가 담당한 역할만" 기술하고 출처 주석에 명기. 템플릿 = 기존 `setups/*.html`.
+4. **도입·논문 사례 추가 규칙**: 본문에 "Lead Fluid"/"Leadfluid"가 **실제 명시**돼야 하고 **원문 인용문·DOI·모델** 필수. 못 찾으면 만들지 말 것(날조 금지). 논문이 다른 브랜드 펌프도 함께 쓰면 "LeadFluid가 담당한 역할만" 기술하고 출처 주석에 명기. 템플릿 = 기존 `setups/*.html`.
 5. **검증은 배포 후 raw HTML** — `web_fetch`로 확인. **주의: web_fetch는 URL별로 캐시**하니, 이미 받아본 URL은 **`?v=날짜` 쿼리 붙여 캐시 우회**. (예: `https://pumplab.co.kr/setups/?v=0708`)
 6. **마운트 지연 주의**: 샌드박스 bash가 파일도구 편집을 truncated/stale로 읽을 때가 많음(py_compile 오탐, JSON 오탐). **파일도구 Read가 authoritative.** build.py 로직 검증은 격리 스크립트로, 최종은 배포 후 web_fetch로.
 7. **URL은 무확장자**가 정답(Cloudflare가 .html→무확장자 301). 새 canonical·링크는 소스에 .html로 써도 `normalize_html_urls`가 정리하지만, 가급적 무확장자로 통일.
@@ -60,7 +60,7 @@
 
 ## C. 남은 작업 (우선순위)
 
-### 1. 논문 사례 확장 — 파일럿 연구군 커버 (임팩트 최대)
+### 1. 도입·논문 사례 확장 — 파일럿 연구군 커버 (임팩트 최대)
 현재 6편이지만 파일럿 연구군 중 **관류 세포배양·연속배양(chemostat)·광배양·flow chemistry**엔 전용 논문이 아직 없음(심장 논문은 장기 관류라 근접).
 - **RSC Lab on a Chip** (`10.1039/D0LC00493F`, 혈관신생 microfluidic, organ-on-chip/관류): 사장님이 PDF 보유. LeadFluid 명시 확인되면 organ-on-chip·관류 클러스터에 추가. (앞서 페이월로 미확인 → PDF로 검증 필요)
 - chemostat/photobioreactor/flow-chemistry 연구군에서 LeadFluid 사용 논문 확보되면 각 가이드에 증거로 연결.
