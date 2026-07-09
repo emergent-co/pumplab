@@ -485,7 +485,7 @@ def build_setups():
     count_html = f'셋업 <b>{len(setups)}</b>'
     parts = ', '.join(f'{escape(p.get("model_focus",""))}({escape(p.get("summary",""))})' for p in setups)
     answer_html = (
-        f'<b>LeadFluid(리드플루이드) 펌프는 Nature 계열 저널 연구 {len(setups)}편의 실험 셋업에 사용됐습니다.</b> '
+        f'<b>LeadFluid(리드플루이드) 펌프는 Nature 등 국제 학술지 연구 {len(setups)}편의 실험 셋업에 사용됐습니다.</b> '
         f'{parts} 등 — 각 셋업의 논문·저널·펌프 모델·DOI를 아래에서 확인하세요.'
     )
 

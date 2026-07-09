@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://pumplab.co.kr/setups/">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"정량펌프연구소가 공급하는 LeadFluid 펌프가 실제 논문에 쓰였나요?","acceptedAnswer":{"@type":"Answer","text":"네. Nature 계열 저널의 연구가 LeadFluid 정량·연동·시린지·마그네틱펌프를 실험 셋업에 사용했습니다. 각 사례의 논문명·저널·펌프 모델·용도·DOI를 정리해 두었습니다."}},
+{"@type":"Question","name":"정량펌프연구소가 공급하는 LeadFluid 펌프가 실제 논문에 쓰였나요?","acceptedAnswer":{"@type":"Answer","text":"네. Nature 등 국제 학술지의 연구가 LeadFluid 정량·연동·시린지·마그네틱펌프를 실험 셋업에 사용했습니다. 각 사례의 논문명·저널·펌프 모델·용도·DOI를 정리해 두었습니다."}},
 {"@type":"Question","name":"어떤 펌프가 어떤 연구에 쓰였나요?","acceptedAnswer":{"@type":"Answer","text":"시린지펌프 TYD01-01은 뇌 피질 인터페이싱 전극의 주입 속도 정밀 제어에, 연동펌프 BT101 L은 혈관내 카테터 헤파린 코팅의 폐루프 순환에, 마그네틱펌프 CT3001F는 연속 CO₂ 포집의 전해액 순환에 사용됐습니다."}},
 {"@type":"Question","name":"도입·논문 사례를 어떻게 활용하나요?","acceptedAnswer":{"@type":"Answer","text":"내 연구와 비슷한 셋업을 찾아 어떤 펌프·구성을 썼는지 참고하고, 같은 모델로 견적을 문의할 수 있습니다. 실제 논문에 검증된 펌프라는 점이 도입 신뢰의 근거가 됩니다."}}
 ]}
@@ -76,7 +76,7 @@
         '</div></a>';
     }).join('');
     var models = items.map(function(p){ return (p.model_focus||'').split(' ')[0]; }).filter(Boolean);
-    document.getElementById('stAnswer').innerHTML = '<b>LeadFluid(리드플루이드) 펌프는 Nature 계열 저널 연구 '+items.length+'편의 실험 셋업에 사용됐습니다.</b> 시린지펌프 TYD01-01(주입 속도 제어), 연동펌프 BT101 L(폐루프 순환), 마그네틱펌프 CT3001F(전해액 순환) 등 — 각 셋업의 논문·저널·모델·DOI를 아래에서 확인하세요.';
+    document.getElementById('stAnswer').innerHTML = '<b>LeadFluid(리드플루이드) 펌프는 Nature 등 국제 학술지 연구 '+items.length+'편의 실험 셋업에 사용됐습니다.</b> 시린지펌프 TYD01-01(주입 속도 제어), 연동펌프 BT101 L(폐루프 순환), 마그네틱펌프 CT3001F(전해액 순환) 등 — 각 셋업의 논문·저널·모델·DOI를 아래에서 확인하세요.';
   }
   fetch('/_build/posts.json').then(function(r){return r.json();}).then(function(d){
     var setups = (d.posts||[]).filter(function(p){ return p.type === 'setup'; });
