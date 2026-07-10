@@ -8,6 +8,7 @@
 
   var SEARCH_INDEX = [
     { t:'홈', u:'/', k:'소프트웨어 제어 펌프 시스템 관류', c:'페이지' },
+    { t:'리드플루이드(LeadFluid) — 공식대리점·정품·A/S', u:'/leadfluid/', k:'리드플루이드 leadfluid 공식대리점 정품 국내 as 수리 3년보증 연동 시린지 기어 마그네틱 정량펌프 baoding ingersoll rand 나비엠알오 브랜드', c:'리드플루이드' },
     { t:'펌프 종류 — 연동·시린지·기어 선택', u:'/pumps/', k:'펌프 종류 연동펌프 시린지펌프 기어펌프 정량펌프 선택 실험용 펌프', c:'펌프 종류' },
     { t:'연동펌프 (페리스탈틱)', u:'/pumps/peristaltic.html', k:'연동펌프 페리스탈틱 peristaltic 튜브펌프 무오염 저유량 관류 정량 BT101 BQ80S EF800 LeadFluid', c:'펌프 종류' },
     { t:'시린지펌프 (주사기펌프)', u:'/pumps/syringe.html', k:'시린지펌프 주사기펌프 syringe pump 초저유량 정밀 주입 미세유체 flow chemistry TYD01 TFD 다채널', c:'펌프 종류' },
@@ -59,6 +60,7 @@
         ['/application/pump-pc-control-modbus-rs485.html',  'PC 제어 (Modbus·RS485)']
       ] },
     { href:'/pumps/', label:'펌프 종류', icon:'pick', sub:[
+        ['/leadfluid/',                 '리드플루이드 (브랜드)'],
         ['/pumps/peristaltic.html',     '연동펌프'],
         ['/pumps/syringe.html',         '시린지펌프'],
         ['/pumps/metering.html',        '정량펌프(연동식)'],

@@ -381,6 +381,7 @@ def build_requests():
 # 크롤러용 사이트 전체 링크(푸터 div에 정적 주입 → site.js가 런타임에 대체)
 CRAWLER_LINKS = [
     ('/', '홈'),
+    ('/leadfluid/', '리드플루이드(LeadFluid) — 공식대리점·정품·A/S'),
     ('/requests/', '소프트웨어 제어'),
     ('/pumps/', '펌프 종류'),
     ('/pumps/peristaltic.html', '연동펌프 — 무오염 저유량 연속 이송'),
@@ -424,7 +425,7 @@ def _crawler_nav_html():
     def grp(h):
         if h.startswith('/setups/') or h in ('/', '/trust/', '/faq/', '/contact/'):
             return '사례·신뢰'
-        if h.startswith('/pumps/') or h in ('/requests/', '/application/pump-selection.html', '/application/tube-selection.html', '/application/pump-pc-control-modbus-rs485.html', '/application/pump-flow-schedule-ramp.html', '/application/multi-pump-sync-unattended.html', '/application/pump-run-log-csv-reproducibility.html'):
+        if h.startswith('/pumps/') or h in ('/leadfluid/', '/requests/', '/application/pump-selection.html', '/application/tube-selection.html', '/application/pump-pc-control-modbus-rs485.html', '/application/pump-flow-schedule-ramp.html', '/application/multi-pump-sync-unattended.html', '/application/pump-run-log-csv-reproducibility.html'):
             return '펌프·제어'
         if h in ('/application/cell-culture-perfusion.html', '/application/chemostat-continuous-culture.html', '/application/photobioreactor-microalgae.html', '/application/flow-chemistry.html', '/application/organ-on-chip-perfusion.html'):
             return '실험 기법'
@@ -748,6 +749,7 @@ def main():
     # 메인 + 상업 funnel 페이지 (loc 경로, priority, changefreq)
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
+        ('leadfluid/',    '0.9', 'monthly'),  # 리드플루이드 브랜드 랜딩
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
         ('contact/',      '0.8', 'monthly'),  # 문의하기
         ('trust/',        '0.8', 'monthly'),  # 믿고 도입할 때 (신뢰·A/S)
