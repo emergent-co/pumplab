@@ -26,7 +26,7 @@
     { t:'flow chemistry 연속흐름 반응', u:'/application/flow-chemistry.html', k:'flow chemistry 연속흐름 반응 시린지 유량비 체류시간 마그네틱 유기용매', c:'실험 가이드' },
     { t:'장기칩·오가노이드 관류', u:'/application/organ-on-chip-perfusion.html', k:'장기칩 organ on chip 오가노이드 관류 미세유체 저유량 전단응력', c:'실험 가이드' },
     { t:'실험 가이드 허브', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험 가이드' },
-    { t:'논문 사례 — LeadFluid 논문 셋업', u:'/setups/', k:'논문 nature 셋업 leadfluid 펌프 사용 사례', c:'논문 사례' },
+    { t:'도입·논문 사례 — LeadFluid 논문 셋업', u:'/setups/', k:'논문 nature 셋업 leadfluid 펌프 사용 사례', c:'도입·논문 사례' },
     { t:'국내 A/S·정품·3년보증', u:'/trust/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'믿고 도입할 때' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
     { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
@@ -35,7 +35,7 @@
     (d.posts || []).forEach(function (p) {
       SEARCH_INDEX.push({ t: p.title, u: p.url,
         k: (p.tags || []).join(' ') + ' ' + (p.journal || '') + ' ' + (p.model_focus || '') + ' ' + (p.application || ''),
-        c: (p.type === 'setup' ? '논문 사례' : '블로그') });
+        c: (p.type === 'setup' ? '도입·논문 사례' : '블로그') });
     });
   }).catch(function () {});
 
@@ -73,7 +73,7 @@
         ['/application/organ-on-chip-perfusion.html',        '장기칩·오가노이드']
       ] },
     { href:'/setups/', label:'근거·신뢰', icon:'shield', sub:[
-        ['/setups/', '논문 사례'],
+        ['/setups/', '도입·논문 사례'],
         ['/trust/',  '믿고 도입할 때 (A/S·정품·보증)']
       ] },
     { href:'/faq/',        label:'FAQ',       icon:'faq' }
@@ -130,15 +130,16 @@
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
           '<div class="cf-col"><h4>바로가기</h4>' +
-            '<a href="/requests/">소프트웨어 제어</a><a href="/application/">실험 가이드</a><a href="/setups/">논문 사례</a><a href="/faq/">FAQ</a></div>' +
+            '<a href="/requests/">소프트웨어 제어</a><a href="/application/">실험 가이드</a><a href="/setups/">도입·논문 사례</a><a href="/faq/">FAQ</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
             '<a href="/contact/#repair">수리 문의</a><a href="/contact/#dev">개발 문의</a>' +
             '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_footer">견적·구매 (나비엠알오)</a></div>' +
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:info@pumplab.co.kr">info@pumplab.co.kr</a>' +
-            '<span>LeadFluid 한국 공식 A/S 파트너</span><span>정량펌프연구소 구매 고객 3년 무상보증</span></div>' +
+            '<a href="tel:+827089832600">070-8983-2600</a>' +
+            '<span>LeadFluid 한국 공식 대리점·공인 A/S 파트너</span><span>정량펌프연구소 구매 고객 3년 무상보증</span></div>' +
         '</div>' +
-        '<div class="cf-co"><strong>정량펌프연구소</strong> · 이영현 · 사업자등록 637-05-03629<br>' +
+        '<div class="cf-co"><strong>정량펌프연구소</strong> · 이영현 · 070-8983-2600 · 사업자등록 637-05-03629<br>' +
           '부산광역시 북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩) · 도매·소매업 / 정보통신업</div>' +
         '<div class="cf-cp">© 2026 정량펌프연구소. All Rights Reserved.</div>' +
       '</div></footer>';
