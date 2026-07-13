@@ -1,19 +1,55 @@
 {
   "_comment": "콘텐츠 메타데이터(SSOT). type=setup|guide. 홈 최신 아티클=전체 날짜순, 셋업사례=/setups/(setup), 실험 가이드=/application/(guide). date는 정렬용이라 편집 가능.",
   "posts": [
-    {"type":"case","slug":"alicat-mfc-tubefurnace","title":"1500℃ 튜브퍼니스 가스 분위기 자동 제어 — Alicat MFC 도입 사례","summary":"삼흥에너지 1500℃ 튜브퍼니스 Ar·N₂ 분위기 · MFC 다중 제어 · 온도 스케줄 연동","date":"2026-07-08","tags":["배터리","MFC","가스분위기"],"url":"/setups/alicat-mfc-tubefurnace.html","model_focus":"Alicat MFC","application":"배터리·가스분위기","image":"/img/cases/alicat-mfc-tubefurnace-1.jpg"},
-    {"type":"case","slug":"leadfluid-bt101l-plating","title":"유량 캘리브레이션으로 100mL/min을 맞추다 — LeadFluid BT101L 도금 도입 사례","summary":"도금공정 다펌프 동시 제어 · 저울 실측 기반 유량 캘리브레이션 무료 제공","date":"2026-07-08","tags":["도금","연동펌프","캘리브레이션"],"url":"/setups/leadfluid-bt101l-plating.html","model_focus":"BT101L 연동","application":"도금·표면처리","image":"/img/cases/leadfluid-bt101l-calibration.jpg"},
+    {
+      "type": "case",
+      "slug": "alicat-mfc-tubefurnace",
+      "title": "1500℃ 튜브퍼니스 가스 분위기 자동 제어 — Alicat MFC 도입 사례",
+      "summary": "삼흥에너지 1500℃ 튜브퍼니스 Ar·N₂ 분위기 · MFC 다중 제어 · 온도 스케줄 연동",
+      "date": "2026-07-08",
+      "tags": [
+        "배터리",
+        "MFC",
+        "가스분위기"
+      ],
+      "url": "/setups/alicat-mfc-tubefurnace.html",
+      "model_focus": "Alicat MFC",
+      "application": "배터리·가스분위기",
+      "image": "/img/cases/alicat-mfc-tubefurnace-1.jpg"
+    },
+    {
+      "type": "case",
+      "slug": "leadfluid-bt101l-plating",
+      "title": "유량 캘리브레이션으로 100mL/min을 맞추다 — LeadFluid BT101L 도금 도입 사례",
+      "summary": "도금공정 다펌프 동시 제어 · 저울 실측 기반 유량 캘리브레이션 무료 제공",
+      "date": "2026-07-08",
+      "tags": [
+        "도금",
+        "연동펌프",
+        "캘리브레이션"
+      ],
+      "url": "/setups/leadfluid-bt101l-plating.html",
+      "model_focus": "BT101L 연동",
+      "application": "도금·표면처리",
+      "image": "/img/cases/leadfluid-bt101l-calibration.jpg"
+    },
     {
       "type": "setup",
       "slug": "heart-eshp-bt101l",
       "title": "심장 체외 관류(ex situ) — 미세연동펌프 BT101L",
       "summary": "정상체온 체외 심장 관류(ESHP) 회로 구동에 사용",
       "date": "2026-07-07",
-      "tags": ["심장", "장기관류", "연동펌프", "BT101", "Frontiers"],
+      "tags": [
+        "심장",
+        "장기관류",
+        "연동펌프",
+        "BT101",
+        "Frontiers"
+      ],
       "url": "/setups/heart-eshp-bt101l.html",
       "model_focus": "BT101L 연동",
       "application": "심장·장기관류",
-      "image": "/img/og-cover.png",
+      "image": "/img/leadfluid/BT101L.png",
       "journal": "Frontiers in Cardiovascular Medicine",
       "doi": "10.3389/fcvm.2021.639701"
     },
@@ -23,11 +59,17 @@
       "title": "혐기성 메탄산화 반응기 액상 순환 — 연동펌프 BT600S",
       "summary": "막 바이오필름 반응기(MBfR) 완전혼합 200 mL/min 순환에 사용",
       "date": "2026-07-06",
-      "tags": ["환경", "바이오필름반응기", "메탄산화", "연동펌프", "BT600S"],
+      "tags": [
+        "환경",
+        "바이오필름반응기",
+        "메탄산화",
+        "연동펌프",
+        "BT600S"
+      ],
       "url": "/setups/damo-recirculation-bt600s.html",
       "model_focus": "BT600S 연동",
       "application": "환경·수처리",
-      "image": "/img/og-cover.png",
+      "image": "/img/leadfluid/BT600S.png",
       "journal": "Environmental Science & Technology",
       "doi": "10.1021/acs.est.0c02664"
     },
@@ -37,11 +79,17 @@
       "title": "폐수 질산화 반응기 pH 제어 — 정량펌프 BQ50S",
       "summary": "SBR pH 7.5~8.5 자동 유지 산·염기 정량 투입에 사용",
       "date": "2026-07-05",
-      "tags": ["환경", "수처리", "질산화", "정량펌프", "BQ50S"],
+      "tags": [
+        "환경",
+        "수처리",
+        "질산화",
+        "정량펌프",
+        "BQ50S"
+      ],
       "url": "/setups/nitrification-ph-bq50s.html",
       "model_focus": "BQ50S 정량",
       "application": "환경·수처리",
-      "image": "/img/og-cover.png",
+      "image": "/img/leadfluid/BQ80S.png",
       "journal": "Bioresource Technology",
       "doi": "10.1016/j.biortech.2017.07.155"
     },
@@ -51,11 +99,17 @@
       "title": "뇌 피질 인터페이싱 전자 텐트 전극 — 시린지펌프 TYD01-01",
       "summary": "주입 모듈에서 주입 속도를 정밀 제어",
       "date": "2026-07-02",
-      "tags": ["바이오", "뇌공학", "시린지펌프", "TYD01-01", "Nature Electronics"],
+      "tags": [
+        "바이오",
+        "뇌공학",
+        "시린지펌프",
+        "TYD01-01",
+        "Nature Electronics"
+      ],
       "url": "/setups/brain-electrode-tyd01.html",
       "model_focus": "TYD01-01 시린지",
       "application": "바이오·뇌공학",
-      "image": "/img/og-cover.png",
+      "image": "/img/pump-guide.jpg",
       "journal": "Nature Electronics",
       "doi": "10.1038/s41928-024-01216-x"
     },
@@ -65,11 +119,17 @@
       "title": "혈관내 카테터 헤파린 코팅 — 연동펌프 BT101 L",
       "summary": "실리콘 튜브 폐루프 순환 회로 구성",
       "date": "2026-06-30",
-      "tags": ["의료", "소재", "연동펌프", "BT101", "Nature Communications"],
+      "tags": [
+        "의료",
+        "소재",
+        "연동펌프",
+        "BT101",
+        "Nature Communications"
+      ],
       "url": "/setups/catheter-heparin-bt101.html",
       "model_focus": "BT101 L 연동",
       "application": "의료·소재",
-      "image": "/img/og-cover.png",
+      "image": "/img/leadfluid/BT101L.png",
       "journal": "Nature Communications",
       "doi": "10.1038/s41467-023-44478-3"
     },
@@ -79,11 +139,17 @@
       "title": "연속 CO₂ 포집 — 마그네틱펌프 CT3001F",
       "summary": "anolyte·catholyte 전해액 순환",
       "date": "2026-06-28",
-      "tags": ["에너지", "탄소포집", "마그네틱펌프", "CT3001F", "Nature Communications"],
+      "tags": [
+        "에너지",
+        "탄소포집",
+        "마그네틱펌프",
+        "CT3001F",
+        "Nature Communications"
+      ],
       "url": "/setups/co2-capture-ct3001f.html",
       "model_focus": "CT3001F 마그네틱",
       "application": "에너지·탄소포집",
-      "image": "/img/og-cover.png",
+      "image": "/img/pump-guide.jpg",
       "journal": "Nature Communications",
       "doi": "10.1038/s41467-024-55334-3"
     },
@@ -93,9 +159,13 @@
       "title": "세포배양 관류 펌프 — 무오염 연속 관류 셋업",
       "summary": "본체가 시료에 닿지 않는 연동(페리스탈틱)펌프 셋업과 모델 선택 기준.",
       "date": "2026-06-26",
-      "tags": ["관류", "연동펌프", "세포배양"],
+      "tags": [
+        "관류",
+        "연동펌프",
+        "세포배양"
+      ],
       "url": "/application/cell-culture-perfusion.html",
-      "image": "/img/og-cover.png"
+      "image": "/img/rnd-guide.jpg"
     },
     {
       "type": "guide",
@@ -103,9 +173,13 @@
       "title": "연속배양(chemostat) 유량 제어 — 희석률 일정 유지 셋업",
       "summary": "신선 배지 유입과 배양액 배출을 같은 유량으로 유지해 정상상태 확보.",
       "date": "2026-06-24",
-      "tags": ["연속배양", "chemostat", "희석률"],
+      "tags": [
+        "연속배양",
+        "chemostat",
+        "희석률"
+      ],
       "url": "/application/chemostat-continuous-culture.html",
-      "image": "/img/og-cover.png"
+      "image": "/img/rnd-guide.jpg"
     },
     {
       "type": "guide",
@@ -113,9 +187,13 @@
       "title": "광배양·미세조류 정량공급 — 광생물반응기(PBR) 셋업",
       "summary": "CO₂·영양 배지 정량 공급과 배양액 순환으로 미세조류 생산성 확보.",
       "date": "2026-06-22",
-      "tags": ["광배양", "미세조류", "PBR"],
+      "tags": [
+        "광배양",
+        "미세조류",
+        "PBR"
+      ],
       "url": "/application/photobioreactor-microalgae.html",
-      "image": "/img/og-cover.png"
+      "image": "/img/rnd-guide.jpg"
     },
     {
       "type": "guide",
@@ -123,9 +201,13 @@
       "title": "flow chemistry 연속흐름 반응 — 유량비·체류시간 제어 셋업",
       "summary": "두 개 이상 시약 스트림을 정밀 유량비로 합류·체류시간 제어.",
       "date": "2026-06-20",
-      "tags": ["연속흐름", "flow chemistry", "유량비"],
+      "tags": [
+        "연속흐름",
+        "flow chemistry",
+        "유량비"
+      ],
       "url": "/application/flow-chemistry.html",
-      "image": "/img/og-cover.png"
+      "image": "/img/rnd-guide.jpg"
     },
     {
       "type": "guide",
@@ -133,9 +215,13 @@
       "title": "장기칩·오가노이드 관류 — 미세유체 저유량 관류 셋업",
       "summary": "µL/min 초저유량으로 미세유체 채널에 배지를 연속 관류.",
       "date": "2026-06-18",
-      "tags": ["장기칩", "오가노이드", "미세유체"],
+      "tags": [
+        "장기칩",
+        "오가노이드",
+        "미세유체"
+      ],
       "url": "/application/organ-on-chip-perfusion.html",
-      "image": "/img/og-cover.png"
+      "image": "/img/rnd-guide.jpg"
     },
     {
       "type": "guide",
@@ -143,9 +229,15 @@
       "title": "내 펌프, PC로 제어할 수 있을까 — Modbus·RS485 확인법",
       "summary": "통신 인터페이스·프로토콜·외부신호(4-20mA)로 펌프 PC 제어 가능 여부 확인.",
       "date": "2026-07-05",
-      "tags": ["Modbus", "RS485", "PC제어", "외부신호제어", "원격제어"],
+      "tags": [
+        "Modbus",
+        "RS485",
+        "PC제어",
+        "외부신호제어",
+        "원격제어"
+      ],
       "url": "/application/pump-pc-control-modbus-rs485.html",
-      "image": "/img/og-cover.png"
+      "image": "/img/automation.jpg"
     },
     {
       "type": "guide",
@@ -153,9 +245,14 @@
       "title": "펌프 유량을 시간에 따라 자동으로 바꾸는 법 — 스케줄·ramp·레시피",
       "summary": "고정·ramp·스텝을 시퀀스로 짜고 레시피로 저장해 관류 배지교환·농도 구배를 무인 재현.",
       "date": "2026-07-06",
-      "tags": ["유량스케줄", "ramp", "레시피", "실험자동화"],
+      "tags": [
+        "유량스케줄",
+        "ramp",
+        "레시피",
+        "실험자동화"
+      ],
       "url": "/application/pump-flow-schedule-ramp.html",
-      "image": "/img/og-cover.png"
+      "image": "/img/automation.jpg"
     },
     {
       "type": "guide",
@@ -163,9 +260,14 @@
       "title": "여러 펌프를 동기화해 무인으로 장시간 돌리는 법",
       "summary": "채널별 독립 유량 + 다펌프 동기 + 며칠~몇 주 무인 운전으로 대조군을 동시에.",
       "date": "2026-07-06",
-      "tags": ["다펌프동기", "채널독립유량", "무인운전", "장시간관류"],
+      "tags": [
+        "다펌프동기",
+        "채널독립유량",
+        "무인운전",
+        "장시간관류"
+      ],
       "url": "/application/multi-pump-sync-unattended.html",
-      "image": "/img/og-cover.png"
+      "image": "/img/automation.jpg"
     },
     {
       "type": "guide",
@@ -173,9 +275,14 @@
       "title": "펌프 운전 로그(CSV)로 실험을 재현하는 법",
       "summary": "유량·누적량·상태를 타임스탬프와 기록해 CSV로 내보내고, 같은 프로파일 재실행으로 재현.",
       "date": "2026-07-06",
-      "tags": ["운전로그", "CSV", "유량기록", "실험재현성"],
+      "tags": [
+        "운전로그",
+        "CSV",
+        "유량기록",
+        "실험재현성"
+      ],
       "url": "/application/pump-run-log-csv-reproducibility.html",
-      "image": "/img/og-cover.png"
+      "image": "/img/automation.jpg"
     }
   ]
 }

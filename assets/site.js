@@ -60,14 +60,18 @@
     shield:'<svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>',
     gas:'<svg viewBox="0 0 24 24"><path d="M4 9c2-2.2 4 2.2 6 0s4-2.2 6 0 4 2.2 4 2.2M4 15c2-2.2 4 2.2 6 0s4-2.2 6 0 4 2.2 4 2.2"/></svg>',
     vacuum:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3"/><path d="M12 5v2"/></svg>',
-    devices:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M7 8h3M7 12h2"/></svg>'
+    devices:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M7 8h3M7 12h2"/></svg>',
+    find:'<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
   };
   var NAV = [
     { href:'/',            label:'홈',        icon:'home' },
+    { href:'/guide/', label:'실험 셋업 가이드', icon:'find', sub:[
+        ['/setups/',  '연구 근거 (논문 인용)'],
+        ['/trust/',   '믿고 도입할 때 (A/S·정품·보증)']
+      ] },
     { href:'/pumps/', label:'액체', icon:'pick', sub:[
-        ['/pumps/peristaltic.html',     '연동펌프'],
-        ['/pumps/syringe.html',         '시린지펌프'],
-        ['/pumps/gear.html',            '기어펌프']
+        ['/pumps/', '펌프 (연동·시린지·기어)'],
+        ['/application/tube-selection.html', '튜브/피팅']
       ] },
     { href:'/gas/', label:'기체', icon:'gas', sub:[
         ['/gas/', '질량유량계(MFC)']
@@ -84,16 +88,6 @@
         ['/leadfluid/',      '리드플루이드 — 액체(펌프)'],
         ['/sh-scientific/',  '삼흥에너지 — 열처리'],
         ['/alicat/',         'ALICAT — 유량계(MFC)']
-      ] },
-    { href:'/setups/', label:'실험 셋업', icon:'guide', sub:[
-        ['/application/pump-selection.html', '펌프 고르는 방법'],
-        ['/application/tube-selection.html', '튜브 선택 가이드'],
-        ['/application/pump-flow-schedule-ramp.html',       '유량 스케줄·ramp'],
-        ['/application/multi-pump-sync-unattended.html',    '다펌프 동기·무인 운전'],
-        ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현'],
-        ['/application/', '실험 가이드 (관류·연속배양 등)'],
-        ['/setups/',      '도입·논문 사례'],
-        ['/trust/',       '믿고 도입할 때 (A/S·정품·보증)']
       ] },
     { href:'/faq/',        label:'FAQ',       icon:'faq' }
   ];

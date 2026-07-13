@@ -127,20 +127,20 @@
     <div style="margin:14px 4px 0;background:#fff;border:1px solid #e3e8ef;border-radius:14px;padding:16px 18px">
       <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px">이 소프트웨어와 호환되는 장비</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-        <a href="/leadfluid/" style="display:block;border:1px solid #e3e8ef;border-radius:10px;padding:12px;text-decoration:none;color:inherit">
+        <a href="/leadfluid/" style="display:flex;flex-direction:column;align-items:center;text-align:center;border:1px solid #e3e8ef;border-radius:10px;padding:16px 10px;text-decoration:none;color:inherit">
+          <img src="/img/logo/leadfluid.svg" alt="LeadFluid 리드플루이드" style="height:26px;width:auto;max-width:100%;object-fit:contain;margin-bottom:10px" loading="lazy">
           <div style="font-size:11px;color:var(--green);font-weight:700">액체 · 펌프</div>
-          <div style="font-size:14px;font-weight:700;margin-top:3px">리드플루이드</div>
-          <div style="font-size:11.5px;color:#5a6470;margin-top:3px">연동·시린지·기어·마그네틱</div>
+          <div style="font-size:11px;color:#5a6470;margin-top:2px">연동·시린지·기어·마그네틱</div>
         </a>
-        <a href="/sh-scientific/" style="display:block;border:1px solid #e3e8ef;border-radius:10px;padding:12px;text-decoration:none;color:inherit">
+        <a href="/sh-scientific/" style="display:flex;flex-direction:column;align-items:center;text-align:center;border:1px solid #e3e8ef;border-radius:10px;padding:16px 10px;text-decoration:none;color:inherit">
+          <img src="/img/logo/SH-logo-since.png" alt="삼흥에너지 SH Scientific" style="height:26px;width:auto;max-width:100%;object-fit:contain;margin-bottom:10px" loading="lazy">
           <div style="font-size:11px;color:var(--green);font-weight:700">열처리</div>
-          <div style="font-size:14px;font-weight:700;margin-top:3px">삼흥에너지</div>
-          <div style="font-size:11.5px;color:#5a6470;margin-top:3px">튜브퍼니스·전기로 온도 연동</div>
+          <div style="font-size:11px;color:#5a6470;margin-top:2px">튜브퍼니스·전기로 온도 연동</div>
         </a>
-        <a href="/alicat/" style="display:block;border:1px solid #e3e8ef;border-radius:10px;padding:12px;text-decoration:none;color:inherit">
+        <a href="/alicat/" style="display:flex;flex-direction:column;align-items:center;text-align:center;border:1px solid #e3e8ef;border-radius:10px;padding:16px 10px;text-decoration:none;color:inherit">
+          <img src="/img/logo/logo-alicat.svg" alt="ALICAT 질량유량계" style="height:26px;width:auto;max-width:100%;object-fit:contain;margin-bottom:10px" loading="lazy">
           <div style="font-size:11px;color:var(--green);font-weight:700">기체 · 유량계</div>
-          <div style="font-size:14px;font-weight:700;margin-top:3px">ALICAT</div>
-          <div style="font-size:11.5px;color:#5a6470;margin-top:3px">질량유량계(MFC) 동기 제어</div>
+          <div style="font-size:11px;color:#5a6470;margin-top:2px">질량유량계(MFC) 동기 제어</div>
         </a>
       </div>
     </div>
@@ -162,9 +162,9 @@
 <script src="/assets/site.js" defer></script>
 <script>
   var FALLBACK = [
-    {type:"setup", title:"뇌 피질 인터페이싱 전자 텐트 전극 — 시린지펌프 TYD01-01", summary:"주입 모듈에서 주입 속도를 정밀 제어. Nature Electronics 2024 셋업.", date:"2026-07-02", url:"/setups/brain-electrode-tyd01.html", image:"/img/og-cover.png", journal:"Nature Electronics"},
-    {type:"setup", title:"혈관내 카테터 헤파린 코팅 — 연동펌프 BT101 L", summary:"실리콘 튜브 폐루프 순환 회로 구성. Nature Communications 2024 셋업.", date:"2026-06-30", url:"/setups/catheter-heparin-bt101.html", image:"/img/og-cover.png", journal:"Nature Communications"},
-    {type:"setup", title:"연속 CO₂ 포집 — 마그네틱펌프 CT3001F", summary:"anolyte·catholyte 전해액 순환. Nature Communications 2024 셋업.", date:"2026-06-28", url:"/setups/co2-capture-ct3001f.html", image:"/img/og-cover.png", journal:"Nature Communications"}
+    {type:"setup", title:"뇌 피질 인터페이싱 전자 텐트 전극 — 시린지펌프 TYD01-01", summary:"주입 모듈에서 주입 속도를 정밀 제어. Nature Electronics 2024 셋업.", date:"2026-07-02", url:"/setups/brain-electrode-tyd01.html", image:"/img/pump-guide.jpg", journal:"Nature Electronics"},
+    {type:"setup", title:"혈관내 카테터 헤파린 코팅 — 연동펌프 BT101 L", summary:"실리콘 튜브 폐루프 순환 회로 구성. Nature Communications 2024 셋업.", date:"2026-06-30", url:"/setups/catheter-heparin-bt101.html", image:"/img/leadfluid/BT101L.png", journal:"Nature Communications"},
+    {type:"setup", title:"연속 CO₂ 포집 — 마그네틱펌프 CT3001F", summary:"anolyte·catholyte 전해액 순환. Nature Communications 2024 셋업.", date:"2026-06-28", url:"/setups/co2-capture-ct3001f.html", image:"/img/pump-guide.jpg", journal:"Nature Communications"}
   ];
   function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
   var PAGE_SIZE = 6, ALL = [], PAGE = 0;

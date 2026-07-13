@@ -381,6 +381,7 @@ def build_requests():
 # 크롤러용 사이트 전체 링크(푸터 div에 정적 주입 → site.js가 런타임에 대체)
 CRAWLER_LINKS = [
     ('/', '홈'),
+    ('/guide/', '실험 셋업 가이드 — 질문·비교로 찾는 펌프·유체 셋업'),
     ('/leadfluid/', '리드플루이드(LeadFluid) — 정품·국내 A/S·제어'),
     ('/leadfluid/bt101l/', '리드플루이드 BT101 L 연동펌프 — RS485 PC 제어'),
     ('/leadfluid/tyd01-01/', '리드플루이드 TYD01-01 시린지펌프 — 나노리터 정밀 주입'),
@@ -582,6 +583,7 @@ BREADCRUMB_SECTIONS = {
     'vacuum': ('진공', '/vacuum/'),
     'alicat': ('ALICAT', '/alicat/'),
     'sh-scientific': ('삼흥에너지', '/sh-scientific/'),
+    'guide': ('실험 셋업 가이드', '/guide/'),
 }
 
 # /application/ 내 페이지 중 섹션을 다르게 잡을 것 (펌프 가이드 / 소프트웨어 제어)
@@ -762,6 +764,7 @@ def main():
     # 메인 + 상업 funnel 페이지 (loc 경로, priority, changefreq)
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
+        ('guide/',        '0.9', 'weekly'),   # 실험 셋업 가이드 (질문·비교 인덱스)
         ('leadfluid/',    '0.9', 'monthly'),  # 리드플루이드 브랜드 랜딩
         ('leadfluid/bt101l/',    '0.8', 'monthly'),  # 모델 페이지
         ('leadfluid/tyd01-01/',  '0.8', 'monthly'),
