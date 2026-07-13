@@ -34,4 +34,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://rndsetup.com/sitemap.xm
+Sitemap: https://rndsetup.com/sitemap.xml

@@ -314,4 +314,38 @@
   document.addEventListener('click', function (e) {
     var a = (e.target && e.target.closest) ? e.target.closest('a') : null;
     if (!a || typeof window.gtag !== 'function') return;
-    var href = a.getAtt
+    var href = a.getAttribute('href') || '';
+    if (a.hasAttribute('download') || /\.(exe|zip|msi)(\?|#|$)/i.test(href)) {
+      gtag('event', 'file_download', {
+        file_name: (href.split('/').pop() || (a.textContent || '').trim()).slice(0, 60),
+        link_url: href,
+        page_path: location.pathname
+      });
+    }
+  }, true);
+
+  // 전환(주요 이벤트) — 문의·개발요청 폼 제출
+  document.addEventListener('submit', function (e) {
+    var f = e.target;
+    if (!f || f.tagName !== 'FORM' || typeof window.gtag !== 'function') return;
+    var act = f.getAttribute('action') || '';
+    if (/formspree\.io/i.test(act) || /\/(inquiry|requests)\//.test(location.pathname)) {
+      gtag('event', 'generate_lead', {
+        form_action: act,
+        page_path: location.pathname
+      });
+    }
+  }, true);
+
+  // 전환 후보 — 나비엠알오(구매 채널) 클릭
+  document.addEventListener('click', function (e) {
+    var a = (e.target && e.target.closest) ? e.target.closest('a') : null;
+    if (!a || typeof window.gtag !== 'function') return;
+    if (/navimro\.com/i.test(a.getAttribute('href') || '')) {
+      gtag('event', 'navimro_click', {
+        link_text: (a.getAttribute('data-ga') || a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60),
+        page_path: location.pathname
+      });
+    }
+  }, true);
+})();
