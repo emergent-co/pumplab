@@ -414,7 +414,7 @@ CRAWLER_LINKS = [
     ('/application/pump-flow-schedule-ramp.html', '유량 스케줄·ramp 자동화'),
     ('/application/multi-pump-sync-unattended.html', '다펌프 동기·무인 운전'),
     ('/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현(CSV)'),
-    ('/setups/', '도입·논문 사례'),
+    ('/setups/', '연구별 셋업 — 논문이 답한 셋업'),
     ('/setups/brain-electrode-tyd01.html', '뇌 피질 인터페이싱 — 시린지펌프 TYD01-01'),
     ('/setups/catheter-heparin-bt101.html', '혈관내 카테터 코팅 — 연동펌프 BT101 L'),
     ('/setups/co2-capture-ct3001f.html', '연속 CO₂ 포집 — 마그네틱펌프 CT3001F'),
@@ -480,8 +480,31 @@ def inject_static_nav():
     print(f'  정적 크롤러 nav 주입: {count}개 페이지')
 
 
+SETUP_SECTIONS = [
+    ('BIO',    {'brain-electrode-tyd01', 'catheter-heparin-bt101', 'heart-eshp-bt101l'}),
+    ('ENV',    {'damo-recirculation-bt600s', 'nitrification-ph-bq50s'}),
+    ('ENERGY', {'co2-capture-ct3001f', 'alicat-mfc-tubefurnace', 'leadfluid-bt101l-plating'}),
+]
+
+def _setup_slug(url):
+    return url.rstrip('/').split('/')[-1].replace('.html', '')
+
+def _setup_card(p):
+    tags = (p.get('tags') or [])[:2]
+    cat = ' '.join('#' + t for t in tags)
+    return (
+        f'<a class="st-row" href="{escape(p.get("url",""))}">'
+        f'<div class="st-badge">{escape(p.get("journal",""))}</div>'
+        f'<div class="st-bd">'
+        f'<div class="st-cat">{escape(cat)}</div>'
+        f'<div class="st-t">{escape(p.get("title",""))}</div>'
+        f'<div class="st-sum">셋업 — <b>{escape(p.get("model_focus",""))}</b> · {escape(p.get("summary",""))}</div>'
+        f'<div class="st-date">{escape(p.get("date",""))} · {escape(p.get("journal",""))}</div>'
+        f'</div></a>'
+    )
+
 def build_setups():
-    """_build/posts.json(type=setup) → setups/index.html 목록을 정적 렌더(크롤러 가시화, SSOT)."""
+    """_build/posts.json → setups/index.html을 연구 분야(바이오/환경/에너지)로 그룹 정적 렌더(크롤러 가시화, SSOT)."""
     posts_path = os.path.join(SCRIPT_DIR, 'posts.json')
     html_path = os.path.join(ROOT_DIR, 'setups', 'index.html')
     if not os.path.exists(posts_path) or not os.path.exists(html_path):
@@ -489,40 +512,34 @@ def build_setups():
         return
     with open(posts_path, 'r', encoding='utf-8') as f:
         posts = json.load(f).get('posts', [])
-    setups = [p for p in posts if p.get('type') == 'setup']
+    setups = [p for p in posts if p.get('type') in ('setup', 'case')]
     setups.sort(key=lambda p: p.get('date', ''), reverse=True)
-
-    cards = []
-    for p in setups:
-        tags = (p.get('tags') or [])[:2]
-        cat = ' '.join('#' + t for t in tags)
-        cards.append(
-            f'<a class="st-row" href="{escape(p.get("url",""))}">'
-            f'<div class="st-badge">{escape(p.get("journal",""))}</div>'
-            f'<div class="st-bd">'
-            f'<div class="st-cat">{escape(cat)}</div>'
-            f'<div class="st-t">{escape(p.get("title",""))}</div>'
-            f'<div class="st-sum">셋업 — <b>{escape(p.get("model_focus",""))}</b> · {escape(p.get("summary",""))}</div>'
-            f'<div class="st-date">{escape(p.get("date",""))} · {escape(p.get("journal",""))}</div>'
-            f'</div></a>'
-        )
-    cards_html = '\n'.join(cards)
-    count_html = f'셋업 <b>{len(setups)}</b>'
-    parts = ', '.join(f'{escape(p.get("model_focus",""))}({escape(p.get("summary",""))})' for p in setups)
-    answer_html = (
-        f'<b>LeadFluid(리드플루이드) 펌프는 Nature 등 국제 학술지 연구 {len(setups)}편의 실험 셋업에 사용됐습니다.</b> '
-        f'{parts} 등 — 각 셋업의 논문·저널·펌프 모델·DOI를 아래에서 확인하세요.'
-    )
+    papers = [p for p in setups if p.get('type') == 'setup']
 
     html = read(html_path)
-    html, ok1 = _inject_between(html, '<!--ST_CARDS_START-->', '<!--ST_CARDS_END-->', cards_html)
-    html, ok2 = _inject_between(html, '<!--ST_COUNT_START-->', '<!--ST_COUNT_END-->', count_html)
-    html, ok3 = _inject_between(html, '<!--ST_ANSWER_START-->', '<!--ST_ANSWER_END-->', answer_html)
-    if ok1 and ok2 and ok3:
+    total_ok = True
+    for const, slugs in SETUP_SECTIONS:
+        group = [p for p in setups if _setup_slug(p.get('url', '')) in slugs]
+        cards_html = '\n'.join(_setup_card(p) for p in group) or '<div class="st-empty">준비 중입니다.</div>'
+        html, ok = _inject_between(html, f'<!--SEC_{const}_START-->', f'<!--SEC_{const}_END-->', cards_html)
+        total_ok = total_ok and ok
+
+    count_html = f'셋업 <b>{len(setups)}</b> · 연구 분야 3'
+    parts = ', '.join(f'{escape(p.get("model_focus",""))}({escape(p.get("summary",""))})' for p in papers)
+    answer_html = (
+        f'<b>LeadFluid(리드플루이드) 펌프는 Nature 등 국제 학술지 연구 {len(papers)}편의 실험 셋업에 사용됐습니다.</b> '
+        f'바이오·의료, 환경·수처리, 에너지·재료·열처리 분야별로 정리했습니다 — {parts} 등. '
+        f'각 셋업의 논문·저널·펌프 모델·DOI를 아래에서 확인하세요.'
+    )
+    html, okc = _inject_between(html, '<!--ST_COUNT_START-->', '<!--ST_COUNT_END-->', count_html)
+    html, oka = _inject_between(html, '<!--ST_ANSWER_START-->', '<!--ST_ANSWER_END-->', answer_html)
+    html, _oks = _inject_between(html, '<!--ST_CARDS_START-->', '<!--ST_CARDS_END-->', '')
+
+    if total_ok and okc and oka:
         write(html_path, html)
-        print(f'  setups/index.html: {len(setups)}개 도입·논문 사례 정적 렌더')
+        print(f'  setups/index.html: {len(setups)}개 셋업 · 3개 연구 분야 그룹 정적 렌더')
     else:
-        print('  [warn] setups 마커 못 찾음 — 주입 생략 (ST_CARDS/ST_COUNT/ST_ANSWER 마커 확인)')
+        print('  [warn] setups 마커 못 찾음 — 주입 생략 (SEC_*/ST_COUNT/ST_ANSWER 마커 확인)')
 
 
 BASE_URL_LD = 'https://rndsetup.com'
@@ -574,7 +591,7 @@ ORG_WEBSITE_GRAPH = {
 BREADCRUMB_SECTIONS = {
     'application': ('실험 가이드', '/application/'),
     'pumps': ('펌프 종류', '/pumps/'),
-    'setups': ('도입·논문 사례', '/setups/'),
+    'setups': ('연구별 셋업', '/setups/'),
     'requests': ('소프트웨어 제어', '/requests/'),
     'trust': ('믿고 도입할 때', '/trust/'),
     'contact': ('문의하기', '/contact/'),
