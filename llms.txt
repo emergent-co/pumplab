@@ -42,7 +42,7 @@
 - [펌프 고르기(선택)](https://rndsetup.com/application/pump-selection): 펌프 종류·선택 기준
   - [튜브 선택 가이드](https://rndsetup.com/application/tube-selection): 재질별 특성·화학 적합성
   - [내 펌프가 PC 제어(Modbus·RS485)가 되는지 확인하는 법](https://rndsetup.com/application/pump-pc-control-modbus-rs485)
-- [도입·논문 사례(증거)](https://rndsetup.com/setups/): 유명 논문이 어떤 LeadFluid 펌프를 어떤 셋업에 썼나
+- [연구별 셋업 — 논문이 답한 셋업(증거)](https://rndsetup.com/setups/): 바이오·의료 / 환경·수처리 / 에너지·재료·열처리 분야별로, 유명 논문이 어떤 LeadFluid 펌프를 어떤 셋업에 썼나
   - [뇌 피질 인터페이싱 — 시린지펌프 TYD01-01 (Nature Electronics 2024)](https://rndsetup.com/setups/brain-electrode-tyd01)
   - [혈관내 카테터 코팅 — 연동펌프 BT101 L (Nature Communications 2024)](https://rndsetup.com/setups/catheter-heparin-bt101)
   - [연속 CO₂ 포집 — 마그네틱펌프 CT3001F (Nature Communications 2024)](https://rndsetup.com/setups/co2-capture-ct3001f)
@@ -52,7 +52,7 @@
 - 도입 사례(실증): 실험셋업연구소가 실제 납품·구성한 사례
   - [1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC](https://rndsetup.com/setups/alicat-mfc-tubefurnace)
   - [도금 다펌프 제어·유량 캘리브레이션 — LeadFluid BT101L](https://rndsetup.com/setups/leadfluid-bt101l-plating)
-- [믿고 도입할 때](https://rndsetup.com/trust/): 국내 A/S·정품·3년 보증·중국산 인식 대응(Ingersoll Rand 계열·CE·RoHS)
+- 국내 A/S·정품·3년 보증·중국산 인식 대응(Ingersoll Rand 계열·CE·RoHS) 정보는 [리드플루이드 페이지](https://rndsetup.com/leadfluid/)에 통합
 - [자주 묻는 질문(FAQ)](https://rndsetup.com/faq/): 수리·A/S·펌프·소프트웨어
 - [문의하기](https://rndsetup.com/contact/): 실험 상담·수리·개발·견적
 - [카탈로그 PDF](https://rndsetup.com/Leadfluid-2025-Catalog.pdf): LeadFluid 2025 공식 카탈로그

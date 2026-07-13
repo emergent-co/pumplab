@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>무인 장시간 관류·채널별 독립 유량·기록 재현 — 소프트웨어 제어 펌프 시스템 | 실험셋업연구소</title>
-<meta name="description" content="밤샘 수동 조작 없이 관류·연속배양을 재현하세요. 리드플루이드(LeadFluid) 정량·연동·시린지펌프에 제어 소프트웨어를 얹어 Modbus·RS-485·Python 프로그래밍 제어, 유량 스케줄·레시피, 다펌프 동기·무인 연속운전, 운전 로그 기록·재현을 구현합니다.">
+<title>통합 제어 소프트웨어 — 펌프·질량유량계(MFC)·진공·온도 스케줄을 한 프로그램에서 무인·재현 | 실험셋업연구소</title>
+<meta name="description" content="밤샘 수동 조작 없이 관류·연속배양·flow chemistry를 재현하세요. Modbus·RS-485·Python으로 펌프 유량, Alicat 질량유량계(MFC) 가스 유량, 진공, 온도 스케줄을 한 프로그램에서 통합 제어하고, 스케줄·다장비 동기·운전 로그/재현으로 무인 운전합니다.">
 <link rel="canonical" href="https://rndsetup.com/requests/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="소프트웨어 제어 펌프 시스템 — 무인 관류·채널 독립 유량·기록 재현 | 실험셋업연구소">
-<meta property="og:description" content="LeadFluid 펌프 + 제어 소프트웨어로 Modbus·Python 제어·유량 스케줄·다펌프 동기·기록/재현.">
+<meta property="og:title" content="통합 제어 소프트웨어 — 펌프·질량유량계(MFC)·진공·온도를 한 프로그램에서 | 실험셋업연구소">
+<meta property="og:description" content="Modbus·RS-485·Python으로 펌프 유량, Alicat MFC 가스 유량, 진공, 온도 스케줄을 한 프로그램에서 통합 제어·스케줄·다장비 동기·기록/재현.">
 <meta property="og:url" content="https://rndsetup.com/requests/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"소프트웨어 제어 펌프 시스템","serviceType":"실험실 펌프 자동 제어 시스템","provider":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"areaServed":"KR","brand":{"@type":"Brand","name":"LeadFluid"},"url":"https://rndsetup.com/requests/","description":"LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 결합해 Modbus·RS-485·Python 프로그래밍 제어, 유량 스케줄·레시피, 다펌프 동기·무인 연속운전, 유량 프로파일 기록·재현을 제공. 관류배양·연속배양·flow chemistry 등 무인·정밀·재현이 필요한 연구에 적합."}
+{"@context":"https://schema.org","@type":"Service","name":"통합 제어 소프트웨어","serviceType":"실험실 장비 통합 자동 제어 소프트웨어","provider":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"areaServed":"KR","url":"https://rndsetup.com/requests/","description":"펌프 유량, 질량유량계(MFC) 가스 유량, 진공, 온도 스케줄을 한 프로그램에서 통합 제어하는 Windows 소프트웨어. Modbus·RS-485·Python 프로그래밍 제어, 유량·가스 스케줄·레시피, 다장비 동기·무인 연속운전, 운전 로그 기록·재현을 제공. LeadFluid 펌프, Alicat 질량유량계 등을 제어 대상으로 지원하며 관류배양·연속배양·flow chemistry 등 무인·정밀·재현이 필요한 연구에 적합."}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"정량·연동펌프를 PC나 Python으로 제어할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. LeadFluid 펌프는 RS-485(Modbus RTU)를 제공해 실험셋업연구소 제어 소프트웨어로 유량·RPM·방향·기동/정지를 명령할 수 있고, Python 등 사용자 코드에서 직접 제어하도록 레지스터 맵과 예제를 제공합니다."}},
-{"@type":"Question","name":"시간에 따라 유량을 자동으로 바꿀 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 특정 유량 유지, 선형 증감(ramp), 단계 스텝을 시퀀스로 짜서 레시피로 저장하고 그대로 반복 실행할 수 있어, 실험 간 동일 조건을 재사용합니다."}},
-{"@type":"Question","name":"여러 펌프를 동시에·무인으로 오래 돌릴 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"여러 펌프를 개별·동기 제어하고, 한 번 시퀀스를 걸면 며칠~몇 주를 무인 운전합니다. 운전 로그를 기록해 CSV로 내보내고 같은 프로파일을 재실행해 재현합니다."}}
+{"@type":"Question","name":"펌프·질량유량계·진공을 하나의 소프트웨어로 통합 제어할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. Modbus·RS-485를 지원하는 장비라면 펌프 유량, Alicat 등 질량유량계(MFC)의 가스 유량, 진공, 온도 스케줄을 한 프로그램에서 함께 제어하고, Python 등 사용자 코드로도 직접 제어하도록 예제를 제공합니다. 정확한 레지스터·명령은 각 장비 매뉴얼을 따릅니다."}},
+{"@type":"Question","name":"Python으로 유량을 시간에 따라 자동으로 바꿀 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 특정 유량 유지, 선형 증감(ramp), 단계 스텝을 Modbus 레지스터 쓰기 시퀀스로 짜서 레시피로 저장하고 그대로 반복 실행할 수 있어, 실험 간 동일 조건을 재사용합니다."}},
+{"@type":"Question","name":"여러 장비를 동시에·무인으로 오래 돌릴 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"여러 펌프·질량유량계를 개별·동기 제어하고, 한 번 시퀀스를 걸면 며칠~몇 주를 무인 운전합니다. 운전 로그를 CSV로 기록해 같은 프로파일을 재실행해 재현합니다."}}
 ]}
 </script>
 <style>
@@ -148,11 +148,11 @@
   <div class="rqw">
 
     <div class="rq-hero">
-      <h1>밤샘 없이, 흔들림 없이 — 실험을 프로그램이 대신 지킵니다</h1>
-      <p>관류·연속배양·flow chemistry처럼 <b>무인·정밀·재현</b>이 실험 성립 조건인 연구를 위한 소프트웨어 제어 펌프 시스템입니다. LeadFluid 정량·연동·시린지펌프에 제어 소프트웨어를 얹었습니다.</p>
+      <h1>하나의 소프트웨어로 — 펌프·질량유량계·진공·자동화를 무인·재현으로</h1>
+      <p>관류·연속배양·flow chemistry처럼 <b>무인·정밀·재현</b>이 실험 성립 조건인 연구를 위한 통합 제어 소프트웨어입니다. 액체(펌프)·기체(질량유량계 MFC)·진공·온도 스케줄을 <b>한 프로그램</b>에서 함께 제어합니다.</p>
     </div>
 
-    <div class="rq-answer"><b>LeadFluid 펌프에 실험셋업연구소 제어 소프트웨어를 얹어, 밤샘 수동 조작 없이 관류·연속배양·flow chemistry를 무인·정밀·재현으로 운전합니다.</b> Modbus·RS-485·Python 프로그래밍 제어, 유량 스케줄·레시피, 다펌프 동기·무인 연속운전, 운전 로그 기록·재현 — Windows 프로그램으로 바로 시작하세요.</div>
+    <div class="rq-answer"><b>Modbus·RS-485·Python으로 펌프 유량, Alicat 질량유량계(MFC) 가스 유량, 진공, 온도 스케줄 연동까지 한 프로그램에서 제어</b>하고, 스케줄·다장비 동기·로그/재현으로 밤샘 없이 운전합니다. 유량 스케줄·레시피, 여러 장비 동기·무인 연속운전, 운전 로그 기록·재현 — Windows 프로그램으로 바로 시작하세요.</div>
 
     <div class="app" aria-label="실험셋업연구소 Pump Control 화면">
       <div class="bar"><span class="gd"></span>실험셋업연구소 Pump Control<span class="wctl"><span class="wbtn"><svg viewBox="0 0 12 12"><line x1="2" y1="6.5" x2="10" y2="6.5"/></svg></span><span class="wbtn"><svg viewBox="0 0 12 12"><rect x="2.5" y="2.5" width="7" height="7" rx="1"/></svg></span><span class="wbtn wclose"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></span></span></div>
@@ -216,39 +216,110 @@
     </div>
 
     <div class="rq-cards" style="margin-top:38px">
-      <div class="rq-c"><div class="t">프로그래밍 제어</div><p>Modbus·RS-485·Python으로 유량·시퀀스를 명령.</p></div>
-      <div class="rq-c"><div class="t">스케줄·다펌프 동기</div><p>ramp·레시피로 유량 프로파일, 여러 펌프 동기 운전.</p></div>
-      <div class="rq-c"><div class="t">기록·재현</div><p>운전 로그를 남기고 같은 프로파일을 그대로 재실행.</p></div>
+      <div class="rq-c"><div class="t">통합 프로그래밍 제어</div><p>Modbus·RS-485·Python으로 펌프 유량·MFC 가스 유량·진공·온도를 한 프로그램에서 명령.</p></div>
+      <div class="rq-c"><div class="t">스케줄·다장비 동기</div><p>ramp·레시피로 유량·가스 프로파일, 여러 펌프·질량유량계 동기 운전.</p></div>
+      <div class="rq-c"><div class="t">기록·재현</div><p>운전 로그(CSV)를 남기고 같은 프로파일을 그대로 재실행.</p></div>
     </div>
 
     <section class="sw-sec" id="control">
-      <h2>프로그래밍 제어 — Modbus·RS-485·Python으로 펌프를 제어합니다</h2>
-          <p>손으로 버튼을 누르지 않고 PC·스크립트로 펌프를 움직입니다. LeadFluid 정량·연동펌프는 <b>RS-485(Modbus RTU)</b> 인터페이스를 제공하며, 실험셋업연구소 제어 소프트웨어가 유량·RPM·회전 방향·기동/정지를 명령으로 주고받습니다.</p>
-          <p>직접 코드로 통합하고 싶다면 <b>Modbus 레지스터 맵과 Python 예제</b>를 제공합니다. 센서를 읽어 유량을 조정하는 폐루프, 다른 장비와의 시퀀스 연동 등 기존 실험 자동화 스크립트에 펌프를 그대로 넣을 수 있습니다.</p>
+      <h2 style="font-family:var(--serif);font-size:clamp(19px,4.4vw,23px);font-weight:600;color:var(--ink)">프로그래밍 제어(Python) — 자주 묻는 질문</h2>
+      <div class="rq-answer" style="margin:14px 0 6px">손으로 버튼을 누르지 않고 PC·스크립트로 장비를 움직입니다. <b>Modbus(RTU)·RS-485를 제공하는 장비</b>라면 펌프 유량, 질량유량계(MFC) 가스 유량, 진공·온도를 같은 코드 흐름에서 명령할 수 있습니다. 아래는 개념 예시이며, <b>정확한 레지스터 주소·명령·바이트오더는 반드시 각 장비 매뉴얼</b>을 따르세요.</div>
 
-          <div style="margin-top:14px">
-            <p style="margin:0 0 8px;font-size:14px"><b>연결</b> — RS485 · Modbus RTU · <b>9600 · 8데이터 · Even 패리티 · 1스톱</b> · 슬레이브 주소 1–247</p>
-            <table style="width:100%;border-collapse:collapse;font-size:13px;margin:0 0 12px">
-              <thead><tr style="background:#f2f4f5;text-align:left"><th style="padding:7px 10px;border:1px solid #e2e6e8">기능</th><th style="padding:7px 10px;border:1px solid #e2e6e8">레지스터</th><th style="padding:7px 10px;border:1px solid #e2e6e8">값</th></tr></thead>
-              <tbody>
-                <tr><td style="padding:7px 10px;border:1px solid #e2e6e8">유량 설정(ml/min)</td><td style="padding:7px 10px;border:1px solid #e2e6e8">4015 (float)</td><td style="padding:7px 10px;border:1px solid #e2e6e8">단위 4022 먼저</td></tr>
-                <tr><td style="padding:7px 10px;border:1px solid #e2e6e8">방향</td><td style="padding:7px 10px;border:1px solid #e2e6e8">4023</td><td style="padding:7px 10px;border:1px solid #e2e6e8">0=CW · 1=CCW</td></tr>
-                <tr><td style="padding:7px 10px;border:1px solid #e2e6e8">Start / Stop</td><td style="padding:7px 10px;border:1px solid #e2e6e8">4126</td><td style="padding:7px 10px;border:1px solid #e2e6e8">1 · 0</td></tr>
-                <tr><td style="padding:7px 10px;border:1px solid #e2e6e8">현재 회전수 읽기</td><td style="padding:7px 10px;border:1px solid #e2e6e8">1002 (float)</td><td style="padding:7px 10px;border:1px solid #e2e6e8">FC 04</td></tr>
-              </tbody>
-            </table>
-            <pre style="background:#0d1117;color:#e6edf3;padding:14px;border-radius:8px;overflow:auto;font-size:13px;line-height:1.55;margin:0"><code>import minimalmodbus
-p = minimalmodbus.Instrument('COM3', 1)
-p.serial.baudrate = 9600
-p.serial.parity = minimalmodbus.serial.PARITY_EVEN   # 8E1
-CDAB = minimalmodbus.BYTEORDER_LITTLE_SWAP
-p.write_register(4022, 2, functioncode=6)   # 단위 ml/min
-p.write_float(4015, 12.5, byteorder=CDAB)   # 유량 12.5
-p.write_register(4126, 1, functioncode=6)   # Start (BT101L)</code></pre>
-            <p style="margin:10px 0 0;font-size:13px;color:#667">전체 레지스터 맵(S/L/F 시리즈 · 시린지 · 기어 포함)은 구매 고객에게 제공합니다.</p>
+      <div class="rq-acc" style="margin-top:8px;border-top:0" aria-label="Python 제어 Q&amp;A">
+        <details class="rq-d" open id="q-flow-schedule">
+          <summary><span class="tag">Q</span><span class="rq-dh">Python으로 펌프 유량을 시간에 따라 바꾸려면?</span></summary>
+          <div class="rq-dbody">
+            <p><b>유량 setpoint 레지스터에 값을 순서대로 쓰면 됩니다.</b> 유지 → 증감(ramp) → 스텝을 리스트로 만들고 각 구간마다 <code>write</code> 후 대기하면, 사람이 없어도 시간표대로 유량이 바뀝니다.</p>
+            <pre style="background:#0d1117;color:#e6edf3;padding:14px;border-radius:8px;overflow:auto;font-size:13px;line-height:1.55;margin:10px 0 0"><code>import minimalmodbus, time
+# 레지스터 주소·바이트오더는 장비 매뉴얼 참조
+REG_FLOW, REG_RUN = 0x0000, 0x0000   # ← 매뉴얼 값으로 대체
+
+pump = minimalmodbus.Instrument('COM3', 1)          # 포트, 슬레이브 주소
+pump.serial.baudrate = 9600
+pump.serial.parity = minimalmodbus.serial.PARITY_EVEN   # 예: 8E1
+
+pump.write_register(REG_RUN, 1, functioncode=6)     # Start
+for flow in [2.0, 5.0, 8.0, 12.5]:                  # 유량 setpoint 시퀀스(mL/min)
+    pump.write_float(REG_FLOW, flow)                # 유량 변경
+    time.sleep(600)                                 # 각 단계 10분 유지
+pump.write_register(REG_RUN, 0, functioncode=6)     # Stop</code></pre>
+            <p style="margin-top:12px"><a href="/application/pump-flow-schedule-ramp.html" style="color:var(--green);font-weight:700;font-size:14px">유량 스케줄·ramp 자동화하는 법 →</a></p>
           </div>
+        </details>
 
-      <p style="margin-top:12px"><a href="/application/pump-pc-control-modbus-rs485.html" style="color:var(--green);font-weight:700;font-size:14px">내 펌프가 PC 제어되는지 확인하는 법 →</a></p>
+        <details class="rq-d" id="q-multi-sync">
+          <summary><span class="tag">Q</span><span class="rq-dh">Python으로 여러 펌프를 동시에 동기 제어하려면?</span></summary>
+          <div class="rq-dbody">
+            <p><b>RS-485 한 버스에 슬레이브 주소만 다르게 물리고, 주소 리스트를 루프</b> 돌면 됩니다. 같은 타임라인에서 채널별로 다른 유량을 넣어 대조군을 한 번에 기동할 수 있습니다.</p>
+            <pre style="background:#0d1117;color:#e6edf3;padding:14px;border-radius:8px;overflow:auto;font-size:13px;line-height:1.55;margin:10px 0 0"><code>import minimalmodbus
+REG_FLOW, REG_RUN = 0x0000, 0x0000   # ← 매뉴얼 값으로 대체
+PORT  = 'COM3'
+ADDRS = [1, 2, 3]                    # 한 RS-485 버스의 슬레이브 주소들
+
+pumps = []
+for a in ADDRS:
+    p = minimalmodbus.Instrument(PORT, a)
+    p.serial.baudrate = 9600
+    p.serial.parity = minimalmodbus.serial.PARITY_EVEN
+    pumps.append(p)
+
+targets = {1: 5.0, 2: 5.0, 3: 10.0}  # 채널별 유량(mL/min)
+for p, a in zip(pumps, ADDRS):
+    p.write_float(REG_FLOW, targets[a])
+    p.write_register(REG_RUN, 1, functioncode=6)   # 동시 Start</code></pre>
+            <p style="margin-top:12px"><a href="/application/multi-pump-sync-unattended.html" style="color:var(--green);font-weight:700;font-size:14px">다펌프 동기·무인 운전 구성하는 법 →</a></p>
+          </div>
+        </details>
+
+        <details class="rq-d" id="q-mfc">
+          <summary><span class="tag">Q</span><span class="rq-dh">Python으로 Alicat 질량유량계(MFC) 가스 유량을 제어하려면?</span></summary>
+          <div class="rq-dbody">
+            <p><b>Alicat은 시리얼 ASCII 또는 Modbus RTU로 setpoint를 보냅니다.</b> 시리얼 ASCII는 <code>&lt;유닛ID&gt;S&lt;값&gt;</code> 형식으로 목표 유량을 주고, 한 줄 상태 프레임(압력·온도·유량 등)을 되받는 방식입니다. 아래는 개념 예시이며 명령 문법·단위·주소는 Alicat 매뉴얼을 따르세요.</p>
+            <pre style="background:#0d1117;color:#e6edf3;padding:14px;border-radius:8px;overflow:auto;font-size:13px;line-height:1.55;margin:10px 0 0"><code>import serial
+# 통신 속도·유닛 ID·명령 문법은 Alicat 매뉴얼 참조
+mfc = serial.Serial('COM4', 19200, timeout=1)
+
+# 시리얼 ASCII: '&lt;UnitID&gt; S &lt;setpoint&gt;' 로 가스 유량 setpoint 전송 (개념 예시)
+mfc.write(b'A S 2.5\r')            # 유닛 A, 유량 setpoint 2.5 (예: SLPM)
+print(mfc.readline().decode())    # 현재 압력·온도·유량 등 상태 프레임 수신
+
+# Modbus RTU를 지원하는 모델이면 pymodbus/minimalmodbus로
+# setpoint 레지스터에 write 하는 방식도 동일하게 통합 제어 가능</code></pre>
+          </div>
+        </details>
+
+        <details class="rq-d" id="q-csv-log">
+          <summary><span class="tag">Q</span><span class="rq-dh">Python으로 운전 로그를 CSV로 남겨 재현하려면?</span></summary>
+          <div class="rq-dbody">
+            <p><b>주기적으로 상태를 read 해서 타임스탬프와 함께 CSV에 append</b> 하면 됩니다. 남긴 로그는 데이터 분석·논문 부록에 그대로 쓰고, 같은 프로파일을 다시 걸어 재현합니다.</p>
+            <pre style="background:#0d1117;color:#e6edf3;padding:14px;border-radius:8px;overflow:auto;font-size:13px;line-height:1.55;margin:10px 0 0"><code>import minimalmodbus, csv, time
+REG_FLOW_RD, REG_RPM_RD = 0x0000, 0x0000   # ← 읽기 레지스터: 매뉴얼 참조
+
+pump = minimalmodbus.Instrument('COM3', 1)
+pump.serial.baudrate = 9600
+pump.serial.parity = minimalmodbus.serial.PARITY_EVEN
+
+with open('run_log.csv', 'w', newline='') as f:
+    w = csv.writer(f)
+    w.writerow(['time', 'flow_mL_min', 'rpm'])
+    while True:
+        flow = pump.read_float(REG_FLOW_RD)   # 현재 유량
+        rpm  = pump.read_float(REG_RPM_RD)    # 현재 회전수
+        w.writerow([time.strftime('%Y-%m-%d %H:%M:%S'), flow, rpm])
+        f.flush()
+        time.sleep(5)                         # 5초 주기 기록</code></pre>
+            <p style="margin-top:12px"><a href="/application/pump-run-log-csv-reproducibility.html" style="color:var(--green);font-weight:700;font-size:14px">운전 로그(CSV)로 실험 재현하는 법 →</a></p>
+          </div>
+        </details>
+
+        <details class="rq-d" id="q-check-modbus">
+          <summary><span class="tag">Q</span><span class="rq-dh">내 장비가 Modbus·RS485로 제어되는지 어떻게 확인하나?</span></summary>
+          <div class="rq-dbody">
+            <p><b>장비의 통신 스펙(데이터시트·매뉴얼)에서 "RS-485", "Modbus RTU" 표기와 통신 파라미터를 확인</b>하세요. 통신 속도(baud), 패리티/데이터/스톱 비트, 슬레이브 주소 범위, 그리고 레지스터 맵(유량·Start/Stop 등)이 문서에 있으면 위 예시처럼 Python으로 제어할 수 있습니다. 포트가 USB-Serial 어댑터로 잡히는지도 함께 확인하면 됩니다.</p>
+            <p style="margin-top:12px"><a href="/application/pump-pc-control-modbus-rs485.html" style="color:var(--green);font-weight:700;font-size:14px">내 장비가 PC(Modbus·RS485) 제어되는지 확인하는 법 →</a></p>
+          </div>
+        </details>
+      </div>
     </section>
 
     <div class="rq-acc" aria-label="소프트웨어 제어 기능 상세">
@@ -319,13 +390,13 @@ p.write_register(4126, 1, functioncode=6)   # Start (BT101L)</code></pre>
       <h2>실험셋업연구소 vs 일반 펌프 단독 도입</h2>
       <div class="cmp-wrap">
       <table class="cmp">
-        <thead><tr><th>항목</th><th>실험셋업연구소 (LeadFluid 한국 공식 A/S + 제어 SW)</th><th>일반 펌프 단독 도입</th></tr></thead>
+        <thead><tr><th>항목</th><th>실험셋업연구소 (국내 직접 A/S + 통합 제어 SW)</th><th>일반 펌프 단독 도입</th></tr></thead>
         <tbody>
           <tr><th>유량 스케줄·ramp 자동화</th><td class="c"><span class="yes">✔ 소프트웨어</span></td><td class="c"><span class="no">수동/미지원</span></td></tr>
           <tr><th>다펌프 동기·무인 장시간 운전</th><td class="c"><span class="yes">✔</span></td><td class="c"><span class="no">제한적</span></td></tr>
           <tr><th>운전 로그(CSV)·재현</th><td class="c"><span class="yes">✔</span></td><td class="c"><span class="no">✕</span></td></tr>
           <tr><th>Modbus·RS485·Python 제어</th><td class="c"><span class="yes">✔ 프로토콜 문서·예제</span></td><td class="c"><span class="no">문서 미제공 잦음</span></td></tr>
-          <tr><th>LeadFluid 한국 공식 A/S</th><td class="c"><span class="yes">✔ 국내 직접 수리(본사 반송 불필요)</span></td><td class="c"><span class="no">해외 반송/교체</span></td></tr>
+          <tr><th>국내 직접 A/S</th><td class="c"><span class="yes">✔ 국내 직접 수리(본사 반송 불필요)</span></td><td class="c"><span class="no">해외 반송/교체</span></td></tr>
           <tr><th>무상보증·제어 SW</th><td class="c"><span class="yes">✔ 3년·무상 제공</span></td><td class="c"><span class="no">짧거나 별도</span></td></tr>
         </tbody>
       </table>
@@ -339,7 +410,7 @@ p.write_register(4126, 1, functioncode=6)   # Start (BT101L)</code></pre>
 <div class="dl-modal" id="dlModal" onclick="if(event.target===this)closeDlForm()">
   <div class="dl-box">
     <button type="button" class="dl-close" onclick="closeDlForm()" aria-label="닫기">×</button>
-    <h3>펌프 제어 소프트웨어 받기</h3>
+    <h3>통합 제어 소프트웨어 받기</h3>
     <p class="dl-lead">아래 정보를 남겨주시면 <b>다운로드 링크를 이메일로</b> 보내드립니다. (무료 · 실험셋업연구소 구매 고객 무상 제공)</p>
     <form id="dlForm" action="https://formspree.io/f/mnjkzppj" method="POST">
       <input type="hidden" name="_subject" value="[실험셋업연구소] 소프트웨어 다운로드 요청">

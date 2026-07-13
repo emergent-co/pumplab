@@ -70,6 +70,14 @@
   .buy p{font-size:14.5px;color:#2a2a2a;margin-bottom:14px}
   .buy a.navbtn{display:inline-block;background:var(--green);color:#fff;padding:12px 22px;border-radius:9px;font-weight:700;font-size:14.5px}
   .inlink{color:var(--green);font-weight:700;border-bottom:1px solid #c3d0e4}
+  /* 수리 실사례 */
+  .rcases{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+  @media(max-width:640px){.rcases{grid-template-columns:1fr}}
+  .rc{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .rc .sym{font-weight:700;font-size:14.5px;margin-bottom:7px}
+  .rc .fl{font-size:12.5px;color:var(--gray);padding-left:14px;position:relative;margin-bottom:4px;line-height:1.55}
+  .rc .fl::before{content:"↳";position:absolute;left:0;color:var(--green)}
+  .rc .res{margin-top:7px;padding-top:7px;border-top:1px solid var(--line);font-weight:700;color:var(--green);font-size:13px}
   /* CTA */
   .cta{text-align:center;padding:44px 0 8px}
   .cta h2{font-family:var(--serif);font-size:clamp(20px,4.6vw,26px);margin-bottom:10px}
@@ -149,10 +157,17 @@
     </div>
   </section>
 
-  <!-- A/S -->
+  <!-- A/S·신뢰 -->
   <section class="sec" id="as">
-    <h2>리드플루이드 A/S, 국내에서 되나요?</h2>
-    <p>네. 실험셋업연구소는 연동·시린지·기어펌프의 유량 계측과 전기·제어 진단·수리를 <b>본사로 보낼 필요 없이 국내에서 직접</b> 처리합니다. 실험셋업연구소 구매 고객에게는 <b>3년 무상보증</b>을 제공하고, 타사·타 경로로 산 펌프도 무료 진단 후 수리합니다. 구체 인증서와 수리 실사례는 <a class="inlink" href="/trust/">국내 A/S·정품·보증</a> 페이지에서 확인하세요.</p>
+    <h2>리드플루이드 A/S, 국내에서 되나요? — 믿고 도입할 수 있는 근거</h2>
+    <p>네. 실험셋업연구소는 연동·시린지·기어펌프의 유량 계측과 전기·제어 진단·수리를 <b>본사로 보낼 필요 없이 국내에서 직접</b> 처리합니다. 실험셋업연구소 구매 고객에게는 <b>3년 무상보증</b>을 제공하고, 타사·타 경로로 산 펌프도 무료 진단 후 수리합니다.</p>
+    <p>또한 <b>리드플루이드 정품을 공급</b>하며, LeadFluid(Baoding)가 발행한 서류로 <b>정품·국내 기술지원(A/S)</b>을 확인할 수 있습니다. 제조사 리드플루이드는 글로벌 산업 그룹 <b>Ingersoll Rand(NYSE: IR) 계열</b>로, 국제 인증(CE·RoHS)과 글로벌 품질 체계 안에서 생산됩니다. 하드웨어를 이만큼 안다는 것 — 그래서 제어 소프트웨어도 겉핥기가 아닙니다.</p>
+    <p style="font-size:14px;color:var(--gray);margin-bottom:0">보통 "새로 사라"로 끝나는 증상들 — 원인을 잡아 되살립니다.</p>
+    <div class="rcases">
+      <div class="rc"><div class="sym">유량 감소·맥동</div><div class="fl">진단 — 롤러 마모 + 튜브 피로</div><div class="fl">처리 — 부품 교체·재캘리브레이션</div><div class="res">정격 유량 복구</div></div>
+      <div class="rc"><div class="sym">간헐 미작동</div><div class="fl">진단 — 제어 통신 노이즈</div><div class="fl">처리 — 배선·접지 보정</div><div class="res">연속 구동 정상화</div></div>
+      <div class="rc"><div class="sym">모터 소음·진동</div><div class="fl">진단 — 베어링 마모·구동부 유격</div><div class="fl">처리 — 베어링 교체·재조립</div><div class="res">정숙·안정 구동 회복</div></div>
+    </div>
   </section>
 
   <!-- PC 제어 -->
@@ -176,7 +191,7 @@
     <h2>리드플루이드 자주 묻는 질문</h2>
     <div class="qa"><div class="q">리드플루이드(LeadFluid)란 어떤 브랜드인가요?</div><div class="a">중국 Baoding에 본사를 둔 정밀 유체이송 펌프 제조사로, 연동·시린지·기어·마그네틱 정량펌프를 만듭니다. 글로벌 산업 그룹 Ingersoll Rand(NYSE: IR) 계열로, 국제 인증(CE·RoHS)과 글로벌 품질 체계 안에서 생산되며 국내외 연구 셋업에도 사용됐습니다.</div></div>
     <div class="qa"><div class="q">리드플루이드 펌프, 한국에서 어디서 정품으로 사나요?</div><div class="a">실험셋업연구소(rndsetup.com)가 리드플루이드 정품을 공급하는 나비엠알오 등록 공급사입니다. <a href="https://www.navimro.com/s/?x=0&amp;y=0&amp;q=leadfluid&amp;disp=0&amp;keyword=" target="_blank" rel="noopener">나비엠알오에서 leadfluid로 검색</a>해 바로 구매할 수 있습니다.</div></div>
-    <div class="qa"><div class="q">리드플루이드 펌프 A/S는 국내에서 받을 수 있나요?</div><div class="a">네. 실험셋업연구소는 하드웨어를 국내에서 직접 진단·수리합니다. 구매 고객에게 3년 무상보증을 제공하고, 타사 구매품도 무료 진단 후 수리합니다. 자세히는 <a href="/trust/">국내 A/S·정품·보증</a>.</div></div>
+    <div class="qa"><div class="q">리드플루이드 펌프 A/S는 국내에서 받을 수 있나요?</div><div class="a">네. 실험셋업연구소는 하드웨어를 국내에서 직접 진단·수리합니다. 구매 고객에게 3년 무상보증을 제공하고, 타사 구매품도 무료 진단 후 수리합니다. 정품 확인 서류와 수리 실사례는 <a href="#as">국내 A/S·정품·보증</a> 섹션에서 확인하세요.</div></div>
     <div class="qa"><div class="q">리드플루이드 펌프를 PC(Modbus·RS485)로 제어할 수 있나요?</div><div class="a">네. RS485·Modbus RTU 지원 모델은 실험셋업연구소 제어 소프트웨어로 유량·스케줄·다펌프 동기·로그(CSV)를 PC 제어할 수 있습니다(9600·8E1, 슬레이브 1~247). <a href="/application/pump-pc-control-modbus-rs485.html">제어 가능 여부 확인</a>.</div></div>
     <div class="qa"><div class="q">리드플루이드 펌프 종류에는 어떤 것이 있나요?</div><div class="a">연동펌프(BT·BQ 시리즈), 시린지펌프(TYD 시리즈), 정량펌프(연동식 디스펜싱), 기어펌프(FG 시리즈), 마그네틱펌프(CT 시리즈)가 있습니다. 선택은 <a href="/application/pump-selection.html">펌프 고르는 방법</a>을 참고하세요.</div></div>
   </section>

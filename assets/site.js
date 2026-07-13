@@ -35,8 +35,8 @@
     { t:'flow chemistry 연속흐름 반응', u:'/application/flow-chemistry.html', k:'flow chemistry 연속흐름 반응 시린지 유량비 체류시간 마그네틱 유기용매', c:'실험 가이드' },
     { t:'장기칩·오가노이드 관류', u:'/application/organ-on-chip-perfusion.html', k:'장기칩 organ on chip 오가노이드 관류 미세유체 저유량 전단응력', c:'실험 가이드' },
     { t:'실험 가이드 허브', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험 가이드' },
-    { t:'도입·논문 사례 — LeadFluid 논문 셋업', u:'/setups/', k:'논문 nature 셋업 leadfluid 펌프 사용 사례', c:'도입·논문 사례' },
-    { t:'국내 A/S·정품·3년보증', u:'/trust/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'믿고 도입할 때' },
+    { t:'연구별 셋업 — 논문이 답한 셋업(근거)', u:'/setups/', k:'논문 nature 셋업 leadfluid 연구별 바이오 의료 환경 수처리 에너지 재료 근거', c:'연구별 셋업' },
+    { t:'리드플루이드 국내 A/S·정품·3년보증', u:'/leadfluid/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'호환 장비' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
     { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
   ];
@@ -65,29 +65,24 @@
   };
   var NAV = [
     { href:'/',            label:'홈',        icon:'home' },
+    { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw', sub:[
+        ['/requests/',                                      '소프트웨어 소개·다운로드'],
+        ['/application/pump-pc-control-modbus-rs485.html',  'Modbus·RS485 제어'],
+        ['/requests/#control',                              'Python 자동화 Q&A 예제']
+      ] },
     { href:'/guide/', label:'실험 셋업 가이드', icon:'find', sub:[
-        ['/setups/',  '연구 근거 (논문 인용)'],
-        ['/trust/',   '믿고 도입할 때 (A/S·정품·보증)']
+        ['/guide/', '질문·비교로 셋업 찾기']
       ] },
-    { href:'/pumps/', label:'액체', icon:'pick', sub:[
-        ['/pumps/', '펌프 (연동·시린지·기어)'],
-        ['/application/tube-selection.html', '튜브/피팅']
+    { href:'/setups/', label:'연구별 셋업', icon:'shield', sub:[
+        ['/setups/#bio',    '바이오·의료'],
+        ['/setups/#env',    '환경·수처리'],
+        ['/setups/#energy', '에너지·재료·열처리']
       ] },
-    { href:'/gas/', label:'기체', icon:'gas', sub:[
-        ['/gas/', '질량유량계(MFC)']
-      ] },
-    { href:'/vacuum/', label:'진공', icon:'vacuum', sub:[
-        ['/vacuum/#rotary',    '오일 회전식 진공펌프'],
-        ['/vacuum/#diaphragm', '다이아프램 진공펌프']
-      ] },
-    { href:'/requests/', label:'자동화', icon:'sw', sub:[
-        ['/application/pump-pc-control-modbus-rs485.html',  'PC 제어 (Modbus·RS485)'],
-        ['/requests/#control',                              'Python 예제']
-      ] },
-    { href:'/leadfluid/', label:'소프트웨어 호환 장비', icon:'devices', sub:[
-        ['/leadfluid/',      '리드플루이드 — 액체(펌프)'],
+    { href:'/leadfluid/', label:'호환 장비', icon:'devices', sub:[
+        ['/leadfluid/',      '리드플루이드 — 액체 펌프'],
         ['/sh-scientific/',  '삼흥에너지 — 열처리'],
-        ['/alicat/',         'ALICAT — 유량계(MFC)']
+        ['/alicat/',         'ALICAT — 질량유량계'],
+        ['/vacuum/',         '진공펌프 (오일·다이아프램)']
       ] },
     { href:'/faq/',        label:'FAQ',       icon:'faq' }
   ];
@@ -127,7 +122,7 @@
       '<a class="ch-cta" href="/contact/">문의하기</a>' +
     '</header>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
-      '<div class="ch-side-foot">LeadFluid 한국 공식 A/S 파트너<br>나비엠알오 등록 공급사</div>' +
+      '<div class="ch-side-foot">LeadFluid 정품 공급·국내 직접 A/S<br>나비엠알오 등록 공급사</div>' +
     '</aside>' +
     '<div class="ch-scrim" id="chScrim"></div>';
 
