@@ -94,6 +94,23 @@
     <p>가능합니다. TYD01-01은 <b>RS485·Modbus RTU·WiFi</b>를 지원해 유량·주입량·주입/흡입 방향을 원격 설정할 수 있습니다(9600·8E1, 슬레이브 1~247, 사양서 기준). 실험셋업연구소 구매 시 <b>제어 소프트웨어를 무상 제공</b>해 주입 프로파일을 자동화하고 로그로 재현합니다. 관련: <a class="inlink" href="/application/pump-pc-control-modbus-rs485.html">PC 제어 확인</a> · <a class="inlink" href="/requests/">소프트웨어 제어</a>.</p>
   </section>
 
+  <section class="sec" id="python">
+    <h2>Python 예제 — TYD01-01로 주입을 코드로 제어하려면?</h2>
+    <p>RS485·Modbus RTU를 지원하므로 주입 속도·방향을 코드로 설정합니다. (정확한 레지스터 주소·바이트오더는 TYD01-01 매뉴얼을 따르세요.)</p>
+    <pre style="background:#0f2a47;color:#e6edf5;padding:16px;border-radius:10px;overflow:auto;font-size:12.5px;line-height:1.6">import minimalmodbus, time
+# 레지스터 주소·바이트오더는 TYD01-01 매뉴얼(Register Map) 참조
+REG_RATE, REG_RUN = 0x0000, 0x0000        # ← 매뉴얼 값으로 대체
+
+syr = minimalmodbus.Instrument('COM3', 1)   # 포트, 슬레이브 주소(1~247)
+syr.serial.baudrate = 9600
+syr.serial.parity = minimalmodbus.serial.PARITY_EVEN   # 8E1
+
+syr.write_float(REG_RATE, 0.5)                   # 주입 속도 0.5 mL/min
+syr.write_register(REG_RUN, 1, functioncode=6)   # 주입 시작
+time.sleep(1800)                                 # 30분 주입
+syr.write_register(REG_RUN, 0, functioncode=6)   # 정지</pre>
+  </section>
+
   <section class="sec" id="cases">
     <h2>실제 어떤 연구에 쓰였나?</h2>
     <p><b>논문 사용</b> — 뇌 피질 인터페이싱 연구(Nature Electronics 2024)에서 미소 유량 주입에 TYD01-01이 사용됐습니다(서지·DOI는 <a class="inlink" href="/setups/brain-electrode-tyd01">사례 페이지</a> 참조).</p>

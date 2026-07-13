@@ -104,6 +104,23 @@
       <tr><td><b>다중 MFC 동기</b></td><td>여러 채널의 유량을 동시에 설정·기록하고 혼합비를 함께 제어해야 하는지.</td></tr>
     </table>
 
+    <h2>Python 예제 — MFC로 가스 유량·혼합비를 코드로 제어하려면?</h2>
+    <p>RS-485(Modbus)를 지원하는 MFC라면 가스별 유량 setpoint를 써서 혼합비를 재현합니다. (정확한 레지스터·명령은 MFC 매뉴얼을 따르세요.)</p>
+    <pre style="background:#0f2a47;color:#e6edf5;padding:16px;border-radius:10px;overflow:auto;font-size:12.5px;line-height:1.6;margin:0 0 16px">import minimalmodbus, time
+# 레지스터 주소는 MFC 매뉴얼(Register Map) 참조
+REG_SP = 0x0000                              # ← MFC 유량 setpoint 레지스터(매뉴얼 값)
+
+def mfc(addr):
+    m = minimalmodbus.Instrument('COM3', addr)   # 슬레이브 주소(1~247)
+    m.serial.baudrate = 9600
+    m.serial.parity = minimalmodbus.serial.PARITY_EVEN   # 8E1
+    return m
+
+n2, ar = mfc(1), mfc(2)          # N2, Ar 라인
+n2.write_float(REG_SP, 200.0)    # N2 200 sccm
+ar.write_float(REG_SP, 50.0)     # Ar 50 sccm  → 혼합비 4:1
+time.sleep(3600)                 # 1시간 유지</pre>
+
     <h2>실험셋업연구소의 MFC 셋업 지원</h2>
     <p>실험셋업연구소는 <b>Alicat 질량유량계(MC-Series 등)를 공급</b>하고, 제어 소프트웨어로 여러 MFC를 묶어 유량 설정·기록·혼합비 동기 제어까지 <b>시스템 연동을 지원</b>합니다. 튜브퍼니스나 CVD 라인처럼 여러 가스를 다뤄야 하는 셋업에서 가스 종류·유량 범위·통신 방식에 맞는 구성을 함께 정리할 수 있습니다.</p>
 

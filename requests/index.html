@@ -221,6 +221,24 @@
       <div class="rq-c"><div class="t">기록·재현</div><p>운전 로그(CSV)를 남기고 같은 프로파일을 그대로 재실행.</p></div>
     </div>
 
+    <section class="rq-sec">
+      <h2>Python 예제 — 장비를 코드로 직접 제어하려면?</h2>
+      <p>Modbus·RS-485를 지원하는 펌프·질량유량계(MFC)라면 아래처럼 범용 라이브러리로 유량·구동을 시퀀스로 제어합니다. (정확한 레지스터 주소·바이트오더는 각 장비 매뉴얼을 따르세요.)</p>
+      <pre style="background:#0f2a47;color:#e6edf5;padding:16px;border-radius:10px;overflow:auto;font-size:12.5px;line-height:1.6;margin-top:12px">import minimalmodbus, time
+# 레지스터 주소·바이트오더는 각 장비 매뉴얼(Register Map) 참조
+REG_FLOW, REG_RUN = 0x0000, 0x0000        # ← 매뉴얼 값으로 대체
+
+dev = minimalmodbus.Instrument('COM3', 1)   # 포트, 슬레이브 주소(1~247)
+dev.serial.baudrate = 9600
+dev.serial.parity = minimalmodbus.serial.PARITY_EVEN   # 8E1
+
+dev.write_register(REG_RUN, 1, functioncode=6)   # Start
+for sp in [2.0, 5.0, 8.0, 12.5]:                 # 유량 setpoint 시퀀스(mL/min)
+    dev.write_float(REG_FLOW, sp)                # 유량 변경
+    time.sleep(600)                              # 각 단계 10분 유지
+dev.write_register(REG_RUN, 0, functioncode=6)   # Stop</pre>
+    </section>
+
     <!-- 이 소프트웨어와 호환되는 장비 (홈에서 이동) -->
     <div style="margin-top:34px;background:#fff;border:1px solid #e3e8ef;border-radius:14px;padding:18px 20px">
       <div style="font-size:14px;font-weight:700;color:var(--ink);margin-bottom:4px">이 소프트웨어와 호환되는 장비</div>

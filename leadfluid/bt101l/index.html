@@ -94,6 +94,23 @@
     <p>됩니다. BT101 L은 <b>RS485·Modbus RTU</b>를 지원하며 9600·8E1, 슬레이브 주소 1~247 범위에서 통신합니다(사양서 기준). 실험셋업연구소에서 구매하시면 <b>PC 제어 소프트웨어를 무상 제공</b>해 유량·구동·정지를 자동 스케줄로 운전하고 운전 로그(CSV)로 재현할 수 있습니다. 내 펌프가 제어되는지는 <a class="inlink" href="/application/pump-pc-control-modbus-rs485.html">PC 제어 확인</a>에서, 자동화 전체는 <a class="inlink" href="/requests/">소프트웨어 제어</a>에서 볼 수 있습니다.</p>
   </section>
 
+  <section class="sec" id="python">
+    <h2>Python 예제 — BT101 L을 코드로 제어하려면?</h2>
+    <p>RS485·Modbus RTU를 지원하므로 범용 라이브러리로 유량·구동을 제어합니다. (정확한 레지스터 주소·바이트오더는 BT101 L 매뉴얼을 따르세요.)</p>
+    <pre style="background:#0f2a47;color:#e6edf5;padding:16px;border-radius:10px;overflow:auto;font-size:12.5px;line-height:1.6">import minimalmodbus, time
+# 레지스터 주소·바이트오더는 BT101 L 매뉴얼(Register Map) 참조
+REG_FLOW, REG_RUN = 0x0000, 0x0000        # ← 매뉴얼 값으로 대체
+
+pump = minimalmodbus.Instrument('COM3', 1)   # 포트, 슬레이브 주소(1~247)
+pump.serial.baudrate = 9600
+pump.serial.parity = minimalmodbus.serial.PARITY_EVEN   # 8E1
+
+pump.write_register(REG_RUN, 1, functioncode=6)   # Start
+pump.write_float(REG_FLOW, 12.5)                  # 유량 12.5 mL/min
+time.sleep(600)                                   # 10분 유지
+pump.write_register(REG_RUN, 0, functioncode=6)   # Stop</pre>
+  </section>
+
   <section class="sec" id="cases">
     <h2>실제 어떤 실험·현장에 쓰였나?</h2>
     <p><b>논문 사용</b> — 혈관내 카테터 코팅 연구(Nature Communications 2024)에 BT101 L이 유체 이송에 사용됐습니다(서지·DOI는 <a class="inlink" href="/setups/catheter-heparin-bt101">사례 페이지</a> 참조).</p>
