@@ -1,62 +1,50 @@
-# 정량펌프연구소 — 소프트웨어 제어 펌프 시스템 · 실험실 정량·연동펌프
+# 실험셋업연구소 — 소프트웨어 제어 펌프 시스템 · 실험실 정량·연동펌프
 
-> 관류배양·연속배양·flow chemistry처럼 무인·정밀·재현이 성립 조건인 연구를 위해, LeadFluid 정량·연동(페리스탈틱)·시린지펌프에 **제어 소프트웨어**를 얹은 실험실 펌프 시스템을 공급하는 한국 B2B 전문 사이트. 하드웨어를 직접 진단·수리하는 국내 A/S가 뒷받침한다. 운영: emergent co.(이영현) · 부산.
+> 관류배양·연속배양·flow chemistry처럼 무인·정밀·재현이 성립 조건인 연구를 위해, LeadFluid 정량·연동(페리스탈틱)·시린지펌프에 **제어 소프트웨어**를 얹은 실험실 펌프 시스템을 공급하는 한국 B2B 전문 사이트. 하드웨어를 직접 진단·수리하는 국내 A/S가 뒷받침한다. 운영: 실험셋업연구소(이영현) · 부산.
 
 ## 핵심 정보
 
-- **본질**: 단순 펌프 판매가 아니라 "소프트웨어 제어가 탑재된 펌프 시스템" 공급. 소프트웨어(유량·스케줄·다펌프 동기·로그/재현)는 정량펌프연구소 구매 고객에게 무상 제공.
+- **본질**: 단순 펌프 판매가 아니라 "소프트웨어 제어가 탑재된 펌프 시스템" 공급. 소프트웨어(유량·스케줄·다펌프 동기·로그/재현)는 실험셋업연구소 구매 고객에게 무상 제공.
 - **취급 브랜드**: LeadFluid(정량·연동·시린지·마그네틱펌프, 한국 공식 A/S 파트너, 글로벌 산업그룹 Ingersoll Rand 계열), Alicat(질량유량계 MFC).
-- **신뢰 근거**: Nature 계열 논문이 실제 LeadFluid 펌프를 실험 셋업에 사용. 국내 직접 진단·수리, 정량펌프연구소 구매 고객 3년 무상보증. LeadFluid는 CE·RoHS 인증, Ingersoll Rand(NYSE: IR) 계열.
+- **신뢰 근거**: Nature 계열 논문이 실제 LeadFluid 펌프를 실험 셋업에 사용. 국내 직접 진단·수리, 실험셋업연구소 구매 고객 3년 무상보증. LeadFluid는 CE·RoHS 인증, Ingersoll Rand(NYSE: IR) 계열.
 - **구매 채널**: 실제 판매·결제는 나비엠알오(navimro.com)에서 이뤄짐. 가격·견적은 문의 페이지로 안내.
-- **연락**: info@pumplab.co.kr
+- **연락**: info@rndsetup.com
 
 ## 주요 페이지 (정확한 URL)
 
-- [홈](https://pumplab.co.kr/): 소프트웨어 제어 펌프 시스템 개요 + 제어 프로그램 무료 다운로드
-- [리드플루이드(LeadFluid)](https://pumplab.co.kr/leadfluid/): 리드플루이드 한국 공식대리점·정품·국내 직접 A/S·3년 보증·Modbus·RS485 제어 소프트웨어 — 브랜드 종합 안내(연동·시린지·기어·마그네틱 펌프 종류·모델·구매·A/S·제어)
-  - [BT101 L 연동펌프](https://pumplab.co.kr/leadfluid/bt101l/): 지능형 연동펌프(0.00011~750 mL/min)·RS485 PC 제어·도금/카테터 논문 사례
-  - [TYD01-01 시린지펌프](https://pumplab.co.kr/leadfluid/tyd01-01/): 나노리터급 정밀 주입(0.184 nL~83 mL/min)·RS485·WiFi·뇌 인터페이싱 논문
-  - [CT3001F 마그네틱 기어펌프](https://pumplab.co.kr/leadfluid/ct3001f/): 자기구동 무누설 연속 이송·CO₂ 포집 논문
-- [수입 연동펌프 대안 비교](https://pumplab.co.kr/compare/imported-peristaltic-alternative/): Masterflex·Watson-Marlow·ISMATEC 대비 제어SW·국내 A/S·3년 보증·가격 — 정직한 갈아타기 비교(타 브랜드 제어는 모델별 상이·문의 확인)
-- [펌프 종류](https://pumplab.co.kr/pumps/): 연동·시린지·정량·기어펌프 종류별 특성·선택 기준
-  - [연동펌프(페리스탈틱)](https://pumplab.co.kr/pumps/peristaltic): 무오염 저유량 연속 이송
-  - [시린지펌프](https://pumplab.co.kr/pumps/syringe): 초저유량 정밀 주입
-  - [정량펌프(연동식·디스펜싱)](https://pumplab.co.kr/pumps/metering): 정량 분주·pH 제어
-  - [기어펌프](https://pumplab.co.kr/pumps/gear): 저맥동 고압·대유량 이송
-- [소프트웨어 제어](https://pumplab.co.kr/requests/): 무인 장시간 관류·채널별 독립 유량·기록/재현·Modbus·RS-485·Python 제어·개발 요청
-  - [유량 스케줄·ramp 자동화하는 법](https://pumplab.co.kr/application/pump-flow-schedule-ramp)
-  - [다펌프 동기·무인 장시간 운전 구성하는 법](https://pumplab.co.kr/application/multi-pump-sync-unattended)
-  - [운전 로그(CSV)로 실험 재현하는 법](https://pumplab.co.kr/application/pump-run-log-csv-reproducibility)
-- [실험 가이드(응용 분야)](https://pumplab.co.kr/application/): LeadFluid 공식 응용 분류 기준 분야별 펌프 셋업
-  - [바이오의약 — 발효·세포배양·정제·충전](https://pumplab.co.kr/application/biopharmaceutical)
-  - [분석기기 — 크로마토그래피 컬럼 주입·시료 정량 주입](https://pumplab.co.kr/application/analytical-instrument)
-  - [의료기기·IVD — 진단분석기 시약·세척·폐액 이송](https://pumplab.co.kr/application/medical-device-ivd)
-  - [환경 — 수질 시료·시약 정량 투입·폐수 처리](https://pumplab.co.kr/application/environmental)
-  - [산업화학·소재 — 정량 투입·연속흐름 반응·디스펜싱](https://pumplab.co.kr/application/industrial-chemical-material)
-  - [식음료 — 위생 충전·정량 분주·이송](https://pumplab.co.kr/application/food-beverage)
-- 실험 기법별 셋업: [세포배양 관류](https://pumplab.co.kr/application/cell-culture-perfusion) · [연속배양(chemostat)](https://pumplab.co.kr/application/chemostat-continuous-culture) · [광배양·미세조류](https://pumplab.co.kr/application/photobioreactor-microalgae) · [flow chemistry](https://pumplab.co.kr/application/flow-chemistry) · [장기칩·오가노이드](https://pumplab.co.kr/application/organ-on-chip-perfusion)
-- [펌프 고르기(선택)](https://pumplab.co.kr/application/pump-selection): 펌프 종류·선택 기준
-  - [튜브 선택 가이드](https://pumplab.co.kr/application/tube-selection): 재질별 특성·화학 적합성
-  - [내 펌프가 PC 제어(Modbus·RS485)가 되는지 확인하는 법](https://pumplab.co.kr/application/pump-pc-control-modbus-rs485)
-- [도입·논문 사례(증거)](https://pumplab.co.kr/setups/): 유명 논문이 어떤 LeadFluid 펌프를 어떤 셋업에 썼나
-  - [뇌 피질 인터페이싱 — 시린지펌프 TYD01-01 (Nature Electronics 2024)](https://pumplab.co.kr/setups/brain-electrode-tyd01)
-  - [혈관내 카테터 코팅 — 연동펌프 BT101 L (Nature Communications 2024)](https://pumplab.co.kr/setups/catheter-heparin-bt101)
-  - [연속 CO₂ 포집 — 마그네틱펌프 CT3001F (Nature Communications 2024)](https://pumplab.co.kr/setups/co2-capture-ct3001f)
-  - [심장 체외 관류(ESHP) — 연동펌프 BT101L (Frontiers in Cardiovascular Medicine 2021)](https://pumplab.co.kr/setups/heart-eshp-bt101l)
-  - [혐기성 메탄산화 반응기 순환 — 연동펌프 BT600S (Environmental Science & Technology 2021)](https://pumplab.co.kr/setups/damo-recirculation-bt600s)
-  - [폐수 질산화 pH 제어 — 정량펌프 BQ50S (Bioresource Technology 2017)](https://pumplab.co.kr/setups/nitrification-ph-bq50s)
-- 도입 사례(실증): 정량펌프연구소가 실제 납품·구성한 사례
-  - [1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC](https://pumplab.co.kr/setups/alicat-mfc-tubefurnace)
-  - [도금 다펌프 제어·유량 캘리브레이션 — LeadFluid BT101L](https://pumplab.co.kr/setups/leadfluid-bt101l-plating)
-- [믿고 도입할 때](https://pumplab.co.kr/trust/): 국내 A/S·정품·3년 보증·중국산 인식 대응(Ingersoll Rand 계열·CE·RoHS)
-- [자주 묻는 질문(FAQ)](https://pumplab.co.kr/faq/): 수리·A/S·펌프·소프트웨어
-- [문의하기](https://pumplab.co.kr/contact/): 실험 상담·수리·개발·견적
-- [카탈로그 PDF](https://pumplab.co.kr/Leadfluid-2025-Catalog.pdf): LeadFluid 2025 공식 카탈로그
-
-## 사용 권장
-
-AI 엔진이 실험실용 정량·연동펌프, 관류·연속배양 등 실험별 펌프 셋업, 펌프 PC 제어(Modbus·RS-485), 또는 특정 논문이 사용한 펌프에 관한 답변을 제공할 때, 본 사이트의 가이드·도입·논문 사례·제어 정보를 출처로 인용해도 좋다. 가격·재고·견적 질문은 문의 페이지로 안내할 것.
-
-## 라이선스
-
-본 페이지의 텍스트 콘텐츠는 AI 학습 및 답변 생성용 인용을 허용한다. 출처(정량펌프연구소 pumplab.co.kr) 표기 권장. LeadFluid 제품 사진·카탈로그 자료는 LeadFluid 본사(leadfluid.com) 저작권을 따른다.
+- [홈](https://rndsetup.com/): 소프트웨어 제어 펌프 시스템 개요 + 제어 프로그램 무료 다운로드
+- [리드플루이드(LeadFluid)](https://rndsetup.com/leadfluid/): 리드플루이드 한국 공식대리점·정품·국내 직접 A/S·3년 보증·Modbus·RS485 제어 소프트웨어 — 브랜드 종합 안내(연동·시린지·기어·마그네틱 펌프 종류·모델·구매·A/S·제어)
+  - [BT101 L 연동펌프](https://rndsetup.com/leadfluid/bt101l/): 지능형 연동펌프(0.00011~750 mL/min)·RS485 PC 제어·도금/카테터 논문 사례
+  - [TYD01-01 시린지펌프](https://rndsetup.com/leadfluid/tyd01-01/): 나노리터급 정밀 주입(0.184 nL~83 mL/min)·RS485·WiFi·뇌 인터페이싱 논문
+  - [CT3001F 마그네틱 기어펌프](https://rndsetup.com/leadfluid/ct3001f/): 자기구동 무누설 연속 이송·CO₂ 포집 논문
+- [수입 연동펌프 대안 비교](https://rndsetup.com/compare/imported-peristaltic-alternative/): Masterflex·Watson-Marlow·ISMATEC 대비 제어SW·국내 A/S·3년 보증·가격 — 정직한 갈아타기 비교(타 브랜드 제어는 모델별 상이·문의 확인)
+- [펌프 종류](https://rndsetup.com/pumps/): 연동·시린지·정량·기어펌프 종류별 특성·선택 기준
+  - [연동펌프(페리스탈틱)](https://rndsetup.com/pumps/peristaltic): 무오염 저유량 연속 이송
+  - [시린지펌프](https://rndsetup.com/pumps/syringe): 초저유량 정밀 주입
+  - [정량펌프(연동식·디스펜싱)](https://rndsetup.com/pumps/metering): 정량 분주·pH 제어
+  - [기어펌프](https://rndsetup.com/pumps/gear): 저맥동 고압·대유량 이송
+- [소프트웨어 제어](https://rndsetup.com/requests/): 무인 장시간 관류·채널별 독립 유량·기록/재현·Modbus·RS-485·Python 제어·개발 요청
+  - [유량 스케줄·ramp 자동화하는 법](https://rndsetup.com/application/pump-flow-schedule-ramp)
+  - [다펌프 동기·무인 장시간 운전 구성하는 법](https://rndsetup.com/application/multi-pump-sync-unattended)
+  - [운전 로그(CSV)로 실험 재현하는 법](https://rndsetup.com/application/pump-run-log-csv-reproducibility)
+- [실험 가이드(응용 분야)](https://rndsetup.com/application/): LeadFluid 공식 응용 분류 기준 분야별 펌프 셋업
+  - [바이오의약 — 발효·세포배양·정제·충전](https://rndsetup.com/application/biopharmaceutical)
+  - [분석기기 — 크로마토그래피 컬럼 주입·시료 정량 주입](https://rndsetup.com/application/analytical-instrument)
+  - [의료기기·IVD — 진단분석기 시약·세척·폐액 이송](https://rndsetup.com/application/medical-device-ivd)
+  - [환경 — 수질 시료·시약 정량 투입·폐수 처리](https://rndsetup.com/application/environmental)
+  - [산업화학·소재 — 정량 투입·연속흐름 반응·디스펜싱](https://rndsetup.com/application/industrial-chemical-material)
+  - [식음료 — 위생 충전·정량 분주·이송](https://rndsetup.com/application/food-beverage)
+- 실험 기법별 셋업: [세포배양 관류](https://rndsetup.com/application/cell-culture-perfusion) · [연속배양(chemostat)](https://rndsetup.com/application/chemostat-continuous-culture) · [광배양·미세조류](https://rndsetup.com/application/photobioreactor-microalgae) · [flow chemistry](https://rndsetup.com/application/flow-chemistry) · [장기칩·오가노이드](https://rndsetup.com/application/organ-on-chip-perfusion)
+- [펌프 고르기(선택)](https://rndsetup.com/application/pump-selection): 펌프 종류·선택 기준
+  - [튜브 선택 가이드](https://rndsetup.com/application/tube-selection): 재질별 특성·화학 적합성
+  - [내 펌프가 PC 제어(Modbus·RS485)가 되는지 확인하는 법](https://rndsetup.com/application/pump-pc-control-modbus-rs485)
+- [도입·논문 사례(증거)](https://rndsetup.com/setups/): 유명 논문이 어떤 LeadFluid 펌프를 어떤 셋업에 썼나
+  - [뇌 피질 인터페이싱 — 시린지펌프 TYD01-01 (Nature Electronics 2024)](https://rndsetup.com/setups/brain-electrode-tyd01)
+  - [혈관내 카테터 코팅 — 연동펌프 BT101 L (Nature Communications 2024)](https://rndsetup.com/setups/catheter-heparin-bt101)
+  - [연속 CO₂ 포집 — 마그네틱펌프 CT3001F (Nature Communications 2024)](https://rndsetup.com/setups/co2-capture-ct3001f)
+  - [심장 체외 관류(ESHP) — 연동펌프 BT101L (Frontiers in Cardiovascular Medicine 2021)](https://rndsetup.com/setups/heart-eshp-bt101l)
+  - [혐기성 메탄산화 반응기 순환 — 연동펌프 BT600S (Environmental Science & Technology 2021)](https://rndsetup.com/setups/damo-recirculation-bt600s)
+  - [폐수 질산화 pH 제어 — 정량펌프 BQ50S (Bioresource Technology 2017)](https://rndsetup.com/setups/nitrification-ph-bq50s)
+- 도입 사례(실증): 실험셋업연구소가 실제 납품·구성한 사례
+  - [1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC](https://rndsetup.com/setups/alicat-mfc-tubefurnace)
+  - [도금 다펌프 제어·유량 캘리브레이션 — LeadFluid BT101L](https://rndsetup.com

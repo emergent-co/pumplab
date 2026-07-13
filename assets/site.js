@@ -1,5 +1,5 @@
 /* ============================================================
-   정량펌프연구소 공유 헤더·푸터 (site.js) — 전 페이지 동일 구조 주입(SSOT)
+   실험셋업연구소 공유 헤더·푸터 (site.js) — 전 페이지 동일 구조 주입(SSOT)
    각 페이지의 <div id="pumplab-header"></div> / <div id="pumplab-footer"></div>
    자리에 아래 마크업을 넣는다. 헤더·푸터는 여기서만 고치면 전 페이지 반영.
    ============================================================ */
@@ -115,7 +115,7 @@
   var HEADER =
     '<header class="ch-top">' +
       '<button class="ch-burger" type="button" aria-label="메뉴" aria-expanded="false"><span></span><span></span><span></span></button>' +
-      '<a class="ch-brand" href="/">정량펌프연구소</a>' +
+      '<a class="ch-brand" href="/">실험셋업연구소</a>' +
       '<form class="ch-search" id="chSearch" role="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input type="search" placeholder="검색" aria-label="사이트 검색" autocomplete="off"><div class="ch-results" id="chResults"></div></form>' +
       '<a class="ch-cta" href="/contact/">문의하기</a>' +
     '</header>' +
@@ -141,19 +141,19 @@
             '<a href="/contact/#repair">수리 문의</a><a href="/contact/#dev">개발 문의</a>' +
             '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_footer">견적·구매 (나비엠알오)</a></div>' +
           '<div class="cf-col"><h4>고객센터</h4>' +
-            '<a href="mailto:info@pumplab.co.kr">info@pumplab.co.kr</a>' +
+            '<a href="mailto:info@rndsetup.com">info@rndsetup.com</a>' +
             '<a href="tel:+827089832600">070-8983-2600</a>' +
-            '<span>LeadFluid 한국 공식 대리점·공인 A/S 파트너</span><span>정량펌프연구소 구매 고객 3년 무상보증</span></div>' +
+            '<span>LeadFluid 한국 공식 대리점·공인 A/S 파트너</span><span>실험셋업연구소 구매 고객 3년 무상보증</span></div>' +
         '</div>' +
-        '<div class="cf-co"><strong>정량펌프연구소</strong> · 이영현 · 070-8983-2600 · 사업자등록 637-05-03629<br>' +
+        '<div class="cf-co"><strong>실험셋업연구소</strong> · 이영현 · 070-8983-2600 · 사업자등록 637-05-03629<br>' +
           '부산광역시 북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩) · 도매·소매업 / 정보통신업</div>' +
-        '<div class="cf-cp">© 2026 정량펌프연구소. All Rights Reserved.</div>' +
+        '<div class="cf-cp">© 2026 실험셋업연구소. All Rights Reserved.</div>' +
       '</div></footer>';
 
   var CTA_FAB =
     '<div class="cta-fab" aria-label="빠른 문의">' +
       '<a href="http://pf.kakao.com/_GCsjX" target="_blank" rel="noopener" data-ga="fab_kakao" aria-label="카카오 상담">카톡</a>' +
-      '<a href="mailto:info@pumplab.co.kr" data-ga="fab_email" aria-label="이메일 문의">메일</a>' +
+      '<a href="mailto:info@rndsetup.com" data-ga="fab_email" aria-label="이메일 문의">메일</a>' +
       '<a class="cta-fab-main" href="/contact/" data-ga="fab_contact">문의하기</a>' +
     '</div>';
 
@@ -205,9 +205,9 @@
           if (r.ok) {
             if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_type: 'repair_diagnosis', page_path: location.pathname });
             f.style.display = 'none'; document.getElementById('repairPopDone').style.display = 'block';
-          } else { alert('전송에 실패했습니다. 이메일로 보내주세요: info@pumplab.co.kr'); }
+          } else { alert('전송에 실패했습니다. 이메일로 보내주세요: info@rndsetup.com'); }
         })
-        .catch(function () { btn.disabled = false; btn.textContent = '무료 수리진단 신청 보내기'; alert('전송에 실패했습니다. 이메일로 보내주세요: info@pumplab.co.kr'); });
+        .catch(function () { btn.disabled = false; btn.textContent = '무료 수리진단 신청 보내기'; alert('전송에 실패했습니다. 이메일로 보내주세요: info@rndsetup.com'); });
     });
   }
 
@@ -314,38 +314,4 @@
   document.addEventListener('click', function (e) {
     var a = (e.target && e.target.closest) ? e.target.closest('a') : null;
     if (!a || typeof window.gtag !== 'function') return;
-    var href = a.getAttribute('href') || '';
-    if (a.hasAttribute('download') || /\.(exe|zip|msi)(\?|#|$)/i.test(href)) {
-      gtag('event', 'file_download', {
-        file_name: (href.split('/').pop() || (a.textContent || '').trim()).slice(0, 60),
-        link_url: href,
-        page_path: location.pathname
-      });
-    }
-  }, true);
-
-  // 전환(주요 이벤트) — 문의·개발요청 폼 제출
-  document.addEventListener('submit', function (e) {
-    var f = e.target;
-    if (!f || f.tagName !== 'FORM' || typeof window.gtag !== 'function') return;
-    var act = f.getAttribute('action') || '';
-    if (/formspree\.io/i.test(act) || /\/(inquiry|requests)\//.test(location.pathname)) {
-      gtag('event', 'generate_lead', {
-        form_action: act,
-        page_path: location.pathname
-      });
-    }
-  }, true);
-
-  // 전환 후보 — 나비엠알오(구매 채널) 클릭
-  document.addEventListener('click', function (e) {
-    var a = (e.target && e.target.closest) ? e.target.closest('a') : null;
-    if (!a || typeof window.gtag !== 'function') return;
-    if (/navimro\.com/i.test(a.getAttribute('href') || '')) {
-      gtag('event', 'navimro_click', {
-        link_text: (a.getAttribute('data-ga') || a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60),
-        page_path: location.pathname
-      });
-    }
-  }, true);
-})();
+    var href = a.getAtt

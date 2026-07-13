@@ -201,7 +201,7 @@ def render_category_jsonld(cat_id, cat_data, products, base_url, page_url):
                 "priceCurrency": "KRW",
                 "price": p.get('price', 0),
                 "availability": "https://schema.org/InStock",
-                "seller": {"@type": "Organization", "name": "정량펌프연구소"},
+                "seller": {"@type": "Organization", "name": "실험셋업연구소"},
                 "url": f"{base_url}Leadfluid-2025-Catalog.pdf#page={p.get('catalog_page', 1)}"
             }
         })
@@ -209,7 +209,7 @@ def render_category_jsonld(cat_id, cat_data, products, base_url, page_url):
     itemlist = {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": f"정량펌프연구소 {label} 카탈로그",
+        "name": f"실험셋업연구소 {label} 카탈로그",
         "numberOfItems": len(product_items),
         "itemListElement": [
             {"@type": "ListItem", "position": i + 1, "item": pi}
@@ -520,7 +520,7 @@ def build_setups():
         print('  [warn] setups 마커 못 찾음 — 주입 생략 (ST_CARDS/ST_COUNT/ST_ANSWER 마커 확인)')
 
 
-BASE_URL_LD = 'https://pumplab.co.kr'
+BASE_URL_LD = 'https://rndsetup.com'
 
 # NOTE(엔티티): sameAs는 실제 공식 프로필 URL 확보 시 Organization 노드에 추가할 것
 #   GBP(구글 지도 CID) 반영됨. 네이버 플레이스·나비엠알오·유튜브 URL 확보 시 추가.
@@ -530,12 +530,13 @@ ORG_WEBSITE_GRAPH = {
     "@graph": [
         {
             "@type": "Organization",
-            "@id": "https://pumplab.co.kr/#org",
-            "name": "정량펌프연구소",
-            "legalName": "emergent co.",
+            "@id": "https://rndsetup.com/#org",
+            "name": "실험셋업연구소",
+            "alternateName": "정량펌프연구소",
+            "legalName": "실험셋업연구소",
             "taxID": "637-05-03629",
-            "url": "https://pumplab.co.kr/",
-            "email": "info@pumplab.co.kr",
+            "url": "https://rndsetup.com/",
+            "email": "info@rndsetup.com",
             "telephone": "+82-70-8983-2600",
             "founder": {"@type": "Person", "name": "이영현"},
             "sameAs": ["https://www.google.com/maps?cid=4429951187161412134"],
@@ -548,7 +549,7 @@ ORG_WEBSITE_GRAPH = {
             },
             "areaServed": {"@type": "Country", "name": "대한민국"},
             "knowsAbout": ["실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "Modbus·RS-485 펌프 제어", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 공식대리점·국내 A/S", "Alicat 질량유량계"],
-            "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@pumplab.co.kr", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"},
+            "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"},
             "makesOffer": [
                 {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}},
                 {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}
@@ -556,10 +557,10 @@ ORG_WEBSITE_GRAPH = {
         },
         {
             "@type": "WebSite",
-            "@id": "https://pumplab.co.kr/#website",
-            "name": "정량펌프연구소",
-            "url": "https://pumplab.co.kr/",
-            "publisher": {"@id": "https://pumplab.co.kr/#org"},
+            "@id": "https://rndsetup.com/#website",
+            "name": "실험셋업연구소",
+            "url": "https://rndsetup.com/",
+            "publisher": {"@id": "https://rndsetup.com/#org"},
             "inLanguage": "ko"
         }
     ]
@@ -670,7 +671,7 @@ def normalize_html_urls():
             if 'http-equiv="refresh"' in html:
                 continue
             new = re.sub(r'((?:href|src)=")(/[^"\s]*)\.html(?=["#?])', r'\1\2', html)
-            new = re.sub(r'(https://pumplab\.co\.kr/[^"\s]*)\.html(?=["#?])', r'\1', new)
+            new = re.sub(r'(https://rndsetup\.com/[^"\s]*)\.html(?=["#?])', r'\1', new)
             if new != html:
                 write(p, new)
                 count += 1
@@ -679,7 +680,7 @@ def normalize_html_urls():
 
 def main():
     print('=' * 60)
-    print('  정량펌프연구소 카테고리 페이지 빌드')
+    print('  실험셋업연구소 카테고리 페이지 빌드')
     print('=' * 60)
 
     template = read(os.path.join(SCRIPT_DIR, 'template.html'))
@@ -721,7 +722,7 @@ def main():
         cat = p.get('category', 'pump')
         products_by_cat.setdefault(cat, []).append(p)
 
-    base_url = cats_config.get('_base_url', 'https://pumplab.co.kr/')
+    base_url = cats_config.get('_base_url', 'https://rndsetup.com/')
     cats = cats_config['categories']
     partials_full = {'tubing': partial_tubing}
 
