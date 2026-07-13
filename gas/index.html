@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기체 유량 제어 — 질량유량계(MFC) 셋업 | 실험셋업연구소</title>
+<meta name="description" content="질량유량계(MFC)는 로타미터와 달리 기체 유량을 전자식으로 정밀 제어하는 장치입니다. 튜브퍼니스 가스 분위기 제어·CVD·촉매 반응·가스 혼합비 제어에 쓰이며, 선택 기준과 다중 MFC 동기 제어 방법을 정리했습니다. 실험셋업연구소는 Alicat 질량유량계를 공급하고 제어 소프트웨어로 시스템 연동을 지원합니다.">
+<meta name="keywords" content="질량유량계, MFC, mass flow controller, 기체 유량 제어, 로타미터, 튜브퍼니스 가스 분위기, CVD, 가스 혼합비, Alicat, MC-Series, 실험셋업연구소">
+<link rel="canonical" href="https://rndsetup.com/gas/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="기체 유량 제어 — 질량유량계(MFC) 셋업">
+<meta property="og:description" content="MFC의 원리와 로타미터와의 차이, 튜브퍼니스·CVD·촉매 반응에서의 사용, 선택 기준과 다중 MFC 동기 제어를 정리했습니다.">
+<meta property="og:url" content="https://rndsetup.com/gas/">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"기체 유량 제어 — 질량유량계(MFC) 셋업 정보","description":"질량유량계(MFC)의 원리, 로타미터와의 차이, 튜브퍼니스 가스 분위기 제어·CVD·촉매 반응 등 응용, 선택 기준과 다중 MFC 동기 제어 방법을 정리한 정보 문서입니다.","inLanguage":"ko","author":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/gas/"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"MFC가 뭔가요?","acceptedAnswer":{"@type":"Answer","text":"MFC(질량유량계, Mass Flow Controller)는 기체의 질량 유량을 센서로 측정하고 내장 밸브로 설정값에 맞게 자동 조절하는 전자식 유량 제어 장치입니다. 눈금을 보고 손으로 밸브를 여닫는 로타미터와 달리, 온도·압력 변화와 무관하게 질량 기준으로 정밀하고 재현성 있게 유량을 유지합니다."}},
+{"@type":"Question","name":"튜브퍼니스 가스 분위기는 어떻게 제어하나요?","acceptedAnswer":{"@type":"Answer","text":"목표 가스(예: N2, Ar, H2, 공기)마다 MFC를 두어 각 유량을 설정하면 원하는 분위기와 혼합비를 재현성 있게 유지할 수 있습니다. 여러 MFC를 제어 소프트웨어로 묶으면 승온·유지·냉각 구간별로 유량과 혼합비를 스케줄링해 CVD나 촉매 반응 조건을 일정하게 재현할 수 있습니다."}},
+{"@type":"Question","name":"여러 MFC를 동시에 제어할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"가능합니다. RS-485(Modbus 등) 통신으로 여러 MFC를 하나의 제어 소프트웨어에 연결하면 채널별 유량을 동시에 설정·기록하고 혼합비를 동기 제어할 수 있습니다. 아날로그(0–5V/4–20mA) 방식도 가능하지만, 다중 채널 동기와 데이터 로깅에는 디지털 통신이 유리합니다."}}
+]}
+</script>
+<style>
+  :root{
+    --ink:#1A1A1A; --gray:#6B6B6B; --gray-2:#9A9A9A;
+    --green:#1A6E56; --green-bg:#F6F7F8; --line:#EAEAEA; --bg:#fff;
+    --serif:"Noto Serif KR",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  .hero{padding:48px 0 8px}
+  .hero .crumb{font-size:13px;color:var(--gray-2);margin-bottom:14px}
+  .hero .crumb a{color:var(--green);text-decoration:none}
+  h1{font-family:var(--serif);font-size:30px;font-weight:700;line-height:1.3;letter-spacing:-.02em}
+  .hero .lead{margin-top:14px;font-size:16.5px;color:var(--gray);line-height:1.7}
+  article{padding:24px 0 40px}
+  article h2{font-family:var(--serif);font-size:21px;font-weight:600;margin:34px 0 10px;letter-spacing:-.01em}
+  article p{font-size:16px;color:#2a2a2a;margin:0 0 14px}
+  article ul{margin:0 0 16px 18px}
+  article li{font-size:16px;color:#2a2a2a;margin-bottom:7px}
+  article b{color:var(--ink)}
+  .box{background:var(--green-bg);border:1px solid #d9ead5;border-radius:12px;padding:18px 20px;margin:20px 0}
+  .box h3{font-family:var(--serif);font-size:17px;margin-bottom:8px}
+  .ans{background:#eef4f1;border:1px solid #cfe3da;border-left:4px solid var(--green);border-radius:10px;padding:16px 18px;margin:18px 0 6px;font-size:16px;color:#20302a;line-height:1.7}
+  .spec{width:100%;border-collapse:collapse;margin:8px 0 18px;font-size:14.5px}
+  .spec th,.spec td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  .spec th{background:#f7f9fc;font-weight:700}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 8px}
+  .btn{display:inline-block;padding:12px 20px;border-radius:9px;font-weight:600;text-decoration:none}
+  .btn.p{background:var(--ink);color:#fff}
+  .btn.s{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .rel{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;font-size:14px;color:var(--gray)}
+  .rel a{color:var(--green);text-decoration:none;font-weight:600}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div id="pumplab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/">홈</a> › 기체 유량 제어</div>
+    <h1>기체 유량 제어 —<br>질량유량계(MFC) 셋업 정보</h1>
+    <p class="lead">질량유량계(MFC)는 기체 유량을 <b>전자식으로 정밀 제어</b>하는 장치입니다. 로타미터와의 차이, 튜브퍼니스·CVD·촉매 반응에서의 쓰임, 선택 기준과 다중 MFC 동기 제어를 정리했습니다.</p>
+  </div>
+</section>
+
+<article>
+  <div class="wrap">
+    <div class="ans"><b>질량유량계(MFC, Mass Flow Controller)</b>는 기체의 질량 유량을 센서로 측정하고 내장 밸브로 설정값에 맞춰 자동 조절하는 전자식 유량 제어 장치입니다. 온도·압력이 변해도 <b>질량 기준</b>으로 유량을 일정하게 유지해 재현성 있는 가스 분위기를 만듭니다.</div>
+
+    <h2>MFC와 로타미터, 무엇이 다른가</h2>
+    <p>로타미터(가변면적 유량계)는 관 속 부표의 위치를 눈으로 읽고 손으로 밸브를 여닫아 유량을 맞춥니다. 간단하지만 온도·압력·가스 종류에 따라 지시값이 달라지고, 값이 사람 손과 눈에 의존합니다. 반면 MFC는 <b>질량 유량을 센서로 측정</b>하고 밸브를 전자적으로 제어하므로, 설정값을 입력하면 조건이 변해도 같은 질량 유량을 재현성 있게 유지합니다.</p>
+    <ul>
+      <li><b>측정 기준</b> — 로타미터는 체적 유량(조건 의존), MFC는 질량 유량(조건 무관 재현).</li>
+      <li><b>제어 방식</b> — 로타미터는 수동, MFC는 설정값 기반 자동 제어.</li>
+      <li><b>기록·연동</b> — MFC는 통신으로 유량을 읽고 기록하며 소프트웨어로 스케줄 제어가 가능.</li>
+    </ul>
+
+    <h2>언제 쓰나</h2>
+    <ul>
+      <li><b>튜브퍼니스 가스 분위기 제어</b> — N2·Ar·H2·공기 등의 유량과 혼합비를 재현성 있게 유지.</li>
+      <li><b>CVD(화학기상증착)</b> — 전구체·캐리어 가스 유량을 정밀 제어해 증착 조건을 일정하게.</li>
+      <li><b>촉매 반응</b> — 반응 가스 유량·비율을 정확히 잡아 활성·선택도 실험의 조건을 통제.</li>
+      <li><b>가스 혼합비 제어</b> — 여러 가스를 정해진 비율로 섞어 목표 조성을 만듦.</li>
+    </ul>
+
+    <h2>선택할 때 고려할 것</h2>
+    <table class="spec">
+      <tr><th style="width:26%">항목</th><th>확인할 내용</th></tr>
+      <tr><td><b>가스 종류</b></td><td>대상 가스와 부식성·인화성 여부. 가스별 보정(가스 팩터)이나 실기체 보정이 필요한지 확인.</td></tr>
+      <tr><td><b>유량 범위</b></td><td>필요한 최소·최대 유량(sccm ~ slpm)을 포함하는 풀스케일. 저유량은 분해능이 좋은 모델이 유리.</td></tr>
+      <tr><td><b>통신·신호</b></td><td>RS-485(Modbus 등) 디지털 또는 아날로그(0–5V/4–20mA). 기록·다채널 제어에는 디지털이 유리.</td></tr>
+      <tr><td><b>다중 MFC 동기</b></td><td>여러 채널의 유량을 동시에 설정·기록하고 혼합비를 함께 제어해야 하는지.</td></tr>
+    </table>
+
+    <h2>실험셋업연구소의 MFC 셋업 지원</h2>
+    <p>실험셋업연구소는 <b>Alicat 질량유량계(MC-Series 등)를 공급</b>하고, 제어 소프트웨어로 여러 MFC를 묶어 유량 설정·기록·혼합비 동기 제어까지 <b>시스템 연동을 지원</b>합니다. 튜브퍼니스나 CVD 라인처럼 여러 가스를 다뤄야 하는 셋업에서 가스 종류·유량 범위·통신 방식에 맞는 구성을 함께 정리할 수 있습니다.</p>
+
+    <div class="box">
+      <h3>실제 도입 사례</h3>
+      <p style="margin:0;font-size:15px;color:#2a2a2a"><a href="/setups/alicat-mfc-tubefurnace" style="color:var(--green);font-weight:600">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 셋업 →</a><br>튜브퍼니스의 가스 분위기와 혼합비를 Alicat MFC와 제어 소프트웨어로 구성한 사례입니다.</p>
+    </div>
+
+    <h2>가스 유량 제어 셋업이 필요하면</h2>
+    <p>다루는 가스 종류·유량 범위·통신 방식과 다중 MFC 동기가 필요한지 알려주시면, 셋업 구성과 소프트웨어 연동 방법을 함께 정리해 드립니다.</p>
+
+    <div class="cta">
+      <a class="btn p" href="/contact/">가스 유량 제어 셋업 문의</a>
+      <a class="btn s" href="/setups/alicat-mfc-tubefurnace">도입 사례 보기 →</a>
+    </div>
+
+    <div class="rel">
+      관련: <a href="/setups/alicat-mfc-tubefurnace">Alicat MFC 튜브퍼니스 셋업</a> · <a href="/contact/">셋업 문의</a>
+    </div>
+  </div>
+</article>
+
+<div id="pumplab-footer"></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

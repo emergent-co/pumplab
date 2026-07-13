@@ -18,6 +18,8 @@
     { t:'시린지펌프 (주사기펌프)', u:'/pumps/syringe.html', k:'시린지펌프 주사기펌프 syringe pump 초저유량 정밀 주입 미세유체 flow chemistry TYD01 TFD 다채널', c:'펌프 종류' },
     { t:'정량펌프 (연동식 정량·디스펜싱)', u:'/pumps/metering.html', k:'정량펌프 디스펜싱 dosing metering 분주 정량 주입 pH 제어 BQ80S BT101F 연동식', c:'펌프 종류' },
     { t:'기어펌프', u:'/pumps/gear.html', k:'기어펌프 gear pump 무맥동 고압 대유량 유기용매 방폭 FG601S 산업 이송', c:'펌프 종류' },
+    { t:'기체 유량 제어 — 질량유량계(MFC)', u:'/gas/', k:'기체 가스 질량유량계 mfc mass flow controller alicat 유량계 튜브퍼니스 cvd 촉매 가스혼합 rs485 로타미터', c:'기체' },
+    { t:'진공 셋업 — 오일 회전식·다이아프램 진공펌프', u:'/vacuum/', k:'진공 vacuum pump 오일 회전식 rotary vane 다이아프램 diaphragm 감압증류 탈기 건조 여과 무오일 데시케이터', c:'진공' },
     { t:'소프트웨어 제어 펌프 시스템', u:'/requests/', k:'자동화 무인 관류 채널 독립 유량 기록 재현 modbus rs485 python 스케줄 레시피 로그 다펌프 동기', c:'실험을 자동화할 때' },
     { t:'프로그래밍 제어 (Modbus·RS-485·Python)', u:'/requests/#control', k:'modbus rs485 python 시리얼 제어 자동화 스크립트 레지스터', c:'실험을 자동화할 때' },
     { t:'유량 스케줄·ramp·레시피', u:'/requests/#schedule', k:'스케줄 ramp 램프 레시피 시퀀스 프로파일 반복 저장', c:'실험을 자동화할 때' },
@@ -53,17 +55,13 @@
     contact:'<svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 3z"/></svg>',
     star:'<svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 17.8 6.4 20.4l1.4-6.3L3 9.8l6.4-.6z"/></svg>',
     pick:'<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/></svg>',
-    shield:'<svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>'
+    shield:'<svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>',
+    gas:'<svg viewBox="0 0 24 24"><path d="M4 9c2-2.2 4 2.2 6 0s4-2.2 6 0 4 2.2 4 2.2M4 15c2-2.2 4 2.2 6 0s4-2.2 6 0 4 2.2 4 2.2"/></svg>',
+    vacuum:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-3"/><path d="M12 5v2"/></svg>'
   };
   var NAV = [
     { href:'/',            label:'홈',        icon:'home' },
-    { href:'/requests/',   label:'펌프 자동화 (SW)', icon:'sw', sub:[
-        ['/application/pump-flow-schedule-ramp.html',       '유량 스케줄·ramp'],
-        ['/application/multi-pump-sync-unattended.html',    '다펌프 동기·무인 운전'],
-        ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현'],
-        ['/application/pump-pc-control-modbus-rs485.html',  'PC 제어 (Modbus·RS485)']
-      ] },
-    { href:'/pumps/', label:'펌프 종류', icon:'pick', sub:[
+    { href:'/pumps/', label:'액체', icon:'pick', sub:[
         ['/leadfluid/',                 '리드플루이드 (브랜드)'],
         ['/pumps/peristaltic.html',     '연동펌프'],
         ['/pumps/syringe.html',         '시린지펌프'],
@@ -71,16 +69,24 @@
         ['/pumps/gear.html',            '기어펌프'],
         ['/application/pump-selection.html', '펌프 고르는 방법']
       ] },
-    { href:'/application/', label:'실험 가이드', icon:'guide', sub:[
-        ['/application/cell-culture-perfusion.html',         '세포배양 관류'],
-        ['/application/chemostat-continuous-culture.html',   '연속배양(chemostat)'],
-        ['/application/photobioreactor-microalgae.html',     '광배양·미세조류'],
-        ['/application/flow-chemistry.html',                 'flow chemistry'],
-        ['/application/organ-on-chip-perfusion.html',        '장기칩·오가노이드']
+    { href:'/gas/', label:'기체', icon:'gas', sub:[
+        ['/gas/', '질량유량계(MFC)']
       ] },
-    { href:'/setups/', label:'근거·신뢰', icon:'shield', sub:[
-        ['/setups/', '도입·논문 사례'],
-        ['/trust/',  '믿고 도입할 때 (A/S·정품·보증)']
+    { href:'/vacuum/', label:'진공', icon:'vacuum', sub:[
+        ['/vacuum/#rotary',    '오일 회전식 진공펌프'],
+        ['/vacuum/#diaphragm', '다이아프램 진공펌프']
+      ] },
+    { href:'/requests/', label:'자동화', icon:'sw', sub:[
+        ['/application/pump-pc-control-modbus-rs485.html',  'PC 제어 (Modbus·RS485)'],
+        ['/requests/#control',                              'Python 예제'],
+        ['/application/pump-flow-schedule-ramp.html',       '유량 스케줄·ramp'],
+        ['/application/multi-pump-sync-unattended.html',    '다펌프 동기·무인 운전'],
+        ['/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현']
+      ] },
+    { href:'/setups/', label:'실험 셋업', icon:'guide', sub:[
+        ['/application/', '실험 가이드 (관류·연속배양 등)'],
+        ['/setups/',      '도입·논문 사례'],
+        ['/trust/',       '믿고 도입할 때 (A/S·정품·보증)']
       ] },
     { href:'/faq/',        label:'FAQ',       icon:'faq' }
   ];

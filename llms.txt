@@ -13,7 +13,7 @@
 ## 주요 페이지 (정확한 URL)
 
 - [홈](https://rndsetup.com/): 소프트웨어 제어 펌프 시스템 개요 + 제어 프로그램 무료 다운로드
-- [리드플루이드(LeadFluid)](https://rndsetup.com/leadfluid/): 리드플루이드 한국 공식대리점·정품·국내 직접 A/S·3년 보증·Modbus·RS485 제어 소프트웨어 — 브랜드 종합 안내(연동·시린지·기어·마그네틱 펌프 종류·모델·구매·A/S·제어)
+- [리드플루이드(LeadFluid)](https://rndsetup.com/leadfluid/): 리드플루이드 정품·국내 직접 A/S·3년 보증·Modbus·RS485 제어 소프트웨어 — 브랜드 종합 안내(연동·시린지·기어·마그네틱 펌프 종류·모델·구매·A/S·제어)
   - [BT101 L 연동펌프](https://rndsetup.com/leadfluid/bt101l/): 지능형 연동펌프(0.00011~750 mL/min)·RS485 PC 제어·도금/카테터 논문 사례
   - [TYD01-01 시린지펌프](https://rndsetup.com/leadfluid/tyd01-01/): 나노리터급 정밀 주입(0.184 nL~83 mL/min)·RS485·WiFi·뇌 인터페이싱 논문
   - [CT3001F 마그네틱 기어펌프](https://rndsetup.com/leadfluid/ct3001f/): 자기구동 무누설 연속 이송·CO₂ 포집 논문
@@ -23,6 +23,8 @@
   - [시린지펌프](https://rndsetup.com/pumps/syringe): 초저유량 정밀 주입
   - [정량펌프(연동식·디스펜싱)](https://rndsetup.com/pumps/metering): 정량 분주·pH 제어
   - [기어펌프](https://rndsetup.com/pumps/gear): 저맥동 고압·대유량 이송
+- [기체 유량 제어(MFC)](https://rndsetup.com/gas/): 질량유량계(Alicat MC-Series 등) 공급·시스템 연동. 튜브퍼니스 가스 분위기·CVD·촉매·가스 혼합비 제어 셋업 정보
+- [진공 셋업](https://rndsetup.com/vacuum/): 오일 회전식 vs 다이아프램 진공펌프 선택 정보(감압증류·탈기·건조·여과 등 실험 진공)
 - [소프트웨어 제어](https://rndsetup.com/requests/): 무인 장시간 관류·채널별 독립 유량·기록/재현·Modbus·RS-485·Python 제어·개발 요청
   - [유량 스케줄·ramp 자동화하는 법](https://rndsetup.com/application/pump-flow-schedule-ramp)
   - [다펌프 동기·무인 장시간 운전 구성하는 법](https://rndsetup.com/application/multi-pump-sync-unattended)

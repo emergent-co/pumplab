@@ -391,6 +391,8 @@ CRAWLER_LINKS = [
     ('/pumps/syringe.html', '시린지펌프 — 초저유량 정밀 주입'),
     ('/pumps/metering.html', '정량펌프(연동식) — 정량·디스펜싱'),
     ('/pumps/gear.html', '기어펌프 — 고압 대유량 이송'),
+    ('/gas/', '기체 유량 제어 — 질량유량계(MFC)'),
+    ('/vacuum/', '진공 셋업 — 오일 회전식·다이아프램 진공펌프'),
     ('/application/', '실험 가이드'),
     ('/application/biopharmaceutical.html', '바이오의약 — 발효·세포배양·정제·충전'),
     ('/application/analytical-instrument.html', '분석기기 — 컬럼 주입·시료 정량 주입'),
@@ -574,6 +576,8 @@ BREADCRUMB_SECTIONS = {
     'trust': ('믿고 도입할 때', '/trust/'),
     'contact': ('문의하기', '/contact/'),
     'faq': ('자주 묻는 질문(FAQ)', '/faq/'),
+    'gas': ('기체', '/gas/'),
+    'vacuum': ('진공', '/vacuum/'),
 }
 
 # /application/ 내 페이지 중 섹션을 다르게 잡을 것 (펌프 가이드 / 소프트웨어 제어)
@@ -770,6 +774,8 @@ def main():
         ('pumps/syringe.html',     '0.8', 'monthly'),  # 시린지펌프
         ('pumps/metering.html',    '0.8', 'monthly'),  # 정량펌프(연동식)
         ('pumps/gear.html',        '0.7', 'monthly'),  # 기어펌프
+        ('gas/',          '0.8', 'monthly'),  # 기체 — 질량유량계(MFC)
+        ('vacuum/',       '0.8', 'monthly'),  # 진공 셋업
         ('application/biopharmaceutical.html', '0.8', 'monthly'),        # 응용분야 클러스터
         ('application/analytical-instrument.html', '0.8', 'monthly'),
         ('application/medical-device-ivd.html', '0.8', 'monthly'),
