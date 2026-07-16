@@ -65,26 +65,18 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/guide/', label:'실험 셋업 가이드', icon:'find', sub:[
-        ['/guide/?d=액체',   '액체 — 펌프·튜브'],
-        ['/guide/?d=기체',   '기체 — MFC'],
-        ['/guide/?d=진공',   '진공'],
-        ['/guide/?d=자동화', '자동화·제어']
+    { href:'/troubleshooting/', label:'펌프 자료실', icon:'wrench', sub:[
+        ['/leadfluid/',                       '리드플루이드 — 제품·정품·국내 A/S'],
+        ['/troubleshooting/',                 '트러블슈팅 — 멈춤·유량·튜빙·소음'],
+        ['/setups/plating-flow-calibration/', '도입 셋업 스토리'],
+        ['/guide/',                           '실험 셋업 가이드 — 질문·비교'],
+        ['/setups/',                          '연구별(논문) 셋업']
       ] },
     { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
-    { href:'/setups/', label:'연구별 셋업', icon:'shield', sub:[
-        ['/setups/#bio',    '바이오·의료'],
-        ['/setups/#env',    '환경·수처리'],
-        ['/setups/#energy', '에너지·재료·열처리']
-      ] },
-    { href:'/troubleshooting/', label:'자료실', icon:'wrench', sub:[
-        ['/troubleshooting/',                 '펌프 트러블슈팅'],
-        ['/setups/plating-flow-calibration/', '도입 셋업 스토리']
-      ] },
-    { href:'/leadfluid/', label:'호환 장비', icon:'devices', sub:[
-        ['/leadfluid/',      '리드플루이드 — 액체 펌프'],
+    { href:'/alicat/', label:'호환 장비', icon:'devices', sub:[
         ['/sh-scientific/',  '삼흥에너지 — 열처리'],
-        ['/alicat/',         'ALICAT — 질량유량계'],
+        ['/alicat/',         'ALICAT — 질량유량계(MFC)'],
+        ['/gas/',            '기체 유량 제어(MFC)'],
         ['/vacuum/',         '진공펌프 (오일·다이아프램)']
       ] },
     { href:'/faq/',        label:'FAQ',       icon:'faq' }
