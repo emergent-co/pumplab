@@ -151,10 +151,27 @@
       '</div></footer>';
 
   var CTA_FAB =
-    '<div class="cta-fab" aria-label="빠른 문의">' +
-      '<a href="http://pf.kakao.com/_GCsjX" target="_blank" rel="noopener" data-ga="fab_kakao" aria-label="카카오 상담">카톡</a>' +
-      '<a href="mailto:info@rndsetup.com" data-ga="fab_email" aria-label="이메일 문의">메일</a>' +
-      '<a class="cta-fab-main" href="/contact/" data-ga="fab_contact">문의하기</a>' +
+    '<div class="cta-chat" id="ctaChat">' +
+      '<div class="cc-panel" role="dialog" aria-label="문의 패널">' +
+        '<div class="cc-head">' +
+          '<div class="cc-brand">실험셋업연구소</div>' +
+          '<button class="cc-x" type="button" aria-label="닫기" onclick="ccToggle(false)">×</button>' +
+        '</div>' +
+        '<div class="cc-body">' +
+          '<div class="cc-greet"><b>무엇을 도와드릴까요?</b><br>정량펌프·질량유량계(MFC)·진공·자동화 셋업과 제어, 수리까지 편하게 문의하세요.</div>' +
+          '<a class="cc-cta" href="/contact/" data-ga="fab_contact">문의하기 →</a>' +
+          '<div class="cc-note">보통 몇 분 내 답변드려요</div>' +
+          '<div class="cc-alt">다른 방법으로 문의</div>' +
+          '<div class="cc-chans">' +
+            '<a href="http://pf.kakao.com/_GCsjX" target="_blank" rel="noopener" data-ga="fab_kakao">카카오톡</a>' +
+            '<a href="tel:+827089832600" data-ga="fab_tel">전화</a>' +
+            '<a href="mailto:info@rndsetup.com" data-ga="fab_email">이메일</a>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<button class="cc-launch" type="button" aria-label="문의하기" onclick="ccToggle()">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg><span>문의</span>' +
+      '</button>' +
     '</div>';
 
   var REPAIR_MODAL =
@@ -216,7 +233,15 @@
     if (h) h.outerHTML = HEADER;
     var f = document.getElementById('pumplab-footer');
     if (f) f.outerHTML = FOOTER;
-    if (document.body && !document.querySelector('.cta-fab')) document.body.insertAdjacentHTML('beforeend', CTA_FAB);
+    if (document.body && !document.querySelector('.cta-chat')) {
+      document.body.insertAdjacentHTML('beforeend', CTA_FAB);
+      window.ccToggle = function (force) {
+        var w = document.getElementById('ctaChat'); if (!w) return;
+        var open = (force === undefined) ? !w.classList.contains('open') : force;
+        w.classList.toggle('open', open);
+        if (open && typeof gtag === 'function') gtag('event', 'chat_open');
+      };
+    }
     var burger = document.querySelector('.ch-burger');
     var side = document.getElementById('chSide');
     var scrim = document.getElementById('chScrim');
