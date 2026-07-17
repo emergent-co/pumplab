@@ -66,9 +66,9 @@
   };
   var NAV = [
     { href:'/pump/troubleshooting/', label:'펌프 자료실', icon:'wrench', sub:[
-        ['/pump/leadfluid/',                       '리드플루이드 — 제품·정품·국내 A/S'],
-        ['/pump/guide/',                           '펌프 셋업 가이드 — 질문·비교'],
-        ['/pump/setups/plating-flow-calibration/', '도입 셋업 스토리']
+        ['/pump/troubleshooting/', '펌프 A to Z'],
+        ['/pump/leadfluid/',       '리드플루이드'],
+        ['/faq/',                  '자주묻는 질문(FAQ)']
       ] },
     { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
     { href:'/alicat/', label:'호환 장비', icon:'devices', sub:[
@@ -77,8 +77,7 @@
         ['/alicat/',         'ALICAT — 질량유량계(MFC)'],
         ['/gas/',            '기체 유량 제어(MFC)'],
         ['/vacuum/',         '진공펌프 (오일·다이아프램)']
-      ] },
-    { href:'/faq/',        label:'FAQ',       icon:'faq' }
+      ] }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
   function subOnPage(href){ var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }
