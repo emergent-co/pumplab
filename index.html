@@ -116,66 +116,84 @@
       <div style="font-size:12.5px;color:#5a6470;margin-top:5px">국내 직접 A/S · 3년 무상보증(구매 조건) · 통합 제어 소프트웨어 · CE·RoHS &nbsp;<span style="color:var(--green);font-weight:700">전 모델 보기 →</span></div>
     </a>
 
-    <!-- 1) 소프트웨어 다운로드 -->
-    <div class="h-promo" id="download">
-      <div class="p-top">
-      <div class="p-tx">
-        <div class="p-sub">통합 제어 소프트웨어 · Modbus·RS485 · 액체·기체·진공·자동화</div>
-        <h1>하나의 소프트웨어로 — 펌프·질량유량계·진공·자동화를 통합 제어</h1>
-        <p>액체(펌프)·기체(질량유량계 MFC)·진공·열처리까지, Modbus·RS485(RTU) 지원 장비를 한 프로그램에서 유량·유량계·온도 스케줄을 함께 제어하고 무인·재현으로 운전합니다.</p>
-        <a class="p-btn" href="/requests/">자세히 보기 →</a>
+    <!-- 1) 메인 서비스: 논문 기반 셋업 분석 리포트 -->
+    <style>
+      .setup-svc{margin:16px 4px 0}
+      .setup-svc .eyebrow{font-size:12.5px;font-weight:800;color:var(--green);letter-spacing:.02em}
+      .setup-svc h1{font-family:"Noto Serif KR",Georgia,serif;font-size:clamp(21px,4.6vw,29px);font-weight:800;line-height:1.32;letter-spacing:-.02em;margin:8px 0 0;color:var(--ink)}
+      .setup-svc .svc-sub{font-size:15px;color:#3a4650;margin:12px 0 0;line-height:1.75;max-width:720px}
+      .setup-svc .svc-steps{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
+      .setup-svc .svc-steps span{background:var(--green-bg,#EDF2F8);border:1px solid #dce6f1;border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:700;color:var(--green)}
+      .setup-form{margin-top:18px;border:1px solid var(--line,#E6EAF0);border-radius:16px;padding:22px}
+      .setup-form label{display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:14px}
+      .setup-form .req{color:#c00}
+      .setup-form input[type=text],.setup-form input[type=email],.setup-form textarea,.setup-form select{width:100%;margin-top:6px;border:1px solid #d6dee8;border-radius:9px;padding:11px 12px;font-size:14.5px;font-family:inherit;color:#1a2733;background:#fff}
+      .setup-form textarea{min-height:104px;resize:vertical;line-height:1.6}
+      .setup-form input[type=file]{margin-top:6px;font-size:13px;font-family:inherit}
+      .setup-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+      .setup-form .send{width:100%;background:var(--green);color:#fff;border:0;border-radius:10px;padding:14px;font-size:15.5px;font-weight:800;cursor:pointer;font-family:inherit;margin-top:4px}
+      .setup-form .send:hover{background:#16304d}
+      .setup-form .priv{font-size:12px;color:#8a95a3;margin-top:10px;line-height:1.6}
+      @media(max-width:560px){.setup-form .row2{grid-template-columns:1fr}}
+    </style>
+    <section class="setup-svc" id="setup-inquiry">
+      <div class="eyebrow">실험셋업연구소 메인 서비스 · 논문 기반 셋업 분석</div>
+      <h1>논문을 보내주시면, 셋업 구성·필요 장비 스펙 리포트를 드립니다</h1>
+      <p class="svc-sub">참고 중인 <b>논문(DOI·링크·PDF)</b>과 실험 상황을 남겨주세요. 실험셋업연구소가 그 논문의 셋업을 분석해 <b>필요한 펌프·MFC·튜브·제어 구성과 스펙</b>을 정리한 리포트를 이메일로 보내드립니다.</p>
+      <div class="svc-steps"><span>1. 논문·상황 제출</span><span>2. 실험셋업연구소 분석</span><span>3. 셋업·스펙 리포트 회신</span></div>
+
+      <form class="setup-form" id="setupForm">
+        <input type="hidden" name="문의유형" value="논문 셋업 분석 리포트 신청">
+        <label>참고 논문 (DOI · 링크 · 제목) <span class="req">*</span>
+          <input type="text" name="논문" required placeholder="예: 10.1038/s41586-024-xxxxx · 또는 논문 제목/URL">
+        </label>
+        <label>논문 파일 첨부 (선택 · PDF)
+          <input type="file" name="논문파일" accept=".pdf,.doc,.docx">
+        </label>
+        <label>무엇이 필요하세요? <span class="req">*</span>
+          <select name="필요항목" required>
+            <option value="">선택하세요</option>
+            <option value="셋업 구성 분석">셋업 구성 분석 (어떤 장비를 어떻게 연결·제어하나)</option>
+            <option value="필요 장비 스펙 안내">필요 장비 스펙 안내 (어떤 스펙의 펌프·MFC가 맞나)</option>
+            <option value="둘 다">둘 다</option>
+          </select>
+        </label>
+        <label>상세 내용 — 실험 목적·조건, 확인하고 싶은 부분을 자세히 <span class="req">*</span>
+          <textarea name="상세내용" required placeholder="예: 이 논문의 관류배양 셋업을 재현하려는데 유량 0.1~2 mL/min·3채널 독립 제어가 필요합니다. 맞는 펌프·튜브·제어 구성과 예산·A/S까지 알려주세요."></textarea>
+        </label>
+        <div class="row2">
+          <label>이름 · 소속 <span class="req">*</span><input type="text" name="이름·소속" required placeholder="홍길동 / OO대학교 OO연구실"></label>
+          <label>이메일 (리포트 받으실 주소) <span class="req">*</span><input type="email" name="email" required placeholder="you@lab.ac.kr"></label>
+        </div>
+        <button class="send" type="submit">셋업 분석 리포트 신청</button>
+        <p class="priv">제출하신 논문·정보는 리포트 작성 목적으로만 사용합니다. 보통 1~2 영업일 내 회신드립니다. 전송이 안 되면 info@rndsetup.com 으로 보내주세요.</p>
+      </form>
+
+      <div id="setupDone" style="display:none;text-align:center;padding:24px 10px;border:1px solid var(--line,#E6EAF0);border-radius:16px;margin-top:18px">
+        <div style="width:46px;height:46px;border-radius:50%;background:var(--green);color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 12px">✓</div>
+        <h3 style="font-family:'Noto Serif KR',Georgia,serif;font-size:19px;color:var(--ink)">신청이 접수되었습니다</h3>
+        <p style="font-size:14px;color:#5a6470;margin-top:6px">논문을 검토해 셋업·스펙 리포트를 이메일로 보내드리겠습니다. 감사합니다.</p>
       </div>
-      <div class="p-ill" role="button" tabindex="0" aria-label="소프트웨어 화면 크게 보기" onclick="event.preventDefault();event.stopPropagation();openSwZoom();">
-        <svg viewBox="0 0 260 168" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',sans-serif">
-          <rect x="0.5" y="0.5" width="259" height="167" rx="11" fill="#ffffff"/>
-          <path d="M0.5 12 A11.5 11.5 0 0 1 12 0.5 H248 A11.5 11.5 0 0 1 259.5 12 V25 H0.5 Z" fill="#1E3A5F"/>
-          <circle cx="14" cy="13" r="3" fill="#ff5f56"/><circle cx="24" cy="13" r="3" fill="#ffbd2e"/><circle cx="34" cy="13" r="3" fill="#27c93f"/>
-          <text x="132" y="16.5" fill="#cdd7e6" font-size="8.5" text-anchor="middle" font-weight="700">실험셋업연구소 Pump Control</text>
-          <text x="14" y="42" fill="#8a97a8" font-size="8">Connection</text>
-          <rect x="13" y="46" width="110" height="15" rx="4" fill="#eef2f8" stroke="#dbe3ee"/>
-          <text x="19" y="56" fill="#5b6b7f" font-size="7.5">COM3 · USB-Serial (BT101L)</text>
-          <rect x="13" y="66" width="110" height="34" rx="5" fill="#f4f7fb" stroke="#e2e9f2"/>
-          <rect x="19" y="71" width="30" height="10" rx="2.5" fill="#e6f4ec"/><text x="34" y="78.5" fill="#2a9d64" font-size="6.8" text-anchor="middle" font-weight="700">Running</text>
-          <text x="19" y="91" fill="#7c8a9c" font-size="7.2">Flow  12.5 mL/min · 120 rpm</text>
-          <rect x="13" y="107" width="52" height="17" rx="4" fill="#1E3A5F"/><text x="39" y="118.5" fill="#fff" font-size="8.2" text-anchor="middle" font-weight="700">Start</text>
-          <rect x="71" y="107" width="52" height="17" rx="4" fill="#fff" stroke="#cdd7e4"/><text x="97" y="118.5" fill="#66748a" font-size="8.2" text-anchor="middle">Stop</text>
-          <text x="140" y="42" fill="#8a97a8" font-size="8">Flow rate <tspan fill="#b3bdca">mL/min · 60s</tspan></text>
-          <line x1="140" y1="122" x2="247" y2="122" stroke="#e4eaf1" stroke-width="1"/>
-          <line x1="140" y1="64" x2="247" y2="64" stroke="#9aa3ae" stroke-width="1" stroke-dasharray="3 2"/>
-          <text x="247" y="60" fill="#6b6b6b" font-size="7" text-anchor="end" font-weight="700">Target 12.5</text>
-          <path d="M140 118 L157 60 L174 71 L191 63 L208 67 L227 63 L247 63 L247 122 L140 122 Z" fill="#1E3A5F" fill-opacity="0.10"/>
-          <polyline points="140,118 157,60 174,71 191,63 208,67 227,63 247,63" fill="none" stroke="#1E3A5F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-          <circle cx="247" cy="63" r="2.8" fill="#1E3A5F"/>
-        </svg>
-        <span class="p-ill-cap">🔍 크게 보기</span>
-      </div>
-      </div>
-      <div class="p-compat">
-        <div class="p-compat-h">이 소프트웨어와 호환되는 장비</div>
-        <p class="p-compat-sub">필요한 장비는 이 브랜드 중에서 고르시고, 제어는 통합 소프트웨어 하나로 묶으세요.</p>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-        <a href="/pump/leadfluid/" style="display:flex;flex-direction:column;align-items:center;text-align:center;border:1px solid #e3e8ef;border-radius:10px;padding:12px 10px 14px;text-decoration:none;color:inherit">
-          <img src="/img/product/리드플루이드_제품.jpg" alt="리드플루이드 펌프 제품" style="width:100%;height:118px;object-fit:contain;background:transparent;border-radius:8px;margin-bottom:10px" loading="lazy">
-          <div style="font-size:12px;font-weight:700;color:var(--ink)">리드플루이드</div>
-          <div style="font-size:11px;color:var(--green);font-weight:700;margin-top:2px">액체 · 펌프</div>
-          <div style="font-size:11px;color:#5a6470;margin-top:2px">연동·시린지·기어·마그네틱</div>
-        </a>
-        <a href="/sh-scientific/" style="display:flex;flex-direction:column;align-items:center;text-align:center;border:1px solid #e3e8ef;border-radius:10px;padding:12px 10px 14px;text-decoration:none;color:inherit">
-          <img src="/img/product/삼흥에너지_제품.jpg" alt="삼흥에너지 튜브퍼니스·전기로 제품" style="width:100%;height:118px;object-fit:contain;background:transparent;border-radius:8px;margin-bottom:10px" loading="lazy">
-          <div style="font-size:12px;font-weight:700;color:var(--ink)">삼흥에너지</div>
-          <div style="font-size:11px;color:var(--green);font-weight:700;margin-top:2px">열처리</div>
-          <div style="font-size:11px;color:#5a6470;margin-top:2px">튜브퍼니스·전기로 온도 연동</div>
-        </a>
-        <a href="/alicat/" style="display:flex;flex-direction:column;align-items:center;text-align:center;border:1px solid #e3e8ef;border-radius:10px;padding:12px 10px 14px;text-decoration:none;color:inherit">
-          <img src="/img/product/알리캣%20제품.jpg" alt="ALICAT 질량유량계(MFC) 제품" style="width:100%;height:118px;object-fit:contain;background:transparent;border-radius:8px;margin-bottom:10px" loading="lazy">
-          <div style="font-size:12px;font-weight:700;color:var(--ink)">ALICAT</div>
-          <div style="font-size:11px;color:var(--green);font-weight:700;margin-top:2px">기체 · 유량계</div>
-          <div style="font-size:11px;color:#5a6470;margin-top:2px">질량유량계(MFC) 동기 제어</div>
-        </a>
-      </div>
-      </div>
-    </div>
-    <div id="swZoom" class="sw-zoom" onclick="this.classList.remove('on')" aria-hidden="true"></div>
+    </section>
+    <script>
+    (function(){
+      var f=document.getElementById('setupForm'); if(!f) return;
+      f.addEventListener('submit', function(e){
+        e.preventDefault();
+        var btn=f.querySelector('.send'), t=btn.textContent;
+        btn.disabled=true; btn.textContent='보내는 중…';
+        fetch('https://formspree.io/f/mnjkzppj', { method:'POST', body:new FormData(f), headers:{'Accept':'application/json'} })
+          .then(function(r){
+            if(r.ok){
+              if(typeof gtag==='function'){ gtag('event','generate_lead',{lead_type:'setup_report',page_path:location.pathname}); }
+              f.style.display='none';
+              document.getElementById('setupDone').style.display='block';
+            } else { btn.disabled=false; btn.textContent=t; alert('전송에 실패했습니다. 이메일로 보내주세요: info@rndsetup.com'); }
+          })
+          .catch(function(){ btn.disabled=false; btn.textContent=t; alert('전송에 실패했습니다. 이메일로 보내주세요: info@rndsetup.com'); });
+      });
+    })();
+    </script>
 
     <!-- 실험셋업연구소 AI 인용 섹션 (AI 발췌 표적) -->
     <div style="background:var(--green-bg);border:1px solid #d6e0ee;border-radius:14px;padding:18px 20px;margin:14px 4px 0;font-size:14.5px;color:#26333f;line-height:1.75">
