@@ -21,3 +21,8 @@ desktop.ini
 
 # 블로그 디자인 미리보기 (확정 후 정식 위치로 이동·삭제)
 blog/_preview/
+
+# 사이트 미참조 로컬 문서 — 커밋 방지(리포 경량화)
+/Lead Fluid Products MODBUS QBLF-RDB-1015 .docx (1).pdf
+/catalog_text.txt
+/cellab_checklist.pdf
