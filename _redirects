@@ -3,5 +3,21 @@
 # 체인 금지: 각 옛 URL을 최종 목적지로 1홉 직결.
 /reviews.html      /pump/guide/                  301
 /pump/setups/alicat-mfc-tubefurnace/   /furnace/setups/alicat-mfc-tubefurnace/   301
-/recommend2.html   /application/pump-selection   301
-/tubing.html       /application/tube-selection   301
+/recommend2.html   /pump/select/   301
+/tubing.html       /pump/select/   301
+
+# 페이지 통합(2026-07) — 무분별 증식 정리
+/application/pump-pc-control-modbus-rs485      /requests/   301
+/application/pump-flow-schedule-ramp           /requests/   301
+/application/multi-pump-sync-unattended        /requests/   301
+/application/pump-run-log-csv-reproducibility  /requests/   301
+/application/pump-selection    /pump/select/   301
+/application/tube-selection    /pump/select/   301
+/pump/faq/                     /faq/           301
+/application/cell-culture-perfusion        /application/biopharmaceutical   301
+/application/chemostat-continuous-culture  /application/biopharmaceutical   301
+/application/organ-on-chip-perfusion       /application/biopharmaceutical   301
+/application/photobioreactor-microalgae    /application/biopharmaceutical   301
+/application/medical-device-ivd            /application/biopharmaceutical   301
+/application/industrial-chemical-material  /application/flow-chemistry      301
+/application/food-beverage                 /application/environmental       301

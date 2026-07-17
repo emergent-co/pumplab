@@ -382,13 +382,12 @@ def build_requests():
 CRAWLER_LINKS = [
     ('/', '홈'),
     ('/pump/', '실험용 펌프 — 종류·리드플루이드 모델·선택·문제해결 총정리'),
-    ('/pump/faq/', '실험 셋업 가이드 — 질문·비교로 찾는 펌프·유체 셋업'),
     ('/pump/leadfluid/', '리드플루이드(LeadFluid) — 정품·국내 A/S·제어'),
     ('/pump/leadfluid/bt101l/', '리드플루이드 BT101L 연동펌프 (LeadFluid BT101L) — RS485 PC 제어'),
     ('/pump/leadfluid/bt103s/', '리드플루이드 BT103S 분주형 연동펌프 — 정량·반복 분주'),
     ('/pump/leadfluid/bt103s/head-replace/', '리드플루이드 BT103S 펌프 헤드 교체·튜브 장착 방법'),
     ('/pump/leadfluid/tyd01-01/', '리드플루이드 TYD01-01 시린지펌프 — 나노리터 정밀 주입'),
-    ('/pump/leadfluid/ct3001f/', '리드플루이드 CT3001F PEEK 기어펌프 — 무누설 연속 이송'),
+    ('/pump/leadfluid/ct3001f/', '리드플루이드 CT3001F PEEK 기어펌프 — 저맥동 연속 이송'),
     ('/pump/leadfluid/bt301l/', '리드플루이드 BT301L 지능형 유량 연동펌프 — 0.005~1750mL/min·RS485 제어'),
     ('/pump/leadfluid/wt600f/', '리드플루이드 WT600F 분주형 대유량 연동펌프 — 0.005~6000mL/min·4모드 분주'),
     ('/pump/leadfluid/mf106/', '리드플루이드 MF106 고보호(IP66/67) 연동펌프 — 0.005~7700mL/min·방진방수'),
@@ -405,21 +404,8 @@ CRAWLER_LINKS = [
     ('/application/', '실험 가이드'),
     ('/application/biopharmaceutical.html', '바이오의약 — 발효·세포배양·정제·충전'),
     ('/application/analytical-instrument.html', '분석기기 — 컬럼 주입·시료 정량 주입'),
-    ('/application/medical-device-ivd.html', '의료기기·IVD — 시약·세척·폐액'),
     ('/application/environmental.html', '환경 — 수질·폐수 정량 투입'),
-    ('/application/industrial-chemical-material.html', '산업화학·소재 — 정량·연속흐름·디스펜싱'),
-    ('/application/food-beverage.html', '식음료 — 위생 충전·정량 분주'),
-    ('/application/cell-culture-perfusion.html', '관류배양 자동 배지교환'),
-    ('/application/chemostat-continuous-culture.html', '연속배양(chemostat) 유량제어'),
-    ('/application/photobioreactor-microalgae.html', '광배양·미세조류 정량공급'),
     ('/application/flow-chemistry.html', 'flow chemistry 연속흐름 반응'),
-    ('/application/organ-on-chip-perfusion.html', '장기칩·오가노이드 관류'),
-    ('/application/pump-selection.html', '펌프 고르는 방법'),
-    ('/application/tube-selection.html', '튜브 선택 가이드'),
-    ('/application/pump-pc-control-modbus-rs485.html', '내 펌프가 PC 제어(Modbus·RS485)가 되는지'),
-    ('/application/pump-flow-schedule-ramp.html', '유량 스케줄·ramp 자동화'),
-    ('/application/multi-pump-sync-unattended.html', '다펌프 동기·무인 운전'),
-    ('/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현(CSV)'),
     ('/pump/guide/', '펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업'),
     ('/pump/atoz/', '펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결'),
     ('/pump/select/', '펌프·튜브 선택 가이드 — 조건 입력하면 추천'),
@@ -795,7 +781,6 @@ def main():
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
         ('pump/',         '0.9', 'weekly'),   # 펌프 필러 허브 (종류·모델·선택·문제해결)
-        ('pump/faq/',   '0.9', 'weekly'),   # 실험 셋업 가이드 (질문·비교 인덱스)
         ('compat/guide/', '0.8', 'monthly'),  # 기체·진공 셋업 가이드 (호환 장비)
         ('pump/leadfluid/',    '0.9', 'monthly'),  # 리드플루이드 브랜드 랜딩
         ('pump/leadfluid/bt101l/',    '0.8', 'monthly'),  # 모델 페이지
@@ -806,7 +791,6 @@ def main():
         ('pump/leadfluid/bt301l/',    '0.8', 'monthly'),  # 모델 페이지 (지능형 유량)
         ('pump/leadfluid/wt600f/',    '0.8', 'monthly'),  # 모델 페이지 (분주형 대유량)
         ('pump/leadfluid/mf106/',     '0.8', 'monthly'),  # 모델 페이지 (고보호 IP66/67)
-        ('pump/leadfluid/calculator/', '0.6', 'monthly'),  # 연동펌프 유량 계산기
         ('pump/leadfluid/manuals/',    '0.6', 'monthly'),  # 모델별 사용 메뉴얼 목록
         ('compare/imported-peristaltic-alternative/', '0.7', 'monthly'),  # 갈아타기 비교
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
@@ -831,14 +815,9 @@ def main():
         ('vacuum/',       '0.8', 'monthly'),  # 진공 셋업
         ('alicat/',       '0.8', 'monthly'),  # 소프트웨어 호환 장비 — ALICAT
         ('sh-scientific/','0.8', 'monthly'),  # 소프트웨어 호환 장비 — 삼흥에너지
-        ('application/biopharmaceutical.html', '0.8', 'monthly'),        # 응용분야 클러스터
+        ('application/biopharmaceutical.html', '0.8', 'monthly'),        # 응용분야 클러스터(통합 후 생존)
         ('application/analytical-instrument.html', '0.8', 'monthly'),
-        ('application/medical-device-ivd.html', '0.8', 'monthly'),
         ('application/environmental.html', '0.8', 'monthly'),
-        ('application/industrial-chemical-material.html', '0.8', 'monthly'),
-        ('application/food-beverage.html', '0.8', 'monthly'),
-        ('application/pump-selection.html', '0.7', 'monthly'),  # 펌프 고르는 방법 (posts.json 미포함)
-        ('application/tube-selection.html', '0.7', 'monthly'),  # 튜브 선택 가이드 (posts.json 미포함)
         # 응용 가이드 6편(관류·연속배양·광배양·flowchem·장기칩·PC제어)은 posts.json(type=guide) 루프가 추가 — 중복 방지
     ]
     for path, prio, freq in static_pages:

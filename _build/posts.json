@@ -3,48 +3,6 @@
   "posts": [
     {
       "type": "guide",
-      "slug": "cell-culture-perfusion",
-      "title": "세포배양 관류 펌프 — 무오염 연속 관류 셋업",
-      "summary": "본체가 시료에 닿지 않는 연동(페리스탈틱)펌프 셋업과 모델 선택 기준.",
-      "date": "2026-06-26",
-      "tags": [
-        "관류",
-        "연동펌프",
-        "세포배양"
-      ],
-      "url": "/application/cell-culture-perfusion.html",
-      "image": "/img/rnd-guide.jpg"
-    },
-    {
-      "type": "guide",
-      "slug": "chemostat-continuous-culture",
-      "title": "연속배양(chemostat) 유량 제어 — 희석률 일정 유지 셋업",
-      "summary": "신선 배지 유입과 배양액 배출을 같은 유량으로 유지해 정상상태 확보.",
-      "date": "2026-06-24",
-      "tags": [
-        "연속배양",
-        "chemostat",
-        "희석률"
-      ],
-      "url": "/application/chemostat-continuous-culture.html",
-      "image": "/img/rnd-guide.jpg"
-    },
-    {
-      "type": "guide",
-      "slug": "photobioreactor-microalgae",
-      "title": "광배양·미세조류 정량공급 — 광생물반응기(PBR) 셋업",
-      "summary": "CO₂·영양 배지 정량 공급과 배양액 순환으로 미세조류 생산성 확보.",
-      "date": "2026-06-22",
-      "tags": [
-        "광배양",
-        "미세조류",
-        "PBR"
-      ],
-      "url": "/application/photobioreactor-microalgae.html",
-      "image": "/img/rnd-guide.jpg"
-    },
-    {
-      "type": "guide",
       "slug": "flow-chemistry",
       "title": "flow chemistry 연속흐름 반응 — 유량비·체류시간 제어 셋업",
       "summary": "두 개 이상 시약 스트림을 정밀 유량비로 합류·체류시간 제어.",
@@ -56,81 +14,6 @@
       ],
       "url": "/application/flow-chemistry.html",
       "image": "/img/rnd-guide.jpg"
-    },
-    {
-      "type": "guide",
-      "slug": "organ-on-chip-perfusion",
-      "title": "장기칩·오가노이드 관류 — 미세유체 저유량 관류 셋업",
-      "summary": "µL/min 초저유량으로 미세유체 채널에 배지를 연속 관류.",
-      "date": "2026-06-18",
-      "tags": [
-        "장기칩",
-        "오가노이드",
-        "미세유체"
-      ],
-      "url": "/application/organ-on-chip-perfusion.html",
-      "image": "/img/rnd-guide.jpg"
-    },
-    {
-      "type": "guide",
-      "slug": "pump-pc-control-modbus-rs485",
-      "title": "내 펌프, PC로 제어할 수 있을까 — Modbus·RS485 확인법",
-      "summary": "통신 인터페이스·프로토콜·외부신호(4-20mA)로 펌프 PC 제어 가능 여부 확인.",
-      "date": "2026-07-05",
-      "tags": [
-        "Modbus",
-        "RS485",
-        "PC제어",
-        "외부신호제어",
-        "원격제어"
-      ],
-      "url": "/application/pump-pc-control-modbus-rs485.html",
-      "image": "/img/automation.jpg"
-    },
-    {
-      "type": "guide",
-      "slug": "pump-flow-schedule-ramp",
-      "title": "펌프 유량을 시간에 따라 자동으로 바꾸는 법 — 스케줄·ramp·레시피",
-      "summary": "고정·ramp·스텝을 시퀀스로 짜고 레시피로 저장해 관류 배지교환·농도 구배를 무인 재현.",
-      "date": "2026-07-06",
-      "tags": [
-        "유량스케줄",
-        "ramp",
-        "레시피",
-        "실험자동화"
-      ],
-      "url": "/application/pump-flow-schedule-ramp.html",
-      "image": "/img/automation.jpg"
-    },
-    {
-      "type": "guide",
-      "slug": "multi-pump-sync-unattended",
-      "title": "여러 펌프를 동기화해 무인으로 장시간 돌리는 법",
-      "summary": "채널별 독립 유량 + 다펌프 동기 + 며칠~몇 주 무인 운전으로 대조군을 동시에.",
-      "date": "2026-07-06",
-      "tags": [
-        "다펌프동기",
-        "채널독립유량",
-        "무인운전",
-        "장시간관류"
-      ],
-      "url": "/application/multi-pump-sync-unattended.html",
-      "image": "/img/automation.jpg"
-    },
-    {
-      "type": "guide",
-      "slug": "pump-run-log-csv-reproducibility",
-      "title": "펌프 운전 로그(CSV)로 실험을 재현하는 법",
-      "summary": "유량·누적량·상태를 타임스탬프와 기록해 CSV로 내보내고, 같은 프로파일 재실행으로 재현.",
-      "date": "2026-07-06",
-      "tags": [
-        "운전로그",
-        "CSV",
-        "유량기록",
-        "실험재현성"
-      ],
-      "url": "/application/pump-run-log-csv-reproducibility.html",
-      "image": "/img/automation.jpg"
     }
   ]
 }

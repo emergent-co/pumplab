@@ -70,7 +70,7 @@
         ['/pump/guide/',  '펌프 셋업 사례'],
         ['/pump/select/', '펌프·튜브 선택 가이드'],
         ['/pump/atoz/',   '문제해결'],
-        ['/pump/faq/',    '자주묻는 질문(FAQ)']
+        ['/faq/',    '자주묻는 질문(FAQ)']
       ] },
     { href:'/furnace/setups/', label:'열처리 A to Z', icon:'devices', noclick:true, sub:[
         ['/furnace/setups/', '퍼니스 셋업 사례']

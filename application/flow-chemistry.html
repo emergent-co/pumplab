@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>flow chemistry 연속흐름 반응 — 유량비·체류시간 제어 펌프 셋업 | 실험셋업연구소</title>
-<meta name="description" content="연속흐름(flow chemistry) 반응은 두 개 이상 시약 스트림을 정밀 유량비로 합류시켜 체류시간·화학량론을 제어합니다. 맥동 없는 안정 유량과 유량비 정밀도, 화학 적합성을 위한 시린지·정량·마그네틱펌프 셋업을 정리했습니다.">
+<meta name="description" content="연속흐름(flow chemistry) 반응은 두 개 이상 시약 스트림을 정밀 유량비로 합류시켜 체류시간·화학량론을 제어합니다. 맥동 없는 안정 유량과 유량비 정밀도, 화학 적합성을 위한 시린지·정량·기어펌프 셋업을 정리했습니다.">
 <link rel="canonical" href="https://rndsetup.com/application/flow-chemistry">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flow chemistry 연속흐름 반응 — 유량비·체류시간 제어 펌프 셋업">
@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://rndsetup.com/application/flow-chemistry">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"flow chemistry(연속흐름 반응)에는 어떤 펌프를 쓰나요?","acceptedAnswer":{"@type":"Answer","text":"두 개 이상의 시약 스트림을 정밀한 유량비로 합류시켜야 하므로, 맥동이 적고 유량비를 정확히 유지하는 시린지펌프나 정량펌프가 쓰입니다. 부식성·유기용매에는 화학 적합성이 좋은 튜브·헤드 또는 마그네틱 구동 펌프를 선택합니다."}},
+{"@type":"Question","name":"flow chemistry(연속흐름 반응)에는 어떤 펌프를 쓰나요?","acceptedAnswer":{"@type":"Answer","text":"두 개 이상의 시약 스트림을 정밀한 유량비로 합류시켜야 하므로, 맥동이 적고 유량비를 정확히 유지하는 시린지펌프나 정량펌프가 쓰입니다. 부식성·유기용매에는 화학 적합성이 좋은 튜브·헤드 또는 내약품 PEEK 기어펌프를 선택합니다."}},
 {"@type":"Question","name":"체류시간(residence time)은 어떻게 제어하나요?","acceptedAnswer":{"@type":"Answer","text":"체류시간은 반응기 부피÷총유량으로 정해지므로, 유량을 소프트웨어로 고정하거나 ramp로 바꾸며 스캔합니다. 유량·유량비를 기록하면 반응 조건을 재현할 수 있습니다."}}
 ]}
 </script>
@@ -30,7 +30,7 @@
     <h3>핵심 요약</h3>
     <div class="row"><span class="k">실험</span><span>연속흐름(flow chemistry) 반응</span></div>
     <div class="row"><span class="k">핵심 변수</span><span><b>유량비(화학량론) · 체류시간</b></span></div>
-    <div class="row"><span class="k">권장 펌프</span><span><b>시린지·정량펌프</b> — 맥동 최소·유량비 정밀 / 부식성엔 마그네틱</span></div>
+    <div class="row"><span class="k">권장 펌프</span><span><b>시린지·정량펌프</b> — 맥동 최소·유량비 정밀 / 부식성엔 내약품 PEEK 기어</span></div>
     <div class="row"><span class="k">관건</span><span>안정 유량 · 화학 적합성(튜브·헤드)</span></div>
   </div>
 
@@ -43,7 +43,7 @@
     <p>합류 지점의 <b>화학량론은 두 스트림의 유량비</b>로, <b>체류시간은 반응기 부피÷총유량</b>으로 결정됩니다. 유량이 흔들리면 두 값이 함께 흔들려 재현이 무너집니다. 특히 저유량·고점도·휘발성 용매에서는 펌프의 맥동과 유량 안정성이 결과를 직접 좌우합니다.</p>
 
     <h2>어떤 펌프·셋업이 맞나</h2>
-    <p>맥동이 적고 유량비를 정확히 유지하는 <b>시린지펌프·정량펌프</b>가 기본입니다. 부식성·유기용매를 다룰 때는 <b>화학 적합성이 좋은 튜브·헤드</b>를 고르거나, 실링이 없는 <b>마그네틱 구동 펌프</b>로 누액·오염을 줄입니다. 두 스트림의 유량을 독립·동기 제어해 유량비를 원하는 값으로 고정합니다.</p>
+    <p>맥동이 적고 유량비를 정확히 유지하는 <b>시린지펌프·정량펌프</b>가 기본입니다. 부식성·유기용매를 다룰 때는 <b>화학 적합성이 좋은 튜브·헤드</b>를 고르거나, <b>내약품 PEEK 기어펌프</b>로 안정적으로 연속 이송합니다. 두 스트림의 유량을 독립·동기 제어해 유량비를 원하는 값으로 고정합니다.</p>
 
     <h2>재현 포인트</h2>
     <p>유량·유량비를 소프트웨어로 고정하고 ramp로 스캔하며 로그를 남기면, 체류시간·화학량론 조건을 재현하고 최적 조건을 체계적으로 탐색할 수 있습니다.</p>
@@ -72,7 +72,7 @@
 
   <div class="sd-bridge">
     <h2>유량비·체류시간, 프로그램이 대신 지킵니다</h2>
-    <p>실험셋업연구소는 LeadFluid 시린지·정량·마그네틱펌프에 제어 소프트웨어를 얹어 유량비 고정·ramp 스캔·기록/재현을 구현합니다. 용매·유량 범위·스트림 수를 알려주시면 화학 적합성까지 고려해 구성을 제안드립니다.</p>
+    <p>실험셋업연구소는 LeadFluid 시린지·정량·기어펌프에 제어 소프트웨어를 얹어 유량비 고정·ramp 스캔·기록/재현을 구현합니다. 용매·유량 범위·스트림 수를 알려주시면 화학 적합성까지 고려해 구성을 제안드립니다.</p>
     <a href="/contact/#experiment">내 실험 상담하기 →</a>
     <a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_cta_flowchem" style="margin-left:16px">나비엠알오에서 구매 →</a>
   </div>
@@ -82,7 +82,7 @@
   <div class="sd-related">
     <h3>관련 콘텐츠</h3>
     <div class="sd-rel-grid">
-      <a class="sd-rc" href="/application/pump-selection"><div class="cat">가이드 · 펌프</div><div class="t">펌프 고르는 방법</div><div class="d">시린지·정량·마그네틱 — 목적별 선택 기준.</div></a>
+      <a class="sd-rc" href="/application/pump-selection"><div class="cat">가이드 · 펌프</div><div class="t">펌프 고르는 방법</div><div class="d">시린지·정량·기어 — 목적별 선택 기준.</div></a>
       <a class="sd-rc" href="/application/tube-selection"><div class="cat">가이드 · 튜브</div><div class="t">튜브 선택·화학 적합성</div><div class="d">용매·부식성에 맞는 튜브 재질 선택.</div></a>
       <a class="sd-rc" href="/requests/"><div class="cat">소프트웨어</div><div class="t">소프트웨어 제어 펌프 시스템</div><div class="d">유량비 고정·ramp 스캔·기록/재현.</div></a>
     </div>
