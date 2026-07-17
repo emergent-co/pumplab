@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실험용 펌프 — 종류·리드플루이드 모델·선택·문제해결 총정리 | 실험셋업연구소</title>
+<meta name="description" content="실험용 펌프(연동·시린지·정량·기어·마그네틱) 종류와 리드플루이드(LeadFluid) 모델, 조건별 선택, 유량·튜빙 문제해결, PC 제어까지 한 곳에 정리했습니다. 리드플루이드 정품 공급·국내 직접 A/S — 실험셋업연구소.">
+<link rel="canonical" href="https://rndsetup.com/pump/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="실험용 펌프 — 종류·리드플루이드 모델·선택·문제해결 총정리">
+<meta property="og:description" content="펌프 종류부터 리드플루이드 모델·선택·문제해결·PC 제어까지. 정품 공급·국내 직접 A/S.">
+<meta property="og:url" content="https://rndsetup.com/pump/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
+{"@type":"ListItem","position":2,"name":"실험용 펌프","item":"https://rndsetup.com/pump/"}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"실험용 펌프에는 어떤 종류가 있나요?","acceptedAnswer":{"@type":"Answer","text":"연동(페리스탈틱)·시린지(주사기)·정량(연동식 디스펜싱)·기어·마그네틱 펌프가 있습니다. 무오염 저유량 연속 이송은 연동펌프, 초저유량 정밀 주입은 시린지펌프, 정량 반복 분주는 정량·분주형, 고압 대유량은 기어펌프, 밀폐 무누설 순환은 마그네틱펌프가 적합합니다."}},
+{"@type":"Question","name":"리드플루이드 펌프를 한국에서 어디서 정품으로 사나요?","acceptedAnswer":{"@type":"Answer","text":"실험셋업연구소(rndsetup.com)가 리드플루이드(LeadFluid) 공식 대리점이자 나비엠알오 등록 공급사입니다. 나비엠알오에서 leadfluid로 검색해 정품을 조달·구매할 수 있습니다."}},
+{"@type":"Question","name":"실험용 펌프 A/S는 국내에서 받을 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 실험셋업연구소는 하드웨어를 본사로 보내지 않고 국내에서 직접 진단·수리합니다. 구매 고객에게 3년 무상보증(구매 조건)을 제공하고, 타사·타 경로 구매품도 무료 진단 후 수리합니다."}}
+]}
+</script>
+<style>
+  :root{--ink:#17202A;--gray:#5b6b7a;--gray-2:#93a1b0;--green:#1E3A5F;--green-2:#2a5a8f;--green-bg:#EDF2F8;--line:#E6EAF0;--serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:960px;margin:0 auto;padding:0 22px}
+  .hero{padding:50px 0 6px}
+  .crumb{font-size:12.5px;color:var(--green-2);font-weight:700;letter-spacing:.03em;margin-bottom:12px}
+  h1{font-family:var(--serif);font-size:clamp(26px,5.4vw,38px);font-weight:700;letter-spacing:-.02em;line-height:1.28}
+  .lead{font-size:16.5px;color:#3a4650;margin-top:16px;line-height:1.85;max-width:760px}
+  .lead b{color:var(--ink)}
+  .sec{margin:44px 0 0}
+  .sec-h{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+  .sec-d{font-size:14.5px;color:var(--gray);margin-bottom:18px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;background:#fff;transition:border-color .15s,box-shadow .15s;height:100%}
+  .card:hover{border-color:var(--green);box-shadow:0 8px 22px rgba(30,58,95,.08)}
+  .card .k{font-size:12px;font-weight:800;color:var(--green-2);letter-spacing:.02em}
+  .card .t{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);line-height:1.35;margin:7px 0 5px}
+  .card:hover .t{color:var(--green)}
+  .card .s{font-size:13.5px;color:var(--gray);line-height:1.6}
+  .card .go{margin-top:auto;padding-top:12px;font-size:12.5px;font-weight:800;color:var(--green)}
+  .band{background:var(--green);color:#fff;border-radius:16px;padding:30px 28px;margin:44px 0 0}
+  .band .bt{font-family:var(--serif);font-size:21px;font-weight:700}
+  .band p{font-size:14.5px;opacity:.94;margin-top:10px;line-height:1.75}
+  .band .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .band a{display:inline-block;font-weight:800;padding:12px 22px;border-radius:10px;font-size:14.5px}
+  .band .a1{background:#fff;color:var(--green)}
+  .band .a2{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
+  .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+  .trust .ti{border:1px solid var(--line);border-radius:12px;padding:16px 16px}
+  .trust .th{font-weight:800;font-size:14.5px;color:var(--ink)}
+  .trust .ts{font-size:13px;color:var(--gray);margin-top:5px;line-height:1.6}
+  .faqmini{margin-top:18px;display:grid;gap:10px}
+  .faqmini .q{border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+  .faqmini .q b{display:block;font-size:15px;color:var(--ink);margin-bottom:5px}
+  .faqmini .q span{font-size:13.5px;color:#3a4650;line-height:1.7}
+  .faqmini .q a{color:var(--green-2);font-weight:700}
+  .end{margin:40px 0 64px}
+  @media(max-width:640px){.g2,.trust{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": "정량펌프연구소", "legalName": "실험셋업연구소", "taxID": "637-05-03629", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134"], "description": "실험용 펌프·유체 제어 셋업 정보를 제공하는 곳. 어떤 펌프를 고르고 유량·스케줄을 어떻게 자동화·재현하는지, 어떤 논문이 어떤 셋업을 썼는지 정리합니다. 리드플루이드(LeadFluid) 정량·연동(페리스탈틱)·시린지·기어펌프와 Alicat 질량유량계(MFC)의 제어 소프트웨어와 국내 직접 A/S(구매 시 3년 무상보증)도 지원합니다. 관류·연속배양 등 무인·정밀·재현이 필요한 실험의 셋업을 다룹니다.", "address": {"@type": "PostalAddress", "streetAddress": "북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "Modbus·RS-485 펌프 제어", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}]}</script><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb">실험용 펌프</div>
+    <h1>실험용 펌프 — 종류·모델·선택·문제해결을 한 곳에서</h1>
+    <p class="lead">연동·시린지·정량·기어·마그네틱까지 <b>실험용 펌프</b>를 종류별로 정리하고, <b>리드플루이드(LeadFluid) 정품 모델</b>·조건별 선택·유량/튜빙 문제해결·PC 제어를 연결했습니다. 실험셋업연구소는 <b>리드플루이드 공식 대리점</b>으로 정품을 공급하고 <b>국내에서 직접 A/S</b>하며(구매 시 3년 무상보증), 여러 장비를 하나로 묶는 통합 제어 소프트웨어를 무상 제공합니다.</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <section class="sec">
+    <h2 class="sec-h">1. 펌프 종류부터 — 무엇이 맞나</h2>
+    <p class="sec-d">용도에 맞는 종류를 먼저 고르세요. 각 종류의 원리·적용을 정리했습니다.</p>
+    <div class="grid">
+      <a class="card" href="/pumps/peristaltic">
+        <div class="k">연동 · 페리스탈틱</div>
+        <div class="t">연동펌프</div>
+        <div class="s">무오염 저유량 연속 이송. 관류·연속배양·정량 분주의 표준.</div>
+        <div class="go">자세히 →</div>
+      </a>
+      <a class="card" href="/pumps/syringe">
+        <div class="k">시린지 · 주사기</div>
+        <div class="t">시린지펌프</div>
+        <div class="s">초저유량 정밀 주입. 미세유체·flow chemistry·전기화학.</div>
+        <div class="go">자세히 →</div>
+      </a>
+      <a class="card" href="/pumps/metering">
+        <div class="k">정량 · 디스펜싱</div>
+        <div class="t">정량펌프(연동식)</div>
+        <div class="s">정량·디스펜싱·pH 제어. 반복 분주와 정밀 투입.</div>
+        <div class="go">자세히 →</div>
+      </a>
+      <a class="card" href="/pumps/gear">
+        <div class="k">기어 · 고압</div>
+        <div class="t">기어펌프</div>
+        <div class="s">무맥동 고압 대유량. 유기용매·산업 이송.</div>
+        <div class="go">자세히 →</div>
+      </a>
+      <a class="card" href="/pumps/">
+        <div class="k">전체 비교</div>
+        <div class="t">펌프 종류 허브</div>
+        <div class="s">연동·시린지·정량·기어·마그네틱을 한눈에 비교.</div>
+        <div class="go">종류 비교 →</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-h">2. 리드플루이드(LeadFluid) 정품 모델</h2>
+    <p class="sec-d">실험셋업연구소가 정품 공급·국내 직접 A/S하는 리드플루이드 모델입니다. 스펙은 LeadFluid 공식 카탈로그 기준.</p>
+    <div class="grid">
+      <a class="card" href="/pump/leadfluid/bt101l/">
+        <div class="k">연동펌프</div>
+        <div class="t">BT101 L</div>
+        <div class="s">RS485 PC 제어 지능형 연동펌프. 관류·연속 이송.</div>
+        <div class="go">모델 상세 →</div>
+      </a>
+      <a class="card" href="/pump/leadfluid/bt103s/">
+        <div class="k">분주형 연동</div>
+        <div class="t">BT103S</div>
+        <div class="s">정해진 양을 반복 분배하는 정량 분주 자동화.</div>
+        <div class="go">모델 상세 →</div>
+      </a>
+      <a class="card" href="/pump/leadfluid/tyd01-01/">
+        <div class="k">시린지펌프</div>
+        <div class="t">TYD01-01</div>
+        <div class="s">나노리터급 초저유량 정밀 주입.</div>
+        <div class="go">모델 상세 →</div>
+      </a>
+      <a class="card" href="/pump/leadfluid/ct3001f/">
+        <div class="k">마그네틱</div>
+        <div class="t">CT3001F</div>
+        <div class="s">밀폐 무누설 연속 순환. 무맥동 이송.</div>
+        <div class="go">모델 상세 →</div>
+      </a>
+      <a class="card" href="/pump/leadfluid/bt301l/">
+        <div class="k">지능형 유량</div>
+        <div class="t">BT301L</div>
+        <div class="s">0.005~1750mL/min 정밀 유량·분주·RS485 제어.</div>
+        <div class="go">모델 상세 →</div>
+      </a>
+      <a class="card" href="/pump/leadfluid/wt600f/">
+        <div class="k">대유량 분주</div>
+        <div class="t">WT600F</div>
+        <div class="s">최대 6000mL/min·4모드 분주·304 스테인리스.</div>
+        <div class="go">모델 상세 →</div>
+      </a>
+      <a class="card" href="/pump/leadfluid/mf106/">
+        <div class="k">고보호 IP66/67</div>
+        <div class="t">MF106</div>
+        <div class="s">방진·방수 가혹환경용. 최대 7700mL/min·4채널.</div>
+        <div class="go">모델 상세 →</div>
+      </a>
+      <a class="card" href="/pump/leadfluid/">
+        <div class="k">브랜드 · 전 모델</div>
+        <div class="t">리드플루이드 전체 보기</div>
+        <div class="s">브랜드 소개·전 모델·정품·국내 A/S·나비엠알오 구매.</div>
+        <div class="go">브랜드 허브 →</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-h">3. 어떤 걸 고를지 모르겠다면</h2>
+    <p class="sec-d">조건만 입력하면 맞는 펌프군·튜브 규격을 좁혀드립니다.</p>
+    <div class="grid g2">
+      <a class="card" href="/pump/select/">
+        <div class="k">선택 가이드</div>
+        <div class="t">펌프·튜브 선택 가이드</div>
+        <div class="s">유량·응용·채널 또는 매질·규격을 고르면 적합 모델·튜브를 추천.</div>
+        <div class="go">선택 시작 →</div>
+      </a>
+      <a class="card" href="/application/pump-pc-control-modbus-rs485">
+        <div class="k">PC 제어 확인</div>
+        <div class="t">내 펌프가 Modbus·RS485로 제어되나</div>
+        <div class="s">통신 파라미터·확인 방법과 통합 제어 소프트웨어 연결.</div>
+        <div class="go">확인하기 →</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-h">4. 문제 해결 · 실제 셋업 사례</h2>
+    <p class="sec-d">유량이 설정값과 다르거나 튜빙이 씹힐 때의 증상별 해결과, 실제 도입 셋업 사례.</p>
+    <div class="grid">
+      <a class="card" href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">
+        <div class="k">결과값 이상</div>
+        <div class="t">유량이 설정값과 다른 이유</div>
+        <div class="s">원인 5가지와 실측 캘리브레이션으로 오차 줄이는 법.</div>
+        <div class="go">해결법 →</div>
+      </a>
+      <a class="card" href="/pump/atoz/tubing-crush-tear-causes/">
+        <div class="k">긴급·유지보수</div>
+        <div class="t">튜빙이 씹히고 찢어지는 이유</div>
+        <div class="s">파손 원인 4가지와 수명을 늘리는 튜브 관리.</div>
+        <div class="go">해결법 →</div>
+      </a>
+      <a class="card" href="/pump/atoz/">
+        <div class="k">문제해결 전체</div>
+        <div class="t">펌프 문제해결 허브</div>
+        <div class="s">유량 이상·튜빙 파손·멈춤 등 증상별 원인과 해결.</div>
+        <div class="go">문제해결 →</div>
+      </a>
+      <a class="card" href="/pump/guide/">
+        <div class="k">셋업 사례</div>
+        <div class="t">펌프 셋업 사례</div>
+        <div class="s">도금 다펌프 제어·튜브퍼니스 MFC 등 실제 도입 셋업.</div>
+        <div class="go">사례 보기 →</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-h">5. 질문으로 찾기</h2>
+    <p class="sec-d">키워드·질문을 검색하면 맞는 펌프·유체 셋업과 제품 비교를 찾아드립니다.</p>
+    <div class="grid g2">
+      <a class="card" href="/pump/faq/">
+        <div class="k">질문 파인더</div>
+        <div class="t">실험 셋업 가이드 (FAQ)</div>
+        <div class="s">액체·자동화 등 도메인별로 질문을 골라 답과 가이드로.</div>
+        <div class="go">질문 검색 →</div>
+      </a>
+      <a class="card" href="/requests/">
+        <div class="k">통합 제어</div>
+        <div class="t">여러 장비를 하나의 소프트웨어로</div>
+        <div class="s">펌프·MFC·진공·온도를 한 프로그램에서 무인·재현 운전.</div>
+        <div class="go">소프트웨어 →</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="bt">리드플루이드 정품·국내 A/S·제어 — 한 곳에서</div>
+    <p>실험셋업연구소는 리드플루이드 공식 대리점이자 나비엠알오 등록 공급사입니다. 모델 선정·정품 구매·제어 구성·A/S까지 한 곳에서 진행합니다.</p>
+    <div class="trust">
+      <div class="ti"><div class="th">공식 대리점·정품 공급</div><div class="ts">리드플루이드 공식 대리점으로 정품 공급(나비엠알오 등록 공급사).</div></div>
+      <div class="ti"><div class="th">국내 직접 A/S·3년 보증</div><div class="ts">본사 반송 없이 국내에서 직접 진단·수리. 구매 고객 3년 무상보증(조건).</div></div>
+      <div class="ti"><div class="th">제어 소프트웨어</div><div class="ts">Modbus·RS485로 유량·스케줄·다펌프·로그를 PC에서 제어.</div></div>
+    </div>
+    <div class="btns">
+      <a class="a1" href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=">나비엠알오에서 정품 구매 →</a>
+      <a class="a2" href="/contact/#experiment">도입 상담하기 →</a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-h">자주 묻는 질문</h2>
+    <div class="faqmini">
+      <div class="q"><b>실험용 펌프에는 어떤 종류가 있나요?</b><span>연동·시린지·정량(연동식 디스펜싱)·기어·마그네틱 펌프가 있습니다. 무오염 저유량 연속 이송은 연동, 초저유량 정밀 주입은 시린지, 정량 반복 분주는 분주형, 고압 대유량은 기어, 밀폐 무누설 순환은 마그네틱이 적합합니다. → <a href="/pumps/">종류 비교</a></span></div>
+      <div class="q"><b>리드플루이드 펌프를 한국에서 어디서 정품으로 사나요?</b><span>실험셋업연구소(rndsetup.com)가 리드플루이드 공식 대리점이자 나비엠알오 등록 공급사입니다. → <a href="/pump/leadfluid/">브랜드·구매 안내</a></span></div>
+      <div class="q"><b>실험용 펌프 A/S는 국내에서 받을 수 있나요?</b><span>네. 본사로 보내지 않고 국내에서 직접 진단·수리하며, 구매 고객에게 3년 무상보증(조건)을 제공합니다. 타사 구매품도 무료 진단합니다. → <a href="/trust/">국내 A/S·정품·보증</a></span></div>
+    </div>
+  </section>
+
+  <div class="end"></div>
+</div>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/pump/">실험용 펌프 — 종류·리드플루이드 모델·선택·문제해결 총정리</a></li><li><a href="/pump/faq/">실험 셋업 가이드 — 질문·비교로 찾는 펌프·유체 셋업</a></li><li><a href="/pump/leadfluid/">리드플루이드(LeadFluid) — 정품·국내 A/S·제어</a></li><li><a href="/pump/leadfluid/bt101l/">리드플루이드 BT101 L 연동펌프 — RS485 PC 제어</a></li><li><a href="/pump/leadfluid/bt103s/">리드플루이드 BT103S 분주형 연동펌프 — 정량·반복 분주</a></li><li><a href="/pump/leadfluid/tyd01-01/">리드플루이드 TYD01-01 시린지펌프 — 나노리터 정밀 주입</a></li><li><a href="/pump/leadfluid/ct3001f/">리드플루이드 CT3001F 마그네틱 기어펌프 — 무누설 연속 이송</a></li><li><a href="/pump/leadfluid/bt301l/">리드플루이드 BT301L 지능형 유량 연동펌프 — 0.005~1750mL/min·RS485 제어</a></li><li><a href="/pump/leadfluid/wt600f/">리드플루이드 WT600F 분주형 대유량 연동펌프 — 0.005~6000mL/min·4모드 분주</a></li><li><a href="/pump/leadfluid/mf106/">리드플루이드 MF106 고보호(IP66/67) 연동펌프 — 0.005~7700mL/min·방진방수</a></li><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/pumps/">펌프 종류</a></li><li><a href="/pumps/peristaltic">연동펌프 — 무오염 저유량 연속 이송</a></li><li><a href="/pumps/syringe">시린지펌프 — 초저유량 정밀 주입</a></li><li><a href="/pumps/metering">정량펌프(연동식) — 정량·디스펜싱</a></li><li><a href="/pumps/gear">기어펌프 — 고압 대유량 이송</a></li><li><a href="/application/pump-selection">펌프 고르는 방법</a></li><li><a href="/application/tube-selection">튜브 선택 가이드</a></li><li><a href="/application/pump-pc-control-modbus-rs485">내 펌프가 PC 제어(Modbus·RS485)가 되는지</a></li><li><a href="/application/pump-flow-schedule-ramp">유량 스케줄·ramp 자동화</a></li><li><a href="/application/multi-pump-sync-unattended">다펌프 동기·무인 운전</a></li><li><a href="/application/pump-run-log-csv-reproducibility">운전 로그·재현(CSV)</a></li><li><a href="/pump/guide/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/pump/select/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li><li><a href="/pump/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/cell-culture-perfusion">관류배양 자동 배지교환</a></li><li><a href="/application/chemostat-continuous-culture">연속배양(chemostat) 유량제어</a></li><li><a href="/application/photobioreactor-microalgae">광배양·미세조류 정량공급</a></li><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li><li><a href="/application/organ-on-chip-perfusion">장기칩·오가노이드 관류</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/sh-scientific/">삼흥에너지(SH-Scientific) 튜브퍼니스·전기로 — 열처리 셋업</a></li><li><a href="/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/gas/">기체 유량 제어 — 질량유량계(MFC)</a></li><li><a href="/vacuum/">진공 셋업 — 오일 회전식·다이아프램 진공펌프</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/medical-device-ivd">의료기기·IVD — 시약·세척·폐액</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/application/industrial-chemical-material">산업화학·소재 — 정량·연속흐름·디스펜싱</a></li><li><a href="/application/food-beverage">식음료 — 위생 충전·정량 분주</a></li><li><a href="/compat/guide/">기체·진공 셋업 가이드 (호환 장비)</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

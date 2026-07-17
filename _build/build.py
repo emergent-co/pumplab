@@ -381,12 +381,16 @@ def build_requests():
 # 크롤러용 사이트 전체 링크(푸터 div에 정적 주입 → site.js가 런타임에 대체)
 CRAWLER_LINKS = [
     ('/', '홈'),
+    ('/pump/', '실험용 펌프 — 종류·리드플루이드 모델·선택·문제해결 총정리'),
     ('/pump/faq/', '실험 셋업 가이드 — 질문·비교로 찾는 펌프·유체 셋업'),
     ('/pump/leadfluid/', '리드플루이드(LeadFluid) — 정품·국내 A/S·제어'),
     ('/pump/leadfluid/bt101l/', '리드플루이드 BT101 L 연동펌프 — RS485 PC 제어'),
     ('/pump/leadfluid/bt103s/', '리드플루이드 BT103S 분주형 연동펌프 — 정량·반복 분주'),
     ('/pump/leadfluid/tyd01-01/', '리드플루이드 TYD01-01 시린지펌프 — 나노리터 정밀 주입'),
     ('/pump/leadfluid/ct3001f/', '리드플루이드 CT3001F 마그네틱 기어펌프 — 무누설 연속 이송'),
+    ('/pump/leadfluid/bt301l/', '리드플루이드 BT301L 지능형 유량 연동펌프 — 0.005~1750mL/min·RS485 제어'),
+    ('/pump/leadfluid/wt600f/', '리드플루이드 WT600F 분주형 대유량 연동펌프 — 0.005~6000mL/min·4모드 분주'),
+    ('/pump/leadfluid/mf106/', '리드플루이드 MF106 고보호(IP66/67) 연동펌프 — 0.005~7700mL/min·방진방수'),
     ('/sh-scientific/', '삼흥에너지(SH-Scientific) 튜브퍼니스·전기로 — 열처리 셋업'),
     ('/alicat/', 'ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어'),
     ('/requests/', '소프트웨어 제어'),
@@ -415,7 +419,8 @@ CRAWLER_LINKS = [
     ('/application/pump-flow-schedule-ramp.html', '유량 스케줄·ramp 자동화'),
     ('/application/multi-pump-sync-unattended.html', '다펌프 동기·무인 운전'),
     ('/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현(CSV)'),
-    ('/pump/guide/', '펌프 셋업 | 문제해결 — 트러블슈팅·유량·튜빙·도입 셋업'),
+    ('/pump/guide/', '펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업'),
+    ('/pump/atoz/', '펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결'),
     ('/pump/select/', '펌프·튜브 선택 가이드 — 조건 입력하면 추천'),
     ('/pump/atoz/peristaltic-flow-setpoint-mismatch/', '연동펌프 유량이 설정값과 다른 이유'),
     ('/pump/atoz/tubing-crush-tear-causes/', '연동펌프 튜빙 씹힘·찢어짐 원인·해결'),
@@ -780,6 +785,7 @@ def main():
     # 메인 + 상업 funnel 페이지 (loc 경로, priority, changefreq)
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
+        ('pump/',         '0.9', 'weekly'),   # 펌프 필러 허브 (종류·모델·선택·문제해결)
         ('pump/faq/',   '0.9', 'weekly'),   # 실험 셋업 가이드 (질문·비교 인덱스)
         ('compat/guide/', '0.8', 'monthly'),  # 기체·진공 셋업 가이드 (호환 장비)
         ('pump/leadfluid/',    '0.9', 'monthly'),  # 리드플루이드 브랜드 랜딩
@@ -787,6 +793,9 @@ def main():
         ('pump/leadfluid/tyd01-01/',  '0.8', 'monthly'),
         ('pump/leadfluid/ct3001f/',   '0.8', 'monthly'),
         ('pump/leadfluid/bt103s/',    '0.8', 'monthly'),  # 모델 페이지 (분주형)
+        ('pump/leadfluid/bt301l/',    '0.8', 'monthly'),  # 모델 페이지 (지능형 유량)
+        ('pump/leadfluid/wt600f/',    '0.8', 'monthly'),  # 모델 페이지 (분주형 대유량)
+        ('pump/leadfluid/mf106/',     '0.8', 'monthly'),  # 모델 페이지 (고보호 IP66/67)
         ('compare/imported-peristaltic-alternative/', '0.7', 'monthly'),  # 갈아타기 비교
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
         ('contact/',      '0.8', 'monthly'),  # 문의하기
@@ -794,6 +803,7 @@ def main():
         ('pump/setups/plating-flow-calibration/', '0.8', 'monthly'),  # 도입 스토리 (도금 유량 보정)
         ('pump/setups/alicat-mfc-tubefurnace/', '0.7', 'monthly'),  # 도입 스토리 (튜브퍼니스 MFC)
         ('pump/guide/', '0.8', 'weekly'),
+        ('pump/atoz/', '0.8', 'weekly'),
         ('pump/select/', '0.7', 'monthly'),   # 펌프·튜브 선택 위저드   # 트러블슈팅 허브
         ('pump/atoz/peristaltic-flow-setpoint-mismatch/', '0.7', 'monthly'),
         ('pump/atoz/tubing-crush-tear-causes/', '0.7', 'monthly'),

@@ -35,7 +35,7 @@
     { t:'flow chemistry 연속흐름 반응', u:'/application/flow-chemistry.html', k:'flow chemistry 연속흐름 반응 시린지 유량비 체류시간 마그네틱 유기용매', c:'실험 가이드' },
     { t:'장기칩·오가노이드 관류', u:'/application/organ-on-chip-perfusion.html', k:'장기칩 organ on chip 오가노이드 관류 미세유체 저유량 전단응력', c:'실험 가이드' },
     { t:'실험 가이드 허브', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험 가이드' },
-    { t:'펌프 자료실 — 트러블슈팅·도입 셋업 스토리', u:'/pump/guide/', k:'펌프 자료실 트러블슈팅 유량 튜빙 소음 멈춤 도입 셋업 스토리 도금', c:'펌프 자료실' },
+    { t:'펌프 셋업 사례 — 실제 도입·제어·유량 보정', u:'/pump/guide/', k:'펌프 셋업 사례 도입 제어 유량 보정 도금 다펌프 튜브퍼니스 mfc 스토리', c:'펌프 셋업 사례' },
     { t:'리드플루이드 국내 A/S·정품·3년보증', u:'/pump/leadfluid/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'호환 장비' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
     { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
@@ -66,8 +66,9 @@
   };
   var NAV = [
     { href:'/pump/guide/', label:'펌프 A to Z', icon:'wrench', noclick:true, sub:[
-        ['/pump/guide/',  '펌프 셋업 | 문제해결'],
+        ['/pump/guide/',  '펌프 셋업 사례'],
         ['/pump/select/', '펌프·튜브 선택 가이드'],
+        ['/pump/atoz/',   '문제해결'],
         ['/pump/faq/',    '자주묻는 질문(FAQ)']
       ] },
     { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
@@ -117,7 +118,7 @@
       '<a class="ch-cta" href="/contact/">문의하기</a>' +
     '</header>' +
     '<aside class="ch-side" id="chSide"><nav>' + navHTML + '</nav>' +
-      '<div class="ch-side-foot">LeadFluid 정품 공급·국내 직접 A/S<br>나비엠알오 등록 공급사</div>' +
+      '<div class="ch-side-foot">LeadFluid 공식 대리점 · 정품 공급·국내 직접 A/S<br>나비엠알오 등록 공급사</div>' +
     '</aside>' +
     '<div class="ch-scrim" id="chScrim"></div>';
 
@@ -133,14 +134,14 @@
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
           '<div class="cf-col"><h4>바로가기</h4>' +
-            '<a href="/pump/guide/">펌프 자료실</a><a href="/pump/leadfluid/">리드플루이드</a><a href="/requests/">소프트웨어 제어</a><a href="/faq/">FAQ</a></div>' +
+            '<a href="/pump/guide/">펌프 셋업 사례</a><a href="/pump/leadfluid/">리드플루이드</a><a href="/requests/">소프트웨어 제어</a><a href="/faq/">FAQ</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
             '<a href="/contact/#repair">수리 문의</a><a href="/contact/#dev">개발 문의</a>' +
             '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_footer">견적·구매 (나비엠알오)</a></div>' +
           '<div class="cf-col"><h4>고객센터</h4>' +
             '<a href="mailto:info@rndsetup.com">info@rndsetup.com</a>' +
             '<a href="tel:+827089832600">070-8983-2600</a>' +
-            '<span>LeadFluid 정품 공급·국내 직접 A/S</span><span>실험셋업연구소 구매 고객 3년 무상보증</span></div>' +
+            '<span>LeadFluid 공식 대리점 · 정품 공급·국내 직접 A/S</span><span>실험셋업연구소 구매 고객 3년 무상보증</span></div>' +
         '</div>' +
         '<div class="cf-co"><strong>실험셋업연구소</strong> · 이영현 · 070-8983-2600 · 사업자등록 637-05-03629<br>' +
           '부산광역시 북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩) · 도매·소매업 / 정보통신업</div>' +
