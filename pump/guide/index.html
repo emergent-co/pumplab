@@ -62,17 +62,12 @@
 <div class="wrap">
   <div class="tabs" id="tabs">
     <button class="tab active" data-c="전체" type="button">전체</button>
-    <button class="tab" data-c="모델" type="button">모델</button>
     <button class="tab" data-c="셋업 스토리" type="button">셋업 스토리</button>
     <button class="tab" data-c="결과값 이상" type="button">결과값 이상(유량·정량)</button>
     <button class="tab" data-c="긴급·유지보수" type="button">긴급·유지보수</button>
   </div>
-  <div class="count" id="count">글 <b style="color:var(--green)">7</b>개</div>
+  <div class="count" id="count">글 <b style="color:var(--green)">3</b>개</div>
   <div class="grid" id="grid">
-    <a class="card" href="/pump/leadfluid/bt103s/"><div class="cat">모델</div><div class="t">리드플루이드 BT103S — 분주형 연동펌프</div><div class="s">정해진 부피·간격 반복 분배. 유량 0.00011~500 mL/min, 정확도 ±0.2%, 헤드·튜브 유량표.</div><div class="d">모델 페이지</div></a>
-    <a class="card" href="/pump/leadfluid/bt101l/"><div class="cat">모델</div><div class="t">리드플루이드 BT101L — 지능형 연동펌프</div><div class="s">RS485 PC 제어·논문·도금 검증. 유량 0.00011~750 mL/min.</div><div class="d">모델 페이지</div></a>
-    <a class="card" href="/pump/leadfluid/tyd01-01/"><div class="cat">모델</div><div class="t">리드플루이드 TYD01-01 — 시린지펌프</div><div class="s">나노리터급 정밀 주입 · RS485 · WiFi.</div><div class="d">모델 페이지</div></a>
-    <a class="card" href="/pump/leadfluid/ct3001f/"><div class="cat">모델</div><div class="t">리드플루이드 CT3001F — 마그네틱 기어펌프</div><div class="s">자기구동 무누설 연속 이송.</div><div class="d">모델 페이지</div></a>
     <a class="card" href="/pump/atoz/peristaltic-flow-setpoint-mismatch/"><div class="cat">결과값 이상</div><div class="t">연동펌프 유량이 설정값과 다른 이유 — 원인 5가지와 해결법</div><div class="s">설정값과 실제 토출량이 다른 원인(튜브 탄성·노후, 역압, 점도, 보정)과 실측 캘리브레이션으로 오차 줄이는 법.</div><div class="d">2026-07-16</div></a>
     <a class="card" href="/pump/atoz/tubing-crush-tear-causes/"><div class="cat">긴급·유지보수</div><div class="t">연동펌프 튜빙이 자꾸 씹히고 찢어지는 이유 — 원인 4가지와 해결법</div><div class="s">튜빙 파손의 원인(규격 불일치·과압착·화학 비적합·수명 초과)과, 수명을 늘리는 튜브 선택·옥클루전·교체 관리.</div><div class="d">2026-07-16</div></a>
     <a class="card" href="/pump/setups/plating-flow-calibration/"><div class="cat">셋업 스토리</div><div class="t">도금 라인 유량이 매번 달랐던 이유 — BT101L 2대 다펌프 제어·유량 보정 셋업</div><div class="s">유량 편차로 도금 두께가 흔들리던 라인을 BT101L 2대 RS485 다펌프 제어 + 실측 캘리브레이션으로 잡은 실제 도입 셋업 이야기.</div><div class="d">2026-07-16</div></a>
@@ -92,10 +87,6 @@
 <script>
 (function(){
   var CARDS = [
-    {cat:"모델", title:"리드플루이드 BT103S — 분주형 연동펌프", summary:"정해진 부피·간격 반복 분배. 유량 0.00011~500 mL/min, 정확도 ±0.2%, 헤드·튜브 유량표.", url:"/pump/leadfluid/bt103s/", date:"모델 페이지"},
-    {cat:"모델", title:"리드플루이드 BT101L — 지능형 연동펌프", summary:"RS485 PC 제어·논문·도금 검증. 유량 0.00011~750 mL/min.", url:"/pump/leadfluid/bt101l/", date:"모델 페이지"},
-    {cat:"모델", title:"리드플루이드 TYD01-01 — 시린지펌프", summary:"나노리터급 정밀 주입 · RS485 · WiFi.", url:"/pump/leadfluid/tyd01-01/", date:"모델 페이지"},
-    {cat:"모델", title:"리드플루이드 CT3001F — 마그네틱 기어펌프", summary:"자기구동 무누설 연속 이송.", url:"/pump/leadfluid/ct3001f/", date:"모델 페이지"},
     {cat:"결과값 이상", title:"연동펌프 유량이 설정값과 다른 이유 — 원인 5가지와 해결법", summary:"설정값과 실제 토출량이 다른 원인(튜브 탄성·노후, 역압, 점도, 보정)과 실측 캘리브레이션으로 오차 줄이는 법.", url:"/pump/atoz/peristaltic-flow-setpoint-mismatch/", date:"2026-07-16"},
     {cat:"긴급·유지보수", title:"연동펌프 튜빙이 자꾸 씹히고 찢어지는 이유 — 원인 4가지와 해결법", summary:"튜빙 파손의 원인(규격 불일치·과압착·화학 비적합·수명 초과)과, 수명을 늘리는 튜브 선택·옥클루전·교체 관리.", url:"/pump/atoz/tubing-crush-tear-causes/", date:"2026-07-16"},
     {cat:"셋업 스토리", title:"도금 라인 유량이 매번 달랐던 이유 — BT101L 2대 다펌프 제어·유량 보정 셋업", summary:"유량 편차로 도금 두께가 흔들리던 라인을 BT101L 2대 RS485 다펌프 제어 + 실측 캘리브레이션으로 잡은 실제 도입 셋업 이야기.", url:"/pump/setups/plating-flow-calibration/", date:"2026-07-16"}
