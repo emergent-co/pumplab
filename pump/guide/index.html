@@ -3,260 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>펌프 자주묻는 질문(FAQ) — 펌프·튜브·제어 실무 질문 정리 | 실험셋업연구소</title>
-<meta name="description" content="질문과 비교로 액체 이송·정량·자동화 펌프 셋업을 찾는 가이드입니다. 관류·연속배양·flow chemistry·다펌프 제어·PC 제어까지, 특정 질문에 답하고 제품을 비교해 고르도록 돕습니다.">
-<meta name="keywords" content="펌프 셋업 가이드, 펌프 선택, 연동펌프, 시린지펌프, 관류배양, flow chemistry, 다펌프 제어, Modbus, RS485, 실험셋업연구소">
+<title>펌프 셋업 | 문제해결 — 트러블슈팅·유량·튜빙 해결과 도입 셋업 | 실험셋업연구소</title>
+<meta name="description" content="연동펌프·정량펌프가 멈추거나, 유량이 설정값과 다르거나, 튜빙이 찢어지거나, 소음이 날 때 원인과 해결법을 증상별로 정리했습니다. 리드플루이드 등 실험용 펌프 트러블슈팅 — 해결 안 되면 국내 직접 A/S 무료 진단. 실험셋업연구소.">
 <link rel="canonical" href="https://rndsetup.com/pump/guide/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="펌프 자주묻는 질문(FAQ) — 펌프·튜브·제어 실무 질문 정리">
-<meta property="og:description" content="질문과 비교로 액체 이송·정량·자동화 펌프 셋업을 찾는 가이드. 특정 질문에 답하고 제품을 비교해 고르도록 돕습니다.">
+<meta property="og:title" content="펌프 셋업 | 문제해결 — 트러블슈팅·유량·튜빙과 도입 셋업">
+<meta property="og:description" content="증상별로 원인과 해결법을 정리한 실험용 펌프 트러블슈팅 자료실. 해결 안 되면 국내 직접 A/S 무료 진단.">
 <meta property="og:url" content="https://rndsetup.com/pump/guide/">
-
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","description":"액체 이송·정량·자동화 펌프 셋업을 질문과 비교로 찾는 가이드입니다.","inLanguage":"ko","author":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/pump/guide/"},"mainEntity":[
-{"@type":"Question","name":"관류배양(perfusion)엔 어떤 펌프를 쓰나?","acceptedAnswer":{"@type":"Answer","text":"본체 비접촉 연동펌프로 저유량 안정성을 확보하는 셋업이 적합합니다. 자세한 구성은 관류배양 가이드(https://rndsetup.com/application/cell-culture-perfusion.html)에서 확인하세요."}},
-{"@type":"Question","name":"내 펌프가 PC(Modbus·RS485)로 제어되나?","acceptedAnswer":{"@type":"Answer","text":"통신 지원 여부를 30초 안에 확인하는 방법을 정리했습니다. PC 제어 확인 가이드(https://rndsetup.com/application/pump-pc-control-modbus-rs485.html)에서 확인하세요."}}
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
+{"@type":"ListItem","position":2,"name":"펌프 셋업 | 문제해결","item":"https://rndsetup.com/pump/guide/"}
 ]}
 </script>
 <style>
-  :root{
-    --ink:#1A1A1A; --gray:#6B6B6B; --gray-2:#9A9A9A;
-    --green:#1E3A5F; --green-bg:#EDF1F8; --line:#EAEAEA; --bg:#fff;
-    --serif:"Noto Serif KR",Georgia,serif;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-  }
+  :root{--ink:#17202A;--gray:#5b6b7a;--gray-2:#93a1b0;--green:#1E3A5F;--green-2:#2a5a8f;--green-bg:#EDF2F8;--line:#E6EAF0;--serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
   a{color:inherit;text-decoration:none}
-  .gwrap{max-width:960px;margin:0 auto;padding:0 24px}
-
-  .g-hero{padding:48px 0 10px}
-  .g-hero .crumb{font-size:13px;color:var(--gray-2);margin-bottom:14px}
-  .g-hero .crumb a{color:var(--green)}
-  .g-h1{font-family:var(--serif);font-size:clamp(26px,5vw,34px);font-weight:700;line-height:1.28;letter-spacing:-.02em}
-  .g-lead{margin-top:14px;font-size:16px;color:var(--gray);line-height:1.7;max-width:720px}
-
-  .g-controls{padding:22px 0 6px}
-  .g-search{position:relative;margin-bottom:14px}
-  .g-search input{width:100%;padding:14px 16px 14px 44px;font-size:15.5px;font-family:inherit;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);outline:none}
-  .g-search input:focus{border-color:var(--green)}
-  .g-search .ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--gray-2);font-size:16px}
-
-  .g-filters{display:flex;gap:8px;flex-wrap:wrap}
-  .g-fbtn{padding:8px 16px;font-size:14px;font-weight:600;font-family:inherit;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--gray);cursor:pointer;transition:all .15s}
-  .g-fbtn:hover{border-color:var(--green);color:var(--green)}
-  .g-fbtn.active{background:var(--ink);border-color:var(--ink);color:#fff}
-
-  .g-count{font-size:13.5px;color:var(--gray-2);margin:18px 0 10px}
-  .g-count b{color:var(--ink)}
-
-  .g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding-bottom:56px}
-  .g-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;background:#fff;transition:border-color .15s,box-shadow .15s;height:100%}
-  .g-card:hover{border-color:var(--green);box-shadow:0 6px 20px rgba(30,58,95,.08)}
-  .g-tags{display:flex;gap:6px;align-items:center;margin-bottom:10px}
-  .g-dot{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.02em}
-  .g-cmp{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#FFF3D6;color:#8A6100;border:1px solid #F2DFA6}
-  .d-liquid{background:#E7F0FB;color:#1E3A5F}
-  .d-gas{background:#E6F5EE;color:#1A6E56}
-  .d-vac{background:#F0EAF8;color:#5B3E8E}
-  .d-auto{background:#FCEBEA;color:#A33228}
-  .g-q{font-size:16px;font-weight:700;color:var(--ink);line-height:1.42;letter-spacing:-.01em}
-  .g-card:hover .g-q{color:var(--green)}
-  .g-hint{font-size:13.5px;color:var(--gray);line-height:1.6;margin-top:9px}
-  .g-hint b{color:#2a2a2a;font-weight:600}
-  .g-more{margin-top:auto;padding-top:12px;font-size:12.5px;font-weight:700;color:var(--green)}
-
-  .g-empty{padding:48px 0;text-align:center;color:var(--gray-2);font-size:15px}
-
-  @media(max-width:640px){
-    .g-hero{padding:32px 0 6px}
-    .g-grid{grid-template-columns:1fr}
-  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px}
+  .hero{padding:50px 0 6px}
+  .crumb{font-size:12.5px;color:var(--green-2);font-weight:700;letter-spacing:.03em;margin-bottom:12px}
+  h1{font-family:var(--serif);font-size:clamp(25px,5.4vw,36px);font-weight:700;letter-spacing:-.02em;line-height:1.3}
+  .lead{font-size:16px;color:#3a4650;margin-top:14px;line-height:1.85}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 4px}
+  .tab{background:#f2f5f9;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:700;color:#41505f;cursor:pointer;font-family:inherit}
+  .tab.active{background:var(--green);border-color:var(--green);color:#fff}
+  .count{font-size:13.5px;color:var(--gray-2);margin:18px 0 10px;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;padding:20px 20px 18px;transition:box-shadow .15s,transform .15s;height:100%}
+  .card:hover{box-shadow:0 12px 30px rgba(20,40,70,.10);transform:translateY(-2px)}
+  .card .cat{display:inline-block;align-self:flex-start;font-size:11px;font-weight:800;color:#fff;background:var(--green);padding:3px 10px;border-radius:999px;letter-spacing:.02em}
+  .card .t{font-family:var(--serif);font-size:18px;font-weight:700;line-height:1.4;margin:8px 0 8px;color:var(--ink)}
+  .card .s{font-size:13.5px;color:var(--gray);line-height:1.65;flex:1}
+  .card .d{font-size:12px;color:var(--gray-2);margin-top:14px}
+  .empty{grid-column:1/-1;color:var(--gray-2);font-size:14px;padding:24px;text-align:center;border:1px dashed var(--line);border-radius:12px}
+  .band{background:var(--green);color:#fff;border-radius:16px;padding:28px 26px;margin:38px 0 0;text-align:center}
+  .band .bt{font-family:var(--serif);font-size:20px;font-weight:700}
+  .band p{font-size:14px;opacity:.94;margin-top:8px}
+  .band a{display:inline-block;background:#fff;color:var(--green);font-weight:800;padding:13px 24px;border-radius:10px;margin-top:16px;font-size:15px}
+  .foot-links{display:grid;gap:8px;margin:34px 0 64px}
+  .foot-links a{border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:14px;font-weight:600;color:var(--ink)}
+  .foot-links a:hover{background:var(--green-bg)}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 <div id="pumplab-header"></div>
 
-<section class="g-hero">
-  <div class="gwrap">
-    <div class="crumb"><a href="/">홈</a> › 펌프 자주묻는 질문(FAQ)</div>
-    <h1 class="g-h1">펌프 자주묻는 질문(FAQ)</h1>
-    <p class="g-lead">액체 이송·정량·자동화 — 특정 질문에 답하고, 제품을 비교해 고르도록 돕습니다. (정의가 아니라 '무엇을 어떻게 고르고 쓰나'에 대한 답)</p>
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb">펌프 셋업 | 문제해결</div>
+    <h1>펌프 셋업 | 문제해결 — 문제 해결부터 도입 셋업까지</h1>
+    <p class="lead">연동펌프가 <b>멈추거나·유량이 이상하거나·튜빙이 찢어질 때</b> — 증상별 원인·해결과 실제 도입 셋업을 모았습니다.</p>
   </div>
 </section>
 
-<section class="g-controls">
-  <div class="gwrap">
-    <div class="g-search">
-      <span class="ico">⌕</span>
-      <input type="search" id="gSearch" placeholder="질문·키워드로 검색 (예: 관류, 캘리브레이션, 다펌프, Modbus)" autocomplete="off" aria-label="가이드 검색">
-    </div>
-    <div class="g-filters" id="gFilters">
-      <button class="g-fbtn active" data-d="전체" type="button">전체</button>
-      <button class="g-fbtn" data-d="액체" type="button">액체</button>
-      <button class="g-fbtn" data-d="자동화" type="button">자동화</button>
-    </div>
+<div class="wrap">
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-c="전체" type="button">전체</button>
+    <button class="tab" data-c="모델" type="button">모델</button>
+    <button class="tab" data-c="셋업 스토리" type="button">셋업 스토리</button>
+    <button class="tab" data-c="결과값 이상" type="button">결과값 이상(유량·정량)</button>
+    <button class="tab" data-c="긴급·유지보수" type="button">긴급·유지보수</button>
   </div>
-</section>
-
-<main class="gwrap">
-  <div class="g-count" id="gCount"></div>
-  <div class="g-grid" id="gGrid"></div>
-</main>
-
-<style>
-  .g-reqbar-wrap{margin:10px auto 0}
-  .g-reqbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--green-bg,#eef6f0);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:14.5px;color:var(--ink)}
-  .g-reqbtn{background:var(--green);color:#fff;border:0;border-radius:9px;padding:11px 16px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
-  .g-reqbtn:hover{background:var(--green-dk,#0b6b4f)}
-  .g-empty .g-reqbtn{margin-top:12px}
-  .g-modal{display:none;position:fixed;inset:0;background:rgba(10,20,30,.5);z-index:100;align-items:center;justify-content:center;padding:20px}
-  .g-modal.open{display:flex}
-  .g-modal-box{position:relative;background:#fff;border-radius:14px;padding:26px 24px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25)}
-  .g-modal-x{position:absolute;right:14px;top:12px;background:none;border:0;font-size:24px;color:var(--gray-2);cursor:pointer;line-height:1}
-  .g-modal-h{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--ink);margin:0 0 6px}
-  .g-modal-sub{font-size:13.5px;color:var(--gray);margin:0 0 16px;line-height:1.6}
-  .g-lab{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:12px}
-  .g-lab textarea,.g-lab input{width:100%;margin-top:5px;padding:11px 12px;font-size:14.5px;font-family:inherit;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);box-sizing:border-box;font-weight:400}
-  .g-lab textarea:focus,.g-lab input:focus{outline:none;border-color:var(--green)}
-  .g-reqsubmit{width:100%;background:var(--green);color:#fff;border:0;border-radius:9px;padding:13px;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;font-family:inherit}
-  .g-reqsubmit:hover{background:var(--green-dk,#0b6b4f)}
-</style>
-<section class="gwrap g-reqbar-wrap">
-  <div class="g-reqbar">
-    <div>찾으시는 실험 셋업 가이드가 없나요? <b>필요한 주제를 요청</b>하시면 정리해 드립니다.</div>
-    <button type="button" class="g-reqbtn" onclick="openGReq()">실험가이드 요청하기 →</button>
+  <div class="count" id="count">글 <b style="color:var(--green)">7</b>개</div>
+  <div class="grid" id="grid">
+    <a class="card" href="/pump/leadfluid/bt103s/"><div class="cat">모델</div><div class="t">리드플루이드 BT103S — 분주형 연동펌프</div><div class="s">정해진 부피·간격 반복 분배. 유량 0.00011~500 mL/min, 정확도 ±0.2%, 헤드·튜브 유량표.</div><div class="d">모델 페이지</div></a>
+    <a class="card" href="/pump/leadfluid/bt101l/"><div class="cat">모델</div><div class="t">리드플루이드 BT101L — 지능형 연동펌프</div><div class="s">RS485 PC 제어·논문·도금 검증. 유량 0.00011~750 mL/min.</div><div class="d">모델 페이지</div></a>
+    <a class="card" href="/pump/leadfluid/tyd01-01/"><div class="cat">모델</div><div class="t">리드플루이드 TYD01-01 — 시린지펌프</div><div class="s">나노리터급 정밀 주입 · RS485 · WiFi.</div><div class="d">모델 페이지</div></a>
+    <a class="card" href="/pump/leadfluid/ct3001f/"><div class="cat">모델</div><div class="t">리드플루이드 CT3001F — 마그네틱 기어펌프</div><div class="s">자기구동 무누설 연속 이송.</div><div class="d">모델 페이지</div></a>
+    <a class="card" href="/pump/atoz/peristaltic-flow-setpoint-mismatch/"><div class="cat">결과값 이상</div><div class="t">연동펌프 유량이 설정값과 다른 이유 — 원인 5가지와 해결법</div><div class="s">설정값과 실제 토출량이 다른 원인(튜브 탄성·노후, 역압, 점도, 보정)과 실측 캘리브레이션으로 오차 줄이는 법.</div><div class="d">2026-07-16</div></a>
+    <a class="card" href="/pump/atoz/tubing-crush-tear-causes/"><div class="cat">긴급·유지보수</div><div class="t">연동펌프 튜빙이 자꾸 씹히고 찢어지는 이유 — 원인 4가지와 해결법</div><div class="s">튜빙 파손의 원인(규격 불일치·과압착·화학 비적합·수명 초과)과, 수명을 늘리는 튜브 선택·옥클루전·교체 관리.</div><div class="d">2026-07-16</div></a>
+    <a class="card" href="/pump/setups/plating-flow-calibration/"><div class="cat">셋업 스토리</div><div class="t">도금 라인 유량이 매번 달랐던 이유 — BT101L 2대 다펌프 제어·유량 보정 셋업</div><div class="s">유량 편차로 도금 두께가 흔들리던 라인을 BT101L 2대 RS485 다펌프 제어 + 실측 캘리브레이션으로 잡은 실제 도입 셋업 이야기.</div><div class="d">2026-07-16</div></a>
   </div>
-</section>
 
-<div class="g-modal" id="gReqModal" onclick="if(event.target===this)closeGReq()">
-  <div class="g-modal-box">
-    <button class="g-modal-x" type="button" onclick="closeGReq()" aria-label="닫기">×</button>
-    <form id="gReqForm" action="https://formspree.io/f/mnjkzppj" method="POST">
-      <input type="hidden" name="form_type" value="guide_request">
-      <h3 class="g-modal-h">실험가이드 요청</h3>
-      <p class="g-modal-sub">어떤 실험 셋업이 궁금하신가요? 주제를 남겨주시면 가이드로 정리해 회신드립니다.</p>
-      <label class="g-lab">찾는 주제·질문 *<textarea name="topic" id="gReqTopic" rows="3" required placeholder="예: 미세유체 장기칩에 어떤 저맥동 펌프가 맞나요?"></textarea></label>
-      <label class="g-lab">이메일 *<input type="email" name="email" required placeholder="you@lab.ac.kr"></label>
-      <label class="g-lab">소속(선택)<input type="text" name="org" placeholder="○○대학교 ○○연구실"></label>
-      <button type="submit" class="g-reqsubmit">요청 보내기</button>
-    </form>
-    <div id="gReqDone" style="display:none">
-      <h3 class="g-modal-h">요청 감사합니다!</h3>
-      <p class="g-modal-sub">남겨주신 주제를 검토해 실험 셋업 가이드로 정리한 뒤 이메일로 회신드리겠습니다.</p>
-    </div>
-  </div>
+
 </div>
+
+<style>body{padding-bottom:64px}@media(max-width:600px){.lf-sticky .lf-name{font-size:14px}}</style>
+<a class="lf-sticky" href="/pump/leadfluid/" style="position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;justify-content:center;gap:14px;background:linear-gradient(120deg,#0f2a47,#1E3A5F);color:#fff;padding:12px 18px;box-shadow:0 -6px 20px rgba(10,30,60,.22);text-decoration:none">
+  <span class="lf-name" style="font-family:var(--serif);font-weight:700;font-size:16px">리드플루이드(LeadFluid)</span>
+  <span style="background:#fff;color:var(--green);font-weight:800;padding:8px 16px;border-radius:9px;font-size:13.5px;white-space:nowrap">펌프 보기 →</span>
+</a>
 
 <div id="pumplab-footer"></div>
 <script src="/assets/site.js" defer></script>
 <script>
 (function(){
   var CARDS = [
-    {q:"관류배양(perfusion)엔 어떤 펌프를 쓰나?", h:"본체 비접촉 연동펌프 + 저유량 안정성", u:"/application/cell-culture-perfusion.html", d:"액체", k:"관류 perfusion 세포배양 연동 저유량 무오염"},
-    {q:"연속배양(chemostat) 유량은 어떻게 제어하나?", h:"희석률에 맞춘 정밀 유량·정상상태 유지", u:"/application/chemostat-continuous-culture.html", d:"액체", k:"연속배양 chemostat 희석률 정상상태 배지"},
-    {q:"광배양·미세조류 배양의 정량 공급 셋업은?", h:"CO2·영양 정량 공급", u:"/application/photobioreactor-microalgae.html", d:"액체", k:"광배양 미세조류 광생물반응기 co2"},
-    {q:"flow chemistry 연속흐름 반응 펌프 셋업은?", h:"유량비·체류시간 제어", u:"/application/flow-chemistry.html", d:"액체", k:"flow chemistry 연속흐름 시린지 유량비 체류시간"},
-    {q:"장기칩·오가노이드 관류엔 어떤 펌프?", h:"µL/min 저유량·저전단", u:"/application/organ-on-chip-perfusion.html", d:"액체", k:"장기칩 organ on chip 오가노이드 미세유체 저전단"},
-    {q:"연동 vs 시린지 vs 기어 펌프, 뭘 골라야 하나?", h:"용도·유량·정밀도로 비교 선택", u:"/application/pump-selection.html", d:"액체", k:"펌프 선택 비교 연동 시린지 기어 추천", cmp:true},
-    {q:"튜브·피팅은 무엇을 골라야 하나?", h:"재질별 화학 적합성·규격 비교", u:"/application/tube-selection.html", d:"액체", k:"튜브 피팅 실리콘 tygon pharmed viton 화학 적합성 비교", cmp:true},
-    {q:"수입 연동펌프(Masterflex 등)에서 갈아탈 만한가?", h:"제어SW·국내 A/S·가격 비교", u:"/compare/imported-peristaltic-alternative/", d:"액체", k:"masterflex watson-marlow ismatec 대안 비교 갈아타기 수입", cmp:true},
-    {q:"도금 라인 다펌프 제어·유량 캘리브레이션은?", h:"BT101L 2대 다펌프 동기 + 실측 보정 도입 스토리", u:"/pump/setups/plating-flow-calibration/", d:"자동화", k:"도금 다펌프 캘리브레이션 BT101L 동기 유량 보정 스토리"},
-    {q:"내 펌프가 PC(Modbus·RS485)로 제어되나?", h:"통신 지원 여부 30초 확인", u:"/application/pump-pc-control-modbus-rs485.html", d:"자동화", k:"modbus rs485 pc 제어 확인 통신"},
-    {q:"무인 장시간 연속 운전은 어떻게 구성하나?", h:"다펌프 동기+무인 운전", u:"/application/multi-pump-sync-unattended.html", d:"자동화", k:"무인 장시간 다펌프 동기 연속 운전"},
-    {q:"유량 스케줄·ramp를 자동화하려면?", h:"시퀀스·레시피 저장", u:"/application/pump-flow-schedule-ramp.html", d:"자동화", k:"유량 스케줄 ramp 레시피 시퀀스 자동화"},
-    {q:"운전 로그(CSV)로 실험을 재현하려면?", h:"운전 이력 기록·재현", u:"/application/pump-run-log-csv-reproducibility.html", d:"자동화", k:"운전 로그 csv 재현 기록"},
-    {q:"Python으로 펌프를 제어하려면?", h:"레지스터·예제 코드", u:"/requests/#control", d:"자동화", k:"python 제어 예제 레지스터 modbus"}
+    {cat:"모델", title:"리드플루이드 BT103S — 분주형 연동펌프", summary:"정해진 부피·간격 반복 분배. 유량 0.00011~500 mL/min, 정확도 ±0.2%, 헤드·튜브 유량표.", url:"/pump/leadfluid/bt103s/", date:"모델 페이지"},
+    {cat:"모델", title:"리드플루이드 BT101L — 지능형 연동펌프", summary:"RS485 PC 제어·논문·도금 검증. 유량 0.00011~750 mL/min.", url:"/pump/leadfluid/bt101l/", date:"모델 페이지"},
+    {cat:"모델", title:"리드플루이드 TYD01-01 — 시린지펌프", summary:"나노리터급 정밀 주입 · RS485 · WiFi.", url:"/pump/leadfluid/tyd01-01/", date:"모델 페이지"},
+    {cat:"모델", title:"리드플루이드 CT3001F — 마그네틱 기어펌프", summary:"자기구동 무누설 연속 이송.", url:"/pump/leadfluid/ct3001f/", date:"모델 페이지"},
+    {cat:"결과값 이상", title:"연동펌프 유량이 설정값과 다른 이유 — 원인 5가지와 해결법", summary:"설정값과 실제 토출량이 다른 원인(튜브 탄성·노후, 역압, 점도, 보정)과 실측 캘리브레이션으로 오차 줄이는 법.", url:"/pump/atoz/peristaltic-flow-setpoint-mismatch/", date:"2026-07-16"},
+    {cat:"긴급·유지보수", title:"연동펌프 튜빙이 자꾸 씹히고 찢어지는 이유 — 원인 4가지와 해결법", summary:"튜빙 파손의 원인(규격 불일치·과압착·화학 비적합·수명 초과)과, 수명을 늘리는 튜브 선택·옥클루전·교체 관리.", url:"/pump/atoz/tubing-crush-tear-causes/", date:"2026-07-16"},
+    {cat:"셋업 스토리", title:"도금 라인 유량이 매번 달랐던 이유 — BT101L 2대 다펌프 제어·유량 보정 셋업", summary:"유량 편차로 도금 두께가 흔들리던 라인을 BT101L 2대 RS485 다펌프 제어 + 실측 캘리브레이션으로 잡은 실제 도입 셋업 이야기.", url:"/pump/setups/plating-flow-calibration/", date:"2026-07-16"}
   ];
-
-  var DOMAIN_CLASS = {"액체":"d-liquid","기체":"d-gas","진공":"d-vac","자동화":"d-auto"};
-
-  function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-
-  var grid = document.getElementById("gGrid");
-  var countEl = document.getElementById("gCount");
-  var searchEl = document.getElementById("gSearch");
-  var filtersEl = document.getElementById("gFilters");
-  var state = { d:"전체", q:"" };
-  (function initFromURL(){
-    var p = new URLSearchParams(location.search);
-    var q = p.get('q'), d = p.get('d');
-    if(q){ state.q = q; if(searchEl) searchEl.value = q; }
-    if(d){
-      var btn = filtersEl.querySelector('.g-fbtn[data-d="'+d+'"]');
-      if(btn){ Array.prototype.forEach.call(filtersEl.querySelectorAll('.g-fbtn'), function(b){ b.classList.remove('active'); }); btn.classList.add('active'); state.d = d; }
-    }
-  })();
-
-  function cardHTML(c){
-    var dcls = DOMAIN_CLASS[c.d] || "d-liquid";
-    var cmp = c.cmp ? '<span class="g-cmp">비교</span>' : '';
-    return '<a class="g-card" href="'+c.u+'">'+
-      '<div class="g-tags"><span class="g-dot '+dcls+'">'+esc(c.d)+'</span>'+cmp+'</div>'+
-      '<div class="g-q">'+esc(c.q)+'</div>'+
-      '<div class="g-hint">'+esc(c.h)+'</div>'+
-      '<div class="g-more">가이드 보기 →</div>'+
-    '</a>';
-  }
-
+  var CATS = {"긴급·유지보수":"긴급·유지보수","결과값 이상":"결과값 이상","연결·실무":"연결·실무","구매·선택":"구매·선택"};
+  var grid=document.getElementById('grid'), countEl=document.getElementById('count'), tabsEl=document.getElementById('tabs');
+  var state="전체";
+  function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   function render(){
-    var q = state.q.trim().toLowerCase();
-    var list = CARDS.filter(function(c){
-      var okD = state.d === "전체" || c.d === state.d;
-      if(!okD) return false;
-      if(!q) return true;
-      var hay = (c.q + " " + c.h + " " + c.k + " " + c.d).toLowerCase();
-      return hay.indexOf(q) !== -1;
-    });
-    if(list.length === 0){
-      grid.innerHTML = '';
-      countEl.innerHTML = '';
-      var qtxt = state.q ? '‘'+esc(state.q)+'’에 맞는' : '해당 조건의';
-      grid.insertAdjacentHTML('beforeend', '<div class="g-empty" style="grid-column:1/-1">'+qtxt+' 가이드가 아직 없습니다.<br><button type="button" class="g-reqbtn" onclick="openGReq()">이 주제로 실험가이드 요청하기 →</button></div>');
-      return;
-    }
-    countEl.innerHTML = '가이드 <b>'+list.length+'</b>개';
-    grid.innerHTML = list.map(cardHTML).join('');
+    var list=CARDS.filter(function(c){return state==="전체"||c.cat===state;});
+    list.sort(function(a,b){return (b.date||"").localeCompare(a.date||"");});
+    countEl.innerHTML='글 <b style="color:var(--green)">'+list.length+'</b>개';
+    if(!list.length){grid.innerHTML='<div class="empty">이 분류의 글은 준비 중입니다. 급하면 <a href="/contact/#repair" style="color:var(--green-2);font-weight:700">무료 진단 문의</a>를 남겨주세요.</div>';return;}
+    grid.innerHTML=list.map(function(c){
+      return '<a class="card" href="'+c.url+'">'+
+        '<div class="cat">'+esc(c.cat)+'</div>'+
+        '<div class="t">'+esc(c.title)+'</div>'+
+        '<div class="s">'+esc(c.summary)+'</div>'+
+        '<div class="d">'+esc(c.date)+'</div>'+
+      '</a>';
+    }).join('');
   }
-
-  filtersEl.addEventListener('click', function(e){
-    var btn = e.target.closest('.g-fbtn');
-    if(!btn) return;
-    Array.prototype.forEach.call(filtersEl.querySelectorAll('.g-fbtn'), function(b){ b.classList.remove('active'); });
-    btn.classList.add('active');
-    state.d = btn.getAttribute('data-d');
-    render();
+  tabsEl.addEventListener('click',function(e){
+    var b=e.target.closest('.tab'); if(!b)return;
+    Array.prototype.forEach.call(tabsEl.querySelectorAll('.tab'),function(x){x.classList.remove('active');});
+    b.classList.add('active'); state=b.getAttribute('data-c'); render();
   });
-
-  searchEl.addEventListener('input', function(){
-    state.q = searchEl.value;
-    render();
-  });
-
-  window.openGReq = function(){
-    var m = document.getElementById('gReqModal'); if(!m) return;
-    var t = document.getElementById('gReqTopic'); if(t && !t.value) t.value = state.q || '';
-    m.classList.add('open');
-    if(typeof gtag==='function') gtag('event','guide_request_open');
-  };
-  window.closeGReq = function(){ var m = document.getElementById('gReqModal'); if(m) m.classList.remove('open'); };
-  var gReqForm = document.getElementById('gReqForm');
-  if(gReqForm){ gReqForm.addEventListener('submit', async function(e){
-    e.preventDefault();
-    var f = e.target, btn = f.querySelector('.g-reqsubmit'), orig = btn.textContent;
-    btn.disabled = true; btn.textContent = '전송 중…';
-    try{
-      var res = await fetch(f.action, { method:'POST', headers:{'Accept':'application/json'}, body:new FormData(f) });
-      if(res.ok){ f.style.display='none'; document.getElementById('gReqDone').style.display='block'; if(typeof gtag==='function') gtag('event','guide_request_submit'); }
-      else { btn.disabled=false; btn.textContent=orig; alert('전송에 실패했습니다. 잠시 후 다시 시도해 주세요.'); }
-    }catch(_){ btn.disabled=false; btn.textContent=orig; alert('네트워크 오류가 발생했습니다.'); }
-  }); }
-
   render();
 })();
 </script>

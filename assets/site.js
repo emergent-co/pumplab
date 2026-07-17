@@ -35,7 +35,7 @@
     { t:'flow chemistry 연속흐름 반응', u:'/application/flow-chemistry.html', k:'flow chemistry 연속흐름 반응 시린지 유량비 체류시간 마그네틱 유기용매', c:'실험 가이드' },
     { t:'장기칩·오가노이드 관류', u:'/application/organ-on-chip-perfusion.html', k:'장기칩 organ on chip 오가노이드 관류 미세유체 저유량 전단응력', c:'실험 가이드' },
     { t:'실험 가이드 허브', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험 가이드' },
-    { t:'펌프 자료실 — 트러블슈팅·도입 셋업 스토리', u:'/pump/atoz/', k:'펌프 자료실 트러블슈팅 유량 튜빙 소음 멈춤 도입 셋업 스토리 도금', c:'펌프 자료실' },
+    { t:'펌프 자료실 — 트러블슈팅·도입 셋업 스토리', u:'/pump/guide/', k:'펌프 자료실 트러블슈팅 유량 튜빙 소음 멈춤 도입 셋업 스토리 도금', c:'펌프 자료실' },
     { t:'리드플루이드 국내 A/S·정품·3년보증', u:'/pump/leadfluid/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'호환 장비' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
     { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
@@ -65,9 +65,10 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/pump/atoz/', label:'펌프 A to Z', icon:'wrench', sub:[
+    { href:'/pump/guide/', label:'펌프 A to Z', icon:'wrench', noclick:true, sub:[
+        ['/pump/guide/',  '펌프 셋업 | 문제해결'],
         ['/pump/select/', '펌프·튜브 선택 가이드'],
-        ['/pump/guide/',  '자주묻는 질문(FAQ)']
+        ['/pump/faq/',    '자주묻는 질문(FAQ)']
       ] },
     { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
     { href:'/alicat/', label:'호환 장비', icon:'devices', sub:[
@@ -83,9 +84,11 @@
   var navHTML = NAV.map(function (n) {
     // 부모 페이지(예: /pumps/)에 있으면 부모를 활성화하고, 하위 페이지에 있으면 해당 하위탭을 활성화한다.
     var cur = matches(n.href);
-    var row = '<a class="s-item' + (cur ? ' active' : '') + '" href="' + n.href + '"' +
-              (cur ? ' aria-current="page"' : '') + '>' + (ICONS[n.icon] || '') +
-              '<span>' + n.label + '</span></a>';
+    var row = n.noclick
+      ? '<div class="s-item s-noclick">' + (ICONS[n.icon] || '') + '<span>' + n.label + '</span></div>'
+      : '<a class="s-item' + (cur ? ' active' : '') + '" href="' + n.href + '"' +
+        (cur ? ' aria-current="page"' : '') + '>' + (ICONS[n.icon] || '') +
+        '<span>' + n.label + '</span></a>';
     if (n.sub) {
       // 현재 페이지와 일치하는 하위탭을 찾는다: 경로형 우선, 해시형은 해시 일치, 해시 없으면 첫 하위탭 기본 활성.
       var activeIdx = -1;
@@ -130,7 +133,7 @@
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
           '<div class="cf-col"><h4>바로가기</h4>' +
-            '<a href="/pump/atoz/">펌프 자료실</a><a href="/pump/leadfluid/">리드플루이드</a><a href="/requests/">소프트웨어 제어</a><a href="/faq/">FAQ</a></div>' +
+            '<a href="/pump/guide/">펌프 자료실</a><a href="/pump/leadfluid/">리드플루이드</a><a href="/requests/">소프트웨어 제어</a><a href="/faq/">FAQ</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
             '<a href="/contact/#repair">수리 문의</a><a href="/contact/#dev">개발 문의</a>' +
             '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_footer">견적·구매 (나비엠알오)</a></div>' +

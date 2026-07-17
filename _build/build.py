@@ -381,7 +381,7 @@ def build_requests():
 # 크롤러용 사이트 전체 링크(푸터 div에 정적 주입 → site.js가 런타임에 대체)
 CRAWLER_LINKS = [
     ('/', '홈'),
-    ('/pump/guide/', '실험 셋업 가이드 — 질문·비교로 찾는 펌프·유체 셋업'),
+    ('/pump/faq/', '실험 셋업 가이드 — 질문·비교로 찾는 펌프·유체 셋업'),
     ('/pump/leadfluid/', '리드플루이드(LeadFluid) — 정품·국내 A/S·제어'),
     ('/pump/leadfluid/bt101l/', '리드플루이드 BT101 L 연동펌프 — RS485 PC 제어'),
     ('/pump/leadfluid/bt103s/', '리드플루이드 BT103S 분주형 연동펌프 — 정량·반복 분주'),
@@ -415,7 +415,7 @@ CRAWLER_LINKS = [
     ('/application/pump-flow-schedule-ramp.html', '유량 스케줄·ramp 자동화'),
     ('/application/multi-pump-sync-unattended.html', '다펌프 동기·무인 운전'),
     ('/application/pump-run-log-csv-reproducibility.html', '운전 로그·재현(CSV)'),
-    ('/pump/atoz/', '펌프 트러블슈팅 — 멈춤·유량·튜빙·소음 해결'),
+    ('/pump/guide/', '펌프 셋업 | 문제해결 — 트러블슈팅·유량·튜빙·도입 셋업'),
     ('/pump/select/', '펌프·튜브 선택 가이드 — 조건 입력하면 추천'),
     ('/pump/atoz/peristaltic-flow-setpoint-mismatch/', '연동펌프 유량이 설정값과 다른 이유'),
     ('/pump/atoz/tubing-crush-tear-causes/', '연동펌프 튜빙 씹힘·찢어짐 원인·해결'),
@@ -780,7 +780,7 @@ def main():
     # 메인 + 상업 funnel 페이지 (loc 경로, priority, changefreq)
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
-        ('pump/guide/',   '0.9', 'weekly'),   # 실험 셋업 가이드 (질문·비교 인덱스)
+        ('pump/faq/',   '0.9', 'weekly'),   # 실험 셋업 가이드 (질문·비교 인덱스)
         ('compat/guide/', '0.8', 'monthly'),  # 기체·진공 셋업 가이드 (호환 장비)
         ('pump/leadfluid/',    '0.9', 'monthly'),  # 리드플루이드 브랜드 랜딩
         ('pump/leadfluid/bt101l/',    '0.8', 'monthly'),  # 모델 페이지
@@ -793,7 +793,7 @@ def main():
         ('trust/',        '0.8', 'monthly'),  # 믿고 도입할 때 (신뢰·A/S)
         ('pump/setups/plating-flow-calibration/', '0.8', 'monthly'),  # 도입 스토리 (도금 유량 보정)
         ('pump/setups/alicat-mfc-tubefurnace/', '0.7', 'monthly'),  # 도입 스토리 (튜브퍼니스 MFC)
-        ('pump/atoz/', '0.8', 'weekly'),
+        ('pump/guide/', '0.8', 'weekly'),
         ('pump/select/', '0.7', 'monthly'),   # 펌프·튜브 선택 위저드   # 트러블슈팅 허브
         ('pump/atoz/peristaltic-flow-setpoint-mismatch/', '0.7', 'monthly'),
         ('pump/atoz/tubing-crush-tear-causes/', '0.7', 'monthly'),
