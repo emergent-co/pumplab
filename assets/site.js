@@ -67,7 +67,6 @@
   var NAV = [
     { href:'/pump/troubleshooting/', label:'펌프 자료실', icon:'wrench', sub:[
         ['/pump/troubleshooting/', '펌프 A to Z'],
-        ['/pump/leadfluid/',       '리드플루이드'],
         ['/pump/guide/',           '자주묻는 질문(FAQ)']
       ] },
     { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
