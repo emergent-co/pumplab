@@ -384,7 +384,7 @@ CRAWLER_LINKS = [
     ('/pump/', '실험용 펌프 — 종류·리드플루이드 모델·선택·문제해결 총정리'),
     ('/pump/faq/', '실험 셋업 가이드 — 질문·비교로 찾는 펌프·유체 셋업'),
     ('/pump/leadfluid/', '리드플루이드(LeadFluid) — 정품·국내 A/S·제어'),
-    ('/pump/leadfluid/bt101l/', '리드플루이드 BT101 L 연동펌프 — RS485 PC 제어'),
+    ('/pump/leadfluid/bt101l/', '리드플루이드 BT101L 연동펌프 (LeadFluid BT101L) — RS485 PC 제어'),
     ('/pump/leadfluid/bt103s/', '리드플루이드 BT103S 분주형 연동펌프 — 정량·반복 분주'),
     ('/pump/leadfluid/tyd01-01/', '리드플루이드 TYD01-01 시린지펌프 — 나노리터 정밀 주입'),
     ('/pump/leadfluid/ct3001f/', '리드플루이드 CT3001F 마그네틱 기어펌프 — 무누설 연속 이송'),
@@ -559,7 +559,7 @@ ORG_WEBSITE_GRAPH = {
             "@type": "Organization",
             "@id": "https://rndsetup.com/#org",
             "name": "실험셋업연구소",
-            "alternateName": "정량펌프연구소",
+            "alternateName": ["정량펌프연구소", "rndsetup", "emergent co."],
             "legalName": "실험셋업연구소",
             "taxID": "637-05-03629",
             "url": "https://rndsetup.com/",
@@ -589,6 +589,13 @@ ORG_WEBSITE_GRAPH = {
             "url": "https://rndsetup.com/",
             "publisher": {"@id": "https://rndsetup.com/#org"},
             "inLanguage": "ko"
+        },
+        {
+            "@type": "Brand",
+            "@id": "https://rndsetup.com/#leadfluid",
+            "name": "리드플루이드",
+            "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"],
+            "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/"]
         }
     ]
 }
