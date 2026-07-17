@@ -249,6 +249,22 @@
         setTimeout(function () { b.classList.add('show'); }, 2500);
       });
     }
+    // 리드플루이드 펌프 보기 — /pump/ 하위 전 페이지 하단 고정 배너(스크롤 따라 진해짐)
+    if (window.self === window.top && path.indexOf('/pump/') === 0 && !document.querySelector('.lf-sticky')) {
+      var lf = document.createElement('a');
+      lf.className = 'lf-sticky';
+      lf.href = '/pump/leadfluid/';
+      lf.innerHTML = '<span class="lf-name">리드플루이드(LeadFluid)</span><span class="lf-go">펌프 보기 →</span>';
+      document.body.appendChild(lf);
+      document.body.classList.add('has-lfsticky');
+      var lfScroll = function () {
+        var y = window.scrollY || document.documentElement.scrollTop || 0;
+        var a = (0.5 + Math.min(y / 240, 1) * 0.5).toFixed(2);
+        lf.style.background = 'rgba(15,42,71,' + a + ')';
+      };
+      window.addEventListener('scroll', lfScroll, { passive: true });
+      lfScroll();
+    }
     var burger = document.querySelector('.ch-burger');
     var side = document.getElementById('chSide');
     var scrim = document.getElementById('chScrim');
