@@ -71,6 +71,9 @@
         ['/pump/atoz/',   '문제해결'],
         ['/pump/faq/',    '자주묻는 질문(FAQ)']
       ] },
+    { href:'/furnace/setups/', label:'열처리 A to Z', icon:'devices', noclick:true, sub:[
+        ['/furnace/setups/', '퍼니스 셋업 사례']
+      ] },
     { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
     { href:'/alicat/', label:'호환 장비', icon:'devices', sub:[
         ['/compat/guide/',   '기체·진공 셋업 가이드'],

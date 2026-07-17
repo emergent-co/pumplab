@@ -2,5 +2,6 @@
 # GitHub Pages에서는 무시됨(HTML 스텁이 대신 처리). CF 전환 후 활성.
 # 체인 금지: 각 옛 URL을 최종 목적지로 1홉 직결.
 /reviews.html      /pump/guide/                  301
+/pump/setups/alicat-mfc-tubefurnace/   /furnace/setups/alicat-mfc-tubefurnace/   301
 /recommend2.html   /application/pump-selection   301
 /tubing.html       /application/tube-selection   301

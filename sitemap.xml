@@ -103,7 +103,13 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/pump/setups/alicat-mfc-tubefurnace/</loc>
+    <loc>https://rndsetup.com/furnace/setups/</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://rndsetup.com/furnace/setups/alicat-mfc-tubefurnace/</loc>
     <lastmod>2026-07-17</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
