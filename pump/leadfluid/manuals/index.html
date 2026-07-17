@@ -43,6 +43,16 @@
   .m .lnks a.spec{border:1px solid var(--line);color:var(--ink)}
   .m .lnks a.req{background:var(--amber-bg);color:var(--amber-dk);border:1px solid #eaddc4}
   @media(max-width:600px){.m{flex-wrap:wrap}.m .lnks{width:100%;justify-content:flex-start;margin-top:4px}}
+  .ctab{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}
+  .ctab th,.ctab td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  .ctab thead th{background:var(--amber);color:#fff;font-weight:700;font-size:12.5px;white-space:nowrap}
+  .ctab tbody td:first-child{font-weight:800;color:var(--amber-dk);white-space:nowrap}
+  .ctab tbody td:first-child a{color:var(--amber-dk);border-bottom:1px solid #eaddc4}
+  .ctab .flow{white-space:nowrap;font-variant-numeric:tabular-nums}
+  .ctab tbody tr:nth-child(even) td{background:#fcfaf5}
+  .mnote{font-size:12.5px;color:var(--gray);margin-top:12px}
+  .mnote a{color:var(--amber-dk);font-weight:700}
+  @media(max-width:600px){.ctab{font-size:12px}.ctab th,.ctab td{padding:7px 8px}}
   .note{font-size:12.5px;color:var(--gray);line-height:1.7;margin-top:22px;background:#fafafa;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
   .note b{color:var(--ink)}
   .note a{color:var(--amber-dk);font-weight:700}
@@ -70,51 +80,25 @@
     <a class="dl" href="/Leadfluid-2025-Catalog.pdf" target="_blank" rel="noopener">PDF 열기 →</a>
   </div>
 
-  <h2>모델별 사양·매뉴얼</h2>
-  <div class="mlist">
+  <h2>모델 한눈 비교</h2>
+  <div style="overflow-x:auto">
+  <table class="ctab">
+    <thead><tr><th>모델</th><th>종류</th><th>유량 범위</th><th>특징</th></tr></thead>
+    <tbody>
+      <tr><td><a href="/pump/leadfluid/bt101l/">BT101L</a></td><td>지능형 연동펌프</td><td class="flow">0.00011–750 mL/min</td><td>RS485 PC 제어</td></tr>
+      <tr><td><a href="/pump/leadfluid/bt103s/">BT103S</a></td><td>분주형 연동펌프</td><td class="flow">0.00011–500 mL/min</td><td>정량·반복 분주</td></tr>
+      <tr><td><a href="/pump/leadfluid/bt301l/">BT301L</a></td><td>지능형 유량 연동펌프</td><td class="flow">0.005–1750 mL/min</td><td>RS485 제어</td></tr>
+      <tr><td><a href="/pump/leadfluid/wt600f/">WT600F</a></td><td>분주형 대유량 연동펌프</td><td class="flow">0.005–6000 mL/min</td><td>4모드 분주</td></tr>
+      <tr><td><a href="/pump/leadfluid/mf106/">MF106</a></td><td>고보호(IP66/67) 연동펌프</td><td class="flow">0.005–7700 mL/min</td><td>방진·방수</td></tr>
+      <tr><td><a href="/pump/leadfluid/tyd01-01/">TYD01-01</a></td><td>시린지펌프</td><td class="flow">0.184 nL–83.3 mL/min</td><td>나노리터 정밀 주입</td></tr>
+      <tr><td><a href="/pump/leadfluid/ct3001f/">CT3001F</a></td><td>PEEK 기어펌프</td><td class="flow">15–2700 mL/min</td><td>저맥동 연속 이송</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="mnote">모델명을 누르면 상세 사양으로 이동합니다. 모델별 상세 매뉴얼·레지스터맵은 <a href="/contact/#experiment">문의</a> 시 제공합니다.</p>
 
-    <div class="m">
-      <div class="code">BT101L</div>
-      <div class="info"><div class="nm">지능형 연동펌프</div><div class="fl">0.00011–750 mL/min · RS485 제어</div></div>
-      <div class="lnks"><a class="spec" href="/pump/leadfluid/bt101l/">사양 보기</a><a class="req" href="/contact/#experiment">매뉴얼 문의</a></div>
-    </div>
-
-    <div class="m">
-      <div class="code">BT103S</div>
-      <div class="info"><div class="nm">분주형 연동펌프</div><div class="fl">0.00011–500 mL/min · 정량·반복 분주</div></div>
-      <div class="lnks"><a class="spec" href="/pump/leadfluid/bt103s/">사양 보기</a><a class="req" href="/contact/#experiment">매뉴얼 문의</a></div>
-    </div>
-
-    <div class="m">
-      <div class="code">BT301L</div>
-      <div class="info"><div class="nm">지능형 유량 연동펌프</div><div class="fl">0.005–1750 mL/min · RS485 제어</div></div>
-      <div class="lnks"><a class="spec" href="/pump/leadfluid/bt301l/">사양 보기</a><a class="req" href="/contact/#experiment">매뉴얼 문의</a></div>
-    </div>
-
-    <div class="m">
-      <div class="code">WT600F</div>
-      <div class="info"><div class="nm">분주형 대유량 연동펌프</div><div class="fl">0.005–6000 mL/min · 4모드 분주</div></div>
-      <div class="lnks"><a class="spec" href="/pump/leadfluid/wt600f/">사양 보기</a><a class="req" href="/contact/#experiment">매뉴얼 문의</a></div>
-    </div>
-
-    <div class="m">
-      <div class="code">MF106</div>
-      <div class="info"><div class="nm">고보호(IP66/67) 연동펌프</div><div class="fl">0.005–7700 mL/min · 방진·방수</div></div>
-      <div class="lnks"><a class="spec" href="/pump/leadfluid/mf106/">사양 보기</a><a class="req" href="/contact/#experiment">매뉴얼 문의</a></div>
-    </div>
-
-    <div class="m">
-      <div class="code">TYD01-01</div>
-      <div class="info"><div class="nm">시린지펌프</div><div class="fl">0.184 nL–83.3 mL/min · 나노리터 정밀 주입</div></div>
-      <div class="lnks"><a class="spec" href="/pump/leadfluid/tyd01-01/">사양 보기</a><a class="req" href="/contact/#experiment">매뉴얼 문의</a></div>
-    </div>
-
-    <div class="m">
-      <div class="code">CT3001F</div>
-      <div class="info"><div class="nm">PEEK 기어펌프</div><div class="fl">15–2700 mL/min · 저맥동 연속 이송</div></div>
-      <div class="lnks"><a class="spec" href="/pump/leadfluid/ct3001f/">사양 보기</a><a class="req" href="/contact/#experiment">매뉴얼 문의</a></div>
-    </div>
-
+  <div class="note">
+    <b>설치 — 헤드 장착·튜브 교체 방법</b> — 리드플루이드 연동펌프(BT101L·BT103S·BT301L·WT600F·MF106)는 펌프헤드 장착과 튜브 교체 방식이 공통입니다. 평평한 샤프트를 커플링 홈에 결합 → 나사 구멍 정렬 → 고정 나사 2개 체결로 헤드를 달고, 레버를 열어 튜브를 곧게 넣은 뒤 다시 잠그면 됩니다. 단계별 사진 안내는 <a href="/pump/leadfluid/bt103s/head-replace/">헤드 장착·튜브 교체 방법(BT103S 기준) →</a>에서 볼 수 있습니다.
   </div>
 
   <div class="note">

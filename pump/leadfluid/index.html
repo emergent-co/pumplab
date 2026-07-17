@@ -70,6 +70,7 @@
   .mc-row{display:flex;align-items:center;gap:12px}
   .mc-row input[type=range]{flex:1;accent-color:#147A62}
   .mc-val{min-width:92px;text-align:right;font-weight:700;font-size:14px;color:#0e5c4a;font-variant-numeric:tabular-nums}
+  .mc-fld select{width:100%;margin-top:4px;border:1px solid var(--line);border-radius:8px;padding:10px 11px;font-size:14px;font-family:inherit;color:var(--ink);background:#fff}
   .mc-out{background:#E8F5EF;border:1px solid #cdeadd;border-radius:12px;padding:16px;text-align:center;margin-top:4px}
   .mc-out .l{font-size:12.5px;color:#0e5c4a;font-weight:700}
   .mc-out .big{font-family:var(--serif);font-size:34px;font-weight:700;color:#0e5c4a;line-height:1.1;margin:4px 0;font-variant-numeric:tabular-nums}
@@ -78,7 +79,7 @@
   .mc-note a{color:#147A62;font-weight:700}
   .as-f label{display:block;font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px}
   .as-f .req{color:#c00}
-  .as-f input,.as-f textarea{display:block;width:100%;margin-top:5px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:14px;font-family:inherit;font-weight:400;color:var(--ink)}
+  .as-f input,.as-f textarea,.as-f select{display:block;width:100%;margin-top:5px;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:14px;font-family:inherit;font-weight:400;color:var(--ink);background:#fff}
   .as-f textarea{resize:vertical;min-height:64px}
   .as-f .send{width:100%;background:#B4432C;color:#fff;border:0;border-radius:9px;padding:13px;font-size:14.5px;font-weight:700;cursor:pointer;margin-top:4px}
   .as-f .send:hover{background:#993826}
@@ -148,12 +149,27 @@
   <div class="md-box">
     <button class="md-x" type="button" data-close aria-label="닫기">&times;</button>
     <div class="md-h">연동펌프 유량 계산기</div>
-    <div class="md-sub">튜브 내경·RPM·회전당 이송 길이로 유량(mL/min)을 추정합니다. 실제 유량은 튜브·배압에 따라 달라지니 캘리브레이션 기준값으로 쓰세요.</div>
-    <div class="mc-fld"><label>튜브 내경 (ID) <span class="hint">— 튜브 안지름</span></label><div class="mc-row"><input type="range" id="cId" min="0.5" max="12" step="0.1" value="3.2"><span class="mc-val"><span id="cIdv">3.2</span> mm</span></div></div>
+    <div class="md-sub">튜브 규격·RPM·펌프 헤드로 유량(mL/min)을 추정합니다. 실제 유량은 튜브·배압에 따라 달라지니 캘리브레이션 기준값으로 쓰세요.</div>
+    <div class="mc-fld"><label>튜브 규격 <span class="hint">— 표준 연동펌프 튜브(#) · 내경</span></label>
+      <select id="cTube">
+        <option value="0.8">13# — 내경 0.8mm</option>
+        <option value="1.6">14# — 내경 1.6mm</option>
+        <option value="3.2" selected>16# — 내경 3.2mm</option>
+        <option value="4.8">25# — 내경 4.8mm</option>
+        <option value="6.4">17# — 내경 6.4mm</option>
+        <option value="7.9">18# — 내경 7.9mm</option>
+      </select>
+    </div>
     <div class="mc-fld"><label>회전수 (RPM)</label><div class="mc-row"><input type="range" id="cRpm" min="1" max="600" step="1" value="100"><span class="mc-val"><span id="cRpmv">100</span> rpm</span></div></div>
-    <div class="mc-fld"><label>회전당 이송 길이 <span class="hint">— 펌프헤드별, 기본 40mm</span></label><div class="mc-row"><input type="range" id="cLen" min="10" max="120" step="1" value="40"><span class="mc-val"><span id="cLenv">40</span> mm/rev</span></div></div>
+    <div class="mc-fld"><label>펌프 헤드 유형 <span class="hint">— 회전당 이송길이 자동 적용(표준 추정)</span></label>
+      <select id="cHead">
+        <option value="60">저유량 소형 헤드</option>
+        <option value="95" selected>표준 헤드 (Easy-Load·YZ 호환)</option>
+        <option value="120">대유량 대형 헤드</option>
+      </select>
+    </div>
     <div class="mc-out"><div class="l">추정 유량</div><div class="big"><span id="cFlow">—</span> <span style="font-size:.45em;font-weight:600">mL/min</span></div><div class="s">회전당 <span id="cMlrev">—</span> mL/rev · 약 <span id="cLhr">—</span> L/h</div></div>
-    <div class="mc-note">이론 추정치입니다. 정밀 실험은 실측 캘리브레이션으로 보정하세요. 모델별 공식 유량은 <a href="/pump/leadfluid/manuals/">사양·매뉴얼</a>에서 확인하세요.</div>
+    <div class="mc-note"><b>추정치입니다</b> — 실제 유량은 튜브 재질·경도·배압에 따라 달라지니 실측 캘리브레이션으로 보정하세요. 모델별 공식 유량은 <a href="/pump/leadfluid/manuals/">사양·매뉴얼</a> 참조.<br>· 튜브 내경 출처: 표준 연동펌프 튜브 규격표 — <a href="https://www.biopharmworld.com/pages/1228/peristaltic-pump-tubing-size-conversion-chart" target="_blank" rel="noopener">BioPharm World</a> · <a href="https://www.freudenbergmedical.com/fileadmin/04-Documents/Datasheets/SizeChart_PeristalticPumpTubing.pdf" target="_blank" rel="noopener">Freudenberg Medical</a><br>· 회전당 이송길이는 헤드 유형별 표준 추정값이며 헤드·로터에 따라 달라집니다.</div>
   </div>
 </div>
 
@@ -164,9 +180,10 @@
     <div class="md-sub">국내 직접 진단·수리 · 리드플루이드 구매 고객 3년 무상보증. 타사 구매품도 무료 진단합니다.</div>
     <form class="as-f" id="asForm">
       <input type="hidden" name="문의유형" value="A/S 접수(리드플루이드)">
+      <label>펌프 브랜드 <span class="req">*</span><select name="브랜드" required><option value="" disabled selected>브랜드를 선택하세요</option><option>리드플루이드(LeadFluid)</option><option>기타(타사)</option></select></label>
       <label>펌프 모델명 <span class="req">*</span><input type="text" name="모델명" required placeholder="예: BT101L / CT3001F"></label>
       <label>증상 <span class="req">*</span><textarea name="증상" required placeholder="예: 유량이 안 나옴 / 소음 / 안 켜짐 / 누액"></textarea></label>
-      <label>연락처(이메일·전화) <span class="req">*</span><input type="text" name="연락처" required placeholder="you@lab.ac.kr / 010-0000-0000"></label>
+      <label>이메일 <span class="req">*</span><input type="email" name="email" required placeholder="you@lab.ac.kr"></label>
       <label>회사·연구실 <span class="req">*</span><input type="text" name="소속" required placeholder="OO대학교 OO연구실"></label>
       <button class="send" type="submit">A/S 접수 보내기</button>
     </form>
@@ -185,12 +202,10 @@
     var x=ov.querySelector('[data-close]');if(x)x.addEventListener('click',function(){closeM(ov)});
   });
   document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.md-ov.on').forEach(closeM)});
-  var id=document.getElementById('cId'),rpm=document.getElementById('cRpm'),len=document.getElementById('cLen');
+  var id=document.getElementById('cTube'),rpm=document.getElementById('cRpm'),len=document.getElementById('cHead');
   function calc(){
     var ID=parseFloat(id.value),R=parseFloat(rpm.value),L=parseFloat(len.value);
-    document.getElementById('cIdv').textContent=ID.toFixed(1);
     document.getElementById('cRpmv').textContent=R;
-    document.getElementById('cLenv').textContent=L;
     var mlrev=Math.PI*Math.pow(ID/2,2)*L/1000, q=mlrev*R;
     document.getElementById('cMlrev').textContent=mlrev.toFixed(3);
     document.getElementById('cFlow').textContent=q>=100?q.toFixed(0):q.toFixed(1);
