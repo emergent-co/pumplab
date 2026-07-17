@@ -119,10 +119,10 @@
       .setup-svc .svc-sub{font-size:15px;color:#3a4650;margin:12px auto 0;line-height:1.75;max-width:720px}
       .setup-svc .svc-steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0 0}
       .setup-svc .svc-steps span{background:var(--green-bg,#EDF2F8);border:1px solid #dce6f1;border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:700;color:var(--green)}
-      .setup-form{max-width:600px;margin:18px auto 0;border:1px solid var(--line,#E6EAF0);border-radius:16px;padding:22px;text-align:left}
+      .setup-form{max-width:480px;margin:18px auto 0;border:1px solid var(--line,#E6EAF0);border-radius:16px;padding:22px;text-align:left}
       .setup-form label{display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:14px}
       .setup-form .req{color:#c00}
-      .setup-form input[type=text],.setup-form input[type=email],.setup-form textarea,.setup-form select{width:100%;margin-top:6px;border:1px solid #d6dee8;border-radius:9px;padding:11px 12px;font-size:14.5px;font-family:inherit;color:#1a2733;background:#fff}
+      .setup-form input[type=text],.setup-form input[type=email],.setup-form input[type=url],.setup-form textarea,.setup-form select{width:100%;min-width:0;margin-top:6px;border:1px solid #d6dee8;border-radius:9px;padding:11px 12px;font-size:14.5px;font-family:inherit;color:#1a2733;background:#fff}
       .setup-form textarea{min-height:104px;resize:vertical;line-height:1.6}
       .setup-form input[type=file]{margin-top:6px;font-size:13px;font-family:inherit}
       .setup-form .need-group{margin-bottom:16px}
@@ -130,7 +130,8 @@
       .setup-form .need-hint{font-size:12px;font-weight:600;color:#8a95a3}
       .setup-form .need-opt{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;font-weight:500;color:#2c3742;margin-bottom:8px;cursor:pointer;line-height:1.5}
       .setup-form .need-opt input{margin-top:3px;flex:0 0 auto;width:auto}
-      .setup-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+      .setup-form .row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+      .setup-form .row2>label{min-width:0}
       .setup-form .send{width:100%;background:var(--green);color:#fff;border:0;border-radius:10px;padding:14px;font-size:15.5px;font-weight:800;cursor:pointer;font-family:inherit;margin-top:4px}
       .setup-form .send:hover{background:#16304d}
       .setup-form .priv{font-size:12px;color:#8a95a3;margin-top:10px;line-height:1.6}
