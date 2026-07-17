@@ -61,9 +61,11 @@
 </section>
 
 <div class="wrap">
-  <div class="count" id="count">셋업 사례 <b style="color:var(--green)">1</b>건</div>
+  <div class="count" id="count">셋업 사례 <b style="color:var(--green)">3</b>건</div>
   <div class="grid" id="grid">
     <a class="card" href="/pump/setups/plating-flow-calibration/"><div class="cat">도금 · 다펌프 제어</div><div class="t"><mark>도금</mark> 라인 유량이 매번 달랐던 이유 — BT101L 2대 다펌프 제어·유량 보정 셋업</div><div class="s"></div><div class="d">2026-07-16</div></a>
+    <a class="card" href="/application/pump-pc-control-modbus-rs485"><div class="cat">자동화 · 제어</div><div class="t">펌프 PC 제어·자동화 — Modbus·RS485로 <mark>유량·스케줄</mark> 제어</div><div class="s"></div><div class="d">2026-07-16</div></a>
+    <a class="card" href="/application/multi-pump-sync-unattended"><div class="cat">자동화 · 무인운전</div><div class="t">무인 장시간 운전·재현 — <mark>다펌프 동기</mark>·운전 로그(CSV)</div><div class="s"></div><div class="d">2026-07-16</div></a>
   </div>
   <div class="foot-links">
     <a href="/pump/faq/">증상별 문제해결·자주 묻는 질문 →</a>
@@ -78,7 +80,9 @@
 <script>
 (function(){
   var CARDS = [
-    {cat:"도금 · 다펌프 제어", title:"<mark>도금</mark> 라인 유량이 매번 달랐던 이유 — BT101L 2대 다펌프 제어·유량 보정 셋업", url:"/pump/setups/plating-flow-calibration/", date:"2026-07-16"}
+    {cat:"도금 · 다펌프 제어", title:"<mark>도금</mark> 라인 유량이 매번 달랐던 이유 — BT101L 2대 다펌프 제어·유량 보정 셋업", url:"/pump/setups/plating-flow-calibration/", date:"2026-07-16"},
+    {cat:"자동화 · 제어", title:"펌프 PC 제어·자동화 — Modbus·RS485로 <mark>유량·스케줄</mark> 제어", url:"/application/pump-pc-control-modbus-rs485", date:"2026-07-15"},
+    {cat:"자동화 · 무인운전", title:"무인 장시간 운전·재현 — <mark>다펌프 동기</mark>·운전 로그(CSV)", url:"/application/multi-pump-sync-unattended", date:"2026-07-15"}
   ];
   var grid=document.getElementById('grid'), countEl=document.getElementById('count');
   function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
