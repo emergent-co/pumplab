@@ -388,7 +388,7 @@ CRAWLER_LINKS = [
     ('/pump/leadfluid/bt103s/', '리드플루이드 BT103S 분주형 연동펌프 — 정량·반복 분주'),
     ('/pump/leadfluid/bt103s/head-replace/', '리드플루이드 BT103S 펌프 헤드 교체·튜브 장착 방법'),
     ('/pump/leadfluid/tyd01-01/', '리드플루이드 TYD01-01 시린지펌프 — 나노리터 정밀 주입'),
-    ('/pump/leadfluid/ct3001f/', '리드플루이드 CT3001F 마그네틱 기어펌프 — 무누설 연속 이송'),
+    ('/pump/leadfluid/ct3001f/', '리드플루이드 CT3001F PEEK 기어펌프 — 무누설 연속 이송'),
     ('/pump/leadfluid/bt301l/', '리드플루이드 BT301L 지능형 유량 연동펌프 — 0.005~1750mL/min·RS485 제어'),
     ('/pump/leadfluid/wt600f/', '리드플루이드 WT600F 분주형 대유량 연동펌프 — 0.005~6000mL/min·4모드 분주'),
     ('/pump/leadfluid/mf106/', '리드플루이드 MF106 고보호(IP66/67) 연동펌프 — 0.005~7700mL/min·방진방수'),
@@ -806,6 +806,8 @@ def main():
         ('pump/leadfluid/bt301l/',    '0.8', 'monthly'),  # 모델 페이지 (지능형 유량)
         ('pump/leadfluid/wt600f/',    '0.8', 'monthly'),  # 모델 페이지 (분주형 대유량)
         ('pump/leadfluid/mf106/',     '0.8', 'monthly'),  # 모델 페이지 (고보호 IP66/67)
+        ('pump/leadfluid/calculator/', '0.6', 'monthly'),  # 연동펌프 유량 계산기
+        ('pump/leadfluid/manuals/',    '0.6', 'monthly'),  # 모델별 사용 메뉴얼 목록
         ('compare/imported-peristaltic-alternative/', '0.7', 'monthly'),  # 갈아타기 비교
         ('requests/',     '0.6', 'weekly'),   # 소프트웨어(개발 요청)
         ('contact/',      '0.8', 'monthly'),  # 문의하기

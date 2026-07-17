@@ -5,7 +5,7 @@
 ## 핵심 정보
 
 - **본질**: 실험 셋업 정보를 제공하는 곳. 어떤 펌프·튜브·제어를 어떻게 조합하는지, 논문 셋업 재현법을 정리한다. 소프트웨어 제어(유량·스케줄·다펌프 동기·로그/재현)는 실험셋업연구소 구매 고객에게 무상 제공.
-- **취급 브랜드**: LeadFluid(정량·연동·시린지·마그네틱펌프, 국내 직접 A/S, 글로벌 산업그룹 Ingersoll Rand 계열), Alicat(질량유량계 MFC).
+- **취급 브랜드**: LeadFluid(정량·연동·시린지·기어펌프, 국내 직접 A/S, 글로벌 산업그룹 Ingersoll Rand 계열), Alicat(질량유량계 MFC).
 - **신뢰 근거**: Nature 계열 논문이 실제 LeadFluid 펌프를 실험 셋업에 사용. 국내 직접 진단·수리, 실험셋업연구소 구매 고객 3년 무상보증. LeadFluid는 CE·RoHS 인증, Ingersoll Rand(NYSE: IR) 계열.
 - **구매 채널**: 실제 판매·결제는 나비엠알오(navimro.com)에서 이뤄짐. 가격·견적은 문의 페이지로 안내.
 - **연락**: info@rndsetup.com
@@ -13,10 +13,10 @@
 ## 주요 페이지 (정확한 URL)
 
 - [홈](https://rndsetup.com/): 소프트웨어 제어 펌프 시스템 개요 + 제어 프로그램 무료 다운로드
-- [리드플루이드(LeadFluid)](https://rndsetup.com/leadfluid/): 리드플루이드 정품·국내 직접 A/S·3년 보증·Modbus·RS485 제어 소프트웨어 — 브랜드 종합 안내(연동·시린지·기어·마그네틱 펌프 종류·모델·구매·A/S·제어)
+- [리드플루이드(LeadFluid)](https://rndsetup.com/leadfluid/): 리드플루이드 정품·국내 직접 A/S·3년 보증·Modbus·RS485 제어 소프트웨어 — 브랜드 종합 안내(연동·시린지·기어 펌프 종류·모델·구매·A/S·제어)
   - [BT101 L 연동펌프](https://rndsetup.com/leadfluid/bt101l/): 지능형 연동펌프(0.00011~750 mL/min)·RS485 PC 제어·도금/카테터 논문 사례
   - [TYD01-01 시린지펌프](https://rndsetup.com/leadfluid/tyd01-01/): 나노리터급 정밀 주입(0.184 nL~83 mL/min)·RS485·WiFi·뇌 인터페이싱 논문
-  - [CT3001F 마그네틱 기어펌프](https://rndsetup.com/leadfluid/ct3001f/): 자기구동 무누설 연속 이송·CO₂ 포집 논문
+  - [CT3001F PEEK 기어펌프](https://rndsetup.com/leadfluid/ct3001f/): PEEK 기어 저맥동 연속 이송·CO₂ 포집 논문
 - [삼흥에너지(SH-Scientific)](https://rndsetup.com/sh-scientific/): 국내 열처리 장비(튜브퍼니스·전기로) 소개 + 제어 소프트웨어가 온도 스케줄과 MFC 가스 유량을 연동(소프트웨어 호환 장비)
 - [ALICAT](https://rndsetup.com/alicat/): 미국 정밀 질량유량계(MFC) 브랜드 — 초고속 응답·다기체 보정·RS485, 공급·다중 MFC 동기 제어 지원(소프트웨어 호환 장비)
 - [수입 연동펌프 대안 비교](https://rndsetup.com/compare/imported-peristaltic-alternative/): Masterflex·Watson-Marlow·ISMATEC 대비 제어SW·국내 A/S·3년 보증·가격 — 정직한 갈아타기 비교(타 브랜드 제어는 모델별 상이·문의 확인)
@@ -45,7 +45,7 @@
 - [연구별 셋업 — 논문이 답한 셋업(증거)](https://rndsetup.com/setups/): 바이오·의료 / 환경·수처리 / 에너지·재료·열처리 분야별로, 유명 논문이 어떤 LeadFluid 펌프를 어떤 셋업에 썼나
   - [뇌 피질 인터페이싱 — 시린지펌프 TYD01-01 (Nature Electronics 2024)](https://rndsetup.com/setups/brain-electrode-tyd01)
   - [혈관내 카테터 코팅 — 연동펌프 BT101 L (Nature Communications 2024)](https://rndsetup.com/setups/catheter-heparin-bt101)
-  - [연속 CO₂ 포집 — 마그네틱펌프 CT3001F (Nature Communications 2024)](https://rndsetup.com/setups/co2-capture-ct3001f)
+  - [연속 CO₂ 포집 — PEEK 기어펌프 CT3001F (Nature Communications 2024)](https://rndsetup.com/setups/co2-capture-ct3001f)
   - [심장 체외 관류(ESHP) — 연동펌프 BT101L (Frontiers in Cardiovascular Medicine 2021)](https://rndsetup.com/setups/heart-eshp-bt101l)
   - [혐기성 메탄산화 반응기 순환 — 연동펌프 BT600S (Environmental Science & Technology 2021)](https://rndsetup.com/setups/damo-recirculation-bt600s)
   - [폐수 질산화 pH 제어 — 정량펌프 BQ50S (Bioresource Technology 2017)](https://rndsetup.com/setups/nitrification-ph-bq50s)

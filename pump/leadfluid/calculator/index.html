@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연동펌프 유량 계산기 — 튜브 내경·RPM으로 유량(mL/min) 추정 | 실험셋업연구소</title>
+<meta name="description" content="연동(페리스탈틱)펌프의 튜브 내경과 회전수(RPM), 회전당 이송 길이로 유량(mL/min)을 추정하는 계산기. 실제 유량은 튜브 재질·경도·배압·펌프헤드에 따라 달라지므로 캘리브레이션이 필요합니다.">
+<link rel="canonical" href="https://rndsetup.com/pump/leadfluid/calculator/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="연동펌프 유량 계산기 — 튜브 내경·RPM으로 유량 추정">
+<meta property="og:description" content="튜브 내경·RPM·회전당 이송 길이로 연동펌프 유량(mL/min)을 추정합니다.">
+<meta property="og:url" content="https://rndsetup.com/pump/leadfluid/calculator/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
+{"@type":"ListItem","position":2,"name":"리드플루이드(LeadFluid)","item":"https://rndsetup.com/pump/leadfluid/"},
+{"@type":"ListItem","position":3,"name":"유량 계산기","item":"https://rndsetup.com/pump/leadfluid/calculator/"}
+]}
+</script>
+<style>
+  :root{--ink:#1A1A1A;--gray:#6B6B6B;--green:#147A62;--green-dk:#0e5c4a;--green-bg:#E8F5EF;--line:#EAEAEA;--serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+  .hero{padding:46px 0 6px}
+  .crumb{font-size:12.5px;color:var(--green);font-weight:700;letter-spacing:.03em;margin-bottom:10px}
+  h1{font-family:var(--serif);font-size:clamp(22px,4.8vw,29px);font-weight:700;letter-spacing:-.02em;line-height:1.32}
+  .lead{font-size:14.5px;color:var(--gray);margin-top:10px}
+  .calc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:24px;box-shadow:0 10px 30px rgba(10,37,64,.06)}
+  .fld{margin-bottom:18px}
+  .fld label{display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:8px}
+  .fld .hint{font-weight:400;color:var(--gray);font-size:12px}
+  .fld .row{display:flex;align-items:center;gap:12px}
+  .fld input[type=range]{flex:1;accent-color:var(--green)}
+  .fld .val{min-width:96px;text-align:right;font-weight:700;font-size:15px;color:var(--green-dk);font-variant-numeric:tabular-nums}
+  .fld select,.fld input[type=number]{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:14.5px;font-family:inherit;color:var(--ink)}
+  .out{background:var(--green-bg);border:1px solid #cdeadd;border-radius:14px;padding:20px 22px;margin-top:6px;text-align:center}
+  .out .lbl{font-size:13px;color:var(--green-dk);font-weight:700}
+  .out .big{font-family:var(--serif);font-size:clamp(30px,8vw,44px);font-weight:700;color:var(--green-dk);line-height:1.1;margin:6px 0;font-variant-numeric:tabular-nums}
+  .out .sub{font-size:12.5px;color:#3a5b50}
+  .note{font-size:12.5px;color:var(--gray);line-height:1.7;margin-top:18px;background:#fafafa;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .note b{color:var(--ink)}
+  .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#334;background:#f2f5f4;border-radius:8px;padding:8px 10px;margin:8px 0;display:inline-block}
+  .back{display:inline-block;margin:28px 0 60px;font-size:14px;font-weight:700;color:var(--green)}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+<!--HEADLD_START--><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb">리드플루이드 › 유량 계산기</div>
+    <h1>연동펌프 유량 계산기</h1>
+    <p class="lead">튜브 내경과 회전수(RPM), 회전당 이송 길이로 연동(페리스탈틱)펌프의 유량을 <b>추정</b>합니다. 실제 유량은 튜브·배압 조건에 따라 달라지므로 캘리브레이션 기준값으로 쓰세요.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="calc">
+
+    <div class="fld">
+      <label>튜브 내경 (ID) <span class="hint">— 사용하는 튜브 안지름</span></label>
+      <div class="row">
+        <input type="range" id="id" min="0.5" max="12" step="0.1" value="3.2">
+        <span class="val"><span id="idv">3.2</span> mm</span>
+      </div>
+    </div>
+
+    <div class="fld">
+      <label>펌프 회전수 (RPM) <span class="hint">— 롤러 로터 회전 속도</span></label>
+      <div class="row">
+        <input type="range" id="rpm" min="1" max="600" step="1" value="100">
+        <span class="val"><span id="rpmv">100</span> rpm</span>
+      </div>
+    </div>
+
+    <div class="fld">
+      <label>회전당 이송 길이 <span class="hint">— 로터 1회전에 밀려나가는 튜브 길이(펌프헤드별, 기본 40mm)</span></label>
+      <div class="row">
+        <input type="range" id="len" min="10" max="120" step="1" value="40">
+        <span class="val"><span id="lenv">40</span> mm/rev</span>
+      </div>
+    </div>
+
+    <div class="out">
+      <div class="lbl">추정 유량</div>
+      <div class="big"><span id="flow">—</span> <span style="font-size:.45em;font-weight:600">mL/min</span></div>
+      <div class="sub">회전당 이송량 <span id="mlrev">—</span> mL/rev · 시간당 약 <span id="lhr">—</span> L/h</div>
+    </div>
+
+    <div class="note">
+      <b>계산식</b> — 튜브 단면적 × 회전당 이송 길이 × RPM.
+      <span class="formula">Q(mL/min) = π × (ID/2)² × L × RPM ÷ 1000</span>
+      <br><b>주의</b> — 이 값은 <b>이론 추정치</b>입니다. 실제 유량은 튜브 <b>재질·경도·수명</b>, <b>배압</b>, 펌프헤드 롤러 수·오클루전에 따라 달라지므로, 정밀 실험에서는 반드시 <b>실측 캘리브레이션</b>으로 보정하세요. 모델별 공식 유량 범위는 <a href="/pump/leadfluid/" style="color:var(--green);font-weight:700">리드플루이드 모델 스펙</a>에서 확인할 수 있습니다.
+    </div>
+  </div>
+
+  <a class="back" href="/pump/leadfluid/">← 리드플루이드로 돌아가기</a>
+</div>
+
+<div id="pumplab-footer"><!--CNAV_START--><!--CNAV_END--></div>
+<script>
+(function(){
+  var id=document.getElementById('id'), rpm=document.getElementById('rpm'), len=document.getElementById('len');
+  function calc(){
+    var ID=parseFloat(id.value), R=parseFloat(rpm.value), L=parseFloat(len.value);
+    document.getElementById('idv').textContent=ID.toFixed(1);
+    document.getElementById('rpmv').textContent=R;
+    document.getElementById('lenv').textContent=L;
+    var mlrev=Math.PI*Math.pow(ID/2,2)*L/1000;   // mm^3 -> mL
+    var q=mlrev*R;                                 // mL/min
+    document.getElementById('mlrev').textContent=mlrev.toFixed(3);
+    document.getElementById('flow').textContent=q>=100?q.toFixed(0):q.toFixed(1);
+    document.getElementById('lhr').textContent=(q*60/1000).toFixed(2);
+  }
+  [id,rpm,len].forEach(function(el){el.addEventListener('input',calc)});
+  calc();
+})();
+</script>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
