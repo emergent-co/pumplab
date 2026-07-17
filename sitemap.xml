@@ -55,6 +55,12 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://rndsetup.com/pump/leadfluid/bt103s/head-replace/</loc>
+    <lastmod>2026-07-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://rndsetup.com/pump/leadfluid/bt301l/</loc>
     <lastmod>2026-07-17</lastmod>
     <priority>0.8</priority>
