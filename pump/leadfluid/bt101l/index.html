@@ -13,7 +13,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
-{"@type":"ListItem","position":2,"name":"펌프 자료실","item":"https://rndsetup.com/pump/troubleshooting/"},
+{"@type":"ListItem","position":2,"name":"펌프 자료실","item":"https://rndsetup.com/pump/atoz/"},
 {"@type":"ListItem","position":3,"name":"리드플루이드(LeadFluid)","item":"https://rndsetup.com/pump/leadfluid/"},
 {"@type":"ListItem","position":4,"name":"BT101 L 연동펌프","item":"https://rndsetup.com/pump/leadfluid/bt101l/"}
 ]}
@@ -114,8 +114,8 @@ pump.write_register(REG_RUN, 0, functioncode=6)   # Stop</pre>
 
   <section class="sec" id="cases">
     <h2>실제 어떤 실험·현장에 쓰였나?</h2>
-    <p><b>논문 사용</b> — 혈관내 카테터 코팅 연구(Nature Communications 2024)에 BT101 L이 유체 이송에 사용됐습니다(서지·DOI는 <a class="inlink" href="/pump/troubleshooting/">사례 페이지</a> 참조).</p>
-    <p><b>도금 도입사례</b> — 실험셋업연구소가 구성한 도금 라인 셋업(BT101L 2대·RS485 제어·저울 실측 유량 캘리브레이션): <a class="inlink" href="/pump/troubleshooting/">도금 다펌프 제어 사례</a>. 경쟁사가 스펙만 나열할 때, 우리는 "이 모델로 이런 실험을 이렇게 돌렸다"를 셋업 단위로 공개합니다.</p>
+    <p><b>논문 사용</b> — 혈관내 카테터 코팅 연구(Nature Communications 2024)에 BT101 L이 유체 이송에 사용됐습니다(서지·DOI는 <a class="inlink" href="/pump/atoz/">사례 페이지</a> 참조).</p>
+    <p><b>도금 도입사례</b> — 실험셋업연구소가 구성한 도금 라인 셋업(BT101L 2대·RS485 제어·저울 실측 유량 캘리브레이션): <a class="inlink" href="/pump/atoz/">도금 다펌프 제어 사례</a>. 경쟁사가 스펙만 나열할 때, 우리는 "이 모델로 이런 실험을 이렇게 돌렸다"를 셋업 단위로 공개합니다.</p>
   </section>
 
   <section class="sec" id="buy">
@@ -139,7 +139,7 @@ pump.write_register(REG_RUN, 0, functioncode=6)   # Stop</pre>
     <h2>BT101 L 자주 묻는 질문</h2>
     <div class="qa"><div class="q">리드플루이드 BT101 L은 어떤 펌프인가요?</div><div class="a">L 시리즈 지능형 연동펌프로 유량 0.00011~750 mL/min. 디스플레이에서 유량·회전수·정역을 설정하고, 튜브 무접촉이라 코팅·도금액 이송에 적합합니다.</div></div>
     <div class="qa"><div class="q">PC(RS485·Modbus)로 제어할 수 있나요?</div><div class="a">됩니다(9600·8E1·슬레이브 1~247, 사양서 기준). 구매 시 제어 소프트웨어로 유량·스케줄·로그 재현. <a href="/application/pump-pc-control-modbus-rs485.html">제어 확인</a>.</div></div>
-    <div class="qa"><div class="q">실제 어떤 실험에 쓰였나요?</div><div class="a">혈관내 카테터 코팅 논문(Nature Communications 2024)에 사용. 실험셋업연구소 <a href="/pump/troubleshooting/">도금 도입사례</a>도 공개.</div></div>
+    <div class="qa"><div class="q">실제 어떤 실험에 쓰였나요?</div><div class="a">혈관내 카테터 코팅 논문(Nature Communications 2024)에 사용. 실험셋업연구소 <a href="/pump/atoz/">도금 도입사례</a>도 공개.</div></div>
     <div class="qa"><div class="q">정품·A/S·구매는?</div><div class="a">리드플루이드 정품 공급·국내 직접 A/S, 구매 시 3년 무상보증. <a href="https://www.navimro.com/s/?x=0&amp;y=0&amp;q=leadfluid&amp;disp=0&amp;keyword=" target="_blank" rel="noopener">나비엠알오 구매</a>.</div></div>
   </section>
 </div>

@@ -35,7 +35,7 @@
     { t:'flow chemistry 연속흐름 반응', u:'/application/flow-chemistry.html', k:'flow chemistry 연속흐름 반응 시린지 유량비 체류시간 마그네틱 유기용매', c:'실험 가이드' },
     { t:'장기칩·오가노이드 관류', u:'/application/organ-on-chip-perfusion.html', k:'장기칩 organ on chip 오가노이드 관류 미세유체 저유량 전단응력', c:'실험 가이드' },
     { t:'실험 가이드 허브', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험 가이드' },
-    { t:'펌프 자료실 — 트러블슈팅·도입 셋업 스토리', u:'/pump/troubleshooting/', k:'펌프 자료실 트러블슈팅 유량 튜빙 소음 멈춤 도입 셋업 스토리 도금', c:'펌프 자료실' },
+    { t:'펌프 자료실 — 트러블슈팅·도입 셋업 스토리', u:'/pump/atoz/', k:'펌프 자료실 트러블슈팅 유량 튜빙 소음 멈춤 도입 셋업 스토리 도금', c:'펌프 자료실' },
     { t:'리드플루이드 국내 A/S·정품·3년보증', u:'/pump/leadfluid/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'호환 장비' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
     { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
@@ -65,8 +65,8 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/pump/troubleshooting/', label:'펌프 A to Z', icon:'wrench', sub:[
-        ['/pump/select/', '펌프·튜브 선택 위저드'],
+    { href:'/pump/atoz/', label:'펌프 A to Z', icon:'wrench', sub:[
+        ['/pump/select/', '펌프·튜브 선택 가이드'],
         ['/pump/guide/',  '자주묻는 질문(FAQ)']
       ] },
     { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
@@ -130,7 +130,7 @@
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
           '<div class="cf-col"><h4>바로가기</h4>' +
-            '<a href="/pump/troubleshooting/">펌프 자료실</a><a href="/pump/leadfluid/">리드플루이드</a><a href="/requests/">소프트웨어 제어</a><a href="/faq/">FAQ</a></div>' +
+            '<a href="/pump/atoz/">펌프 자료실</a><a href="/pump/leadfluid/">리드플루이드</a><a href="/requests/">소프트웨어 제어</a><a href="/faq/">FAQ</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
             '<a href="/contact/#repair">수리 문의</a><a href="/contact/#dev">개발 문의</a>' +
             '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_footer">견적·구매 (나비엠알오)</a></div>' +
@@ -228,7 +228,7 @@
     var f = document.getElementById('pumplab-footer');
     if (f) f.outerHTML = FOOTER;
     // 채널톡(Channel Talk) 실시간 상담 위젯 — 우측 하단 (커스텀 CTA_FAB는 중복 방지 위해 미주입)
-    if (!window.__channelIOBooted) {
+    if (window.self === window.top && !window.__channelIOBooted) {
       window.__channelIOBooted = true;
       (function(){var w=window;if(w.ChannelIO){return;}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(a){ch.q.push(a);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
       window.ChannelIO('boot', { pluginKey: '9ef4232c-59bb-4911-a4c7-363c6b5bc513' });
