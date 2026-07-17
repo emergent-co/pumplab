@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기체·진공 셋업 가이드 — 호환 장비 | 실험셋업연구소</title>
+<meta name="description" content="질문과 비교로 기체·진공 실험 셋업을 찾는 호환 장비 가이드입니다. MFC·질량유량계·로타미터·오일 회전식·다이아프램 진공펌프까지, 특정 질문에 답하고 제품을 비교해 고르도록 돕습니다.">
+<meta name="keywords" content="기체 진공 셋업 가이드, MFC, 질량유량계, 로타미터, 진공펌프, 다이아프램, ALICAT, 튜브퍼니스, 호환 장비, 실험셋업연구소">
+<link rel="canonical" href="https://rndsetup.com/compat/guide/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="기체·진공 셋업 가이드 — 호환 장비">
+<meta property="og:description" content="질문과 비교로 기체·진공 실험 셋업을 찾는 호환 장비 가이드. 특정 질문에 답하고 제품을 비교해 고르도록 돕습니다.">
+<meta property="og:url" content="https://rndsetup.com/compat/guide/">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","description":"기체·진공 실험 셋업을 질문과 비교로 찾는 호환 장비 가이드입니다.","inLanguage":"ko","author":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/compat/guide/"},"mainEntity":[
+{"@type":"Question","name":"기체 유량, MFC와 로타미터 중 무엇으로 제어하나?","acceptedAnswer":{"@type":"Answer","text":"질량 기준으로 자동 제어하는 MFC가 재현성 면에서 유리합니다. 비교 기준은 기체 유량 제어 가이드(https://rndsetup.com/gas/)에서 확인하세요."}},
+{"@type":"Question","name":"오일 회전식과 다이아프램 진공펌프 중 무엇을 고르나?","acceptedAnswer":{"@type":"Answer","text":"도달 진공도·오염·내화학성을 기준으로 비교해 고릅니다. 용매를 다룰 때는 무오일 다이아프램이 안전합니다. 비교는 진공펌프 가이드(https://rndsetup.com/vacuum/)에서 확인하세요."}}
+]}
+</script>
+<style>
+  :root{
+    --ink:#1A1A1A; --gray:#6B6B6B; --gray-2:#9A9A9A;
+    --green:#1E3A5F; --green-bg:#EDF1F8; --line:#EAEAEA; --bg:#fff;
+    --serif:"Noto Serif KR",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit;text-decoration:none}
+  .gwrap{max-width:960px;margin:0 auto;padding:0 24px}
+
+  .g-hero{padding:48px 0 10px}
+  .g-hero .crumb{font-size:13px;color:var(--gray-2);margin-bottom:14px}
+  .g-hero .crumb a{color:var(--green)}
+  .g-h1{font-family:var(--serif);font-size:clamp(26px,5vw,34px);font-weight:700;line-height:1.28;letter-spacing:-.02em}
+  .g-lead{margin-top:14px;font-size:16px;color:var(--gray);line-height:1.7;max-width:720px}
+
+  .g-controls{padding:22px 0 6px}
+  .g-search{position:relative;margin-bottom:14px}
+  .g-search input{width:100%;padding:14px 16px 14px 44px;font-size:15.5px;font-family:inherit;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);outline:none}
+  .g-search input:focus{border-color:var(--green)}
+  .g-search .ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--gray-2);font-size:16px}
+
+  .g-filters{display:flex;gap:8px;flex-wrap:wrap}
+  .g-fbtn{padding:8px 16px;font-size:14px;font-weight:600;font-family:inherit;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--gray);cursor:pointer;transition:all .15s}
+  .g-fbtn:hover{border-color:var(--green);color:var(--green)}
+  .g-fbtn.active{background:var(--ink);border-color:var(--ink);color:#fff}
+
+  .g-count{font-size:13.5px;color:var(--gray-2);margin:18px 0 10px}
+  .g-count b{color:var(--ink)}
+
+  .g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding-bottom:56px}
+  .g-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;background:#fff;transition:border-color .15s,box-shadow .15s;height:100%}
+  .g-card:hover{border-color:var(--green);box-shadow:0 6px 20px rgba(30,58,95,.08)}
+  .g-tags{display:flex;gap:6px;align-items:center;margin-bottom:10px}
+  .g-dot{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.02em}
+  .g-cmp{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#FFF3D6;color:#8A6100;border:1px solid #F2DFA6}
+  .d-liquid{background:#E7F0FB;color:#1E3A5F}
+  .d-gas{background:#E6F5EE;color:#1A6E56}
+  .d-vac{background:#F0EAF8;color:#5B3E8E}
+  .d-auto{background:#FCEBEA;color:#A33228}
+  .g-q{font-size:16px;font-weight:700;color:var(--ink);line-height:1.42;letter-spacing:-.01em}
+  .g-card:hover .g-q{color:var(--green)}
+  .g-hint{font-size:13.5px;color:var(--gray);line-height:1.6;margin-top:9px}
+  .g-hint b{color:#2a2a2a;font-weight:600}
+  .g-more{margin-top:auto;padding-top:12px;font-size:12.5px;font-weight:700;color:var(--green)}
+
+  .g-empty{padding:48px 0;text-align:center;color:var(--gray-2);font-size:15px}
+
+  @media(max-width:640px){
+    .g-hero{padding:32px 0 6px}
+    .g-grid{grid-template-columns:1fr}
+  }
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div id="pumplab-header"></div>
+
+<section class="g-hero">
+  <div class="gwrap">
+    <div class="crumb"><a href="/">홈</a> › 기체·진공 셋업 가이드 (호환 장비)</div>
+    <h1 class="g-h1">기체·진공 셋업 가이드</h1>
+    <p class="g-lead">호환 장비 — 기체·진공 실험을 위한 특정 질문에 답하고, 제품을 비교해 고르도록 돕습니다. (정의가 아니라 '무엇을 어떻게 고르고 쓰나'에 대한 답)</p>
+  </div>
+</section>
+
+<section class="g-controls">
+  <div class="gwrap">
+    <div class="g-search">
+      <span class="ico">⌕</span>
+      <input type="search" id="gSearch" placeholder="질문·키워드로 검색 (예: MFC, 진공, 다이아프램, ALICAT)" autocomplete="off" aria-label="가이드 검색">
+    </div>
+    <div class="g-filters" id="gFilters">
+      <button class="g-fbtn active" data-d="전체" type="button">전체</button>
+      <button class="g-fbtn" data-d="기체" type="button">기체</button>
+      <button class="g-fbtn" data-d="진공" type="button">진공</button>
+    </div>
+  </div>
+</section>
+
+<main class="gwrap">
+  <div class="g-count" id="gCount"></div>
+  <div class="g-grid" id="gGrid"></div>
+</main>
+
+<style>
+  .g-reqbar-wrap{margin:10px auto 0}
+  .g-reqbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--green-bg,#eef6f0);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:14.5px;color:var(--ink)}
+  .g-reqbtn{background:var(--green);color:#fff;border:0;border-radius:9px;padding:11px 16px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
+  .g-reqbtn:hover{background:var(--green-dk,#0b6b4f)}
+  .g-empty .g-reqbtn{margin-top:12px}
+  .g-modal{display:none;position:fixed;inset:0;background:rgba(10,20,30,.5);z-index:100;align-items:center;justify-content:center;padding:20px}
+  .g-modal.open{display:flex}
+  .g-modal-box{position:relative;background:#fff;border-radius:14px;padding:26px 24px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+  .g-modal-x{position:absolute;right:14px;top:12px;background:none;border:0;font-size:24px;color:var(--gray-2);cursor:pointer;line-height:1}
+  .g-modal-h{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--ink);margin:0 0 6px}
+  .g-modal-sub{font-size:13.5px;color:var(--gray);margin:0 0 16px;line-height:1.6}
+  .g-lab{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:12px}
+  .g-lab textarea,.g-lab input{width:100%;margin-top:5px;padding:11px 12px;font-size:14.5px;font-family:inherit;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);box-sizing:border-box;font-weight:400}
+  .g-lab textarea:focus,.g-lab input:focus{outline:none;border-color:var(--green)}
+  .g-reqsubmit{width:100%;background:var(--green);color:#fff;border:0;border-radius:9px;padding:13px;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px;font-family:inherit}
+  .g-reqsubmit:hover{background:var(--green-dk,#0b6b4f)}
+</style>
+<section class="gwrap g-reqbar-wrap">
+  <div class="g-reqbar">
+    <div>찾으시는 실험 셋업 가이드가 없나요? <b>필요한 주제를 요청</b>하시면 정리해 드립니다.</div>
+    <button type="button" class="g-reqbtn" onclick="openGReq()">실험가이드 요청하기 →</button>
+  </div>
+</section>
+
+<div class="g-modal" id="gReqModal" onclick="if(event.target===this)closeGReq()">
+  <div class="g-modal-box">
+    <button class="g-modal-x" type="button" onclick="closeGReq()" aria-label="닫기">×</button>
+    <form id="gReqForm" action="https://formspree.io/f/mnjkzppj" method="POST">
+      <input type="hidden" name="form_type" value="guide_request">
+      <h3 class="g-modal-h">실험가이드 요청</h3>
+      <p class="g-modal-sub">어떤 실험 셋업이 궁금하신가요? 주제를 남겨주시면 가이드로 정리해 회신드립니다.</p>
+      <label class="g-lab">찾는 주제·질문 *<textarea name="topic" id="gReqTopic" rows="3" required placeholder="예: 튜브퍼니스 가스 분위기를 MFC로 제어하려면?"></textarea></label>
+      <label class="g-lab">이메일 *<input type="email" name="email" required placeholder="you@lab.ac.kr"></label>
+      <label class="g-lab">소속(선택)<input type="text" name="org" placeholder="○○대학교 ○○연구실"></label>
+      <button type="submit" class="g-reqsubmit">요청 보내기</button>
+    </form>
+    <div id="gReqDone" style="display:none">
+      <h3 class="g-modal-h">요청 감사합니다!</h3>
+      <p class="g-modal-sub">남겨주신 주제를 검토해 실험 셋업 가이드로 정리한 뒤 이메일로 회신드리겠습니다.</p>
+    </div>
+  </div>
+</div>
+
+<div id="pumplab-footer"></div>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+  var CARDS = [
+    {q:"기체 유량, MFC와 로타미터 중 무엇으로 제어하나?", h:"질량 기준 자동 제어(MFC) 비교", u:"/gas/", d:"기체", k:"mfc 로타미터 질량유량계 기체 유량 비교", cmp:true},
+    {q:"튜브퍼니스 가스 분위기는 어떻게 제어하나?", h:"근거: Alicat MFC + 온도 스케줄 연동", u:"/setups/alicat-mfc-tubefurnace.html", d:"기체", k:"튜브퍼니스 가스 분위기 alicat mfc cvd 온도 연동"},
+    {q:"여러 MFC를 동시에 제어·혼합비를 맞추려면?", h:"다중 MFC RS485 동기 제어", u:"/gas/", d:"기체", k:"다중 mfc 동기 혼합비 rs485 가스"},
+    {q:"ALICAT 질량유량계, 무엇이 좋은가?", h:"초고속 응답·다기체 보정 비교", u:"/alicat/", d:"기체", k:"alicat mfc 응답속도 다기체 보정", cmp:true},
+    {q:"오일 회전식 vs 다이아프램 진공펌프, 뭘 골라야 하나?", h:"진공도·오염·내화학 비교", u:"/vacuum/", d:"진공", k:"진공 오일 회전식 다이아프램 비교 선택", cmp:true},
+    {q:"용매를 다룰 때 어떤 진공펌프가 안전한가?", h:"무오일·내화학 다이아프램", u:"/vacuum/#diaphragm", d:"진공", k:"용매 무오일 다이아프램 내화학 진공"},
+    {q:"삼흥에너지 튜브퍼니스 열처리 셋업은?", h:"온도 스케줄+가스 유량 연동", u:"/sh-scientific/", d:"진공", k:"삼흥에너지 튜브퍼니스 열처리 전기로 온도"}
+  ];
+
+  var DOMAIN_CLASS = {"액체":"d-liquid","기체":"d-gas","진공":"d-vac","자동화":"d-auto"};
+
+  function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+  var grid = document.getElementById("gGrid");
+  var countEl = document.getElementById("gCount");
+  var searchEl = document.getElementById("gSearch");
+  var filtersEl = document.getElementById("gFilters");
+  var state = { d:"전체", q:"" };
+  (function initFromURL(){
+    var p = new URLSearchParams(location.search);
+    var q = p.get('q'), d = p.get('d');
+    if(q){ state.q = q; if(searchEl) searchEl.value = q; }
+    if(d){
+      var btn = filtersEl.querySelector('.g-fbtn[data-d="'+d+'"]');
+      if(btn){ Array.prototype.forEach.call(filtersEl.querySelectorAll('.g-fbtn'), function(b){ b.classList.remove('active'); }); btn.classList.add('active'); state.d = d; }
+    }
+  })();
+
+  function cardHTML(c){
+    var dcls = DOMAIN_CLASS[c.d] || "d-liquid";
+    var cmp = c.cmp ? '<span class="g-cmp">비교</span>' : '';
+    return '<a class="g-card" href="'+c.u+'">'+
+      '<div class="g-tags"><span class="g-dot '+dcls+'">'+esc(c.d)+'</span>'+cmp+'</div>'+
+      '<div class="g-q">'+esc(c.q)+'</div>'+
+      '<div class="g-hint">'+esc(c.h)+'</div>'+
+      '<div class="g-more">가이드 보기 →</div>'+
+    '</a>';
+  }
+
+  function render(){
+    var q = state.q.trim().toLowerCase();
+    var list = CARDS.filter(function(c){
+      var okD = state.d === "전체" || c.d === state.d;
+      if(!okD) return false;
+      if(!q) return true;
+      var hay = (c.q + " " + c.h + " " + c.k + " " + c.d).toLowerCase();
+      return hay.indexOf(q) !== -1;
+    });
+    if(list.length === 0){
+      grid.innerHTML = '';
+      countEl.innerHTML = '';
+      var qtxt = state.q ? '‘'+esc(state.q)+'’에 맞는' : '해당 조건의';
+      grid.insertAdjacentHTML('beforeend', '<div class="g-empty" style="grid-column:1/-1">'+qtxt+' 가이드가 아직 없습니다.<br><button type="button" class="g-reqbtn" onclick="openGReq()">이 주제로 실험가이드 요청하기 →</button></div>');
+      return;
+    }
+    countEl.innerHTML = '가이드 <b>'+list.length+'</b>개';
+    grid.innerHTML = list.map(cardHTML).join('');
+  }
+
+  filtersEl.addEventListener('click', function(e){
+    var btn = e.target.closest('.g-fbtn');
+    if(!btn) return;
+    Array.prototype.forEach.call(filtersEl.querySelectorAll('.g-fbtn'), function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    state.d = btn.getAttribute('data-d');
+    render();
+  });
+
+  searchEl.addEventListener('input', function(){
+    state.q = searchEl.value;
+    render();
+  });
+
+  window.openGReq = function(){
+    var m = document.getElementById('gReqModal'); if(!m) return;
+    var t = document.getElementById('gReqTopic'); if(t && !t.value) t.value = state.q || '';
+    m.classList.add('open');
+    if(typeof gtag==='function') gtag('event','guide_request_open');
+  };
+  window.closeGReq = function(){ var m = document.getElementById('gReqModal'); if(m) m.classList.remove('open'); };
+  var gReqForm = document.getElementById('gReqForm');
+  if(gReqForm){ gReqForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var f = e.target, btn = f.querySelector('.g-reqsubmit'), orig = btn.textContent;
+    btn.disabled = true; btn.textContent = '전송 중…';
+    try{
+      var res = await fetch(f.action, { method:'POST', headers:{'Accept':'application/json'}, body:new FormData(f) });
+      if(res.ok){ f.style.display='none'; document.getElementById('gReqDone').style.display='block'; if(typeof gtag==='function') gtag('event','guide_request_submit'); }
+      else { btn.disabled=false; btn.textContent=orig; alert('전송에 실패했습니다. 잠시 후 다시 시도해 주세요.'); }
+    }catch(_){ btn.disabled=false; btn.textContent=orig; alert('네트워크 오류가 발생했습니다.'); }
+  }); }
+
+  render();
+})();
+</script>
+</body>
+</html>

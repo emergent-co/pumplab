@@ -8,10 +8,10 @@
 
   var SEARCH_INDEX = [
     { t:'홈', u:'/', k:'소프트웨어 제어 펌프 시스템 관류', c:'페이지' },
-    { t:'리드플루이드(LeadFluid) — 정품·국내 A/S·제어', u:'/leadfluid/', k:'리드플루이드 leadfluid 정품 국내 as 수리 3년보증 연동 시린지 기어 마그네틱 정량펌프 baoding ingersoll rand 나비엠알오 제어 소프트웨어', c:'리드플루이드' },
-    { t:'리드플루이드 BT101 L 연동펌프', u:'/leadfluid/bt101l/', k:'BT101L bt101 l 리드플루이드 연동펌프 지능형 rs485 modbus 도금 코팅 카테터 논문 750 mL 제어', c:'리드플루이드' },
-    { t:'리드플루이드 TYD01-01 시린지펌프', u:'/leadfluid/tyd01-01/', k:'TYD01 TYD01-01 리드플루이드 시린지펌프 나노리터 정밀 주입 rs485 wifi 뇌 전극 미세유체 논문', c:'리드플루이드' },
-    { t:'리드플루이드 CT3001F 마그네틱 기어펌프', u:'/leadfluid/ct3001f/', k:'CT3001F 리드플루이드 마그네틱 자기구동 기어펌프 무누설 연속 순환 co2 포집 논문', c:'리드플루이드' },
+    { t:'리드플루이드(LeadFluid) — 정품·국내 A/S·제어', u:'/pump/leadfluid/', k:'리드플루이드 leadfluid 정품 국내 as 수리 3년보증 연동 시린지 기어 마그네틱 정량펌프 baoding ingersoll rand 나비엠알오 제어 소프트웨어', c:'리드플루이드' },
+    { t:'리드플루이드 BT101 L 연동펌프', u:'/pump/leadfluid/bt101l/', k:'BT101L bt101 l 리드플루이드 연동펌프 지능형 rs485 modbus 도금 코팅 카테터 논문 750 mL 제어', c:'리드플루이드' },
+    { t:'리드플루이드 TYD01-01 시린지펌프', u:'/pump/leadfluid/tyd01-01/', k:'TYD01 TYD01-01 리드플루이드 시린지펌프 나노리터 정밀 주입 rs485 wifi 뇌 전극 미세유체 논문', c:'리드플루이드' },
+    { t:'리드플루이드 CT3001F 마그네틱 기어펌프', u:'/pump/leadfluid/ct3001f/', k:'CT3001F 리드플루이드 마그네틱 자기구동 기어펌프 무누설 연속 순환 co2 포집 논문', c:'리드플루이드' },
     { t:'Masterflex·Watson-Marlow 연동펌프 국내 대안', u:'/compare/imported-peristaltic-alternative/', k:'마스터플렉스 masterflex 왓슨말로우 watson-marlow 이즈마텍 ismatec 대안 비교 갈아타기 수입 연동펌프 국내 as 제어', c:'비교' },
     { t:'펌프 종류 — 연동·시린지·기어 선택', u:'/pumps/', k:'펌프 종류 연동펌프 시린지펌프 기어펌프 정량펌프 선택 실험용 펌프', c:'펌프 종류' },
     { t:'연동펌프 (페리스탈틱)', u:'/pumps/peristaltic.html', k:'연동펌프 페리스탈틱 peristaltic 튜브펌프 무오염 저유량 관류 정량 BT101 BQ80S EF800 LeadFluid', c:'펌프 종류' },
@@ -35,8 +35,8 @@
     { t:'flow chemistry 연속흐름 반응', u:'/application/flow-chemistry.html', k:'flow chemistry 연속흐름 반응 시린지 유량비 체류시간 마그네틱 유기용매', c:'실험 가이드' },
     { t:'장기칩·오가노이드 관류', u:'/application/organ-on-chip-perfusion.html', k:'장기칩 organ on chip 오가노이드 관류 미세유체 저유량 전단응력', c:'실험 가이드' },
     { t:'실험 가이드 허브', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험 가이드' },
-    { t:'연구별 셋업 — 논문이 답한 셋업(근거)', u:'/setups/', k:'논문 nature 셋업 leadfluid 연구별 바이오 의료 환경 수처리 에너지 재료 근거', c:'연구별 셋업' },
-    { t:'리드플루이드 국내 A/S·정품·3년보증', u:'/leadfluid/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'호환 장비' },
+    { t:'펌프 자료실 — 트러블슈팅·도입 셋업 스토리', u:'/pump/troubleshooting/', k:'펌프 자료실 트러블슈팅 유량 튜빙 소음 멈춤 도입 셋업 스토리 도금', c:'펌프 자료실' },
+    { t:'리드플루이드 국내 A/S·정품·3년보증', u:'/pump/leadfluid/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'호환 장비' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
     { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
   ];
@@ -65,15 +65,14 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/troubleshooting/', label:'펌프 자료실', icon:'wrench', sub:[
-        ['/leadfluid/',                       '리드플루이드 — 제품·정품·국내 A/S'],
-        ['/troubleshooting/',                 '트러블슈팅 — 멈춤·유량·튜빙·소음'],
-        ['/setups/plating-flow-calibration/', '도입 셋업 스토리'],
-        ['/guide/',                           '실험 셋업 가이드 — 질문·비교'],
-        ['/setups/',                          '연구별(논문) 셋업']
+    { href:'/pump/troubleshooting/', label:'펌프 자료실', icon:'wrench', sub:[
+        ['/pump/leadfluid/',                       '리드플루이드 — 제품·정품·국내 A/S'],
+        ['/pump/guide/',                           '펌프 셋업 가이드 — 질문·비교'],
+        ['/pump/setups/plating-flow-calibration/', '도입 셋업 스토리']
       ] },
     { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
     { href:'/alicat/', label:'호환 장비', icon:'devices', sub:[
+        ['/compat/guide/',   '기체·진공 셋업 가이드'],
         ['/sh-scientific/',  '삼흥에너지 — 열처리'],
         ['/alicat/',         'ALICAT — 질량유량계(MFC)'],
         ['/gas/',            '기체 유량 제어(MFC)'],
@@ -133,7 +132,7 @@
       '<div class="cf-inner">' +
         '<div class="cf-cols">' +
           '<div class="cf-col"><h4>바로가기</h4>' +
-            '<a href="/requests/">소프트웨어 제어</a><a href="/application/">실험 가이드</a><a href="/setups/">도입·논문 사례</a><a href="/faq/">FAQ</a></div>' +
+            '<a href="/pump/troubleshooting/">펌프 자료실</a><a href="/pump/leadfluid/">리드플루이드</a><a href="/requests/">소프트웨어 제어</a><a href="/faq/">FAQ</a></div>' +
           '<div class="cf-col"><h4>문의</h4>' +
             '<a href="/contact/#repair">수리 문의</a><a href="/contact/#dev">개발 문의</a>' +
             '<a href="https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=" target="_blank" rel="noopener" data-ga="navimro_footer">견적·구매 (나비엠알오)</a></div>' +
