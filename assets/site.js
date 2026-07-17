@@ -65,9 +65,8 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/pump/troubleshooting/', label:'펌프 자료실', icon:'wrench', sub:[
-        ['/pump/troubleshooting/', '펌프 A to Z'],
-        ['/pump/guide/',           '자주묻는 질문(FAQ)']
+    { href:'/pump/troubleshooting/', label:'펌프 A to Z', icon:'wrench', sub:[
+        ['/pump/guide/', '자주묻는 질문(FAQ)']
       ] },
     { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
     { href:'/alicat/', label:'호환 장비', icon:'devices', sub:[
