@@ -65,6 +65,15 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
+    { href:'/pump/leadfluid/', label:'리드플루이드 펌프', icon:'devices', sub:[
+        ['/pump/leadfluid/bt101l/',  'BT101L 연동펌프'],
+        ['/pump/leadfluid/bt103s/',  'BT103S 분주형'],
+        ['/pump/leadfluid/bt301l/',  'BT301L 지능형 유량'],
+        ['/pump/leadfluid/wt600f/',  'WT600F 대유량'],
+        ['/pump/leadfluid/mf106/',   'MF106 고보호'],
+        ['/pump/leadfluid/tyd01-01/','TYD01-01 시린지'],
+        ['/pump/leadfluid/ct3001f/', 'CT3001F 기어펌프']
+      ] },
     { href:'/pump/guide/', label:'펌프 A to Z', icon:'wrench', noclick:true, sub:[
         ['/pump/guide/',  '펌프 셋업 사례'],
         ['/pump/select/', '펌프·튜브 선택 가이드'],
