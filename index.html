@@ -147,21 +147,54 @@
       <p class="svc-sub">참고 중인 <b>논문 파일(PDF)</b>과 실험 상황을 남겨주세요. 실험셋업연구소가 그 논문의 셋업을 분석해 <b>필요한 펌프·MFC·튜브·제어 구성과 스펙</b>을 정리한 리포트를 이메일로 보내드립니다.</p>
       <div class="svc-steps"><span>1. 논문·상황 제출</span><span>2. 실험셋업연구소 분석</span><span>3. 셋업·스펙 리포트 회신</span></div>
 
-      <div style="max-width:620px;margin-top:18px">
-        <iframe data-tally-src="https://tally.so/embed/44yMjO?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="640" frameborder="0" marginheight="0" marginwidth="0" title="논문 기반 셋업 분석 리포트 신청"></iframe>
-        <p class="priv" style="font-size:12px;color:#8a95a3;margin-top:10px;line-height:1.6">제출하신 논문·정보는 리포트 작성 목적으로만 사용합니다. 보통 1~2 영업일 내 이메일로 회신드립니다.</p>
+      <form class="setup-form" id="setupForm">
+        <input type="hidden" name="문의유형" value="논문 셋업 분석 리포트 신청">
+        <label>참고 논문 PDF 다운로드 링크 <span class="req">*</span>
+          <input type="url" name="논문링크" required placeholder="예: https://drive.google.com/... (열람 가능한 논문 PDF 링크)">
+        </label>
+        <div class="need-group">
+          <div class="need-q">무엇이 필요하세요? <span class="req">*</span> <span class="need-hint">(해당되는 것 모두 선택)</span></div>
+          <label class="need-opt"><input type="checkbox" name="필요항목" value="논문 셋업 구성 분석"> 논문 셋업 구성 분석 — 어떤 장비를 어떻게 연결·제어하나</label>
+          <label class="need-opt"><input type="checkbox" name="필요항목" value="필요 장비 스펙·모델 추천"> 필요 장비 스펙·모델 추천 — 어떤 펌프·MFC·튜브가 맞나</label>
+          <label class="need-opt"><input type="checkbox" name="필요항목" value="유량·튜브·채널 파라미터 설계"> 유량·튜브·채널 등 세부 파라미터 설계</label>
+          <label class="need-opt"><input type="checkbox" name="필요항목" value="제어·자동화 구성"> 제어·자동화(Modbus·RS485·스케줄·무인운전) 구성</label>
+          <label class="need-opt"><input type="checkbox" name="필요항목" value="견적·구매·A/S 안내"> 견적·구매·납품·국내 A/S 안내</label>
+        </div>
+        <label>상세 내용 — 실험 목적·조건, 확인하고 싶은 부분을 자세히 <span class="req">*</span>
+          <textarea name="상세내용" required placeholder="예: 이 논문의 관류배양 셋업을 재현하려는데 유량 0.1~2 mL/min·3채널 독립 제어가 필요합니다. 맞는 펌프·튜브·제어 구성과 예산·A/S까지 알려주세요."></textarea>
+        </label>
+        <div class="row2">
+          <label>이름 · 소속 <span class="req">*</span><input type="text" name="이름·소속" required placeholder="홍길동 / OO대학교 OO연구실"></label>
+          <label>이메일 (리포트 받으실 주소) <span class="req">*</span><input type="email" name="email" required placeholder="you@lab.ac.kr"></label>
+        </div>
+        <button class="send" type="submit">셋업 분석 리포트 신청</button>
+        <p class="priv">논문 PDF는 구글드라이브·드롭박스 등에 올려 <b>열람 가능한 공유 링크</b>로 넣어주세요. 제출 정보는 리포트 작성 목적으로만 사용하며 보통 1~2 영업일 내 회신드립니다. 전송이 안 되면 info@rndsetup.com 으로 보내주세요.</p>
+      </form>
+
+      <div id="setupDone" style="display:none;text-align:center;padding:24px 10px;border:1px solid var(--line,#E6EAF0);border-radius:16px;margin-top:18px">
+        <div style="width:46px;height:46px;border-radius:50%;background:var(--green);color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 12px">✓</div>
+        <h3 style="font-family:'Noto Serif KR',Georgia,serif;font-size:19px;color:var(--ink)">신청이 접수되었습니다</h3>
+        <p style="font-size:14px;color:#5a6470;margin-top:6px">논문을 검토해 셋업·스펙 리포트를 이메일로 보내드리겠습니다. 감사합니다.</p>
       </div>
     </section>
     <script>
     (function(){
-      var w="https://tally.so/widgets/embed.js";
-      var load=function(){
-        if(typeof Tally!=="undefined"){ Tally.loadEmbeds(); return; }
-        document.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function(e){ e.src=e.dataset.tallySrc; });
-      };
-      if(typeof Tally!=="undefined"){ load(); }
-      else if(!document.querySelector('script[src="'+w+'"]')){ var s=document.createElement("script"); s.src=w; s.onload=load; s.onerror=load; document.body.appendChild(s); }
-      else { load(); }
+      var f=document.getElementById('setupForm'); if(!f) return;
+      f.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!f.querySelector('input[name="필요항목"]:checked')){ alert('필요한 항목을 하나 이상 선택해주세요.'); return; }
+        var btn=f.querySelector('.send'), t=btn.textContent;
+        btn.disabled=true; btn.textContent='보내는 중…';
+        fetch('https://formspree.io/f/mnjkzppj', { method:'POST', body:new FormData(f), headers:{'Accept':'application/json'} })
+          .then(function(r){
+            if(r.ok){
+              if(typeof gtag==='function'){ gtag('event','generate_lead',{lead_type:'setup_report',page_path:location.pathname}); }
+              f.style.display='none';
+              document.getElementById('setupDone').style.display='block';
+            } else { btn.disabled=false; btn.textContent=t; alert('전송에 실패했습니다. 이메일로 보내주세요: info@rndsetup.com'); }
+          })
+          .catch(function(){ btn.disabled=false; btn.textContent=t; alert('전송에 실패했습니다. 이메일로 보내주세요: info@rndsetup.com'); });
+      });
     })();
     </script>
 

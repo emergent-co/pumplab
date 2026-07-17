@@ -71,18 +71,18 @@
   .g-card.big{grid-row:span 2}
   .g-card.big .g-q{font-size:23px}
   .g-card.tall{grid-row:span 2}
-  .g-hero{grid-column:span 1;grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid #DCE6F1;border-radius:14px;color:var(--ink);padding:18px;text-decoration:none;background:#E7F0FB}
-  .g-hero .hero-h{font-family:var(--serif);font-size:24px;font-weight:800;line-height:1.28;letter-spacing:-.01em;color:var(--green)}
-  .g-hero .hero-sub{font-size:14px;color:var(--gray);margin-top:9px;line-height:1.55;max-width:340px}
-  .g-hero .hero-go{align-self:flex-start;background:var(--green);color:#fff;font-weight:800;padding:10px 17px;border-radius:9px;font-size:13.5px;margin-top:16px}
+  .g-herocard{grid-column:span 1;grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid #DCE6F1;border-radius:14px;color:var(--ink);padding:18px;text-decoration:none;background:#E7F0FB}
+  .g-herocard .hero-h{font-family:var(--serif);font-size:24px;font-weight:800;line-height:1.28;letter-spacing:-.01em;color:var(--green)}
+  .g-herocard .hero-sub{font-size:14px;color:var(--gray);margin-top:9px;line-height:1.55;max-width:340px}
+  .g-herocard .hero-go{align-self:flex-start;background:var(--green);color:#fff;font-weight:800;padding:10px 17px;border-radius:9px;font-size:13.5px;margin-top:16px}
 
   .g-empty{padding:48px 0;text-align:center;color:var(--gray-2);font-size:15px}
 
   @media(max-width:640px){
     .g-hero{padding:32px 0 6px}
     .g-grid{grid-template-columns:1fr;grid-auto-rows:auto}
-    .g-card.big,.g-card.tall,.g-hero{grid-column:auto;grid-row:auto}
-    .g-hero{min-height:230px}
+    .g-card.big,.g-card.tall,.g-herocard{grid-column:auto;grid-row:auto}
+    .g-herocard{min-height:230px}
   }
 </style>
 <link rel="stylesheet" href="/assets/site.css">
@@ -228,7 +228,7 @@
       return;
     }
     countEl.innerHTML = '가이드 <b>'+list.length+'</b>개';
-    var hero = '<a class="g-hero" href="/pump/select/"><div class="hero-h">실험 펌프,<br>질문으로 고르세요</div><div class="hero-sub">유량·응용·튜브 조건만 답하면 맞는 리드플루이드 모델을 좁혀드립니다.</div><span class="hero-go">펌프·튜브 선택 가이드 →</span></a>';
+    var hero = '<a class="g-herocard" href="/pump/select/"><div class="hero-h">실험 펌프,<br>질문으로 고르세요</div><div class="hero-sub">유량·응용·튜브 조건만 답하면 맞는 리드플루이드 모델을 좁혀드립니다.</div><span class="hero-go">펌프·튜브 선택 가이드 →</span></a>';
     grid.innerHTML = hero + list.map(cardHTML).join('');
   }
 
