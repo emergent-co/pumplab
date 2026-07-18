@@ -1,8 +1,32 @@
-# GEO 로드맵 — 이어가기용 핸드오프 (최종 업데이트: 2026-07-07)
+# GEO 로드맵 — 이어가기용 핸드오프 (최종 업데이트: 2026-07-18)
 
 > **목적:** 다른 컴퓨터·새 세션에서 이 문서만 읽으면 그대로 이어갈 수 있게 한다.
-> **대전제:** GEO 최적화가 **0순위**(`OPERATIONS.md §0`). 모든 변경은 "GEO에 유리한가"를 먼저 통과.
+> **대전제 1 — GEO 0순위:** GEO 최적화가 최우선(`OPERATIONS.md §0`). 모든 변경은 "GEO에 유리한가"를 먼저 통과.
+> **대전제 2 — 무분별한 페이지 증식 금지:** 얇은 페이지 신설보다 **기존 페이지 보강**을 우선한다. GEO의 콘텐츠 확장은 "새 URL 남발"이 아니라 "기존 페이지를 깊게"로 달성한다. 통합·폐지는 되돌릴 수 있는 **301 리다이렉트**로.
 > **워크플로:** 시작 전 `git pull` 필수 → 파일도구로 편집 → PowerShell `git add -A; git commit; git push`. 배포는 **Cloudflare Pages 자동**(빌드 명령 `python _build/build.py`, main 푸시 시 실행). GitHub Pages 워크플로는 실패해도 무시(꺼도 됨).
+
+---
+
+## 최근 개편 (2026-07-18)
+
+**IA — 펌프 콘텐츠 /pump/ 하위 통합**
+- nav: 리드플루이드를 **「펌프 A to Z」의 첫 하위**로 이동(최상단 단독 메뉴 폐지). FAQ `/pump/faq/`→`/faq/` 통합.
+
+**무분별 증식 정리 — 14개 페이지 → 301 리다이렉트**
+- 자동화 하우투 4(pc-control·flow-schedule·multi-pump-sync·run-log-csv) → `/requests/`
+- 펌프·튜브 선택 2(pump-selection·tube-selection) → `/pump/select/`
+- `/pump/faq/` → `/faq/`
+- 산업·실험기법 7(cell-culture·chemostat·organ-on-chip·photobioreactor·medical-device-ivd → biopharmaceutical / industrial-chemical → flow-chemistry / food-beverage → environmental)
+- 생존 응용 페이지: **biopharmaceutical · analytical-instrument · environmental · flow-chemistry + `/application/` 허브**
+- 중앙 재배선 동기화: `CRAWLER_LINKS`·`static_pages`(build.py) · `posts.json` · `_redirects` · `site.js` nav
+
+**리드플루이드 페이지 개편**
+- 본문 = 벤토 카드 5개(스펙·유량계산기·소프트웨어·매뉴얼·A/S). 유량계산기·A/S는 **팝업(모달)**. A/S 폼 = 브랜드 선택 + 이메일, Formspree(`mnjkzppj`).
+- 유량계산기: 튜브 규격(#·내경 mm) + 헤드 유형 + RPM 물리식 추정(출처 표기·캘리브레이션 안내).
+- 매뉴얼: 모델 비교표(종류·유량·채널·RS485) + 바로가기 칩 + 카탈로그(하단).
+
+**CT3001F 정정**
+- "마그네틱/자기구동 기어펌프" → **PEEK 기어펌프(비자성)**로 사이트 전역 정정(모델 페이지·스키마·크롤러nav·llms.txt·pump/index). 유량 15~2700 mL/min.
 
 ---
 
@@ -31,7 +55,7 @@
   |---|---|---|---|
   | brain-electrode-tyd01 | TYD01-01 시린지 | Nature Electronics 2024 | 바이오 |
   | catheter-heparin-bt101 | BT101 L 연동 | Nature Communications 2024 | 의료 |
-  | co2-capture-ct3001f | CT3001F 마그네틱 | Nature Communications 2024 | 에너지 |
+  | co2-capture-ct3001f | CT3001F PEEK 기어 | Nature Communications 2024 | 에너지 |
   | heart-eshp-bt101l | BT101L 연동 | Frontiers Cardiovasc. Med. 2021 | **관류(장기)** |
   | damo-recirculation-bt600s | BT600S 연동 | Environ. Sci. Technol. 2021 | 환경 |
   | nitrification-ph-bq50s | BQ50S 정량 | Bioresource Technology 2017 | 환경 |
@@ -55,6 +79,7 @@
 5. **검증은 배포 후 raw HTML** — `web_fetch`로 확인. **주의: web_fetch는 URL별로 캐시**하니, 이미 받아본 URL은 **`?v=날짜` 쿼리 붙여 캐시 우회**. (예: `https://rndsetup.com/setups/?v=0708`)
 6. **마운트 지연 주의**: 샌드박스 bash가 파일도구 편집을 truncated/stale로 읽을 때가 많음(py_compile 오탐, JSON 오탐). **파일도구 Read가 authoritative.** build.py 로직 검증은 격리 스크립트로, 최종은 배포 후 web_fetch로.
 7. **URL은 무확장자**가 정답(Cloudflare가 .html→무확장자 301). 새 canonical·링크는 소스에 .html로 써도 `normalize_html_urls`가 정리하지만, 가급적 무확장자로 통일.
+8. **무분별한 페이지 증식 금지(대전제 2)**: 새 주제라도 얇으면 **기존 페이지 섹션으로 흡수**를 먼저 검토. 신설은 뚜렷한 롱테일·정답블록·상호링크가 성립할 때만. 통합·폐지는 **301 리다이렉트(체인 금지, 1홉 직결)**로 하고 `CRAWLER_LINKS`·`static_pages`·`posts.json`·`_redirects`·`site.js`를 함께 정리. 정기적으로 **실 인덱스 페이지 수**를 점검한다.
 
 ---
 
