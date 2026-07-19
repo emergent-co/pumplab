@@ -18,8 +18,6 @@
     { t:'시린지펌프 (주사기펌프)', u:'/pumps/syringe.html', k:'시린지펌프 주사기펌프 syringe pump 초저유량 정밀 주입 미세유체 flow chemistry TYD01 TFD 다채널', c:'펌프 종류' },
     { t:'정량펌프 (연동식 정량·디스펜싱)', u:'/pumps/metering.html', k:'정량펌프 디스펜싱 dosing metering 분주 정량 주입 pH 제어 BQ80S BT101F 연동식', c:'펌프 종류' },
     { t:'기어펌프', u:'/pumps/gear.html', k:'기어펌프 gear pump 무맥동 고압 대유량 유기용매 방폭 FG601S 산업 이송', c:'펌프 종류' },
-    { t:'기체 유량 제어 — 질량유량계(MFC)', u:'/gas/', k:'기체 가스 질량유량계 mfc mass flow controller alicat 유량계 튜브퍼니스 cvd 촉매 가스혼합 rs485 로타미터', c:'기체' },
-    { t:'진공 셋업 — 오일 회전식·다이아프램 진공펌프', u:'/vacuum/', k:'진공 vacuum pump 오일 회전식 rotary vane 다이아프램 diaphragm 감압증류 탈기 건조 여과 무오일 데시케이터', c:'진공' },
     { t:'ALICAT 질량유량계(MFC) 브랜드', u:'/alicat/', k:'alicat 알리캣 질량유량계 mfc mass flow controller 다기체 응답속도 rs485 modbus 소프트웨어 호환 장비', c:'호환 장비' },
     { t:'삼흥에너지(SH-Scientific) 튜브퍼니스·전기로', u:'/sh-scientific/', k:'삼흥에너지 sh scientific 튜브퍼니스 관상로 전기로 머플로 열처리 온도 스케줄 가스 연동 소프트웨어 호환 장비', c:'호환 장비' },
     { t:'소프트웨어 제어 펌프 시스템', u:'/requests/', k:'자동화 무인 관류 채널 독립 유량 기록 재현 modbus rs485 python 스케줄 레시피 로그 다펌프 동기', c:'실험을 자동화할 때' },
@@ -74,14 +72,7 @@
         ['/faq/',    '자주묻는 질문(FAQ)']
       ] },
     { href:'/furnace/setups/', label:'열처리', icon:'devices' },
-    { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
-    { href:'/alicat/', label:'호환 장비', icon:'devices', sub:[
-        ['/alicat/',         'ALICAT — 질량유량계(MFC)'],
-        ['/sh-scientific/',  '삼흥에너지 — 열처리'],
-        ['/gas/',            '기체 유량 제어(MFC)'],
-        ['/vacuum/',         '진공펌프 (오일·다이아프램)'],
-        ['/compat/guide/',   '기체·진공 셋업 가이드']
-      ] }
+    { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
   function subOnPage(href){ var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }

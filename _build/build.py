@@ -399,8 +399,6 @@ CRAWLER_LINKS = [
     ('/pumps/syringe.html', '시린지펌프 — 초저유량 정밀 주입'),
     ('/pumps/metering.html', '정량펌프(연동식) — 정량·디스펜싱'),
     ('/pumps/gear.html', '기어펌프 — 고압 대유량 이송'),
-    ('/gas/', '기체 유량 제어 — 질량유량계(MFC)'),
-    ('/vacuum/', '진공 셋업 — 오일 회전식·다이아프램 진공펌프'),
     ('/application/', '실험 가이드'),
     ('/application/biopharmaceutical.html', '바이오의약 — 발효·세포배양·정제·충전'),
     ('/application/analytical-instrument.html', '분석기기 — 컬럼 주입·시료 정량 주입'),
@@ -421,7 +419,6 @@ CRAWLER_LINKS = [
     ('/setups/co2-capture-ct3001f.html', '연속 CO₂ 포집 — CT3001F 마그네틱 기어펌프 (Nature Communications 2024)'),
     ('/furnace/setups/', '퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례'),
     ('/furnace/setups/alicat-mfc-tubefurnace/', '1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례'),
-    ('/compat/guide/', '기체·진공 셋업 가이드 (호환 장비)'),
     ('/compare/imported-peristaltic-alternative/', 'Masterflex·Watson-Marlow 연동펌프 국내 대안'),
     ('/trust/', '믿고 도입할 때 (국내 A/S·정품·보증)'),
     ('/faq/', '자주 묻는 질문(FAQ)'),
@@ -790,7 +787,6 @@ def main():
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
         ('pump/',         '0.9', 'weekly'),   # 펌프 필러 허브 (종류·모델·선택·문제해결)
-        ('compat/guide/', '0.8', 'monthly'),  # 기체·진공 셋업 가이드 (호환 장비)
         ('pump/leadfluid/',    '0.9', 'monthly'),  # 리드플루이드 브랜드 랜딩
         ('pump/leadfluid/bt101l/',    '0.8', 'monthly'),  # 모델 페이지
         ('pump/leadfluid/tyd01-01/',  '0.8', 'monthly'),
@@ -820,8 +816,6 @@ def main():
         ('pumps/syringe.html',     '0.8', 'monthly'),  # 시린지펌프
         ('pumps/metering.html',    '0.8', 'monthly'),  # 정량펌프(연동식)
         ('pumps/gear.html',        '0.7', 'monthly'),  # 기어펌프
-        ('gas/',          '0.8', 'monthly'),  # 기체 — 질량유량계(MFC)
-        ('vacuum/',       '0.8', 'monthly'),  # 진공 셋업
         ('alicat/',       '0.8', 'monthly'),  # 소프트웨어 호환 장비 — ALICAT
         ('sh-scientific/','0.8', 'monthly'),  # 소프트웨어 호환 장비 — 삼흥에너지
         ('application/biopharmaceutical.html', '0.8', 'monthly'),        # 응용분야 클러스터(통합 후 생존)

@@ -13,12 +13,6 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://rndsetup.com/compat/guide/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://rndsetup.com/pump/leadfluid/</loc>
     <lastmod>2026-07-19</lastmod>
     <priority>0.9</priority>
@@ -190,18 +184,6 @@
     <loc>https://rndsetup.com/pumps/gear</loc>
     <lastmod>2026-07-19</lastmod>
     <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://rndsetup.com/gas/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://rndsetup.com/vacuum/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>

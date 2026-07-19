@@ -21,3 +21,8 @@
 /application/medical-device-ivd            /application/biopharmaceutical   301
 /application/industrial-chemical-material  /application/flow-chemistry      301
 /application/food-beverage                 /application/environmental       301
+
+# 호환장비 얇은 페이지 통합(2026-07) — 매출·인용 0, LeadFluid 주제 집중. 되돌리려면 이 3줄 삭제 후 sitemap·메뉴 복원.
+/gas/            /alicat/   301
+/vacuum/         /alicat/   301
+/compat/guide/   /alicat/   301
