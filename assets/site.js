@@ -13,11 +13,6 @@
     { t:'리드플루이드 TYD01-01 시린지펌프', u:'/pump/leadfluid/tyd01-01/', k:'TYD01 TYD01-01 리드플루이드 시린지펌프 나노리터 정밀 주입 rs485 wifi 뇌 전극 미세유체 논문', c:'리드플루이드' },
     { t:'리드플루이드 CT3001F PEEK 기어펌프', u:'/pump/leadfluid/ct3001f/', k:'CT3001F 리드플루이드 PEEK 기어펌프 서보 브러시리스 모터 저맥동 연속 순환 co2 포집 논문', c:'리드플루이드' },
     { t:'Masterflex·Watson-Marlow 연동펌프 국내 대안', u:'/compare/imported-peristaltic-alternative/', k:'마스터플렉스 masterflex 왓슨말로우 watson-marlow 이즈마텍 ismatec 대안 비교 갈아타기 수입 연동펌프 국내 as 제어', c:'비교' },
-    { t:'펌프 종류 — 연동·시린지·기어 선택', u:'/pumps/', k:'펌프 종류 연동펌프 시린지펌프 기어펌프 정량펌프 선택 실험용 펌프', c:'펌프 종류' },
-    { t:'연동펌프 (페리스탈틱)', u:'/pumps/peristaltic.html', k:'연동펌프 페리스탈틱 peristaltic 튜브펌프 무오염 저유량 관류 정량 BT101 BQ80S EF800 LeadFluid', c:'펌프 종류' },
-    { t:'시린지펌프 (주사기펌프)', u:'/pumps/syringe.html', k:'시린지펌프 주사기펌프 syringe pump 초저유량 정밀 주입 미세유체 flow chemistry TYD01 TFD 다채널', c:'펌프 종류' },
-    { t:'정량펌프 (연동식 정량·디스펜싱)', u:'/pumps/metering.html', k:'정량펌프 디스펜싱 dosing metering 분주 정량 주입 pH 제어 BQ80S BT101F 연동식', c:'펌프 종류' },
-    { t:'기어펌프', u:'/pumps/gear.html', k:'기어펌프 gear pump 무맥동 고압 대유량 유기용매 방폭 FG601S 산업 이송', c:'펌프 종류' },
     { t:'ALICAT 질량유량계(MFC) 브랜드', u:'/alicat/', k:'alicat 알리캣 질량유량계 mfc mass flow controller 다기체 응답속도 rs485 modbus 소프트웨어 호환 장비', c:'호환 장비' },
     { t:'삼흥에너지(SH-Scientific) 튜브퍼니스·전기로', u:'/sh-scientific/', k:'삼흥에너지 sh scientific 튜브퍼니스 관상로 전기로 머플로 열처리 온도 스케줄 가스 연동 소프트웨어 호환 장비', c:'호환 장비' },
     { t:'소프트웨어 제어 펌프 시스템', u:'/requests/', k:'자동화 무인 관류 채널 독립 유량 기록 재현 modbus rs485 python 스케줄 레시피 로그 다펌프 동기', c:'실험을 자동화할 때' },
@@ -63,9 +58,8 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/pump/', label:'펌프', icon:'wrench', sub:[
-        ['/pump/leadfluid/', '리드플루이드 펌프'],
-        ['/pumps/',       '펌프 종류'],
+    { href:'/pump/leadfluid/', label:'펌프', icon:'wrench', sub:[
+        ['/pump/leadfluid/', '리드플루이드 펌프·모델'],
         ['/pump/select/', '펌프·튜브 선택'],
         ['/pump/atoz/',   '문제해결'],
         ['/pump/guide/',  '셋업 사례'],

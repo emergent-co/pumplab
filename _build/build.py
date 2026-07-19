@@ -381,7 +381,6 @@ def build_requests():
 # 크롤러용 사이트 전체 링크(푸터 div에 정적 주입 → site.js가 런타임에 대체)
 CRAWLER_LINKS = [
     ('/', '홈'),
-    ('/pump/', '실험용 펌프 — 종류·리드플루이드 모델·선택·문제해결 총정리'),
     ('/pump/leadfluid/', '리드플루이드(LeadFluid) — 정품·국내 A/S·제어'),
     ('/pump/leadfluid/bt101l/', '리드플루이드 BT101L 연동펌프 (LeadFluid BT101L) — RS485 PC 제어'),
     ('/pump/leadfluid/bt103s/', '리드플루이드 BT103S 분주형 연동펌프 — 정량·반복 분주'),
@@ -394,11 +393,6 @@ CRAWLER_LINKS = [
     ('/sh-scientific/', '삼흥에너지(SH-Scientific) 튜브퍼니스·전기로 — 열처리 셋업'),
     ('/alicat/', 'ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어'),
     ('/requests/', '소프트웨어 제어'),
-    ('/pumps/', '펌프 종류'),
-    ('/pumps/peristaltic.html', '연동펌프 — 무오염 저유량 연속 이송'),
-    ('/pumps/syringe.html', '시린지펌프 — 초저유량 정밀 주입'),
-    ('/pumps/metering.html', '정량펌프(연동식) — 정량·디스펜싱'),
-    ('/pumps/gear.html', '기어펌프 — 고압 대유량 이송'),
     ('/application/', '실험 가이드'),
     ('/application/biopharmaceutical.html', '바이오의약 — 발효·세포배양·정제·충전'),
     ('/application/analytical-instrument.html', '분석기기 — 컬럼 주입·시료 정량 주입'),
@@ -786,7 +780,6 @@ def main():
     # 메인 + 상업 funnel 페이지 (loc 경로, priority, changefreq)
     static_pages = [
         ('',              '1.0', 'weekly'),   # 홈
-        ('pump/',         '0.9', 'weekly'),   # 펌프 필러 허브 (종류·모델·선택·문제해결)
         ('pump/leadfluid/',    '0.9', 'monthly'),  # 리드플루이드 브랜드 랜딩
         ('pump/leadfluid/bt101l/',    '0.8', 'monthly'),  # 모델 페이지
         ('pump/leadfluid/tyd01-01/',  '0.8', 'monthly'),
@@ -811,11 +804,6 @@ def main():
         ('pump/atoz/tubing-crush-tear-causes/', '0.7', 'monthly'),
         ('faq/',          '0.7', 'monthly'),  # FAQ
         ('application/',  '0.7', 'monthly'),  # 실험 가이드 (목록)
-        ('pumps/',        '0.8', 'monthly'),  # 펌프 종류 (허브)
-        ('pumps/peristaltic.html', '0.8', 'monthly'),  # 연동펌프
-        ('pumps/syringe.html',     '0.8', 'monthly'),  # 시린지펌프
-        ('pumps/metering.html',    '0.8', 'monthly'),  # 정량펌프(연동식)
-        ('pumps/gear.html',        '0.7', 'monthly'),  # 기어펌프
         ('alicat/',       '0.8', 'monthly'),  # 소프트웨어 호환 장비 — ALICAT
         ('sh-scientific/','0.8', 'monthly'),  # 소프트웨어 호환 장비 — 삼흥에너지
         ('application/biopharmaceutical.html', '0.8', 'monthly'),        # 응용분야 클러스터(통합 후 생존)

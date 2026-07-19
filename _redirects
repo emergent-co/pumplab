@@ -26,3 +26,10 @@
 /gas/            /alicat/   301
 /vacuum/         /alicat/   301
 /compat/guide/   /alicat/   301
+
+# 펌프 허브 단일화(2026-07) — 리드플루이드 중심. /pump/leadfluid/를 정본 허브로.
+# 되돌리려면 이 블록 삭제 + 메뉴/사이트맵 복원. (자식 /pump/select/ 등은 영향 없음)
+/leadfluid/      /pump/leadfluid/   301
+/pump/           /pump/leadfluid/   301
+/pumps/          /pump/leadfluid/   301
+/pumps/*         /pump/leadfluid/   301
