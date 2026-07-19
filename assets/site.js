@@ -11,7 +11,7 @@
     { t:'리드플루이드(LeadFluid) — 정품·국내 A/S·제어', u:'/pump/leadfluid/', k:'리드플루이드 leadfluid 정품 국내 as 수리 3년보증 연동 시린지 기어 정량펌프 baoding ingersoll rand 나비엠알오 제어 소프트웨어', c:'리드플루이드' },
     { t:'리드플루이드 BT101L 연동펌프', u:'/pump/leadfluid/bt101l/', k:'BT101L bt101 l 리드플루이드 연동펌프 지능형 rs485 modbus 도금 코팅 카테터 논문 750 mL 제어', c:'리드플루이드' },
     { t:'리드플루이드 TYD01-01 시린지펌프', u:'/pump/leadfluid/tyd01-01/', k:'TYD01 TYD01-01 리드플루이드 시린지펌프 나노리터 정밀 주입 rs485 wifi 뇌 전극 미세유체 논문', c:'리드플루이드' },
-    { t:'리드플루이드 CT3001F 마그네틱 기어펌프', u:'/pump/leadfluid/ct3001f/', k:'CT3001F 리드플루이드 마그네틱 기어펌프 자기구동 PEEK 기어 무누설 연속 순환 co2 포집 논문', c:'리드플루이드' },
+    { t:'리드플루이드 CT3001F PEEK 기어펌프', u:'/pump/leadfluid/ct3001f/', k:'CT3001F 리드플루이드 PEEK 기어펌프 서보 브러시리스 모터 저맥동 연속 순환 co2 포집 논문', c:'리드플루이드' },
     { t:'Masterflex·Watson-Marlow 연동펌프 국내 대안', u:'/compare/imported-peristaltic-alternative/', k:'마스터플렉스 masterflex 왓슨말로우 watson-marlow 이즈마텍 ismatec 대안 비교 갈아타기 수입 연동펌프 국내 as 제어', c:'비교' },
     { t:'펌프 종류 — 연동·시린지·기어 선택', u:'/pumps/', k:'펌프 종류 연동펌프 시린지펌프 기어펌프 정량펌프 선택 실험용 펌프', c:'펌프 종류' },
     { t:'연동펌프 (페리스탈틱)', u:'/pumps/peristaltic.html', k:'연동펌프 페리스탈틱 peristaltic 튜브펌프 무오염 저유량 관류 정량 BT101 BQ80S EF800 LeadFluid', c:'펌프 종류' },

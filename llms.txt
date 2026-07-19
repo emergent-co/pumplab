@@ -20,7 +20,7 @@
   - [WT600F 대유량 연동펌프](https://rndsetup.com/pump/leadfluid/wt600f/): 분주형 대유량(0.005~6000 mL/min)·4모드 분주
   - [MF106 고보호 연동펌프](https://rndsetup.com/pump/leadfluid/mf106/): 방진방수 IP66/67(0.005~7700 mL/min)
   - [TYD01-01 시린지펌프](https://rndsetup.com/pump/leadfluid/tyd01-01/): 나노리터급 정밀 주입(0.184 nL~83 mL/min)·RS485·WiFi·뇌 인터페이싱 논문
-  - [CT3001F 마그네틱 기어펌프](https://rndsetup.com/pump/leadfluid/ct3001f/): 자기구동 PEEK 기어 저맥동 무누설 연속 이송·CO₂ 포집 논문
+  - [CT3001F PEEK 기어펌프](https://rndsetup.com/pump/leadfluid/ct3001f/): 서보 브러시리스 모터 PEEK 기어 저맥동 연속 이송·CO₂ 포집 논문
 - [삼흥에너지(SH-Scientific)](https://rndsetup.com/sh-scientific/): 국내 열처리 장비(튜브퍼니스·전기로) 소개 + 제어 소프트웨어가 온도 스케줄과 MFC 가스 유량을 연동(소프트웨어 호환 장비)
 - [ALICAT](https://rndsetup.com/alicat/): 미국 정밀 질량유량계(MFC) 브랜드 — 초고속 응답·다기체 보정·RS485, 공급·다중 MFC 동기 제어 지원(소프트웨어 호환 장비)
 - [수입 연동펌프 대안 비교](https://rndsetup.com/compare/imported-peristaltic-alternative/): Masterflex·Watson-Marlow·ISMATEC 대비 제어SW·국내 A/S·3년 보증·가격 — 정직한 갈아타기 비교(타 브랜드 제어는 모델별 상이·문의 확인)
@@ -49,7 +49,7 @@
 - [연구별 셋업 — 논문이 답한 셋업(증거)](https://rndsetup.com/setups/): 바이오·의료 / 환경·수처리 / 에너지·재료·열처리 분야별로, 유명 논문이 어떤 LeadFluid 펌프를 어떤 셋업에 썼나
   - [뇌 피질 인터페이싱 — 시린지펌프 TYD01-01 (Nature Electronics 2024)](https://rndsetup.com/setups/brain-electrode-tyd01)
   - [혈관내 카테터 코팅 — 연동펌프 BT101 L (Nature Communications 2024)](https://rndsetup.com/setups/catheter-heparin-bt101)
-  - [연속 CO₂ 포집 — 마그네틱 기어펌프 CT3001F (Nature Communications 2024)](https://rndsetup.com/setups/co2-capture-ct3001f)
+  - [연속 CO₂ 포집 — PEEK 기어펌프 CT3001F (Nature Communications 2024)](https://rndsetup.com/setups/co2-capture-ct3001f)
   - [심장 체외 관류(ESHP) — 연동펌프 BT101L (Frontiers in Cardiovascular Medicine 2021)](https://rndsetup.com/setups/heart-eshp-bt101l)
   - [혐기성 메탄산화 반응기 순환 — 연동펌프 BT600S (Environmental Science & Technology 2021)](https://rndsetup.com/setups/damo-recirculation-bt600s)
   - [폐수 질산화 pH 제어 — 정량펌프 BQ50S (Bioresource Technology 2017)](https://rndsetup.com/setups/nitrification-ph-bq50s)
