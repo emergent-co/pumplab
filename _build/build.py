@@ -387,7 +387,7 @@ CRAWLER_LINKS = [
     ('/pump/leadfluid/bt103s/', '리드플루이드 BT103S 분주형 연동펌프 — 정량·반복 분주'),
     ('/pump/leadfluid/bt103s/head-replace/', '리드플루이드 BT103S 펌프 헤드 교체·튜브 장착 방법'),
     ('/pump/leadfluid/tyd01-01/', '리드플루이드 TYD01-01 시린지펌프 — 나노리터 정밀 주입'),
-    ('/pump/leadfluid/ct3001f/', '리드플루이드 CT3001F PEEK 기어펌프 — 저맥동 연속 이송'),
+    ('/pump/leadfluid/ct3001f/', '리드플루이드 CT3001F 마그네틱 기어펌프 — 자기구동·PEEK 기어 저맥동 연속 이송'),
     ('/pump/leadfluid/bt301l/', '리드플루이드 BT301L 지능형 유량 연동펌프 — 0.005~1750mL/min·RS485 제어'),
     ('/pump/leadfluid/wt600f/', '리드플루이드 WT600F 분주형 대유량 연동펌프 — 0.005~6000mL/min·4모드 분주'),
     ('/pump/leadfluid/mf106/', '리드플루이드 MF106 고보호(IP66/67) 연동펌프 — 0.005~7700mL/min·방진방수'),
@@ -412,6 +412,13 @@ CRAWLER_LINKS = [
     ('/pump/atoz/peristaltic-flow-setpoint-mismatch/', '연동펌프 유량이 설정값과 다른 이유'),
     ('/pump/atoz/tubing-crush-tear-causes/', '연동펌프 튜빙 씹힘·찢어짐 원인·해결'),
     ('/pump/setups/plating-flow-calibration/', '도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)'),
+    ('/setups/', '도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업'),
+    ('/setups/heart-eshp-bt101l.html', '심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)'),
+    ('/setups/damo-recirculation-bt600s.html', '혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)'),
+    ('/setups/nitrification-ph-bq50s.html', '폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)'),
+    ('/setups/brain-electrode-tyd01.html', '뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)'),
+    ('/setups/catheter-heparin-bt101.html', '혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)'),
+    ('/setups/co2-capture-ct3001f.html', '연속 CO₂ 포집 — CT3001F 마그네틱 기어펌프 (Nature Communications 2024)'),
     ('/furnace/setups/', '퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례'),
     ('/furnace/setups/alicat-mfc-tubefurnace/', '1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례'),
     ('/compat/guide/', '기체·진공 셋업 가이드 (호환 장비)'),
@@ -855,7 +862,7 @@ def main():
     build_requests()
 
     # GEO: 도입·논문 사례 목록 정적 렌더 + 전 페이지 크롤러 nav 주입
-    # build_setups()  # /setups/index.html은 이제 리다이렉트 스텁 — 비활성화
+    build_setups()  # /setups/index.html 논문 셋업 6편 정적 렌더 (posts.json type=setup)
     inject_static_nav()
     inject_head_schema()
     normalize_html_urls()
