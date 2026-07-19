@@ -36,7 +36,7 @@
     { t:'장기칩·오가노이드 관류', u:'/application/organ-on-chip-perfusion.html', k:'장기칩 organ on chip 오가노이드 관류 미세유체 저유량 전단응력', c:'실험 가이드' },
     { t:'실험 가이드 허브', u:'/application/', k:'응용별 셋업 가이드 펌프 튜브', c:'실험 가이드' },
     { t:'펌프 셋업 사례 — 실제 도입·제어·유량 보정', u:'/pump/guide/', k:'펌프 셋업 사례 도입 제어 유량 보정 도금 다펌프 튜브퍼니스 mfc 스토리', c:'펌프 셋업 사례' },
-    { t:'리드플루이드 국내 A/S·정품·3년보증', u:'/pump/leadfluid/', k:'리드플루이드 leadfluid 국내 as 수리 정품 중국산 보증 신뢰 진단', c:'호환 장비' },
+    { t:'리드플루이드 국내 A/S·정품·3년보증', u:'/pump/leadfluid/', k:'리드플루이드 leadfluid 국내 as 수리 정품 보증 신뢰 진단 품질', c:'호환 장비' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
     { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
   ];
@@ -65,23 +65,22 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
-    { href:'/pump/guide/', label:'펌프 A to Z', icon:'wrench', noclick:true, sub:[
-        ['/pump/leadfluid/', '리드플루이드'],
-        ['/pump/guide/',  '펌프 셋업 사례'],
-        ['/pump/select/', '펌프·튜브 선택 가이드'],
+    { href:'/pump/', label:'펌프', icon:'wrench', sub:[
+        ['/pump/leadfluid/', '리드플루이드 펌프'],
+        ['/pumps/',       '펌프 종류'],
+        ['/pump/select/', '펌프·튜브 선택'],
         ['/pump/atoz/',   '문제해결'],
+        ['/pump/guide/',  '셋업 사례'],
         ['/faq/',    '자주묻는 질문(FAQ)']
       ] },
-    { href:'/furnace/setups/', label:'열처리 A to Z', icon:'devices', noclick:true, sub:[
-        ['/furnace/setups/', '퍼니스 셋업 사례']
-      ] },
+    { href:'/furnace/setups/', label:'열처리', icon:'devices' },
     { href:'/requests/', label:'통합 제어 소프트웨어', icon:'sw' },
     { href:'/alicat/', label:'호환 장비', icon:'devices', sub:[
-        ['/compat/guide/',   '기체·진공 셋업 가이드'],
-        ['/sh-scientific/',  '삼흥에너지 — 열처리'],
         ['/alicat/',         'ALICAT — 질량유량계(MFC)'],
+        ['/sh-scientific/',  '삼흥에너지 — 열처리'],
         ['/gas/',            '기체 유량 제어(MFC)'],
-        ['/vacuum/',         '진공펌프 (오일·다이아프램)']
+        ['/vacuum/',         '진공펌프 (오일·다이아프램)'],
+        ['/compat/guide/',   '기체·진공 셋업 가이드']
       ] }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }

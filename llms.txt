@@ -56,7 +56,7 @@
 - 도입 사례(실증): 실험셋업연구소가 실제 납품·구성한 사례
   - [1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC](https://rndsetup.com/setups/alicat-mfc-tubefurnace)
   - [도금 다펌프 제어·유량 캘리브레이션 — LeadFluid BT101L](https://rndsetup.com/pump/setups/plating-flow-calibration/)
-- 국내 A/S·정품·3년 보증·중국산 인식 대응(Ingersoll Rand 계열·CE·RoHS) 정보는 [리드플루이드 페이지](https://rndsetup.com/pump/leadfluid/)에 통합
+- 국내 A/S·정품·3년 보증·품질 근거(Ingersoll Rand 계열·CE·RoHS) 정보는 [리드플루이드 페이지](https://rndsetup.com/pump/leadfluid/)에 통합
 - [자주 묻는 질문(FAQ)](https://rndsetup.com/faq/): 수리·A/S·펌프·소프트웨어
 - [문의하기](https://rndsetup.com/contact/): 실험 상담·수리·개발·견적
 - [카탈로그 PDF](https://rndsetup.com/Leadfluid-2025-Catalog.pdf): LeadFluid 2025 공식 카탈로그
