@@ -41,7 +41,7 @@
   .lf-head .sub{font-size:14px;color:var(--gray);margin-top:8px}
   .lf-head .lf-answer{font-size:14.5px;color:#333;margin-top:14px;line-height:1.75;max-width:760px}
   .lf-head .lf-answer b{color:var(--ink);font-weight:700}
-  .lf-bento{max-width:940px;margin:0 auto;padding:20px 24px 64px;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-areas:'spec spec manual' 'spec spec manual' 'calc soft as';gap:14px}
+  .lf-bento{max-width:940px;margin:0 auto;padding:20px 24px 64px;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-areas:'spec spec manual' 'spec spec manual' 'calc soft as' 'select atoz guide' 'buy buy buy';gap:14px}
   .lf-card{border-radius:16px;padding:22px;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
   .lf-card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(10,37,64,.14)}
   .lf-card .ic{width:26px;height:26px;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -54,11 +54,17 @@
   .c-soft{grid-area:soft;background:#4A3E8C}
   .c-manual{grid-area:manual;background:#B26A15}
   .c-as{grid-area:as;background:#B4432C}
+  .c-select{grid-area:select;background:#2C5F8A}
+  .c-atoz{grid-area:atoz;background:#556070}
+  .c-guide{grid-area:guide;background:#3E7A4E}
+  .c-buy{grid-area:buy;background:#A85A1E;flex-direction:row;align-items:center;gap:16px}
+  .c-buy .lf-t{margin-top:0}
+  .c-buy .lf-go{margin-top:0}
   .lf-models{margin-top:14px;display:flex;flex-direction:column;gap:8px}
   .lf-models a{font-size:12.5px;color:rgba(255,255,255,.9);display:block}
   .lf-models a b{color:#fff}
   .lf-models a:hover b{text-decoration:underline}
-  @media(max-width:720px){.lf-bento{grid-template-columns:1fr;grid-template-areas:'spec' 'manual' 'calc' 'soft' 'as'}}
+  @media(max-width:720px){.lf-bento{grid-template-columns:1fr;grid-template-areas:'spec' 'manual' 'calc' 'soft' 'as' 'select' 'atoz' 'guide' 'buy'} .c-buy{flex-direction:column;align-items:flex-start;gap:0}}
   button.lf-card{border:0;width:100%;text-align:left;font:inherit;cursor:pointer}
   .md-ov{position:fixed;inset:0;background:rgba(12,22,40,.55);display:none;align-items:flex-start;justify-content:center;padding:28px 16px;z-index:200;overflow:auto}
   .md-ov.on{display:flex}
@@ -145,6 +151,36 @@
     <div class="lf-d" style="color:#F3D2C8">국내 직접 진단·수리 · 3년 무상보증</div>
     <div class="lf-go">접수하기 →</div>
   </button>
+
+  <a class="lf-card c-select" href="/pump/select/">
+    <svg class="ic" viewBox="0 0 24 24" stroke="#BBD4E8" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="8" cy="18" r="2"/></svg>
+    <div class="lf-t">펌프·튜브 선택</div>
+    <div class="lf-d" style="color:#D2E1EF">용도·유량·정밀도 조건으로 맞는 모델·튜브 찾기</div>
+    <div class="lf-go">선택 가이드 →</div>
+  </a>
+
+  <a class="lf-card c-atoz" href="/pump/atoz/">
+    <svg class="ic" viewBox="0 0 24 24" stroke="#C6CED7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <div class="lf-t">문제해결 A to Z</div>
+    <div class="lf-d" style="color:#D8DDE3">유량 이상·튜빙 파손·멈춤 증상별 진단·해결</div>
+    <div class="lf-go">해결하기 →</div>
+  </a>
+
+  <a class="lf-card c-guide" href="/pump/guide/">
+    <svg class="ic" viewBox="0 0 24 24" stroke="#BEE2CC" aria-hidden="true"><path d="M9 3h6"/><path d="M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg>
+    <div class="lf-t">셋업·논문 사례</div>
+    <div class="lf-d" style="color:#D3ECDD">논문 6편·실제 도입 셋업 — "이렇게 씁니다"</div>
+    <div class="lf-go">사례 보기 →</div>
+  </a>
+
+  <a class="lf-card c-buy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">
+    <svg class="ic" viewBox="0 0 24 24" stroke="#F0D2B8" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+    <div style="flex:1">
+      <div class="lf-t">가격·구매</div>
+      <div class="lf-d" style="color:#F3DEC9">나비엠알오에서 리드플루이드 정품 가격 확인·구매 (VAT 포함가 표기)</div>
+    </div>
+    <div class="lf-go">가격 보기·구매 →</div>
+  </a>
 
 </div>
 
