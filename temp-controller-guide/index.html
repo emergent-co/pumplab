@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>온도컨트롤러 사용법 가이드 — SP590·NOVA500E 가상 시뮬레이터 (프로그램 운전·반복 설정·RS485 통신)</title>
+<meta name="description" content="삼원테크 NOVA500E 시리즈(SP590) 온도컨트롤러 사용법을 가상 컨트롤러로 직접 눌러보며 배우는 무료 가이드. 목표온도(SP)·운전시간 설정, 상승·유지·하강 스케줄, 구간 반복(RPT), 종료 동작(HOLD·무한반복), RS485 통신 설정까지 단계별로 연습할 수 있습니다.">
+<meta property="og:title" content="온도컨트롤러 사용법 가이드 — 가상 시뮬레이터로 배우기">
+<meta property="og:description" content="SP590 온도컨트롤러의 온도 설정, 프로그램 운전, 반복 설정, RS485 통신을 가상 컨트롤러로 직접 연습하는 인터랙티브 가이드.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rndsetup.com/temp-controller-guide/">
+<link rel="canonical" href="https://rndsetup.com/temp-controller-guide/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","author":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com"},"name":"온도컨트롤러(SP590) 프로그램 운전 설정 방법","description":"삼원테크 NOVA500E 시리즈 SP590 온도컨트롤러에서 상승-유지-하강 온도 스케줄을 설정하고 운전을 시작·정지하는 절차","step":[
+{"@type":"HowToStep","name":"설정화면 진입","text":"운전화면에서 SET 버튼을 3초 이상 길게 눌러 설정화면으로 이동합니다."},
+{"@type":"HowToStep","name":"프로그램 그룹 진입","text":"SET 버튼으로 프로그램 그룹(PTNO)에 진입합니다. 시간단위(TMU: HH.MM/MM.SS)가 먼저 표시됩니다."},
+{"@type":"HowToStep","name":"세그먼트1 목표온도 설정","text":"1.SP1 화면에서 ◀ 버튼으로 자릿수를 이동하고 ▲▼ 버튼으로 목표온도(예: 80.0℃)를 입력한 뒤 SET로 저장합니다."},
+{"@type":"HowToStep","name":"세그먼트1 운전시간 설정","text":"1.TM1 화면에서 운전시간(예: 00.30 = 30분)을 입력합니다. 승온속도는 (목표온도-시작온도)÷시간으로 결정됩니다."},
+{"@type":"HowToStep","name":"유지·하강 세그먼트 설정","text":"같은 방식으로 1.SP2/1.TM2(유지: 같은 온도 입력), 1.SP3/1.TM3(하강: 낮은 온도 입력)를 설정합니다. 세그먼트는 패턴당 최대 15개까지 가능합니다."},
+{"@type":"HowToStep","name":"운전화면 복귀","text":"SET 버튼을 3초 이상 길게 눌러 운전화면으로 복귀합니다."},
+{"@type":"HowToStep","name":"운전 시작","text":"▼/P1 버튼을 1초간 눌러 패턴1 운전을 시작합니다. 패턴2는 ▲/P2 버튼입니다."},
+{"@type":"HowToStep","name":"운전 정지","text":"◀/RST 버튼을 1초간 눌러 운전을 정지(RESET)합니다."}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"온도컨트롤러 버튼을 눌러도 반응이 없어요","acceptedAnswer":{"@type":"Answer","text":"Key 잠금(LOCK) 설정이 원인인 경우가 많습니다. 제어그룹(G.CTL)의 LOCK 파라메터를 해제하세요. 잠금 상태에서는 파라메터 변경이 차단됩니다."}},
+{"@type":"Question","name":"오토튜닝(AT)이 실행되지 않아요","acceptedAnswer":{"@type":"Answer","text":"오토튜닝은 RUN 상태에서만 실행됩니다. STOP(READY) 상태라면 먼저 운전을 시작하고, PV 입력(센서)이 정상인지 확인한 뒤 오토튜닝 그룹(G.AT)에서 AT를 ON으로 설정하세요. 입력 단선(S.OPEN) 시 자동 중단됩니다."}},
+{"@type":"Question","name":"프로그램 패턴이 반복되지 않아요","acceptedAnswer":{"@type":"Answer","text":"구간 반복은 반복횟수(RPT), 반복 시작 세그먼트(RST), 반복 종료 세그먼트(REN)를 모두 설정해야 하며 RST ≤ REN 조건을 만족해야 합니다. RPT=0은 무한반복입니다. 패턴 전체 반복은 종료동작(LC)을 PTN1/PTN2로 설정하세요."}},
+{"@type":"Question","name":"운전 시작 시 온도가 현재 온도(PV)부터 시작해요","acceptedAnswer":{"@type":"Answer","text":"운전 시작 조건(STC)이 기본값 PV로 설정되어 있기 때문입니다. 설정된 시작점(SSP)부터 시작하려면 STC를 SSP로 변경하고 운전 시작 SP(SSP)를 설정하세요."}},
+{"@type":"Question","name":"세그먼트가 다음으로 넘어가지 않고 멈춰 있어요","acceptedAnswer":{"@type":"Answer","text":"대기동작(Wait)이 설정된 경우, PV가 SP의 대기범위(W.ZON) 안에 들어올 때까지 다음 세그먼트로 진행하지 않습니다. 대기시간(W.TM)이 경과하면 자동 진행됩니다. 대기동작을 원치 않으면 W.ZON을 OFF로 설정하세요."}},
+{"@type":"Question","name":"RS485 통신이 되지 않아요","acceptedAnswer":{"@type":"Answer","text":"통신 옵션 장착 여부, A/B 배선, 통신 그룹(G.COM)의 프로토콜(COM.P)·통신속도(BAUD)·패리티(PRTY)·정지비트(S.BIT)·데이터길이(D.LEN)가 상위 프로그램과 일치하는지, 그리고 통신 주소(ADDR, 1~99)가 다른 기기와 중복되지 않는지 확인하세요. 최대 31대까지 연결 가능합니다."}}]}
+</script>
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .tcg-page { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background: #f4f4f6; color: #222; padding: 32px 16px; min-height: 60vh; }
+  .tcg-wrap { max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+  .sub { font-size: 14px; color: #777; margin-bottom: 20px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab { padding: 9px 16px; font-size: 14px; border: 1px solid #d5d5da; border-radius: 20px; background: #fff; cursor: pointer; }
+  .tab.on { background: #2f6fd0; border-color: #2f6fd0; color: #fff; font-weight: 500; }
+  .main { display: grid; grid-template-columns: 320px 1fr; gap: 20px; align-items: start; }
+  @media (max-width: 740px) { .main { grid-template-columns: 1fr; } .leftcol { display: flex; flex-direction: column; align-items: center; } }
+
+  .prog { display: flex; gap: 6px; align-items: center; margin-bottom: 10px; min-height: 14px; }
+  .prog i { width: 8px; height: 8px; border-radius: 50%; background: #ddd; }
+  .prog i.done { background: #22c55e; }
+  .prog i.now { background: #2f6fd0; }
+  .prog span { font-size: 12px; color: #999; margin-left: 4px; }
+
+  .stage { position: relative; width: 300px; margin-bottom: 104px; }
+  .bubble { position: absolute; z-index: 5; top: 100%; margin-top: 12px; left: 0; right: 0; background: #fff; border: 1px solid #c9c9d2; border-radius: 10px; padding: 11px 14px; font-size: 13px; line-height: 1.65; color: #222; box-shadow: 0 3px 10px rgba(0,0,0,.14); }
+  .bubble .arrow { position: absolute; top: -6px; width: 10px; height: 10px; background: #fff; border-left: 1px solid #c9c9d2; border-top: 1px solid #c9c9d2; transform: rotate(45deg); }
+  .bubble b { background: #fef3c7; color: #92400e; padding: 1px 5px; border-radius: 4px; font-weight: 600; }
+  code { font-family: 'Consolas', monospace; font-size: 11px; background: #eef0f4; color: #666; padding: 1px 5px; border-radius: 4px; border: 1px solid #e0e2e8; white-space: nowrap; }
+  .bubble .err { color: #dc2626; font-weight: 600; }
+  .bubble .okk { color: #16a34a; font-weight: 600; }
+
+  .device { width: 300px; height: 300px; background: #5a5a60; border-radius: 10px; padding: 10px; }
+  .face { background: #3e3e44; border-radius: 6px; padding: 12px; height: 100%; display: flex; flex-direction: column; }
+  .pvlabel { font-size: 11px; color: #ddd; font-weight: 500; margin-bottom: 6px; }
+  .lcd { background: #0a0a0a; border-radius: 4px; padding: 12px; display: flex; gap: 10px; flex: 1; }
+  .outbar { display: flex; flex-direction: column; justify-content: flex-end; gap: 3px; padding-bottom: 2px; }
+  .outbar span { font-size: 8px; color: #9be89b; }
+  .outbar i { width: 10px; height: 5px; display: block; background: #14532d; }
+  .outbar i.on { background: #22c55e; }
+  .lcd-main { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+  .pv { font-family: 'Consolas', monospace; font-size: 34px; line-height: 1; color: #ff2d1a; text-align: right; letter-spacing: 2px; white-space: nowrap; overflow: hidden; }
+  .sprow { display: flex; align-items: baseline; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+  .splabel { font-size: 11px; color: #3fd13f; }
+  .sp { font-family: 'Consolas', monospace; font-size: 23px; line-height: 1; color: #ff9b1a; letter-spacing: 2px; white-space: nowrap; }
+  .sp .dcur { border-bottom: 3px solid #ffdd57; animation: blk 1s steps(1) infinite; }
+  @keyframes blk { 50% { opacity: .2; } }
+  .lamps { display: flex; gap: 7px; margin-top: 10px; }
+  .lamps span { font-size: 8px; }
+  .lamps .amber { color: #4a3520; } .lamps .amber.on { color: #ffb84d; }
+  .lamps .red { color: #4a1515; } .lamps .red.on { color: #ff4d4d; }
+  .lcdmsg { font-size: 10px; color: #777; margin-top: 8px; text-align: right; min-height: 12px; }
+  .keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 10px; }
+  .keys button { position: relative; overflow: hidden; height: 36px; border-radius: 5px; font-size: 11px; cursor: pointer; color: #ddd; background: #2b2b30; border: 1px solid #55535c; -webkit-user-select: none; user-select: none; touch-action: none; }
+  .keys button:active { filter: brightness(1.2); }
+  .keys .kset { background: #2f6fd0; border-color: #1e4f9e; color: #fff; font-weight: 500; }
+  .keys button.hint { box-shadow: 0 0 0 3px #22c55e, 0 0 14px 3px rgba(34,197,94,.75); animation: pulseHint 1.1s ease-in-out infinite; z-index: 1; }
+  @keyframes pulseHint { 50% { box-shadow: 0 0 0 3px #22c55e, 0 0 22px 8px rgba(34,197,94,.4); } }
+  .keys button.dim { opacity: .38; }
+  .keys .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: rgba(255,255,255,.3); pointer-events: none; }
+  .keys .lbl { position: relative; pointer-events: none; }
+
+  .rcard { background: #fff; border: 1px solid #e2e2e6; border-radius: 12px; padding: 16px 18px; }
+  .rcard h2 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .rcard .cap { font-size: 12px; color: #999; margin-bottom: 10px; }
+  .scenbtn { display: block; width: 100%; text-align: left; padding: 10px 12px; margin-bottom: 8px; border: 1px solid #d5d5da; border-radius: 8px; background: #fff; cursor: pointer; font-size: 12px; color: #777; line-height: 1.4; }
+  .scenbtn b { display: block; font-size: 14px; color: #222; margin-bottom: 2px; }
+  .scenbtn.sel { border: 2px solid #2f6fd0; background: #eaf1fb; }
+  .scenbtn.sel b { color: #2f6fd0; }
+  canvas { width: 100%; height: auto; display: block; }
+  .legend { display: flex; gap: 14px; margin-top: 8px; font-size: 12px; color: #777; }
+  .legend i { display: inline-block; width: 14px; height: 3px; vertical-align: middle; margin-right: 4px; border-radius: 2px; }
+  .commrow { display: flex; justify-content: space-between; font-size: 13px; padding: 7px 2px; border-bottom: 1px solid #f0f0f2; }
+  .commrow b { font-weight: 600; color: #2f6fd0; }
+  .commrow .pending { color: #ccc; font-weight: 400; }
+  .donebox { margin-top: 12px; padding: 10px 14px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; font-size: 13px; color: #16a34a; display: none; line-height: 1.5; }
+  .toolrow { margin-top: 12px; }
+  .toolrow button { padding: 7px 14px; font-size: 13px; border: 1px solid #d5d5da; border-radius: 8px; background: #fff; cursor: pointer; }
+  .note { margin-top: 20px; font-size: 12px; color: #999; line-height: 1.6; }
+  .textver { margin-top: 28px; }
+  .textver details { border: 1px solid #e2e2e6; border-radius: 10px; background: #fff; margin-bottom: 10px; }
+  .textver summary { cursor: pointer; padding: 12px 16px; font-size: 14px; font-weight: 600; color: #666; list-style-position: inside; }
+  .textver summary:hover { color: #2f6fd0; }
+  .textver .tvbody { padding: 4px 20px 16px; font-size: 14px; color: #444; line-height: 1.75; border-top: 1px solid #f0f0f2; }
+  .textver h3 { font-size: 14px; margin: 14px 0 6px; }
+  .textver ol { padding-left: 20px; }
+  .textver li { margin-bottom: 4px; }
+  .textver p { margin: 6px 0; }
+</style>
+</head>
+<body>
+<div id="pumplab-header"></div>
+<div class="tcg-page">
+<div class="tcg-wrap">
+  <h1 id="pgtitle">온도컨트롤러 사용법 가이드</h1>
+  <p class="sub" id="pgsub">말풍선이 가리키는 빛나는 버튼을 눌러 조작을 연습하세요. "2초 꾹" 단계는 버튼을 길게 누르고 있어야 합니다(실제 기기는 3초 이상). 회색 칩(<code>1.SP1</code> 등)은 실제 기기 화면에 표시되는 이름이에요.</p>
+
+  <div id="langgate" style="background:#fff;border:1px solid #e2e2e6;border-radius:12px;padding:28px;max-width:440px;margin:10px auto 30px;text-align:center;">
+    <p style="font-size:15px;font-weight:600;margin-bottom:16px;">언어 선택 · Select Language · 选择语言</p>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button class="tab" onclick="chooseLang('ko')" style="font-size:15px;padding:10px 22px;">한국어</button>
+      <button class="tab" onclick="chooseLang('en')" style="font-size:15px;padding:10px 22px;">English</button>
+      <button class="tab" onclick="chooseLang('zh')" style="font-size:15px;padding:10px 22px;">中文</button>
+    </div>
+  </div>
+
+
+  <div class="tabs" id="tabs" style="display:none"></div>
+
+  <div class="main" id="mainarea" style="display:none">
+    <div class="leftcol">
+      <div class="prog" id="prog"></div>
+      <div class="stage">
+        <div class="bubble" id="bubble"><span id="btext"></span><div class="arrow" id="barrow"></div></div>
+        <div class="device">
+          <div class="face">
+            <div class="pvlabel">PV</div>
+            <div class="lcd">
+              <div class="outbar">
+                <span>OUT</span>
+                <i id="o7"></i><i id="o6"></i><i id="o5"></i><i id="o4"></i><i id="o3"></i><i id="o2"></i><i id="o1"></i>
+              </div>
+              <div class="lcd-main">
+                <div class="pv" id="pv">25.0</div>
+                <div class="sprow"><span class="splabel" id="splab">SP</span><span class="sp" id="sp">STOP</span></div>
+                <div class="lamps">
+                  <span class="amber" id="lp1">P1</span><span class="amber" id="lp2">P2</span><span class="amber" id="lhold">HOLD</span>
+                  <span class="red">EV1</span><span class="red">EV2</span><span class="red">EV3</span><span class="red">EV4</span>
+                </div>
+                <div class="lcdmsg" id="msg">전원 투입 · STOP</div>
+              </div>
+            </div>
+            <div class="keys" id="keys">
+              <button data-k="set" class="kset"><span class="fill"></span><span class="lbl">SET</span></button>
+              <button data-k="rst"><span class="fill"></span><span class="lbl">◀/RST</span></button>
+              <button data-k="down"><span class="fill"></span><span class="lbl">▼/P1</span></button>
+              <button data-k="up"><span class="fill"></span><span class="lbl">▲/P2</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="toolrow"><button id="btnreset" onclick="resetTask()">↻ 처음부터</button></div>
+    </div>
+
+    <div>
+      <div class="rcard" id="scencard" style="display:none; margin-bottom:12px;">
+        <h2 id="scenH">어떤 운전을 만들까요?</h2>
+        <p class="cap" id="scenCap">목표를 고르면 그래프에 목표 스케줄(점선)이 뜨고, 위저드가 설정 방법을 알려줍니다.</p>
+        <div id="scenbtns"></div>
+      </div>
+      <div class="rcard" id="chartcard">
+        <h2 id="chartH">온도·시간 스케줄</h2>
+        <p class="cap" id="chartcap">설정한 값이 실시간으로 그래프에 반영됩니다.</p>
+        <canvas id="chart" width="520" height="300"></canvas>
+        <div class="legend"><span><i style="background:#d85a30"></i><span id="legsp">SP 스케줄</span></span><span><i style="background:#f0a030"></i><span id="legpv">PV (운전 시)</span></span></div>
+      </div>
+      <div class="rcard" id="commcard" style="display:none;">
+        <h2 id="commH">RS485 통신 설정 요약</h2>
+        <p class="cap" id="commCap">설정을 진행하면 값이 채워집니다.</p>
+        <div id="commlist"></div>
+      </div>
+      <div class="donebox" id="donebox"></div>
+      <div class="rcard" id="ctaBox" style="margin-top:12px;">
+        <h2 style="font-size:15px; font-weight:600; margin-bottom:6px;">장비·견적 문의</h2>
+        <p style="font-size:13px; color:#555; line-height:1.65; margin:0 0 8px;">실험셋업연구소는 삼흥에너지(SH Scientific) 전기로와 LeadFluid 펌프를 취급하며, 온도 스케줄과 가스 유량(MFC)을 연동하는 자동화 셋업을 지원합니다. 이 컨트롤러가 탑재된 전기로의 모델 선정·견적·납품 문의를 환영합니다. 타 제조사 장비의 컨트롤러·셋업 문의도 가능합니다.</p>
+        <p style="font-size:13px; margin:0;"><a href="https://rndsetup.com/contact/" style="color:#2f6fd0;">문의하기</a> · <a href="mailto:info@rndsetup.com" style="color:#2f6fd0;">info@rndsetup.com</a> · 070-8983-2600</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="note" id="noteP">
+    제작·운영: <a href="https://rndsetup.com" style="color:#777;">실험셋업연구소 (rndsetup.com)</a> · 최종 수정: 2026-07-20 · 장비·소모품 문의 환영합니다.<br>
+    ※ 본 페이지는 삼원테크놀로지 NOVA500E 시리즈(SP590 등) 사용설명서를 참고하여 자체 제작한 비공식 학습 자료이며, 화면 표시·동작은 실제 제품과 다를 수 있습니다.
+    운전 시뮬레이션은 시간을 가속(1초 ≈ 수 분)하여 보여줍니다. 정확한 사양은 제조사의 공식 사용설명서를 참조하세요.
+  </p>
+
+  <section class="textver">
+    <p style="font-size:13px; color:#999; margin: 24px 0 10px; border-top: 1px solid #e2e2e6; padding-top: 20px;" id="refLabel">참고 자료 (펼쳐서 보기)</p>
+    <details>
+      <summary id="sm-faq">자주 묻는 질문 (FAQ)</summary>
+      <div class="tvbody" id="tb-faq">
+        <h3>버튼을 눌러도 반응이 없어요</h3>
+        <p>Key 잠금(LOCK)이 설정된 경우입니다. 제어그룹(G.CTL)의 LOCK 파라메터를 해제하세요.</p>
+        <h3>오토튜닝(AT)이 실행되지 않아요</h3>
+        <p>오토튜닝은 RUN 상태에서만 실행됩니다. 운전을 먼저 시작하고 PV 입력(센서)이 정상인지 확인한 뒤, 오토튜닝 그룹(G.AT)에서 AT=ON으로 설정하세요. 입력 단선 시 자동 중단됩니다.</p>
+        <h3>프로그램이 반복되지 않아요</h3>
+        <p>RPT(횟수)·RST(시작)·REN(종료)을 모두 설정했는지, RST ≤ REN 조건을 만족하는지 확인하세요. 패턴 전체 반복은 종료동작(LC)을 자기 패턴(PTN1/PTN2)으로 지정합니다.</p>
+        <h3>운전 시작 시 현재 온도부터 시작해요</h3>
+        <p>운전 시작 조건(STC) 기본값이 PV이기 때문입니다. 설정한 시작점부터 시작하려면 STC=SSP로 변경하고 SSP 값을 설정하세요.</p>
+        <h3>세그먼트가 넘어가지 않고 멈춰 있어요</h3>
+        <p>대기동작(Wait) 때문일 수 있습니다. PV가 대기범위(W.ZON)에 들어올 때까지 대기하며, 대기시간(W.TM) 경과 시 자동 진행됩니다. 원치 않으면 W.ZON=OFF로 설정하세요.</p>
+        <h3>RS485 통신이 안 돼요</h3>
+        <p>통신 옵션 장착 여부, A/B 배선, COM.P·BAUD·PRTY·S.BIT·D.LEN이 상위 프로그램과 일치하는지, ADDR 중복이 없는지 확인하세요.</p>
+      </div>
+    </details>
+    <details>
+      <summary id="sm-dl">공식 사용설명서 다운로드 (한글·영문·중문)</summary>
+      <div class="tvbody" id="tb-dl">
+        <p>NOVA500E 시리즈(SP590/SP580/SP570/SP540) 공식 사용설명서는 제조사 홈페이지 자료실에서 언어별로 다운로드할 수 있습니다.</p>
+        <ol>
+          <li>한글판 사용설명서 — <a href="http://www.samwontech.com/bbs/board.php?bo_table=p_c_1_5&wr_id=5" target="_blank" rel="noopener">삼원테크놀로지 공식 홈페이지 제품 자료실</a></li>
+          <li>영문판(English) 사용설명서 — 위 제조사 자료실에서 언어 선택 후 다운로드</li>
+          <li>중문판(中文) 사용설명서 — 위 제조사 자료실에서 언어 선택 후 다운로드</li>
+        </ol>
+        <p style="font-size:12px; color:#999;">출처: ㈜삼원테크놀로지(SAMWONTECH) 공식 홈페이지 (samwontech.com). 모든 사용설명서의 저작권은 ㈜삼원테크놀로지에 있으며, 본 페이지는 원본 파일을 복제·배포하지 않고 공식 다운로드 경로만 안내합니다.</p>
+      </div>
+    </details>
+    <details>
+      <summary id="sm-sh">이 컨트롤러가 적용되는 장비 — 삼흥에너지(SH Scientific) 전기로</summary>
+      <div class="tvbody" id="tb-sh">
+        <p id="shIntro">삼흥에너지(SH Scientific) 전기로의 탑재 컨트롤러를 제품 사양표 기준으로 확인하여 분류한 목록입니다. SP590과 SP570은 같은 NOVA500E-SP 계열로 조작 방법이 동일하여 본 가이드가 그대로 적용됩니다.</p>
+        <h3 id="shH1">① 본 가이드 적용 — SP590·SP570 기본 탑재 (사양표 확인)</h3>
+        <ol>
+          <li>1700·1800·1900℃ MoSi₂ 머플 (SP590): <code>SH-FU-4MS1700</code>, <code>SH-FU-11MS1700</code>, <code>SH-FU-22MS1700</code>, <code>SH-FU-4MS1800</code>, <code>SH-FU-11MS1800</code>, <code>SH-FU-22MS1800</code>, <code>SH-FU-4MS1900</code>, <code>SH-FU-11MS1900</code>, <code>SH-FU-22MS1900</code> · 진공: <code>SH-FU-4.5MSV</code>, <code>SH-FU-10MSV</code>, <code>SH-FU-18.7MSV</code> · 엘레베이터형: <code>SH-FU-2MSU</code>, <code>SH-FU-4MSU</code>, <code>SH-FU-6MSU</code></li>
+          <li>1200℃ 진공 머플 (SP570): <code>SH-FU-1.5MGV</code>, <code>SH-FU-10MGV</code>, <code>SH-FU-31MGV</code>, <code>SH-FU-64MGV</code>, <code>SH-FU-125MGV</code> · 진공 고속승온: <code>SH-FU-1.5MGVQ</code>, <code>SH-FU-10MGVQ</code>, <code>SH-FU-31MGVQ</code></li>
+          <li>튜브 전기로 (SP570) — 1200℃: <code>SH-FU-30TG150</code>, <code>SH-FU-50TG200</code>, <code>SH-FU-80TG200</code>, <code>SH-FU-100TG200</code>, <code>SH-FU-120TG200</code>, <code>SH-FU-50TG300</code>, <code>SH-FU-80TG300</code>, <code>SH-FU-100TG300</code>, <code>SH-FU-120TG300</code>, <code>SH-FU-200TG200</code>, <code>SH-FU-200TG300</code>, <code>SH-FU-250TG200</code>, <code>SH-FU-250TG300</code>, <code>SH-FU-50TG600</code>, <code>SH-FU-80TG600</code>, <code>SH-FU-100TG600</code>, <code>SH-FU-120TG600</code>, <code>SH-FU-200TG600</code>, <code>SH-FU-250TG600</code> · 3존: <code>SH-FU-50TS300</code>, <code>SH-FU-80TS300</code>, <code>SH-FU-100TS300</code>, <code>SH-FU-120TS300</code> · 1500℃: <code>SH-FU-50TH300</code>, <code>SH-FU-80TH300</code>, <code>SH-FU-100TH300</code>, <code>SH-FU-120TH300</code></li>
+        </ol>
+        <h3 id="shH2">② 본 가이드 적용 (옵션 선택 시) — 기본 Digital PID, SP570 옵션</h3>
+        <ol>
+          <li>1050℃ 칸탈 머플: <code>SH-FU-3MGE</code>, <code>SH-FU-5MGE</code>, <code>SH-FU-7MGE</code>, <code>SH-FU-11MGE</code></li>
+          <li>1200℃ 표준 머플: <code>SH-FU-3MG</code>, <code>SH-FU-5MG</code>, <code>SH-FU-14MG</code>, <code>SH-FU-27MG</code>, <code>SH-FU-64MG</code>, <code>SH-FU-125MG</code> · 고속승온: <code>SH-FU-5MGQ</code>, <code>SH-FU-14MGQ</code>, <code>SH-FU-27MGQ</code> · 엘레베이터형: <code>SH-FU-3.5MGU</code>, <code>SH-FU-6.5MGU</code></li>
+        </ol>
+        <h3 id="shH3">③ 다른 컨트롤러 탑재 — FC-1000 (본 가이드 미적용)</h3>
+        <ol>
+          <li>1500℃ SiC 머플: <code>SH-FU-4MH</code>, <code>SH-FU-11MH</code>, <code>SH-FU-22MH</code>, <code>SH-FU-36MH</code> · 진공: <code>SH-FU-4.5MHV</code>, <code>SH-FU-18.7MHV</code> · 엘레베이터형: <code>SH-FU-2MHU</code>, <code>SH-FU-4MHU</code>, <code>SH-FU-6MHU</code></li>
+        </ol>
+        <h3 id="shH4">④ 구성별 상이 — 구매처 확인 권장</h3>
+        <ol>
+          <li>회전형 튜브로: <code>SH-FU-120RTG300</code>, <code>SH-FU-200RTG300</code>, <code>SH-FU-250RTG300</code>, <code>SH-FU-120RTG900</code>, <code>SH-FU-200RTG900</code>, <code>SH-FU-250RTG900</code> · 롤러 킬른: <code>SH-FU-100RKG600</code>, <code>SH-FU-120RKG600</code>, <code>SH-FU-140RKG600</code>, <code>SH-FU-100RKG900</code>, <code>SH-FU-120RKG900</code>, <code>SH-FU-140RKG900</code>, <code>SH-FU-100RKH600</code>, <code>SH-FU-120RKH600</code>, <code>SH-FU-100RKH900</code>, <code>SH-FU-120RKH900</code> · 초고온: <code>SH-FU-1.8MS3000</code></li>
+          <li>CVD 시스템: <code>SH-CVD-30TG150</code>, <code>SH-CVD-50TG200</code>~<code>SH-CVD-250TG600</code> (TG 전 구경·길이), <code>SH-CVD-50TS300</code>~<code>SH-CVD-120TS300</code>, <code>SH-CVD-50TH300</code>~<code>SH-CVD-120TH300</code>, <code>SH-RTCVD-100TG200</code>, <code>SH-RTCVD-100TG300</code>, <code>SH-CVD-PK</code></li>
+        </ol>
+        <p id="shOut">확인 출처: 삼흥에너지 공식 판매처 실험실닷컴 및 삼흥과학 제품 사양표 (2026년 7월 기준). 예: SH-FU-11MS1700 사양 "Programmable Controller(SP590)", SH-FU-31MGV·튜브로 사양 "Programmable Controller(SP570)", SH-FU-3MG 옵션 "Programmable controller(SP570)". 사양·옵션은 변경될 수 있으므로 구매 전 확인을 권장합니다.</p>
+        <p id="shCta" style="background:#f0f7ff; border-radius:8px; padding:10px 14px;">실험셋업연구소는 삼흥에너지 전기로를 취급합니다. 모델 선정이나 견적이 필요하시면 <a href="https://rndsetup.com/contact/">문의하기</a> 또는 info@rndsetup.com으로 연락주세요.</p>
+      </div>
+    </details>
+    <details>
+      <summary id="sm-g1">텍스트로 보는 사용법 — 프로그램 운전 (상승·유지·하강 스케줄 설정)</summary>
+      <div class="tvbody" id="tb-g1">
+        <p>삼원테크놀로지 NOVA500E 시리즈(SP590 등) 프로그램형 온도컨트롤러의 기본 운전 절차입니다. 실제 기기에서 SET 길게 누르기는 3초 이상입니다. (사용설명서 Ⅰ-26~38 참고)</p>
+        <h3>온도 스케줄 설정</h3>
+        <ol>
+          <li>운전화면에서 <code>SET</code> 버튼을 3초 이상 길게 눌러 설정화면으로 이동</li>
+          <li><code>SET</code>로 프로그램 그룹(<code>PTNO</code>) 진입 — 시간단위(<code>TMU</code>, 시.분/분.초) 확인</li>
+          <li>세그먼트1 목표온도(<code>1.SP1</code>): ◀로 자릿수 이동, ▲▼로 값 변경 후 SET 저장 (예: 80.0℃)</li>
+          <li>세그먼트1 운전시간(<code>1.TM1</code>): 예 00.30(30분) — 승온속도 = (80−25)℃ ÷ 30분 ≈ 1.8℃/분. 시간이 짧을수록 빠르게 승온</li>
+          <li>유지 구간: <code>1.SP2</code>에 같은 온도(80.0), <code>1.TM2</code>에 유지시간(예: 01.00 = 1시간) 입력</li>
+          <li>하강 구간: <code>1.SP3</code>에 낮은 온도(예: 25.0), <code>1.TM3</code>에 하강시간 입력. 세그먼트는 패턴당 최대 15개</li>
+          <li><code>SET</code> 3초 이상 → 운전화면 복귀</li>
+        </ol>
+        <h3>운전 시작·정지</h3>
+        <ol>
+          <li>패턴1 운전 시작: <code>▼/P1</code> 버튼 1초 누름 (패턴2는 <code>▲/P2</code>)</li>
+          <li>운전 정지: <code>◀/RST</code> 버튼 1초 누름 → STOP(RESET) 상태</li>
+        </ol>
+      </div>
+    </details>
+    <details>
+      <summary id="sm-g2">텍스트로 보는 사용법 — 반복 운전·종료 동작 설정 (RPT·LC)</summary>
+      <div class="tvbody" id="tb-g2">
+        <h3>구간 반복 (사이클 시험)</h3>
+        <ol>
+          <li>반복횟수(<code>1.RPT</code>): 1~999회, 0 = 무한반복</li>
+          <li>반복 종료 세그먼트(<code>1.REN</code>)와 반복 시작 세그먼트(<code>1.RST</code>) 설정 — 조건: RST ≤ REN</li>
+          <li>예: RPT=3, RST=1, REN=2 → 세그먼트 1~2를 3회 반복 후 다음 진행</li>
+        </ol>
+        <h3>패턴 종료 시 동작 (LINK CODE, <code>1.LC</code>)</h3>
+        <p><code>RST</code>: 운전 정지(기본값) · <code>HOLD</code>: 마지막 SP 온도 유지(RST 키로 해제) · <code>PTN1</code>/<code>PTN2</code>: 해당 패턴으로 연결 운전 — 자기 패턴을 지정하면 무한반복 운전이 됩니다. (사용설명서 Ⅰ-37, 39 참고)</p>
+      </div>
+    </details>
+    <details>
+      <summary id="sm-g3">텍스트로 보는 사용법 — RS485 통신 설정 (G.COM)</summary>
+      <div class="tvbody" id="tb-g3">
+        <ol>
+          <li>설정화면에서 ▲로 그룹 이동, 제어그룹(G.CTL)을 지나면 암호(<code>PWD</code>) 화면 — 초기값 0</li>
+          <li>통신그룹(<code>G.COM</code>) 진입 (통신 옵션 장착 시 표시)</li>
+          <li>통신 프로토콜(<code>COM.P</code>): PCC0/PCC1(초기값)/MBS.A(MODBUS ASCII)/MBS.R(MODBUS RTU) 등</li>
+          <li>통신 속도(<code>BAUD</code>): 9600~115.2K (초기값 38.4K)</li>
+          <li>패리티(<code>PRTY</code>): NONE/EVEN/ODD · 정지비트(<code>S.BIT</code>): 1/2 · 데이터길이(<code>D.LEN</code>): 7/8 (MODBUS 시 미표시)</li>
+          <li>통신 주소(<code>ADDR</code>): 1~99, 주소 중복 금지, 최대 31대 연결 (사용설명서 Ⅰ-92~93 참고)</li>
+        </ol>
+      </div>
+    </details>
+  </section>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const KCOL = { set: 0, rst: 1, down: 2, up: 3 };
+const START_TEMP = 25;
+let lang = 'ko';
+const T3 = (ko, en, zh) => ({ ko, en, zh });
+const TR = v => typeof v === 'string' ? v : (v[lang] || v.ko);
+
+const UI = {
+  title: T3('온도컨트롤러 사용법 가이드', 'Temperature Controller Interactive Guide', '温度控制器交互式使用指南'),
+  sub: T3('말풍선이 가리키는 빛나는 버튼을 눌러 조작을 연습하세요. "2초 꾹" 단계는 버튼을 길게 누르고 있어야 합니다(실제 기기는 3초 이상). 회색 칩(<code>1.SP1</code> 등)은 실제 기기 화면에 표시되는 이름이에요.',
+    'Practice by pressing the glowing button the tooltip points to. "Hold 2s" steps require holding the button (3s+ on the real device). Gray chips (<code>1.SP1</code>) are the names shown on the actual device display.',
+    '请按提示气泡指向的发光按钮进行练习。"长按2秒"步骤需要按住按钮（实际设备为3秒以上）。灰色标签（<code>1.SP1</code>）为实际设备屏幕上显示的名称。'),
+  restart: T3('↻ 처음부터', '↻ Restart', '↻ 重新开始'),
+  schedH: T3('온도·시간 스케줄', 'Temperature·time schedule', '温度·时间曲线'),
+  capDefault: T3('설정한 값이 실시간으로 그래프에 반영됩니다.', 'Your settings appear on the graph in real time.', '设置的数值会实时反映在图表中。'),
+  capGoal: T3('회색 점선이 목표 스케줄입니다.', 'The dashed gray line is the goal schedule.', '灰色虚线为目标曲线。'),
+  goalLabel: T3('목표', 'Goal', '目标'),
+  reselect: T3('목표 다시 선택', 'Change goal', '重新选择目标'),
+  legSP: T3('SP 스케줄', 'SP schedule', 'SP曲线'),
+  legPV: T3('PV (운전 시)', 'PV (running)', 'PV（运行时）'),
+  scenH: T3('어떤 운전을 만들까요?', 'What do you want to run?', '想实现哪种运行？'),
+  scenCap: T3('목표를 고르면 그래프에 목표 스케줄(점선)이 뜨고, 위저드가 설정 방법을 알려줍니다.', 'Pick a goal — its schedule appears as a dashed line and the wizard shows you how.', '选择目标后，图表将显示目标曲线（虚线），向导会指导设置方法。'),
+  commH: T3('RS485 통신 설정 요약', 'RS485 communication summary', 'RS485通信设置摘要'),
+  commCap: T3('설정을 진행하면 값이 채워집니다.', 'Values fill in as you set them.', '设置过程中数值会逐项填入。'),
+  selectFirst: T3('먼저 오른쪽 카드에서 <b>만들고 싶은 운전</b>을 선택하세요 →', 'First, choose <b>a goal</b> in the card on the right →', '请先在右侧卡片中选择<b>想要的运行方式</b> →'),
+  done: T3('<span class="okk">완료!</span> 다른 과제도 해보세요', '<span class="okk">Done!</span> Try the other lessons too', '<span class="okk">完成！</span>也试试其他课程吧'),
+  editPending: T3('값을 다 만들면 <b>SET</b>로 저장해야 다음으로 넘어갑니다', 'Once the value is ready, press <b>SET</b> to save and continue', '数值调好后需按<b>SET</b>保存才能继续'),
+  editReady: T3('좋아요! SET를 눌러 저장하세요', 'Great! Press SET to save', '很好！请按SET保存'),
+  errNotYet: T3('아직 목표값이 아니에요! 말풍선의 값을 만든 뒤 SET를 누르세요', 'Not the target value yet! Make the value first, then press SET', '还没到目标值！请先调好数值再按SET'),
+  errUpDown: T3('▲▼ 버튼으로 값을 바꾸세요', 'Use the ▲▼ buttons to change the value', '请用▲▼按钮修改数值'),
+  errUpDownSel: T3('▲▼ 버튼으로 선택하세요', 'Use the ▲▼ buttons to select', '请用▲▼按钮选择'),
+  editing: T3('값 입력 중', 'Editing value', '输入数值中'),
+  power: T3('전원 투입 · STOP', 'Power on · STOP', '通电 · STOP'),
+  stopMsg: T3('운전 정지 (RESET)', 'Stopped (RESET)', '运行停止（RESET）'),
+  minUnit: T3('분', 'min', '分'),
+  rateUnit: T3('℃/분', '℃/min', '℃/分'),
+  keep: T3('유지', 'hold', '保持'),
+  phSelect: T3('위에서 만들고 싶은 운전을 선택하면 목표 스케줄이 표시됩니다', 'Choose a goal above to see its schedule', '请先在上方选择运行方式，即可显示目标曲线'),
+  phInput: T3('목표온도와 시간을 입력하면 스케줄이 표시됩니다', 'Enter a target temperature and time to see the schedule', '输入目标温度和时间后将显示曲线'),
+  spWait: T3('(시간 입력 대기)', '(waiting for time)', '（等待输入时间）'),
+  infTag: T3('목표 (∞ 반복)', 'Goal (∞ loop)', '目标（∞循环）'),
+  endHold: T3('패턴 종료 · HOLD 유지 중', 'Pattern finished · HOLDing temperature', '程序结束 · HOLD保持中'),
+  endRst: T3('패턴 종료 (LC: RST)', 'Pattern finished (LC: RST)', '程序结束（LC: RST）'),
+  errWrong: btn => TR(T3('이 버튼이 아니에요! 지금은 <b>' + btn + '</b> 버튼 차례예요 (빛나는 버튼)', "Wrong button! It's <b>" + btn + "</b>'s turn (the glowing one)", '按错了！现在该按<b>' + btn + '</b>（发光按钮）')),
+  errShort: (h, n) => TR(T3(h + '초 — 너무 짧아요. ' + n + '초 이상 꾹!', h + 's — too short. Hold for ' + n + 's!', h + '秒 — 太短了，请按住' + n + '秒以上！')),
+  simRun: t => TR(T3('운전 중 · ' + t + '분 경과 (가속)', 'Running · ' + t + ' min elapsed (accelerated)', '运行中 · 已过' + t + '分钟（加速）')),
+  simInf: (c, t) => TR(T3('무한 반복 중 · ' + c + '회차 ' + t + '분 (가속)', 'Looping · cycle ' + c + ', ' + t + ' min', '无限循环 · 第' + c + '轮 ' + t + '分钟'))
+};
+
+function D(pv, sp, msg, opt) { return Object.assign({ pv: pv, sp: sp, msg: msg }, opt || {}); }
+
+let t1 = { segs: [{ sp: 0, tm: 0 }, { sp: 0, tm: 0 }, { sp: 0, tm: 0 }] };
+let t2 = { lc: 'RST', rpt: 1, ren: 0, rst: 0 };
+let t2sc = null;
+const T2SEGS = [{ sp: 80, tm: 30 }, { sp: 30, tm: 30 }];
+let comm = {};
+const COMM_FIELDS = [
+  ['COM.P', T3('프로토콜', 'Protocol', '协议')], ['BAUD', T3('통신 속도', 'Baud rate', '波特率')], ['PRTY', T3('패리티', 'Parity', '校验位')],
+  ['S.BIT', T3('정지 비트', 'Stop bit', '停止位')], ['D.LEN', T3('데이터 길이', 'Data length', '数据位')], ['ADDR', T3('통신 주소', 'Address', '通信地址')]
+];
+
+const TASKS = [
+  {
+    title: T3('기본 운전하기', 'Basic operation', '基本运行'),
+    steps: [
+      { key: 'set', hold: 2, bub: T3('SET <b>2초 꾹</b> → 설정화면 진입', 'Hold <b>SET 2s</b> → enter the setting screen', '长按<b>SET 2秒</b> → 进入设置画面'), disp: D('PROG', 'PTNO', T3('설정화면 · 프로그램 그룹', 'Setting screen · program group', '设置画面 · 程序组')) },
+      { key: 'set', bub: T3('SET → 프로그램 설정으로 들어갑니다<br><span style="font-size:12px;color:#888;">시간단위 화면이 먼저 나와요 <code>TMU</code></span>', 'SET → enter program settings<br><span style="font-size:12px;color:#888;">the time-unit screen appears first <code>TMU</code></span>', 'SET → 进入程序设置<br><span style="font-size:12px;color:#888;">首先显示时间单位画面 <code>TMU</code></span>'), disp: D('TMU', 'HH.MM', T3('시간단위 시.분', 'Time unit HH.MM', '时间单位 时.分')) },
+      { key: 'set', bub: T3('SET 반복 → <b>1구간 목표온도</b> 화면으로 이동 <code>1.SP1</code>', 'Press SET repeatedly → <b>segment-1 target temperature</b> screen <code>1.SP1</code>', '连按SET → 进入<b>第1段目标温度</b>画面 <code>1.SP1</code>'), disp: D('1.SP1', '000.0', T3('세그먼트1 목표온도', 'Segment-1 target temperature', '第1段目标温度')) },
+      { edit: { type: 'temp', target: 80 }, pvLabel: '1.SP1', apply: v => { t1.segs[0].sp = v; },
+        bub: T3('<b>상승 구간</b> · <b>◀</b> 자릿수, <b>▲▼</b> 값<br>→ <b>80.0</b>을 만드세요', '<b>Ramp-up</b> · <b>◀</b> digit, <b>▲▼</b> value<br>→ make it <b>80.0</b>', '<b>升温段</b> · <b>◀</b>选位、<b>▲▼</b>改值<br>→ 调到<b>80.0</b>') },
+      { edit: { type: 'time', target: 30 }, pvLabel: '1.TM1', apply: v => { t1.segs[0].tm = v; },
+        bub: T3('<b>00.30</b>(30분) 만들기 → 30분 동안 80℃까지 상승<br><span style="font-size:12px;color:#888;">승온속도 = (80−25)℃ ÷ 30분 ≈ <b>1.8℃/분</b> · 시간을 짧게 하면 빠르게, 길게 하면 천천히 올라갑니다</span>', 'Make <b>00.30</b> (30 min) → ramp to 80℃ over 30 min<br><span style="font-size:12px;color:#888;">Heating rate = (80−25)℃ ÷ 30 min ≈ <b>1.8℃/min</b> · shorter time = faster ramp</span>', '调到<b>00.30</b>（30分钟）→ 30分钟升到80℃<br><span style="font-size:12px;color:#888;">升温速率 =（80−25）℃ ÷ 30分 ≈ <b>1.8℃/分</b> · 时间越短升温越快</span>') },
+      { edit: { type: 'temp', target: 80 }, pvLabel: '1.SP2', apply: v => { t1.segs[1].sp = v; },
+        bub: T3('<b>유지 구간</b> · 같은 온도 <b>80.0</b> 입력<br><span style="font-size:12px;color:#888;">SP가 같으면 그 온도를 유지합니다</span>', '<b>Soak</b> · enter the same temperature <b>80.0</b><br><span style="font-size:12px;color:#888;">same SP = hold at that temperature</span>', '<b>保温段</b> · 输入相同温度<b>80.0</b><br><span style="font-size:12px;color:#888;">SP相同即保持该温度</span>') },
+      { edit: { type: 'time', target: 60 }, pvLabel: '1.TM2', apply: v => { t1.segs[1].tm = v; },
+        bub: T3('<b>01.00</b>(1시간) 만들기 → 80℃로 1시간 유지', 'Make <b>01.00</b> (1 hour) → hold at 80℃ for 1 hour', '调到<b>01.00</b>（1小时）→ 80℃保温1小时') },
+      { edit: { type: 'temp', target: 25 }, pvLabel: '1.SP3', apply: v => { t1.segs[2].sp = v; },
+        bub: T3('<b>하강 구간</b> · <b>25.0</b> 입력 (상온 복귀)', '<b>Ramp-down</b> · enter <b>25.0</b> (back to room temp)', '<b>降温段</b> · 输入<b>25.0</b>（回到室温）') },
+      { edit: { type: 'time', target: 30 }, pvLabel: '1.TM3', apply: v => { t1.segs[2].tm = v; },
+        bub: T3('<b>00.30</b>(30분) 만들기 → 30분에 걸쳐 하강<br><span style="font-size:12px;color:#888;">하강속도 ≈ <b>1.8℃/분</b> · 그래프에서 구간별 속도를 확인하세요</span>', 'Make <b>00.30</b> (30 min) → cool down over 30 min<br><span style="font-size:12px;color:#888;">cooling rate ≈ <b>1.8℃/min</b> · check per-segment rates on the graph</span>', '调到<b>00.30</b>（30分钟）→ 用30分钟降温<br><span style="font-size:12px;color:#888;">降温速率 ≈ <b>1.8℃/分</b> · 图表中可查看各段速率</span>') },
+      { key: 'set', bub: T3('SET → 저장 완료. 상승→유지→하강 스케줄 완성!', 'SET → saved. Ramp→soak→cool schedule complete!', 'SET → 保存完成。升温→保温→降温曲线完成！'), disp: D('1.TS3', 'OFF', T3('타임시그널 (사용 안 함)', 'Time signal (unused)', '时间信号（不使用）')) },
+      { key: 'set', hold: 2, bub: T3('SET <b>2초 꾹</b> → 운전화면 복귀', 'Hold <b>SET 2s</b> → back to the run screen', '长按<b>SET 2秒</b> → 返回运行画面'), disp: D('25.0', 'STOP', T3('운전화면 · STOP', 'Run screen · STOP', '运行画面 · STOP')) },
+      { key: 'down', hold: 1, bub: T3('▼/P1 <b>1초 꾹</b> → 패턴1 운전 시작!', 'Hold <b>▼/P1 1s</b> → start pattern-1!', '长按<b>▼/P1 1秒</b> → 启动程序1！'), onDone: 'startSim' },
+      { key: 'rst', hold: 1, bub: T3('◀/RST <b>1초 꾹</b> → 정지<br><span style="color:#999;font-size:12px;">원하는 시점에 정지할 수 있어요</span>', 'Hold <b>◀/RST 1s</b> → stop<br><span style="color:#999;font-size:12px;">you can stop at any time</span>', '长按<b>◀/RST 1秒</b> → 停止<br><span style="color:#999;font-size:12px;">可随时停止</span>'), onDone: 'stopSim', disp: D('25.0', 'STOP', T3('운전 정지 (RESET)', 'Stopped (RESET)', '运行停止（RESET）')) }
+    ],
+    doneMsg: T3('✓ 완료! 상승(30분)→유지(1시간)→하강(30분) 스케줄 설정과 운전 시작(P1)·정지(RST)의 기본 흐름입니다. 패턴2는 ▲/P2 1초로 시작하며, 세그먼트는 패턴당 최대 15개까지 이어붙일 수 있어요.',
+      '✓ Done! You set a ramp(30m)→soak(1h)→cool(30m) schedule, started with P1 and stopped with RST. Pattern 2 starts with ▲/P2 (1s). Up to 15 segments per pattern.',
+      '✓ 完成！您设置了升温(30分)→保温(1小时)→降温(30分)曲线，用P1启动、RST停止。程序2用▲/P2（1秒）启动，每个程序最多15段。')
+  },
+  { title: T3('반복·종료 동작 설정', 'Repeat & end action', '循环与结束动作'), steps: [], doneMsg: '' },
+  {
+    title: T3('RS485 통신 설정', 'RS485 communication', 'RS485通信设置'),
+    steps: [
+      { key: 'set', hold: 2, bub: T3('SET <b>2초 꾹</b> → 설정화면 진입', 'Hold <b>SET 2s</b> → enter the setting screen', '长按<b>SET 2秒</b> → 进入设置画面'), disp: D('PROG', 'PTNO', T3('설정화면 · 1번 그룹', 'Setting screen · group 1', '设置画面 · 第1组')) },
+      { key: 'up', bub: T3('<b>▲</b> 반복 → 설정 그룹들을 지나면 <b>암호 화면</b>이 나와요 <code>PWD</code>', 'Press <b>▲</b> repeatedly → past the setting groups, the <b>password screen</b> appears <code>PWD</code>', '连按<b>▲</b> → 经过各设置组后出现<b>密码画面</b> <code>PWD</code>'), disp: D('PWD', '0', T3('암호 입력 (초기값 0)', 'Password (default 0)', '输入密码（默认0）')) },
+      { key: 'set', bub: T3('암호(초기값 0) 확인 후 SET → <b>통신 설정 그룹</b> <code>G.COM</code>', 'Confirm the password (default 0) and press SET → <b>communication group</b> <code>G.COM</code>', '确认密码（默认0）后按SET → <b>通信设置组</b> <code>G.COM</code>'), disp: D('G.COM', '', T3('통신 그룹 (옵션)', 'Communication group (option)', '通信组（选配）')) },
+      { key: 'set', bub: T3('SET → <b>통신 방식</b> 선택 화면 <code>COM.P</code><br><span style="font-size:12px;color:#888;">MODBUS 사용 시 MBS.A/MBS.R 선택</span>', 'SET → <b>protocol</b> screen <code>COM.P</code><br><span style="font-size:12px;color:#888;">for MODBUS choose MBS.A/MBS.R</span>', 'SET → <b>通信协议</b>画面 <code>COM.P</code><br><span style="font-size:12px;color:#888;">使用MODBUS时选择MBS.A/MBS.R</span>'), disp: D('COM.P', 'PCC1', T3('통신 프로토콜', 'Protocol', '通信协议')), commSet: ['COM.P', 'PCC1'] },
+      { key: 'set', bub: T3('SET → <b>통신 속도</b> <code>BAUD</code> (9600~115.2K)', 'SET → <b>baud rate</b> <code>BAUD</code> (9600–115.2K)', 'SET → <b>波特率</b> <code>BAUD</code>（9600~115.2K）'), disp: D('BAUD', '38.4K', T3('통신 속도', 'Baud rate', '波特率')), commSet: ['BAUD', '38.4K'] },
+      { key: 'set', bub: T3('SET → <b>패리티</b> <code>PRTY</code>', 'SET → <b>parity</b> <code>PRTY</code>', 'SET → <b>校验位</b> <code>PRTY</code>'), disp: D('PRTY', 'NONE', T3('패리티', 'Parity', '校验位')), commSet: ['PRTY', 'NONE'] },
+      { key: 'set', bub: T3('SET → <b>정지 비트</b> <code>S.BIT</code>', 'SET → <b>stop bit</b> <code>S.BIT</code>', 'SET → <b>停止位</b> <code>S.BIT</code>'), disp: D('S.BIT', '1', T3('정지 비트', 'Stop bit', '停止位')), commSet: ['S.BIT', '1'] },
+      { key: 'set', bub: T3('SET → <b>데이터 길이</b> <code>D.LEN</code><br><span style="font-size:12px;color:#888;">MODBUS 설정 시엔 표시되지 않아요</span>', 'SET → <b>data length</b> <code>D.LEN</code><br><span style="font-size:12px;color:#888;">not shown when MODBUS is selected</span>', 'SET → <b>数据位</b> <code>D.LEN</code><br><span style="font-size:12px;color:#888;">选择MODBUS时不显示</span>'), disp: D('D.LEN', '8', T3('데이터 길이', 'Data length', '数据位')), commSet: ['D.LEN', '8'] },
+      { key: 'set', bub: T3('SET → <b>기기 주소</b> 화면 <code>ADDR</code> (1~99, 최대 31대)', 'SET → <b>device address</b> screen <code>ADDR</code> (1–99, up to 31 units)', 'SET → <b>设备地址</b>画面 <code>ADDR</code>（1~99，最多31台）'), disp: D('ADDR', '1', T3('통신 주소', 'Address', '通信地址')) },
+      { edit: { type: 'int', start: 1, min: 1, max: 99, target: 2 }, pvLabel: 'ADDR', apply: v => { comm['ADDR'] = String(v); renderComm(); },
+        bub: T3('<b>▲</b>로 주소 <b>2</b> 설정<br><span style="font-size:12px;color:#888;">여러 대 연결 시 주소 중복 금지</span>', 'Set address <b>2</b> with <b>▲</b><br><span style="font-size:12px;color:#888;">no duplicate addresses on one line</span>', '用<b>▲</b>设为地址<b>2</b><br><span style="font-size:12px;color:#888;">多台连接时地址不可重复</span>') },
+      { key: 'set', hold: 2, bub: T3('SET → 저장 후 <b>2초 꾹</b> → 운전화면 복귀', 'SET to save, then hold <b>2s</b> → back to the run screen', '按SET保存后<b>长按2秒</b> → 返回运行画面'), disp: D('25.0', 'STOP', T3('운전화면 · 설정 완료', 'Run screen · setup complete', '运行画面 · 设置完成')) }
+    ],
+    doneMsg: T3('✓ 완료! RS485 배선(A/B)과 상위 프로그램 연동은 별도의 통신설명서를 참조하세요.', '✓ Done! For RS485 wiring (A/B) and host software setup, see the separate communication manual.', '✓ 完成！RS485接线（A/B）及上位机对接请参阅单独的通信手册。')
+  }
+];
+
+const T2_SCEN = {
+  rpt: {
+    name: T3('3회 반복 후 정지', 'Repeat 3 times, then stop', '循环3次后停止'),
+    desc: T3('사이클 시험처럼 세그1~2(80℃↔30℃)를 3회 반복하고 자동 정지', 'Cycle segments 1–2 (80℃↔30℃) three times, then stop automatically', '像循环试验一样将第1~2段（80℃↔30℃）重复3次后自动停止'),
+    doneMsg: T3('✓ 목표 달성! 구간반복(RPT=3, 세그1~2)으로 3회 반복 후 정지(LC=RST 기본값)하는 운전입니다.', '✓ Goal achieved! Segment repeat (RPT=3, seg 1–2) runs 3 cycles then stops (LC=RST default).', '✓ 达成目标！通过区间循环（RPT=3，第1~2段）运行3次后停止（LC=RST默认）。'),
+    steps: [
+      { key: 'set', hold: 2, bub: T3('SET <b>2초 꾹</b> → 설정화면 진입', 'Hold <b>SET 2s</b> → enter the setting screen', '长按<b>SET 2秒</b> → 进入设置画面'), disp: D('PROG', 'PTNO', T3('설정화면', 'Setting screen', '设置画面')) },
+      { key: 'set', bub: T3('SET → 프로그램 설정에서 <b>반복 횟수</b> 화면으로 이동 <code>1.RPT</code>', 'SET → go to the <b>repeat count</b> screen <code>1.RPT</code>', 'SET → 进入<b>循环次数</b>画面 <code>1.RPT</code>'), disp: D('1.RPT', '1', T3('구간반복 횟수', 'Repeat count', '区间循环次数')) },
+      { edit: { type: 'int', start: 1, min: 0, max: 999, target: 3 }, pvLabel: '1.RPT', apply: v => { t2.rpt = v; },
+        bub: T3('<b>▲</b>로 <b>3</b>회 만들기 (0=무한반복)', 'Set <b>3</b> with <b>▲</b> (0 = infinite)', '用<b>▲</b>设为<b>3</b>次（0=无限循环）') },
+      { edit: { type: 'int', start: 0, min: 0, max: 15, target: 2 }, pvLabel: '1.REN', apply: v => { t2.ren = v; },
+        bub: T3('<b>▲</b>로 <b>2</b> → 2구간까지 반복 <code>1.REN</code>', 'Set <b>2</b> with <b>▲</b> → repeat through segment 2 <code>1.REN</code>', '用<b>▲</b>设为<b>2</b> → 循环到第2段 <code>1.REN</code>') },
+      { edit: { type: 'int', start: 0, min: 0, max: 15, target: 1 }, pvLabel: '1.RST', apply: v => { t2.rst = v; },
+        bub: T3('<b>▲</b>로 <b>1</b> → 1~2구간을 3회 반복! <code>1.RST</code><br><span style="font-size:12px;color:#888;">그래프가 목표(점선)와 같아졌어요</span>', 'Set <b>1</b> with <b>▲</b> → segments 1–2 repeat 3 times! <code>1.RST</code><br><span style="font-size:12px;color:#888;">the graph now matches the goal</span>', '用<b>▲</b>设为<b>1</b> → 第1~2段循环3次！<code>1.RST</code><br><span style="font-size:12px;color:#888;">图表已与目标（虚线）一致</span>') },
+      { key: 'set', hold: 2, bub: T3('SET <b>2초 꾹</b> → 운전화면 복귀', 'Hold <b>SET 2s</b> → back to the run screen', '长按<b>SET 2秒</b> → 返回运行画面'), disp: D('25.0', 'STOP', T3('운전화면 · STOP', 'Run screen · STOP', '运行画面 · STOP')) },
+      { key: 'down', hold: 1, bub: T3('▼/P1 <b>1초 꾹</b> → 반복 운전 시작!', 'Hold <b>▼/P1 1s</b> → start the repeat run!', '长按<b>▼/P1 1秒</b> → 开始循环运行！'), onDone: 'startSim' },
+      { key: 'rst', hold: 1, bub: T3('◀/RST <b>1초 꾹</b> → 정지', 'Hold <b>◀/RST 1s</b> → stop', '长按<b>◀/RST 1秒</b> → 停止'), onDone: 'stopSim', disp: D('25.0', 'STOP', T3('운전 정지 (RESET)', 'Stopped (RESET)', '运行停止（RESET）')) }
+    ]
+  },
+  hold: {
+    name: T3('종료 후 온도 유지 (HOLD)', 'Hold temperature after end (HOLD)', '结束后保持温度（HOLD）'),
+    desc: T3('패턴이 끝나도 마지막 온도를 계속 유지 (RST 키로 해제)', 'Keeps the last temperature after the pattern ends (release with RST)', '程序结束后仍保持最终温度（按RST解除）'),
+    doneMsg: T3('✓ 목표 달성! 종료동작(LC)=HOLD로, 패턴 종료 후에도 마지막 SP를 유지하는 운전입니다. 해제는 ◀/RST 키.', '✓ Goal achieved! With end action LC=HOLD, the controller keeps the last SP after the pattern ends. Release with ◀/RST.', '✓ 达成目标！结束动作LC=HOLD，程序结束后仍保持最终SP。按◀/RST解除。'),
+    steps: [
+      { key: 'set', hold: 2, bub: T3('SET <b>2초 꾹</b> → 설정화면 진입', 'Hold <b>SET 2s</b> → enter the setting screen', '长按<b>SET 2秒</b> → 进入设置画面'), disp: D('PROG', 'PTNO', T3('설정화면', 'Setting screen', '设置画面')) },
+      { key: 'set', bub: T3('SET → <b>패턴 종료 후 동작</b> 화면으로 이동 <code>1.LC</code>', 'SET → go to the <b>end-of-pattern action</b> screen <code>1.LC</code>', 'SET → 进入<b>程序结束动作</b>画面 <code>1.LC</code>'), disp: D('1.LC', 'RST', T3('패턴 종료시 동작', 'End-of-pattern action', '程序结束动作')) },
+      { edit: { type: 'list', values: ['RST', 'HOLD', 'PTN1', 'PTN2'], target: 'HOLD' }, pvLabel: '1.LC', apply: v => { t2.lc = v; },
+        bub: T3('<b>▲</b>로 <b>HOLD</b>(유지) 선택<br><span style="font-size:12px;color:#888;">패턴이 끝나도 마지막 온도를 계속 유지합니다</span>', 'Select <b>HOLD</b> with <b>▲</b><br><span style="font-size:12px;color:#888;">keeps the last temperature after the pattern ends</span>', '用<b>▲</b>选择<b>HOLD</b>（保持）<br><span style="font-size:12px;color:#888;">程序结束后仍保持最终温度</span>') },
+      { key: 'set', hold: 2, bub: T3('SET → 저장 후 <b>2초 꾹</b> → 운전화면 복귀', 'SET to save, then hold <b>2s</b> → back to the run screen', '按SET保存后<b>长按2秒</b> → 返回运行画面'), disp: D('25.0', 'STOP', T3('운전화면 · STOP', 'Run screen · STOP', '运行画面 · STOP')) },
+      { key: 'down', hold: 1, bub: T3('▼/P1 <b>1초 꾹</b> → 운전 시작!', 'Hold <b>▼/P1 1s</b> → start the run!', '长按<b>▼/P1 1秒</b> → 开始运行！'), onDone: 'startSim' },
+      { key: 'rst', hold: 1, bub: T3('종료 후 <b>HOLD 유지 중</b>이 되는 걸 확인하고<br>◀/RST <b>1초 꾹</b> → 해제·정지', 'Watch it enter <b>HOLD</b> after the pattern ends, then<br>hold <b>◀/RST 1s</b> → release & stop', '确认结束后进入<b>HOLD保持</b>状态，然后<br>长按<b>◀/RST 1秒</b> → 解除并停止'), onDone: 'stopSim', disp: D('25.0', 'STOP', T3('운전 정지 (RESET)', 'Stopped (RESET)', '运行停止（RESET）')) }
+    ]
+  },
+  inf: {
+    name: T3('무한 반복 운전', 'Infinite loop run', '无限循环运行'),
+    desc: T3('정지할 때까지 같은 패턴을 계속 반복 (LC=PTN1)', 'Repeats the same pattern until you stop it (LC=PTN1)', '在停止前不断重复同一程序（LC=PTN1）'),
+    doneMsg: T3('✓ 목표 달성! 종료동작(LC)=PTN1(자기 패턴 연결)로 무한 반복하는 운전입니다. 정지는 ◀/RST 키.', '✓ Goal achieved! With LC=PTN1 (linking to itself), the pattern loops forever. Stop with ◀/RST.', '✓ 达成目标！LC=PTN1（连接自身程序）实现无限循环。按◀/RST停止。'),
+    steps: [
+      { key: 'set', hold: 2, bub: T3('SET <b>2초 꾹</b> → 설정화면 진입', 'Hold <b>SET 2s</b> → enter the setting screen', '长按<b>SET 2秒</b> → 进入设置画面'), disp: D('PROG', 'PTNO', T3('설정화면', 'Setting screen', '设置画面')) },
+      { key: 'set', bub: T3('SET → <b>패턴 종료 후 동작</b> 화면으로 이동 <code>1.LC</code>', 'SET → go to the <b>end-of-pattern action</b> screen <code>1.LC</code>', 'SET → 进入<b>程序结束动作</b>画面 <code>1.LC</code>'), disp: D('1.LC', 'RST', T3('패턴 종료시 동작', 'End-of-pattern action', '程序结束动作')) },
+      { edit: { type: 'list', values: ['RST', 'HOLD', 'PTN1', 'PTN2'], target: 'PTN1' }, pvLabel: '1.LC', apply: v => { t2.lc = v; },
+        bub: T3('<b>▲</b>로 <b>PTN1</b> 선택<br><span style="font-size:12px;color:#999;">지금 패턴(1)을 다시 연결 = 무한반복</span>', 'Select <b>PTN1</b> with <b>▲</b><br><span style="font-size:12px;color:#999;">linking pattern 1 to itself = infinite loop</span>', '用<b>▲</b>选择<b>PTN1</b><br><span style="font-size:12px;color:#999;">程序1连接自身 = 无限循环</span>') },
+      { key: 'set', hold: 2, bub: T3('SET → 저장 후 <b>2초 꾹</b> → 운전화면 복귀', 'SET to save, then hold <b>2s</b> → back to the run screen', '按SET保存后<b>长按2秒</b> → 返回运行画面'), disp: D('25.0', 'STOP', T3('운전화면 · STOP', 'Run screen · STOP', '运行画面 · STOP')) },
+      { key: 'down', hold: 1, bub: T3('▼/P1 <b>1초 꾹</b> → 무한 반복 운전 시작!', 'Hold <b>▼/P1 1s</b> → start the infinite loop!', '长按<b>▼/P1 1秒</b> → 开始无限循环运行！'), onDone: 'startSim' },
+      { key: 'rst', hold: 1, bub: T3('계속 반복되는 걸 확인하고<br>◀/RST <b>1초 꾹</b> → 정지', 'Watch it loop, then<br>hold <b>◀/RST 1s</b> → stop', '确认持续循环后<br>长按<b>◀/RST 1秒</b> → 停止'), onDone: 'stopSim', disp: D('25.0', 'STOP', T3('운전 정지 (RESET)', 'Stopped (RESET)', '运行停止（RESET）')) }
+    ]
+  }
+};
+
+function expandRepeat(segs, rpt, rs, re) {
+  const block = segs.slice(rs - 1, re);
+  let a = [];
+  for (let r = 0; r < rpt; r++) a = a.concat(block);
+  return a;
+}
+function selectScenario(id) {
+  t2sc = id;
+  t2 = { lc: 'RST', rpt: 1, ren: 0, rst: 0 };
+  TASKS[1].steps = T2_SCEN[id].steps;
+  TASKS[1].doneMsg = T2_SCEN[id].doneMsg;
+  stopSim();
+  cur = 0; editState = null;
+  applyDisp(D('25.0', 'STOP', UI.power));
+  $('chartcap').innerHTML = TR(UI.goalLabel) + ': <b>' + TR(T2_SCEN[id].name) + '</b> · ' + TR(UI.capGoal) + ' <button onclick="reselectScenario()" style="font-size:12px;padding:2px 8px;border:1px solid #d5d5da;border-radius:6px;background:#fff;cursor:pointer;margin-left:6px;">' + TR(UI.reselect) + '</button>';
+  renderScenario();
+  render();
+  drawChart();
+}
+function reselectScenario() {
+  t2sc = null;
+  TASKS[1].steps = [];
+  stopSim();
+  cur = 0; editState = null;
+  t2 = { lc: 'RST', rpt: 1, ren: 0, rst: 0 };
+  applyDisp(D('25.0', 'STOP', UI.power));
+  renderScenario();
+  render();
+  drawChart();
+}
+function renderScenario() {
+  const scen = $('scencard');
+  if (taskIdx !== 1) { scen.style.display = 'none'; return; }
+  if (t2sc) {
+    scen.style.display = 'none';
+    $('chartcard').style.display = 'block';
+    return;
+  }
+  scen.style.display = 'block';
+  $('chartcard').style.display = 'none';
+  $('scenbtns').innerHTML = Object.keys(T2_SCEN).map(id =>
+    `<button class="scenbtn" onclick="selectScenario('${id}')"><b>${TR(T2_SCEN[id].name)}</b>${TR(T2_SCEN[id].desc)}</button>`).join('');
+}
+
+let taskIdx = 0, cur = 0, editState = null, sim = null, errTimer = null;
+
+/* ---------- display ---------- */
+function applyDisp(d) {
+  $('pv').textContent = d.pv;
+  $('sp').innerHTML = d.sp;
+  $('msg').textContent = TR(d.msg);
+  $('splab').style.visibility = d.sp === '' ? 'hidden' : 'visible';
+  $('lp1').className = 'amber' + (d.p1 ? ' on' : '');
+  setOut(d.out || 4);
+}
+function setOut(n) { for (let i = 1; i <= 7; i++) $('o' + i).className = i <= n ? 'on' : ''; }
+
+/* ---------- edit mode ---------- */
+function initEdit(step) {
+  const e = step.edit;
+  if (e.type === 'temp') editState = { type: 'temp', d: [0, 0, 0, 0], cursor: 2, target: e.target };
+  else if (e.type === 'time') editState = { type: 'time', d: [0, 0, 0, 0], cursor: 3, target: e.target };
+  else if (e.type === 'int') editState = { type: 'int', v: e.start, min: e.min, max: e.max, target: e.target };
+  else if (e.type === 'list') editState = { type: 'list', values: e.values, idx: 0, target: e.target };
+  renderEdit(step);
+}
+function editValue() {
+  const s = editState;
+  if (s.type === 'temp') return s.d[0] * 100 + s.d[1] * 10 + s.d[2] + s.d[3] * 0.1;
+  if (s.type === 'time') return (s.d[0] * 10 + s.d[1]) * 60 + s.d[2] * 10 + s.d[3];
+  if (s.type === 'int') return s.v;
+  return s.values[s.idx];
+}
+function renderEdit(step) {
+  const s = editState;
+  $('pv').textContent = step.pvLabel;
+  let html = '';
+  if (s.type === 'temp') {
+    html = s.d.map((d, i) => `<span class="${i === s.cursor ? 'dcur' : ''}">${d}</span>` + (i === 2 ? '.' : '')).join('');
+  } else if (s.type === 'time') {
+    html = s.d.map((d, i) => `<span class="${i === s.cursor ? 'dcur' : ''}">${d}</span>` + (i === 1 ? '.' : '')).join('');
+  } else if (s.type === 'int') {
+    html = `<span class="dcur">${s.v}</span>`;
+  } else {
+    html = `<span class="dcur">${s.values[s.idx]}</span>`;
+  }
+  $('sp').innerHTML = html;
+  $('splab').style.visibility = 'visible';
+  $('msg').textContent = TR(UI.editing);
+}
+function editPress(k, step) {
+  const s = editState;
+  if (k === 'set') {
+    if (editValue() === s.target) {
+      if (step.apply) step.apply(s.target);
+      editState = null;
+      advance(step, true);
+    } else {
+      bubbleErr(TR(UI.errNotYet));
+    }
+    return;
+  }
+  if (s.type === 'temp' || s.type === 'time') {
+    if (k === 'rst') s.cursor = (s.cursor + 3) % 4;
+    else if (k === 'up') s.d[s.cursor] = (s.d[s.cursor] + 1) % 10;
+    else if (k === 'down') s.d[s.cursor] = (s.d[s.cursor] + 9) % 10;
+  } else if (s.type === 'int') {
+    if (k === 'rst') { bubbleErr(TR(UI.errUpDown)); return; }
+    if (k === 'up') s.v = Math.min(s.v + 1, s.max);
+    else if (k === 'down') s.v = Math.max(s.v - 1, s.min);
+  } else {
+    if (k === 'rst') { bubbleErr(TR(UI.errUpDownSel)); return; }
+    if (k === 'up') s.idx = (s.idx + 1) % s.values.length;
+    else if (k === 'down') s.idx = (s.idx + s.values.length - 1) % s.values.length;
+  }
+  if (step.apply) step.apply(editValue());
+  renderEdit(step);
+  drawChart();
+  render();
+}
+
+/* ---------- wizard flow ---------- */
+function advance(step, skipDisp) {
+  if (step.disp && !skipDisp) applyDisp(step.disp);
+  if (step.commSet) { comm[step.commSet[0]] = step.commSet[1]; renderComm(); }
+  if (step.onDone === 'startSim') startSim();
+  if (step.onDone === 'stopSim') stopSim(step.disp);
+  cur++;
+  render();
+  drawChart();
+}
+
+let pressState = null;
+const KEY_ORDER = ['set', 'rst', 'down', 'up'];
+function keyOf(btn) {
+  if (btn.dataset && btn.dataset.key) return btn.dataset.key;
+  const parent = btn.parentNode;
+  const idx = Array.prototype.indexOf.call(parent.querySelectorAll('button'), btn);
+  return KEY_ORDER[idx] || 'set';
+}
+function startPress(btn) {
+  const t = TASKS[taskIdx];
+  if (cur >= t.steps.length) return;
+  const step = t.steps[cur];
+  const k = keyOf(btn);
+  if (step.edit) { editPress(k, step); return; }
+  const fill = btn.querySelector('.fill');
+  pressState = { key: k, t0: Date.now(), timer: null, fill, ok: step.key === k, hold: step.hold || 0, fired: false };
+  if (!pressState.ok) return;
+  if (pressState.hold > 0) {
+    pressState.timer = setInterval(() => {
+      if (!pressState || pressState.fired) return;
+      const p = Math.min((Date.now() - pressState.t0) / (pressState.hold * 1000), 1);
+      fill.style.width = (p * 100) + '%';
+      if (p >= 1) {
+        pressState.fired = true;
+        clearInterval(pressState.timer);
+        fill.style.width = '0%';
+        advance(step);
+      }
+    }, 30);
+  }
+}
+function endPress() {
+  if (!pressState) return;
+  const s = pressState; pressState = null;
+  if (s.timer) clearInterval(s.timer);
+  s.fill.style.width = '0%';
+  if (s.fired) return;
+  const t = TASKS[taskIdx];
+  if (cur >= t.steps.length) return;
+  const step = t.steps[cur];
+  if (!step.key) return;
+  if (!s.ok) {
+    const names = { set: 'SET', rst: '◀/RST', down: '▼/P1', up: '▲/P2' };
+    bubbleErr(UI.errWrong(names[step.key]));
+    return;
+  }
+  if (s.hold > 0) {
+    bubbleErr(UI.errShort(((Date.now() - s.t0) / 1000).toFixed(1), s.hold));
+    return;
+  }
+  advance(step);
+}
+(function bindKeys() {
+  const btns = document.querySelectorAll('.keys button');
+  const down = btn => e => { e.preventDefault(); if (pressState) endPress(); startPress(btn); };
+  const up = () => { endPress(); };
+  if (window.PointerEvent) {
+    btns.forEach(btn => btn.addEventListener('pointerdown', down(btn)));
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+  } else {
+    btns.forEach(btn => {
+      btn.addEventListener('mousedown', down(btn));
+      btn.addEventListener('touchstart', down(btn), { passive: false });
+    });
+    window.addEventListener('mouseup', up);
+    window.addEventListener('touchend', up);
+  }
+  window.addEventListener('blur', up);
+  btns.forEach(btn => btn.addEventListener('contextmenu', e => e.preventDefault()));
+})();
+
+/* ---------- bubble & progress ---------- */
+function bubbleErr(txt) {
+  clearTimeout(errTimer);
+  $('btext').innerHTML = '<span class="err">' + txt + '</span>';
+  errTimer = setTimeout(renderBubble, 1600);
+}
+function renderBubble() {
+  const t = TASKS[taskIdx];
+  const bub = $('bubble');
+  if (taskIdx === 1 && !t2sc) {
+    $('btext').innerHTML = TR(UI.selectFirst);
+    $('barrow').style.display = 'none';
+    return;
+  }
+  if (cur >= t.steps.length) {
+    $('btext').innerHTML = TR(UI.done);
+    $('barrow').style.display = 'none';
+    return;
+  }
+  $('barrow').style.display = 'block';
+  const step = t.steps[cur];
+  const ready = step.edit && editState && editValue() === editState.target;
+  const col = step.edit ? (ready ? 0 : 3) : KCOL[step.key];
+  let html = TR(step.bub);
+  if (step.edit) {
+    html += ready
+      ? '<br><span style="color:#16a34a;font-weight:600;">' + TR(UI.editReady) + '</span>'
+      : '<br><span style="font-size:12px;color:#888;">' + TR(UI.editPending) + '</span>';
+  }
+  $('btext').innerHTML = html;
+  $('barrow').style.left = Math.max(12, Math.min(46 + col * 65, 276)) + 'px';
+}
+function render() {
+  const t = TASKS[taskIdx];
+  if (taskIdx === 1 && !t2sc) {
+    $('prog').innerHTML = '';
+    document.querySelectorAll('.keys button').forEach(b => b.classList.remove('hint', 'dim'));
+    $('donebox').style.display = 'none';
+    renderBubble();
+    return;
+  }
+  $('prog').innerHTML = t.steps.map((s, i) =>
+    `<i class="${i < cur ? 'done' : (i === cur ? 'now' : '')}"></i>`).join('') +
+    `<span>${Math.min(cur + 1, t.steps.length)}/${t.steps.length}</span>`;
+  document.querySelectorAll('.keys button').forEach(b => b.classList.remove('hint', 'dim'));
+  if (cur < t.steps.length) {
+    const step = t.steps[cur];
+    const active = [];
+    if (step.edit) {
+      active.push('up', 'down');
+      if (step.edit.type === 'temp' || step.edit.type === 'time') active.push('rst');
+      if (!editState) initEdit(step);
+      if (editState && editValue() === editState.target) active.push('set');
+    } else {
+      active.push(step.key);
+    }
+    document.querySelectorAll('.keys button').forEach(b => {
+      if (active.includes(keyOf(b))) b.classList.add('hint');
+    });
+  }
+  const db = $('donebox');
+  if (cur >= TASKS[taskIdx].steps.length) { db.style.display = 'block'; db.textContent = TR(TASKS[taskIdx].doneMsg); }
+  else db.style.display = 'none';
+  renderBubble();
+}
+
+/* ---------- schedule model ---------- */
+function currentSegs() {
+  if (taskIdx === 0) return t1.segs.filter(s => s.tm > 0);
+  if (taskIdx === 1) {
+    if (t2sc === 'rpt' && t2.rst >= 1 && t2.ren >= t2.rst && t2.rpt >= 1)
+      return expandRepeat(T2SEGS, t2.rpt, t2.rst, t2.ren);
+    return T2SEGS.slice();
+  }
+  return [];
+}
+function currentLC() { return taskIdx === 1 ? (t2sc === 'rpt' ? 'RST' : t2.lc) : 'RST'; }
+function scenarioTarget() {
+  if (taskIdx !== 1 || !t2sc) return null;
+  if (t2sc === 'rpt') return { pts: buildPts(expandRepeat(T2SEGS, 3, 1, 2)), lc: 'RST' };
+  if (t2sc === 'hold') return { pts: buildPts(T2SEGS), lc: 'HOLD' };
+  return { pts: buildPts(expandRepeat(T2SEGS, 3, 1, 2)), lc: 'PTN1' };
+}
+function buildPts(segs) {
+  let t = 0, pts = [[0, START_TEMP]];
+  segs.forEach(s => { t += s.tm; pts.push([t, s.sp]); });
+  return pts;
+}
+function profileTemp(pts, tm) {
+  for (let i = 1; i < pts.length; i++) {
+    if (tm <= pts[i][0]) {
+      const [t0, v0] = pts[i - 1], [tt, v1] = pts[i];
+      return tt === t0 ? v1 : v0 + (v1 - v0) * (tm - t0) / (tt - t0);
+    }
+  }
+  return pts[pts.length - 1][1];
+}
+
+/* ---------- chart ---------- */
+function drawChart() {
+  if (taskIdx === 2) return;
+  const cv = $('chart'), ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  ctx.clearRect(0, 0, W, H);
+  if (taskIdx === 1 && !t2sc) {
+    ctx.fillStyle = '#bbb'; ctx.font = '12px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(TR(UI.phSelect), W / 2, H / 2);
+    return;
+  }
+  const padL = 42, padR = 16, padT = 16, padB = 34;
+  const segs = currentSegs();
+  const pts = buildPts(segs);
+  const total = pts[pts.length - 1][0];
+  const lc = currentLC();
+  const holdExt = lc === 'HOLD' && total > 0 ? total * 0.18 : 0;
+  const target = scenarioTarget();
+  const tTotal = target ? target.pts[target.pts.length - 1][0] : 0;
+  const tExt = target && target.lc === 'HOLD' ? tTotal * 0.18 : 0;
+  const xMax = Math.max(total + holdExt, tTotal + tExt, 10);
+  const yMax = Math.max(100, ...segs.map(s => s.sp + 10));
+  const X = m => padL + (W - padL - padR) * m / xMax;
+  const Y = v => H - padB - (H - padB - padT) * v / yMax;
+
+  ctx.strokeStyle = '#ececf0'; ctx.fillStyle = '#999'; ctx.font = '11px sans-serif'; ctx.lineWidth = 1;
+  for (let v = 0; v <= yMax; v += 25) {
+    ctx.beginPath(); ctx.moveTo(padL, Y(v)); ctx.lineTo(W - padR, Y(v)); ctx.stroke();
+    ctx.textAlign = 'right'; ctx.fillText(v + '°', padL - 6, Y(v) + 4);
+  }
+  const xstep = xMax > 120 ? 60 : (xMax > 40 ? 30 : 10);
+  for (let m = 0; m <= xMax; m += xstep) {
+    ctx.textAlign = 'center'; ctx.fillText(m + TR(UI.minUnit), X(m), H - padB + 16);
+  }
+  ctx.strokeStyle = '#ccc';
+  ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, H - padB); ctx.lineTo(W - padR, H - padB); ctx.stroke();
+
+  if (target) {
+    ctx.strokeStyle = '#b8b8c2'; ctx.lineWidth = 1.5; ctx.setLineDash([6, 5]);
+    ctx.beginPath();
+    target.pts.forEach((p, i) => { i === 0 ? ctx.moveTo(X(p[0]), Y(p[1])) : ctx.lineTo(X(p[0]), Y(p[1])); });
+    if (target.lc === 'HOLD') ctx.lineTo(X(tTotal + tExt), Y(target.pts[target.pts.length - 1][1]));
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#9a9aa5'; ctx.textAlign = 'left';
+    ctx.fillText(target.lc === 'PTN1' ? TR(UI.infTag) : TR(UI.goalLabel), padL + 6, padT + 12);
+  }
+
+  if (total <= 0) {
+    if (taskIdx === 0 && t1.segs[0].sp > 0) {
+      ctx.strokeStyle = '#d85a30'; ctx.setLineDash([5, 4]);
+      ctx.beginPath(); ctx.moveTo(padL, Y(t1.segs[0].sp)); ctx.lineTo(W - padR, Y(t1.segs[0].sp)); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#d85a30'; ctx.textAlign = 'left';
+      ctx.fillText('SP1 = ' + t1.segs[0].sp.toFixed(1) + '° ' + TR(UI.spWait), padL + 8, Y(t1.segs[0].sp) - 6);
+    } else {
+      ctx.fillStyle = '#bbb'; ctx.textAlign = 'center';
+      ctx.fillText(TR(UI.phInput), W / 2, H / 2);
+    }
+    return;
+  }
+
+  ctx.strokeStyle = '#d85a30'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  pts.forEach((p, i) => { i === 0 ? ctx.moveTo(X(p[0]), Y(p[1])) : ctx.lineTo(X(p[0]), Y(p[1])); });
+  ctx.stroke();
+  if (holdExt > 0) {
+    ctx.setLineDash([6, 5]);
+    ctx.beginPath();
+    ctx.moveTo(X(total), Y(pts[pts.length - 1][1]));
+    ctx.lineTo(X(total + holdExt), Y(pts[pts.length - 1][1]));
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#d85a30'; ctx.textAlign = 'right';
+    ctx.fillText('HOLD', X(total + holdExt), Y(pts[pts.length - 1][1]) - 8);
+  }
+  ctx.fillStyle = '#d85a30';
+  pts.forEach((p, i) => {
+    if (i > 0) {
+      ctx.beginPath(); ctx.arc(X(p[0]), Y(p[1]), 3, 0, 7); ctx.fill();
+    }
+  });
+
+  if (taskIdx === 0 && total > 0) {
+    ctx.font = '11px sans-serif';
+    let prev = START_TEMP, tAcc = 0;
+    segs.forEach(s => {
+      if (s.tm > 0) {
+        const rate = (s.sp - prev) / s.tm;
+        const label = Math.abs(rate) < 0.05 ? TR(UI.keep) : (rate > 0 ? '↑ ' : '↓ ') + Math.abs(rate).toFixed(1) + TR(UI.rateUnit);
+        ctx.fillStyle = '#8a5a2b'; ctx.textAlign = 'center';
+        ctx.fillText(label, X(tAcc + s.tm / 2), Y((prev + s.sp) / 2) - 10);
+      }
+      prev = s.sp; tAcc += s.tm;
+    });
+  }
+
+  if (sim) {
+    ctx.strokeStyle = '#f0a030'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    sim.trace.forEach((p, i) => { i === 0 ? ctx.moveTo(X(p[0]), Y(p[1])) : ctx.lineTo(X(p[0]), Y(p[1])); });
+    ctx.stroke();
+    const spNow = profileTemp(sim.pts, sim.t);
+    ctx.fillStyle = '#2f6fd0';
+    ctx.beginPath(); ctx.arc(X(sim.t), Y(spNow), 5, 0, 7); ctx.fill();
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.arc(X(sim.t), Y(spNow), 2, 0, 7); ctx.fill();
+  }
+}
+
+/* ---------- run simulation ---------- */
+function startSim() {
+  const segs = currentSegs();
+  const pts = buildPts(segs);
+  const total = pts[pts.length - 1][0];
+  if (total <= 0) return;
+  sim = { t: 0, pv: START_TEMP, trace: [[0, START_TEMP]], pts, total, lc: currentLC(), last: performance.now(), ended: false, raf: null, cycle: 1 };
+  const accel = total / 14;
+  $('lp1').className = 'amber on';
+  const tick = ts => {
+    if (!sim) return;
+    const dt = Math.min((ts - sim.last) / 1000, 0.1);
+    sim.last = ts;
+    if (!sim.ended) {
+      if (sim.lc === 'PTN1') {
+        sim.t += dt * accel;
+        if (sim.t >= sim.total) {
+          sim.t -= sim.total;
+          sim.cycle = (sim.cycle || 1) + 1;
+          sim.trace = [[0, sim.pv]];
+        }
+      } else {
+        sim.t = Math.min(sim.t + dt * accel, sim.total);
+        if (sim.t >= sim.total) {
+          sim.ended = true;
+          $('msg').textContent = sim.lc === 'HOLD' ? TR(UI.endHold) : TR(UI.endRst);
+          if (sim.lc === 'HOLD') $('lhold').className = 'amber on';
+        }
+      }
+    }
+    const sp = profileTemp(sim.pts, sim.t);
+    sim.pv += (sp - sim.pv) * Math.min(dt / 0.22, 1);
+    if (sim.trace.length > 800) sim.trace.shift();
+    sim.trace.push([sim.t, sim.pv]);
+    $('pv').textContent = sim.pv.toFixed(1);
+    $('sp').innerHTML = sp.toFixed(1);
+    if (!sim.ended) $('msg').textContent = sim.lc === 'PTN1'
+      ? UI.simInf(sim.cycle || 1, Math.round(sim.t))
+      : UI.simRun(Math.round(sim.t));
+    setOut(sp > sim.pv + 0.5 ? 7 : 3);
+    drawChart();
+    sim.raf = requestAnimationFrame(tick);
+  };
+  sim.raf = requestAnimationFrame(tick);
+}
+function stopSim(disp) {
+  if (sim && sim.raf) cancelAnimationFrame(sim.raf);
+  sim = null;
+  $('lp1').className = 'amber';
+  $('lhold').className = 'amber';
+  setOut(4);
+  if (disp) applyDisp(disp);
+}
+
+/* ---------- comm summary ---------- */
+function renderComm() {
+  $('commlist').innerHTML = COMM_FIELDS.map(f =>
+    `<div class="commrow"><span>${f[0]} <span style="color:#aaa;">${TR(f[1])}</span></span>` +
+    (comm[f[0]] ? `<b>${comm[f[0]]}</b>` : `<span class="pending">—</span>`) + `</div>`).join('');
+}
+
+const STATIC = {
+en: {
+ 'ctaBox':'<h2 style="font-size:15px; font-weight:600; margin-bottom:6px;">Equipment & quotes</h2><p style="font-size:13px; color:#555; line-height:1.65; margin:0 0 8px;">Experiment Setup Lab supplies SH Scientific furnaces and LeadFluid pumps, and builds automated setups linking temperature schedules with gas flow (MFC). Inquiries for model selection, quotes and delivery of furnaces equipped with this controller are welcome. Inquiries about controllers and setups for equipment from other manufacturers are also welcome.</p><p style="font-size:13px; margin:0;"><a href="https://rndsetup.com/contact/" style="color:#2f6fd0;">Contact</a> · <a href="mailto:info@rndsetup.com" style="color:#2f6fd0;">info@rndsetup.com</a> · +82-70-8983-2600</p>',
+ 'shCta':'Experiment Setup Lab supplies SH Scientific furnaces. For model selection or a quote, <a href="https://rndsetup.com/contact/">contact us</a> or email info@rndsetup.com.',
+ 'refLabel':'Reference (click to expand)',
+ 'sm-faq':'Frequently asked questions (FAQ)',
+ 'sm-dl':'Official manual downloads (Korean·English·Chinese)',
+ 'sm-sh':'Equipment using this controller — SH Scientific furnaces',
+ 'sm-g1':'Text guide — Program run (ramp·soak·cool schedule)',
+ 'sm-g2':'Text guide — Repeat & end action (RPT·LC)',
+ 'sm-g3':'Text guide — RS485 communication (G.COM)',
+ 'noteP':'Operated by <a href="https://rndsetup.com" style="color:#777;">Experiment Setup Lab (rndsetup.com)</a> · Last updated 2026-07-20. Equipment & consumables inquiries welcome.<br>※ This page is unofficial learning material based on the SAMWONTECH NOVA500E series (SP590 etc.) instruction manual; displays and behavior may differ from the actual product. The run simulation is time-accelerated (1 s ≈ several min). Refer to the manufacturer\'s official manual for exact specifications.',
+ 'shIntro':'Controllers installed in SH Scientific furnaces, classified from official spec sheets. SP590 and SP570 belong to the same NOVA500E-SP family with identical operation, so this guide applies to both.',
+ 'shH1':'① Guide applies — SP590·SP570 installed as standard (verified in specs)',
+ 'shH2':'② Guide applies when optioned — Digital PID standard, SP570 optional',
+ 'shH3':'③ Different controller — FC-1000 (this guide does not apply)',
+ 'shH4':'④ Varies by configuration — confirm with your supplier',
+ 'shOut':'Sources: SH Scientific official store (silhumsil.com) and Samheung product spec sheets, as of July 2026. E.g. SH-FU-11MS1700 spec "Programmable Controller(SP590)", SH-FU-31MGV & tube furnaces "Programmable Controller(SP570)", SH-FU-3MG option "Programmable controller(SP570)". Specs and options may change — please confirm before purchase.',
+ 'tb-dl':'<p>Official manuals for the NOVA500E series (SP590/SP580/SP570/SP540) can be downloaded by language from the manufacturer\'s website.</p><ol><li>Korean manual — <a href="http://www.samwontech.com/bbs/board.php?bo_table=p_c_1_5&wr_id=5" target="_blank" rel="noopener">SAMWONTECH official product archive</a></li><li>English manual — select the language on the same archive page</li><li>Chinese (中文) manual — select the language on the same archive page</li></ol><p style="font-size:12px; color:#999;">Source: SAMWONTECH official website (samwontech.com). All manuals are copyrighted by SAMWONTECH; this page only links to official download paths and does not copy or redistribute files.</p>',
+ 'tb-faq':'<h3>The buttons don\'t respond</h3><p>Key lock (LOCK) is probably enabled. Release the LOCK parameter in the control group (G.CTL).</p><h3>Auto-tuning (AT) won\'t start</h3><p>AT only runs in RUN state. Start a run first, check the PV input (sensor) is normal, then set AT=ON in the G.AT group. It aborts automatically on sensor break.</p><h3>The program doesn\'t repeat</h3><p>Check that RPT (count), RST (start) and REN (end) are all set and RST ≤ REN. For whole-pattern repetition, set the end action (LC) to the pattern itself (PTN1/PTN2).</p><h3>The run starts from the current temperature</h3><p>The start condition (STC) defaults to PV. To start from a fixed point, set STC=SSP and configure the SSP value.</p><h3>A segment won\'t advance</h3><p>Wait operation may be active: the program waits until PV enters the wait zone (W.ZON), advancing automatically after the wait time (W.TM). Set W.ZON=OFF to disable.</p><h3>RS485 communication doesn\'t work</h3><p>Check the communication option is installed, A/B wiring, that COM.P·BAUD·PRTY·S.BIT·D.LEN match the host software, and that no ADDR is duplicated.</p>',
+ 'tb-g1':'<p>Basic operation of SAMWONTECH NOVA500E series (SP590 etc.) program-type temperature controllers. On the real device, long-press means 3 seconds or more. (Manual pp. I-26–38)</p><h3>Setting the temperature schedule</h3><ol><li>From the run screen, hold <code>SET</code> for 3+ seconds to enter the setting screen</li><li>Press <code>SET</code> to enter the program group (<code>PTNO</code>) — check the time unit (<code>TMU</code>, HH.MM/MM.SS)</li><li>Segment-1 target temp (<code>1.SP1</code>): move digits with ◀, change with ▲▼, save with SET (e.g. 80.0℃)</li><li>Segment-1 run time (<code>1.TM1</code>): e.g. 00.30 (30 min) — heating rate = (80−25)℃ ÷ 30 min ≈ 1.8℃/min; shorter time = faster ramp</li><li>Soak: enter the same temp (80.0) in <code>1.SP2</code> and the soak time (e.g. 01.00 = 1 h) in <code>1.TM2</code></li><li>Cool-down: enter a lower temp (e.g. 25.0) in <code>1.SP3</code> and the time in <code>1.TM3</code>. Up to 15 segments per pattern</li><li>Hold <code>SET</code> 3+ seconds to return to the run screen</li></ol><h3>Starting and stopping</h3><ol><li>Start pattern 1: press <code>▼/P1</code> for 1 second (pattern 2: <code>▲/P2</code>)</li><li>Stop: press <code>◀/RST</code> for 1 second → STOP (RESET)</li></ol>',
+ 'tb-g2':'<h3>Segment repeat (cycle testing)</h3><ol><li>Repeat count (<code>1.RPT</code>): 1–999, 0 = infinite</li><li>Set the repeat end segment (<code>1.REN</code>) and start segment (<code>1.RST</code>) — condition: RST ≤ REN</li><li>Example: RPT=3, RST=1, REN=2 → segments 1–2 repeat 3 times, then continue</li></ol><h3>End-of-pattern action (LINK CODE, <code>1.LC</code>)</h3><p><code>RST</code>: stop (default) · <code>HOLD</code>: keep the last SP (release with RST) · <code>PTN1</code>/<code>PTN2</code>: link to that pattern — linking to itself creates an infinite loop. (Manual pp. I-37, 39)</p>',
+ 'tb-g3':'<ol><li>In the setting screen, move through groups with ▲; past the control group (G.CTL) the password screen (<code>PWD</code>) appears — default 0</li><li>Enter the communication group (<code>G.COM</code>, shown when the option is installed)</li><li>Protocol (<code>COM.P</code>): PCC0/PCC1 (default)/MBS.A (MODBUS ASCII)/MBS.R (MODBUS RTU) etc.</li><li>Baud rate (<code>BAUD</code>): 9600–115.2K (default 38.4K)</li><li>Parity (<code>PRTY</code>): NONE/EVEN/ODD · stop bit (<code>S.BIT</code>): 1/2 · data length (<code>D.LEN</code>): 7/8 (hidden for MODBUS)</li><li>Address (<code>ADDR</code>): 1–99, no duplicates, up to 31 units (Manual pp. I-92–93)</li></ol>'
+},
+zh: {
+ 'ctaBox':'<h2 style="font-size:15px; font-weight:600; margin-bottom:6px;">设备·报价咨询</h2><p style="font-size:13px; color:#555; line-height:1.65; margin:0 0 8px;">实验设置研究所经营SH Scientific电炉与LeadFluid泵，并提供温度曲线与气体流量（MFC）联动的自动化设置支持。欢迎咨询搭载本控制器的电炉选型、报价与供货。其他制造商设备的控制器·设置咨询也同样欢迎。</p><p style="font-size:13px; margin:0;"><a href="https://rndsetup.com/contact/" style="color:#2f6fd0;">联系我们</a> · <a href="mailto:info@rndsetup.com" style="color:#2f6fd0;">info@rndsetup.com</a> · +82-70-8983-2600</p>',
+ 'shCta':'实验设置研究所经营SH Scientific电炉。如需选型或报价，请<a href="https://rndsetup.com/contact/">联系我们</a>或发邮件至 info@rndsetup.com。',
+ 'refLabel':'参考资料（点击展开）',
+ 'sm-faq':'常见问题（FAQ）',
+ 'sm-dl':'官方使用说明书下载（韩文·英文·中文）',
+ 'sm-sh':'适用本控制器的设备 — SH Scientific（三兴能源）电炉',
+ 'sm-g1':'文字版使用方法 — 程序运行（升温·保温·降温曲线设置）',
+ 'sm-g2':'文字版使用方法 — 循环与结束动作设置（RPT·LC）',
+ 'sm-g3':'文字版使用方法 — RS485通信设置（G.COM）',
+ 'noteP':'制作·运营：<a href="https://rndsetup.com" style="color:#777;">实验设置研究所（rndsetup.com）</a> · 最后更新 2026-07-20。欢迎咨询设备与耗材。<br>※ 本页面为参考SAMWONTECH NOVA500E系列（SP590等）使用说明书自制的非官方学习资料，画面显示与动作可能与实际产品不同。运行模拟为时间加速（1秒≈数分钟）。准确规格请参阅制造商官方说明书。',
+ 'shIntro':'根据官方规格表核实并分类的SH Scientific电炉所搭载的温度控制器列表。SP590与SP570同属NOVA500E-SP系列，操作方法相同，本指南均适用。',
+ 'shH1':'① 本指南适用 — 标配SP590·SP570（规格表确认）',
+ 'shH2':'② 选配时适用 — 标配Digital PID，可选SP570',
+ 'shH3':'③ 搭载其他控制器 — FC-1000（本指南不适用）',
+ 'shH4':'④ 因配置而异 — 建议向购买处确认',
+ 'shOut':'确认来源：SH Scientific官方商城（silhumsil.com）及三兴科学产品规格表（2026年7月）。例：SH-FU-11MS1700规格"Programmable Controller(SP590)"、SH-FU-31MGV及管式炉"Programmable Controller(SP570)"、SH-FU-3MG选配"Programmable controller(SP570)"。规格与选配可能变更，购买前请确认。',
+ 'tb-dl':'<p>NOVA500E系列（SP590/SP580/SP570/SP540）官方使用说明书可在制造商官网按语言下载。</p><ol><li>韩文版说明书 — <a href="http://www.samwontech.com/bbs/board.php?bo_table=p_c_1_5&wr_id=5" target="_blank" rel="noopener">SAMWONTECH官网产品资料室</a></li><li>英文版说明书 — 在上述资料室选择语言后下载</li><li>中文版说明书 — 在上述资料室选择语言后下载</li></ol><p style="font-size:12px; color:#999;">来源：SAMWONTECH官方网站（samwontech.com）。所有说明书版权归SAMWONTECH所有，本页面仅提供官方下载路径，不复制或转发文件。</p>',
+ 'tb-faq':'<h3>按键没有反应</h3><p>可能启用了按键锁（LOCK）。请在控制组（G.CTL）中解除LOCK参数。</p><h3>自整定（AT）无法执行</h3><p>AT仅在RUN状态下执行。请先启动运行，确认PV输入（传感器）正常后，在G.AT组中设AT=ON。传感器断线时自动中止。</p><h3>程序不循环</h3><p>请确认RPT（次数）、RST（起始）、REN（结束）均已设置且RST ≤ REN。整个程序循环需将结束动作（LC）设为程序自身（PTN1/PTN2）。</p><h3>运行从当前温度开始</h3><p>启动条件（STC）默认为PV。如需从固定点开始，请将STC设为SSP并设置SSP值。</p><h3>段落不往下进行</h3><p>可能是等待功能（Wait）：程序会等待PV进入等待区（W.ZON），超过等待时间（W.TM）后自动进行。不需要时请设W.ZON=OFF。</p><h3>RS485通信不通</h3><p>请检查是否安装通信选件、A/B接线、COM.P·BAUD·PRTY·S.BIT·D.LEN与上位机是否一致、ADDR是否重复。</p>',
+ 'tb-g1':'<p>SAMWONTECH NOVA500E系列（SP590等）程序型温度控制器的基本操作。实际设备长按为3秒以上。（说明书 I-26~38）</p><h3>温度曲线设置</h3><ol><li>在运行画面长按<code>SET</code>3秒以上进入设置画面</li><li>按<code>SET</code>进入程序组（<code>PTNO</code>）— 确认时间单位（<code>TMU</code>，时.分/分.秒）</li><li>第1段目标温度（<code>1.SP1</code>）：◀移位、▲▼改值、SET保存（例：80.0℃）</li><li>第1段运行时间（<code>1.TM1</code>）：例00.30（30分钟）— 升温速率 =（80−25）℃ ÷ 30分 ≈ 1.8℃/分，时间越短升温越快</li><li>保温段：<code>1.SP2</code>输入相同温度（80.0），<code>1.TM2</code>输入保温时间（例01.00=1小时）</li><li>降温段：<code>1.SP3</code>输入较低温度（例25.0），<code>1.TM3</code>输入时间。每个程序最多15段</li><li>长按<code>SET</code>3秒以上返回运行画面</li></ol><h3>启动·停止</h3><ol><li>启动程序1：按住<code>▼/P1</code>1秒（程序2：<code>▲/P2</code>）</li><li>停止：按住<code>◀/RST</code>1秒 → STOP（RESET）</li></ol>',
+ 'tb-g2':'<h3>区间循环（循环试验）</h3><ol><li>循环次数（<code>1.RPT</code>）：1~999，0=无限循环</li><li>设置循环结束段（<code>1.REN</code>）与起始段（<code>1.RST</code>）— 条件：RST ≤ REN</li><li>例：RPT=3、RST=1、REN=2 → 第1~2段循环3次后继续</li></ol><h3>程序结束动作（LINK CODE，<code>1.LC</code>）</h3><p><code>RST</code>：停止（默认）· <code>HOLD</code>：保持最终SP（按RST解除）· <code>PTN1</code>/<code>PTN2</code>：连接到该程序 — 连接自身即无限循环。（说明书 I-37、39）</p>',
+ 'tb-g3':'<ol><li>在设置画面用▲切换组，经过控制组（G.CTL）后出现密码画面（<code>PWD</code>）— 默认0</li><li>进入通信组（<code>G.COM</code>，安装通信选件时显示）</li><li>通信协议（<code>COM.P</code>）：PCC0/PCC1（默认）/MBS.A（MODBUS ASCII）/MBS.R（MODBUS RTU）等</li><li>波特率（<code>BAUD</code>）：9600~115.2K（默认38.4K）</li><li>校验位（<code>PRTY</code>）：NONE/EVEN/ODD · 停止位（<code>S.BIT</code>）：1/2 · 数据位（<code>D.LEN</code>）：7/8（MODBUS时不显示）</li><li>通信地址（<code>ADDR</code>）：1~99，不可重复，最多31台（说明书 I-92~93）</li></ol>'
+}
+};
+let koStatic = null;
+const REF_IDS = ['ctaBox','shCta','refLabel','sm-faq','sm-dl','sm-sh','sm-g1','sm-g2','sm-g3','tb-faq','tb-dl','tb-g1','tb-g2','tb-g3','shIntro','shH1','shH2','shH3','shH4','shOut','noteP'];
+function applyRef() {
+  if (!koStatic) {
+    koStatic = {};
+    REF_IDS.forEach(id => { const el = $(id); if (el) koStatic[id] = el.innerHTML; });
+  }
+  const src = lang === 'ko' ? koStatic : STATIC[lang];
+  REF_IDS.forEach(id => {
+    const el = $(id);
+    if (el && src && src[id] != null) el.innerHTML = src[id];
+  });
+}
+
+/* ---------- language ---------- */
+function applyStatic() {
+  $('pgtitle').textContent = TR(UI.title);
+  $('pgsub').innerHTML = TR(UI.sub);
+  $('chartH').textContent = TR(UI.schedH);
+  $('legsp').textContent = TR(UI.legSP);
+  $('legpv').textContent = TR(UI.legPV);
+  $('scenH').textContent = TR(UI.scenH);
+  $('scenCap').textContent = TR(UI.scenCap);
+  $('commH').textContent = TR(UI.commH);
+  $('commCap').textContent = TR(UI.commCap);
+  $('btnreset').textContent = TR(UI.restart);
+  applyRef();
+}
+function chooseLang(l) {
+  lang = l;
+  $('langgate').style.display = 'none';
+  $('tabs').style.display = 'flex';
+  $('mainarea').style.display = 'grid';
+  applyStatic();
+  renderTabs();
+  resetTask();
+}
+function switchLang(l) {
+  if (l === lang) return;
+  lang = l;
+  applyStatic();
+  renderTabs();
+  resetTask();
+}
+
+/* ---------- tabs & reset ---------- */
+function renderTabs() {
+  const names = { ko: '한국어', en: 'EN', zh: '中文' };
+  $('tabs').innerHTML = TASKS.map((t, i) =>
+    `<button class="tab ${i === taskIdx ? 'on' : ''}" onclick="selectTask(${i})">${i + 1}. ${TR(t.title)}</button>`).join('') +
+    '<span style="margin-left:auto;display:flex;gap:6px;">' +
+    ['ko', 'en', 'zh'].map(l => `<button class="tab" style="padding:6px 10px;font-size:12px;${l === lang ? 'border-color:#2f6fd0;color:#2f6fd0;' : ''}" onclick="switchLang('${l}')">${names[l]}</button>`).join('') + '</span>';
+}
+function selectTask(i) { taskIdx = i; resetTask(); renderTabs(); }
+function resetTask() {
+  stopSim();
+  if (pressState && pressState.timer) clearInterval(pressState.timer);
+  pressState = null;
+  clearTimeout(errTimer);
+  cur = 0; editState = null;
+  t1 = { segs: [{ sp: 0, tm: 0 }, { sp: 0, tm: 0 }, { sp: 0, tm: 0 }] };
+  t2 = { lc: 'RST', rpt: 1, ren: 0, rst: 0 };
+  t2sc = null;
+  TASKS[1].steps = [];
+  comm = {};
+  $('chartcard').style.display = taskIdx === 2 || taskIdx === 1 ? 'none' : 'block';
+  $('commcard').style.display = taskIdx === 2 ? 'block' : 'none';
+  if (taskIdx !== 1) $('chartcap').textContent = TR(UI.capDefault);
+  applyDisp(D('25.0', 'STOP', UI.power));
+  renderComm();
+  renderScenario();
+  render();
+  drawChart();
+}
+
+window.addEventListener('error', e => {
+  const bar = document.createElement('div');
+  bar.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#dc2626;color:#fff;font-size:13px;padding:8px 14px;z-index:99;font-family:monospace;';
+  bar.textContent = 'JS 오류: ' + e.message + ' (line ' + e.lineno + ')';
+  document.body.appendChild(bar);
+});
+
+renderTabs();
+resetTask();
+
+</script>
+</div>
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/pump/leadfluid/">리드플루이드(LeadFluid) — 정품·국내 A/S·제어</a></li><li><a href="/pump/leadfluid/bt101l/">리드플루이드 BT101L 연동펌프 (LeadFluid BT101L) — RS485 PC 제어</a></li><li><a href="/pump/leadfluid/bt103s/">리드플루이드 BT103S 분주형 연동펌프 — 정량·반복 분주</a></li><li><a href="/pump/leadfluid/bt103s/head-replace/">리드플루이드 BT103S 펌프 헤드 교체·튜브 장착 방법</a></li><li><a href="/pump/leadfluid/tyd01-01/">리드플루이드 TYD01-01 시린지펌프 — 나노리터 정밀 주입</a></li><li><a href="/pump/leadfluid/ct3001f/">리드플루이드 CT3001F PEEK 기어펌프 — 서보 브러시리스 모터·PEEK 기어 저맥동 연속 이송</a></li><li><a href="/pump/leadfluid/explosion-proof/">리드플루이드 방폭 연동펌프 EF800·EF900 — ATEX/IECEx 방폭 지역용</a></li><li><a href="/pump/leadfluid/bq80s/">리드플루이드 BQ80S 마이크로 정량 연동펌프 — 패널 장착·0.0035~34mL/min</a></li><li><a href="/pump/leadfluid/tfd/">리드플루이드 TFD 스플릿형 시린지펌프 — 컨트롤러 분리형·미세주입·다채널</a></li><li><a href="/pump/leadfluid/explosion-proof-gear/">리드플루이드 방폭 기어펌프 FG601S-A3·W3 — 공압구동·ATEX 용제/석유화학</a></li><li><a href="/pump/leadfluid/bt301l/">리드플루이드 BT301L 지능형 유량 연동펌프 — 0.005~1750mL/min·RS485 제어</a></li><li><a href="/pump/leadfluid/wt600f/">리드플루이드 WT600F 분주형 대유량 연동펌프 — 0.005~6000mL/min·4모드 분주</a></li><li><a href="/pump/leadfluid/mf106/">리드플루이드 MF106 고보호(IP66/67) 연동펌프 — 0.005~7700mL/min·방진방수</a></li><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/pump/guide/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/pump/select/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

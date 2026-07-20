@@ -37,6 +37,8 @@
     { t:'연동펌프 유량 캘리브레이션 방법', u:'/pump/atoz/flow-calibration/', k:'유량 캘리브레이션 보정 calibration 연동펌프 설정값 실제유량 드리프트 저울 메스실린더 보정계수 재현성', c:'펌프를 고를 때' },
     { t:'연동펌프 튜브 규격·펌프헤드 가이드', u:'/pump/atoz/tube-size-guide/', k:'튜브 규격 번호 내경 mm 13 14 16 25 17 18 펌프헤드 YT25 YZ35 튜브 재질 실리콘 tygon pharmed viton 연동펌프', c:'펌프를 고를 때' },
     { t:'자주 묻는 질문 FAQ', u:'/faq/', k:'질문 faq 정량펌프 연동펌프 튜브 채널 제어 수리 소프트웨어', c:'FAQ' },
+    { t:'기술자료 허브 — 사용법·문제해결·제어 자동화', u:'/guide-hub/', k:'기술자료 사용법 가이드 문제해결 캘리브레이션 자동화 허브', c:'페이지' },
+    { t:'온도컨트롤러(SP590·NOVA500E) 사용법 가이드', u:'/temp-controller-guide/', k:'온도컨트롤러 sp590 sp570 nova500e 삼원테크 사용법 전기로 온도 설정 승온 유지 하강 반복 hold 무한반복 rs485 가상 시뮬레이터 삼흥에너지', c:'호환 장비' },
     { t:'문의하기', u:'/contact/', k:'상담 수리 개발 견적 실험 문의', c:'문의하기' }
   ];
   fetch('/_build/posts.json').then(function (r) { return r.json(); }).then(function (d) {
@@ -64,6 +66,12 @@
     wrench:'<svg viewBox="0 0 24 24"><path d="M14.5 6.5a3.5 3.5 0 0 1-4.6 4.6L5 16l3 3 4.9-4.9a3.5 3.5 0 0 0 4.6-4.6l-2.1 2.1-2-2 2.1-2.1z"/></svg>'
   };
   var NAV = [
+    { href:'/guide-hub/', label:'기술자료', icon:'guide', sub:[
+        ['/guide-hub/', '기술자료 허브'],
+        ['/temp-controller-guide/', '온도컨트롤러(SP590) 가이드'],
+        ['/pump/atoz/', '펌프 문제해결'],
+        ['/pump/atoz/flow-calibration/', '유량 캘리브레이션']
+      ] },
     { href:'/pump/leadfluid/', label:'펌프', icon:'wrench', sub:[
         ['/pump/leadfluid/', '리드플루이드 펌프·모델'],
         ['/pump/select/', '펌프·튜브 선택'],

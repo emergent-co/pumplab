@@ -256,4 +256,9 @@
     z.classList.add('on');
   }
   fetch('/_build/posts.json').then(function(r){return r.json();}).then(function(d){
-    var items = (d.posts||[]).map(function(p){ return {type:p.type, title:p.title, summary:p.summary, date:p.date, url:p.url, image:p.image
+    var items = (d.posts||[]).map(function(p){ return {type:p.type, title:p.title, summary:p.summary, date:p.date, url:p.url, image:p.image, journal:p.journal}; });
+    setItems(items.length ? items : FALLBACK);
+  }).catch(function(){ setItems(FALLBACK); });
+</script>
+</body>
+</html>
