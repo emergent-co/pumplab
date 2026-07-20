@@ -261,7 +261,7 @@
       </div>
     </details>
     <details>
-      <summary id="sm-g1">텍스트로 보는 사용법 — 프로그램 운전 (상승·유지·하강 스케줄 설정)</summary>
+      <summary id="sm-g1">텍스트로 보는 사용법 — 프로그램 운전·반복·RS485 통신 (전체 절차)</summary>
       <div class="tvbody" id="tb-g1">
         <p>삼원테크놀로지 NOVA500E 시리즈(SP590 등) 프로그램형 온도컨트롤러의 기본 운전 절차입니다. 실제 기기에서 SET 길게 누르기는 3초 이상입니다. (사용설명서 Ⅰ-26~38 참고)</p>
         <h3>온도 스케줄 설정</h3>
@@ -279,11 +279,7 @@
           <li>패턴1 운전 시작: <code>▼/P1</code> 버튼 1초 누름 (패턴2는 <code>▲/P2</code>)</li>
           <li>운전 정지: <code>◀/RST</code> 버튼 1초 누름 → STOP(RESET) 상태</li>
         </ol>
-      </div>
-    </details>
-    <details>
-      <summary id="sm-g2">텍스트로 보는 사용법 — 반복 운전·종료 동작 설정 (RPT·LC)</summary>
-      <div class="tvbody" id="tb-g2">
+      
         <h3>구간 반복 (사이클 시험)</h3>
         <ol>
           <li>반복횟수(<code>1.RPT</code>): 1~999회, 0 = 무한반복</li>
@@ -292,11 +288,9 @@
         </ol>
         <h3>패턴 종료 시 동작 (LINK CODE, <code>1.LC</code>)</h3>
         <p><code>RST</code>: 운전 정지(기본값) · <code>HOLD</code>: 마지막 SP 온도 유지(RST 키로 해제) · <code>PTN1</code>/<code>PTN2</code>: 해당 패턴으로 연결 운전 — 자기 패턴을 지정하면 무한반복 운전이 됩니다. (사용설명서 Ⅰ-37, 39 참고)</p>
-      </div>
-    </details>
-    <details>
-      <summary id="sm-g3">텍스트로 보는 사용법 — RS485 통신 설정 (G.COM)</summary>
-      <div class="tvbody" id="tb-g3">
+      
+        <h3>RS485 통신 설정 (G.COM)</h3>
+
         <ol>
           <li>설정화면에서 ▲로 그룹 이동, 제어그룹(G.CTL)을 지나면 암호(<code>PWD</code>) 화면 — 초기값 0</li>
           <li>통신그룹(<code>G.COM</code>) 진입 (통신 옵션 장착 시 표시)</li>
@@ -305,8 +299,11 @@
           <li>패리티(<code>PRTY</code>): NONE/EVEN/ODD · 정지비트(<code>S.BIT</code>): 1/2 · 데이터길이(<code>D.LEN</code>): 7/8 (MODBUS 시 미표시)</li>
           <li>통신 주소(<code>ADDR</code>): 1~99, 주소 중복 금지, 최대 31대 연결 (사용설명서 Ⅰ-92~93 참고)</li>
         </ol>
+      
       </div>
     </details>
+    
+    
   </section>
 </div>
 
@@ -991,6 +988,7 @@ zh: {
  'tb-g3':'<ol><li>在设置画面用▲切换组，经过控制组（G.CTL）后出现密码画面（<code>PWD</code>）— 默认0</li><li>进入通信组（<code>G.COM</code>，安装通信选件时显示）</li><li>通信协议（<code>COM.P</code>）：PCC0/PCC1（默认）/MBS.A（MODBUS ASCII）/MBS.R（MODBUS RTU）等</li><li>波特率（<code>BAUD</code>）：9600~115.2K（默认38.4K）</li><li>校验位（<code>PRTY</code>）：NONE/EVEN/ODD · 停止位（<code>S.BIT</code>）：1/2 · 数据位（<code>D.LEN</code>）：7/8（MODBUS时不显示）</li><li>通信地址（<code>ADDR</code>）：1~99，不可重复，最多31台（说明书 I-92~93）</li></ol>'
 }
 };
+['en','zh'].forEach(function(l){ var s=STATIC[l]; s['sm-g1']= l==='en' ? 'Text guide — Program run · Repeat · RS485 (full procedures)' : '文字版使用方法 — 程序运行·循环·RS485（完整步骤）'; s['tb-g1']= s['tb-g1']+s['tb-g2']+'<h3>'+(l==='en'?'RS485 communication (G.COM)':'RS485通信设置（G.COM）')+'</h3>'+s['tb-g3']; });
 let koStatic = null;
 const REF_IDS = ['ctaBox','shCta','refLabel','sm-faq','sm-dl','sm-sh','sm-g1','sm-g2','sm-g3','tb-faq','tb-dl','tb-g1','tb-g2','tb-g3','shIntro','shH1','shH2','shH3','shH4','shOut','noteP'];
 function applyRef() {
