@@ -74,17 +74,13 @@
         ['/sh-scientific/blog/',   '설치·A/S 블로그']
       ] },
     { href:'/leadfluid/', label:'리드플루이드(LeadFluid)', icon:'wrench', sub:[
-        ['/leadfluid/select/',  '펌프 선택 가이드'],
-        ['/leadfluid/manuals/', '메뉴얼·사양서'],
+        ['/leadfluid/select/',  '펌프 선택 가이드·사양'],
         ['/leadfluid/blog/',    '블로그 (셋업·사례)']
       ] },
     { href:'/alicat/', label:'Alicat MFC', icon:'gas' },
     { href:'/about/', label:'회사소개', icon:'shield' },
-    { href:'/contact/', label:'구매·문의', icon:'contact', sub:[
-        ['https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=', '구매 (나비엠알오)'],
-        ['/contact/', '견적·A/S 문의'],
-        ['/faq/',     'FAQ']
-      ] }
+    { href:'/contact/', label:'문의하기', icon:'contact' },
+    { href:'/faq/', label:'FAQ', icon:'faq' }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
   function subOnPage(href){ var i = href.indexOf('#'); if(i === -1) return false; return path === (href.slice(0, i) || '/'); }
