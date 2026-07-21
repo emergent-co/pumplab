@@ -120,6 +120,17 @@
   .shc .t{font-family:var(--serif);font-size:17px;font-weight:700;margin-bottom:4px}
   .shc .d{font-size:13px;color:#6B6560;line-height:1.55}
   .shc .go{font-size:12.5px;font-weight:800;color:#9A3412;margin-top:10px;display:inline-block}
+  /* 위저드(한 단계씩) */
+  .wprog{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+  .wprog .wp{font-size:12px;font-weight:700;color:#9C958D;padding:5px 11px;border:1px solid #E7E3DE;border-radius:20px;background:#fff}
+  .wprog .wp.done{color:#9A3412;border-color:#E9CDBC;background:#FBF2EC;cursor:pointer}
+  .wprog .wp.cur{color:#fff;background:#C2410C;border-color:#C2410C}
+  .wstep{display:none}
+  .wstep.on{display:block;animation:wfade .25s ease}
+  @keyframes wfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .wback{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;color:#9C958D;background:none;border:0;cursor:pointer;margin:0 0 10px;padding:0;font-family:inherit}
+  .wback:hover{color:#9A3412}
+  .wnext{margin-top:14px;width:100%;background:#C2410C;color:#fff;border:0;border-radius:11px;padding:13px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 <!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "emergent co."], "legalName": "실험셋업연구소", "taxID": "637-05-03629", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "description": "실험용 펌프·유체 제어 셋업 정보를 제공하는 곳. 어떤 펌프를 고르고 유량·스케줄을 어떻게 자동화·재현하는지, 어떤 논문이 어떤 셋업을 썼는지 정리합니다. 리드플루이드(LeadFluid) 정량·연동(페리스탈틱)·시린지·기어펌프와 Alicat 질량유량계(MFC)의 제어 소프트웨어와 국내 직접 A/S(구매 시 3년 무상보증)도 지원합니다. 관류·연속배양 등 무인·정밀·재현이 필요한 실험의 셋업을 다룹니다.", "address": {"@type": "PostalAddress", "streetAddress": "북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "Modbus·RS-485 펌프 제어", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://rndsetup.com/"}, {"@type": "ListItem", "position": 2, "name": "삼흥에너지", "item": "https://rndsetup.com/sh-scientific/"}]}</script><!--HEADLD_END--></head>
@@ -141,8 +152,9 @@
 
     <div class="layout">
       <div class="steps">
+        <div class="wprog" id="wprog"></div>
 
-        <div class="step" data-step="type">
+        <div class="step wstep on" data-step="type">
           <h2><span class="n">1</span> 퍼니스 종류</h2>
           <div class="opts">
             <button type="button" class="opt" data-val="관상형(튜브)퍼니스" data-img="/img/sh/furnace-tube.jpg">
@@ -154,7 +166,8 @@
           </div>
         </div>
 
-        <div class="step" data-step="temp">
+        <div class="step wstep" data-step="temp">
+          <button type="button" class="wback" data-back>← 이전</button>
           <h2><span class="n">2</span> 사용 온도대</h2>
           <div class="opts">
             <button type="button" class="opt" data-val="~1200℃급"><span class="ot">~1200℃</span><span class="od">일반 소성·건조·열처리</span></button>
@@ -163,7 +176,8 @@
           </div>
         </div>
 
-        <div class="step" data-step="atm">
+        <div class="step wstep" data-step="atm">
+          <button type="button" class="wback" data-back>← 이전</button>
           <h2><span class="n">3</span> 분위기 · 가스</h2>
           <div class="opts">
             <button type="button" class="opt" data-val="대기(Air)" data-badge="대기"><span class="ot">대기(Air)</span><span class="od">별도 가스 없이 대기 중</span></button>
@@ -172,7 +186,8 @@
           </div>
         </div>
 
-        <div class="step multi" data-step="opt">
+        <div class="step wstep multi" data-step="opt">
+          <button type="button" class="wback" data-back>← 이전</button>
           <h2><span class="n">4</span> 컨트롤러 · 옵션 <span style="font-size:11.5px;color:#9C958D;font-weight:500;margin-left:4px">(복수 선택)</span></h2>
           <div class="opts">
             <button type="button" class="opt" data-val="프로그램 온도컨트롤러" data-badge="프로그램제어"><span class="ot">프로그램 제어</span><span class="od">승온·유지·냉각 구간 스케줄</span></button>
@@ -182,9 +197,11 @@
             <button type="button" class="opt" data-val="스탠드·거치·기타" data-badge="거치/기타"><span class="ot">스탠드·기타</span><span class="od">거치대·부속</span></button>
           </div>
           <div class="hint">해당되는 항목을 모두 눌러주세요. 확정은 상담에서 함께 정리합니다.</div>
+          <button type="button" class="wnext" id="optNext">다음 → 견적 입력</button>
         </div>
 
-        <form class="quote" id="quoteForm">
+        <form class="quote wstep" id="quoteForm">
+          <button type="button" class="wback" data-back>← 이전</button>
           <h2>이 구성으로 견적 문의</h2>
           <p class="qsub">정확한 제안을 위해 <b>다루는 시료와 공정</b>은 꼭 적어주세요. 이 두 가지로 퍼니스 종류·최고온도·분위기 사양이 결정됩니다.</p>
 
@@ -288,6 +305,37 @@
   var img = document.getElementById('pvImg'), ph = document.getElementById('pvPh');
   var badges = document.getElementById('badges');
   if(!img) return;
+
+  // 위저드: 한 단계씩 진행
+  var order = ['type','temp','atm','opt','form'];
+  var wlabels = {type:'종류',temp:'온도',atm:'분위기',opt:'옵션',form:'견적'};
+  var panels = {};
+  document.querySelectorAll('.step[data-step]').forEach(function(s){ panels[s.getAttribute('data-step')] = s; });
+  panels.form = document.getElementById('quoteForm');
+  var wprog = document.getElementById('wprog');
+  var idx = 0, maxReached = 0;
+  function renderProg(){
+    wprog.innerHTML = order.map(function(k,i){
+      var cls = 'wp' + (i===idx ? ' cur' : (i<=maxReached ? ' done' : ''));
+      return '<span class="'+cls+'" data-i="'+i+'">'+(i+1)+'. '+wlabels[k]+'</span>';
+    }).join('');
+  }
+  function show(i){
+    if(i<0) i=0; if(i>order.length-1) i=order.length-1;
+    idx=i; if(i>maxReached) maxReached=i;
+    order.forEach(function(k,j){ panels[k].classList.toggle('on', j===i); });
+    renderProg();
+    var top=document.querySelector('.shsel');
+    if(top){ var y=top.getBoundingClientRect().top; if(y<-10||y>160) top.scrollIntoView({behavior:'smooth',block:'start'}); }
+  }
+  wprog.addEventListener('click', function(e){
+    var c=e.target.closest('.wp'); if(!c) return;
+    var i=+c.getAttribute('data-i'); if(i<=maxReached) show(i);
+  });
+  document.querySelectorAll('[data-back]').forEach(function(b){ b.addEventListener('click', function(){ show(idx-1); }); });
+  var optNext=document.getElementById('optNext');
+  if(optNext) optNext.addEventListener('click', function(){ summary(); show(4); });
+
   function placeholderSVG(label){
     var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">'
       + '<rect width="400" height="300" fill="#FAF8F5"/>'
@@ -337,6 +385,7 @@
         b.classList.add('on');
         sel[key] = b.getAttribute('data-val');
         if(key==='type') setImage(b.getAttribute('data-img'), b.querySelector('.ot').textContent);
+        setTimeout(function(){ show(idx+1); }, 200);
       }
       renderBadges(); summary();
       if(typeof gtag==='function') gtag('event','sh_select_choice',{step:key});
@@ -359,6 +408,8 @@
       })
       .catch(function(){ btn.disabled=false; btn.textContent=txt; alert('전송에 실패했습니다. info@rndsetup.com 로 보내주세요.'); });
   });
+
+  renderProg(); show(0);
 })();
 </script>
 </body>
