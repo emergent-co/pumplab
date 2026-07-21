@@ -72,7 +72,7 @@
         ['/pump/leadfluid/', '리드플루이드 펌프'],
         ['/alicat/',         'Alicat 질량유량계(MFC)']
       ] },
-    { href:'/sh-scientific/', label:'퍼니스 선택 가이드', icon:'devices', sub:[
+    { href:'/sh-scientific/', label:'삼흥에너지(sh-scientific)', icon:'devices', sub:[
         ['/sh-scientific/', '퍼니스 선택 가이드'],
         ['/sh-scientific/manual/', '메뉴얼'],
         ['/sh-scientific/blog/',   '설치·A/S 블로그']

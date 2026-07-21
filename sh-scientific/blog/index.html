@@ -41,11 +41,17 @@
   .tab{font-size:13px;font-weight:700;padding:7px 14px;border:1px solid var(--line);border-radius:20px;color:var(--gray)}
   .tab.on{background:var(--ember-bg);border-color:var(--ember);color:var(--ember-2)}
   .list{margin:18px 0 46px;display:grid;gap:14px}
-  .post{display:block;border:1px solid var(--line);border-radius:14px;padding:20px 20px;transition:border-color .15s,box-shadow .15s}
+  .post{display:flex;gap:16px;align-items:stretch;border:1px solid var(--line);border-radius:14px;padding:14px;transition:border-color .15s,box-shadow .15s}
   .post:hover{border-color:var(--ember);box-shadow:0 4px 18px rgba(194,65,12,.06)}
+  .post .thumb{flex:0 0 140px;width:140px;border-radius:10px;overflow:hidden;background:var(--panel);align-self:stretch;min-height:110px}
+  .post .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .post .thumb.ph{background:linear-gradient(135deg,#FBF2EC,#f1ddcd);position:relative}
+  .post .thumb.ph::after{content:attr(data-ic);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;opacity:.55}
+  .post .body{flex:1;min-width:0}
+  @media(max-width:520px){.post{flex-direction:column}.post .thumb{width:100%;flex-basis:auto;height:150px;min-height:0}}
   .post .cat{display:inline-block;font-size:11.5px;font-weight:800;color:var(--ember-2);background:var(--ember-bg);padding:3px 10px;border-radius:20px;margin-bottom:9px}
-  .post h2{font-family:var(--serif);font-size:19px;font-weight:700;line-height:1.4;margin-bottom:6px}
-  .post p{font-size:14.5px;color:var(--gray);margin:0}
+  .post h2{font-family:var(--serif);font-size:18px;font-weight:700;line-height:1.4;margin-bottom:6px}
+  .post p{font-size:14px;color:var(--gray);margin:0}
   .post .meta{font-size:12.5px;color:var(--gray-2);margin-top:10px}
   .empty{border:1px dashed var(--line);border-radius:14px;padding:22px;color:var(--gray-2);font-size:14px;text-align:center;background:var(--panel)}
 </style>
@@ -71,17 +77,23 @@
 
   <div class="list">
     <a class="post" href="/sh-scientific/blog/furnace-install-checklist/">
-      <span class="cat">설치</span>
-      <h2>전기로·튜브퍼니스 설치 시 확인할 것 — 설치 체크리스트</h2>
-      <p>전원·접지·환기·수평부터 열전대·발열체·가스 라인까지, 설치 직후 반드시 확인하는 항목을 정리했습니다.</p>
-      <div class="meta">실험셋업연구소 · 설치 가이드</div>
+      <div class="thumb" data-ic="🔧"><img src="/img/sh/blog-install.jpg" alt="" loading="lazy" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
+      <div class="body">
+        <span class="cat">설치</span>
+        <h2>전기로·튜브퍼니스 설치 시 확인할 것 — 설치 체크리스트</h2>
+        <p>전원·접지·환기·수평부터 열전대·발열체·가스 라인까지, 설치 직후 반드시 확인하는 항목을 정리했습니다.</p>
+        <div class="meta">실험셋업연구소 · 설치 가이드</div>
+      </div>
     </a>
 
     <a class="post" href="/furnace/setups/alicat-mfc-tubefurnace/">
-      <span class="cat">셋업 사례</span>
-      <h2>1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</h2>
-      <p>삼흥에너지 1500℃ 튜브퍼니스에 Alicat MFC와 제어 소프트웨어를 연동해 온도·가스를 함께 제어한 도입 사례입니다.</p>
-      <div class="meta">실험셋업연구소 · 셋업 사례</div>
+      <div class="thumb" data-ic="📈"><img src="/img/sh/blog-mfc.jpg" alt="" loading="lazy" onerror="this.parentNode.classList.add('ph');this.remove()"></div>
+      <div class="body">
+        <span class="cat">셋업 사례</span>
+        <h2>1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</h2>
+        <p>삼흥에너지 1500℃ 튜브퍼니스에 Alicat MFC와 제어 소프트웨어를 연동해 온도·가스를 함께 제어한 도입 사례입니다.</p>
+        <div class="meta">실험셋업연구소 · 셋업 사례</div>
+      </div>
     </a>
 
     <div class="empty">설치·A/S 사례를 계속 추가할 예정입니다.</div>

@@ -1087,13 +1087,16 @@ resetTask();
 (function(){
   if(!/[?&]embed/.test(location.search)) return;
   var st=document.createElement('style');
-  st.textContent='#pumplab-header,#pumplab-footer{display:none!important}#langgate,#pgtitle{display:none!important}body{padding:0;margin:0}.tcg-page,.tcg-wrap{padding-top:8px}';
+  st.textContent='#pumplab-header,#pumplab-footer{display:none!important}#langgate,#pgtitle{display:none!important}html,body{height:auto!important;min-height:0!important;margin:0;padding:0;overflow:hidden!important}.tcg-page{min-height:0!important;padding-top:8px!important}.tcg-wrap{padding-top:0}';
   document.head.appendChild(st);
   try{ if(typeof chooseLang==='function') chooseLang('ko'); }catch(e){}
-  function ph(){ try{ parent.postMessage({tcHeight:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},'*'); }catch(e){} }
-  window.addEventListener('load',ph); setTimeout(ph,300); setTimeout(ph,900); setTimeout(ph,1800);
-  try{ new MutationObserver(ph).observe(document.body,{subtree:true,childList:true,attributes:true}); }catch(e){}
-  window.addEventListener('resize',ph);
+  var last=0, timer=null;
+  function measure(){ var el=document.querySelector('.tcg-page')||document.body; return Math.ceil(el.getBoundingClientRect().height); }
+  function ph(){ var h=measure(); if(Math.abs(h-last)<=2) return; last=h; try{ parent.postMessage({tcHeight:h},'*'); }catch(e){} }
+  function ping(){ clearTimeout(timer); timer=setTimeout(ph,120); }
+  window.addEventListener('load',ph); setTimeout(ph,300); setTimeout(ph,1000); setTimeout(ph,2200);
+  try{ new MutationObserver(ping).observe(document.body,{subtree:true,childList:true,attributes:true}); }catch(e){}
+  window.addEventListener('resize',ping);
 })();
 </script>
 </body>

@@ -197,7 +197,7 @@
 
         <form class="quote wstep" id="quoteForm">
           <button type="button" class="wback" data-back>← 이전</button>
-          <h2>이 구성으로 견적 문의</h2>
+          <h2>견적서 받기</h2>
           <p class="qsub">정확한 제안을 위해 <b>다루는 시료와 공정</b>은 꼭 적어주세요. 이 두 가지로 퍼니스 종류·최고온도·분위기 사양이 결정됩니다.</p>
 
           <label>샘플 시료 <span class="req">*</span></label>
@@ -209,16 +209,18 @@
           <div class="fx">목표 온도 · 분위기(대기/불활성/진공) · 승온·유지·냉각 조건 · 처리 목적</div>
 
           <div class="grid2">
-            <div><label>이름 · 소속 <span class="req">*</span></label>
-              <input type="text" name="이름·소속" required placeholder="홍길동 / OO대학교 OO연구실"></div>
-            <div><label>연락처(이메일·전화) <span class="req">*</span></label>
-              <input type="text" name="연락처" required placeholder="you@lab.ac.kr / 010-0000-0000"></div>
+            <div><label>이름 <span class="req">*</span></label>
+              <input type="text" name="이름" required placeholder="홍길동"></div>
+            <div><label>소속 <span class="req">*</span></label>
+              <input type="text" name="소속" required placeholder="OO대학교 OO연구실 / OO회사"></div>
           </div>
+          <label>이메일 <span class="req">*</span></label>
+          <input type="email" name="이메일" required placeholder="you@lab.ac.kr">
 
           <input type="hidden" name="문의유형" value="삼흥 열처리 견적">
           <input type="hidden" name="선택구성" id="cfgField" value="">
 
-          <button class="send" type="submit">이 구성으로 견적 보내기 →</button>
+          <button class="send" type="submit">견적서 받기 →</button>
         </form>
 
         <div class="qdone" id="quoteDone">
@@ -292,8 +294,6 @@
     idx=i; if(i>maxReached) maxReached=i;
     order.forEach(function(k,j){ panels[k].classList.toggle('on', j===i); });
     renderProg();
-    var top=document.querySelector('.shsel');
-    if(top){ var y=top.getBoundingClientRect().top; if(y<-10||y>160) top.scrollIntoView({behavior:'smooth',block:'start'}); }
   }
   wprog.addEventListener('click', function(e){
     var c=e.target.closest('.wp'); if(!c) return;
