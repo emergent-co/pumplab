@@ -37,6 +37,20 @@
 /pumps/             /leadfluid/         301
 /pumps/*            /leadfluid/         301
 
+# 개별 모델 페이지 → 선택가이드(사양 아코디언)로 통합(2026-07)
+/leadfluid/bt101l/*                /leadfluid/select/   301
+/leadfluid/bt103s/*                /leadfluid/select/   301
+/leadfluid/bt301l/*                /leadfluid/select/   301
+/leadfluid/wt600f/*                /leadfluid/select/   301
+/leadfluid/mf106/*                 /leadfluid/select/   301
+/leadfluid/bq80s/*                 /leadfluid/select/   301
+/leadfluid/tyd01-01/*              /leadfluid/select/   301
+/leadfluid/tfd/*                   /leadfluid/select/   301
+/leadfluid/ct3001f/*               /leadfluid/select/   301
+/leadfluid/explosion-proof/*       /leadfluid/select/   301
+/leadfluid/explosion-proof-gear/*  /leadfluid/select/   301
+/leadfluid/bt600s/*                /leadfluid/select/   301
+
 # 스텁 → 서버 301 승격 후 실물 삭제 (2026-07, 관리파일 정리)
 /product/                  /application/            301
 /guide/                    /leadfluid/blog/             301
