@@ -1,0 +1,7 @@
+﻿name = "cellab-homepage"
+compatibility_date = "2024-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "rndsetup-products"
+database_id = "e61d85f1-843a-43e6-9477-ff24d64c22aa"
