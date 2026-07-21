@@ -33,3 +33,12 @@
 /pump/           /pump/leadfluid/   301
 /pumps/          /pump/leadfluid/   301
 /pumps/*         /pump/leadfluid/   301
+
+# 스텁 → 서버 301 승격 후 실물 삭제 (2026-07, 관리파일 정리)
+/product/                  /application/            301
+/guide/                    /pump/guide/             301
+/guide-hub/                /                        301
+/quote/                    /contact/                301
+/leadfluid/*               /pump/leadfluid/:splat   301
+/troubleshooting/*         /pump/atoz/:splat        301
+/pump/troubleshooting/*    /pump/atoz/:splat        301
