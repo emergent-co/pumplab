@@ -1087,7 +1087,7 @@ resetTask();
 (function(){
   if(!/[?&]embed/.test(location.search)) return;
   var st=document.createElement('style');
-  st.textContent='#pumplab-header,#pumplab-footer{display:none!important}#langgate,#pgtitle{display:none!important}html,body{height:auto!important;min-height:0!important;margin:0;padding:0;overflow:hidden!important}.tcg-page{min-height:0!important;padding-top:8px!important}.tcg-wrap{padding-top:0}';
+  st.textContent='header.ch-top,#chSide,.ch-side,.ch-scrim,.chrome-footer,.navimro-fab,.cta-band,#pumplab-header,#pumplab-footer{display:none!important}#langgate,#pgtitle{display:none!important}html,body{height:auto!important;min-height:0!important;margin:0;padding:0;overflow:hidden!important}.tcg-page{min-height:0!important;padding-top:8px!important}.tcg-wrap{padding-top:0}';
   document.head.appendChild(st);
   try{ if(typeof chooseLang==='function') chooseLang('ko'); }catch(e){}
   var last=0, timer=null;
