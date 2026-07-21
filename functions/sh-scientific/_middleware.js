@@ -1,5 +1,5 @@
 // functions/sh-scientific/_middleware.js
-// /sh-scientific/ 정적 페이지에 발행된 데이터시트 조각을 서버측에서 주입한다.
+// /sh-scientific/catalog/ 정적 페이지에 발행된 데이터시트 조각을 서버측에서 주입한다.
 // (JS 없이도 크롤러/AI가 제품·가격을 읽을 수 있게 → GEO 대응)
 // 발행 조각은 관리자 "사이트 반영"(POST /api/admin/publish)이 D1 published 테이블에 저장한다.
 
@@ -8,9 +8,9 @@ const KEY = 'sh-datasheet';
 export async function onRequest(context) {
   const res = await context.next();
 
-  // 데이터시트 마운트가 있는 /sh-scientific/ 인덱스에만 주입 (manual·blog 등은 그대로)
+  // 데이터시트 마운트가 있는 카탈로그 페이지에만 주입 (guide·manual·blog 등은 그대로)
   const path = new URL(context.request.url).pathname.replace(/\/+$/, '') || '/';
-  if (path !== '/sh-scientific') return res;
+  if (path !== '/sh-scientific/catalog') return res;
 
   const ct = res.headers.get('content-type') || '';
   if (!ct.includes('text/html')) return res;
