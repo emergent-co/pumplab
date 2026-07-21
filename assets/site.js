@@ -67,28 +67,24 @@
   };
   var NAV = [
     { href:'/pump/leadfluid/', label:'제품', icon:'wrench', sub:[
-        ['/pump/leadfluid/', '리드플루이드 펌프·전 모델'],
+        ['/pump/leadfluid/', '리드플루이드 펌프'],
         ['/alicat/',         'Alicat 질량유량계(MFC)'],
-        ['/sh-scientific/',  '열처리로(튜브퍼니스·전기로)'],
-        ['/pump/select/',    '펌프·튜브 선택']
+        ['/sh-scientific/',  '열처리로']
       ] },
     { href:'/about/', label:'신뢰·회사', icon:'shield', sub:[
         ['/about/',  '회사소개'],
-        ['/trust/',  '정품·공식 대리점 인증'],
-        ['/repair/', '국내 직접 A/S · 3년 보증'],
-        ['/setups/', '논문·도입 셋업 실적']
+        ['/trust/',  '정품·인증·보증'],
+        ['/setups/', '논문 셋업 실적']
       ] },
     { href:'/contact/', label:'구매·문의', icon:'contact', sub:[
         ['https://www.navimro.com/s/?x=0&y=0&q=leadfluid&disp=0&keyword=', '구매 (나비엠알오)'],
-        ['/contact/#quote', '견적 문의'],
-        ['/repair/',        '수리 접수'],
-        ['/contact/',       '연락처']
+        ['/repair/',  'A/S·수리 접수'],
+        ['/contact/', '견적·문의']
       ] },
     { href:'/pump/leadfluid/manuals/', label:'자료실', icon:'guide', sub:[
         ['/pump/leadfluid/manuals/', '매뉴얼·사양서'],
         ['/pump/atoz/',              '사용법·문제해결'],
-        ['/temp-controller-guide/',  '온도컨트롤러 가이드'],
-        ['/faq/',                    '자주묻는 질문(FAQ)']
+        ['/faq/',                    'FAQ']
       ] }
   ];
   function matches(href){ if(href.indexOf('#') > -1) return false; return href === '/' ? path === '/' : path === href; }
