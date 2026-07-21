@@ -396,6 +396,9 @@ CRAWLER_LINKS = [
     ('/pump/leadfluid/wt600f/', '리드플루이드 WT600F 분주형 대유량 연동펌프 — 0.005~6000mL/min·4모드 분주'),
     ('/pump/leadfluid/mf106/', '리드플루이드 MF106 고보호(IP66/67) 연동펌프 — 0.005~7700mL/min·방진방수'),
     ('/sh-scientific/', '삼흥에너지(SH-Scientific) 튜브퍼니스·전기로 — 열처리 셋업'),
+    ('/sh-scientific/select/', '삼흥에너지 전기로·튜브퍼니스 제품 선택 가이드 — 조건 고르고 견적문의'),
+    ('/sh-scientific/manual/', '삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전'),
+    ('/sh-scientific/blog/', '삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그'),
     ('/alicat/', 'ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어'),
     ('/requests/', '소프트웨어 제어'),
     ('/application/', '실험 가이드'),
@@ -820,6 +823,10 @@ def main():
         ('application/',  '0.7', 'monthly'),  # 실험 가이드 (목록)
         ('alicat/',       '0.8', 'monthly'),  # 소프트웨어 호환 장비 — ALICAT
         ('sh-scientific/','0.8', 'monthly'),  # 소프트웨어 호환 장비 — 삼흥에너지
+        ('sh-scientific/select/','0.8', 'monthly'),  # 삼흥 제품 선택 가이드 (견적 funnel)
+        ('sh-scientific/manual/','0.7', 'monthly'),  # 삼흥 메뉴얼
+        ('sh-scientific/blog/','0.7', 'weekly'),  # 삼흥 설치·A/S 블로그
+        ('sh-scientific/blog/furnace-install-checklist/','0.6', 'monthly'),  # 설치 체크리스트
         ('application/biopharmaceutical.html', '0.8', 'monthly'),        # 응용분야 클러스터(통합 후 생존)
         ('application/analytical-instrument.html', '0.8', 'monthly'),
         ('application/environmental.html', '0.8', 'monthly'),

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 온도컨트롤러 사용법·승온 프로그램·안전 주의사항 | 실험셋업연구소</title>
+<meta name="description" content="삼흥에너지(SH Scientific) 전기로·튜브퍼니스의 온도컨트롤러 사용법, 승온·유지·냉각 프로그램 설정, 가스·진공 분위기 취급, 과열·가연성 가스 안전 주의사항과 자주 겪는 문제·A/S 안내를 정리했습니다.">
+<link rel="canonical" href="https://rndsetup.com/sh-scientific/manual/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전">
+<meta property="og:description" content="온도컨트롤러 사용법, 승온 프로그램, 분위기 취급, 안전 주의사항, 자주 겪는 문제·A/S.">
+<meta property="og:url" content="https://rndsetup.com/sh-scientific/manual/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
+{"@type":"ListItem","position":2,"name":"삼흥에너지","item":"https://rndsetup.com/sh-scientific/"},
+{"@type":"ListItem","position":3,"name":"메뉴얼","item":"https://rndsetup.com/sh-scientific/manual/"}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"전기로·튜브퍼니스 승온 프로그램 설정·운전 방법","description":"전기로/튜브퍼니스에서 승온-유지-냉각 온도 스케줄을 설정하고 안전하게 운전하는 일반 절차","step":[
+{"@type":"HowToStep","position":1,"name":"설치·전원 확인","text":"수평·환기가 확보된 곳에 설치하고 접지·정격 전원을 확인합니다. 열전대와 발열체 연결, 관(튜브)·챔버 내부 청결을 점검합니다."},
+{"@type":"HowToStep","position":2,"name":"시료 배치","text":"시료를 균열대(균일 가열 구간)에 두고, 튜브퍼니스는 양단 실링과 가스 인입·배기 라인을 연결합니다."},
+{"@type":"HowToStep","position":3,"name":"승온 프로그램 입력","text":"온도컨트롤러에 램프(승온속도)-유지(목표온도·유지시간)-냉각 구간을 세그먼트로 입력합니다. 필요하면 구간 반복을 설정합니다."},
+{"@type":"HowToStep","position":4,"name":"분위기 준비","text":"가스 분위기가 필요하면 불활성 가스로 퍼지·치환 후 유량을 맞추고, 진공이면 목표 진공도까지 배기합니다."},
+{"@type":"HowToStep","position":5,"name":"운전·기록","text":"프로그램을 시작하고 초기 승온 구간을 지켜본 뒤, RS485·PC 연동 시 온도·유량을 기록합니다. 종료 후 충분히 냉각되면 시료를 회수합니다."}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"전기로 온도컨트롤러에서 승온 프로그램은 어떻게 설정하나요?","acceptedAnswer":{"@type":"Answer","text":"목표온도(SP)와 각 구간의 승온속도(램프)·유지시간·냉각을 세그먼트로 나눠 입력합니다. 삼흥에너지 전기로에 쓰이는 SP590(삼원테크 NOVA500E 계열) 컨트롤러는 상승-유지-하강과 구간 반복(RPT), 종료 동작(HOLD·무한반복)을 지원합니다. 가상 시뮬레이터로 직접 눌러보며 익힐 수 있는 별도 가이드를 제공합니다."}},
+{"@type":"Question","name":"튜브퍼니스에서 가스 분위기는 어떤 순서로 다루나요?","acceptedAnswer":{"@type":"Answer","text":"먼저 불활성 가스(N2·Ar)로 관 내부를 충분히 퍼지·치환해 산소를 배출한 뒤 목표 유량으로 맞춥니다. 환원 가스(H2 포함)를 쓰는 경우 누설·환기·점화원 관리가 필수이며, 승온·유지·냉각 구간별로 유량과 혼합비를 바꾸려면 MFC와 제어 소프트웨어로 온도 스케줄에 연동하면 재현성이 좋아집니다."}},
+{"@type":"Question","name":"전기로 사용 시 가장 중요한 안전 주의사항은 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"과열 방지(과온 알람·차단), 가연성·환원 가스 누설과 환기, 고온 표면·냉각 전 시료 접촉 금지가 핵심입니다. 발열체와 열전대는 소모성이라 수명 관리가 필요하고, 이상 승온·통신 두절 등은 즉시 정지 후 점검·A/S를 받는 것이 안전합니다."}}
+]}
+</script>
+<style>
+  :root{--ink:#1B1A18;--gray:#6B6560;--gray-2:#9C958D;--line:#E7E3DE;--ember:#C2410C;--ember-2:#9A3412;--ember-bg:#FBF2EC;--panel:#FAF8F5;
+    --serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+  .hero{padding:46px 0 6px}
+  .crumb{font-size:12.5px;color:var(--ember-2);font-weight:700;margin-bottom:12px}
+  .crumb a{color:var(--ember-2);text-decoration:none}
+  h1{font-family:var(--serif);font-size:clamp(23px,4.8vw,31px);font-weight:700;line-height:1.3;letter-spacing:-.02em}
+  .lead{font-size:15.5px;color:var(--gray);margin-top:12px}
+  article{padding:22px 0 40px}
+  article h2{font-family:var(--serif);font-size:20px;font-weight:700;margin:32px 0 10px;letter-spacing:-.01em}
+  article p{font-size:16px;color:#2a2826;margin:0 0 13px}
+  article ul{margin:0 0 15px 18px}
+  article li{font-size:15.5px;color:#2a2826;margin-bottom:7px}
+  article b{color:var(--ink)}
+  .ans{background:var(--ember-bg);border:1px solid #f0dccd;border-left:4px solid var(--ember);border-radius:10px;padding:16px 18px;margin:16px 0 8px;font-size:15.5px;color:#3a2a20}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:16px 0}
+  .card h3{font-family:var(--serif);font-size:16px;margin-bottom:6px}
+  .steps{counter-reset:s;margin:10px 0 16px}
+  .st{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
+  .st:last-child{border-bottom:0}
+  .st .n{counter-increment:s;flex:0 0 26px;height:26px;border-radius:50%;background:var(--ember);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  .st .n::before{content:counter(s)}
+  .st .sc b{color:var(--ink)}
+  .st .sc{font-size:15px;color:#2a2826}
+  .warn{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:16px 18px;margin:16px 0}
+  .warn h3{font-size:15px;color:var(--ember-2);margin-bottom:8px}
+  .warn ul{margin:0 0 0 18px}
+  .cta{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 6px}
+  .btn{display:inline-block;padding:12px 18px;border-radius:9px;font-weight:700;text-decoration:none;font-size:14.5px}
+  .btn.p{background:var(--ember);color:#fff}
+  .btn.s{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .rel{border-top:1px solid var(--line);margin-top:28px;padding-top:16px;font-size:14px;color:var(--gray)}
+  .rel a{color:var(--ember-2);text-decoration:none;font-weight:700}
+</style>
+<link rel="stylesheet" href="/assets/site.css">
+<!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "emergent co."], "legalName": "실험셋업연구소", "taxID": "637-05-03629", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "description": "실험용 펌프·유체 제어 셋업 정보를 제공하는 곳. 어떤 펌프를 고르고 유량·스케줄을 어떻게 자동화·재현하는지, 어떤 논문이 어떤 셋업을 썼는지 정리합니다. 리드플루이드(LeadFluid) 정량·연동(페리스탈틱)·시린지·기어펌프와 Alicat 질량유량계(MFC)의 제어 소프트웨어와 국내 직접 A/S(구매 시 3년 무상보증)도 지원합니다. 관류·연속배양 등 무인·정밀·재현이 필요한 실험의 셋업을 다룹니다.", "address": {"@type": "PostalAddress", "streetAddress": "북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "Modbus·RS-485 펌프 제어", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
+<body>
+<div id="pumplab-header"></div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/">홈</a> › <a href="/sh-scientific/">삼흥에너지</a> › 메뉴얼</div>
+    <h1>전기로·튜브퍼니스 메뉴얼<br>— 사용법·승온 프로그램·안전</h1>
+    <p class="lead">온도컨트롤러 사용법부터 승온 프로그램 설정, 가스·진공 분위기 취급, 안전 주의사항, 자주 겪는 문제와 A/S까지 — 삼흥에너지 전기로·튜브퍼니스를 안전하게 쓰기 위한 기본을 정리했습니다.</p>
+  </div>
+</section>
+
+<article>
+  <div class="wrap">
+    <div class="ans">이 페이지는 <b>전기로·튜브퍼니스를 처음 쓰거나 다시 확인할 때</b> 보는 기본 메뉴얼입니다. 온도컨트롤러 상세 조작은 <b>가상 시뮬레이터로 눌러보며 익히는 별도 가이드</b>로 연결하고, 여기서는 설치·승온 프로그램·분위기·안전·문제해결을 한 흐름으로 정리합니다. 정확한 사양·조작 키는 사용 중인 모델의 매뉴얼을 따르세요.</div>
+
+    <h2>1. 온도컨트롤러 사용법</h2>
+    <p>삼흥에너지 전기로에는 <b>SP590(삼원테크 NOVA500E 계열)</b> 온도컨트롤러가 주로 탑재됩니다. 목표온도(SP)와 운전시간 설정, 상승–유지–하강 스케줄, 구간 반복(RPT), 종료 동작(HOLD·무한반복), RS485 통신까지 <b>가상 컨트롤러를 직접 눌러보며</b> 익힐 수 있는 인터랙티브 가이드를 준비했습니다.</p>
+    <div class="card">
+      <h3>가상 시뮬레이터로 배우기</h3>
+      <p style="margin:0;font-size:15px">키 조작을 화면에서 그대로 연습할 수 있어, 실제 장비에서 실수를 줄일 수 있습니다.</p>
+      <div class="cta" style="margin:12px 0 2px"><a class="btn p" href="/temp-controller-guide/">온도컨트롤러 사용법 가이드 열기 →</a></div>
+    </div>
+
+    <h2>2. 퍼니스 초기 세팅</h2>
+    <div class="steps">
+      <div class="st"><div class="n"></div><div class="sc"><b>설치·전원</b> — 수평·환기가 확보된 위치, 접지와 정격 전원을 확인합니다. 발열체·열전대 연결 상태를 점검합니다.</div></div>
+      <div class="st"><div class="n"></div><div class="sc"><b>내부 점검</b> — 관(튜브)·챔버 내부의 이물·수분을 제거하고, 튜브퍼니스는 양단 실링과 가스 인입·배기 라인을 확인합니다.</div></div>
+      <div class="st"><div class="n"></div><div class="sc"><b>시료 배치</b> — 시료를 <b>균열대(균일 가열 구간)</b>에 두어 온도 편차를 줄입니다. 보트·도가니 재질이 목표 온도·분위기와 맞는지 확인합니다.</div></div>
+    </div>
+
+    <h2>3. 승온 프로그램 설정</h2>
+    <p>재현성의 핵심은 <b>램프(승온속도)–유지(목표온도·유지시간)–냉각</b>을 정확히 지키는 것입니다. 컨트롤러에 구간을 세그먼트로 입력하고, 필요하면 구간 반복을 설정합니다.</p>
+    <ul>
+      <li><b>램프</b> — 급격한 승온은 시료 균열·발열체 부담을 키웁니다. 소재에 맞는 승온속도를 씁니다.</li>
+      <li><b>유지</b> — 목표 온도에서 반응·소결이 일어나는 구간. 시간·온도를 정확히.</li>
+      <li><b>냉각</b> — 서냉이 필요한 소재는 냉각 구간도 프로그램에 포함합니다.</li>
+    </ul>
+
+    <h2>4. 가스·진공 분위기 다루기</h2>
+    <p>가스 분위기가 필요하면 먼저 <b>불활성 가스(N₂·Ar)로 관 내부를 충분히 퍼지·치환</b>해 산소를 배출한 뒤 목표 유량으로 맞춥니다. 진공이면 목표 진공도까지 배기합니다. 승온·유지·냉각 구간마다 유량·혼합비를 바꾸려면 <a href="/alicat/" style="color:var(--ember-2);font-weight:700">Alicat MFC</a>와 제어 소프트웨어로 <b>온도 스케줄에 유량을 연동</b>하면 사람이 지키지 않아도 같은 프로파일을 재현합니다.</p>
+
+    <div class="warn">
+      <h3>⚠ 안전 주의사항</h3>
+      <ul>
+        <li><b>과열 방지</b> — 과온 알람·차단 설정을 확인하고, 이상 승온 시 즉시 정지합니다.</li>
+        <li><b>가연성·환원 가스</b> — H₂ 등은 누설·환기·점화원 관리가 필수입니다. 배기와 인터록을 함께 설계하세요.</li>
+        <li><b>고온 표면</b> — 운전 중·직후 표면과 시료는 매우 뜨겁습니다. 충분히 냉각 후 취급합니다.</li>
+        <li><b>소모품 관리</b> — 발열체·열전대·실링은 소모성입니다. 수명 저하 시 온도 편차·고장의 원인이 됩니다.</li>
+      </ul>
+    </div>
+
+    <h2>5. 자주 겪는 문제</h2>
+    <ul>
+      <li><b>온도가 안 오른다</b> — 발열체·전원·SSR·열전대 단선 여부. 이상 시 정지 후 점검·A/S.</li>
+      <li><b>표시온도와 실제가 다르다</b> — 열전대 위치·노화, 시료가 균열대를 벗어남. 배치·열전대 점검.</li>
+      <li><b>통신이 안 된다</b> — RS485 배선(A/B 극성)·통신 파라미터·주소 확인.</li>
+    </ul>
+    <p>증상이 반복되거나 원인이 분명치 않으면 무리하게 사용하지 말고 점검·A/S를 받는 것이 안전합니다.</p>
+
+    <h2>6. A/S가 필요하면</h2>
+    <p>실험셋업연구소는 삼흥에너지 <b>공식 대리점(지역 A/S)</b>으로, 설치·점검·수리를 지원합니다. 설치 사례와 A/S 사례는 블로그에 정리하고 있습니다.</p>
+    <div class="cta">
+      <a class="btn p" href="/sh-scientific/blog/">설치·A/S 블로그 →</a>
+      <a class="btn s" href="/contact/">점검·A/S 문의</a>
+    </div>
+
+    <div class="rel">
+      관련: <a href="/sh-scientific/select/">제품 선택 가이드</a> · <a href="/temp-controller-guide/">온도컨트롤러 사용법</a> · <a href="/furnace/setups/alicat-mfc-tubefurnace/">MFC 튜브퍼니스 셋업 사례</a>
+    </div>
+  </div>
+</article>
+
+<div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/pump/leadfluid/">리드플루이드(LeadFluid) — 정품·국내 A/S·제어</a></li><li><a href="/pump/leadfluid/bt101l/">리드플루이드 BT101L 연동펌프 (LeadFluid BT101L) — RS485 PC 제어</a></li><li><a href="/pump/leadfluid/bt103s/">리드플루이드 BT103S 분주형 연동펌프 — 정량·반복 분주</a></li><li><a href="/pump/leadfluid/bt103s/head-replace/">리드플루이드 BT103S 펌프 헤드 교체·튜브 장착 방법</a></li><li><a href="/pump/leadfluid/tyd01-01/">리드플루이드 TYD01-01 시린지펌프 — 나노리터 정밀 주입</a></li><li><a href="/pump/leadfluid/ct3001f/">리드플루이드 CT3001F PEEK 기어펌프 — 서보 브러시리스 모터·PEEK 기어 저맥동 연속 이송</a></li><li><a href="/pump/leadfluid/explosion-proof/">리드플루이드 방폭 연동펌프 EF800·EF900 — ATEX/IECEx 방폭 지역용</a></li><li><a href="/pump/leadfluid/bq80s/">리드플루이드 BQ80S 마이크로 정량 연동펌프 — 패널 장착·0.0035~34mL/min</a></li><li><a href="/pump/leadfluid/tfd/">리드플루이드 TFD 스플릿형 시린지펌프 — 컨트롤러 분리형·미세주입·다채널</a></li><li><a href="/pump/leadfluid/explosion-proof-gear/">리드플루이드 방폭 기어펌프 FG601S-A3·W3 — 공압구동·ATEX 용제/석유화학</a></li><li><a href="/pump/leadfluid/bt301l/">리드플루이드 BT301L 지능형 유량 연동펌프 — 0.005~1750mL/min·RS485 제어</a></li><li><a href="/pump/leadfluid/wt600f/">리드플루이드 WT600F 분주형 대유량 연동펌프 — 0.005~6000mL/min·4모드 분주</a></li><li><a href="/pump/leadfluid/mf106/">리드플루이드 MF106 고보호(IP66/67) 연동펌프 — 0.005~7700mL/min·방진방수</a></li><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/pump/guide/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/pump/select/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 리드플루이드 공식 대리점·실험 펌프·유체제어 셋업</a></li><li><a href="/sh-scientific/">삼흥에너지(SH-Scientific) 튜브퍼니스·전기로 — 열처리 셋업</a></li><li><a href="/sh-scientific/select/">삼흥에너지 전기로·튜브퍼니스 제품 선택 가이드 — 조건 고르고 견적문의</a></li><li><a href="/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/setups/">도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업</a></li><li><a href="/setups/heart-eshp-bt101l">심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/brain-electrode-tyd01">뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)</a></li><li><a href="/setups/catheter-heparin-bt101">혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

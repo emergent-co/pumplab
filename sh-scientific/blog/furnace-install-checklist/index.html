@@ -3,77 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>연동펌프 유량 캘리브레이션 방법 — 설정값과 실제 유량 맞추기 | 실험셋업연구소</title>
-<meta name="description" content="연동펌프는 튜브 마모·배압·재질 때문에 설정값(RPM)과 실제 유량이 어긋납니다. 저울·메스실린더로 실제 토출량을 재서 보정하는 캘리브레이션 방법, 재캘리브레이션 주기, 재현성 확보 팁을 실험셋업연구소가 정리했습니다.">
-<link rel="canonical" href="https://rndsetup.com/pump/atoz/flow-calibration/">
+<title>전기로·튜브퍼니스 설치 시 확인할 것 — 설치 체크리스트 | 실험셋업연구소</title>
+<meta name="description" content="전기로·튜브퍼니스를 설치한 직후 반드시 확인해야 하는 항목 — 전원·접지·환기·수평, 열전대·발열체 연결, 튜브 실링·가스 라인, 첫 승온(베이킹)까지 설치 체크리스트로 정리했습니다. 실험셋업연구소.">
+<link rel="canonical" href="https://rndsetup.com/sh-scientific/blog/furnace-install-checklist/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="연동펌프 유량 캘리브레이션 방법 — 설정값과 실제 유량 맞추기">
-<meta property="og:description" content="설정값과 실제 유량이 어긋나는 이유와, 실측으로 보정하는 캘리브레이션 절차·주기·재현성 팁.">
-<meta property="og:url" content="https://rndsetup.com/pump/atoz/flow-calibration/">
+<meta property="og:title" content="전기로·튜브퍼니스 설치 시 확인할 것 — 설치 체크리스트">
+<meta property="og:description" content="전원·접지·환기·수평부터 열전대·가스 라인·첫 승온까지 설치 직후 확인 항목.">
+<meta property="og:url" content="https://rndsetup.com/sh-scientific/blog/furnace-install-checklist/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
 {"@type":"ListItem","position":1,"name":"홈","item":"https://rndsetup.com/"},
-{"@type":"ListItem","position":2,"name":"펌프 문제해결","item":"https://rndsetup.com/pump/atoz/"},
-{"@type":"ListItem","position":3,"name":"유량 캘리브레이션 방법","item":"https://rndsetup.com/pump/atoz/flow-calibration/"}
+{"@type":"ListItem","position":2,"name":"삼흥에너지","item":"https://rndsetup.com/sh-scientific/"},
+{"@type":"ListItem","position":3,"name":"설치·A/S 블로그","item":"https://rndsetup.com/sh-scientific/blog/"},
+{"@type":"ListItem","position":4,"name":"설치 체크리스트","item":"https://rndsetup.com/sh-scientific/blog/furnace-install-checklist/"}
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"연동펌프는 왜 설정값과 실제 유량이 다른가요?","acceptedAnswer":{"@type":"Answer","text":"연동펌프 유량은 튜브가 회전자에 눌렸다 펴지는 복원량으로 결정되는데, 튜브 마모·경도·재질, 배압(토출측 저항), 흡입 양정에 따라 회전당 실제 토출량이 달라집니다. 그래서 같은 RPM이라도 실제 유량은 카탈로그 값과 어긋나며, 실측 캘리브레이션으로 보정해야 정확해집니다."}},
-{"@type":"Question","name":"연동펌프 유량 캘리브레이션은 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"① 실제 사용할 튜브·유체·배관으로 세팅하고 ② 목표 RPM으로 일정 시간(예: 1~3분) 토출한 액을 저울(질량÷밀도) 또는 메스실린더로 측정해 ③ 실측 유량(mL/min)을 구하고 ④ 목표 유량÷실측 유량으로 보정계수를 내거나 장비의 캘리브레이션 기능에 실측값을 입력합니다. 2~3회 반복해 평균을 씁니다."}},
-{"@type":"Question","name":"캘리브레이션은 얼마나 자주 다시 해야 하나요?","acceptedAnswer":{"@type":"Answer","text":"튜브를 교체·재장착했을 때, 튜브가 마모돼 유량이 드리프트할 때, 유체·배압 조건이 바뀌었을 때 다시 합니다. 장시간 연속 운전에서는 튜브 피로로 유량이 서서히 줄 수 있어 주기적 재캘리브레이션 또는 유량 모니터링이 재현성에 유리합니다."}},
-{"@type":"Question","name":"저유량일수록 오차가 큰 이유는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"저유량에서는 회전당 토출량 자체가 작아, 튜브 복원 편차·맥동·미세 누설의 상대적 비중이 커집니다. 저유량 정밀 이송이 필요하면 작은 내경 튜브·저유량 헤드를 쓰고, 반드시 사용 조건에서 실측 캘리브레이션한 값을 기준으로 삼아야 합니다."}}
-]}
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"전기로·튜브퍼니스 설치 시 확인할 것 — 설치 체크리스트","description":"전기로·튜브퍼니스 설치 직후 확인해야 하는 전원·접지·환기·수평·열전대·가스 라인·첫 승온 항목 정리","inLanguage":"ko","author":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"publisher":{"@type":"Organization","name":"실험셋업연구소","url":"https://rndsetup.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://rndsetup.com/sh-scientific/blog/furnace-install-checklist/"},"articleSection":"설치"}
 </script>
+<style>
+  :root{--ink:#1B1A18;--gray:#6B6560;--gray-2:#9C958D;--line:#E7E3DE;--ember:#C2410C;--ember-2:#9A3412;--ember-bg:#FBF2EC;--panel:#FAF8F5;
+    --serif:"Noto Serif KR",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:#fff;color:var(--ink);line-height:1.8;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit}
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px}
+  .hero{padding:44px 0 4px}
+  .crumb{font-size:12.5px;color:var(--ember-2);font-weight:700;margin-bottom:12px}
+  .crumb a{color:var(--ember-2);text-decoration:none}
+  .cat{display:inline-block;font-size:11.5px;font-weight:800;color:var(--ember-2);background:var(--ember-bg);padding:3px 10px;border-radius:20px;margin-bottom:10px}
+  h1{font-family:var(--serif);font-size:clamp(23px,4.6vw,30px);font-weight:700;line-height:1.32;letter-spacing:-.02em}
+  .meta{font-size:13px;color:var(--gray-2);margin-top:10px}
+  article{padding:20px 0 40px}
+  article h2{font-family:var(--serif);font-size:19.5px;font-weight:700;margin:30px 0 8px}
+  article p{font-size:16px;color:#2a2826;margin:0 0 13px}
+  article b{color:var(--ink)}
+  .ans{background:var(--ember-bg);border:1px solid #f0dccd;border-left:4px solid var(--ember);border-radius:10px;padding:15px 18px;margin:14px 0 8px;font-size:15.5px;color:#3a2a20}
+  .chk{list-style:none;margin:12px 0 16px;padding:0}
+  .chk li{position:relative;padding:9px 0 9px 30px;border-bottom:1px dashed var(--line);font-size:15.5px;color:#2a2826}
+  .chk li:last-child{border-bottom:0}
+  .chk li::before{content:"✓";position:absolute;left:0;top:9px;width:20px;height:20px;background:var(--ember);color:#fff;border-radius:5px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .chk li b{color:var(--ink)}
+  .warn{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:15px 18px;margin:16px 0;font-size:15px}
+  .warn b{color:var(--ember-2)}
+  .cta{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 6px}
+  .btn{display:inline-block;padding:12px 18px;border-radius:9px;font-weight:700;text-decoration:none;font-size:14.5px}
+  .btn.p{background:var(--ember);color:#fff}
+  .btn.s{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .rel{border-top:1px solid var(--line);margin-top:26px;padding-top:16px;font-size:14px;color:var(--gray)}
+  .rel a{color:var(--ember-2);text-decoration:none;font-weight:700}
+</style>
 <link rel="stylesheet" href="/assets/site.css">
 <!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "emergent co."], "legalName": "실험셋업연구소", "taxID": "637-05-03629", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "description": "실험용 펌프·유체 제어 셋업 정보를 제공하는 곳. 어떤 펌프를 고르고 유량·스케줄을 어떻게 자동화·재현하는지, 어떤 논문이 어떤 셋업을 썼는지 정리합니다. 리드플루이드(LeadFluid) 정량·연동(페리스탈틱)·시린지·기어펌프와 Alicat 질량유량계(MFC)의 제어 소프트웨어와 국내 직접 A/S(구매 시 3년 무상보증)도 지원합니다. 관류·연속배양 등 무인·정밀·재현이 필요한 실험의 셋업을 다룹니다.", "address": {"@type": "PostalAddress", "streetAddress": "북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "Modbus·RS-485 펌프 제어", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
 <body>
 <div id="pumplab-header"></div>
 
-<article class="sd-wrap">
-  <div class="sd-crumb"><a href="/">홈</a> › <a href="/pump/atoz/">펌프 문제해결</a> › 유량 캘리브레이션</div>
-  <h1>연동펌프 유량 캘리브레이션 방법<br>— 설정값과 실제 유량 맞추기</h1>
-  <div class="sd-meta">튜브 마모·배압 보정 · 재현성 확보</div>
-
-  <div class="sd-answer">
-    <b>연동펌프는 튜브 마모·배압·재질 때문에 같은 RPM이라도 실제 유량이 카탈로그 값과 어긋납니다.</b> 실제 사용 조건에서 일정 시간 토출량을 <b>저울·메스실린더로 실측</b>해 보정계수를 내거나 장비 캘리브레이션 기능에 입력하면 유량을 맞출 수 있습니다.
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/">홈</a> › <a href="/sh-scientific/">삼흥에너지</a> › <a href="/sh-scientific/blog/">설치·A/S 블로그</a> › 설치 체크리스트</div>
+    <span class="cat">설치</span>
+    <h1>전기로·튜브퍼니스 설치 시 확인할 것<br>— 설치 체크리스트</h1>
+    <div class="meta">실험셋업연구소 · 설치 가이드</div>
   </div>
+</section>
 
-  <div class="sd-body">
-    <h2>왜 설정값과 실제 유량이 다른가</h2>
-    <p>연동펌프 유량은 튜브가 눌렸다 펴지는 복원량으로 결정됩니다. 그래서 <b>튜브 경도·마모·재질, 배압(토출 저항), 흡입 양정</b>이 바뀌면 회전당 실제 토출량이 달라지고, 같은 RPM에서도 유량이 어긋납니다. 정확한 유량이 필요한 실험은 반드시 사용 조건에서 실측해 보정해야 합니다.</p>
+<article>
+  <div class="wrap">
+    <div class="ans">전기로·튜브퍼니스는 <b>설치 직후 한 번의 점검</b>이 이후 온도 편차·고장·안전사고를 크게 줄입니다. 전원·환경, 연결, 분위기 라인, 첫 승온(베이킹) 순서로 확인하세요. 아래는 현장에서 쓰는 기본 체크리스트입니다.</div>
 
-    <h2>캘리브레이션 절차</h2>
-    <div class="sd-summary">
-      <div class="row"><span class="k">1) 세팅</span><span>실제 쓸 튜브·유체·배관·배압으로 구성(공정과 동일 조건)</span></div>
-      <div class="row"><span class="k">2) 토출</span><span>목표 RPM으로 일정 시간(예: 1~3분) 토출, 시간 기록</span></div>
-      <div class="row"><span class="k">3) 측정</span><span>토출액을 저울(질량÷밀도) 또는 메스실린더로 부피 측정</span></div>
-      <div class="row"><span class="k">4) 계산</span><span>실측 유량 = 측정 부피 ÷ 시간 (mL/min)</span></div>
-      <div class="row"><span class="k">5) 보정</span><span>보정계수 = 목표 유량 ÷ 실측 유량 → 설정 보정 또는 장비 캘리브레이션 기능에 실측값 입력</span></div>
-      <div class="row"><span class="k">6) 반복</span><span>2~3회 반복 평균, 저유량일수록 측정 시간을 늘려 오차 축소</span></div>
+    <h2>1. 설치 환경·전원</h2>
+    <ul class="chk">
+      <li><b>수평·바닥</b> — 진동 없는 평탄한 곳, 벽·가연물과 충분한 이격.</li>
+      <li><b>환기</b> — 배열·가스 배출이 가능한 환기 환경. 밀폐 공간 설치 지양.</li>
+      <li><b>정격 전원·접지</b> — 명판의 전압·용량에 맞는 전용 회로와 접지 확인.</li>
+      <li><b>주변 온도</b> — 컨트롤러·주변 기기가 과열되지 않는 여유 공간.</li>
+    </ul>
+
+    <h2>2. 연결·구성 확인</h2>
+    <ul class="chk">
+      <li><b>열전대</b> — 종류(K/R/S 등)·극성·삽입 깊이. 균열대 온도를 대표하는 위치인지.</li>
+      <li><b>발열체·배선</b> — 단자 체결·손상 여부. 무리한 장력 없이 고정.</li>
+      <li><b>컨트롤러 파라미터</b> — 열전대 타입·상한온도·과온 알람이 장비에 맞게 설정됐는지.</li>
+    </ul>
+
+    <h2>3. 튜브퍼니스 — 실링·가스 라인</h2>
+    <ul class="chk">
+      <li><b>튜브 정렬·실링</b> — 관이 균열대 중심에 오도록, 양단 실링·O링 상태 확인.</li>
+      <li><b>가스 인입·배기</b> — 인입/배기 방향, 밸브·유량계 연결, 누설 점검.</li>
+      <li><b>퍼지 순서</b> — 첫 사용 전 불활성 가스로 충분히 퍼지·치환.</li>
+    </ul>
+
+    <div class="warn"><b>⚠ 첫 승온(베이킹)</b> — 새 로·발열체는 제조사 권장 절차에 따라 <b>천천히 승온해 수분·바인더를 배출</b>하는 초기 베이킹이 필요합니다. 급격히 올리면 균열·수명 저하의 원인이 됩니다. 절차는 해당 모델 매뉴얼을 따르세요.</div>
+
+    <h2>4. 첫 운전 점검</h2>
+    <ul class="chk">
+      <li><b>초기 승온 관찰</b> — 표시온도가 정상 상승하는지, 이상음·냄새·연기 없는지.</li>
+      <li><b>과온 차단 동작</b> — 과온 알람·차단이 정상 동작하는지 확인.</li>
+      <li><b>통신(선택)</b> — RS485·PC 연동 시 배선(A/B)·주소·파라미터 확인.</li>
+    </ul>
+
+    <p>설치 환경이 애매하거나 첫 승온·분위기 세팅이 부담스러우면, 무리하지 말고 설치·시운전을 함께 진행하는 것이 안전합니다. 실험셋업연구소는 삼흥에너지 공식 대리점으로 설치·점검·A/S를 지원합니다.</p>
+
+    <div class="cta">
+      <a class="btn p" href="/contact/">설치·A/S 문의</a>
+      <a class="btn s" href="/sh-scientific/manual/">전체 메뉴얼 보기 →</a>
     </div>
 
-    <h2>다시 캘리브레이션해야 할 때</h2>
-    <p>튜브를 교체·재장착했을 때, 마모로 유량이 드리프트할 때, 유체·배압 조건이 바뀌었을 때 다시 합니다. 장시간 연속 운전에서는 튜브 피로로 유량이 서서히 줄 수 있어, <b>주기적 재캘리브레이션이나 실시간 유량 모니터링</b>이 재현성에 유리합니다. 여러 펌프를 함께 쓰면 각 채널을 개별 캘리브레이션해야 합니다.</p>
-
-    <h2>재현성을 위한 팁</h2>
-    <p>같은 로트·재질의 튜브를 쓰고, 캘리브레이션 조건(튜브·배압·온도)과 실측값을 로그로 남겨 두면 다음에 같은 조건을 재현하기 쉽습니다. 무인 장시간 운전이라면 유량·이력을 소프트웨어로 기록·재현하는 제어가 편차를 줄여줍니다.</p>
-  </div>
-
-  <div class="sd-bridge">
-    <h2>유량 편차, 제어로 잡습니다</h2>
-    <p>실험셋업연구소는 리드플루이드 펌프에 제어 소프트웨어를 얹어 채널별 유량 설정·기록·재현을 지원합니다. 캘리브레이션 조건 상담도 가능합니다.</p>
-    <a href="/pump/leadfluid/">리드플루이드 펌프·제어 보기 →</a>
-  </div>
-
-  <div class="sd-tags"><span>#유량캘리브레이션</span><span>#연동펌프</span><span>#유량보정</span><span>#재현성</span><span>#펌프튜브</span></div>
-
-  <div class="sd-related">
-    <h3>관련 콘텐츠</h3>
-    <div class="sd-rel-grid">
-      <a class="sd-rc" href="/pump/atoz/peristaltic-flow-setpoint-mismatch/"><div class="cat">문제해결</div><div class="t">유량이 설정값과 다른 이유</div><div class="d">연동펌프 유량 오차의 원인과 점검.</div></a>
-      <a class="sd-rc" href="/pump/atoz/tube-size-guide/"><div class="cat">참조</div><div class="t">튜브 규격·펌프헤드 가이드</div><div class="d">튜브 번호별 내경(mm)과 헤드 유형.</div></a>
-      <a class="sd-rc" href="/pump/leadfluid/"><div class="cat">리드플루이드</div><div class="t">리드플루이드 펌프·모델 허브</div><div class="d">모델·스펙·유량계산기·제어·A/S.</div></a>
+    <div class="rel">
+      관련: <a href="/sh-scientific/blog/">설치·A/S 블로그</a> · <a href="/sh-scientific/manual/">전기로·튜브퍼니스 메뉴얼</a> · <a href="/sh-scientific/select/">제품 선택 가이드</a>
     </div>
   </div>
 </article>
