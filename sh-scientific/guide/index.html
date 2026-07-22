@@ -131,6 +131,30 @@
   .wback{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;color:#9C958D;background:none;border:0;cursor:pointer;margin:0 0 10px;padding:0;font-family:inherit}
   .wback:hover{color:#9A3412}
   .wnext{margin-top:14px;width:100%;background:#C2410C;color:#fff;border:0;border-radius:11px;padding:13px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer}
+  /* 삼흥 furnace 전체 라인 필터 아코디언 */
+  .fsec{max-width:900px;margin:8px auto 60px;padding:0 22px}
+  .fsec h2{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:4px}
+  .fsec p.fd{font-size:13.5px;color:var(--gray);margin-bottom:12px}
+  .ffilter{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 6px;align-items:center}
+  .ffilter.row2{margin-bottom:14px}
+  .ff-lb{font-size:11.5px;font-weight:800;color:#9C958D;margin-right:4px}
+  .ff-btn{font-size:12.5px;font-weight:700;padding:6px 12px;border:1px solid #E7E3DE;border-radius:20px;background:#fff;color:var(--gray);cursor:pointer;font-family:inherit}
+  .ff-btn.on{background:#C2410C;border-color:#C2410C;color:#fff}
+  .frow{border:1px solid #E7E3DE;border-radius:12px;margin-bottom:8px;background:#fff;overflow:hidden}
+  .frow.hide{display:none}
+  .frow summary{list-style:none;cursor:pointer;padding:14px 16px;font-size:14.5px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .frow summary::-webkit-details-marker{display:none}
+  .frow summary .fn{font-weight:800;color:#9A3412}
+  .frow summary .ft{color:var(--gray);font-size:13px;font-weight:500}
+  .frow summary::after{content:"+";color:#C2410C;font-weight:800;font-size:18px}
+  .frow[open] summary::after{content:"\2013"}
+  .frow[open] summary{border-bottom:1px solid #E7E3DE}
+  .fdet{padding:14px 16px}
+  .fdet p{font-size:13.5px;color:#3a2a20;margin:0 0 8px}
+  .fdet .sku{font-size:12.5px;color:#5b5148;line-height:1.9;word-break:break-all}
+  .fdet .sku b{color:#9A3412}
+  .fbtns{margin-top:12px}
+  .fbtns a{background:#C2410C;color:#fff;font-weight:700;font-size:13px;padding:9px 15px;border-radius:8px;text-decoration:none}
 </style>
 <link rel="stylesheet" href="/assets/site.css">
 <!--HEADLD_START--><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rndsetup.com/#org", "name": "실험셋업연구소", "alternateName": ["정량펌프연구소", "rndsetup", "emergent co."], "legalName": "실험셋업연구소", "taxID": "637-05-03629", "url": "https://rndsetup.com/", "email": "info@rndsetup.com", "telephone": "+82-70-8983-2600", "founder": {"@type": "Person", "name": "이영현"}, "sameAs": ["https://www.google.com/maps?cid=4429951187161412134", "https://www.youtube.com/@rndsetuplab", "https://www.linkedin.com/company/rndsetup/", "https://www.wikidata.org/wiki/Q140603002"], "description": "실험용 펌프·유체 제어 셋업 정보를 제공하는 곳. 어떤 펌프를 고르고 유량·스케줄을 어떻게 자동화·재현하는지, 어떤 논문이 어떤 셋업을 썼는지 정리합니다. 리드플루이드(LeadFluid) 정량·연동(페리스탈틱)·시린지·기어펌프와 Alicat 질량유량계(MFC)의 제어 소프트웨어와 국내 직접 A/S(구매 시 3년 무상보증)도 지원합니다. 관류·연속배양 등 무인·정밀·재현이 필요한 실험의 셋업을 다룹니다.", "address": {"@type": "PostalAddress", "streetAddress": "북구 화명대로 20, 8층 801-123호 (화명동, 대성빌딩)", "addressLocality": "부산광역시", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "knowsAbout": ["실험실 정량펌프", "연동펌프(페리스탈틱 펌프)", "시린지펌프", "기어펌프", "질량유량계(MFC)", "Modbus·RS-485 펌프 제어", "관류배양", "연속배양(chemostat)", "리드플루이드(LeadFluid) 펌프", "리드플루이드 펌프 국내 직접 A/S", "실험 셋업 정보", "Alicat 질량유량계", "삼흥에너지(SH Scientific) 튜브퍼니스·전기로", "열처리로(전기로·튜브퍼니스)"], "contactPoint": {"@type": "ContactPoint", "telephone": "+82-70-8983-2600", "email": "info@rndsetup.com", "contactType": "customer support", "areaServed": "KR", "availableLanguage": "Korean"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LeadFluid 정량·연동·시린지펌프 제어 시스템 공급·A/S", "serviceType": "실험실 펌프 시스템 공급 및 소프트웨어 제어", "brand": {"@type": "Brand", "name": "LeadFluid", "alternateName": "리드플루이드"}}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Alicat 질량유량계(MFC) 공급·시스템 연동", "serviceType": "질량유량계 공급 및 제어 연동", "brand": {"@type": "Brand", "name": "Alicat Scientific"}}}]}, {"@type": "WebSite", "@id": "https://rndsetup.com/#website", "name": "실험셋업연구소", "url": "https://rndsetup.com/", "publisher": {"@id": "https://rndsetup.com/#org"}, "inLanguage": "ko"}, {"@type": "Brand", "@id": "https://rndsetup.com/#leadfluid", "name": "리드플루이드", "alternateName": ["LeadFluid", "Lead Fluid", "리드플루이드"], "sameAs": ["https://www.leadfluid.com/", "https://www.leadfluid.com.cn/", "https://www.wikidata.org/wiki/Q140602893"]}]}</script><!--HEADLD_END--></head>
@@ -266,6 +290,87 @@
     </div>
   </div>
 </article>
+
+<section class="fsec">
+  <h2>삼흥에너지 전기로·튜브퍼니스 전체 라인</h2>
+  <p class="fd">종류·최고온도로 걸러 계열을 펼치면 모델(SKU)과 특징이 나옵니다. 정확한 사양·구성은 문의로 확정해 드립니다.</p>
+
+  <div class="ffilter" data-g="type"><span class="ff-lb">종류</span>
+    <button type="button" class="ff-btn on" data-f="all">전체</button>
+    <button type="button" class="ff-btn" data-f="box">박스형 머플로</button>
+    <button type="button" class="ff-btn" data-f="tube">관상형 튜브</button>
+    <button type="button" class="ff-btn" data-f="special">특수</button>
+  </div>
+  <div class="ffilter row2" data-g="temp"><span class="ff-lb">최고온도</span>
+    <button type="button" class="ff-btn on" data-f="all">전체</button>
+    <button type="button" class="ff-btn" data-f="t1200">~1200℃</button>
+    <button type="button" class="ff-btn" data-f="t1500">~1500℃</button>
+    <button type="button" class="ff-btn" data-f="thigh">1700℃↑</button>
+  </div>
+
+  <details class="frow" data-type="box" data-temp="t1200"><summary><span><span class="fn">박스형 · 1050℃ 칸탈 머플</span> <span class="ft">Kanthal</span></span></summary>
+    <div class="fdet"><p>범용 회화·소성용 박스형 머플로.</p><div class="sku"><b>SH-FU-</b>3MGE · 5MGE · 7MGE · 11MGE</div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <details class="frow" data-type="box" data-temp="t1200"><summary><span><span class="fn">박스형 · 1200℃ 표준 머플</span> <span class="ft">표준·고속승온·엘레베이터</span></span></summary>
+    <div class="fdet"><p>가장 널리 쓰는 1200℃급 박스형. 고속승온(Q)·엘레베이터형(U) 옵션.</p><div class="sku"><b>SH-FU-</b>3MG · 5MG · 14MG · 27MG · 64MG · 125MG · <b>고속승온</b> 5MGQ · 14MGQ · 27MGQ · <b>엘레베이터</b> 3.5MGU · 6.5MGU</div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <details class="frow" data-type="box" data-temp="t1200"><summary><span><span class="fn">박스형 · 1200℃ 진공 머플</span> <span class="ft">Vacuum</span></span></summary>
+    <div class="fdet"><p>진공·분위기 제어형 1200℃ 박스로. 진공 고속승온(VQ) 옵션.</p><div class="sku"><b>SH-FU-</b>1.5MGV · 10MGV · 31MGV · 64MGV · 125MGV · <b>진공 고속승온</b> 1.5MGVQ · 10MGVQ · 31MGVQ</div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <details class="frow" data-type="box" data-temp="t1500"><summary><span><span class="fn">박스형 · 1500℃ SiC 머플</span> <span class="ft">SiC·진공·엘레베이터</span></span></summary>
+    <div class="fdet"><p>SiC 발열체 1500℃급 박스로. 진공(HV)·엘레베이터(HU) 옵션.</p><div class="sku"><b>SH-FU-</b>4MH · 11MH · 22MH · 36MH · <b>진공</b> 4.5MHV · 18.7MHV · <b>엘레베이터</b> 2MHU · 4MHU · 6MHU</div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <details class="frow" data-type="box" data-temp="thigh"><summary><span><span class="fn">박스형 · 1700·1800·1900℃ MoSi₂ 머플</span> <span class="ft">고온·진공·엘레베이터</span></span></summary>
+    <div class="fdet"><p>MoSi₂ 발열체 초고온 박스로(1700/1800/1900℃). 진공(SV)·엘레베이터(SU) 옵션.</p><div class="sku"><b>SH-FU-</b>4MS1700 · 11MS1700 · 22MS1700 · 4MS1800 · 11MS1800 · 22MS1800 · 4MS1900 · 11MS1900 · 22MS1900 · <b>진공</b> 4.5MSV · 10MSV · 18.7MSV · <b>엘레베이터</b> 2MSU · 4MSU · 6MSU</div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <details class="frow" data-type="tube" data-temp="t1200"><summary><span><span class="fn">관상형 · 1200℃ 튜브 전기로</span> <span class="ft">단일·3존</span></span></summary>
+    <div class="fdet"><p>관 내부 가스 분위기 열처리(CVD·소성·환원). 구경·길이 다양, 3존(TS) 옵션.</p><div class="sku"><b>SH-FU-</b>30TG150 · 50~250 TG200 / TG300 / TG600 · <b>3존</b> 50~120 TS300</div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <details class="frow" data-type="tube" data-temp="t1500"><summary><span><span class="fn">관상형 · 1500℃ 튜브 전기로</span> <span class="ft">TH</span></span></summary>
+    <div class="fdet"><p>1500℃급 튜브 전기로. 고온 소재 소결·CVD.</p><div class="sku"><b>SH-FU-</b>50TH300 · 80TH300 · 100TH300 · 120TH300</div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <details class="frow" data-type="special" data-temp="t1200"><summary><span><span class="fn">특수 · 회전형 튜브로</span> <span class="ft">Rotary</span></span></summary>
+    <div class="fdet"><p>회전 관으로 분체를 연속 교반·열처리.</p><div class="sku"><b>SH-FU-</b>120RTG300 · 200RTG300 · 250RTG300 · 120RTG900 · 200RTG900 · 250RTG900</div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <details class="frow" data-type="special" data-temp="t1500"><summary><span><span class="fn">특수 · 롤러 킬른</span> <span class="ft">Roller Kiln</span></span></summary>
+    <div class="fdet"><p>롤러 이송 연속 소성로(양산형).</p><div class="sku"><b>SH-FU-</b>100RKG600 · 120RKG600 · 140RKG600 · 100RKG900 · 120RKG900 · 140RKG900 · 100RKH600 · 120RKH600 · 100RKH900 · 120RKH900</div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <details class="frow" data-type="special" data-temp="t1500"><summary><span><span class="fn">특수 · CVD 시스템</span> <span class="ft">CVD·RTCVD</span></span></summary>
+    <div class="fdet"><p>튜브로 기반 화학기상증착 시스템(가스·진공 구성 포함).</p><div class="sku"><b>SH-CVD-</b>30TG150 · 50TG200~250TG600 · 50TS300~120TS300 · 50TH300~120TH300 · <b>SH-RTCVD-</b>100TG200 · 100TG300 · <b>SH-CVD-PK</b></div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <details class="frow" data-type="special" data-temp="thigh"><summary><span><span class="fn">특수 · 초고온(3000℃급)</span> <span class="ft">Ultra-high temp</span></span></summary>
+    <div class="fdet"><p>3000℃급 초고온 특수로.</p><div class="sku"><b>SH-FU-</b>1.8MS3000</div>
+    <div class="fbtns"><a href="/contact/">이 계열 문의 →</a></div></div></details>
+
+  <p style="font-size:12px;color:#9C958D;margin-top:12px">※ 모델·구성·최고온도는 사양표 기준이며 변경될 수 있습니다. 정확한 확인은 <a href="/contact/" style="color:#9A3412;font-weight:700">문의</a> 바랍니다.</p>
+</section>
+
+<script>
+(function(){
+  var tf='all', tempf='all';
+  var rows=document.querySelectorAll('.fsec .frow');
+  function apply(){Array.prototype.forEach.call(rows,function(r){
+    var okT=(tf==='all'||r.getAttribute('data-type')===tf);
+    var okTemp=(tempf==='all'||r.getAttribute('data-temp')===tempf);
+    r.classList.toggle('hide', !(okT&&okTemp));});}
+  Array.prototype.forEach.call(document.querySelectorAll('.fsec .ffilter'),function(bar){
+    bar.addEventListener('click',function(e){var b=e.target.closest('.ff-btn');if(!b)return;
+      Array.prototype.forEach.call(bar.querySelectorAll('.ff-btn'),function(x){x.classList.remove('on');});b.classList.add('on');
+      if(bar.getAttribute('data-g')==='type') tf=b.getAttribute('data-f'); else tempf=b.getAttribute('data-f');
+      apply();});
+  });
+})();
+</script>
 
 <div id="pumplab-footer"><!--CNAV_START--><nav class="crawler-nav" aria-label="사이트 전체 링크"><div class="cn-group"><h5>펌프·제어</h5><ul><li><a href="/requests/">소프트웨어 제어</a></li><li><a href="/leadfluid/blog/">펌프 셋업 사례 — 실제 도입·제어·유량 보정 셋업</a></li><li><a href="/pump/atoz/">펌프 문제해결 — 유량 이상·튜빙 파손·멈춤 증상별 해결</a></li><li><a href="/leadfluid/guide/">펌프·튜브 선택 가이드 — 조건 입력하면 추천</a></li><li><a href="/pump/atoz/peristaltic-flow-setpoint-mismatch/">연동펌프 유량이 설정값과 다른 이유</a></li><li><a href="/pump/atoz/tubing-crush-tear-causes/">연동펌프 튜빙 씹힘·찢어짐 원인·해결</a></li><li><a href="/pump/atoz/flow-calibration/">연동펌프 유량 캘리브레이션 방법 — 설정값·실제 유량 보정</a></li><li><a href="/pump/atoz/tube-size-guide/">연동펌프 튜브 규격·펌프헤드 가이드 — 번호별 내경(mm)·유량</a></li><li><a href="/pump/setups/plating-flow-calibration/">도금 라인 유량 보정 셋업 — BT101L 2대 다펌프 제어(도입 스토리)</a></li></ul></div><div class="cn-group"><h5>실험 기법</h5><ul><li><a href="/application/flow-chemistry">flow chemistry 연속흐름 반응</a></li></ul></div><div class="cn-group"><h5>산업 분야</h5><ul><li><a href="/about/">실험셋업연구소 회사소개 — 리드플루이드 공식 대리점·실험 펌프·유체제어 셋업</a></li><li><a href="/sh-scientific/guide/">삼흥에너지(SH-Scientific) 전기로·튜브퍼니스 — 제품 선택·견적·열처리 셋업</a></li><li><a href="/sh-scientific/manual/">삼흥에너지 전기로·튜브퍼니스 메뉴얼 — 사용법·승온 프로그램·안전</a></li><li><a href="/sh-scientific/blog/">삼흥에너지 전기로·튜브퍼니스 설치·A/S 블로그</a></li><li><a href="/alicat/">ALICAT 질량유량계(MFC) — 정밀 가스 유량 제어</a></li><li><a href="/application/">실험 가이드</a></li><li><a href="/application/biopharmaceutical">바이오의약 — 발효·세포배양·정제·충전</a></li><li><a href="/application/analytical-instrument">분석기기 — 컬럼 주입·시료 정량 주입</a></li><li><a href="/application/environmental">환경 — 수질·폐수 정량 투입</a></li><li><a href="/furnace/setups/">퍼니스 셋업 사례 — 튜브퍼니스·전기로 가스·온도 제어 도입 사례</a></li><li><a href="/furnace/setups/alicat-mfc-tubefurnace/">1500℃ 튜브퍼니스 가스 분위기 제어 — Alicat MFC 도입 사례</a></li></ul></div><div class="cn-group"><h5>사례·신뢰</h5><ul><li><a href="/">홈</a></li><li><a href="/setups/">도입·논문 사례 — LeadFluid 펌프가 쓰인 연구 셋업</a></li><li><a href="/setups/heart-eshp-bt101l">심장 체외 관류(ESHP) — BT101L 연동펌프 (Frontiers 2021)</a></li><li><a href="/setups/damo-recirculation-bt600s">혐기성 메탄산화 반응기 순환 — BT600S 연동펌프 (Environ. Sci. Technol. 2021)</a></li><li><a href="/setups/nitrification-ph-bq50s">폐수 질산화 pH 제어 — BQ50S 정량펌프 (Bioresource Technology 2017)</a></li><li><a href="/setups/brain-electrode-tyd01">뇌 피질 인터페이싱 — TYD01-01 시린지펌프 (Nature Electronics 2024)</a></li><li><a href="/setups/catheter-heparin-bt101">혈관내 카테터 헤파린 코팅 — BT101 L 연동펌프 (Nature Communications 2024)</a></li><li><a href="/setups/co2-capture-ct3001f">연속 CO₂ 포집 — CT3001F PEEK 기어펌프 (Nature Communications 2024)</a></li><li><a href="/compare/imported-peristaltic-alternative/">Masterflex·Watson-Marlow 연동펌프 국내 대안</a></li><li><a href="/trust/">믿고 도입할 때 (국내 A/S·정품·보증)</a></li><li><a href="/faq/">자주 묻는 질문(FAQ)</a></li><li><a href="/contact/">문의하기</a></li></ul></div></nav><!--CNAV_END--></div>
 <script src="/assets/site.js" defer></script>

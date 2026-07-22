@@ -98,7 +98,11 @@
   /* 전체 사양 아코디언 */
   .specsec{margin:40px 0 60px}
   .specsec h2{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:4px}
-  .specsec p.sd{font-size:13.5px;color:var(--gray);margin-bottom:14px}
+  .specsec p.sd{font-size:13.5px;color:var(--gray);margin-bottom:12px}
+  .mfilter{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+  .mf-btn{font-size:12.5px;font-weight:700;padding:6px 13px;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--gray);cursor:pointer;font-family:inherit}
+  .mf-btn.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .mrow.hide{display:none}
   .mrow{border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:#fff;overflow:hidden}
   .mrow summary{list-style:none;cursor:pointer;padding:14px 16px;font-size:14.5px;display:flex;align-items:center;justify-content:space-between;gap:8px}
   .mrow summary::-webkit-details-marker{display:none}
@@ -237,48 +241,55 @@
   <section class="specsec">
     <h2>리드플루이드 펌프 전체 모델</h2>
     <p class="sd">모델을 펼치면 종류·유량·특징과 구매·문의가 바로 나옵니다.</p>
+    <div class="mfilter" id="lfFilter">
+      <button type="button" class="mf-btn on" data-f="all">전체</button>
+      <button type="button" class="mf-btn" data-f="peri">연동</button>
+      <button type="button" class="mf-btn" data-f="syr">시린지</button>
+      <button type="button" class="mf-btn" data-f="gear">기어</button>
+      <button type="button" class="mf-btn" data-f="ex">방폭</button>
+    </div>
 
-    <details class="mrow" id="m-bt101l"><summary><span><span class="mn">BT101L</span> <span class="mf">연동 · 0.00011–750 mL/min</span></span></summary>
+    <details class="mrow" id="m-bt101l" data-t="peri"><summary><span><span class="mn">BT101L</span> <span class="mf">연동 · 0.00011–750 mL/min</span></span></summary>
       <div class="mdet"><p>지능형 연동펌프. 저~중유량 정밀·RS485 제어. 튜브만 접촉하는 무오염 이송(세포배양·관류·부식성 유체).</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
-    <details class="mrow" id="m-bt103s"><summary><span><span class="mn">BT103S</span> <span class="mf">연동(분주) · 0.00011–500 mL/min</span></span></summary>
+    <details class="mrow" id="m-bt103s" data-t="peri"><summary><span><span class="mn">BT103S</span> <span class="mf">연동(분주) · 0.00011–500 mL/min</span></span></summary>
       <div class="mdet"><p>분주형 연동펌프. 정해진 양을 반복 분주(디스펜싱)하는 정량 작업에 최적.</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
-    <details class="mrow" id="m-bt301l"><summary><span><span class="mn">BT301L</span> <span class="mf">연동 · 0.005–1750 mL/min</span></span></summary>
+    <details class="mrow" id="m-bt301l" data-t="peri"><summary><span><span class="mn">BT301L</span> <span class="mf">연동 · 0.005–1750 mL/min</span></span></summary>
       <div class="mdet"><p>지능형 유량 연동펌프. 넓은 유량 범위·RS485 제어. 중~대유량 연속 이송.</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
-    <details class="mrow" id="m-wt600f"><summary><span><span class="mn">WT600F</span> <span class="mf">연동(분주) · 0.005–6000 mL/min</span></span></summary>
+    <details class="mrow" id="m-wt600f" data-t="peri"><summary><span><span class="mn">WT600F</span> <span class="mf">연동(분주) · 0.005–6000 mL/min</span></span></summary>
       <div class="mdet"><p>분주형 대유량 연동펌프. 4모드 분주·대량 순환/이송.</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
-    <details class="mrow" id="m-mf106"><summary><span><span class="mn">MF106</span> <span class="mf">연동 · 0.005–7700 mL/min</span></span></summary>
+    <details class="mrow" id="m-mf106" data-t="peri"><summary><span><span class="mn">MF106</span> <span class="mf">연동 · 0.005–7700 mL/min</span></span></summary>
       <div class="mdet"><p>고보호(IP66/67) 연동펌프. 분진·수분 환경 방진방수, 대유량.</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
-    <details class="mrow" id="m-bq80s"><summary><span><span class="mn">BQ80S</span> <span class="mf">연동(마이크로) · 0.0035–34 mL/min</span></span></summary>
+    <details class="mrow" id="m-bq80s" data-t="peri"><summary><span><span class="mn">BQ80S</span> <span class="mf">연동(마이크로) · 0.0035–34 mL/min</span></span></summary>
       <div class="mdet"><p>마이크로 정량 연동펌프. 패널 장착·저유량 정밀 투입(OEM·분석기 내장).</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
-    <details class="mrow" id="m-tyd01-01"><summary><span><span class="mn">TYD01-01</span> <span class="mf">시린지 · 0.184 nL–83.3 mL/min</span></span></summary>
+    <details class="mrow" id="m-tyd01-01" data-t="syr"><summary><span><span class="mn">TYD01-01</span> <span class="mf">시린지 · 0.184 nL–83.3 mL/min</span></span></summary>
       <div class="mdet"><p>시린지펌프. 나노리터급 정밀 주입·RS485. 미세유체·정밀 주입.</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
-    <details class="mrow" id="m-tfd"><summary><span><span class="mn">TFD</span> <span class="mf">시린지(스플릿) · 미세주입·다채널</span></span></summary>
+    <details class="mrow" id="m-tfd" data-t="syr"><summary><span><span class="mn">TFD</span> <span class="mf">시린지(스플릿) · 미세주입·다채널</span></span></summary>
       <div class="mdet"><p>스플릿형 시린지펌프. 컨트롤러 분리형·다채널 미세주입(전기방사·마이크로스피어 등).</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
-    <details class="mrow" id="m-ct3001f"><summary><span><span class="mn">CT3001F</span> <span class="mf">기어(PEEK) · 15–2700 mL/min</span></span></summary>
+    <details class="mrow" id="m-ct3001f" data-t="gear"><summary><span><span class="mn">CT3001F</span> <span class="mf">기어(PEEK) · 15–2700 mL/min</span></span></summary>
       <div class="mdet"><p>PEEK 기어펌프. 고압·저맥동 연속 이송(오일·수지·용제 등 고점도).</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
-    <details class="mrow" id="m-explosion-proof"><summary><span><span class="mn">EF800·EF900</span> <span class="mf">방폭 연동 · ~7,800 / 33,000 mL/min</span></span></summary>
+    <details class="mrow" id="m-explosion-proof" data-t="ex"><summary><span><span class="mn">EF800·EF900</span> <span class="mf">방폭 연동 · ~7,800 / 33,000 mL/min</span></span></summary>
       <div class="mdet"><p>방폭 연동펌프. ATEX/IECEx 방폭 지역·인화성 유체 무오염 이송.</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
-    <details class="mrow" id="m-explosion-proof-gear"><summary><span><span class="mn">FG601S</span> <span class="mf">방폭 기어 · 1,000–13,000 mL/min</span></span></summary>
+    <details class="mrow" id="m-explosion-proof-gear" data-t="ex"><summary><span><span class="mn">FG601S</span> <span class="mf">방폭 기어 · 1,000–13,000 mL/min</span></span></summary>
       <div class="mdet"><p>방폭 기어펌프(공압구동). 용제·석유화학 고점도 대유량, 전기 점화원 없음.</p>
       <div class="mbtns"><a class="mbuy" href="https://www.navimro.com/s/b-18090/" target="_blank" rel="noopener">나비엠알오에서 구매 →</a><a class="minq" href="/contact/">이 모델 문의 →</a></div></div></details>
 
@@ -406,6 +417,12 @@
     function calc(){var ID=parseFloat(id.value),R=parseFloat(rp.value),L=parseFloat(hd.value);document.getElementById('cRpmv').textContent=R;var mlrev=Math.PI*Math.pow(ID/2,2)*L/1000,q=mlrev*R;document.getElementById('cFlow').textContent=q>=100?q.toFixed(0):q.toFixed(1);document.getElementById('cLhr').textContent=(q*60/1000).toFixed(2);}
     [id,rp,hd].forEach(function(el){el.addEventListener('input',calc)});calc();
   })();
+  var lfF=document.getElementById('lfFilter');
+  if(lfF){lfF.addEventListener('click',function(e){var b=e.target.closest('.mf-btn');if(!b)return;
+    Array.prototype.forEach.call(lfF.querySelectorAll('.mf-btn'),function(x){x.classList.remove('on');});b.classList.add('on');
+    var f=b.getAttribute('data-f');
+    Array.prototype.forEach.call(document.querySelectorAll('.specsec .mrow'),function(r){r.classList.toggle('hide', f!=='all' && r.getAttribute('data-t')!==f);});
+  });}
   renderProg();show(0);
 })();
 </script>
